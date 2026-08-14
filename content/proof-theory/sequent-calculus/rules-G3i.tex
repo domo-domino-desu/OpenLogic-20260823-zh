@@ -38,10 +38,17 @@ $!C, \Gamma \Sequent !C$ & $\lfalse, \Gamma \Sequent \Delta$
 \BinaryInf$!A \lor !B, \Gamma \fCenter \Delta$
 \DisplayProof
 &
-\Axiom$\Gamma \fCenter !A, !B$
+\begin{tabular}[t]{@{}r@{}}
+\Axiom$\Gamma \fCenter \Delta, !A$
 \RightLabel{\RightR{\lor}}
-\UnaryInf$ \Gamma \fCenter !A \lor !B$
+\UnaryInf$ \Gamma \fCenter \Delta, !A \lor !B$
 \DisplayProof
+\\[3ex]
+\Axiom$ \Gamma \fCenter \Delta, !B$
+\RightLabel{\RightR{\lor}}
+\UnaryInf$ \Gamma \fCenter \Delta, !A \lor !B$
+\DisplayProof\\[3ex]
+\end{tabular}
 \\[4ex]
 \Axiom$!A \lif !B, \Gamma \fCenter !A$
 \Axiom$!B, \Gamma \fCenter \Delta$
