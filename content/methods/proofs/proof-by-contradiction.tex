@@ -8,213 +8,127 @@
 
 \olfileid{mth}{prf}{con}
 
-\olsection{Proof by Contradiction} 
+\olsection{反证法}
 
-In the first instance, proof by contradiction is an inference pattern
-that is used to prove negative claims.  Suppose you want to show that
-some claim~$p$ is \emph{false}, i.e., you want to show~$\lnot p$.  The
-most promising strategy is to (a) suppose that $p$~is true, and (b)
-show that this assumption leads to something you know to be false.
-``Something known to be false'' may be a result that conflicts
-with---contradicts---$p$ itself, or some other hypothesis of the
-overall claim you are considering.  For instance, a proof of ``if $q$
-then $\lnot p$'' involves assuming that $q$~is true and proving~$\lnot
-p$ from it. If you prove $\lnot p$ by contradiction, that means
-assuming $p$ in addition to~$q$. If you can prove $\lnot q$ from $p$,
-you have shown that the assumption~$p$ leads to something that
-contradicts your other assumption~$q$, since $q$~and $\lnot q$ cannot
-both be true.  Of course, you have to use other inference patterns in
-your proof of the contradiction, as well as unpacking definitions.
-Let's consider an example.
+首先，反证法是一种用来证明否定性主张的推理模式。假设你想证明某个主张~$p$ 是\emph{假的}，即你想证明~$\lnot p$。最可行的策略是： 假设 $p$~为真，然后 证明这一假设会导致某个已知为假的结论。这个“已知为假的结论”可能是与~$p$ 本身相冲突（即相矛盾）的结果，也可能是与你所考虑的整体主张的其他假设相矛盾的结果。例如，证明“如果 $q$ 则 $\lnot p$”就涉及假设 $q$~为真并从中证明~$\lnot p$。如果你用反证法来证明 $\lnot p$，那就意味着除了~$q$ 之外还要假设~$p$。如果你能从 $p$ 推出 $\lnot q$，那么你就表明了假设~$p$ 会导致与你另一个假设~$q$ 相矛盾的结论，因为 $q$~和 $\lnot q$ 不能同时为真。当然，在证明矛盾的过程中，你还需要用到其他推理模式，以及展开定义。让我们来看一个例子。
 
 \begin{prop}
-  If $A \subseteq B$ and $B = \emptyset$, then $A$ has no !!{element}s.
+  如果 $A \subseteq B$ 且 $B = \emptyset$，那么 $A$ 没有元素。
 \end{prop}
 
 \begin{proof}
-  Suppose $A \subseteq B$ and $B = \emptyset$. We want to show that
-  $A$ has no !!{element}s.
+  假设 $A \subseteq B$ 且 $B = \emptyset$。我们想要证明 $A$ 没有元素。
   \begin{quote}
-    Since this is a conditional claim, we assume the antecedent and
-    want to prove the consequent. The consequent is: $A$ has no
-    !!{element}s. We can make that a bit more explicit: it's not the
-    case that there is an~$x \in A$.
+    由于这是一个条件句，我们假设前件并想要证明后件。后件是：$A$ 没有元素。我们可以说得更明确一些：不存在~$x \in A$。
   \end{quote}
-  $A$ has no !!{element}s iff it's not the case that there is an~$x$
-  such that $x \in A$.
+  $A$ 没有元素，当且仅当不存在~$x$ 使得 $x \in A$。
   \begin{quote}
-    So we've determined that what we want to prove is really a
-    negative claim~$\lnot p$, namely: it's not the case that there is
-    an $x \in A$.  To use proof by contradiction, we have to assume the
-    corresponding positive claim~$p$, i.e., there is an $x \in A$, and
-    prove a contradiction from it.  We indicate that we're doing a
-    proof by contradiction by writing ``by way
-    of contradiction, assume'' or even just ``suppose not,'' and then state
-    the assumption~$p$.
+    于是我们确定了要证明的实际上是一个否定主张~$\lnot p$，即：不存在 $x \in A$。为了使用反证法，我们必须假设相应的肯定主张~$p$，即存在 $x \in A$，并从中推出矛盾。我们通常写“用反证法，假设”或干脆写“假设不然”，然后陈述假设~$p$，以此标明我们在使用反证法。
   \end{quote}
-  Suppose not: there is an $x \in A$.
+  假设不然：存在 $x \in A$。
   \begin{quote}
-    This is now the new assumption we'll use to obtain a
-    contradiction. We have two more assumptions: that $A \subseteq B$
-    and that $B = \emptyset$. The first gives us that $x \in B$:
+    这是我们现在将用来推出矛盾的新假设。我们还有两个假设：$A \subseteq B$ 和 $B = \emptyset$。第一个假设给出 $x \in B$：
   \end{quote}
-  Since $A \subseteq B$, $x \in B$.
+  因为 $A \subseteq B$，所以 $x \in B$。
   \begin{quote}
-    But since $B = \emptyset$, every !!{element} of $B$ (e.g., $x$)
-    must also be !!a{element} of~$\emptyset$.
+    但由于 $B = \emptyset$，$B$ 的每个元素（例如 $x$）也必须是~$\emptyset$ 的元素。
   \end{quote}
-  Since $B = \emptyset$, $x \in \emptyset$. This is a contradiction,
-  since by definition $\emptyset$ has no !!{element}s.
+  因为 $B = \emptyset$，所以 $x \in \emptyset$。这是一个矛盾，因为根据定义 $\emptyset$ 没有元素。
   \begin{quote}
-    This already completes the proof: we've arrived at what we need (a
-    contradiction) from the assumptions we've set up, and this means
-    that the assumptions can't all be true. Since the first two
-    assumptions ($A \subseteq B$ and $B = \emptyset$) are not
-    contested, it must be the last assumption introduced (there is an
-    $x \in A$) that must be false. But if we want to be thorough, we
-    can spell this out.
+    这已经完成了证明：我们从所作的假设得出了所需的结论（一个矛盾），这意味着这些假设不可能全部成立。由于前两个假设（$A \subseteq B$ 和 $B = \emptyset$）不被质疑，那么一定是最后引入的那个假设（存在 $x \in A$）必定为假。但如果我们想做得彻底，可以把它明确说出来。
   \end{quote}
-  Thus, our assumption that there is an $x \in A$ must be false, hence,
-  $A$ has no !!{element}s by proof by contradiction.
+  因此，存在 $x \in A$ 这一假设必定为假，于是，根据反证法，$A$ 没有元素。
 \end{proof}
 
-Every positive claim is trivially equivalent to a negative claim: $p$
-iff $\lnot\lnot p$.  So proofs by contradiction can also be used to
-establish positive claims ``indirectly,'' as follows: To prove~$p$,
-read it as the negative claim $\lnot\lnot p$. If we can prove a
-contradiction from $\lnot p$, we've established $\lnot\lnot p$ by
-proof by contradiction, and hence~$p$.
+每个肯定论断都平凡地等价于一个否定论断：$p$ 当且仅当 $\lnot\lnot p$。
+因此，反证法也能用来“间接地”确立肯定论断，如下：要证明~$p$，可以把它视作否定论断 $\lnot\lnot p$。
+如果我们能从 $\lnot p$ 推出矛盾，那么就通过反证法确立了 $\lnot\lnot p$，从而得到~$p$。
 
-In the last example, we aimed to prove a negative claim, namely that
-$A$ has no !!{element}s, and so the assumption we made for the purpose
-of proof by contradiction (i.e., that there is an $x \in A$) was a
-positive claim. It gave us something to work with, namely the
-hypothetical $x \in A$ about which we continued to reason until we got
-to $x \in \emptyset$.
+在之前的例子中，我们的目标是证明一个否定论断，即 $A$ 没有元素，因此我们为反证法所作的假设（即存在 $x \in A$）是一个肯定论断。
+它为我们提供了可操作的对象，即那个假想的 $x \in A$，我们围绕它继续推理，直到得出 $x \in \emptyset$。
 
-When proving a positive claim indirectly, the assumption you'd make
-for the purpose of proof by contradiction would be negative. But very
-often you can easily reformulate a positive claim as a negative claim,
-and a negative claim as a positive claim.  Our previous proof would
-have been essentially the same had we proved ``$A = \emptyset$''
-instead of the negative consequent ``$A$ has no !!{element}s.'' (By
-definition of $=$, ``$A = \emptyset$'' is a general claim, since it
-unpacks to ``every !!{element} of~$A$ is an !!{element} of~$\emptyset$
-and vice versa''.) But it is easily seen to be equivalent to the
-negative claim ``not: there is an $x \in A$.''
+当间接证明一个肯定论断时，你为反证法所作的假设将是否定的。
+但你常常可以很容易地将一个肯定论断重新表述为否定论断，反之亦然。
+如果我们当初证明的是“$A = \emptyset$”而非那个否定性的结论“$A$ 没有元素”，
+我们之前的证明本质上会是相同的。（根据 $=$ 的定义，“$A = \emptyset$”是一个普遍论断，因为它展开来就是“$A$ 的每个元素都是 $\emptyset$ 的元素，反之亦然”。)
+但很容易看出它等价于否定论断“并非：存在 $x \in A$”。
 
-So it is sometimes easier to work with $\lnot p$ as an assumption than
-it is to prove~$p$ directly.  Even when a direct proof is just as
-simple or even simpler (as in the next examples), some people prefer to
-proceed indirectly.  If the double negation confuses you, think of a
-proof by contradiction of some claim as a proof of a contradiction
-from the \emph{opposite} claim. So, a proof by contradiction of $\lnot
-p$ is a proof of a contradiction from the assumption~$p$; and proof by
-contradiction of~$p$ is a proof of a contradiction from~$\lnot p$.
+所以，有时将 $\lnot p$ 作为假设来处理，比直接证明~$p$ 更容易。
+即使直接证明同样简单甚至更简单（如下一例），有些人也倾向于使用间接证明。
+如果双重否定让你困惑，不妨把对某个论断的反证法看作是从其\emph{相反}论断出发推出矛盾的证明。
+因此，对 $\lnot p$ 的反证法就是从假设~$p$ 出发推出矛盾；而对~$p$ 的反证法则是从~$\lnot p$ 出发推出矛盾。
 
 \begin{prop}
-$A \subseteq A \cup B$.
+$A \subseteq A \cup B$。
 \end{prop}
 
 \begin{proof}
-  We want to show that $A \subseteq A \cup B$.
+  我们要证明 $A \subseteq A \cup B$。
   \begin{quote}
-    On the face of it, this is a positive claim: every $x \in A$ is
-    also in $A \cup B$.  The negation of that is: some $x \in A$ is
-    $\notin A \cup B$. So we can prove the claim indirectly by
-    assuming this negated claim, and showing that it leads to a
-    contradiction.
-    \end{quote}
-  Suppose not, i.e., $A \nsubseteq A \cup B$.
-  \begin{quote}
-    We have a definition of $A \subseteq A \cup B$: every $x \in A$ is
-    also $\in A \cup B$.  To understand what $A \nsubseteq A \cup B$
-    means, we have to use some elementary logical manipulation on the
-    unpacked definition: it's false that every $x \in A$ is also $\in
-    A \cup B$ iff there is \emph{some}~$x \in A$ that is $\notin C$.
-    (This is a place where you want to be very careful: many students'
-    attempted proofs by contradiction fail because they analyze the
-    negation of a claim like ``all $A$s are $B$s'' incorrectly.) In
-    other words, $A \nsubseteq A \cup B$ iff there is an $x$ such that
-    $x \in A$ and $x \notin A \cup B$. From then on, it's easy.
+    表面上看，这是一个肯定论断：每个 $x \in A$ 也在 $A \cup B$ 中。
+    它的否定是：某个 $x \in A$ 不在 $A \cup B$ 中。
+    因此，我们可以通过假设这个被否定的论断，并证明它导致矛盾，来间接地证明原论断。
   \end{quote}
-  So, there is an $x \in A$ such that $x \notin A \cup B$.  By
-  definition of $\cup$, $x \in A \cup B$ iff $x \in A$ or $x \in
-  B$. Since $x \in A$, we have $x \in A \cup B$. This contradicts the
-  assumption that $x \notin A \cup B$. 
+  假设不然，即 $A \nsubseteq A \cup B$。
+  \begin{quote}
+    我们有 $A \subseteq A \cup B$ 的定义：每个 $x \in A$ 也属于 $A \cup B$。
+    要理解 $A \nsubseteq A \cup B$ 意味着什么，我们需要对这个展开的定义做一些基本的逻辑处理：
+    “每个 $x \in A$ 也属于 $A \cup B$”为假，当且仅当存在\emph{某个}~$x \in A$ 不属于 $A \cup B$。
+    （这里你需要非常小心：许多学生尝试的反证法之所以失败，正是因为他们错误地分析了像“所有 $A$ 都是 $B$”这类论断的否定。）
+    换言之，$A \nsubseteq A \cup B$ 当且仅当存在 $x$ 使得 $x \in A$ 且 $x \notin A \cup B$。从此往后，就容易了。
+  \end{quote}
+  因此，存在 $x \in A$ 使得 $x \notin A \cup B$。
+  根据 $\cup$ 的定义，$x \in A \cup B$ 当且仅当 $x \in A$ 或 $x \in B$。
+  由于 $x \in A$，我们有 $x \in A \cup B$。这与 $x \notin A \cup B$ 的假设矛盾。 
 \end{proof}
 
 \begin{prob}
-Prove \emph{indirectly} that $A \cap B \subseteq A$.
+\emph{间接地}证明 $A \cap B \subseteq A$。
 \end{prob}
 
 \begin{prop}
-If $A \subseteq B$ and $B \subseteq C$ then $A \subseteq C$.
+若 $A \subseteq B$ 且 $B \subseteq C$，则 $A \subseteq C$。
 \end{prop}
 
 \begin{proof}
-  Suppose $A \subseteq B$ and $B \subseteq C$. We want to show $A
-  \subseteq C$.
+  假设 $A \subseteq B$ 且 $B \subseteq C$。我们想证明 $A \subseteq C$。
   \begin{quote}
-    Let's proceed indirectly: we assume the negation of what we want
-    to etablish.
+    让我们间接地进行：假设我们想要确立的结论的否定。
   \end{quote}
-  Suppose not, i.e., $A \nsubseteq C$.
+  假设不然，即 $A \nsubseteq C$。
   \begin{quote}
-    As before, we reason that $A \nsubseteq C$ iff not every $x \in A$
-    is also $\in C$, i.e., some $x \in A$ is $\notin C$.  Don't worry,
-    with practice you won't have to think hard anymore to unpack
-    negations like this.
+    如前所述，我们推理得出 $A \nsubseteq C$ 当且仅当并非每个 $x \in A$ 也属于 $C$，
+    即存在某个 $x \in A$ 不属于 $C$。
+    别担心，多练习后你就不必费神去分析这类否定了。
   \end{quote}
-  In other words, there is an~$x$ such that $x \in A$ and $x \notin C$.
+  换句话说，存在~$x$ 使得 $x \in A$ 且 $x \notin C$。
   \begin{quote}
-    Now we can use this to get to our contradiction. Of course, we'll
-    have to use the other two assumptions to do it.
+    现在我们可以利用这点来得出矛盾。当然，我们需要使用其余两个假设来完成。
   \end{quote}
-  Since $A \subseteq B$, $x \in B$. Since $B \subseteq C$, $x \in
-  C$. But this contradicts $x \notin C$.
+  由于 $A \subseteq B$，有 $x \in B$。由于 $B \subseteq C$，有 $x \in C$。但这与 $x \notin C$ 矛盾。
 \end{proof}
 
 \begin{prop}
-If $A \cup B = A \cap B$ then $A = B$.
+若 $A \cup B = A \cap B$，则 $A = B$。
 \end{prop}
 
 \begin{proof}
-  Suppose $A \cup B = A \cap B$. We want to show that $A = B$.
+  假设 $A \cup B = A \cap B$。我们要证 $A = B$。
   \begin{quote}
-    The beginning is now routine:
+    现在开始常规步骤：
   \end{quote}
-  Assume, by way of contradiction, that $A \neq B$.
+  用反证法，假设 $A \neq B$。
   \begin{quote}
-    Our assumption for the proof by contradiction is that $A \neq
-    B$. Since $A = B$ iff $A \subseteq B$ an $B \subseteq A$, we get
-    that $A \neq B$ iff $A \nsubseteq B$ \emph{or} $B \nsubseteq
-    A$. (Note how important it is to be careful when manipulating
-    negations!{}) To prove a contradiction from this disjunction, we
-    use a proof by cases and show that in each case, a contradiction
-    follows.
+    我们在反证法中所用的假设是 $A \neq B$。由于 $A = B$ 当且仅当 $A \subseteq B$ 且 $B \subseteq A$，可得 $A \neq B$ 当且仅当 $A \nsubseteq B$ \emph{或者} $B \nsubseteq A$。（注意在处理否定时小心谨慎有多么重要！{}）为了从这个析取式推出矛盾，我们将使用分情况证明，并证明在每种情况下都能推出矛盾。
   \end{quote}
-  $A \neq B$ iff $A \nsubseteq B$ or $B \nsubseteq A$. We distinguish
-  cases.
+  $A \neq B$ 当且仅当 $A \nsubseteq B$ 或者 $B \nsubseteq A$。我们分情况讨论。
   \begin{quote}
-    In the first case, we assume $A \nsubseteq B$, i.e., for some $x$,
-    $x \in A$ but $\notin B$. $A \cap B$ is defined as those
-    !!{element}s that $A$ and $B$ have in common, so if something
-    isn't in one of them, it's not in the intersection. $A \cup B$ is
-    $A$ together with $B$, so anything in either is also in the
-    union. This tells us that $x \in A \cup B$ but $x \notin A \cap
-    B$, and hence that $A \cap B \neq A \cup B$.
+    在第一种情况下，我们假设 $A \nsubseteq B$，即存在某个 $x$，$x \in A$ 但 $x \notin B$。$A \cap B$ 定义为 $A$ 和 $B$ 的公共元素，所以只要某个元素不在其中一个集合中，它就不会在交集中。$A \cup B$ 是 $A$ 与 $B$ 的并集，因此属于任一集合的元素也在并集中。这告诉我们 $x \in A \cup B$ 但 $x \notin A \cap B$，从而 $A \cap B \neq A \cup B$。
   \end{quote}
   
-  Case 1: $A \nsubseteq B$. Then for some $x$, $x \in A$ but $x \notin
-  B$. Since $x \notin B$, then $x \notin A \cap B$. Since $x \in A$,
-  $x \in A \cup B$. So, $A \cap B \neq A \cup B$, contradicting the
-  assumption that $A \cap B = A \cup B$.
+  情况 1：$A \nsubseteq B$。则存在某个 $x$，使得 $x \in A$ 但 $x \notin B$。由于 $x \notin B$，则 $x \notin A \cap B$。由于 $x \in A$，$x \in A \cup B$。所以，$A \cap B \neq A \cup B$，这与假设 $A \cap B = A \cup B$ 矛盾。
 
-  Case 2: $B \nsubseteq A$. Then for some $y$, $y \in B$ but $y \notin
-  A$. As before, we have $y \in A \cup B$ but $y \notin A \cap B$, and
-  so $A \cap B \neq A \cup B$, again contradicting $A \cap B = A \cup
-  B$. 
+  情况 2：$B \nsubseteq A$。则存在某个 $y$，使得 $y \in B$ 但 $y \notin A$。如前所述，我们有 $y \in A \cup B$ 但 $y \notin A \cap B$，因此 $A \cap B \neq A \cup B$，同样与 $A \cap B = A \cup B$ 矛盾。
 \end{proof}
 
 \end{document}

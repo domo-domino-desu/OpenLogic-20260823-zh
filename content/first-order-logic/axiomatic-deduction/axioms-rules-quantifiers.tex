@@ -8,27 +8,24 @@
 
 \olfileid{fol}{axd}{qua}
 
-\olsection{Axioms and Rules for Quantifiers}
+\olsection{量词的公理与规则}
 
-\begin{defn}[Axioms for quantifiers]
-The \emph{axioms} governing quantifiers are
-all instances of the following:
+\begin{defn}[量词公理]
+管辖量词的\emph{公理}是下述模式的所有实例：
 \begin{align}
 \ollabel{ax:q1} & \lforall[x][!B] \lif !B(t), \\
 \ollabel{ax:q2} & !B(t) \lif \lexists[x][!B].
 \end{align}
-for any closed term~$t$.
+其中 $t$ 为任意闭项。
 \end{defn}
 
-\begin{defn}[Rules for quantifiers]
-\item If $!B \lif !A(a)$ already occurs in the !!{derivation} and $a$
-  does not occur in~$\Gamma$ or~$!B$, then $!B \lif
-  \lforall[x][!A(x)]$ is a correct inference step.
-\item If $!A(a) \lif !B$ already occurs in the !!{derivation} and $a$
-  does not occur in~$\Gamma$ or~$!B$, then $\lexists[x][!A(x)] \lif
-  !B$ is a correct inference step.
+\begin{defn}[量词规则]
+\item 若 $!B \lif !A(a)$ 已在推导中出现，且 $a$ 不出现在~$\Gamma$ 或~$!B$ 中，则 $!B \lif
+  \lforall[x][!A(x)]$ 是正确的推理步骤。
+\item 若 $!A(a) \lif !B$ 已在推导中出现，且 $a$ 不出现在~$\Gamma$ 或~$!B$ 中，则 $\lexists[x][!A(x)] \lif
+  !B$ 是正确的推理步骤。
 \end{defn}
 
-We'll abbreviate either of these by ``\QR.''
+我们将这两条规则中的任意一条缩写为“\QR”。
 
 \end{document}

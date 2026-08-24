@@ -8,12 +8,11 @@
 
 \olfileid{pt}{nat}{rp}
 
-\olsection{Rules and \usetoken{P}{proof}}
+\olsection{规则与\usetoken{P}{proof}}
 
-We begin by giving some definitions and fixing some terminology.
+我们首先给出一些定义并约定一些术语。
 
-Consider the two rules in \Log{N1c} and~\Log{N1i} that mention $!A
-\lif !B$.
+考虑 \Log{N1c} 和~\Log{N1i} 中涉及 $!A \lif !B$ 的两条规则。
 \[
 \bottomAlignProof
 \AxiomC{$\Discharge{!A}{x}$}
@@ -30,39 +29,28 @@ Consider the two rules in \Log{N1c} and~\Log{N1i} that mention $!A
 \BinaryInfC{$!B$}
 \DisplayProof
 \]
-The \Elim{\lif} rule is simple enough. The !!{formula}s above the line
-are the \emph{premises}. The !!{formula} on the left is the
-\emph{principal} !!{formula}~$!A \lif !B$. All !!{elimination} rules
-have one such premise, always on the far left. It is called the
-\emph{major} premise of the inference. If there are others, such as an
-this case, they are called \emph{minor} premises. The premise(s) of
-!!{introduction} rules are also called major premise(s). The
-!!{formula} below the line is the \emph{conclusion}.
+\Elim{\lif} 规则相当简单。横线上方的公式是\emph{前提}。
+左边的公式是\emph{主公式}~$!A \lif !B$。
+所有消去规则都有一个这样的前提，总是在最左边。
+它被称为推理的\emph{主要前提}。若还有其他前提（如本例所示），它们被称为\emph{次要前提}。
+引入规则的前提也被称为主要前提。
+横线下方的公式是\emph{结论}。
 
-The \Intro{\lif} rule only has one premise, and here the conclusion
-is the principal formula~$!A \lif !B$. All !!{introduction} rules are
-like this: the conclusion is the principal formula; its main operator
-is the one being ``introduced.''
+\Intro{\lif} 规则只有一个前提，这里的结论是主公式~$!A \lif !B$。
+所有引入规则都是如此：结论是主公式；其主联结词正是被“引入”的那个。
 
-The notation $\Discharge{!A}{x}$ means the following. In !!a{proof},
-the \Intro{\lif} inference is applied to !!a{formula}~$!B$ as premise.
-The sub-!!{proof} ending in~$!B$ has a number of initial !!{formula}s.
-These are called \emph{assumptions}. !!^a{proof} of~$!B$ from one or
-more assumptions of the form~$!A$ is !!a{proof} that $!A$
-entails~$!B$. When we apply the \Intro{\lif} rule, we conclude~$!A
-\lif !B$, and the conclusion no longer depends on the assumption~$!A$.
-To indicate this, the assumptions of the form~$!A$ in the !!{proof}
-including the~\Intro{\lif} inference are \emph{discharged} or
-\emph{closed}. The rule states which assumptions can be discharged. In
-the case of \Intro{\lif} with conclusion $!A \lif !B$, that's
-assumptions that have the form~$!A$, i.e., agree with the antecedent
-of the conditional. It is sometimes important to indicate which
-assumptions are discharged at which rule, and this is accomplished
-with the discharge label~$x$. Importantly, rules that discharge
-assumptions don't \emph{have to} discharge \emph{all} assumptions of the
-requisite form, or indeed any at all. For instance, the following is
-correct, even though the first \Intro{\lif} does not discharge any
-assumptions:
+记号 $\Discharge{!A}{x}$ 含义如下。在推导中，
+\Intro{\lif} 推理应用于一个作为前提的公式~$!B$。
+末公式为~$!B$ 的子推导有若干初始公式，这些被称为\emph{假设}。
+从一个或多个形如~$!A$ 的假设出发得到~$!B$ 的推导，表明 $!A$ 语义上后承~$!B$。
+当我们应用 \Intro{\lif} 规则时，我们得出~$!A \lif !B$，并且结论不再依赖于假设~$!A$。
+为了表明这一点，包含该 \Intro{\lif} 推理的推导中，所有形如~$!A$ 的假设被\emph{解除}或\emph{关闭}。
+规则指明哪些假设可以被解除。对于结论为 $!A \lif !B$ 的 \Intro{\lif} 规则，
+那就是具有形式~$!A$ 的假设，即与条件句前件相同的假设。
+有时需要指明哪个假设被哪条规则解除，这通过解除标签~$x$ 来实现。
+重要的是，解除假设的规则并\emph{不必须}解除\emph{全部}符合所需形式的假设，
+甚至可以一个都不解除。例如，即使第一个 \Intro{\lif} 没有解除任何假设，
+下面的推导也是正确的：
 \[
 \AxiomC{$\Discharge{!A}{y}$}
 \DischargeRule{\Intro{\lif}}{x}
@@ -71,10 +59,9 @@ assumptions:
 \UnaryInfC{$!A \lif (!B \lif !A)$}
 \DisplayProof
 \]
-When a rule does not discharge any assumptions, we just leave out the
-discharge label (as we did here).
+当一个规则不解任何假设时，我们直接省略解除标签（正如我们在这里所做的）。
 
-In the !!{proof}
+在推导
 \[
 \AxiomC{$\Discharge{!A}{x}$}
 \AxiomC{$\Discharge{!A}{y}$}
@@ -88,15 +75,13 @@ In the !!{proof}
 \UnaryInfC{$!A \lif (!A \lif !A)$}
 \DisplayProof
 \]
-the first \Intro{\lif} inference discharges the left assumption
-$!A^x$, the second the right assumption~$!A^y$. That is, all
-assumptions labelled~$x$ are discharged by the \Intro{\lif} with
-label~$x$, and all assumptions with label~$y$ by the one labelled~$y$.
-For this to work, it is important that all assumptions with the same
-label are also the same !!{formula}.
+中，第一个 \Intro{\lif} 推理解除左侧标记为 $x$ 的假设 $!A^x$，
+第二个解除右侧标记为 $y$ 的假设~$!A^y$。
+也就是说，所有标记为~$x$ 的假设都由标有~$x$ 的 \Intro{\lif} 推理解除，
+所有标记为~$y$ 的假设都由标有~$y$ 的推理解除。
+为使这可行，所有具有相同标签的假设也必须是同一个公式，这一点很重要。
 
-The quantifier rules are slightly more complicated. E.g., the rules in
-\Log{N1i} for $\lexists$ are:
+量词规则稍显复杂。例如，\Log{N1i} 中关于 $\lexists$ 的规则是：
 \[
 \bottomAlignProof
 \AxiomC{$!A(t)$}
@@ -112,43 +97,28 @@ The quantifier rules are slightly more complicated. E.g., the rules in
 \DischargeRule{\Elim{\lexists}}{x}
 \BinaryInfC{$!B$} \DisplayProof 
 \bottomAlignProof
-\] In the
-\Intro{\lexists} rule, the premise is~$!A(t)$ where $t$~is a closed
-term, i.e., a term without variables. Such an inference is
-correct---that is, it matches the schematic rule \Intro{\lexists}---if
-there is some !!{formula}~$!A$, some variable~$x$, and some closed
-term~$t$ such that the conclusion is $\lexists[x][!A]$ and premise
-is~$\Subst{!A}{t}{x}$. The \Elim{\lexists} allows us to discharge
-assumptions of the form~$!A(c)$, i.e., for every inference there is
-some !!{constant}~$c$ and assumptions of the form $\Subst{!A}{c}{x}$
-can be discharged. The discharged assumptions of one inference all
-have to use the same~$c$. This constant is called the
-\emph{eigenvariable} of the \Elim{\lexists} inference. The inference
-is only correct if $c$~does not occur in an open assumption other than
-the discharged~$!A(c)$, does not occur in~$!B$, and does not occur
-in~$!A$. This is called the \emph{eigenvariable condition}.
+\] 在
+\Intro{\lexists} 规则中，前提是~$!A(t)$，其中 $t$~是一个闭项，
+即不含变元的项。
+这样的推理是正确的——也就是说，它符合模式规则 \Intro{\lexists}——当存在某个公式~$!A$、
+某个变元~$x$ 以及某个闭项~$t$，使得结论是 $\lexists[x][!A]$ 且前提是~$\Subst{!A}{t}{x}$。
+\Elim{\lexists} 允许我们解除形如~$!A(c)$ 的假设，也就是说，
+对于每个推理，存在某个常项符号~$c$，形如 $\Subst{!A}{c}{x}$ 的假设可以被解除。
+同一推理所解除的所有假设必须使用同一个~$c$。
+这个常项被称为 \Elim{\lexists} 推理的\emph{特征变元}。
+仅当 $c$~不出现在除被解除的~$!A(c)$ 之外的任何开放假设中，
+也不出现在~$!B$ 中，且不出现在~$!A$ 中时，这个推理才是正确的。这被称为\emph{特征变元条件}。
 
-!!^{proof}s in \Log{N1c} and~\Log{N1i} are finite trees of sequents
-that are inductively generated from axioms using the rules of
-inference. Each leaf is an assumption, possibly labelled with a
-discharge label, and every other !!{formula} follows from the
-!!{formula}s immediately above it by one of the inference rules of the
-system. If an occurence of a !!{formula} as an assumption in the tree
-above an inference has not been discharged by an inference above it,
-it is called \emph{open} (at the inference).
+\Log{N1c} 和~\Log{N1i} 中的推导是相继式的有限树，这些树是使用推理规则从公理出发归纳生成的。
+每个叶子是一个假设，可能带有解除标签，而其他每个公式都由紧邻其上方的公式通过系统的某条推理规则得出。
+如果一个公式作为假设的出现位于推理上方的树中，且未被其上方的某个推理解除，
+则它（在该推理处）被称为\emph{开放的}。
 
 \begin{defn}\ollabel{defn:proof}
-\emph{!!^{proof}s} in \Log{N1c} and~\Log{N1i} are finite trees of
-!!{formula}s inductively as follows:
+在 \Log{N1c} 和~\Log{N1i} 中，\emph{推导}是公式的有限树，归纳定义如下：
 \begin{enumerate}
-  \item\ollabel{defn:prf:assumption} Every !!{formula} 
-  labelled by a discharge label such as $x$ or $y$, by itself is
-  !!a{proof}. In !!a{proof} consisting of a single !!{formula}, the
-  !!{formula} counts as an open assumption.
-  \item\ollabel{defn:prf:one-prem} If $R$ is a rule with one, two, or
-  three premises $!A_1$, $!A_2$, $!A_3$, conclusion~$!A$, and
-  $\delta_1$, $\delta_2$, $\delta_3$ are !!{proof}s ending in $!A_1$,
-  $!A_2$, $!A_3$, respectively, the
+  \item\ollabel{defn:prf:assumption} 任何带有解除标签（例如 $x$ 或 $y$）的公式，其本身即为一个推导。在一个由单个公式组成的推导中，该公式被算作一个开放假设。
+  \item\ollabel{defn:prf:one-prem} 若 $R$ 是一个带有一、二或三个前提 $!A_1$、$!A_2$、$!A_3$ 以及结论~$!A$ 的规则，且 $\delta_1$、$\delta_2$、$\delta_3$ 分别是末公式为前提 $!A_1$、$!A_2$、$!A_3$ 的推导，那么
   \[
   \AxiomC{}
   \RightLabel{$\delta_1$}
@@ -180,56 +150,35 @@ it is called \emph{open} (at the inference).
   \TrinaryInfC{$!A$}
   \DisplayProof
   \]
-  is !!a{proof}, respectively, provided the assumption labels in the
-  !!{proof}s are compatible (no two different !!{formula}s have the
-  same discharge label) and the inferences are correct applications
-  of~$R$.
-  \item Topmost !!{formula} occurrences in the new !!{proof} count as
-  \emph{open assumptions} of the !!{proof} if they are open
-  assumptions of $\delta_1$, $\delta_2$, or~$\delta_3$, except those
-  occurrences discharged by the rule. If the rule is labelled~$x$ (or
-  $x\, y$), then for \Intro{\lif} and~\Intro{\lnot}, that is all open
-  assumptions in~$\delta_1$ labelled~$x$; for \Elim{\lexists}, it is
-  all open assumptions labelled~$x$ in~$\delta_2$; for \Elim{\lor}, it
-  is all open assumptions labelled~$x$ in~$\delta_2$ and all open
-  assumptions labelled~$y$ in~$\delta_3$.
+  也分别是一个推导，前提是各推导中的假设标签是兼容的（没有两个不同的公式具有相同的解除标签），并且这些推理是规则~$R$ 的正确应用。
+  \item 新推导中最顶层的公式出现，若其为 $\delta_1$、$\delta_2$ 或~$\delta_3$ 的开放假设，且未被该规则解除，则算作该推导的\emph{开放假设}。如果规则带有标签~$x$（或 $x\, y$），那么对于 \Intro{\lif} 和~\Intro{\lnot}，被解除的是~$\delta_1$ 中所有标为~$x$ 的开放假设；对于 \Elim{\lexists}，被解除的是~$\delta_2$ 中所有标为~$x$ 的开放假设；对于 \Elim{\lor}，被解除的是~$\delta_2$ 中所有标为~$x$ 的开放假设以及~$\delta_3$ 中所有标为~$y$ 的开放假设。
 \end{enumerate}
 \end{defn}
 
-The !!{proof}s used in the inductive construction of !!a{proof} are
-called its \emph{sub-!!{proof}s}. The sub-!!{proof}s ending in the
-premises of an inference are called the \emph{immediate
-sub-!!{proof}s} of the inference. The rules of \Log{N2c} and \Log{N2i}
-are given in \olref{tab:N1}
+在推导的归纳构造中所用到的推导，称为它的\emph{子推导}。末公式为某条推理之前提的子推导，称为该推理的\emph{直接子推导}。\Log{N2c} 和 \Log{N2i} 的规则见 \olref{tab:N1}。
 
 \subfile{rules-N1}
 
 \begin{defn}
-The \emph{!!{height}}~$\pheight{\delta}$ of !!a{proof}~$\delta$ is
-inductively defined as follows.
+推导~$\delta$ 的\emph{高度} $\pheight{\delta}$ 归纳定义如下：
 \begin{enumerate}
-  \item If $\delta$ consists of an assumption, $\pheight{\delta} = 0$.
-  \item If $\delta$ ends in an inference with one premise with immediate
-  sub-!!{proof}~$\delta_1$, then $\pheight{\delta} = \pheight{\delta_1} + 1$.
-  \item If $\delta$ ends in an inference with two premises with immediate
-  sub-!!{proof}s~$\delta_1$ and~$\delta_2$, then $\pheight{\delta} =
-  \max(\pheight{\delta_1}, \pheight{\delta_2}) + 1$.
-  \item If $\delta$ ends in \Elim{\lor} with immediate
-  sub-!!{proof}s~$\delta_1$, $\delta_2$, and~$\delta_3$, then $\pheight{\delta} =
-  \max(\pheight{\delta_1}, \pheight{\delta_2}, \pheight{\delta_3}) + 1$.
+  \item 若 $\delta$ 仅由一个假设组成，则 $\pheight{\delta} = 0$。
+  \item 若 $\delta$ 以一条单前提推理结尾，其直接子推导为~$\delta_1$，则 $\pheight{\delta} = \pheight{\delta_1} + 1$。
+  \item 若 $\delta$ 以一条双前提推理结尾，其直接子推导为 $\delta_1$ 和~$\delta_2$，则 $\pheight{\delta} =
+  \max(\pheight{\delta_1}, \pheight{\delta_2}) + 1$。
+  \item 若 $\delta$ 以 \Elim{\lor} 结尾，其直接子推导为 $\delta_1$、$\delta_2$ 和~$\delta_3$，则 $\pheight{\delta} =
+  \max(\pheight{\delta_1}, \pheight{\delta_2}, \pheight{\delta_3}) + 1$。
 \end{enumerate}
-If a sequent~$S$ has !!a{proof} of height $\le n$, we write $\Proves[n] S$.
+如果相继式~$S$ 有一个高度 $\le n$ 的推导，我们记作 $\Proves[n] S$。
 \end{defn}
 
 \begin{ex}
-In \Log{N1i}, any !!{formula} counts as !!a{proof} from itself as an
-open assumption. So
+在 \Log{N1i} 中，任何公式都可算作一个以自身为开放假设的推导。所以
 \[
 !A \land !B^x
 \]
-is !!a{proof}~$\delta_1$. Its height is~$0$.
-From $\delta_1$ we can obtain two !!{proof}s~$\delta_2$ and~$\delta_3$
-by applying one of the two version of~\Elim{\land}
+是一个推导~$\delta_1$。它的高度是~$0$。
+从 $\delta_1$ 出发，分别应用两种版本的~\Elim{\land}，我们可以得到推导~$\delta_2$ 和~$\delta_3$：
 \[
 \AxiomC{$!A \land !B^x$}
 \RightLabel{\Elim{\land}[2]}
@@ -241,14 +190,10 @@ by applying one of the two version of~\Elim{\land}
 \UnaryInfC{$!A$}
 \DisplayProof
 \]
-The immediate sub-!!{proof}s of the last inference in~$\delta_2$ and
-in~$\delta_3$ is the same: $!A \land !B$. Both !!{proof}s have the
-occurrence of $!A\land !B$ as an open assumption. We have
-$\pheight{\delta_1} = \pheight{\delta_2} = 1$.
+在~$\delta_2$ 和~$\delta_3$ 中，最后一条推理的直接子推导是相同的：$!A \land !B$。两个推导都将 $!A\land !B$ 的这个出现作为开放假设。我们有
+$\pheight{\delta_1} = \pheight{\delta_2} = 1$。
 
-The rule \Intro{\land} requires two premises of the form $!B$ and $!A$
-to justify a conclusion of the form~$!B \land !A$. Thus, the following
-is !!a{proof}~$\delta_4$:
+规则 \Intro{\land} 要求两个形式分别为 $!B$ 和 $!A$ 的前提来导出形式为~$!B \land !A$ 的结论。因此，以下是一个推导~$\delta_4$：
 \[
 \AxiomC{$!A \land !B^x$}
 \RightLabel{\Elim{\land}[2]}
@@ -262,11 +207,10 @@ is !!a{proof}~$\delta_4$:
 \BinaryInfC{$!B \land !A$}
 \DisplayProof
 \]
-Its height $\pheight{\delta_4} = \max(\pheight{\delta_2},
-\pheight{\delta_3})+1 = \max(1,1) + 1 = 2$. It has two occurences of
-$!A \land !B$ as assumptions, both are open.
+它的高度 $\pheight{\delta_4} = \max(\pheight{\delta_2},
+\pheight{\delta_3})+1 = \max(1,1) + 1 = 2$。它有两个 $!A \land !B$ 的假设出现，两者都是开放的。
 
-Finally we can apply \Intro{\lif} to obtain $\delta_5$:
+最后，我们可以应用 \Intro{\lif} 得到 $\delta_5$：
 \[
 \AxiomC{$\Discharge{!A \land !B}{x}$}
 \RightLabel{\Elim{\land}[2]}
@@ -282,12 +226,7 @@ Finally we can apply \Intro{\lif} to obtain $\delta_5$:
 \UnaryInfC{$(!A \land !B) \lif (!B \land !A)$}
 \DisplayProof
 \]
-Its height is $\pheight{\delta_4} + 1 = 3$. The \Intro{\lif} inference
-discharges all occurrences of assumptions of the form $!A \land !B$
-labelled~$x$, i.e., both previously open assumptions of the immediate
-subproof. Since those are the only assumptions of $\delta_5$, it has
-no open assumptions, and so is !!a{proof} \emph{of} its end-!!{formula}
-$(!A \land !B) \lif (!B \land !A)$.
+它的高度是 $\pheight{\delta_4} + 1 = 3$。这个 \Intro{\lif} 推理解除了所有标为~$x$ 的形式为 $!A \land !B$ 的假设出现，即解除了直接子推导中所有先前开放的假设。由于这些是 $\delta_5$ 仅有的假设，它没有开放假设，因此是其末公式 $(!A \land !B) \lif (!B \land !A)$ 的一个推导。
 \end{ex}
 
 \end{document}

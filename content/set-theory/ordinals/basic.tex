@@ -3,58 +3,56 @@
 \begin{document}
 
 \olfileid{sth}{ordinals}{basic}
-\olsection{Basic Properties of the Ordinals}
+\olsection{序数的基本性质}
 
-We observed that the first few ordinals are the natural numbers. The
-main reason for developing a theory of ordinals is to extend the
-principle of induction which holds on the natural numbers. We will
-build up to this via a sequence of elementary results.
+我们观察到，最前面的几个序数就是自然数。
+发展序数理论的主要目的是推广自然数上成立的归纳法原理。
+我们将通过一系列基本结果来逐步引出这一原理。
+
 
 \begin{lem}\ollabel{ordmemberord}
-Every !!{element} of an ordinal is an ordinal.
+一个序数的每个元素都是序数。
 \end{lem}
 
 \begin{proof}
-Let $\alpha$ be an ordinal with $b \in \alpha$. Since $\alpha$ is
-transitive, $b \subseteq \alpha$. So $\in$ well-orders $b$ as $\in$
-well-orders $\alpha$.
+设 $\alpha$ 是一个序数且 $b \in \alpha$。由于 $\alpha$ 是传递的，$b \subseteq \alpha$。
+既然 $\in$ 良序 $\alpha$，$\in$ 也良序 $b$。
 
-To see that $b$ is transitive, suppose $x \in c \in b$. So $c \in \alpha$ as $b
-\subseteq \alpha$. Again, as $\alpha$ is transitive, $c \subseteq
-\alpha$, so that $x \in \alpha$. So $x, c, b \in \alpha$. But $\in$
-well-orders $\alpha$, so that $\in$ is a transitive relation on
-$\alpha$ by \olref[sth][ordinals][wo]{wo:strictorder}. So since $x
-\in c \in b$, we have $x \in b$. Generalising, $c \subseteq b$
+为证 $b$ 是传递的，假设 $x \in c \in b$。由于 $b \subseteq \alpha$，有 $c \in \alpha$。
+再由 $\alpha$ 是传递的，$c \subseteq \alpha$，从而 $x \in \alpha$。
+所以 $x, c, b \in \alpha$。但 $\in$ 良序 $\alpha$，根据 \olref[sth][ordinals][wo]{wo:strictorder}，$\in$ 是 $\alpha$ 上的传递关系。
+因此，由 $x \in c \in b$，可得 $x \in b$。
+全称概括即得 $c \subseteq b$
 \end{proof}
 
 \begin{cor}\ollabel{ordissetofsmallerord}
-$\alpha = \Setabs{\beta \in \alpha}{\beta \text{ is an ordinal}}$, for
-any ordinal~$\alpha$
+对任意序数~$\alpha$，$\alpha = \Setabs{\beta \in \alpha}{\beta \text{ is an ordinal}}$
 \end{cor}
 
 \begin{proof}
-Immediate from \olref{ordmemberord}.
+由 \olref{ordmemberord} 立即得到。
 \end{proof}
 
-The rough gist of the next two main results,
-\olref{ordinductionschema} and \olref{ordtrichotomy}, is that the
-ordinals themselves are well-ordered by membership:
 
-\begin{thm}[Transfinite Induction]\ollabel{ordinductionschema}
-For any formula $\phi(x)$: 	
+接下来的两个主要结果
+\olref{ordinductionschema} 和 \olref{ordtrichotomy} 的大意是：
+序数本身被属于关系良序：
+
+
+\begin{thm}[超限归纳]\ollabel{ordinductionschema}
+对于任意公式 $\phi(x)$： 	
 \[
-	\text{if }\exists \alpha \phi(\alpha)\text{, then }\exists \alpha(\phi(\alpha)
+	\text{若 }\exists \alpha \phi(\alpha)\text{，则 }\exists \alpha(\phi(\alpha)
 	\land  (\forall \beta \in \alpha) \lnot \phi(\beta))
 \]
-where the displayed quantifiers are implicitly restricted to ordinals.
+其中列出的量词隐含地限制于序数。
 \end{thm}
 
 \begin{proof}
 %\olref{ordinductionschema1}. 
-Suppose $\phi(\alpha)$, for some ordinal $\alpha$. If $ (\forall \beta
-\in \alpha) \lnot \phi(\beta)$, then we are done. Otherwise, as
-$\alpha$ is an ordinal, it has some $\in$-least !!{element} which is
-$\phi$, and this is an ordinal by \olref{ordmemberord}.
+假设对某个序数 $\alpha$ 有 $\phi(\alpha)$。如果 $ (\forall \beta
+\in \alpha) \lnot \phi(\beta)$，则证毕。否则，由于
+$\alpha$ 是序数，它有一个满足 $\phi$ 的 $\in$-最小元素，而根据 \olref{ordmemberord}，这个元素是一个序数。
 %	\olref{ordinductionschema2}. Suppose there is some ordinal
 %	$\gamma$ such that $\lnot\phi(\gamma)$. Then by
 %	\olref{ordinductionschema1}, there is an $\in$-minimal ordinal
@@ -63,149 +61,120 @@ $\phi$, and this is an ordinal by \olref{ordmemberord}.
 %	false.
 \end{proof}
 \noindent
-Note that we can equally express \olref{ordinductionschema} as the
-scheme:
+注意，我们可以将 \olref{ordinductionschema} 等价地表达为如下模式：
 \[
-\text{if }\forall \alpha((\forall \beta \in \alpha)\phi(\beta) \lif 
-\phi(\alpha))\text{, then }\forall \alpha\phi(\alpha)
+\text{若 }\forall \alpha((\forall \beta \in \alpha)\phi(\beta) \lif 
+\phi(\alpha))\text{，则 }\forall \alpha\phi(\alpha)
 \]
-just by taking $\lnot\phi(\alpha)$ in \olref{ordinductionschema}, and then performing elementary logical manipulations.
+只需在 \olref{ordinductionschema} 中取 $\lnot\phi(\alpha)$，然后进行初等逻辑变形即可。
 
-\begin{thm}[Trichotomy]\ollabel{ordtrichotomy} 
-$\alpha \in \beta \lor \alpha = \beta \lor \beta \in \alpha$, for any
-ordinals $\alpha$ and $\beta$. 
+
+\begin{thm}[三分法]\ollabel{ordtrichotomy} 
+对任意序数 $\alpha$ 和 $\beta$，$\alpha \in \beta \lor \alpha = \beta \lor \beta \in \alpha$。
 \end{thm}
 
 \begin{proof}
-The proof is by double induction, i.e., using
-\olref{ordinductionschema} twice. Say that $x$ is \emph{comparable}
-with $y$ iff $x \in y \lor x = y \lor y \in x$. 
+证明采用双重归纳，即两次使用
+\olref{ordinductionschema}。
+称 $x$ 与 $y$ \emph{可比较}，当且仅当 $x \in y \lor x = y \lor y \in x$。 
 
-For induction, suppose that every ordinal in~$\alpha$ is comparable
-with \emph{every} ordinal. For further induction, suppose that
-$\alpha$ is comparable with every ordinal in~$\beta$. We will show that
-$\alpha$ is comparable with~$\beta$. By induction on~$\beta$, it will
-follow that $\alpha$ is comparable with every ordinal; and so by
-induction on~$\alpha$, \emph{every} ordinal is comparable with
-\emph{every} ordinal, as required. It suffices to assume that $\alpha \notin \beta$ and $\beta \notin
-\alpha$, and show that $\alpha = \beta$. 
+作归纳假设：$\alpha$ 中的每个序数都与\emph{所有}序数可比较。
+进一步假设：$\alpha$ 与 $\beta$ 中的每个序数可比较。
+我们将证明 $\alpha$ 与 $\beta$ 可比较。
+通过对 $\beta$ 归纳，将推出 $\alpha$ 与所有序数可比较；
+从而再通过对 $\alpha$ 归纳，\emph{每个}序数都与\emph{所有}序数可比较，得证。
+我们只需假设 $\alpha \notin \beta$ 且 $\beta \notin \alpha$，然后证明 $\alpha = \beta$。 
 
-To show that $\alpha \subseteq \beta$, fix $\gamma \in \alpha$; this
-is an ordinal by \olref{ordmemberord}. So by the first induction
-hypothesis, $\gamma$ is comparable with $\beta$. But if either $\gamma
-= \beta$ or $\beta \in \gamma$ then $\beta \in \alpha$ (invoking the
-fact that $\alpha$ is transitive if necessary), contrary to our
-assumption; so $\gamma \in \beta$. Generalising, $\alpha \subseteq
-\beta$.
+为证 $\alpha \subseteq \beta$，取定 $\gamma \in \alpha$；
+根据 \olref{ordmemberord}，这是一个序数。
+于是由第一个归纳假设，$\gamma$ 与 $\beta$ 可比较。
+但如果 $\gamma = \beta$ 或 $\beta \in \gamma$，则 $\beta \in \alpha$
+（必要时利用 $\alpha$ 是传递的这一事实），这与我们的假设矛盾；
+所以 $\gamma \in \beta$。从而 $\alpha \subseteq \beta$。
 
-Exactly similar reasoning, using the second induction hypothesis,
-shows that $\beta \subseteq \alpha$. So $\alpha = \beta$.
-\end{proof}\noindent As such, we will sometimes write $\alpha <\beta$
-rather than $\alpha \in \beta$, since $\in$ is behaving as an ordering
-relation. There are no deep reasons for this, beyond familiarity, and
-because it is easier to write $\alpha \leq \beta$ than $\alpha \in
-\beta \lor \alpha = \beta$.\footnote{We could write $\alpha
-\mathrel{\underline{\in}} \beta$; but that would be wholly
-non-standard.}
+完全类似的推理，利用第二个归纳假设，
+可证 $\beta \subseteq \alpha$。
+因此 $\alpha = \beta$。
+\end{proof}\noindent 这样一来，我们有时会记 $\alpha <\beta$
+而非 $\alpha \in \beta$，因为 $\in$ 起着序关系的作用。
+这样做没有深层次的原因，仅仅是出于习惯，
+并且因为写 $\alpha \leq \beta$ 比写 $\alpha \in
+\beta \lor \alpha = \beta$ 更容易。\footnote{我们也可以写 $\alpha
+\mathrel{\underline{\in}} \beta$；但那完全是非标准的。}
 
-Here are two quick consequences of our last results, the first of
-which puts our new notation into action:
+以下是前面两个结论的两个直接推论，第一个用到了我们的新记号：
+
 
 \begin{cor}\ollabel{ordordered}
-If $\exists \alpha\phi(\alpha)$, then $\exists \alpha(\phi(\alpha)
-\land \forall \beta(\phi(\beta) \lif \alpha \leq \beta))$.
-Moreover, for any ordinals $\alpha, \beta, \gamma$, both $\alpha
-\notin \alpha$ and $\alpha \in \beta \in \gamma \lif \alpha \in
-\gamma$. 
+若 $\exists \alpha\phi(\alpha)$，则 $\exists \alpha(\phi(\alpha)
+\land \forall \beta(\phi(\beta) \lif \alpha \leq \beta))$。
+此外，对任意序数 $\alpha, \beta, \gamma$，既有 $\alpha
+\notin \alpha$，又有 $\alpha \in \beta \in \gamma \lif \alpha \in
+\gamma$。 
 \end{cor}
 
 \begin{proof}
-Just like \olref[wo]{wo:strictorder}.
+完全类似于 \olref[wo]{wo:strictorder}。
 \end{proof}
 
 \begin{prob}
-Complete the ``exactly similar reasoning'' in the proof of
-\olref[sth][ordinals][basic]{ordtrichotomy}.
+补全 \olref[sth][ordinals][basic]{ordtrichotomy} 证明中的“完全类似的推理”部分。
 \end{prob}
 
 \begin{cor}\ollabel{corordtransitiveord}
-$A$ is an ordinal iff $A$ is a transitive set of ordinals.
+$A$ 是序数当且仅当 $A$ 是一个由序数组成的传递集。
 \end{cor}
 
 \begin{proof}
-\emph{Left-to-right.} By \olref{ordmemberord}. \emph{Right-to-left.}
-If $A$ is a transitive set of ordinals, then $\in$ well-orders $A$ by
-\olref{ordinductionschema} and \olref{ordtrichotomy}.
+\emph{从左到右。}根据 \olref{ordmemberord}。\emph{从右到左。}
+如果 $A$ 是一个由序数组成的传递集，那么由 \olref{ordinductionschema} 和 \olref{ordtrichotomy} 可知，$\in$ 良序 $A$。
 \end{proof}
 
-Now, we glossed 
-\olref{ordinductionschema} and \olref{ordtrichotomy} as telling us that $\in$ well-orders the ordinals. However, we 
-have to be \emph{very cautious} about this sort of claim, thanks to the
-following result:
+现在，我们将 \olref{ordinductionschema} 和 \olref{ordtrichotomy} 理解为表明 $\in$ 良序了所有序数。然而，由于以下结果，我们必须对这种说法\emph{非常谨慎}：
 
-\begin{thm}[Burali-Forti Paradox]\ollabel{buraliforti}
-There is no set of all the ordinals
+\begin{thm}[布拉利-福尔蒂悖论]\ollabel{buraliforti}
+不存在由所有序数构成的集合
 \end{thm}
 
 \begin{proof}
-For reductio, suppose $O$ is the set of all ordinals. If $\alpha \in
-\beta \in O$, then $\alpha$ is an ordinal, by \olref{ordmemberord}, so
-$\alpha \in O$. So $O$ is transitive, and hence $O$ is an ordinal by
-\olref{corordtransitiveord}. Hence $O \in O$, contradicting
-\olref{ordordered}. 
+为归谬起见，假设 $O$ 是所有序数的集合。如果 $\alpha \in \beta \in O$，那么根据 \olref{ordmemberord}，$\alpha$ 是一个序数，所以 $\alpha \in O$。因此 $O$ 是传递的，从而由 \olref{corordtransitiveord} 知 $O$ 是一个序数。于是 $O \in O$，这与 \olref{ordordered} 矛盾。 
 \end{proof}
 \noindent
-This result is named after \citeauthor{Burali-Forti1897}. But, it was Cantor in 1899---in a letter to Dedekind---who first saw
-clearly the \emph{contradiction} in supposing that there is a set of
-all the ordinals. As van
-Heijenoort explains:
+这个结果以 \citeauthor{Burali-Forti1897} 命名。但是，Cantor（康托尔）在 1899 年——在致 Dedekind（戴德金）的一封信中——首先清楚地看到了假设存在一个由所有序数组成的集合所蕴含的\emph{矛盾}。正如 van Heijenoort 所解释的：
 \begin{quote}
-  Burali-Forti himself considered the contradiction as establishing,
-  by \emph{reductio ad absurdum}, the result that the natural ordering
-  of the ordinals is just a partial ordering.
+  布拉利-福尔蒂本人认为这个矛盾通过\emph{归谬法}确立了以下结果：序数的自然序只是一个偏序。
   \citep[p.~105]{Heijenoort1967}
 \end{quote}
-Setting Burali-Forti's mistake to one side, we can summarize the foregoing as follows. Ordinals are sets which are individually well-ordered by
-membership, and collectively well-ordered by membership (without collectively constituting a set). 
+撇开布拉利-福尔蒂的错误不谈，我们可以将上述内容总结如下。序数是这样的集合：它们各自被属于关系良序，并且所有序数整体上也被属于关系良序（尽管它们整体并不构成一个集合）。 
 
-Rounding this off, here are some more basic properties about the
-ordinals which follow from \olref{ordinductionschema} and
-\olref{ordtrichotomy}. 
+最后，这里还有一些从 \olref{ordinductionschema} 和 \olref{ordtrichotomy} 推导出的关于序数的基本性质。 
 
 \begin{prop}
-Any strictly descending sequence of ordinals is finite.
+任何严格递减的序数序列都是有限的。
 \end{prop}
 
 \begin{proof}
-Any infinite strictly descending sequence of ordinals $\alpha_0 > \alpha_1 > \alpha_2 > \ldots$ has no $<$-minimal
-member, contradicting \olref{ordinductionschema}.
+任何无限严格递减的序数序列 $\alpha_0 > \alpha_1 > \alpha_2 > \ldots$ 都没有 $<$-极小元，这与 \olref{ordinductionschema} 矛盾。
 \end{proof}
 
 \begin{prop}\ollabel{ordinalsaresubsets}
-$\alpha \subseteq \beta \lor \beta \subseteq \alpha$, for any ordinals
-$\alpha, \beta$.
+对任意序数 $\alpha, \beta$，有 $\alpha \subseteq \beta \lor \beta \subseteq \alpha$。
 \end{prop}
 
 \begin{proof}
-If $\alpha \in \beta$, then $\alpha \subseteq \beta$ as $\beta$ is
-transitive. Similarly, if $\beta \in \alpha$, then $\beta \subseteq
-\alpha$. And if $\alpha = \beta$, then $\alpha \subseteq \beta$ and
-$\beta \subseteq \alpha$. So by   \olref{ordtrichotomy} we are done.
+若 $\alpha \in \beta$，因 $\beta$ 是传递的，故 $\alpha \subseteq \beta$。类似地，若 $\beta \in \alpha$，则 $\beta \subseteq \alpha$。而若 $\alpha = \beta$，那么 $\alpha \subseteq \beta$ 且 $\beta \subseteq \alpha$。因此根据 \olref{ordtrichotomy} 即得证。
 \end{proof}
 
 \begin{prop}\ollabel{ordisoidentity}
-$\alpha = \beta$ iff $\ordeq{\alpha}{\beta}$, for any ordinals
-$\alpha, \beta$.
+对任意序数 $\alpha, \beta$，$\alpha = \beta$ 当且仅当 $\ordeq{\alpha}{\beta}$。
 \end{prop}
 
 \begin{proof}
-The ordinals are well-orders; so this is immediate from Trichotomy
-(\olref[basic]{ordtrichotomy}) and
-\olref[iso]{wellordnotinitial}. 
+序数是良序集；所以这由三分法（\olref[basic]{ordtrichotomy}）和 \olref[iso]{wellordnotinitial} 直接可得。
 \end{proof}
 
 \begin{prob}\ollabel{probunionordinalsordinal}
-Prove that, if every member of $X$ is an ordinal, then $\bigcup X$ is an ordinal.
+证明：如果 $X$ 的每个成员都是序数，那么 $\bigcup X$ 也是一个序数。
 \end{prob}
 
 \end{document}

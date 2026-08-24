@@ -8,81 +8,43 @@
 
 \olfileid{sfr}{siz}{red-alt}
 
-\olsection{Reduction}
+\olsection{归约}
 
 \begin{editorial}
-  This section proves non-enumerability by reduction, matching the
-  results in \olref[nen-alt]{sec}. An alternative, slightly more
-  elaborate version matching the results in \olref[nen]{sec} is
-  provided in \olref[red]{sec}.
+  本节通过归约证明不可数性，其结果与 \olref[nen-alt]{sec} 相符。另一种与 \olref[nen]{sec} 结果相匹配、稍加详细的版本在 \olref[red]{sec} 给出。
 \end{editorial}
 
-We proved that $\Bin^\omega$ is !!{nonenumerable} by a diagonalization
-argument. We used a similar diagonalization argument to show that
-$\Pow{\Nat}$ is !!{nonenumerable}. But here's another way we can prove
-that $\Pow{\Nat}$ is !!{nonenumerable}: show that \emph{if
-$\Pow{\Nat}$ is !!{enumerable} then $\Bin^\omega$ is also
-!!{enumerable}}.  Since we know $\Bin^\omega$ is !!{nonenumerable}, it
-will follow that $\Pow{\Nat}$ is too.  
+我们通过对角化论证证明了 $\Bin^\omega$ 不可数。我们也用类似的对角化论证证明了 $\Pow{\Nat}$ 不可数。但证明 $\Pow{\Nat}$ 不可数还有另一种方法：证明\emph{如果 $\Pow{\Nat}$ 可数，则 $\Bin^\omega$ 也可数}。既然我们知道 $\Bin^\omega$ 不可数，那么 $\Pow{\Nat}$ 也就不可数。
 
-This is called \emph{reducing} one problem to another. In this case,
-we reduce the problem of enumerating $\Bin^\omega$ to the problem of
-enumerating $\Pow{\Nat}$.  A solution to the latter---an enumeration
-of $\Pow{\Nat}$---would yield a solution to the former---an
-enumeration of $\Bin^\omega$.
+这种做法称为将一个问题\emph{归约}到另一个问题。在本例中，我们将枚举 $\Bin^\omega$ 的问题归约为枚举 $\Pow{\Nat}$ 的问题。后者的一个解（即 $\Pow{\Nat}$ 的一个枚举）将给出前者的一个解（即 $\Bin^\omega$ 的一个枚举）。
 
-To reduce the problem of enumerating a set~$B$ to that of enumerating
-a set~$A$, we provide a way of turning an enumeration of~$A$ into an
-enumeration of~$B$.  The easiest way to do that is to define
-!!a{surjection} $f\colon A \to B$.  If $x_1$, $x_2$, \dots{}
-enumerates~$A$, then $f(x_1)$, $f(x_2)$, \dots{} would enumerate~$B$.
-In our case, we are looking for !!a{surjection} $f\colon \Pow{\Nat}
-\to \Bin^\omega$.
+要将枚举集合~$B$ 的问题归约为枚举集合~$A$ 的问题，我们需要提供一种方法，将~$A$ 的枚举转化为~$B$ 的枚举。实现这一目标最简单的方法是定义一个满射 $f\colon A \to B$。如果 $x_1$, $x_2$, \dots{} 枚举了~$A$，那么 $f(x_1)$, $f(x_2)$, \dots{} 就会枚举~$B$。在我们的例子中，我们要寻找一个满射 $f\colon \Pow{\Nat} \to \Bin^\omega$。
 
 \begin{prob}
-Show that if there is an !!{injective} function $g\colon B \to A$, and
-$B$~is !!{nonenumerable}, then so is~$A$. Do this by showing how you
-can use~$g$ to turn an enumeration of~$A$ into one of~$B$.
+证明：如果存在单射函数 $g\colon B \to A$，且 $B$~是不可数的，那么 $A$~也是不可数的。请通过说明如何利用~$g$ 将~$A$ 的枚举转化为~$B$ 的枚举来完成证明。
 \end{prob}
 
-\begin{proof}[Proof of {\olref[nen-alt]{thm:nonenum-pownat}} by reduction]
-For a reduction, suppose that $\Pow{\Nat}$ is !!{enumerable}, and thus that
-there is an enumeration of it, $N_{1}$, $N_{2}$, $N_{3}$, \dots
+\begin{proof}[通过归约法证明 {\olref[nen-alt]{thm:nonenum-pownat}}]
+为进行归约，假设 $\Pow{\Nat}$ 是可数的，从而存在它的一个枚举 $N_{1}$, $N_{2}$, $N_{3}$, \dots。
 
-Define the function $f \colon \Pow{\Nat} \to \Bin^\omega$ by letting
-$f(N)$ be the string $s_{k}$ such that $s_{k}(n) = 1$ iff $n \in N$,
-and $s_k(n) = 0$ otherwise.  
+定义函数 $f \colon \Pow{\Nat} \to \Bin^\omega$，令 $f(N)$ 为满足以下条件的字符串 $s_{k}$：$s_{k}(n) = 1$ 当且仅当 $n \in N$，否则 $s_k(n) = 0$。
 
-This clearly defines a function, since whenever $N \subseteq \Nat$,
-any $n \in \Nat$ either is !!a{element} of $N$ or isn't.  For
-instance, the set $2\Nat = \Setabs{2n}{n \in \Nat} = \{0,2, 4, 6,
-\dots\}$ of even naturals gets mapped to the string $1010101\dots$;
-$\emptyset$ gets mapped to $0000\dots$; $\Nat$ gets mapped to
-$1111\dots$.
+这显然定义了一个函数，因为对于任意 $N \subseteq \Nat$，任何 $n \in \Nat$ 要么属于 $N$，要么不属于 $N$。例如，偶自然数集合 $2\Nat = \Setabs{2n}{n \in \Nat} = \{0,2, 4, 6,
+\dots\}$ 映射到字符串 $1010101\dots$；$\emptyset$ 映射到 $0000\dots$；$\Nat$ 映射到 $1111\dots$。
 
-It is also !!{surjective}: every string of $0$s and $1$s corresponds
-to some set of natural numbers, namely the one which has as its
-members those natural numbers corresponding to the places where the string
-contains a~$1$s. More precisely, if $s \in \Bin^\omega$, then define $N
-\subseteq \Nat$ by:
+它也是满射：每一个由 $0$ 和 $1$ 组成的字符串都对应于某个自然数集合，即由字符串中包含 $1$ 的位置所对应的自然数组成的集合。更准确地说，如果 $s \in \Bin^\omega$，则如下定义 $N \subseteq \Nat$：
 \[
 N = \Setabs{n \in \Nat}{s(n) = 1}
 \]
-Then $f(N) = s$, as can be verified by consulting the definition
-of~$f$. 
+那么 $f(N) = s$，对照 $f$ 的定义即可验证。
 
-Now consider the list
+现在考虑列表
 \[
 f(N_1), f(N_2), f(N_3), \dots
 \]
-Since $f$ is !!{surjective}, every member of $\Bin^\omega$ must
-appear as a value of~$f$ for some argument, and so must appear on the
-list. This list must therefore enumerate all of~$\Bin^\omega$.
+由于 $f$ 是满射，$\Bin^\omega$ 中的每个成员必定作为 $f$ 在某个自变元处的值出现，从而必定出现在该列表中。因此这个列表必然枚举了所有的 $\Bin^\omega$。
 
-So if $\Pow{\Nat}$ were !!{enumerable}, $\Bin^\omega$ would be
-!!{enumerable}.  But $\Bin^\omega$ is !!{nonenumerable}
-(\olref[nen-alt]{thm:nonenum-bin-omega}). Hence $\Pow{\Nat}$ is
-!!{nonenumerable}.
+所以，如果 $\Pow{\Nat}$ 是可数的，那么 $\Bin^\omega$ 将是可数的。但 $\Bin^\omega$ 是不可数的（\olref[nen-alt]{thm:nonenum-bin-omega}）。因此 $\Pow{\Nat}$ 是不可数的。
 \end{proof}
 
 %\begin{explain}
@@ -104,20 +66,15 @@ So if $\Pow{\Nat}$ were !!{enumerable}, $\Bin^\omega$ would be
 %\end{explain}
 
 \begin{prob}\label{sfr:siz:red:prob:nat-nat}
-  Show that the set~$X$ of all functions $f\colon \Nat \to \Nat$ is
-  !!{nonenumerable} by a reduction argument (Hint: give a surjective
-  function from $X$ to~$\Bin^\omega$.)
+  用归约论证证明所有函数 $f\colon \Nat \to \Nat$ 的集合 $X$ 是不可数的。（提示：给出一个从 $X$ 到 $\Bin^\omega$ 的满射函数。）
 \end{prob}
 
 \begin{prob}
-Show that the set of all \emph{sets of} pairs of natural numbers,
-i.e., $\Pow{\Nat \times \Nat}$, is !!{nonenumerable} by a reduction
-argument.
+用归约论证证明所有由自然数对构成的集合的集合，即 $\Pow{\Nat \times \Nat}$，是不可数的。
 \end{prob}
 
 \begin{prob}
-Show that $\Nat^\omega$, the set of infinite sequences of natural
-numbers, is !!{nonenumerable} by a reduction argument.
+用归约论证证明 $\Nat^\omega$，即自然数的无限序列的集合，是不可数的。
 \end{prob}
 
 %\begin{prob}
@@ -128,13 +85,11 @@ numbers, is !!{nonenumerable} by a reduction argument.
 %\end{prob}
 
 \begin{prob}
-Let $S$ be the set of all !!{surjection}s from $\Nat$ to the set
-$\{0,1\}$, i.e., $S$ consists of all !!{surjection}s~$f \colon \Nat
-\to \Bin$.  Show that $S$ is !!{nonenumerable}.
+设 $S$ 为所有从 $\Nat$ 到集合 $\{0,1\}$ 的满射的集合，即 $S$ 由所有满射 $f \colon \Nat \to \Bin$ 组成。证明 $S$ 是不可数的。
 \end{prob}
 
 \begin{prob}
-Show that the set~$\Real$ of all real numbers is !!{nonenumerable}.
+证明所有实数构成的集合 $\Real$ 是不可数的。
 \end{prob}
 
 \end{document}

@@ -3,107 +3,70 @@
 \begin{document}
 
 \olfileid{sth}{z}{sep}
-\olsection{Separation}
+\olsection{分离}
 
-We start with a principle to replace Na\"{i}ve Comprehension:
+我们首先引入一个替代朴素概括原则的原理：
 
-\begin{axiom}[Scheme of Separation] For every formula $\phi(x)$, this is an
-axiom: for any $A$, the set $\Setabs{x \in A}{\phi(x)}$ exists.
+\begin{axiom}[分离公理模式]
+对于每个公式 $\phi(x)$，下述是一条公理：对任意 $A$，集合 $\Setabs{x \in A}{\phi(x)}$ 存在。
 \end{axiom}
 
-Note that this is not a single axiom. It is a \emph{scheme} of axioms.
-There are \emph{infinitely many} Separation axioms; one for every
-formula $\phi(x)$. The scheme can equally well be (and normally is)
-written down as follows:
+请注意，这不是单一的公理。它是一个公理\emph{模式}。存在\emph{无穷多条}分离公理；每个公式 $\phi(x)$ 对应一条。该模式同样可以（且通常）写为如下形式：
 
 \begin{defish}
-For any formula $\phi(x)$ which does not contain ``$S$'', this is an
-axiom:
+对于任何不包含“$S$”的公式 $\phi(x)$，下述是一条公理：
 \[
 	\forall A \exists S \forall x(x \in S \liff (\phi(x) \land x \in A)).
 \]
 \end{defish}
 
-In keeping with the convention noted at the start of
-\olref[sth][][]{part}, the formulas~$\phi$ in the Separation axioms
-may have parameters.\footnote{For an explanation of what this means,
-see the discussion immediately after
-\olref[sfr][infinite][induction]{natinductionschema}.}
+依照 \olref[sth][][]{part} 开头指出的约定，分离公理中的公式~$\phi$ 可以含有参数。\footnote{关于此含义的解释，请参见 \olref[sfr][infinite][induction]{natinductionschema} 之后的讨论。}
 
-Separation is immediately justified by our cumulative-iterative
-conception of sets we have been telling. To see why, let $A$ be a set.
-So $A$ is formed by some stage~$S$ (by \stageshier). Since $A$ was
-formed at stage~$S$, all of $A$'s members were formed before stage $S$
-(by \stagesacc). Now in particular, consider all the sets which are
-members of $A$ and which also satisfy $\phi$; clearly all of these
-sets, too, were formed before stage~$S$. So they are formed into a set
-$\Setabs{x \in A}{\phi(x)}$ at stage~$S$ too (by \stagesacc).
+我们一直刻画的集合累积迭代观直接为分离公理提供了辩护。为了理解这一点，设 $A$ 是一个集合。那么 $A$ 在某个阶段~$S$ 形成（根据 \stageshier）。既然 $A$ 在阶段~$S$ 形成，则 $A$ 的所有成员都在阶段 $S$ 之前形成（根据 \stagesacc）。特别地，考虑所有既是 $A$ 的成员又满足 $\phi$ 的集合；显然，所有这些集合也都在阶段~$S$ 之前形成。因此，它们在阶段~$S$ 也能形成一个集合 $\Setabs{x \in A}{\phi(x)}$（根据 \stagesacc）。
 
-Unlike Na\"ive Comprehension, this avoid Russell's Paradox. For we
-cannot simply assert the existence of the set $\Setabs{x}{x \notin
-x}$. Rather, \emph{given} some set~$A$, we can assert the existence of
-the set $R_A = \Setabs{x \in A}{x \notin x}$. But all this proves is
-that $R_A \notin R_A$ and $R_A \notin A$, none of which is very
-worrying.
+与朴素概括不同，分离公理避免了 Russell（罗素）悖论。因为我们不能简单地断言集合 $\Setabs{x}{x \notin x}$ 的存在性。相反，\emph{给定}某个集合~$A$，我们可以断言集合 $R_A = \Setabs{x \in A}{x \notin x}$ 的存在性。但这仅仅证明了 $R_A \notin R_A$ 且 $R_A \notin A$，这并没有什么令人担忧的。
 
-However, Separation has an immediate and striking consequence:
+然而，分离公理有一个直接而引人注目的推论：
 
 \begin{thm}\ollabel{thm:NoUniversalSet}
-There is no \emph{universal} set, i.e., $\Setabs{x}{x = x}$ does not exist.
+不存在\emph{全集}，即 $\Setabs{x}{x = x}$ 不存在。
 \end{thm}
 
 \begin{proof}
-For reductio, suppose $V$ is a universal set. Then by Separation, $R =
-\Setabs{x \in V}{x \notin x} = \Setabs{x}{x \notin x}$ exists,
-contradicting Russell's Paradox.
+归谬法，假设 $V$ 是一个全集。那么根据分离公理，$R =
+\Setabs{x \in V}{x \notin x} = \Setabs{x}{x \notin x}$ 存在，这与罗素悖论矛盾。
 \end{proof}
 
-The absence of a universal set---indeed, the open-endedness of the
-hierarchy of sets---is one of the most fundamental ideas behind the
-cumulative-iterative conception. So it is worth seeing that,
-intuitively, we could reach it via a different route. A universal set
-must be !!a{element} of itself. But, on our cumulative-iterative
-conception, every set appears (for the first time) in the hierarchy at
-the first stage immediately after all of its !!{element}s. But this
-entails that \emph{no} set is self-membered. For any self-membered set
-would have to first occur immediately after the stage at which it
-first occurred, which is absurd. (We will see in
-\olref[sth][spine][rank]{defnsetrank} how to make this explanation
-more rigorous, by using the notion of the ``rank'' of a set. However,
-we will need to have a few more axioms in place to do this.)
+全集的不存在——或者确切地说，集合层次的开放性——是累积迭代观背后最基本的思想之一。因此值得留意，直观上我们可以通过另一条途径得出这一结论。一个全集必定是它自身的元素。但是，根据我们的累积迭代观，每个集合都是在它的所有元素形成之后紧接着的第一个阶段，（首次）出现在层次中的。但这意味着\emph{没有任何}集合是自属的。因为任何自属的集合，其首次出现都必须紧接在其自身首次出现的阶段之后，这显然是荒谬的。（我们将在 \olref[sth][spine][rank]{defnsetrank} 中看到，如何使用集合的“秩”概念使这一解释更加严谨。不过，为此我们需要先确立更多的公理。）
 
-Here are a few more consequences of Separation and Extensionality.
+以下是分离公理和外延公理的更多推论。
 
 \begin{prop}\ollabel{prop:emptyexists}
-If any set exists, then $\emptyset$ exists.
+如果存在任何集合，则 $\emptyset$ 存在。
 \end{prop}
 
 \begin{proof}
-If $A$ is a set, $\emptyset = \Setabs{x \in A}{x \neq x}$ exists by Separation.
+如果 $A$ 是一个集合，那么根据分离公理，$\emptyset = \Setabs{x \in A}{x \neq x}$ 存在。
 \end{proof}
 
 \begin{prop}
-$A \setminus B$ exists for any sets $A$ and $B$
+对于任意集合 $A$ 和 $B$，$A \setminus B$ 存在。
 \end{prop}
 
 \begin{proof}
-$A \setminus B = \Setabs{x \in A}{x \notin B}$ exists by Separation.
+根据分离公理，$A \setminus B = \Setabs{x \in A}{x \notin B}$ 存在。
 \end{proof}
 
-It also turns out that (almost) arbitrary intersections exist:
+此外，（几乎）任意的交集也存在：
 
 \begin{prop}\ollabel{prop:intersectionsexist}
-If $A \neq \emptyset$, then $\bigcap A = \Setabs{x}{(\forall y \in A)x \in y}$ exists.
+如果 $A \neq \emptyset$，则 $\bigcap A = \Setabs{x}{(\forall y \in A)x \in y}$ 存在。
 \end{prop}
 
 \begin{proof}
-Let $A \neq \emptyset$, so there is some $c \in A$. Then $\bigcap A =
-\Setabs{x}{(\forall y \in A)x \in y} = \Setabs{x \in c}{(\forall y \in
-A)x \in y}$, which exists by Separation.
+设 $A \neq \emptyset$，则存在某个 $c \in A$。那么 $\bigcap A = \Setabs{x}{(\forall y \in A)x \in y} = \Setabs{x \in c}{(\forall y \in A)x \in y}$，后者根据分离公理存在。
 \end{proof}
 
-Note the condition that $A \neq \emptyset$, though; for $\bigcap
-\emptyset$ would be the universal set, vacuously, contradicting
-\olref{thm:NoUniversalSet}.
+但请注意条件 $A \neq \emptyset$；因为依空真，$\bigcap \emptyset$ 将成为全集，这与 \olref{thm:NoUniversalSet} 矛盾。
 
 \end{document}

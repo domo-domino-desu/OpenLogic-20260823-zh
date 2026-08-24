@@ -8,18 +8,14 @@
 
 \olfileid{mvl}{seq}{prl}
 
-\olsection{Propositional Rules for Selected Logics}
+\olsection{若干逻辑的命题规则}
 
-The inference rules for a connective in an $n$-sided sequent calculus
-only depend on the characteristic truth function for the connective.
-Thus, if some connective is defined by the same truth function in
-different logics, these $n$-sided sequent rules for the connective are
-the same in those logics.
+$n$ 边相继式演算中，一个联结词的推理规则只依赖于该联结词的特征真值函数。
+因此，如果某个联结词在不同逻辑中由同一个真值函数定义，那么它在这些逻辑中的 $n$ 边相继式规则就是相同的。
 
-\subsection{Rules for $\lnot$}
+\subsection{$\lnot$ 的规则}
 
-The following rules for $\lnot$ apply to \L ukasiewicz and Kleene
-logics, and their variants.
+以下 $\lnot$ 的规则适用于 Łukasiewicz（乌卡谢维奇）逻辑、Kleene（克林）逻辑及其变体。
 
 \begin{defish}
   \begin{center}
@@ -40,7 +36,7 @@ logics, and their variants.
   \end{center}
 \end{defish}
 
-The following rules for $\lnot$ apply to G\"odel logic.
+以下 $\lnot$ 的规则适用于 Gödel 逻辑。
 
 \begin{defish}
 \AxiomC{$ \Gamma \nSequent !A, \Pi \nSequent \Delta, !A $}
@@ -55,13 +51,11 @@ The following rules for $\lnot$ apply to G\"odel logic.
 \hfill
 \end{defish}
 
-(In G\"odel logic, $\lnot !A$ can never take the value~$\Undef$, so
-there is no rule for the middle position.)
+（在 Gödel 逻辑中，$\lnot !A$ 永远不会取 $\Undef$ 值，因此不存在针对中间位置的规则。）
 
-\subsection{Rules for $\land$}
+\subsection{$\land$ 的规则}
 
-These are the rules for $\land$ in \L ukasiewicz, strong Kleene, and
-G\"odel logic.
+以下是 Łukasiewicz 逻辑、强 Kleene 逻辑和 Gödel 逻辑中 $\land$ 的规则。
 
 \begin{defish}
 \begin{center}
@@ -85,10 +79,9 @@ G\"odel logic.
 \end{center}
 \end{defish}
 
-\subsection{Rules for $\lor$}
+\subsection{$\lor$ 的规则}
 
-These are the rules for $\lor$ in \L ukasiewicz, strong Kleene, and
-G\"odel logic.
+以下是 Łukasiewicz 逻辑、强 Kleene 逻辑和 Gödel 逻辑中 $\lor$ 的规则。
 
 \begin{defish}
 \begin{center}
@@ -112,9 +105,9 @@ G\"odel logic.
 \end{center}
 \end{defish}
 
-\subsection{Rules for $\lif$}
+\subsection{$\lif$ 的规则}
 
-These are the rules for $\lif$ in \L ukasiewicz logic.
+以下是 Łukasiewicz 逻辑中 $\lif$ 的规则。
 
 \begin{defish}
 \begin{center}
@@ -138,7 +131,7 @@ These are the rules for $\lif$ in \L ukasiewicz logic.
 \end{center}
 \end{defish}
 
-These are the rules for $\lif$ in strong Kleene logic.
+以下是强 Kleene 逻辑中 $\lif$ 的规则。
 
 \begin{defish}
 \begin{center}
@@ -162,7 +155,7 @@ These are the rules for $\lif$ in strong Kleene logic.
 \end{center}
 \end{defish}
 
-These are the rules for $\lif$ in G\"odel logic.
+以下是 Gödel 逻辑中 $\lif$ 的规则。
 
 \begin{defish}
 \begin{center}
@@ -229,7 +222,7 @@ These are the rules for $\lif$ in G\"odel logic.
   \BinaryInfC{$A \lif B, A \nSequent A \lif B, A \nSequent B$}
   \DisplayProof
   \end{center}
-  \caption{Example !!{derivation} in~$\LogLuk[3]$}
+  \caption{$\LogLuk[3]$ 中的推导示例}
 \end{sidewaysfigure}
 
 \end{document}

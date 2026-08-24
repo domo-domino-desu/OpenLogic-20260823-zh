@@ -8,68 +8,32 @@
 
 \olfileid{aml}{tl}{poss}
 
-\olsection{Possible Histories}
+\olsection{可能历史}
 
-The relational models of temporal logic that we have been using are
-extremely flexible, since we do not have to place any restrictions on
-the accessibility relation. This means that temporal models can branch
-in the past and in the future, but we might want to consider a more
-``modal'' conception of branching, in which we consider sequences of
-events as possible histories. This does not necessarily require
-changing our language, though we might also add our ``ordinary'' modal
-operators $\Box$ and~$\Diamond$, and we could also consider adding
-epistemic accessibility relations to represent changes in agents'
-knowledge over time.
+我们迄今使用的时态逻辑关系模型极具灵活性，因为我们无需对可达关系施加任何限制。这意味着时态模型可以在过去和未来分支，但我们或许想考虑一种更具“模态”色彩的分支理解，即将事件序列视为\emph{可能历史}。这未必需要改变我们的语言，不过我们也可以引入“普通的”模态算子 $\Box$ 和~$\Diamond$，还可以考虑引入认知可达关系以表示主体知识随时间的变化。
 
 \begin{defn}
-  A \emph{possible histories model} for the temporal language is a triple
-  $\mModel{M} = \tuple{T, C, V}$, where
+  时态语言的\emph{可能历史模型}是一个三元组 $\mModel{M} = \tuple{T, C, V}$，其中
   \begin{enumerate}
-    \item $T$ is a nonempty set, interpreted as states in time.
-    \item $C$ is a set of computational paths, or \emph{possible
-      histories} of a system. In other words, $C$~is a set of
-      sequences~$\sigma$ of states $s_1$, $s_2$,~$s_3$, \dots, where
-      every $s_i \in T$.
-    \item $V$ is a function assigning to each !!{propositional
-      variable}~$p$ a set~$V(p)$ of points in time.
+    \item $T$ 是一个非空集合，解释为时间中的状态。
+    \item $C$ 是一个计算路径的集合，或称系统的\emph{可能历史}。换言之，$C$ 是由状态 $s_1$, $s_2$,~$s_3$, \dots 组成的序列~$\sigma$ 的集合，其中每个 $s_i \in T$。
+    \item $V$ 是一个函数，它给每个命题变元~$p$ 指派一个时间点的集合~$V(p)$。
   \end{enumerate}
-  To make things simpler, we will also generally assume that when a
-  history is in~$C$, then so are all of its suffixes. For example, if
-  $s_1$, $s_2$,~$s_3$ is a sequence in~$C$, then so are $s_2$, $s_3$
-  and~$s_3$. Also, when two states $s_i$ and~$s_j$ appear in a
-  sequence~$\sigma$, we say that $s_i \prec_\sigma s_j$ when $i < j$.
-  When $t \in V(p)$ we say $p$~is \emph{true at}~$t$.
+  为简化讨论，我们一般还假设，当一个历史在~$C$ 中时，它的所有后缀也在~$C$ 中。例如，如果 $s_1$, $s_2$,~$s_3$ 是~$C$ 中的一个序列，那么 $s_2$, $s_3$ 和~$s_3$ 也在~$C$ 中。此外，当两个状态 $s_i$ 和~$s_j$ 出现在序列~$\sigma$ 中时，若 $i < j$，则称 $s_i \prec_\sigma s_j$。当 $t \in V(p)$ 时，我们说 $p$~\emph{在~$t$ 处为真}。
 \end{defn}
 
-The one relevant change is that when we evaluate the truth of
-!!a{formula} at a point in time~$t$ in a model~$\mModel M$, we do so
-relative to a history~$\sigma$, in which $t$ appears as a state. We do
-not need to change any of the semantics for !!{propositional
-variable}s or for truth-functional connectives, though. All of those
-are exactly as they were in \olref[sem]{defn:tmodels}, since none of
-those will make reference to~$\sigma$. However, we now redefine our
-future operator~$\Ftemp$ and add our~$\Diamond$ operator with respect
-to these histories. 
+这里涉及的一个变化是，当我们在模型~$\mModel M$ 中评估公式在时间点~$t$ 的真值时，我们要相对于 $t$ 作为状态出现的某个历史~$\sigma$ 来进行。不过，我们无需改变命题变元或真值函数性联结词的语义。这些都与 \olref[sem]{defn:tmodels} 中的完全一样，因为它们都不会涉及~$\sigma$。然而，我们现在要相对于这些历史重新定义未来算子~$\Ftemp$，并引入~$\Diamond$ 算子。 
 
 \begin{defn}\ollabel{defn:phmodels}
-  \emph{Truth of !!a{formula}~$!A$ at~$t, \sigma$} in~$\mModel M$, in symbols:
-  $\mSat{M}{!A}[t, \sigma]$:
+  \emph{公式~$!A$ 在~$\mModel M$ 中的 $t, \sigma$ 处为真}，记作 $\mSat{M}{!A}[t, \sigma]$，定义如下：
   \begin{enumerate}
   \item\ollabel{defn:sub:phmodels-f} \indcase{!A}{\Ftemp
-    !B}{$\mSat{M}{\indfrm}[t, \sigma]$ iff $\mSat{M}{!B}[t', \sigma]$
-    for some $t' \in T$ such that $t \prec_\sigma t'$.}
+    !B}{$\mSat{M}{\indfrm}[t, \sigma]$ 当且仅当 $\mSat{M}{!B}[t', \sigma]$，存在某个 $t' \in T$ 满足 $t \prec_\sigma t'$。}
   \item\ollabel{defn:sub:phmodels-diamond} \indcase{!A}{\Diamond
-    !B}{$\mSat{M}{\indfrm}[t, \sigma]$ iff $\mSat{M}{!B}[t, \sigma']$
-    for some $\sigma' \in C$ in which $t$ occurs.}
+    !B}{$\mSat{M}{\indfrm}[t, \sigma]$ 当且仅当 $\mSat{M}{!B}[t, \sigma']$，存在某个 $\sigma' \in C$ 使得 $t$ 出现在 $\sigma'$ 中。}
   \end{enumerate} 
 \end{defn}
 
-Other temporal and modal operators can be defined similarly. However,
-we can now represent claims that combine tense and modality. For
-example, we might symbolize ``$p$~will not occur, but it might have
-occurred'' using the formula $\lnot \Ftemp p \land \Diamond \Ftemp p$.
-This would hold at a point and a history at which $p$ does not become
-true at a successor state, but there is an alternative history at
-which $p$ will become true. 
+其他时态和模态算子可类似定义。不过，我们现在能够表示结合了时态与模态的断言。例如，我们可以用公式 $\lnot \Ftemp p \land \Diamond \Ftemp p$ 来符号化“$p$~将不发生，但它本可能发生”。这将在满足如下条件的点和历史中成立：在该点和该历史中，$p$ 不会在后继状态中成真，但存在另一条历史，在其中 $p$ 将会成真。 
 
 \end{document}

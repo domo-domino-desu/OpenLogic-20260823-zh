@@ -7,26 +7,16 @@
 \begin{document}
 
 \olfileid{tur}{mac}{hal}
-\olsection{Halting States}
+\olsection{停机状态}
 
 \begin{explain}
-Although we have defined our machines to halt only when there
-is no instruction to carry out, common representations of Turing
-machines have a dedicated \emph{halting state}~$h$, such that
-$h \in Q$.
+尽管我们将机器定义为仅在没有指令可执行时才停机，但在图灵机的常见表示中，都会包含一个专门的\emph{停机状态}~$h$，使得 $h \in Q$。
 
-The idea behind a halting state is simple: when the machine has
-finished operation (it is ready to accept input, or has finished
-writing the output), it goes into a state~$h$ where it halts. Some
-machines have two halting states, one that accepts input and one that
-rejects input.
+停机状态的思想很简单：当机器完成操作（准备好接收输入，或已完成输出写入）时，它就会进入状态~$h$ 并停机。有些机器有两个停机状态，一个用于接受输入，一个用于拒绝输入。
 \end{explain}
 
-\begin{ex}\emph{Halting States}.
-To elucidate this concept, let us begin with an alteration of the
-even machine. Instead of having the machine halt in state~$q_0$
-if the input is even, we can add an instruction to send the machine
-into a halting state.
+\begin{ex}\emph{停机状态}。
+为了阐明这一概念，让我们从修改偶数机开始。与其让机器在输入为偶数时停机于状态~$q_0$，我们可以增加一条指令，让机器进入一个停机状态。
 \[
 \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
                     semithick]
@@ -43,10 +33,7 @@ into a halting state.
 \end{tikzpicture}
 \]
 
-Let us further expand the example. When the machine determines that the input
-is odd, it never halts. We can alter the machine to
-include a \emph{reject} state by replacing the looping instruction with an
-instruction to go to a reject state~$r$.
+让我们进一步扩展这个例子。当机器判定输入为奇数时，它永不停机。我们可以修改机器使其包含一个\emph{拒绝}状态，方法是将循环指令替换为一条转入拒绝状态~$r$ 的指令。
 \[
 \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
                     semithick]
@@ -66,14 +53,7 @@ instruction to go to a reject state~$r$.
 \end{ex}
 
 \begin{explain}
-Adding a dedicated halting state can be advantageous in cases like
-this, where it makes explicit when the machine accepts/rejects certain
-inputs.  However, it is important to note that no computing power is
-gained by adding a dedicated halting state. Similarly, a less
-formal notion of halting has its own advantages. The definition of
-halting used so far in this chapter makes the proof of the
-\emph{Halting Problem} intuitive and easy to demonstrate. For this
-reason, we continue with our original definition.
+在这种情况下，增加一个专用停机状态是有好处的，因为它明确了机器何时接受/拒绝某些输入。但需要注意的是，增加专用停机状态并不会增强计算能力。类似地，较不形式化的停机概念也有其自身的优势。本章迄今为止使用的停机定义，使得\emph{停机问题}的证明直观且易于展示。因此，我们继续沿用最初的定义。
 \end{explain}
 
 \end{document}

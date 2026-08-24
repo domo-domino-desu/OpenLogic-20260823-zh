@@ -3,13 +3,14 @@
 \begin{document}
 
 \olfileid{sth}{ord-arithmetic}{using-addition}
-\olsection{Using Ordinal Addition}
+\olsection{运用序数加法}
 
-Using addition on the ordinals, we can explicitly calculate the ranks
-of various sets, in the sense of \olref[spine][rank]{defnsetrank}:
+利用序数加法，我们可以显式计算各种集合的秩（按
+\olref[spine][rank]{defnsetrank} 的定义）：
+
 
 \begin{lem}\ollabel{rankcomputation}
-If $\setrank{A} = \alpha$ and $\setrank{B} = \beta$, then:
+若 $\setrank{A} = \alpha$ 且 $\setrank{B} = \beta$，则：
 \begin{enumerate}
 	\item\ollabel{exrankpow} $\setrank{\Pow{A}} = \alpha\ordplus 1$
 	\item\ollabel{exrankpair} $\setrank{\{A, B\}} = \max(\alpha,
@@ -20,75 +21,75 @@ If $\setrank{A} = \alpha$ and $\setrank{B} = \beta$, then:
 	\beta) \ordplus  2$
 	\item\ollabel{exranktimes} $\setrank{A \times B} \leq \max(\alpha,
 	\beta) \ordplus  2$
-	\item\ollabel{exrankunion} $\setrank{\bigcup A} = \alpha$ when
-	$\alpha$ is empty or a limit; $\setrank{\bigcup A} = \gamma$ when
-	$\alpha = \gamma\ordplus 1$
+	\item\ollabel{exrankunion} 当 $\alpha$ 为 0 或极限序数时，
+	$\setrank{\bigcup A} = \alpha$；当 $\alpha = \gamma\ordplus 1$ 时，
+	$\setrank{\bigcup A} = \gamma$。
 \end{enumerate}
 \end{lem}
 
 \begin{proof}
-Throughout, we invoke \olref[spine][rank]{ranksupstrict}
-repeatedly.
+在整个证明中，我们将多次引用 \olref[spine][rank]{ranksupstrict}。
 
-\emph{\olref{exrankpow}.} If $x \subseteq A$ then $\setrank{x} \leq
-\setrank{A}$. So $\setrank{\Pow{A}} \leq \alpha \ordplus  1$. Since $A
-\in \Pow{A}$ in particular, $\setrank{\Pow{A}} = \alpha \ordplus  1$.
+\emph{\olref{exrankpow} 的证明。} 若 $x \subseteq A$，则 $\setrank{x} \leq
+\setrank{A}$。所以 $\setrank{\Pow{A}} \leq \alpha \ordplus  1$。特别地，由于 $A
+\in \Pow{A}$，可得 $\setrank{\Pow{A}} = \alpha \ordplus  1$。
 
-\emph{\olref{exrankpair}.} By \olref[spine][rank]{ranksupstrict}
+\emph{\olref{exrankpair} 的证明。} 由 \olref[spine][rank]{ranksupstrict} 即得。
 
-\emph{\olref{exrankcup}.} By \olref[spine][rank]{ranksupstrict}.
+\emph{\olref{exrankcup} 的证明。} 由 \olref[spine][rank]{ranksupstrict} 即得。
 
-\emph{\olref{exranktuple}.} By \olref{exrankpair}, twice.
+\emph{\olref{exranktuple} 的证明。} 两次应用 \olref{exrankpair}。
 
-\emph{\olref{exranktimes}.} Note that $A \times B \subseteq
-\Pow{\Pow{A \cup B}}$, and invoke \olref{exranktuple}. 
+\emph{\olref{exranktimes} 的证明。} 注意到 $A \times B \subseteq
+\Pow{\Pow{A \cup B}}$，并引用 \olref{exranktuple}。
 
-\emph{\olref{exrankunion}.} If $\alpha = \gamma\ordplus 1$, there is
-some $c \in A$ with $\setrank{c} = \gamma$, and no !!{element} of $A$
-has higher rank; so $\setrank{\bigcup A} = \gamma$. If $\alpha$ is a
-limit ordinal, then $A$ has !!{element}s with rank arbitrarily close
-to (but strictly less than) $\alpha$, so that $\bigcup A$ also has
-!!{element}s with rank arbitrarily close to (but strictly less than)
-$\alpha$, so that $\setrank{\bigcup A} = \alpha$.
+\emph{\olref{exrankunion} 的证明。} 若 $\alpha = \gamma\ordplus 1$，则存在
+$c \in A$ 使得 $\setrank{c} = \gamma$，并且 $A$ 中没有元素具有更高的秩；
+因此 $\setrank{\bigcup A} = \gamma$。若 $\alpha$ 是极限序数，则 $A$ 包含的元素的秩可以任意接近（但严格小于）$\alpha$，于是 $\bigcup A$ 也包含秩可以任意接近（但严格小于）$\alpha$ 的元素，因此 $\setrank{\bigcup A} = \alpha$。
 \end{proof}
+
+
 \noindent
-We leave it as an exercise to show why \olref{exranktimes} involves an
-\emph{in}equality.
+我们将此留作练习，以说明为何 \olref{exranktimes} 涉及的是一个\emph{不等}式。
+
 
 \begin{prob}
-Produce sets $A$ and $B$ such that $\setrank{A \times B}=
-\max(\setrank{A}, \setrank{B})$. Produce sets $A$ and $B$ such that
-$\setrank{A \times B}\max(\setrank{A}, \setrank{B}) \ordplus  2$. Are
-any other ranks possible?
+构造集合 $A$ 和 $B$ 使得 $\setrank{A \times B}=
+\max(\setrank{A}, \setrank{B})$。构造集合 $A$ 和 $B$ 使得
+$\setrank{A \times B}\max(\setrank{A}, \setrank{B}) \ordplus  2$。是否
+还存在其他可能的秩？
 \end{prob}
 
-We are also now in a position to show that several reasonable notions
-of what it might mean to describe an ordinal as ``finite'' or ``infinite'' coincide:
+
+
+现在我们还可以证明，将一个序数描述为“有限”或“无穷”的几种合理概念是相互一致的：
+
 
 \begin{lem}\ollabel{ordinfinitycharacter}
-For any ordinal $\alpha$, the following are equivalent:
+对任意序数 $\alpha$，下列条件等价：
 \begin{enumerate}
-	\item\ollabel{ord:notinomega} $\alpha\notin \omega$, i.e.,
-	$\alpha$ is not a natural number
-	\item\ollabel{ord:omegaplus} $\omega \leq \alpha$ 
-	\item\ollabel{ord:oneplus} $1 \ordplus  \alpha = \alpha$ 
+	\item\ollabel{ord:notinomega} $\alpha\notin \omega$，即 $\alpha$ 不是自然数
+	\item\ollabel{ord:omegaplus} $\omega \leq \alpha$
+	\item\ollabel{ord:oneplus} $1 \ordplus  \alpha = \alpha$
 	%\alpha \approx \alpha \ordplus 1$
-	\item\ollabel{ord:plusone} $\alpha \approx \alpha\ordplus 1$,
-	i.e., $\alpha$ and $\alpha\ordplus 1$ are equinumerous
-	\item\ollabel{ord:infinite} $\alpha$ is Dedekind infinite	
+	\item\ollabel{ord:plusone} $\alpha \approx \alpha\ordplus 1$，
+	即 $\alpha$ 与 $\alpha\ordplus 1$ 等势
+	\item\ollabel{ord:infinite} $\alpha$ 是 Dedekind（戴德金）无穷的
 	\end{enumerate}
 \end{lem}
+
+
 \noindent
-So we have five provably equivalent ways to understand what it takes for an ordinal to be (in)finite.
+因此，我们有了五种可证明等价的方式来理解一个序数何时为（非）有限的。
+
 
 \begin{proof}
-\emph{\olref{ord:notinomega} $\Rightarrow$ \olref{ord:omegaplus}.} By
-Trichotomy. 
+\emph{\olref{ord:notinomega} 推出 \olref{ord:omegaplus}。} 由
+三分律可得。
 
-\emph{\olref{ord:omegaplus} $\Rightarrow$ \olref{ord:oneplus}.} Fix
-$\alpha \geq \omega$. By Transfinite Induction, there is some least
-ordinal $\gamma$ (possibly $0$) such that there is a limit ordinal
-$\beta$ with $\alpha = \beta \ordplus \gamma$. Now:
+\emph{\olref{ord:omegaplus} 推出 \olref{ord:oneplus}。} 取定
+$\alpha \geq \omega$。根据超限归纳法，存在某个最小序数 $\gamma$（可能是 $0$），使得存在一个极限序数
+$\beta$ 满足 $\alpha = \beta \ordplus \gamma$。现在：
 \[
 	1 \ordplus \alpha =  
 	1 \ordplus (\beta \ordplus \gamma) = 
@@ -97,20 +98,18 @@ $\beta$ with $\alpha = \beta \ordplus \gamma$. Now:
 	\beta \ordplus  \gamma = 
 	\alpha.
 \]
-\emph{\olref{ord:oneplus} $\Rightarrow$ \olref{ord:plusone}.} There is
-clearly !!a{bijection} $f \colon (\alpha \disjointsum 1) \to (1
-\disjointsum \alpha)$. If $1 \ordplus \alpha = \alpha$, there is an
-isomorphism $g \colon (1 \disjointsum \alpha) \to \alpha$. Now
-consider $\comp{f}{g}$.
+\emph{\olref{ord:oneplus} 推出 \olref{ord:plusone}。} 显然存在一个双射 $f \colon (\alpha \disjointsum 1) \to (1
+\disjointsum \alpha)$。若 $1 \ordplus \alpha = \alpha$，则存在一个同构 $g \colon (1 \disjointsum \alpha) \to \alpha$。现在
+考虑 $\comp{f}{g}$。
 
-\emph{\olref{ord:plusone} $\Rightarrow$ \olref{ord:infinite}.} If
-$\alpha \approx \alpha \ordplus 1$, there is !!a{bijection} $f \colon
-(\alpha \disjointsum 1) \to \alpha$. Define $g(\gamma) = f(\gamma, 0)$
-for each $\gamma < \alpha$; this !!{injection} witnesses that $\alpha$
-is Dedekind infinite, since $f(0,1) \in \alpha \setminus \ran{g}$. 
+\emph{\olref{ord:plusone} 推出 \olref{ord:infinite}。} 若
+$\alpha \approx \alpha \ordplus 1$，则存在一个双射 $f \colon
+(\alpha \disjointsum 1) \to \alpha$。对每个 $\gamma < \alpha$ 定义 $g(\gamma) = f(\gamma, 0)$；该单射见证了 $\alpha$ 是 Dedekind 无穷的，因为 $f(0,1) \in \alpha \setminus \ran{g}$。
 
-\emph{\olref{ord:infinite} $\Rightarrow$ \olref{ord:notinomega}.} This
-is \olref[z][infinity-again]{naturalnumbersarentinfinite}.
+\emph{\olref{ord:infinite} 推出 \olref{ord:notinomega}。} 这是
+\olref[z][infinity-again]{naturalnumbersarentinfinite}。
 \end{proof}
+
+
 
 \end{document}

@@ -3,60 +3,41 @@
 \begin{document}
 
 \olfileid{sth}{z}{power}
-\olsection{Powersets}
+\olsection{幂集}
 
-We will proceed with another axiom:
+下面我们继续引入另一条公理：
 
-\begin{axiom}[Powersets]
-For any set $A$, the set $\Pow{A} = \Setabs{x}{x \subseteq A}$ exists.
+\begin{axiom}[幂集公理]
+对于任何集合 $A$，集合 $\Pow{A} = \Setabs{x}{x \subseteq A}$ 存在。
 \[
 	\forall A \exists P \forall x(x \in P \liff (\forall z \in x)z \in A)
 \]
 \end{axiom}
 
-Our justification for this is pretty straightforward. Suppose $A$ is
-formed at stage $S$. Then all of $A$'s members were available before
-$S$ (by \stagesacc). So, reasoning as in our justification for
-Separation, every subset of $A$ is formed by stage $S$. So they are
-all available, to be formed into a single set, at any stage after $S$.
-And we know that there is some such stage, since $S$ is not the last
-stage (by \stagessucc). So $\Pow{A}$ exists.
+对此的论证相当直接。假设 $A$ 在阶段 $S$ 形成。那么 $A$ 的所有成员在 $S$ 之前就已经可用（根据 \stagesacc）。因此，与分离公理的论证同理，$A$ 的每个子集在阶段 $S$ 就已形成。所以在 $S$ 之后的任何阶段，它们都是可用的，从而能构成一个单一集合。并且我们知道存在某个这样的阶段，因为 $S$ 不是最后一个阶段（根据 \stagessucc）。所以 $\Pow{A}$ 存在。
 
-Here is a nice consequence of Powersets:
+幂集公理有一个很好的推论：
 
 \begin{prop}\label{thm:Products}
-Given any sets $A, B$, their Cartesian product $A \times B$ exists.
+给定任意集合 $A, B$，它们的笛卡尔积 $A \times B$ 存在。
 \end{prop}
 
 \begin{proof}
-The set $\Pow{\Pow{A \cup B}}$ exists by Powersets and
-\olref[sth][z][pairs]{prop:pairsconsequences}. So by Separation, this
-set exists:
+根据幂集公理和 \olref[sth][z][pairs]{prop:pairsconsequences}，集合 $\Pow{\Pow{A \cup B}}$ 存在。因此，由分离公理，下述集合存在：
 \[
 	C = \Setabs{z \in \Pow{\Pow{A \cup B}}}{(\exists x \in A)(\exists y \in B) z = \tuple{x, y}}.
 \]
-Now, for any $x \in A$ and $y \in B$, the set $\tuple{x, y}$ exists by
-\olref[sth][z][pairs]{prop:pairsconsequences}. Moreover, since $x, y
-\in A \cup B$, we have that $\{x\}, \{x, y\} \in \Pow{A \cup B}$, and
-$\tuple{x,y} \in \Pow{\Pow{A \cup B}}$. So $A \times B = C$.
+对于任意 $x \in A$ 和 $y \in B$，根据 \olref[sth][z][pairs]{prop:pairsconsequences}，集合 $\tuple{x, y}$ 存在。此外，由于 $x, y \in A \cup B$，我们有 $\{x\}, \{x, y\} \in \Pow{A \cup B}$，并且 $\tuple{x,y} \in \Pow{\Pow{A \cup B}}$。所以 $A \times B = C$。
 \end{proof}
 
-In this proof, Powerset interacts with Separation. And that is no
-surprise. Without Separation, Powersets wouldn't be a very
-\emph{powerful} principle. After all, Separation tells us which
-subsets of a set exist, and hence determines just how ``fat'' each
-Powerset is.
+在这个证明中，幂集公理与分离公理配合使用。这并不意外。没有分离公理，幂集公理就不会是一条非常\emph{强有力}的原理。毕竟，分离公理告诉我们一个集合的哪些子集存在，从而决定了每个幂集有多“肥”。
 
 \begin{prob}
-Show that, for any sets $A, B$: (i) the set of all relations with
-domain $A$ and range $B$ exists; and (ii) the set of all functions
-from $A$ to $B$ exists.
+证明：对于任意集合 $A, B$，(i) 所有定义域为 $A$、值域为 $B$ 的关系构成的集合存在；(ii) 所有从 $A$ 到 $B$ 的函数构成的集合存在。
 \end{prob}
 
 \begin{prob}
-Let $A$ be a set, and let $\sim$ be an equivalence relation on $A$.
-Prove that the set of equivalence classes under $\sim$ on $A$, i.e.,
-$\equivclass{A}{\sim}$, exists.
+设 $A$ 为集合，$\sim$ 为 $A$ 上的等价关系。证明 $A$ 在 $\sim$ 下的等价类所构成的集合，即 $\equivclass{A}{\sim}$，存在。
 \end{prob}
 
 \end{document}

@@ -4,56 +4,20 @@
 
 \documentclass[../../../include/open-logic-section]{subfiles}
 
+% 确保在编译主文件时，LaTeX 使用此工作目录。
+% 本文件是二阶逻辑章节的部分内容。
+
 \begin{document}
 
 \olfileid{sol}{syn}{int}
 
-\olsection{Introduction}
+\olsection{导言}
 
-In first-order logic, we combine the non-logical symbols of a given
-language, i.e., its !!{constant}s, !!{function}s, and !!{predicate}s,
-with the logical symbols to express things about first-order
-!!{structure}s.  This is done using the notion of satisfaction, which
-relates !!a{structure}~$\Struct{M}$, together with a variable
-assignment~$s$, and !!a{formula}~$!A$: $\Sat{M}{!A}[s]$ holds iff what
-$!A$ expresses when its !!{constant}s, !!{function}s, and
-!!{predicate}s are interpreted as $\Struct{M}$ says, and its free
-variables are interpreted as~$s$ says, is true.  The interpretation of
-the !!{identity}~$\eq$ is built into the definition of
-$\Sat{M}{!A}[s]$, as is the interpretation of~$\lforall$ and
-$\lexists$. The former is always interpreted as the identity relation
-on the !!{domain}~$\Domain{M}$ of the structure, and the quantifiers
-are always interpreted as ranging over the entire !!{domain}.  But,
-crucially, quantification is only allowed over elements of the
-!!{domain}, and so only object !!{variable}s are allowed to follow a
-quantifier.
+在一阶逻辑中，我们将给定语言的非逻辑符号（即常项符号、函数符号和谓词符号）与逻辑符号结合起来，以表达关于一阶结构的内容。这是通过满足的概念来实现的，它将结构~$\Struct{M}$、变元指派~$s$ 与公式~$!A$ 联系起来：$\Sat{M}{!A}[s]$ 成立，当且仅当 $!A$ 在将其常项符号、函数符号和谓词符号按 $\Struct{M}$ 解释，并将其自由变元按~$s$ 解释后，所表达的内容为真。等词~$\eq$ 的解释已内置于 $\Sat{M}{!A}[s]$ 的定义中，对~$\lforall$ 和 $\lexists$ 的解释亦然。前者总是被解释为结构论域~$\Domain{M}$ 上的恒等关系，而量词总是被解释为遍历整个论域。但关键在于，量化只允许针对论域的元素，因此只有对象变元能跟在量词之后。
 
-In second-order logic, both the language and the definition of
-satisfaction are extended to include free and bound function and
-predicate variables, and quantification over them.  These variables
-are related to !!{function}s and !!{predicate}s the same way that
-object variables are related to !!{constant}s.  They play the same
-role in the formation of terms and !!{formula}s of second-order logic,
-and quantification over them is handled in a similar way.  In the
-\emph{standard} semantics, the second-order quantifiers range over all
-possible objects of the right type ($n$-place functions from
-$\Domain{M}$ to~$\Domain{M}$ for function variables, $n$-place
-relations for predicate variables).  For instance, while
-$\lforall[\Obj{v_0}][(\Obj{P^1_0}(\Obj{v_0}) \lor \lnot
-  \Obj{P^1_0}(\Obj{v_0}))]$ is a formula in both first- and second-order
-logic, in the latter we can also consider
-$\lforall[\Obj{V^1_0}][\lforall[\Obj{v_0}][(\Obj{V^1_0}(\Obj{v_0}) \lor
-    \lnot \Obj{V^1_0}(\Obj{v_0}))]]$ and
-$\lexists[\Obj{V^1_0}][\lforall[\Obj{v_0}][(\Obj{V^1_0}(\Obj{v_0}) \lor
-    \lnot \Obj{V^1_0}(\Obj{v_0}))]]$. Since these contain no free variables,
-they are !!{sentence}s of second-order logic. Here, $\Obj{V^1_0}$ is a
-second-order $1$-place predicate variable.  The allowable
-interpretations of $\Obj{V^1_0}$ are the same that we can assign to a
-$1$-place !!{predicate} like $\Obj{P^1_0}$, i.e., subsets
-of~$\Domain{M}$.  Quantification over them then amounts to saying that
-$\lforall[\Obj{v_0}][(\Obj{V^1_0}(\Obj v_0) \lor \lnot
-  \Obj{V^1_0}(v_0))]$ holds for all ways of assigning a subset
-of~$\Domain{M}$ as the value of $\Obj{V^1_0}$, or for at least one.
-Since every set either contains or fails to contain a given object,
-both are true in any !!{structure}.
+在二阶逻辑中，语言和满足的定义均被扩展，以包含自由与约束的函数变元和谓词变元，以及对它们的量化。这些变元与函数符号和谓词符号的关系，就如同对象变元与常项符号的关系。它们在二阶逻辑的项与公式的构成中扮演相同的角色，对其量化也以类似方式处理。在\emph{标准}语义下，二阶量词遍历所有适当类型的对象（对函数变元，是 $\Domain{M}$ 到~$\Domain{M}$ 的 $n$ 元函数；对谓词变元，则是 $n$ 元关系）。例如，虽然 $\lforall[\Obj{v_0}][(\Obj{P^1_0}(\Obj{v_0}) \lor \lnot
+  \Obj{P^1_0}(\Obj{v_0}))]$ 在一阶和二阶逻辑中都是一个公式，但在后者中我们还可以考虑 $\lforall[\Obj{V^1_0}][\lforall[\Obj{v_0}][(\Obj{V^1_0}(\Obj{v_0}) \lor
+    \lnot \Obj{V^1_0}(\Obj{v_0}))]]$ 和 $\lexists[\Obj{V^1_0}][\lforall[\Obj{v_0}][(\Obj{V^1_0}(\Obj{v_0}) \lor
+    \lnot \Obj{V^1_0}(\Obj{v_0}))]]$。由于它们不含自由变元，因而是二阶逻辑的语句。这里，$\Obj{V^1_0}$ 是一个二阶的一元谓词变元。$\Obj{V^1_0}$ 的容许解释与可赋予一元谓词符号（如 $\Obj{P^1_0}$）的解释相同，即 $\Domain{M}$ 的子集。因此，对它们的量化就等于说，对所有将 $\Domain{M}$ 的子集指派为 $\Obj{V^1_0}$ 的值的情况，$\lforall[\Obj{v_0}][(\Obj{V^1_0}(\Obj v_0) \lor \lnot
+  \Obj{V^1_0}(v_0))]$ 都成立，或至少对一种情况成立。由于任何集合要么包含要么不包含一个给定的对象，这两个语句在任何结构中都为真。
 \end{document}

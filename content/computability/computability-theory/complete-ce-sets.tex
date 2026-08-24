@@ -7,55 +7,39 @@
 \begin{document}
 
 \olfileid{cmp}{thy}{cce}
-\olsection{Complete Computably Enumerable Sets}
+\olsection{完全可计算枚举集}
 
 \begin{defn}
-A set $A$ is a \emph{complete !!{computably enumerable} set}
-(under many-one reducibility) if
+一个集合~$A$ 是\emph{完全可计算枚举集}（在多一可归约意义下），如果
 \begin{enumerate}
-\item $A$ is computably enumerable, and
-\item for any other computably enumerable set $B$, $B \leq_m A$.
+\item $A$ 是可计算枚举的，并且
+\item 对于任何其他可计算枚举集~$B$，都有 $B \leq_m A$。
 \end{enumerate}
 \end{defn}
 
-In other words, complete computably enumerable sets are the
-``hardest'' computably enumerable sets possible. They allow one to
-answer questions about \emph{any} computably enumerable set.
+换言之，完全可计算枚举集是所有可能的可计算枚举集中“最难”的。借助它们，能够回答关于\emph{任何}可计算枚举集的问题。
 
 \begin{thm}
-$K$, $K_0$, and $K_1$ are all complete computably enumerable sets.
+$K$、$K_0$ 和 $K_1$ 都是完全可计算枚举集。
 \end{thm}
 
 \begin{proof}
-To see that $K_0$ is complete, let $B$ be any computably
-enumerable set. Then for some index $e$,
-\[
+为证 $K_0$ 是完全的，设 $B$ 是任意可计算枚举集。则对某个指标 $e$，\[
 B = W_e = \Setabs{x}{\cfind{e}(x) \fdefined}.
 \]
-Let $f$ be the function $f(x) = \tuple{e, x}$. Then for every natural
-number $x$, $x \in B$ if and only if $f(x) \in K_0$. In other words, $f$
-reduces $B$ to~$K_0$.
+令 $f$ 为函数 $f(x) = \tuple{e, x}$。那么对每个自然数 $x$，$x \in B$ 当且仅当 $f(x) \in K_0$。换言之，$f$ 将 $B$ 归约到~$K_0$。
 
-To see that $K_1$ is complete, note that in the proof of
-\olref[k1]{prop:k1} we reduced $K_0$ to it. So, by
-\olref[ppr]{prop:trans-red}, any computably enumerable set can be
-reduced to~$K_1$ as well.
+为证 $K_1$ 是完全的，注意到在 \olref[k1]{prop:k1} 的证明中我们已将 $K_0$ 归约到了 $K_1$。因此，根据 \olref[ppr]{prop:trans-red}，任何可计算枚举集也都能归约到~$K_1$。
 
-$K$ can be reduced to $K_0$ in much the same way.
+$K$ 可以用几乎同样的方式归约到 $K_0$。
 \end{proof}
 
 \begin{prob}
-Give a reduction of $K$ to $K_0$.
+给出 $K$ 到 $K_0$ 的一个归约。
 \end{prob}
 
 \begin{digress}
-So, it turns out that all the examples of computably enumerable sets
-that we have considered so far are either computable, or complete.
-This should seem strange!{} Are there any examples of computably
-enumerable sets that are neither computable nor complete? The answer
-is yes, but it wasn't until the middle of the 1950s that this was
-established by Friedberg and Muchnik, independently.
+这样一来，我们迄今考虑过的所有可计算枚举集的例子，要么是可计算的，要么是完全的。这似乎有些奇怪！是否存在既不可计算也不完全的可计算枚举集的例子呢？答案是肯定的，但直到20世纪50年代中期，这一点才由 Friedberg 和 Muchnik 独立证明。
 \end{digress}
 
 \end{document}
-

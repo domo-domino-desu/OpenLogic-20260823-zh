@@ -8,87 +8,72 @@
 
 \olfileid{inc}{inp}{int}
 
-\olsection{Introduction}
+\olsection{导言}
 
-Hilbert thought that a system of axioms for a mathematical structure,
-such as the natural numbers, is inadequate unless it allows one to
-derive all true statements about the structure. Combined with his
-later interest in formal systems of deduction, this suggests that he
-thought that we should guarantee that, say, the formal systems we are
-using to reason about the natural numbers is not only consistent, but
-also \emph{complete}, i.e., every statement in its language is either
-!!{derivable} or its negation is. G\"odel's first incompleteness theorem
-shows that no such system of axioms exists: there is no complete,
-consistent, !!{axiomatizable} formal system for arithmetic.  In fact,
-no ``sufficiently strong,'' consistent, !!{axiomatizable} mathematical
-theory is complete.
+Hilbert 认为，一个数学结构（如自然数）的公理系统，如果不能推出关于该结构的所有真语句，就是不充分的。
+结合他后来对形式演绎系统的兴趣，这表明他认为我们应当保证，例如，我们用来对自然数进行推理的形式系统不仅是一致的，而且是\emph{完备的}；
+也就是说，其语言中的每个语句要么可推导，要么其否定可推导。
+G\"odel 第一不完全性定理表明，这样的公理系统不存在：
+不存在对算术而言完备、一致且可公理化的形式系统。事实上，
+任何“足够强的”、一致且可公理化的数学理论都不是完备的。
 
-A more important goal of Hilbert's, the centerpiece of his program for
-the justification of modern (``classical'') mathematics, was to find
-finitary consistency proofs for formal systems representing classical
-reasoning.  With regard to Hilbert's program, then, G\"odel's second
-incompleteness theorem was a much bigger blow. The second
-incompleteness theorem can be stated in vague terms, like the first
-incompleteness theorem. Roughly speaking, it says that no sufficiently
-strong theory of arithmetic can prove its own consistency. We will
-have to take ``sufficiently strong'' to include a little bit more
-than~$\Th{Q}$.
+Hilbert 的一个更重要的目标，即其证立现代（“经典”）数学之纲领的核心，
+是为代表经典推理的形式系统找到有穷一致性证明。
+就 Hilbert 纲领而言，G\"odel 的第二不完全性定理是一个严重得多的打击。
+与第一不完全性定理一样，第二不完全性定理也可以用宽泛的措辞来陈述。
+粗略地说，它指出没有足够强的算术理论能够证明自身的一致性。
+我们必须将“足够强”理解为包含比~$\Th{Q}$ 稍多一点的内容。
 
-The idea behind G\"odel's original proof of the incompleteness theorem
-can be found in the Epimenides paradox. Epimenides, a Cretan, asserted
-that all Cretans are liars; a more direct form of the paradox is the
-assertion ``this sentence is false.'' Essentially, by replacing truth
-with !!{derivability}, G\"odel was able to formalize !!a{sentence}
-which, in a roundabout way, asserts that it itself is not
-!!{derivable}.  If that !!{sentence} were !!{derivable}, the theory
-would then be inconsistent.  G\"odel showed that the negation of that
-!!{sentence} is also not !!{derivable} from the system of axioms he was
-considering. (For this second part, G\"odel had to assume that the
-theory~$\Th{T}$ is what's called ``$\omega$-consistent.''
-$\omega$-Consistency is related to consistency, but is a stronger
-property.\footnote{That is, any $\omega$-consistent theory is
-consistent, but not vice versa.} A few years after G\"odel, Rosser
-showed that assuming simple consistency of~$\Th{T}$ is enough.)
+G\"odel 对不完全性定理最初证明背后的思想，可以在 Epimenides 悖论中找到。
+Epimenides 是一个克里特人，他断言所有克里特人都是说谎者；
+该悖论更直接的形式是断言“这句话是假的”。
+本质上，通过将“真”替换为“可推导性”，
+G\"odel 得以形式化一个语句，该语句以迂回的方式断言其自身是不可推导的。
+如果该语句是可推导的，那么该理论就会不一致。
+G\"odel 证明了该语句的否定也不能从他当时考虑的公理系统中推导出来。
+（对于这第二部分，G\"odel 必须假设理论~$\Th{T}$ 具有所谓的“$\omega$-一致性”。
+$\omega$-一致性与一致性相关，但是一个更强的性质。\footnote{也就是说，任何 $\omega$-一致的理论都是一致的，但反之不然。}
+几年后，Rosser 证明了只需假设~$\Th{T}$ 是简单一致的即可。）
 
-The first challenge is to understand how one can construct !!a{sentence}
-that refers to itself. For every !!{formula}~$!A$ in the language
-of~$\Th{Q}$, let~$\gn{!A}$ denote the numeral corresponding
-to~$\Gn{!A}$. Think about what this means: $!A$~is !!a{formula} in the
-language of~$\Th{Q}$, $\Gn{!A}$~is a natural number, and $\gn{!A}$~is
-a \emph{term} in the language of~$\Th{Q}$. So every !!{formula}~$!A$
-in the language of~$\Th{Q}$ has a \emph{name},~$\gn{!A}$, which is a
-term in the language of~$\Th{Q}$; this provides us with a conceptual
-framework in which !!{formula}s in the language of~$\Th{Q}$ can ``say''
-things about other !!{formula}s. The following lemma is known as the
-fixed-point lemma.
+第一个挑战是理解如何构造一个指涉自身的语句。
+对于语言~$\Th{Q}$ 中的每个公式~$!A$，
+令~$\gn{!A}$ 表示对应于~$\Gn{!A}$ 的数码。
+想想这意味着什么：$!A$~是语言~$\Th{Q}$ 中的一个公式，
+$\Gn{!A}$~是一个自然数，
+而 $\gn{!A}$~是语言~$\Th{Q}$ 中的一个\emph{项}。
+因此，语言~$\Th{Q}$ 中的每个公式~$!A$ 都有一个\emph{名字}~$\gn{!A}$，
+它是语言~$\Th{Q}$ 中的一个项；
+这为我们提供了一个概念框架，使得语言~$\Th{Q}$ 中的公式可以“谈论”其他公式。
+下面的引理被称为不动点引理。
 
 \begin{lem}
-Let $\Th{T}$ be any theory extending~$\Th{Q}$, and let $!B(x)$ be any
-!!{formula} with only the variable~$x$ free. Then there is
-!!a{sentence}~$!A$ such that $\Th{T} \Proves!A \liff !B(\gn{!A})$.
+设 $\Th{T}$ 为任意扩张~$\Th{Q}$ 的理论，
+并设 $!B(x)$ 为仅有变元~$x$ 自由的任意公式。
+则存在语句~$!A$ 使得 $\Th{T} \Proves!A \liff !B(\gn{!A})$。
 \end{lem}
 
-The lemma asserts that given any property $!B(x)$, there is
-!!a{sentence}~$!A$ that asserts ``$!B(x)$ is true of me,'' and
-$\Th{T}$ ``knows'' this.
+该引理断言，给定任何性质 $!B(x)$，
+总存在一个语句~$!A$ 断言“$!B(x)$ 对我成立”，
+且 $\Th{T}$“知道”这一点。
 
-How can we construct such !!a{sentence}? Consider the following version
-of the Epimenides paradox, due to Quine:
+我们如何构造这样的语句呢？考虑下面这个由 Quine 提出的
+Epimenides 悖论变体：
+
 \begin{quote}
-``Yields falsehood when preceded by its quotation'' yields falsehood
-when preceded by its quotation.
+“前面加上自身引文则得出假”前面加上自身引文则得出假。
 \end{quote}
-This sentence is not directly self-referential. It simply makes an
-assertion about the syntactic objects between quotes, and, in doing
-so, it is on par with sentences like
+
+这个句子并非直接自指。它仅仅是对引号之间的句法对象做出了断言，
+在这一点上，它与下列句子类似：
+
 \begin{enumerate}
-\item ``Robert'' is a nice name.
-\item ``I ran.'' is a short sentence.
-\item ``Has three words'' has three words.
+\item “Robert”是个好名字。
+\item “我跑了。”是个短句。
+\item “有三个词”有三个词。
 \end{enumerate}
-But what happens when one takes the phrase ``yields falsehood when
-preceded by its quotation,'' and precedes it with a quoted version of
-itself? Then one has the original sentence!{} In short, the sentence
-asserts that it is false.
+
+但是，如果我们把短语“前面加上自身引文则得出假”，
+在它前面加上它自身的引文，会发生什么呢？
+得到的恰好就是原句！简言之，这个句子断言它自身是假的。
 
 \end{document}

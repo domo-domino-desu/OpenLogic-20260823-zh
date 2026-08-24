@@ -8,57 +8,37 @@
 
 \olfileid{sol}{set}{crd}
 
-\olsection{Cardinalities of Sets}
+\olsection{集合的势}
 
 \begin{explain}
-Just as we can express that the domain is finite or infinite,
-!!{enumerable} or !!{nonenumerable}, we can define the property of a
-subset of~$\Domain{M}$ being finite or infinite, !!{enumerable} or
-!!{nonenumerable}.
+正如我们可以表达论域是有穷还是无穷、是可数还是不可数一样，我们也可以定义 $\Domain{M}$ 的子集具有有穷或无穷、可数或不可数的性质。
 \end{explain}
 
 \begin{prop}
-The formula $\fn{Inf}(X) \ident$
+公式 $\fn{Inf}(X) \ident$
 \begin{multline*}
 \lexists[u][(\lforall[x][\lforall[y][(\eq[u(x)][u(y)] \lif 
       \eq[x][y])]] \land {} \\\lexists[y][(X(y) \land \lforall[x][(X(x)
       \lif \eq/[y][u(x)])]])]
 \end{multline*}
-is satisfied with respect to a variable assignment~$s$ iff $s(X)$ is
-infinite.
+在变元指派~$s$ 下被满足，当且仅当 $s(X)$ 是无穷集。
 \end{prop}
 
 \begin{prop}
-The formula $\fn{Count}(X) \ident $
+公式 $\fn{Count}(X) \ident $
 \begin{multline*}
 \lexists[z][\lexists[u][(X(z) \land 
     \lforall[x][(X(x) \lif X(u(x)))] \land {} \\ \lforall[Y][((Y(z) \land
       \lforall[x][(Y(x) \lif Y(u(x)))]) \lif X = Y])]])
 \end{multline*}
-is satisfied with respect to a variable assignment~$s$ iff $s(X)$ is
-!!{enumerable}.
+在变元指派~$s$ 下被满足，当且仅当 $s(X)$ 是可数集。
 \end{prop}
 
-We know from Cantor's Theorem that there are !!{nonenumerable} sets,
-and in fact, that there are infinitely many different levels of
-infinite sizes.  Set theory develops an entire arithmetic of sizes of
-sets, and assigns infinite cardinal numbers to sets.  The natural
-numbers serve as the cardinal numbers measuring the sizes of finite
-sets. The cardinality of !!{denumerable} sets is the first infinite
-cardinality, called~$\aleph_0$ (``aleph-nought'' or
-``aleph-zero''). The next infinite size is~$\aleph_1$. It is the
-smallest size a set can be without being countable (i.e., of
-size~$\aleph_0$).  We can define ``$X$ has size $\aleph_0$'' as
-$\fn{Aleph}_0(X) \liff \fn{Inf}(X) \land \fn{Count}(X)$.  $X$ has size
-$\aleph_1$ iff all its subsets are finite or have size~$\aleph_0$, but
-is not itself of size~$\aleph_0$. Hence we can express this by the
-formula $\fn{Aleph_1}(X) \ident \lforall[Y][(Y \subseteq X \lif
+根据 Cantor 定理，我们知道存在不可数集，而且实际上，存在无穷多种不同层级的无穷大小。集合论发展出了一整套关于集合大小的算术，并将无穷基数分配给集合。自然数充当了衡量有穷集大小的基数。可数无穷集的势是第一个无穷势，称为~$\aleph_0$（“aleph-nought”或“aleph-zero”）。下一个无穷大小是~$\aleph_1$。它是一个集合在不为可数的（即大小为~$\aleph_0$）情况下所能具有的最小大小。我们可以将“$X$ 的大小为 $\aleph_0$”定义为
+$\fn{Aleph}_0(X) \liff \fn{Inf}(X) \land \fn{Count}(X)$。$X$ 的大小为 $\aleph_1$，当且仅当它的所有子集都是有穷的或大小为~$\aleph_0$，但其本身大小不是~$\aleph_0$。因此，我们可以用公式 $\fn{Aleph_1}(X) \ident \lforall[Y][(Y \subseteq X \lif
   (\lnot\fn{Inf}(Y) \lor \fn{Aleph}_0(Y)))] \land \lnot
-\fn{Aleph}_0(X)$. Being of size $\aleph_2$ is defined similarly, etc.
+\fn{Aleph}_0(X)$ 来表达这一点。大小为 $\aleph_2$ 的定义方式类似，以此类推。
 
-There is one size of special interest, the so-called cardinality of
-the continuum.  It is the size of $\Pow{\Nat}$, or, equivalently, the
-size of~$\Real$. That a set is the size of the continuum can also be
-expressed in second-order logic, but requires a bit more work.
+有一种大小特别令人关注，即所谓的连续统势。它是 $\Pow{\Nat}$ 的大小，或者等价地，是~$\Real$ 的大小。一个集合具有连续统势这一性质也可以在二阶逻辑中表达，但需要更多的工作。
 
 \end{document}

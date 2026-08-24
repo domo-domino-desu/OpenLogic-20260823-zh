@@ -8,346 +8,164 @@
 
 \olfileid{mth}{prf}{pat}
 
-\olsection{Inference Patterns}
+\olsection{推理模式}
 
-Proofs are composed of individual inferences. When we make an
-inference, we typically indicate that by using a word like ``so,''
-``thus,'' or ``therefore.''  The inference often relies on one or two
-facts we already have available in our proof---it may be something we
-have assumed, or something that we've concluded by an inference
-already.  To be clear, we may label these things, and in the inference
-we indicate what other statements we're using in the inference.  An
-inference will often also contain an explanation of \emph{why} our new
-conclusion follows from the things that come before it.  There are
-some common patterns of inference that are used very often in proofs;
-we'll go through some below. Some patterns of inference, like proofs
-by induction, are more involved (and will be discussed later).
+证明由一个个单步推理构成。当我们进行推理时，通常会使用“所以”、“于是”或“因此”这类词语来标示。推理往往依赖于我们在证明中已经具备的一两个事实——它可能是我们假设的，也可能是先前的推理已经得出的结论。为了清晰起见，我们可能会给这些事实加上标签，并在推理中指明我们使用了哪些其他的陈述。推理通常还包含对\emph{为何}新结论能由前面的陈述得出的解释。证明中有一些非常常用的推理模式；我们下面会介绍几种。有些推理模式，如归纳证明，则更为复杂（将稍后讨论）。
 
-We've already discussed one pattern of inference: unpacking, or
-applying, a definition. When we unpack a definition, we just restate
-something that involves the definiendum by using the definiens. For
-instance, suppose that we have already established in the course of a
-proof that $D = E$ (a). Then we may apply the definition of $=$ for sets
-and infer: ``Thus, by definition from (a), every !!{element}
-of~$D$ is !!a{element} of~$E$ and vice versa.''
+我们已经讨论过一种推理模式：展开或应用定义。当我们展开一个定义时，我们只是用定义项去重述涉及被定义项的内容。例如，假设我们已经在证明过程中确立了 $D = E$（a）。那么我们可以应用集合的 $=$ 的定义并推断：“于是，由（a）及定义可知，$D$ 的每个元素都是 $E$ 的元素，反之亦然。”
 
-Somewhat confusingly, we often do not write the justification of an
-inference when we actually make it, but before.  Suppose we haven't
-already proved that $D = E$, but we want to.  If $D = E$ is the
-conclusion we aim for, then we can restate this aim also by applying
-the definition: to prove $D = E$ we have to prove that every
-!!{element} of~$D$ is !!a{element} of~$E$ and vice versa.  So our
-proof will have the form: (a) prove that every !!{element} of~$D$ is
-!!a{element} of~$E$; (b) every !!{element} of~$E$ is !!a{element}
-of~$D$; (c) therefore, from (a) and (b) by definition of $=$, $D = E$.
-But we would usually not write it this way. Instead we might write
-something like,
+有些令人困惑的是，我们通常不是在实际作出推理时才写明其根据，而是在推理之前就写出来。假设我们尚未证明 $D = E$，但想要去证明它。如果 $D = E$ 是我们要得出的结论，那么同样可以通过应用定义来重述这一目标：为了证明 $D = E$，必须证明 $D$ 的每个元素都是 $E$ 的元素，反之亦然。因此，我们的证明可能具有如下形式：（a）证明 $D$ 的每个元素都是 $E$ 的元素；（b）证明 $E$ 的每个元素都是 $D$ 的元素；（c）因此，由（a）、（b）及 $=$ 的定义，有 $D = E$。但我们通常不会这样写。相反，我们可能会这样写：
+
 \begin{quote}
-We want to show $D = E$. By definition of~$=$, this amounts to showing
-that every !!{element} of~$D$ is !!a{element} of~$E$ and vice
-versa.
+我们要证明 $D = E$。根据 $=$ 的定义，这等价于证明 $D$ 的每个元素都是 $E$ 的元素，反之亦然。
 
-(a) \dots (a proof that every !!{element} of~$D$ is !!a{element}
-of~$E$) \dots
+（a）……（证明 $D$ 的每个元素都是 $E$ 的元素）……
 
-(b) \dots (a proof that every !!{element}
-of~$E$ is !!a{element} of~$D$) \dots
+（b）……（证明 $E$ 的每个元素都是 $D$ 的元素）……
 \end{quote}
 
-\subsection{Using a Conjunction}
+\subsection{利用合取式}
 
-Perhaps the simplest inference pattern is that of drawing as
-conclusion one of the conjuncts of a conjunction. In other words: if
-we have assumed or already proved that $p$ and~$q$, then we're
-entitled to infer that~$p$ (and also that~$q$).  This is such a basic
-inference that it is often not mentioned.  For instance, once we've
-unpacked the definition of $D = E$ we've established that every
-!!{element} of~$D$ is !!a{element} of~$E$ and vice versa. From this
-we can conclude that every !!{element} of~$E$ is !!a{element} of~$D$
-(that's the ``vice versa'' part).  
+或许最简单的推理模式就是从合取式中得出其某个合取支作为结论。
 
-\subsection{Proving a Conjunction}
+换言之：如果我们已经假设或证明了 $p$ 且 $q$，那么就可以推断 $p$（当然也可以推断 $q$）。
 
-Sometimes what you'll be asked to prove will have the form of a
-conjunction; you will be asked to ``prove $p$ and $q$.'' In this case,
-you simply have to do two things: prove $p$, and then prove $q$. You
-could divide your proof into two sections, and for clarity, label
-them. When you're making your first notes, you might write ``(1) Prove
-$p$'' at the top of the page, and ``(2) Prove $q$'' in the middle of
-the page. (Of course, you might not be explicitly asked to prove a
-conjunction but find that your proof requires that you prove a
-conjunction. For instance, if you're asked to prove that $D = E$ you
-will find that, after unpacking the definition of~$=$, you have to
-prove: every !!{element} of~$D$ is !!a{element} of~$E$
-\emph{and} every !!{element} of~$E$ is !!a{element} of~$D$).
+这个推理极为基本，往往无需明言。
 
-\subsection{Proving a Disjunction}
+例如，一旦我们展开了 $D = E$ 的定义，就确立了 $D$ 的每个元素都是 $E$ 的元素，反之亦然。
 
-When what you are proving takes the form of a disjunction (i.e., it is
-an statement of the form ``$p$ or $q$''), it is enough to show that
-one of the disjuncts is true.  However, it basically never happens
-that either disjunct just follows from the assumptions of your
-theorem. More often, the assumptions of your theorem are themselves
-disjunctive, or you're showing that all things of a certain kind have
-one of two properties, but some of the things have the one and others
-have the other property.  This is where proof by cases is
-useful (see below).
+由此可以得出结论：$E$ 的每个元素都是 $D$ 的元素（这就是“反之亦然”那部分）。
 
-\subsection{Conditional Proof}
+\subsection{证明合取式}
 
-Many theorems you will encounter are in conditional form (i.e., show
-that if $p$ holds, then $q$ is also true). These cases are nice and
-easy to set up---simply assume the antecedent of the conditional (in
-this case, $p$) and prove the conclusion~$q$ from it.  So if your
-theorem reads, ``If $p$ then $q$,'' you start your proof with ``assume
-$p$'' and at the end you should have proved~$q$.
+有时你需要证明的命题呈合取形式；你会被要求“证明 $p$ 且 $q$”。在这种情况下，你只需做两件事：证明 $p$，然后证明 $q$。
 
-Conditionals may be stated in different ways. So instead of ``If $p$
-then $q$,'' a theorem may state that ``$p$ only if $q$,'' ``$q$ if
-$p$,'' or ``$q$, provided $p$.'' These all mean the same and require
-assuming $p$ and proving~$q$ from that assumption.  Recall that a
-biconditional (``$p$ if and only if (iff) $q$'') is really two
-conditionals put together: if $p$ then $q$, and if $q$ then~$p$. All
-you have to do, then, is two instances of conditional proof: one for
-the first conditional and another one for the second. Sometimes,
-however, it is possible to prove an ``iff'' statement by chaining
-together a bunch of other ``iff'' statements so that you start with
-``$p$'' an end with ``$q$''---but in that case you have to make sure
-that each step really is an ``iff.''
+你可以把证明分成两个部分，并且为了清晰起见给它们加上标记。
 
-\subsection{Universal Claims}
+在做初步笔记时，你可能会在页面顶部写下“（1）证明 $p$”，在页面中间写下“（2）证明 $q$”。（当然，你可能没有被明确要求证明一个合取式，但在证明过程中发现需要证明一个合取式。例如，如果要求你证明 $D = E$，你会发现，在展开 $=$ 的定义之后，你必须证明：$D$ 的每个元素都是 $E$ 的元素，\emph{并且} $E$ 的每个元素都是 $D$ 的元素）。
 
-Using a universal claim is simple: if something is true for anything,
-it's true for each particular thing.  So if, say, the hypothesis of
-your proof is $A \subseteq B$, that means (unpacking the definition
-of~$\subseteq$), that, for every $x \in A$, $x \in B$. Thus, if you
-already know that $z \in A$, you can conclude $z \in B$.
+\subsection{证明析取式}
 
-Proving a universal claim may seem a little bit tricky. Usually these
-statements take the following form: ``If $x$ has~$P$, then it
-has~$Q$'' or ``All $P$s are $Q$s.'' Of course, it might not fit this
-form perfectly, and it takes a bit of practice to figure out what
-you're asked to prove exactly. But: we often have to prove that all objects
-with some property have a certain other property.
+当要证明的命题呈析取形式时（即形如“$p$ 或 $q$”的陈述），只需证明其中一个析取支为真就够了。
 
-The way to prove a universal claim is to introduce names or variables,
-for the things that have the one property and then show that they also
-have the other property.  We might put this by saying that to prove
-something for \emph{all}~$P$s you have to prove it for an
-\emph{arbitrary}~$P$. And the name introduced is a name for an
-arbitrary~$P$.  We typically use single letters as these names for
-arbitrary things, and the letters usually follow conventions: e.g., we
-use $n$ for natural numbers, $!A$ for !!{formula}s, $A$ for sets, $f$
-for functions, etc.
+然而，几乎不会出现某个析取支能直接从定理假设中推出的情况。
 
-The trick is to maintain generality throughout the proof. You start by
-assuming that an arbitrary object (``$x$'') has the property~$P$, and
-show (based only on definitions or what you are allowed to assume)
-that $x$ has the property~$Q$. Because you have not stipulated what
-$x$ is specifically, other that it has the property $P$, then you can
-assert that everything with $P$ has the property~$Q$. In short, $x$ is a
-stand-in for \emph{all} things with property~$P$.
+更常见的情况是，定理的假设本身是析取式的，或者你要证明的是某类对象全都具有两种性质之一，但其中一些对象具有这一种，另一些对象具有那一种。
+
+此时分情况证明就很有用了（见下文）。
+
+\subsection{条件证明}
+
+你会遇到的许多定理都呈条件形式（即证明如果 $p$ 成立，那么 $q$ 也为真）。
+
+这类情况处理起来简单明了——只需假设条件句的前件（在本例中即 $p$），然后由此证明结论 $q$。
+
+因此，如果你的定理是“若 $p$ 则 $q$”，你就可以以“假设 $p$”开始你的证明，并在最后证出 $q$。
+
+条件句可以有不同的表述方式。因此，定理未必表述为“若 $p$ 则 $q$”，也可能是“$p$ 仅当 $q$”、“$q$，如果 $p$”或“$q$，只要 $p$”。这些说法的意思相同，都要求假设 $p$ 并从该假设证明 $q$。
+
+回想一下，双条件句（“$p$ 当且仅当 $q$”）实质上是将两个条件句合在一起：若 $p$ 则 $q$，且若 $q$ 则 $p$。那么你要做的就是进行两次条件证明：一次针对第一个条件句，另一次针对第二个条件句。然而，有时也可以通过将一系列“当且仅当”陈述链接起来证明一个“当且仅当”命题，从而从“$p$”出发最终得出“$q$”——但在这种情况下，你必须确保每一步确实都是“当且仅当”。
+
+\subsection{全称命题}
+使用全称命题很简单：如果某件事对任何对象都成立，那么它对每一个特定对象也成立。例如，假设你证明的预设是 $A \subseteq B$，这意味着（展开 $\subseteq$ 的定义）对每个 $x \in A$，都有 $x \in B$。因此，如果你已经知道 $z \in A$，你就可以得出结论 $z \in B$。
+
+证明全称命题可能看起来有些棘手。通常这些陈述采取以下形式：“如果 $x$ 有 $P$，那么它有 $Q$”或“所有 $P$ 都是 $Q$”。当然，它可能不完全符合这种形式，需要一些练习才能准确弄清你要证明什么。但是：我们经常需要证明，所有具有某种性质的对象都具有另一种性质。
+
+证明全称命题的方法是，为具有第一种性质的对象引入名称或变元，然后证明它们也具有第二种性质。我们可以这样来表述：要证明某个结论对\emph{所有} $P$ 成立，你必须证明它对一个\emph{任意的} $P$ 成立。而所引入的名称正是代表一个任意 $P$ 的名称。我们通常用单个字母作为这些代表任意对象的名称，而字母通常遵循惯例：例如，我们用 $n$ 代表自然数，$!A$ 代表公式，$A$ 代表集合，$f$ 代表函数，等等。
+
+关键在于在整个证明过程中保持一般性。你首先假设一个任意对象（“$x$”）具有性质 $P$，然后（仅基于定义或你允许使用的假设）证明 $x$ 具有性质 $Q$。因为你并没有具体规定 $x$ 是什么，除了规定它具有性质 $P$ 之外，那么你就可以断言，每一个具有 $P$ 的对象都具有性质 $Q$。简而言之，$x$ 是所有具有性质 $P$ 的对象的\emph{代表}。
 
 \begin{prop}
-  For all sets $A$ and $B$, $A \subseteq A \cup B$.
+  对所有集合 $A$ 和 $B$，有 $A \subseteq A \cup B$。
 \end{prop}
 
 \begin{proof}
-  Let $A$ and $B$ be arbitrary sets.  We want to show that $A
-  \subseteq A \cup B$. By definition of $\subseteq$, this amounts to:
-  for every $x$, if $x \in A$ then $x \in A \cup B$. So let $x \in A$
-  be an arbitrary !!{element} of~$A$. We have to show that $x \in A
-  \cup B$. Since $x \in A$, $x \in A$ or $x \in B$. Thus, $x \in
-  \Setabs{x}{x \in A \lor x \in B}$. But that, by definition of $\cup
-  $, means $x \in A \cup B$.
+  设 $A$ 和 $B$ 为任意集合。我们要证明 $A \subseteq A \cup B$。根据 $\subseteq$ 的定义，这等价于：对每个 $x$，如果 $x \in A$，则 $x \in A \cup B$。因此，令 $x \in A$ 为 $A$ 的任意元素。我们必须证明 $x \in A \cup B$。既然 $x \in A$，则有 $x \in A$ 或 $x \in B$。因此，$x \in
+  \Setabs{x}{x \in A \lor x \in B}$。而根据 $\cup$ 的定义，这就意味着 $x \in A \cup B$。
 \end{proof}
 
+\subsection{分情况证明}
 
-\subsection{Proof by Cases}
+假设你以一个析取式作为假设或已确立的结论——即你已假设或证明了 $p$ 或 $q$ 为真。你想要证明 $r$。这可以分两步进行：首先假设 $p$ 为真，并证明~$r$；然后假设 $q$ 为真，再次证明~$r$。这样做的依据是，我们假设或已知这两种情况中至少有一个成立。这两个步骤确立了其中任意一种情况都足以保证~$r$ 为真。（如果两者均真，我们就有不止一个而是两个理由说明 $r$~为真。没必要再单独假设 $p$ 和~$q$ 同时成立去证明 $r$~为真。）为了表明我们在做什么，我们会声明“分情况讨论”。例如，假设我们知道 $x \in B \cup C$。$B \cup C$ 定义为 $\Setabs{x}{x \in B \text{ or } x \in C}$。换言之，根据定义，$x \in B$ 或 $x \in C$。由此证明 $x \in A$ 的做法是：先假设 $x \in B$，并从该假设证明 $x \in A$；然后假设 $x \in C$，再从该假设证明 $x \in A$。在证明中，你可以在假设下方写“我们分情况讨论”，然后在下方写“情况 (1): $x \in B$”，在页面中部写“情况 (2): $x \in C$”。接着，你再去完成页面的上半部分和下半部分。
 
-Suppose you have a disjunction as an assumption or as an already
-established conclusion---you have assumed or proved that $p$ or $q$ is
-true.  You want to prove $r$.  You do this in two steps: first you
-assume that $p$ is true, and prove~$r$, then you assume that $q$ is
-true and prove~$r$ again.  This works because we assume or know that
-one of the two alternatives holds. The two steps establish that either
-one is sufficient for the truth of~$r$.  (If both are true, we have
-not one but two reasons for why $r$~is true. It is not necessary to
-separately prove that $r$~is true assuming both $p$ and~$q$.)  To
-indicate what we're doing, we announce that we ``distinguish cases.''
-For instance, suppose we know that $x \in B \cup C$.  $B \cup C$ is
-defined as $\Setabs{x}{x \in B \text{ or } x \in C}$. In other words,
-by definition, $x \in B$ or $x \in C$. We would prove that $x \in A$
-from this by first assuming that $x \in B$, and proving $x \in A$ from
-this assumption, and then assume $x \in C$, and again prove $x \in A$
-from this.  You would write ``We distinguish cases'' under the
-assumption, then ``Case (1): $x \in B$'' underneath, and ``Case (2):
-$x \in C$ halfway down the page. Then you'd proceed to fill in the top
-half and the bottom half of the page.
-
-Proof by cases is especially useful if what you're proving is itself
-disjunctive. Here's a simple example:
+如果你要证明的结论本身也是析取式，分情况证明就特别有用。下面是一个简单的例子：
 
 \begin{prop}
-Suppose $B \subseteq D$ and $C \subseteq E$. Then $B \cup C \subseteq
-D \cup E$.
+假设 $B \subseteq D$ 且 $C \subseteq E$。则 $B \cup C \subseteq D \cup E$。
 \end{prop}
 
 \begin{proof}
-  Assume (a) that $B \subseteq D$ and (b) $C \subseteq E$. By
-  definition, any $x \in B$ is also $\in D$ (c) and any $x \in C$ is
-  also $\in E$ (d).  To show that $B \cup C \subseteq D \cup E$, we
-  have to show that if $x \in B \cup C$ then $x \in D \cup E$ (by
-  definition of $\subseteq$). $x \in B \cup C$ iff $x \in B$ or $x \in
-  C$ (by definition of~$\cup$). Similarly, $x \in D \cup E$ iff $x \in
-  D$ or $x \in E$. So, we have to show: for any $x$, if $x \in B$ or
-  $x \in C$, then $x \in D$ or $x \in E$.
+  假设 (a) $B \subseteq D$ 且 (b) $C \subseteq E$。根据定义，任何属于 $B$ 的 $x$ 也属于 $D$ (c)，且任何属于 $C$ 的 $x$ 也属于 $E$ (d)。要证明 $B \cup C \subseteq D \cup E$，我们需要证明：如果 $x \in B \cup C$，那么 $x \in D \cup E$（根据 $\subseteq$ 的定义）。$x \in B \cup C$ 当且仅当 $x \in B$ 或 $x \in C$（根据 $\cup$ 的定义）。类似地，$x \in D \cup E$ 当且仅当 $x \in D$ 或 $x \in E$。因此，我们需要证明：对于任意 $x$，如果 $x \in B$ 或 $x \in C$，那么 $x \in D$ 或 $x \in E$。
 
   \begin{quote}
-  So far we've only unpacked definitions!{} We've reformulated our
-  proposition without $\subseteq$ and $\cup$ and are left with trying
-  to prove a universal conditional claim. By what we've discussed
-  above, this is done by assuming that $x$ is something about which we
-  assume the ``if'' part is true, and we'll go on to show that the
-  ``then'' part is true as well. In other words, we'll assume that $x
-  \in B$ or $x \in C$ and show that $x \in D$ or $x \in
-  E$.\footnote{This paragraph just explains what we're doing---it's
-    not part of the proof, and you don't have to go into all this
-    detail when you write down your own proofs.}
+  到目前为止，我们只是在拆解定义！我们重新表述了我们的命题，去掉了 $\subseteq$ 和 $\cup$，剩下的就是尝试证明一个全称条件句。根据前面的讨论，我们要假设 $x$ 是某个使得“如果”部分成立的对象，然后去证明“那么”部分也成立。换言之，我们将假设 $x \in B$ 或 $x \in C$，并证明 $x \in D$ 或 $x \in E$。\footnote{本段仅解释我们在做什么——它并非证明的一部分，你在写下自己的证明时无需如此详述。}
   \end{quote}
 
-  Suppose that $x \in B$ or $x \in C$. We have to show that $x \in D$
-  or $x \in E$. We distinguish cases.
+  假设 $x \in B$ 或 $x \in C$。我们需要证明 $x \in D$ 或 $x \in E$。我们分情况讨论。
 
-  Case 1: $x \in B$. By (c), $x \in D$. Thus, $x \in D$ or $x \in
-  E$. (Here we've made the inference discussed in the preceding
-  subsection!)
-      
-  Case 2: $x \in C$. By (d), $x \in E$. Thus, $x \in D$ or $x \in E$.
+  情况 1: $x \in B$。根据 (c)，$x \in D$。因此，$x \in D$ 或 $x \in E$。（这里我们使用了前一小节讨论过的推理！）
+
+  情况 2: $x \in C$。根据 (d)，$x \in E$。因此，$x \in D$ 或 $x \in E$。
  \end{proof}
 
 
-\subsection{Proving an Existence Claim}
+\subsection{证明存在性陈述}
 
-When asked to prove an existence claim, the question will usually be
-of the form ``prove that there is an~$x$ such that $\dots x \dots$'',
-i.e., that some object that has the property described by ``$\dots x
-\dots$''. In this case you'll have to identify a suitable object and show
-that it has the required property.  This sounds straightforward, but a
-proof of this kind can be tricky. Typically it involves
-\emph{constructing} or \emph{defining} an object and proving that the
-object so defined has the required property. Finding the right object
-may be hard, proving that it has the required property may be hard,
-and sometimes it's even tricky to show that you've succeeded in
-defining an object at all!{}
+当被要求证明一个存在性陈述时，问题通常是“证明存在一个~$x$ 使得 $\dots x \dots$”，即证明存在某个对象具有“$\dots x \dots$”所描述的性质。这种情况下，你必须找出一个合适的对象，并证明它具备所需性质。这听起来直截了当，但这类证明可能很棘手。它通常涉及\emph{构造}或\emph{定义}一个对象，并证明所定义的对象具有所需性质。找到正确的对象可能很难，证明它具有所需性质可能很难，有时甚至连证明你确实成功地定义了一个对象本身都很棘手！{}
 
-Generally, you'd write this out by specifying the object, e.g., ``let
-$x$ be \dots'' (where \dots{} specifies which object you have in
-mind), possibly proving that $\dots$ in fact describes an object that
-exists, and then go on to show that $x$ has the property~$Q$. Here's a
-simple example.
+通常的写法是明确指定一个对象，例如“令 $x$ 为 \dots”（其中 \dots 指明了你考虑的是哪个对象），可能还需证明 \dots 确实描述了一个存在的对象，然后继续证明 $x$ 具有性质~$Q$。下面是一个简单的例子。
 
 \begin{prop}
-  Suppose that $x \in B$. Then there is an~$A$ such that $A \subseteq
-  B$ and $A \neq \emptyset$.
+  假设 $x \in B$。则存在一个~$A$，使得 $A \subseteq B$ 且 $A \neq \emptyset$。
 \end{prop}
 
 \begin{proof}
-  Assume $x \in B$. Let $A = \{x\}$.
+  假设 $x \in B$。令 $A = \{x\}$。
   \begin{quote}
-    Here we've defined the set~$A$ by enumerating its
-    !!{element}s. Since we assume that $x$ is an object, and we can
-    always form a set by enumerating its !!{element}s, we don't have
-    to show that we've succeeded in defining a set~$A$ here.  However,
-    we still have to show that $A$ has the properties required by the
-    proposition. The proof isn't complete without that!{}
+    这里我们通过枚举其元素的方式定义了集合~$A$。既然我们假设 $x$ 是一个对象，而我们总是可以通过枚举元素来构成一个集合，因此我们无需证明这里成功地定义了一个集合~$A$。然而，我们仍需要证明 $A$ 具有命题所要求的性质。没有这一步，证明就不完整！{}
   \end{quote}
-  Since $x \in A$, $A \neq \emptyset$.
+  由于 $x \in A$，有 $A \neq \emptyset$。
   \begin{quote}
-    This relies on the definition of $A$ as $\{x\}$ and the obvious
-    facts that $x \in \{x\}$ and $x \notin \emptyset$.
+    这依赖于将 $A$ 定义为 $\{x\}$，以及 $x \in \{x\}$ 且 $x \notin \emptyset$ 这两个显然的事实。
   \end{quote}
-  Since $x$ is the only !!{element} of~$\{x\}$, and $x \in B$, every
-  !!{element} of~$A$ is also !!a{element} of~$B$. By definition
-  of~$\subseteq$, $A \subseteq B$.
+  因为 $x$ 是~$\{x\}$ 的唯一元素，且 $x \in B$，所以~$A$ 的每个元素也都是~$B$ 的元素。根据~$\subseteq$ 的定义，$A \subseteq B$。
 \end{proof}
 
-\subsection{Using Existence Claims}
+\subsection{使用存在性陈述}
 
-Suppose you know that some existence claim is true (you've proved it,
-or it's a hypothesis you can use), say, ``for some~$x$, $x \in A$'' or
-``there is an $x \in A$.''  If you want to use it in your proof, you
-can just pretend that you have a name for one of the things which your
-hypothesis says exist. Since $A$ contains at least one thing, there
-are things to which that name might refer. You might of course not be
-able to pick one out or describe it further (other than that it is
-$\in A$). But for the purpose of the proof, you can pretend that you
-have picked it out and give a name to it. It's important to pick a
-name that you haven't already used (or that appears in your
-hypotheses), otherwise things can go wrong. In your proof, you
-indicate this by going from ``for some $x$, $x \in A$'' to ``Let $a
-\in A$.''  Now you can reason about~$a$, use some other hypotheses, etc.,
-until you come to a conclusion, $p$. If $p$ no longer mentions~$a$, $p$ is
-independent of the asusmption that $a \in A$, and you've shown that it
-follows just from the assumption ``for some $x$, $x \in A$.''
+假设你知道某个存在性陈述为真（你已经证明了它，或者它是一个你可以使用的假设），例如“存在某个~$x$，使得 $x \in A$”或“有一个 $x \in A$”。如果你想在证明中使用它，你可以姑且当作自己已为假设声称存在的那些事物之一取了一个名字。既然 $A$ 至少包含一个对象，那么总有对象可以是那个名字所指的。当然，你可能无法具体挑出一个或进一步描述它（除了知道它属于 $A$）。但为了证明的目的，你可以假定已经把它挑了出来并给它起了一个名字。关键是要选一个你尚未用过（或未在假设中出现过）的名字，否则可能会出错。在你的证明中，你通过从“存在某个 $x$，$x \in A$”过渡到“令 $a \in A$”来表明这一点。现在你可以对~$a$ 进行推理，使用其他一些假设，等等，直到得出一个结论 $p$。如果 $p$ 不再提及~$a$，那么 $p$ 就不依赖于 $a \in A$ 这个假设，而你已经表明 $p$ 仅仅从“存在某个 $x$，$x \in A$”这个假设就能得出。
 
 \begin{prop}
-If $A \neq \emptyset$, then $A \cup B \neq \emptyset$.
+若 $A \neq \emptyset$，则 $A \cup B \neq \emptyset$。
 \end{prop}
 
 \begin{proof}
-  Suppose $A \neq \emptyset$. So for some $x$, $x \in A$. 
+  假设 $A \neq \emptyset$。所以存在某个 $x$，使得 $x \in A$。
   \begin{quote}
-    Here we first just restated the hypothesis of the
-    proposition. This hypothesis, i.e., $A \neq \emptyset$, hides an
-    existential claim, which you get to only by unpacking a few
-    definitions. The definition of $=$ tells us that $A = \emptyset$
-    iff every $x \in A$ is also $\in \emptyset$ and every $x \in
-    \emptyset$ is also $\in A$. Negating both sides, we get: $A \neq
-    \emptyset$ iff either some $x \in A$ is $\notin \emptyset$ or some
-    $x \in \emptyset$ is $\notin A$. Since nothing is $\in \emptyset$,
-    the second disjunct can never be true, and ``$x \in A$ and $x
-    \notin \emptyset$'' reduces to just $x \in A$. So $x \neq
-    \emptyset$ iff for some $x$, $x \in A$. That's an existence
-    claim. Now we use that existence claim by introducing a name for
-    one of the !!{element}s of~$A$:
+    这里我们首先只是重述了命题的假设。这个假设，即 $A \neq \emptyset$，隐藏着一个存在性陈述，只有通过拆解几个定义才能得到。$=$ 的定义告诉我们：$A = \emptyset$ 当且仅当每个属于 $A$ 的 $x$ 也都属于 $\emptyset$，且每个属于 $\emptyset$ 的 $x$ 也都属于 $A$。否定两边，我们得到：$A \neq \emptyset$ 当且仅当要么存在某个 $x \in A$ 使得 $x \notin \emptyset$，要么存在某个 $x \in \emptyset$ 使得 $x \notin A$。由于没有任何对象属于 $\emptyset$，第二个析取支永远不可能为真，而“$x \in A$ 且 $x \notin \emptyset$”就简化为 $x \in A$。所以 $A \neq \emptyset$ 当且仅当存在某个 $x$，$x \in A$。这就是一个存在性陈述。现在我们通过为~$A$ 的某个元素引入一个名字来使用这个存在性陈述：
   \end{quote}
-  Let $a \in A$.
+  令 $a \in A$。
   \begin{quote}
-    Now we've introduced a name for one of the things~$\in A$. We'll
-    continue to argue about~$a$, but we'll be careful to only assume
-    that $a \in A$ and nothing else:
+    现在我们已经为~$A$ 中的某个对象引入了一个名字。我们将继续围绕~$a$ 进行论证，但会小心地只假设 $a \in A$，而不假设其他任何信息：
   \end{quote}
-  Since $a \in A$, $a \in A \cup B$, by definition of~$\cup$. So for
-  some $x$, $x \in A \cup B$, i.e., $A \cup B \neq \emptyset$.
+  由于 $a \in A$，根据~$\cup$ 的定义，有 $a \in A \cup B$。所以存在某个 $x$，使得 $x \in A \cup B$，而这意味着 $A \cup B \neq \emptyset$。
   \begin{quote}
-    In that last step, we went from ``$a \in A \cup B$'' to ``for some
-    $x$, $x \in A \cup B$.'' That doesn't mention $a$ anymore, so we
-    know that ``for some $x$, $x \in A \cup B$'' follows from ``for
-    some $x$, $x \in A$ alone.'' But that means that $A \cup B \neq
-    \emptyset$.
+    在最后一步，我们从“$a \in A \cup B$”过渡到了“存在某个 $x$，$x \in A \cup B$”。这里不再提及 $a$，因此我们知道“存在某个 $x$，$x \in A \cup B$”仅从“存在某个 $x$，$x \in A$”就能得出。而这意味着 $A \cup B \neq \emptyset$。
   \end{quote}
 \end{proof}
 
-It's maybe good practice to keep bound variables like ``$x$'' separate
-from hypothetical names like $a$, like we did. In practice, however, we
-often don't and just use $x$, like so:
+一种好的做法或许是像我们刚才那样，将“$x$”这样的约束变元与 $a$ 这样的假设性名字区分开。然而在实践中，我们常常不这么做，而是直接使用 $x$，像这样：
+
 \begin{quote}
-Suppose $A \neq \emptyset$, i.e., there is an $x \in A$. By definition
-of $\cup$, $x \in A \cup B$. So $A \cup B \neq \emptyset$.
+假设 $A \neq \emptyset$，即存在一个 $x \in A$。根据 $\cup$ 的定义，$x \in A \cup B$。所以 $A \cup B \neq \emptyset$。
 \end{quote}
-However, when you do this, you have to be extra careful that you use
-different $x$'s and $y$'s for different existential claims. For
-instance, the following is \emph{not} a correct proof of ``If $A \neq
-\emptyset$ and $B \neq \emptyset$ then $A \cap B \neq \emptyset$''
-(which is not true).
+
+但是，当你这样做时，必须格外小心，为不同的存在性陈述使用不同的 $x$ 和 $y$。例如，下面\emph{不是}“若 $A \neq \emptyset$ 且 $B \neq \emptyset$，则 $A \cap B \neq \emptyset$”（该命题本身不成立）的正确证明。
+
 \begin{quote}
-Suppose $A \neq \emptyset$ and $B \neq \emptyset$. So for some $x$, $x
-\in A$ and also for some $x$, $x \in B$. Since $x \in A$ and $x \in
-B$, $x \in A \cap B$, by definition of~$\cap$. So $A \cap B \neq
-\emptyset$.
+假设 $A \neq \emptyset$ 且 $B \neq \emptyset$。所以存在某个 $x$，$x \in A$，并且也存在某个 $x$，$x \in B$。由于 $x \in A$ 且 $x \in B$，根据~$\cap$ 的定义，有 $x \in A \cap B$。所以 $A \cap B \neq \emptyset$。
 \end{quote}
-Can you spot where the incorrect step occurs and explain why the
-result does not hold?
+
+你能找出错误的步骤发生在哪里，并解释为什么这个结论不成立吗？
 
 \end{document}

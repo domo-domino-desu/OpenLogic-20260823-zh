@@ -7,66 +7,38 @@
 \begin{document}
 
 \olfileid{mod}{mar}{int}
-\section{Introduction}
+\section{引言}
 
-The \emph{standard model} of arithmetic is the
-!!{structure}~$\Struct{N}$ with $\Domain{N} = \Nat$ in which
-$\Obj{0}$, $\prime$, $+$, $\times$, and $<$ are interpreted as you
-would expect. That is, $\Obj{0}$ is $0$, $\prime$ is the successor
-function, $+$ is interpreted as addition and $\times$ as multiplication
-of the numbers in~$\Nat$. Specifically,
+算术的\emph{标准模型}是结构~$\Struct{N}$，其论域为 $\Domain{N} = \Nat$，并且其中的 $\Obj{0}$、$\prime$、$+$、$\times$ 和 $<$ 都按通常的方式解释。也就是说，$\Obj{0}$ 是 $0$，$\prime$ 是后继函数，$+$ 被解释为加法，$\times$ 被解释为乘法。具体来说，
 \begin{align*}
   \Assign{\Obj{0}}{N} & = 0\\
   \Assign{\prime}{N}(n) & = n + 1\\
   \Assign{+}{N}(n, m) & = n + m\\
   \Assign{\times}{N}(n, m) & = nm
 \end{align*}
-Of course, there are structures for $\Lang{L_A}$ that have domains
-other than~$\Nat$. For instance, we can take $\Struct{M}$ with domain
-$\Domain{M} = \{a\}^*$ (the finite sequences of the single
-symbol~$a$, i.e., $\emptyset$, $a$, $aa$, $aaa$, \dots), and
-interpretations
+当然，$\Lang{L_A}$ 也有论域不是 $\Nat$ 的结构。例如，我们可以取结构 $\Struct{M}$，其论域为
+$\Domain{M} = \{a\}^*$ （由单个符号 $a$ 构成的有限序列，即 $\emptyset$, $a$, $aa$, $aaa$, $\dots$），并且解释为
 \begin{align*}
   \Assign{\Obj{0}}{M} & = \emptyset\\
   \Assign{\prime}{M}(s) & = s \concat a\\
   \Assign{+}{M}(n, m) & = a^{n + m}\\
   \Assign{\times}{M}(n, m) & = a^{nm}
 \end{align*}
-These two structures are ``essentially the same'' in the sense that
-the only difference is the !!{element}s of the !!{domain}s but not how
-the !!{element}s of the !!{domain}s are related among each other by
-the interpretation functions. We say that the two !!{structure}s are
-\emph{isomorphic}.
+这两个结构“本质上相同”，区别仅在于论域中的元素本身，而不在于这些元素通过解释函数相互关联的方式。我们称这两个结构是\emph{同构的}。
 
-It is an easy consequence of the compactness theorem that any theory
-true in~$\Struct{N}$ also has models that are not isomorphic
-to~$\Struct{N}$.  Such structures are called \emph{non-standard}.  The
-interesting thing about them is that while the !!{element}s of a
-standard model (i.e., $\Struct{N}$, but also all !!{structure}s
-isomorphic to it) are exhausted by the values of the standard
-numerals~$\num{n}$, i.e.,
+由紧致性定理的一个简单推论可知，任何在 $\Struct{N}$ 中成立的理论也拥有与 $\Struct{N}$ 不同构的模型。这样的结构被称为\emph{非标准的}。它们的有趣之处在于，虽然标准模型（即 $\Struct{N}$，以及所有与它同构的结构）中的元素被标准数词~$\num{n}$ 的值所穷尽，即
 \[
 \Domain{N} = \Setabs{\Value{\num{n}}{N}}{n \in \Nat}
 \]
-that isn't the case in non-standard models: if $\Struct{M}$ is
-non-standard, then there is at least one $x \in \Domain{M}$ such that
-$x \neq \Value{\num{n}}{M}$ for all~$n$.
+但在非标准模型中情况并非如此：如果 $\Struct{M}$ 是非标准的，那么至少存在一个 $x \in \Domain{M}$，使得
+$x \neq \Value{\num{n}}{M}$ 对所有 $n$ 成立。
 
-These non-standard elements are pretty neat: they are ``infinite
-natural numbers.'' But their existence also explains, in a sense, the
-incompleteness phenomena.  Consider an example, e.g., the consistency
-statement for Peano arithmetic, $\OCon[\Th{PA}]$, i.e., $\lnot
-\lexists[x][\OPrf[\Th{PA}](x, \gn{\lfalse})]$. Since $\Th{PA}$ neither
-proves $\OCon[\Th{PA}]$ nor $\lnot \OCon[\Th{PA}]$, either can be
-consistently added to $\Th{PA}$. Since $\Th{PA}$ is consistent,
-$\Sat{N}{\OCon[\Th{PA}]}$, and consequently $\Sat/{N}{\lnot
-  \OCon[\Th{PA}]}$.  So $\Struct{N}$ is \emph{not} a model of $\Th{PA}
-\cup \{\lnot \OCon[\Th{PA}]\}$, and all its models must be
-nonstandard. Models of $\Th{PA} \cup \{\lnot \OCon[\Th{PA}]\}$ must
-contain some !!{element} that serves as the witness that makes
-$\lexists[x][\OPrf[\Th{PA}](\gn{\lfalse})]$ true, i.e., a G\"odel
-number of !!a{derivation} of a contradiction from~$\Th{PA}$.  Such
-!!a{element} can't be standard---since $\Th{PA} \Proves \lnot
-\OPrf[\Th{PA}](\num{n}, \gn{\lfalse})$ for every~$n$.
+这些非标准元素相当奇妙：它们是“无穷的自然数”。但它们的存在在某种意义上也解释了不完全性现象。例如，考虑 Peano 算术的一致性语句，即 $\OCon[\Th{PA}]$，也就是 $\lnot
+\lexists[x][\OPrf[\Th{PA}](x, \gn{\lfalse})]$。由于 $\Th{PA}$ 既不能证明 $\OCon[\Th{PA}]$，也不能证明 $\lnot \OCon[\Th{PA}]$，所以两者都可以一致地加到 $\Th{PA}$ 中。由于 $\Th{PA}$ 是一致的，
+$\Sat{N}{\OCon[\Th{PA}]}$，从而 $\Sat/{N}{\lnot
+  \OCon[\Th{PA}]}$。因此 $\Struct{N}$ \emph{不}是 $\Th{PA}
+\cup \{\lnot \OCon[\Th{PA}]\}$ 的模型，而 $\Th{PA}
+\cup \{\lnot \OCon[\Th{PA}]\}$ 的所有模型都必然是非标准的。$\Th{PA} \cup \{\lnot \OCon[\Th{PA}]\}$ 的模型必须包含某个元素，它充当着使 $\lexists[x][\OPrf[\Th{PA}](\gn{\lfalse})]$ 为真的见证，即从 $\Th{PA}$ 推出矛盾的一个推导的哥德尔数。这样的元素不可能是标准的，因为 $\Th{PA} \Proves \lnot
+\OPrf[\Th{PA}](\num{n}, \gn{\lfalse})$ 对每个 $n$ 都成立。
 
 \end{document}

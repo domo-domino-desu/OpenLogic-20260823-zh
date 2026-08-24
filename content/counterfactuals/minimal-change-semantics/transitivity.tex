@@ -8,74 +8,41 @@
 
 \olfileid{cnt}{min}{tra}
 
-\olsection{Transitivity}
+\olsection{传递性}
 
-For the material conditional, the chain rule holds: $!A \lif !B, !B
-\lif !C \Entails !A \lif !C$. In other words, the material conditional
-is transitive. Is the same true for counterfactuals? Consider the
-following example due to Stalnaker.
+对于实质条件句，链式法则成立：$!A \lif !B, !B
+\lif !C \Entails !A \lif !C$。换言之，实质条件句是传递的。反事实条件句也是如此吗？考虑下面这个由 Stalnaker 提出的例子。
 \begin{quote}
-  If J.~Edgar Hoover had been born a Russian, he would have been a Communist.
+  如果 J.~Edgar Hoover 出生在俄国，他就会是一个共产主义者。
 
-  If J.~Edgar Hoover were a Communist, he would have been be a traitor.
+  如果 J.~Edgar Hoover 是一个共产主义者，他就会是一个叛徒。
 
-  Therefore, If J.~Edgar Hoover had been born a Russian, he would have
-  been be a traitor.
+  因此，如果 J.~Edgar Hoover 出生在俄国，他就会是一个叛徒。
 \end{quote}
-If Hoover had been born (at the same time he actually did), not in the
-United States, but in Russia, he would have grown up in the Soviet
-Union and become a Communist (let's assume). So the first premise is
-true. Likewise, the second premise, considered in isolation is
-true. The conclusion, however, is false: in all likelihood, Hoover
-would have been a fervent Communist if he had been born in the USSR,
-and not been a traitor (to his country).  The intuitive assignment of
-truth values is borne out by the Stalnaker--Lewis account. The closest
-possible world to ours with the only change being Hoover's place of
-birth is the one where Hoover grows up to be a good citizen of the
-USSR. This is the closest possible world where the antecedent of the
-first premise and of the conclusion is true, and in that world Hoover
-is a loyal member of the Communist party, and so not a traitor. To
-evaluate the second premise, we have to look at a different world,
-however: the closest world where Hoover is a Communist, which is one
-where he was born in the United States, turned, and thus became a
-traitor.\footnote{Of course, to appreciate the force of the example we
-  have to take on board some metaphysical and political assumptions,
-  e.g., that it is possible that Hoover could have been born to
-  Russian parents, or that Communists in the US of the 1950s were
-  traitors to their country.}
+如果 Hoover 不是出生在美国，而是出生在俄国（且出生时间与实际相同），他将会在苏联长大并成为一名共产主义者（我们如此假设）。所以第一个前提为真。同样地，第二个前提单独来看也为真。然而，结论却是假的：如果 Hoover 出生在苏联，他极有可能是一名狂热的共产主义者，而不是（他国家的）叛徒。这种直观的真值指派得到了 Stalnaker–Lewis 理论的支持。在仅改变 Hoover 出生地的情况下，离我们世界最近的可能世界，是 Hoover 成长为苏联好公民的那个世界。这是第一个前提与结论的前件皆为真的最近可能世界，而在那个世界里，Hoover 是忠诚的共产党员，因此不是叛徒。然而，要评估第二个前提，我们必须考察另一个不同的世界：Hoover 是共产主义者的最近可能世界，即他出生在美国、叛变并因此成为叛徒的那个世界。\footnote{当然，要领会这个例子的说服力，我们必须接受一些形而上学和政治上的假定，例如，Hoover 有可能出生于俄裔父母家庭，或者 1950 年代美国的共产主义者背叛了他们的国家。}
 
 \begin{prob}
-  Find a convincing, intuitive example for the failure of transitivity
-  of counterfactuals.
+  为反事实条件句传递性的失效找一个有说服力的、直观的例子。
 \end{prob}
 
 \begin{ex}\ollabel{ex:trans-counterex}
-  The sphere semantics invalidates the inference, i.e., we have $p
-  \cif q, q \cif r \Entails/ p \cif r$. Consider the model $\mModel{M}
-  = \tuple{W, O, V}$ where $W = \{w, w_1, w_2\}$, $O_w = \{\{w\}, \{w,
-  w_1\}, \{w, w_1, w_2\}\}$, $V(p) = \{w_2\}$, $V(q) = \{w_1, w_2\}$,
-  and $V(r) = \{w_1\}$. There is a $p$-admitting sphere $S = \{w, w_1,
-  w_2\}$ and $p \lif q$ is true at all worlds in it, so $\mSat{M}{p
-    \cif q}[w]$. There is also a $q$-admitting sphere $S' = \{w,
-  w_1\}$ and $\mSat/{M}{q \lif r}$ is true at all worlds in it, so
-  $\mSat{M}{q \cif r}[w]$. However, the $p$-admitting sphere $\{w,
-  w_1, w_2\}$ contains a world, namely~$w_2$, where $\mSat/{M}{p \lif
-    r}[w_2]$.
+  球系语义使该推理无效，即我们有 $p
+  \cif q, q \cif r \Entails/ p \cif r$。考虑模型 $\mModel{M}
+  = \tuple{W, O, V}$，其中 $W = \{w, w_1, w_2\}$，$O_w = \{\{w\}, \{w,
+  w_1\}, \{w, w_1, w_2\}\}$，$V(p) = \{w_2\}$，$V(q) = \{w_1, w_2\}$，以及 $V(r) = \{w_1\}$。存在一个容纳 $p$ 的球 $S = \{w, w_1,
+  w_2\}$，且 $p \lif q$ 在其中的所有世界上为真，所以 $\mSat{M}{p
+    \cif q}[w]$。也存在一个容纳 $q$ 的球 $S' = \{w,
+  w_1\}$，且 $\mSat/{M}{q \lif r}$ 在其中的所有世界上为真，所以 $\mSat{M}{q \cif r}[w]$。然而，容纳 $p$ 的球 $\{w,
+  w_1, w_2\}$ 包含一个世界，即~$w_2$，其中 $\mSat/{M}{p \lif
+    r}[w_2]$。
 \end{ex}
 
 \begin{prob}
-Draw the sphere diagram corresponding to the counterexample in
-\olref[cnt][min][tra]{ex:trans-counterex}.
+画出与 \olref[cnt][min][tra]{ex:trans-counterex} 中的反例相对应的球系图。
 \end{prob}
 
 \begin{prob}
-  In \olref[cnt][min][tra]{ex:trans-counterex}, world $w_2$ is where
-  Hoover is born in Russia, is a communist, and not a traitor, and
-  $w_1$ is the world where Hoover is born in the US, is a communist,
-  and a traitor. In this model, $w_1$ is closer to~$w$ than $w_2$
-  is. Is this necessary? Can you give a counterexample that does
-  not assume that Hoover's being born in Russia is a more remote
-  possibility than him being a Communist?
+  在 \olref[cnt][min][tra]{ex:trans-counterex} 中，世界 $w_2$ 是 Hoover 出生在俄国、是共产主义者且不是叛徒的世界，而 $w_1$ 是 Hoover 出生在美国、是共产主义者且是叛徒的世界。在这个模型中，$w_1$ 比 $w_2$ 更接近~$w$。这是必要的吗？你能给出一个无需假定 Hoover 出生在俄国比他是共产主义者更不可能的反例吗？
 \end{prob}
 
 \end{document}

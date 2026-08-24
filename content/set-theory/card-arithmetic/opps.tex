@@ -3,14 +3,14 @@
 \begin{document}
 
 \olfileid{sth}{card-arithmetic}{opps}
-\olsection{Defining the Basic Operations}
+\olsection{定义基本运算}
 
-Since we do not need to keep track of order, cardinal arithmetic is
-rather easier to define than ordinal arithmetic. We will define
-addition, multiplication, and exponentiation simultaneously. 
+由于我们无需顾及顺序，基数算术比序数算术更容易定义。
+我们将同时定义加法、乘法与指数运算。
+
 
 \begin{defn}
-When $\cardfont{a}$ and $\cardfont{b}$ are cardinals:
+当 $\cardfont{a}$ 与 $\cardfont{b}$ 是基数时：
 \begin{align*}
 	\cardfont{a} \cardplus \cardfont{b} &\defis 
 	\card{\cardfont{a} \disjointsum \cardfont{b}}\\
@@ -19,133 +19,108 @@ When $\cardfont{a}$ and $\cardfont{b}$ are cardinals:
 	\cardexpo{\cardfont{a}}{\cardfont{b}} &\defis 
 	\card{\funfromto{\cardfont{b}}{\cardfont{a}}}
 \end{align*}
-where $\funfromto{X}{Y} = \Setabs{f}{f \text{ is a function } X \to Y}$.
-(It is easy to show that $\funfromto{X}{Y}$ exists for any sets $X$
-and $Y$; we leave this as an exercise.) 
+其中 $\funfromto{X}{Y} = \Setabs{f}{f \text{ is a function } X \to Y}$。
+（容易证明，对任意集合 $X$ 与 $Y$，$\funfromto{X}{Y}$ 都存在；我们将其留作练习。）
 \end{defn}
 
 \begin{prob}
-Prove in $\Zminus$ that $\funfromto{X}{Y}$ exists for any sets $X$
-and~$Y$. Working in $\ZF$, compute $\setrank{\funfromto{X}{Y}}$ from
-$\setrank{X}$ and $\setrank{Y}$, in the manner of
-\olref[sth][ord-arithmetic][using-addition]{rankcomputation}. 
+在 $\Zminus$ 中证明：对任意集合 $X$ 与~$Y$，$\funfromto{X}{Y}$ 存在。
+在 $\ZF$ 中，仿照 \olref[sth][ord-arithmetic][using-addition]{rankcomputation} 从 $\setrank{X}$ 和 $\setrank{Y}$ 计算 $\setrank{\funfromto{X}{Y}}$。
 \end{prob}
 
-It might help to explain this definition. Concerning addition: this
-uses the notion of disjoint sum, $\disjointsum$, as defined in
-\olref[ord-arithmetic][add]{defdissum}; and it is easy
-to see that this definition gives the right verdict for finite cases.
-Concerning multiplication: \olref[sfr][set][pai]{cardnmprod} tells us
-that if $A$ has $n$ members and $B$ has $m$ members then $A \times B$
-has $n \cdot m$ members, so our definition simply generalises the idea
-to transfinite multiplication. Exponentiation is similar: we are
-simply generalising the thought from the finite to the transfinite.
-Indeed, in certain ways, transfinite cardinal arithmetic looks much
-more like ``ordinary'' arithmetic than does transfinite ordinal
-arithmetic:
+
+
+对此定义稍作解释可能会有所帮助。
+关于加法：它使用了不交并 $\disjointsum$（定义见 \olref[ord-arithmetic][add]{defdissum}）；易见，此定义在有穷情形下给出了正确的结果。
+关于乘法：\olref[sfr][set][pai]{cardnmprod} 表明，如果 $A$ 有 $n$ 个元素且 $B$ 有 $m$ 个元素，那么 $A \times B$ 有 $n \cdot m$ 个元素，因此我们的定义无非是将该思想推广到超穷乘法。
+指数运算亦然：我们只是将有穷情形的思想推广到超穷情形。
+事实上，在某些方面，超穷基数算术看起来比超穷序数算术更像是“普通”算术：
+
 
 \begin{prop}\ollabel{cardplustimescommute}
-$\cardplus$ and $\cardtimes$ are commutative and associative. 
+$\cardplus$ 与 $\cardtimes$ 满足交换律与结合律。
 \end{prop}
 
 \begin{proof}
-For commutativity, by
-\olref[cardinals][cardsasords]{lem:CardinalsBehaveRight} it
-suffices to observe that $\cardeq{(\cardfont{a} \disjointsum
-\cardfont{b})}{(\cardfont{b} \disjointsum \cardfont{a})}$ and
-$\cardeq{(\cardfont{a} \times \cardfont{b})}{(\cardfont{b} \times
-\cardfont{a})}$. We leave associativity as an exercise.
+对于交换律，根据 \olref[cardinals][cardsasords]{lem:CardinalsBehaveRight}，只需观察到 $\cardeq{(\cardfont{a} \disjointsum
+\cardfont{b})}{(\cardfont{b} \disjointsum \cardfont{a})}$ 且 $\cardeq{(\cardfont{a} \times \cardfont{b})}{(\cardfont{b} \times
+\cardfont{a})}$。
+我们将结合律的证明留作练习。
 \end{proof}
 
 \begin{prob}
-Prove that $\cardplus$ and $\cardtimes$ are associative.
+证明 $\cardplus$ 与 $\cardtimes$ 满足结合律。
 \end{prob}
 
 \begin{prop}
-$A$ is infinite iff $\card{A} \cardplus 1 = 1 \cardplus \card{A} = \card{A}$.
+$A$ 是无穷的当且仅当 $\card{A} \cardplus 1 = 1 \cardplus \card{A} = \card{A}$。
 \end{prop}
 
 \begin{proof}
-As in
-\olref[cardinals][classing]{generalinfinitycharacter}, from
-\olref[ord-arithmetic][using-addition]{ordinfinitycharacter} and
-\olref[cardinals][cardsasords]{lem:CardinalsBehaveRight}. 
+同 \olref[cardinals][classing]{generalinfinitycharacter} 的证明，由 \olref[ord-arithmetic][using-addition]{ordinfinitycharacter} 与 \olref[cardinals][cardsasords]{lem:CardinalsBehaveRight} 即得。
 \end{proof}
 
-This explains why we need to use different symbols for ordinal versus
-cardinal addition/multiplication: these are genuinely \emph{different}
-operations. This next pair of results shows that ordinal versus
-cardinal exponentiation are also different operations. (Recall that
-\olref[z][infinity-again]{defnomega} entails that $2 = \{0,
-1\}$):
+
+
+这就解释了为何序数的加法/乘法与基数的加法/乘法需要使用不同的符号：它们是\emph{真正不同}的运算。
+接下来的两个结果表明，序数的指数运算与基数的指数运算也是不同的运算。
+（回顾 \olref[z][infinity-again]{defnomega} 可知 $2 = \{0, 1\}$）：
+
 
 \begin{lem}\ollabel{lem:SizePowerset2Exp}
-$\card{\Pow{A}} = \cardexpo{2}{\card{A}}$, for any $A$.
+$\card{\Pow{A}} = \cardexpo{2}{\card{A}}$，对任意集合 $A$ 成立。
 \end{lem}
 
 \begin{proof}
-For each subset $B \subseteq A$, let $\chi_B \in \funfromto{A}{2}$ be given by:
+对每个子集 $B \subseteq A$，令 $\chi_B \in \funfromto{A}{2}$ 由下式给出：
 \begin{align*}
 	\chi_{B}(x) &\defis
 	\begin{cases}
-		1 & \text{if }x\in B\\
-		0 & \text{otherwise.}
+		1 & \text{若 }x\in B\\
+		0 & \text{否则。}
 	\end{cases}
 \end{align*}
-Now let $f(B) = \chi_B$; this defines !!a{bijection} $f \colon \Pow{A}
-\to \funfromto{A}{2}$. So $\cardeq{\Pow{A}}{\funfromto{A}{2}}$. Hence
-$\cardeq{\Pow{A}}{\funfromto{\card{A}}{2}}$, so that
+现在令 $f(B) = \chi_B$；这便定义了一个双射 $f \colon \Pow{A}
+\to \funfromto{A}{2}$。所以 $\cardeq{\Pow{A}}{\funfromto{A}{2}}$。因此
+$\cardeq{\Pow{A}}{\funfromto{\card{A}}{2}}$，于是
 $\card{\Pow{A}} = \card{\funfromto{\card{A}}{2}} =
-2^{\card{A}}$.
+2^{\card{A}}$。
 \end{proof}
 
-This snappy proof essentially subsumes the discussion of
-\olref[sfr][siz][red-alt]{sec}. There, we showed how to ``reduce'' the
-uncountability of $\Pow{\omega}$ to the uncountability of the set of
-infinite binary strings, $\Bin^\omega$. In effect, $\Bin^{\omega}$ is
-just $\funfromto{\omega}{2}$; and the preceding proof showed that the
-reasoning we went through in \olref[sfr][siz][red-alt]{sec} will go
-through using any set~$A$ in place of~$\omega$. The result also yields
-a quick fact about cardinal exponentiation:
+
+
+这个利落的证明本质上涵盖了 \olref[sfr][siz][red-alt]{sec} 中的讨论。
+在那里，我们展示了如何将 $\Pow{\omega}$ 的不可数性“归约”为无穷二进制字符串集 $\Bin^\omega$ 的不可数性。
+实际上，$\Bin^{\omega}$ 就是 $\funfromto{\omega}{2}$；且上述证明表明，我们在 \olref[sfr][siz][red-alt]{sec} 中进行的推理，对于用任意集合~$A$ 替代~$\omega$ 的情形同样成立。
+该结果也导出了关于基数指数运算的一个简明推论：
+
 
 \begin{cor}\ollabel{cantorcor}
-$\cardfont{a} < \cardexpo{2}{\cardfont{a}}$ for any cardinal~$\cardfont{a}$.
+$\cardfont{a} < \cardexpo{2}{\cardfont{a}}$ 对任意基数~$\cardfont{a}$ 成立。
 \end{cor}
 
 \begin{proof}
-From Cantor's Theorem (\olref[sfr][siz][car]{thm:cantor}) and
-\olref{lem:SizePowerset2Exp}.
+由康托尔定理（\olref[sfr][siz][car]{thm:cantor}）与 \olref{lem:SizePowerset2Exp} 即得。
 \end{proof}
-\noindent
-So $\omega < \cardexpo{2}{\omega}$. But note: this is a result about
-\emph{cardinal} exponentiation. It should be contrasted with
-\emph{ordinal} exponentiation, since in the latter case $\omega =
-\ordexpo{2}{\omega}$ (see \olref[ord-arithmetic][expo]{sec}).
 
-Whilst we are on the topic of cardinal exponentiation, we can also be
-a bit more precise about the ``way'' in which $\Real$ is
-!!{nonenumerable}.
+
+
+所以 $\omega < \cardexpo{2}{\omega}$。但请注意：这是关于\emph{基数}指数运算的结果。它应当与\emph{序数}指数运算对比，因为在后一种情形下 $\omega = \ordexpo{2}{\omega}$（参见 \olref[ord-arithmetic][expo]{sec}）。
+
+借此讨论基数指数运算的机会，我们也可以对 $\Real$ 的“不可数方式”作出更精确的刻画。
+
 
 \begin{thm}\ollabel{continuumis2aleph0}
 $\card{\Real} = \cardexpo{2}{\omega}$
 \end{thm}
 
-\begin{proof}[Proof skeleton]
-There are plenty of ways to prove this. The most straightforward is to
-argue that $\cardle{\Pow{\omega}}{\Real}$ and
-$\cardle{\Real}{\Pow{\omega}}$, and then use Schr\"oder-Bernstein to
-infer that $\cardeq{\Real}{\Pow{\omega}}$, and
-\olref[card-arithmetic][opps]{lem:SizePowerset2Exp} to infer
-that $\card{\Real} = \cardexpo{2}{\omega}$. We leave it as an
-(illuminating) exercise to define injections $f \colon
-\Pow{\omega} \to \Real$ and $g \colon \Real \to \Pow{\omega}$.
+\begin{proof}[证明概要]
+证明方法有很多。最直接的方法是论证 $\cardle{\Pow{\omega}}{\Real}$ 且 $\cardle{\Real}{\Pow{\omega}}$，然后利用施罗德-伯恩斯坦定理推断 $\cardeq{\Real}{\Pow{\omega}}$，并借助 \olref[card-arithmetic][opps]{lem:SizePowerset2Exp} 推断 $\card{\Real} = \cardexpo{2}{\omega}$。
+我们将构造单射 $f \colon \Pow{\omega} \to \Real$ 和 $g \colon \Real \to \Pow{\omega}$ 留作（富有启发性的）练习。
 \end{proof}
 
 \begin{prob}
-Complete the proof of
-\olref[sth][card-arithmetic][opps]{continuumis2aleph0}, by
-showing that $\cardle{\Pow{\omega}}{\Real}$ and
-$\cardle{\Real}{\Pow{\omega}}$.
+通过证明 $\cardle{\Pow{\omega}}{\Real}$ 与 $\cardle{\Real}{\Pow{\omega}}$，完成 \olref[sth][card-arithmetic][opps]{continuumis2aleph0} 的证明。
 \end{prob}
 
 \end{document}

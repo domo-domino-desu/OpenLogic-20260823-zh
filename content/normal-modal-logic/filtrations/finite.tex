@@ -8,38 +8,16 @@
 
 \olfileid{nml}{fil}{fin}
 
-\olsection{Filtrations are Finite}
+\olsection{过滤是有限的}
 
-We've defined filtrations for any set~$\Gamma$ that is closed under
-sub-!!{formula}s. Nothing in the definition itself guarantees that
-filtrations are finite. In fact, when $\Gamma$ is infinite (e.g., is
-the set of all !!{formula}s), it may well be infinite. However, if
-$\Gamma$ is finite (e.g., when it is the set of sub-!!{formula}s of a
-given !!{formula}~$!A$), so is any filtration through~$\Gamma$.
+我们已经对任何对子公式封闭的集合~$\Gamma$ 定义了过滤。定义本身并不能保证过滤是有限的。事实上，当 $\Gamma$ 是无穷集时（例如，当它是所有公式的集合时），过滤很可能是无穷的。然而，如果 $\Gamma$ 是有限的（例如，它是给定公式~$!A$ 的子公式集），那么通过~$\Gamma$ 的任何过滤也是有限的。
 
 \begin{prop}\ollabel{prop:filt-are-finite}
-  If $\Gamma$ is finite then any filtration $\mModel{M^*}$ of a model
-  $\mModel{M}$ through $\Gamma$ is also finite.
+  若 $\Gamma$ 有限，则模型 $\mModel{M}$ 通过 $\Gamma$ 的任何过滤 $\mModel{M^*}$ 也是有限的。
 \end{prop}
 
 \begin{proof}
-  The size of $W^*$ is the number of different classes~$[w]$ under the
-  equivalence relation~$\equiv$. Any two worlds $u$, $v$ in such
-  class---that is, any $u$ and $v$ such that~$u \equiv v$---agree on
-  all !!{formula}s~$!A$ in~$\Gamma$, $!A \in \Gamma$ either $!A$ is
-  true at both $u$ and $v$, or at neither. So each class~$[w]$
-  corresponds to subset of~$\Gamma$, namely the set of all $!A \in
-  \Gamma$ such that $!A$ is true at the worlds in~$[w]$. No two
-  different classes $[u]$ and $[v]$ correspond to the same subset
-  of~$\Gamma$. For if the set of !!{formula}s true at $u$ and that of
-  !!{formula}s true at $v$ are the same, then $u$ and $v$ agree on all
-  formulas in~$\Gamma$, i.e., $u \equiv v$. But then $[u] = [v]$.  So,
-  there is !!a{injective} function from $W^*$ to $\Pow{\Gamma}$, and
-  hence $\card{W^*} \le \card{\Pow{\Gamma}}$.  Hence if $\Gamma$
-  contains $n$ sentences, the cardinality of $W^*$ is no greater
-  than~$2^n$.
+  $W^*$ 的大小即等价关系~$\equiv$ 下不同等价类~$[w]$ 的个数。同一个等价类中的任意两个世界 $u$、$v$——即任何满足~$u \equiv v$ 的 $u$ 和 $v$——在所有属于~$\Gamma$ 的公式~$!A$ 上取值相同：即对任意 $!A \in \Gamma$，$!A$ 要么在 $u$ 和 $v$ 处都为真，要么在这两处都为假。因此，每个等价类~$[w]$ 都对应~$\Gamma$ 的一个子集，即在~$[w]$ 中的世界上为真的所有 $!A \in \Gamma$ 所构成的集合。任意两个不同的等价类 $[u]$ 和 $[v]$ 不会对应~$\Gamma$ 的同一个子集。因为如果在 $u$ 处为真的公式集与在 $v$ 处为真的公式集相同，那么 $u$ 和 $v$ 就在~$\Gamma$ 的所有公式上取值相同，亦即 $u \equiv v$。但这样一来就有 $[u] = [v]$。所以，存在一个从 $W^*$ 到 $\Pow{\Gamma}$ 的单射函数，从而 $\card{W^*} \le \card{\Pow{\Gamma}}$。因此，若 $\Gamma$ 包含 $n$ 个语句，则 $W^*$ 的势不大于~$2^n$。
 \end{proof}
 
 \end{document}
-
-

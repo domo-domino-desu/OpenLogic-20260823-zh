@@ -10,47 +10,38 @@
       {\olfileid{fol}{com}{lin}}
       {\olfileid{pl}{com}{lin}}
 
-\olsection{Lindenbaum's Lemma}
+\olsection{Lindenbaum（林登鲍姆）引理}
 
 \begin{explain}
-We now prove a lemma that shows that any consistent set of
-!!{sentence}s is contained in some set of sentences which is not just
-consistent, but also !!{complete}. The proof works by adding one
-!!{sentence} at a time, guaranteeing at each step that the set remains
-consistent. We do this so that for every $!A$, either $!A$ or $\lnot
-!A$ gets added at some stage. The union of all stages in that
-construction then contains either $!A$ or its negation~$\lnot !A$ and
-is thus complete. It is also consistent, since we make sure at each
-stage not to introduce an inconsistency.
+我们现在证明一个引理：任何一致的语句集都包含于某个不仅一致而且完备的语句集中。
+证明方法是每次添加一个语句，并保证在每一步集合都保持一致。
+这样做的目的是使得对于每个 $!A$，总有 $!A$ 或 $\lnot !A$ 在某个阶段被添加进去。
+该构造中所有阶段的并集将包含 $!A$ 或其否定 $\lnot !A$，因而是完备的。
+它也是一致的，因为我们确保了在每个阶段都不引入不一致。
 \end{explain}
 
-\begin{lem}[Lindenbaum's Lemma]
-\ollabel{lem:lindenbaum} Every consistent
-set~$\Gamma$ in a language~$\Lang{L}$ can be
-extended to !!a{complete} and consistent set~$\Gamma^*$.
+\begin{lem}[Lindenbaum 引理]
+\ollabel{lem:lindenbaum} 语言~$\Lang{L}$ 中的每个一致集合~$\Gamma$ 都可以扩张为一个完备且一致的集合~$\Gamma^*$。
 \end{lem}
 
 \begin{proof}
-Let $\Gamma$ be consistent.  Let $!A_0$, $!A_1$,
-\dots{} be an enumeration of all the !!{sentence}s of~$\Lang L$.
-Define $\Gamma_0 = \Gamma$, and
-\[
+设 $\Gamma$ 是一致的。令 $!A_0$, $!A_1$, \dots{} 为 $\Lang L$ 中所有语句的一个枚举。
+定义 $\Gamma_0 = \Gamma$，并 \[
 \Gamma_{n+1} =
 \begin{cases}
 \Gamma_n \cup \{ !A_n \} & \textrm{if $\Gamma_n \cup \{!A_n\}$ is
   consistent;} \\
 \Gamma_n \cup \{ \lnot !A_n \} & \textrm{otherwise.}
 \end{cases}
-\]
-Let $\Gamma^* = \bigcup_{n \geq 0} \Gamma_n$.
+\] 令 $\Gamma^* = \bigcup_{n \geq 0} \Gamma_n$。
 
-Each $\Gamma_n$ is consistent: $\Gamma_0$ is consistent by definition.
-If $\Gamma_{n+1} = \Gamma_n \cup \{!A_n\}$, this is because the latter
-is consistent.  If it isn't, $\Gamma_{n+1} = \Gamma_n \cup \{\lnot
-!A_n\}$. We have to verify that $\Gamma_n \cup \{\lnot !A_n\}$ is
-consistent. Suppose it's not. Then \emph{both} $\Gamma_n \cup
-\{!A_n\}$ and $\Gamma_n \cup \{\lnot !A_n\}$ are inconsistent.  This
-means that $\Gamma_n$ would be inconsistent by
+每个 $\Gamma_n$ 都是一致的：$\Gamma_0$ 根据定义是一致的。
+若 $\Gamma_{n+1} = \Gamma_n \cup \{!A_n\}$，这是因为后者是一致的；否则，$\Gamma_{n+1} = \Gamma_n \cup \{\lnot
+!A_n\}$。
+我们需要验证 $\Gamma_n \cup \{\lnot !A_n\}$ 是一致的。
+假设并非如此。那么 $\Gamma_n \cup
+\{!A_n\}$ \emph{和} $\Gamma_n \cup \{\lnot !A_n\}$ 都是不一致的。
+这意味着由
 \iftag{FOL}{%
   \tagrefs{prfAX/{fol:axd:prv:prop:provability-exhaustive},
     prfSC/{fol:seq:prv:prop:provability-exhaustive},
@@ -59,27 +50,26 @@ means that $\Gamma_n$ would be inconsistent by
   \tagrefs{prfAX/{pl:axd:prv:prop:provability-exhaustive},
     prfSC/{pl:seq:prv:prop:provability-exhaustive},
     prfND/{pl:ntd:prv:prop:provability-exhaustive},
-    prfTab/{pl:tab:prv:prop:provability-exhaustive}}},
-contrary to the induction hypothesis.
+    prfTab/{pl:tab:prv:prop:provability-exhaustive}}}
+可得 $\Gamma_n$ 将是不一致的，这与归纳假设矛盾。
 
-For every~$n$ and every $i < n$, $\Gamma_i \subseteq \Gamma_n$. This
-follows by a simple induction on~$n$. For $n=0$, there are no $i < 0$,
-so the claim holds automatically.  For the inductive step, suppose it
-is true for~$n$. We show that if $i < n+1$ then $\Gamma_i \subseteq
-\Gamma_{n+1}$. We have $\Gamma_{n+1} = \Gamma_n \cup \{!A_n\}$ or $=
-\Gamma_n \cup \{\lnot !A_n\}$ by construction. So $\Gamma_n \subseteq
-\Gamma_{n+1}$. If $i < n+1$, then $\Gamma_i \subseteq \Gamma_n$ by
-inductive hypothesis (if $i < n$) or the trivial fact that $\Gamma_n
-\subseteq \Gamma_n$ (if $i = n$). We get that $\Gamma_i \subseteq
-\Gamma_{n+1}$ by transitivity of~$\subseteq$.
+对于每个 $n$ 和每个 $i < n$，$\Gamma_i \subseteq \Gamma_n$。
+这通过对 $n$ 的简单归纳可得。对于 $n=0$，不存在 $i < 0$，故该断言自动成立。
+对于归纳步骤，假设它对 $n$ 成立。我们证明若 $i < n+1$，则 $\Gamma_i \subseteq
+\Gamma_{n+1}$。
+根据构造，我们有 $\Gamma_{n+1} = \Gamma_n \cup \{!A_n\}$ 或 $=
+\Gamma_n \cup \{\lnot !A_n\}$。因此 $\Gamma_n \subseteq
+\Gamma_{n+1}$。
+若 $i < n+1$，则由归纳假设（若 $i < n$）或 $\Gamma_n \subseteq \Gamma_n$ 这一平凡事实（若 $i = n$），可得 $\Gamma_i \subseteq \Gamma_n$。
+由 $\subseteq$ 的传递性，我们得到 $\Gamma_i \subseteq
+\Gamma_{n+1}$。
 
-From this it follows that $\Gamma^*$ is consistent. Here's why: Let
-$\Gamma' \subseteq \Gamma^*$ be finite. Each $!B \in \Gamma'$ is also
-in~$\Gamma_i$ for some~$i$. Let $n$ be the largest of these. Since
-$\Gamma_i \subseteq \Gamma_n$ if $i \le n$, every $!B \in \Gamma'$ is
-also $\in \Gamma_n$, i.e., $\Gamma' \subseteq \Gamma_n$, and
-$\Gamma_n$~is consistent. So, every finite subset $\Gamma' \subseteq
-\Gamma^*$ is consistent. By \iftag{FOL}{%
+由此可推出 $\Gamma^*$ 是一致的。理由如下：设 $\Gamma' \subseteq \Gamma^*$ 是有限的。
+每个 $!B \in \Gamma'$ 也都在某个 $\Gamma_i$ 中。令 $n$ 为其中最大的 $i$。
+因为若 $i \le n$ 则 $\Gamma_i \subseteq \Gamma_n$，所以每个 $!B \in \Gamma'$ 也在 $\Gamma_n$ 中，
+即 $\Gamma' \subseteq \Gamma_n$，且 $\Gamma_n$ 是一致的。
+因此，每个有限子集 $\Gamma' \subseteq \Gamma^*$ 都是一致的。
+由 \iftag{FOL}{%
   \tagrefs{prfAX/{fol:axd:ptn:prop:proves-compact},
     prfSC/{fol:seq:ptn:prop:proves-compact},
     prfND/{fol:ntd:ptn:prop:proves-compact},
@@ -87,13 +77,11 @@ $\Gamma_n$~is consistent. So, every finite subset $\Gamma' \subseteq
   \tagrefs{prfAX/{pl:axd:ptn:prop:proves-compact},
     prfSC/{pl:seq:ptn:prop:proves-compact},
     prfND/{pl:ntd:ptn:prop:proves-compact},
-    prfTab/{pl:tab:ptn:prop:proves-compact}}}, $\Gamma^*$ is
-  consistent.
+    prfTab/{pl:tab:ptn:prop:proves-compact}}}，$\Gamma^*$ 是一致的。
 
-Every !!{sentence} of $\Frm[L]$ appears on the list used to
-define~$\Gamma^*$. If $!A_n \notin \Gamma^*$, then that is because
-$\Gamma_n \cup \{!A_n\}$ was inconsistent.  But then $\lnot !A_n
-\in \Gamma^*$, so $\Gamma^*$ is !!{complete}.
+$\Frm[L]$ 中的每个语句都出现在用于定义 $\Gamma^*$ 的列表中。
+如果 $!A_n \notin \Gamma^*$，则是因为 $\Gamma_n \cup \{!A_n\}$ 是不一致的。
+但由此可知 $\lnot !A_n \in \Gamma^*$，所以 $\Gamma^*$ 是完备的。
 \end{proof}
 
 \end{document}

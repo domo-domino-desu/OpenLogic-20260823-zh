@@ -1,69 +1,47 @@
-% Part:sets-functions-relations
-% Chapter: size-of-sets
-% Section: non-enumerability-alt
-
 \documentclass[../../../include/open-logic-section]{subfiles}
 
 \begin{document}
 
 \olfileid{sfr}{siz}{nen-alt}
 
-\olsection{\printtoken{S}{nonenumerable} Sets}
+\olsection{不可数的集合}
 
 \begin{editorial}
-  This section proves the non-enumerability of $\Bin^\omega$ and
-  $\Pow{\Nat}$ using the definitions in \olref[enm-alt]{sec}, i.e.,
-  requiring a bijection with~$\Nat$ instead of a surjection from
-  $\PosInt$.
+本节使用 \olref[enm-alt]{sec} 中的定义（即要求与~$\Nat$ 建立双射，而非从 $\PosInt$ 到其上的满射）来证明 $\Bin^\omega$ 和 $\Pow{\Nat}$ 的不可数性。
 \end{editorial}
 
+% Part:sets-functions-relations
+% Chapter: size-of-sets
+% Section: non-enumerability-alt
+
 \begin{explain}
-The set $\Nat$ of natural numbers is infinite. It is also trivially
-!!{enumerable}. But the remarkable fact is that there are
-\emph{!!{nonenumerable}} sets, i.e., sets which are not !!{enumerable}
-(see \olref[sfr][siz][enm-alt]{defn:enumerable}).
+自然数集 $\Nat$ 是无穷的。它显然也是可数的。
+但一个引人注目的事实是，存在\emph{不可数的}集合，即不可数的集合
+（参见\olref[sfr][siz][enm-alt]{defn:enumerable}）。
 
-This might be surprising. After all, to say that $A$ is
-!!{nonenumerable} is to say that there is \emph{no} !!{bijection} $f
-\colon \Nat \to A$; that is, no function mapping the infinitely many
-!!{element}s of~$\Nat$ to~$A$ exhausts all of~$A$.  So if $A$ is
-!!{nonenumerable}, there are ``more'' !!{element}s of~$A$ than there
-are natural numbers.
+这可能会令人惊讶。毕竟，说 $A$ 不可数，就是说\emph{不存在}双射 $f
+\colon \Nat \to A$；也就是说，没有任何将 $\Nat$ 的无穷多个元素映射到 $A$ 的函数能穷尽 $A$。
+因此，如果 $A$ 是不可数的，那么 $A$ 的元素就比自然数“更多”。
 
-To prove that a set is !!{nonenumerable}, you have to show that no
-appropriate !!{bijection} can exist. The best way to do this is to
-show that every attempt to enumerate !!{element}s of~$A$ must leave at
-least one !!{element} out; this shows that no function $f\colon \Nat
-\to A$ is !!{surjective}. And a general strategy for establishing this
-is to use Cantor's \emph{diagonal method}. Given a list of
-!!{element}s of $A$, say, $x_1$, $x_2$, \dots, we construct another
-!!{element} of~$A$ which, by its construction, cannot possibly be on
-that list.
+要证明一个集合不可数，就必须证明不可能存在适当的双射。
+最好的方法是证明，任何枚举 $A$ 的元素的尝试都必定至少遗漏一个元素；这表明没有任何函数 $f\colon \Nat
+\to A$ 是满射。而确立这一点的一个通用策略是使用 Cantor（康托尔）的\emph{对角线法}。
+给定 $A$ 的元素的一个列表，比如 $x_1$, $x_2$, \dots，我们构造 $A$ 的另一个元素，根据其构造方式，它不可能出现在该列表中。
 
-But all of this is best understood by example. So, our first example
-is the set~$\Bin^\omega$ of all infinite strings of $0$'s and $1$'s.
-(The `$\Bin$' stands for binary, and we can just think of it as the
-two-element set
-$\{0,1\}$.)\oliflabeldef{sfr:card-arithmetic:card-opps:sec}{\footnote{More
-accurately, we should stipulate that $\Bin^\omega$ is the set of all
-$\omega$-sequences of $0$'s and $1$s, i.e., the set
-$\funfromto{\omega}{\{0,1\}}$. But the meaning of this will only
-become clear in \olref[sfr][card-arithmetic][card-opps]{sec}.}{} This
-slightly loose formulation should not cause any confusions
-for now, however.}
+不过，通过例子来理解这一切是最好的方式。所以，我们的第一个例子是所有由 $0$ 和 $1$ 组成的无穷序列的集合 $\Bin^\omega$。
+（‘$\Bin$’代表 binary（二进制），我们可以简单地将它看作二元集
+$\{0,1\}$。）\oliflabeldef{sfr:card-arithmetic:card-opps:sec}{\footnote{更准确地说，我们应当规定 $\Bin^\omega$ 是所有由 $0$ 和 $1$ 组成的 $\omega$-序列的集合，即集合
+$\funfromto{\omega}{\{0,1\}}$。但其确切含义要到
+\olref[sfr][card-arithmetic][card-opps]{sec} 中才会清晰。}{}不过，目前这种稍欠严格的表述应该不会引起任何混淆。}
 \end{explain}
 
 \begin{thm}
 \ollabel{thm:nonenum-bin-omega}
-$\Bin^\omega$~is !!{nonenumerable}.
+$\Bin^\omega$~是不可数的。
 \end{thm}
 
 \begin{proof}
-Consider any enumeration of a subset of $\Bin^\omega$. So we have some
-list $s_{0}$, $s_{1}$, $s_{2}$, \dots{} where every $s_n$ is an
-infinite string of $0$'s and~$1$'s. Let $s_n(m)$ be the $n$th digit of
-the $m$th string in this list. So we can now think of our list as an
-array, where $s_n(m)$ is placed at the $n$th row and $m$th column:
+考虑 $\Bin^\omega$ 的某个子集的任意一种枚举。于是我们有一个列表 $s_{0}$, $s_{1}$, $s_{2}$, \dots{}，其中每个 $s_n$ 都是由 $0$ 和~$1$ 组成的无穷序列。令 $s_n(m)$ 为该列表中第 $n$ 个字符串的第 $m$ 位数字。这样我们就可以将列表视为一个阵列，其中 $s_n(m)$ 位于第 $n$ 行第 $m$ 列：
 \[
 \begin{array}{c|c|c|c|c|c}
 & 0 & 1 & 2 & 3 & \dots \\\hline
@@ -74,68 +52,38 @@ array, where $s_n(m)$ is placed at the $n$th row and $m$th column:
 \vdots & \vdots & \vdots & \vdots & \vdots & \mathbf{\ddots}
 \end{array}
 \]
-We will now construct an infinite string, $d$, of $0$'s and $1$'s
-which is not on this list.  We will do this by specifying each of its
-entries, i.e., we specify $d(n)$ for all $n \in \Nat$.  Intuitively,
-we do this by reading down the diagonal of the array above (hence the
-name ``diagonal method'') and then changing every $1$ to a $0$ and
-every $1$ to a~$0$. More abstractly, we define $d(n)$ to be $0$ or $1$
-according to whether the $n$-th !!{element} of the diagonal, $s_n(n)$,
-is $1$ or $0$, that is:
+现在，我们要构造一个由 $0$ 和 $1$ 组成的无穷序列 $d$，它不在此列表中。我们将通过指定其每一项来完成构造，即对所有 $n \in \Nat$ 指定 $d(n)$。直观地说，我们沿着上述阵列的对角线向下读取（因此得名“对角线法”），然后将 $1$ 变成 $0$，$0$ 变成 $1$ 来构造 $d$。更抽象地说，我们根据对角线上的第 $n$ 个元素 $s_n(n)$ 是 $1$ 还是 $0$，来定义 $d(n)$ 为 $0$ 或 $1$，即：
 \[
 d(n) =
 \begin{cases}
-1 & \text{if $s_{n}(n) = 0$}\\
-0 & \text{if $s_{n}(n) = 1$}
+1 & \text{当$s_{n}(n) = 0$}\\
+0 & \text{当$s_{n}(n) = 1$}
 \end{cases}
 \]
-Clearly $d \in \Bin^\omega$, since it is an infinite string of $0$'s
-and $1$'s. But we have constructed $d$ so that $d(n) \neq s_n(n)$ for
-any $n \in \Nat$. That is, $d$ differs from $s_n$ in its $n$th entry.
-So $d \neq s_n$ for any $n\in \Nat$. So $d$ cannot be on the list
-$s_0$, $s_1$, $s_2$,
-\dots
+显然 $d \in \Bin^\omega$，因为它是由 $0$ 和 $1$ 组成的无穷序列。但我们构造 $d$ 的方式使得对于任意 $n \in \Nat$，都有$d(n) \neq s_n(n)$。也就是说，$d$ 与 $s_n$ 在第 $n$ 项上不同。因此，对任意 $n\in \Nat$，$d \neq s_n$。所以 $d$ 不可能在列表 $s_0$, $s_1$, $s_2$, \dots 中。
 
-We have shown, given an arbitrary enumeration of some subset of
-$\Bin^\omega$, that it will omit some !!{element} of $\Bin^\omega$. So
-there is no enumeration of the set $\Bin^\omega$, i.e., $\Bin^\omega$
-is !!{nonenumerable}.
+我们已经证明，对于 $\Bin^\omega$ 的任意子集的任意枚举，它都会遗漏 $\Bin^\omega$ 中的某个元素。因此，集合 $\Bin^\omega$ 不存在枚举，即 $\Bin^\omega$ 是不可数的。
 \end{proof}
 
 \begin{explain}
-This proof method is called ``diagonalization'' because it uses the
-diagonal of the array to define~$d$. However, diagonalization need
-not involve the presence of an array. Indeed, we can show that some set is 
-!!{nonenumerable} by using a similar idea, even when no array and no
-actual diagonal is involved. The following result illustrates how.
+这种证明方法之所以被称为“对角线化”，是因为它利用阵列的对角线来定义~$d$。然而，对角线化并不一定需要出现阵列。事实上，即使没有阵列和实际的“对角线”参与，我们也可以使用类似的思想来证明某个集合是不可数的。下面的结果就说明了这一点。
 \end{explain}
 
 \begin{thm}
 \ollabel{thm:nonenum-pownat}
-$\Pow{\Nat}$ is not !!{enumerable}.
+$\Pow{\Nat}$ 不是可数的。
 \end{thm}
 
 \begin{proof}
-We proceed in the same way, by showing that every list of subsets
-of~$\Nat$ omits some subset of $\Nat$. So, suppose that we have some
-list $N_0, N_1, N_2, \ldots$ of subsets of $\Nat$. We define a set $D$
-as follows: $n \in D$ iff $n \notin N_{n}$:
+我们采用同样的方式进行证明，即证明任何 $\Nat$ 的子集列表都会遗漏某个 $\Nat$ 的子集。假设我们有一个 $\Nat$ 的子集列表 $N_0, N_1, N_2, \ldots$。我们如下定义集合 $D$：$n \in D$ 当且仅当 $n \notin N_{n}$：
 \[
 D = \Setabs{n \in \Nat}{n \notin N_n}
 \]
-Clearly $D\subseteq \Nat$. But $D$ cannot be on the list. After all,
-by construction $n \in D$ iff $n\notin N_n$, so that $D \neq N_n$ for
-any $n \in \Nat$. 
+显然 $D\subseteq \Nat$。但 $D$ 不可能在此列表中。毕竟，根据构造，$n \in D$ 当且仅当 $n\notin N_n$，因此对于任意 $n \in \Nat$，$D \neq N_n$。
 \end{proof}
 
 \begin{explain}
-The preceding proof did not mention a diagonal. Still, you can think
-of it as involving a diagonal if you picture it this way: Imagine the
-sets $N_0$, $N_1$, \dots, written in an array, where we write $N_n$ on
-the $n$th row by writing $m$ in the $m$th column iff if $m \in N_n$.
-For example, say the first four sets on that list are
-$\{0,1,2,\dots\}$, $\{1, 3, 5, \dots\}$, $\{0,1,4\}$, and
-$\{2,3,4,\dots\}$; then our array would begin with
+前面的证明并未明确提及对角线。不过，如果你这样想象，仍可以认为它涉及了对角线：想象将集合 $N_0$, $N_1$, \dots 写成一个阵列，其中我们在第 $n$ 行写下 $N_n$，方式是当 $m \in N_n$ 时在第 $m$ 列写下 $m$。例如，假设该列表上的前四个集合是 $\{0,1,2,\dots\}$, $\{1, 3, 5, \dots\}$, $\{0,1,4\}$ 和 $\{2,3,4,\dots\}$；那么我们的阵列将以
 \[
 \begin{array}{r@{}rrrrrrr}
   N_0 = \{ & \mathbf{0}, & 1, & 2, & & & & \dots\}\\
@@ -145,18 +93,11 @@ $\{2,3,4,\dots\}$; then our array would begin with
   &\vdots & & & & & & \ddots\phantom{\}}
   \end{array}
 \]
-Then $D$ is the set obtained by going down the diagonal, placing $n
-\in D$ iff $n$ is \emph{not} on the diagonal. So in the above case, we
-would leave out $0$ and $1$, we would include~$2$, we would leave
-out~$3$, etc.
+开头。那么，$D$ 就是沿对角线向下遍历得到的集合，其中 $n \in D$ 当且仅当 $n$ \emph{不}在对角线上。因此，在上述例子中，我们会排除 $0$ 和 $1$，纳入 $2$，排除 $3$，等等。
 \end{explain}
 
 \begin{prob}
-Show that the set of all functions $f \colon \Nat \to \Nat$ is
-!!{nonenumerable} by an explicit diagonal argument. That is, show that
-if $f_1$, $f_2$, \dots, is a list of functions and each $f_i\colon
-\Nat \to \Nat$, then there is some $g \colon \Nat \to
-\Nat$ not on this list.
+通过显式的对角线论证，证明所有函数 $f \colon \Nat \to \Nat$ 的集合是不可数的。也就是说，证明如果 $f_1$, $f_2$, \dots 是一个函数列表，且每个 $f_i\colon \Nat \to \Nat$，那么存在某个 $g \colon \Nat \to \Nat$ 不在此列表中。
 \end{prob}
 
 \end{document}

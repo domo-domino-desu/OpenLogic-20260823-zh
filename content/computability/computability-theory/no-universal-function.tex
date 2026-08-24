@@ -1,52 +1,36 @@
-% Part: computability
-% Chapter: computability-theory
-% Section: no-universal-function
-
 \documentclass[../../../include/open-logic-section]{subfiles}
 
 \begin{document}
 
 \olfileid{cmp}{thy}{nou}
-\olsection{No Universal Computable Function}
+\olsection{不存在通用可计算函数}
 
-Although there is a partial computable function that is total for the
-partial computable functions, there is no total computable
-function that is universal for the total computable functions. 
+% Part: computability
+% Chapter: computability-theory
+% Section: no-universal-function
+
+虽然存在一个部分可计算函数，它对所有部分可计算函数而言是全函数，但不存在一个全可计算函数能作为所有全可计算函数的通用函数。
 
 \begin{thm}
 \ollabel{thm:no-univ}
-There is no universal computable function. In other words, any
-function $\fn{Un}'(k, x)$ which is such that if $f(x)$ is a total
-computable function, then there is a natural number~$k$ such that
-$f(x) = \fn{Un}'(k,x)$ for every~$x$, is not computable.
+不存在通用可计算函数。换言之，任何满足以下条件的函数 $\fn{Un}'(k, x)$ 都不是可计算的：如果 $f(x)$ 是全可计算函数，则存在自然数~$k$ 使得对每个~$x$ 都有 $f(x) = \fn{Un}'(k,x)$。
 \end{thm}
 
 \begin{proof}
-The proof is a simple diagonalization: if $\fn{Un}'(k,x)$ were total
-and computable, then
+证明采用简单的对角线法。如果 $\fn{Un}'(k,x)$ 是全的且可计算的，那么
 \[
 d(x) = \fn{Un}'(x, x) + 1
 \]
-would also be total and computable. However, by definition, $d(k)$ is
-not equal to $\fn{Un}'(k,k)$. Hence, for every $k$, the values of
-$d(x)$ and~$\fn{Un}'(k, x)$ differ for at least one~$x$, namely $x = k$.
+也将是全的且可计算的。然而，根据定义，$d(k)$ 不等于 $\fn{Un}'(k,k)$。因此，对每个 $k$，$d(x)$ 和~$\fn{Un}'(k, x)$ 至少在一个点（即 $x = k$）处取值不同。
 \end{proof}
 
 \begin{explain}
-\olref[uni]{thm:univ-comp} above shows that we can get around this
-diagonalization argument, but only at the expense of allowing the
-universal function to be partial. That is, $\fn{Un}$ is universal for
-the total computable functions, it just isn't total. The
-diagonalization argument doesn't work in the partial case. 
+上文的 \olref[uni]{thm:univ-comp} 表明，我们可以避开这个对角线论证，但代价是允许通用函数为部分函数。也就是说，$\fn{Un}$ 对于全可计算函数是通用的，只是它本身不是全函数。对角线论证在部分函数的情形下失效。
 \end{explain}
 
 \begin{prob}
-  To understand why the diagonalization argument in the proof of
-  \olref{thm:no-univ} does not work in the partial
-  case, consider the function $f(x) \simeq \fn{Un}(x,x)+1$. Is it
-  partial computable? If so, it has an index~$e$, i.e., $f(x) \simeq
-  \fn{Un}(e,x)$. What can you say about~$f(e)$?
+为了理解为什么 \olref{thm:no-univ} 证明中的对角线论证在部分函数情形下失效，考虑函数 $f(x) \simeq \fn{Un}(x,x)+1$。它是部分可计算的吗？如果是，它就有一个指标~$e$，即 $f(x) \simeq
+  \fn{Un}(e,x)$。关于~$f(e)$ 你能得出什么结论？
 \end{prob}
-
 
 \end{document}

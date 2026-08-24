@@ -7,109 +7,86 @@
 \begin{document}
 
 \olfileid{sfr}{siz}{pai}
-\olsection{Pairing Functions and Codes}
+\olsection{配对函数与编码}
 
 \begin{explain}
-Cantor's zig-zag method makes the enumerability of $\Nat^n$ visually
-evident. But let us focus on our array depicting $\Nat^2$. Following
-the zig-zag line in the array and counting the places, we can check
-that $\tuple{1,2}$ is associated with the number~$7$. However, it would
-be nice if we could compute this more directly. That is, it would be
-nice to have to hand the \emph{inverse} of the zig-zag enumeration,
-$g\colon \Nat^2 \to \Nat$, such that
+Cantor 的之字形法使得 $\Nat^n$ 的可数性一目了然。
+现在让我们聚焦于表示 $\Nat^2$ 的阵列。
+沿阵列中的之字形路线计数，我们可以验证 $\tuple{1,2}$ 对应数字~$7$。
+然而，如果我们能更直接地计算出这个对应关系，将更为理想。
+也就是说，若有之字形枚举的\emph{逆} $g\colon \Nat^2 \to \Nat$，使得
 \[
 g(\tuple{0,0}) = 0, \;
 g(\tuple{0,1}) = 1, \;
 g(\tuple{1,0}) = 2, \; \dots,  
 g(\tuple{1,2}) = 7, \; \dots
 \]
-This would enable us to calculate exactly where $\tuple{n, m}$ will occur
-in our enumeration. 
+这将使我们能精确计算出 $\tuple{n, m}$ 在该枚举中出现的位置。
 
-In fact, we can define $g$ directly by making two observations. First:
-if the $n$th row and $m$th column contains value~$v$, then the
-$(n+1)$st row and $(m-1)$st column contains value $v + 1$. Second: the
-first row of our enumeration consists of the triangular numbers,
-starting with $0$, $1$, $3$, $6$, etc. The $k$th triangular number is
-the sum of the natural numbers $< k$, which can be computed as
-$k(k+1)/2$. Putting these two observations together, consider this
-function:
+事实上，基于两点观察，我们可以直接定义 $g$。第一：若第 $n$ 行、第 $m$ 列的值为~$v$，则第 $(n+1)$ 行、第 $(m-1)$ 列的值为 $v + 1$。第二：该枚举的第一行由三角形数构成，以 $0, 1, 3, 6, \dots$ 开头。第 $k$ 个三角形数是所有小于 $k$ 的自然数之和，可计算为 $k(k+1)/2$。综合这两点观察，考虑如下函数：
 \[
   g(n,m) = \frac{(n+m+1)(n+m)}{2} + n
 \]
-We often just write $g(n, m)$ rather that $g(\tuple{n, m})$, since it
-is easier on the eyes. This tells you first to determine the
-$(n+m)^\text{th}$ triangle number, and then add $n$ to it. And
-it populates the array in exactly the way we would like. So in
-particular, the pair $\tuple{1, 2}$ is sent to $\frac{4 \times 3}{2} +
-1 = 7$. 
+我们通常就写成 $g(n, m)$ 而不是 $g(\tuple{n, m})$，因为这样更为直观。
+其含义是先求出第 $(n+m)^\text{th}$ 个三角形数，再加上 $n$。
+它恰以我们所希望的方式填充了整个阵列。
+特别地，数对 $\tuple{1, 2}$ 被映射到 $\frac{4 \times 3}{2} +
+1 = 7$。
 
-This function $g$ is the \emph{inverse} of an enumeration of a set of
-pairs. Such functions are called \emph{pairing functions}.
+函数 $g$ 是某个序对集合之枚举的\emph{逆}。这样的函数称为\emph{配对函数}。
 \end{explain}
 
-\begin{defn}[Pairing function] 
-  A function $f\colon A \times B \to \Nat$ is an arithmetical
-  \emph{pairing function} if $f$ is injective. We also say that $f$
-  \emph{encodes} $A \times B$, and that $f(x,y)$ is the
-  \emph{code} for $\tuple{x,y}$.
+\begin{defn}[配对函数]
+  若函数 $f\colon A \times B \to \Nat$ 是单射的，则称其为算术\emph{配对函数}。我们也说 $f$ \emph{编码}了 $A \times B$，且 $f(x,y)$ 是 $\tuple{x,y}$ 的\emph{编码}。
 \end{defn}
 
 \begin{explain}
-We can use pairing functions to encode, e.g., pairs of natural numbers;
-or, in other words, we can represent each \emph{pair} of elements
-using a \emph{single} number. Using the inverse of the pairing
-function, we can \emph{decode} the number, i.e., find out which
-pair it represents.
+例如，我们可以用配对函数来编码自然数对；换言之，我们可以用\emph{单个}数来表示每一\emph{对}元素。利用配对函数的逆，我们可以对该数进行\emph{解码}，即找出它所代表的序对。
 \end{explain}
 
 \begin{prob}
-Give an enumeration of the set of all non-negative rational numbers. 
+给出所有非负有理数集合的一个枚举。
 \end{prob}
 
 \begin{prob}
-Show that $\Rat$ is !!{enumerable}. Recall that any rational number 
-can be written as a fraction $z/m$ with $z \in \Int$, $m \in \Nat^+$.
+证明 $\Rat$ 是可数的。回想一下，任何有理数都可以写成分数 $z/m$ 的形式，其中 $z \in \Int$，$m \in \Nat^+$。
 \end{prob}
 
 \begin{prob}
-Define an enumeration of $\Bin^*$.
+定义 $\Bin^*$ 的一个枚举。
 \end{prob}
 
 \begin{prob}
-Recall from your introductory logic course that each possible truth
-table expresses a truth function. In other words, the truth functions
-are all functions from $\Bin^k \to \Bin$ for some~$k$. Prove that the
-set of all truth functions is enumerable.
+回想初级逻辑课程中的内容：每个可能的真值表都表达一个真值函数。
+换言之，真值函数就是从 $\Bin^k$ 到 $\Bin$ 的所有函数（对某个~$k$ 而言）。
+证明全体真值函数构成的集合是可数的。
 \end{prob}
 
 \begin{prob}
-Show that the set of all finite subsets of an arbitrary infinite
-!!{enumerable} set is !!{enumerable}.
+证明任意无限可数集的所有有限子集构成的集合是可数的。
 \end{prob}
 
 \begin{prob}
-A subset of $\Nat$ is said to be \emph{cofinite} iff it is the
-complement of a finite set $\Nat$; that is, $A \subseteq \Nat$ is
-cofinite iff $\Nat\setminus A$ is finite. Let $I$ be the set whose
-!!{element}s are exactly the finite and cofinite subsets of $\Nat$.
-Show that $I$ is !!{enumerable}.
+$\Nat$ 的子集称为\emph{共有限的}，当且仅当它是 $\Nat$ 中某个有限集的补集；
+也就是说，$A \subseteq \Nat$ 是共有限的当且仅当 $\Nat\setminus A$ 是有限的。
+令 $I$ 为由 $\Nat$ 的所有有限子集和共有限子集恰好构成的集合。
+证明 $I$ 是可数的。
 \end{prob}
 
 \begin{prob}
-Show that the !!{enumerable} union of !!{enumerable} sets is
-!!{enumerable}. That is, whenever $A_1$, $A_2$, \dots{} are sets, and
-each $A_i$ is !!{enumerable}, then the union $\bigcup_{i=1}^\infty
-A_i$ of all of them is also !!{enumerable}. [NB: this is hard!]
+证明可数个可数集的并仍是可数的。
+也就是说，若 $A_1$, $A_2$, \dots{} 均为集合，且每个 $A_i$ 都是可数的，
+则它们的并 $\bigcup_{i=1}^\infty
+A_i$ 也是可数的。[注意：本题较难！]
 \end{prob}
 
 \begin{prob}
-Let $f \colon A \times B \to \Nat$ be an arbitrary pairing function.
-Show that the inverse of $f$ is an enumeration of $A \times B$.
+设 $f \colon A \times B \to \Nat$ 为任意配对函数。
+证明 $f$ 的逆是 $A \times B$ 的枚举。
 \end{prob}
 
 \begin{prob}
-Specify a function that encodes $\Nat^3$.
+给出一个能编码 $\Nat^3$ 的具体函数。
 \end{prob}
 
 \end{document}

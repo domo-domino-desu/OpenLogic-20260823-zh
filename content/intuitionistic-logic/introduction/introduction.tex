@@ -1,22 +1,24 @@
 % part: intuitionistic-logic
 % chapter: introduction
 
-
 \documentclass[../../../include/open-logic-chapter]{subfiles}
 
 \begin{document}
 
-\olchapter{int}{int}{Introduction}
+\olchapter{int}{int}{引言}
 
-\olimport{constructive-reasoning}
+% 以下引入直觉主义逻辑各子节
+\olimport{constructive-reasoning} % 构造主义推理
 
-\olimport{syntax}
+\olimport{syntax} % 语法
 
-\olimport{bhk-interpretation}
+\olimport{bhk-interpretation} % BHK 解释
 
-\olimport{natural-deduction}
+\olimport{natural-deduction} % 自然演绎
 
-\olimport{axiomatic-derivations}
+\olimport{axiomatic-derivations} % 公理化推导
+
+% 【编者注】初译稿在 \olimport{natural-deduction} 与 \OLEndChapterHook 之间误植了一段关于函数 $D_T$ 的定义与证明（属于不完全性定理/可表示性章节），以及一句位置不当的过渡句。因其在英文原文中完全缺失且逻辑上不属于本章，为保证文本与原文一致，定稿中已将其删除。
 
 \OLEndChapterHook
 

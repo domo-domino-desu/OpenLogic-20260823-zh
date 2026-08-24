@@ -7,88 +7,59 @@
 \begin{document}
 
 \olfileid{cmp}{rec}{hlt}
-\olsection{The Halting Problem}
+\olsection{停机问题}
 
-The \emph{halting problem} in general is the problem of deciding,
-given the specification~$e$ (e.g., program) of a computable function
-and a number~$n$, whether the computation of the function on input~$n$
-halts, i.e., produces a result.  Famously, Alan Turing proved that
-this problem itself cannot be solved by a computable function, i.e.,
-the function
+广义的\emph{停机问题}是指，给定可计算函数的描述~$e$（如程序）与数~$n$，判定该函数在输入~$n$ 上的计算是否\emph{停机}（即是否产生结果）。众所周知，Alan Turing 证明了该问题本身无法由可计算函数解决，即函数
 \[
 h(e, n) =
 \begin{cases}
-1 & \text{if computation $e$ halts on input $n$}\\
-0 & \text{otherwise,}
+1 & \text{若计算 $e$ 在输入 $n$ 上停机}\\
+0 & \text{否则，}
 \end{cases}
 \]
-is not computable.
+是不可计算的。
 
-In the context of partial recursive functions, the role of the
-specification of a program may be played by the index~$e$ given in
-Kleene's normal form theorem.  If $f$ is a partial recursive function,
-any $e$~for which the equation in the normal form theorem holds, is an
-index of~$f$. Given a number~$e$, the normal form theorem states that
-\[
+在部分递归函数的语境下，程序的描述可由 Kleene（克莱尼）范式定理中给出的指标~$e$ 充当。若 $f$ 是部分递归函数，则使得范式定理中方程成立的任意~$e$，都是~$f$ 的指标。给定数~$e$，Kleene 范式定理指出，\[
 \cfind{e}(x) \simeq U(\mu s \; T(e, x, s))
 \]
-is partial recursive, and for every partial recursive $f\colon \Nat
-\to \Nat$, there is an $e \in \Nat$ such that $\cfind{e}(x) \simeq
-f(x)$ for all~$x \in \Nat$.  In fact, for each such $f$ there is not
-just one, but infinitely many such~$e$.  The \emph{halting function}~$h$
-is defined by
+是部分递归的，且对任意部分递归函数 $f\colon \Nat \to \Nat$，存在 $e \in \Nat$，使得对所有~$x \in \Nat$，$\cfind{e}(x) \simeq
+f(x)$。事实上，对每个这样的 $f$，这样的~$e$ 不止一个，而是有无穷多个。\emph{停机函数}~$h$ 定义如下：
 \[
 h(e, x) =
 \begin{cases}
-1 & \text{if $\cfind{e}(x) \fdefined$}\\
-0 & \text{otherwise.}
+1 & \text{若 $\cfind{e}(x) \fdefined$}\\
+0 & \text{否则。}
 \end{cases}
 \]
-Note that $h(e, x) = 0$ if $\cfind{e}(x) \fundefined$, but also
-when~$e$ is not the index of a partial recursive function at all.
+注意，当 $\cfind{e}(x) \fundefined$ 时 $h(e, x) = 0$，但当~$e$ 根本不是某个部分递归函数的指标时，$h(e, x) = 0$ 同样成立。
 
 \begin{thm}
 \ollabel{thm:halting-problem}
-The halting function~$h$ is not partial recursive.
+停机函数~$h$ 不是部分递归的。
 \end{thm}
 
 \begin{proof}
-If $h$
-were partial recursive, we could define
+若 $h$ 是部分递归的，则我们可以定义
 \[
 d(y) =
 \begin{cases}
-1 & \text{if $h(y, y) = 0$}\\
-\umin{x}{x \neq x} & \text{otherwise.}
+1 & \text{若 $h(y, y) = 0$}\\
+\umin{x}{x \neq x} & \text{否则。}
 \end{cases}
 \]
-Since no number $x$ satisfies $x \neq x$, there is no $\umin{x}{x \neq
-x}$, and so $d(y) \fundefined$ iff $h(y,y) \neq 0$. From this
-definition it follows that
+由于没有数 $x$ 满足 $x \neq x$，因此 $\umin{x}{x \neq x}$ 无定义，故 $d(y) \fundefined$ 当且仅当 $h(y,y) \neq 0$。由此定义可得：
 \begin{enumerate}
-\item $d(y) \fdefined$ iff $\cfind{y}(y) \fundefined$ or $y$ is
-  not the index of a partial recursive function.
-\item $d(y) \fundefined$ iff $\cfind{y}(y) \fdefined$.
+\item $d(y) \fdefined$ 当且仅当 $\cfind{y}(y) \fundefined$ 或 $y$ 不是某个部分递归函数的指标。
+\item $d(y) \fundefined$ 当且仅当 $\cfind{y}(y) \fdefined$。
 \end{enumerate}
-If $h$ were partial recursive, then $d$ would be partial recursive as
-well.  Thus, by the Kleene normal form theorem, it has an index~$e_d$.
-Consider the value of $h(e_d, e_d)$. There are two possible cases, $0$
-and~$1$.
+若 $h$ 是部分递归的，则 $d$ 也将是部分递归的。因此，根据 Kleene 范式定理，$d$ 有一个指标~$e_d$。
+考虑 $h(e_d, e_d)$ 的值。有两种可能的情况：$0$ 和~$1$。
 \begin{enumerate}
-\item If $h(e_d, e_d) = 1$ then $\cfind{e_d}(e_d) \fdefined$.  But
-  $\cfind{e_d} \simeq d$, and $d(e_d)$ is defined iff $h(e_d, e_d) = 0$.
-  So $h(e_d, e_d) \neq 1$.
-\item If $h(e_d, e_d) = 0$ then either $e_d$ is not the index of a
-  partial recursive function, or it is and $\cfind{e_d}(e_d)
-  \fundefined$. But again, $\cfind{e_d} \simeq d$, and $d(e_d)$ is undefined
-  iff $\cfind{e_d}(e_d) \fdefined$.
+\item 若 $h(e_d, e_d) = 1$，则 $\cfind{e_d}(e_d) \fdefined$。但 $\cfind{e_d} \simeq d$，且 $d(e_d)$ 有定义当且仅当 $h(e_d, e_d) = 0$。故 $h(e_d, e_d) \neq 1$。
+\item 若 $h(e_d, e_d) = 0$，则要么 $e_d$ 不是某个部分递归函数的指标，要么它是且 $\cfind{e_d}(e_d)
+  \fundefined$。但同样地，$\cfind{e_d} \simeq d$，且 $d(e_d)$ 无定义当且仅当 $\cfind{e_d}(e_d) \fdefined$。
 \end{enumerate}
-The upshot is that $e_d$ cannot, after all, be the index of a partial
-recursive function.  But if $h$ were partial recursive, $d$ would be
-too, and so our definition of $e_d$ as an index of it would be
-admissible.  We must conclude that $h$ cannot be partial recursive.
+其结果是，$e_d$ 终究不可能是一个部分递归函数的指标。然而，若 $h$ 是部分递归的，$d$ 也会是，从而将 $e_d$ 作为其指标将是合法的。由此只能得出结论：$h$ 不可能是部分递归的。
 \end{proof}
 
 \end{document}
-
-

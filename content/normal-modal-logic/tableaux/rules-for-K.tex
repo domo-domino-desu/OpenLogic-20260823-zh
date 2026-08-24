@@ -8,16 +8,12 @@
 
 \olfileid{nml}{tab}{rul}
 
-\olsection{Rules for \Ax{K}}
+\olsection{\Ax{K} 的规则}
 
-The rules for the regular propositional connectives are the same as
-for regular propositional signed !!{tableau}s, just with prefixes
-added. In each case, the rule applied to a signed !!{formula}
-$\sFmla{S}{!A}[\sigma]$ produces new !!{formula}s that are also
-prefixed by~$\sigma$. This should be intuitively clear: e.g., if $!A
-\land !B$ is true at (a world named by)~$\sigma$, then $!A$ and $!B$
-are true at~$\sigma$ (and not at any other world). We collect the
-propositional rules in \olref{tab:prop-rules}.
+通常命题联结词的规则与通常的命题带号分析表规则相同，只是添加了前缀。
+在每种情况下，应用于带号公式
+$\sFmla{S}{!A}[\sigma]$ 的规则所产生的新公式也带有前缀~$\sigma$。
+这在直观上应该很清楚：例如，如果 $!A \land !B$ 在（名为）~$\sigma$ 的世界上为真，那么 $!A$ 和 $!B$ 在~$\sigma$ 处为真（而不在其他世界上）。我们将这些命题规则列于 \olref{tab:prop-rules} 中。
 
 \begin{table}
   \[\def\arraystretch{3}\begin{array}{|c|c|}
@@ -76,60 +72,44 @@ propositional rules in \olref{tab:prop-rules}.
     \\[2ex]
     \hline
   \end{array}\]
-  \caption{Prefixed !!{tableau} rules for the propositional
-    connectives}
+  \caption{命题联结词的前缀分析表规则}
   \ollabel{tab:prop-rules}
 \end{table}
 
-The closure condition is the same as for ordinary !!{tableau}s,
-although we require that not just the !!{formula}s but also the
-prefixes must match. So a branch is closed if it contains both
+闭合条件与普通分析表相同，
+只是我们要求不仅公式必须匹配，前缀也必须匹配。
+因此，若对某个前缀 $\sigma$ 和公式~$!A$，一个分支同时包含
 \[
-\sFmla{\True}{!A}[\sigma] \quad\text{and}\quad \sFmla{\False}{!A}[\sigma]
-\]
-for some prefix $\sigma$ and !!{formula}~$!A$.
+\sFmla{\True}{!A}[\sigma] \quad\text{和}\quad \sFmla{\False}{!A}[\sigma]
+\]，
+则该分支闭合。
 
-The rules for setting up assumptions is also as for ordinary
-!!{tableau}s, except that for assumptions we always use the
-prefix~$1$. (It does not matter which prefix we use, as long as it's
-the same for all assumptions.) So, e.g., we say that
+设置假设的规则也与普通分析表相同，
+只不过对于假设，我们总是使用前缀~$1$。
+（使用哪个前缀并不重要，只要所有假设使用相同的前缀即可。）
+因此，例如，我们说
 \[
 !B_1, \dots, !B_n \Proves !A
 \]
-iff there is a closed tableau for the assumptions
+当且仅当存在一个以
 \[
 \sFmla{\True}{!B_1}[1], \dots, \sFmla{\True}{!B_n}[1],
 \sFmla{\False}{!A}[1].
 \]
+为假设的闭分析表。
 
-For the modal operator\iftag{prvBox}{\iftag{prvDiamond}{s~$\Box$
-    and}{~$\Box$}}{}\iftag{prvDiamond}{~$\Diamond$}{}, the prefix of
-the conclusion of the rule applied to !!a{formula} with
-prefix~$\sigma$ is $\sigma.n$. However, which $n$ is allowed depends
-on whether the sign is~$\True$ or~$\False$.
+对于模态算子\iftag{prvBox}{\iftag{prvDiamond}{~$\Box$ 和}{~$\Box$}}{}\iftag{prvDiamond}{~$\Diamond$}{}，
+当规则应用于带有前缀~$\sigma$ 的公式时，
+其结论的前缀为 $\sigma.n$。
+然而，允许的 $n$ 取决于其符号是~$\True$ 还是~$\False$。
 
-\iftag{prvBox}{The $\TRule{\True}{\Box}$ rule extends a branch
-  containing $\sFmla{\True}{\Box !A}[\sigma]$ by
-  $\sFmla{\True}{!A}[\sigma.n]$.\iftag{prvDiamond}{ Similarly,
-    t}{}}{T}\iftag{prvDiamond}{he $\TRule{\False}{\Diamond}$ rule
-  extends a branch containing $\sFmla{\False}{\Diamond !A}[\sigma]$ by
-  $\sFmla{\False}{!A}[\sigma.n]$.}{}
-\iftag{notprvBox,notprvDiamond}{It}{They} can only be applied for a
-prefix~$\sigma.n$ which \emph{already} occurs on the branch in which
-it is applied. Let's call such a prefix ``used'' (on the branch).
+\iftag{prvBox}{规则 $\TRule{\True}{\Box}$ 对包含 $\sFmla{\True}{\Box !A}[\sigma]$ 的分支，通过添加 $\sFmla{\True}{!A}[\sigma.n]$ 进行扩展。\iftag{prvDiamond}{ 类似地，}{}}{}\iftag{prvDiamond}{规则 $\TRule{\False}{\Diamond}$ 对包含 $\sFmla{\False}{\Diamond !A}[\sigma]$ 的分支，通过添加 $\sFmla{\False}{!A}[\sigma.n]$ 进行扩展。}{}
+\iftag{notprvBox,notprvDiamond}{它}{它们}只能针对某个在应用该规则的分支上\emph{已经}出现的前缀~$\sigma.n$ 应用。我们称这样的前缀（在该分支上）为“已使用的”。
 
-\iftag{prvBox}{The $\TRule{\False}{\Box}$ rule extends a branch
-  containing $\sFmla{\False}{\Box !A}[\sigma]$ by
-  $\sFmla{\False}{!A}[\sigma.n]$.\iftag{prvDiamond}{ Similarly,
-    t}{}}{T}\iftag{prvDiamond}{he $\TRule{\True}{\Diamond}$ rule extends
-  a branch containing $\sFmla{\True}{\Diamond !A}[\sigma]$ by
-  $\sFmla{\True}{!A}[\sigma.n]$.}{}
-\iftag{notprvBox,notprvDiamond}{This rule}{These rules}, however, can
-only be applied for a prefix~$\sigma.n$ which \emph{does not} already
-occur on the branch in which it is applied. We call such prefixes
-``new'' (to the branch).
+\iftag{prvBox}{规则 $\TRule{\False}{\Box}$ 对包含 $\sFmla{\False}{\Box !A}[\sigma]$ 的分支，通过添加 $\sFmla{\False}{!A}[\sigma.n]$ 进行扩展。\iftag{prvDiamond}{ 类似地，}{}}{}\iftag{prvDiamond}{规则 $\TRule{\True}{\Diamond}$ 对包含 $\sFmla{\True}{\Diamond !A}[\sigma]$ 的分支，通过添加 $\sFmla{\True}{!A}[\sigma.n]$ 进行扩展。}{}
+然而，\iftag{notprvBox,notprvDiamond}{这条规则}{这些规则}只能针对某个在应用该规则的分支上\emph{尚未}出现的前缀~$\sigma.n$ 应用。我们称这样的前缀对该分支是“新的”。
 
-The rules are given in \olref{tab:rules-K}.
+这些规则列于\olref{tab:rules-K}中。
 
 \begin{table}
   \begin{center}
@@ -164,14 +144,11 @@ The rules are given in \olref{tab:rules-K}.
       \hline}{}
     \end{tabular}
   \end{center}
-  \caption{The modal rules for \Ax{K}.}
+  \caption{\Ax{K} 的模态规则}
   \ollabel{tab:rules-K}
 \end{table}
 
-The requirement that the restriction that the prefix for
-\iftag{prvBox}{\TRule{\True}{\Box}}{\TRule{\False}{\Diamond}} must be
-used is necessary as otherwise we would count the following as a
-closed !!{tableau}:
+要求\iftag{prvBox}{$\TRule{\True}{\Box}$}{$\TRule{\False}{\Diamond}$}的前缀必须是已使用的前缀，这一限制是必要的，否则我们会把下面的分析表也算作闭分析表：
 \iftag{notprvBox,notprvDiamond}{%
   \iftag{prvBox}{%
   \begin{oltableau}
@@ -219,11 +196,10 @@ closed !!{tableau}:
     ]
 \end{oltableau}}
 
-But $\Box \formula{A} \Entails/ \Diamond \formula{A}$, so our proof
-system would be unsound. Likewise, $\Diamond \formula{A} \Entails/
-\Box \formula{A}$, but without the restriction that the prefix for
-\iftag{prvBox}{\TRule{\False}{\Box}}{\TRule{\True}{\Diamond}} must be
-new, this would be a closed tableau: \iftag{notprvBox,notprvDiamond}{%
+但是$\Box \formula{A} \Entails/ \Diamond \formula{A}$，因此我们的证明系统将不可靠。类似地，$\Diamond \formula{A} \Entails/
+\Box \formula{A}$，但若去掉要求
+\iftag{prvBox}{\TRule{\False}{\Box}}{\TRule{\True}{\Diamond}}的前缀必须是
+新前缀这一限制，这就会是一个闭分析表： \iftag{notprvBox,notprvDiamond}{%
   \iftag{prvBox}{%
   \begin{oltableau}
     [\pFmla{\True}{\lnot\Box\lnot \formula{A}}{1}, just = \TAss

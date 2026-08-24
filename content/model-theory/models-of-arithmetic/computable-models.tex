@@ -7,117 +7,74 @@
 \begin{document}
 
 \olfileid{mod}{mar}{cmp}
-\section{Computable Models of Arithmetic}
+\section{算术的可计算模型}
 
 \begin{explain}
-The standard model~$\Struct{N}$ has two nice features. Its domain is
-the natural numbers~$\Nat$, i.e., its elements are just the kinds of
-things we want to talk about using the language of arithmetic, and the
-standard numeral~$\num{n}$ actually picks out~$n$. The other nice
-feature is that the interpretations of the non-logical symbols
-of~$\Lang{L_A}$ are all \emph{computable}. The successor, addition,
-and multiplication functions which serve as $\Assign{\prime}{N}$,
-$\Assign{+}{N}$, and $\Assign{\times}{N}$ are computable functions of
-numbers. (Computable by Turing machines, or definable by primitive
-recursion, say.) And the less-than relation on~$\Struct{N}$, i.e.,
-$\Assign{<}{N}$, is decidable.
+标准模型~$\Struct{N}$ 有两个良好的性质。它的论域是自然数集~$\Nat$，也就是说，其元素正是我们想用算术语言谈论的那类对象，并且标准数字~$\num{n}$ 确实指称~$n$。另一个良好的性质是，$\Lang{L_A}$ 中所有非逻辑符号的解释都是\emph{可计算的}。充当 $\Assign{\prime}{N}$、$\Assign{+}{N}$ 和 $\Assign{\times}{N}$ 的后继、加法与乘法函数都是数的可计算函数。（例如，可由图灵机计算，或可由原始递归定义。）而 $\Struct{N}$ 上的小于关系，即 $\Assign{<}{N}$，是可判定的。
 
-Non-standard models of arithmetical theories such as $\Th{Q}$ and
-$\Th{PA}$ must contain non-standard elements. Thus their domains
-typically include !!{element}s in addition to~$\Nat$. However, any
-countable !!{structure} can be built on any !!{denumerable} set,
-including~$\Nat$. So there are also non-standard models with
-domain~$\Nat$. In such models~$\Struct{M}$, of course, at least some
-numbers cannot play the roles they usually play, since some~$k$ must
-be different from~$\Value{\num{n}}{M}$ for all~$n \in \Nat$.
+$\Th{Q}$ 和 $\Th{PA}$ 等算术理论的非标准模型必须包含非标准元素。因此，它们的论域通常在~$\Nat$ 之外还包含其他元素。然而，任何可数结构都可以建立在任何可数无穷集合上，包括~$\Nat$。所以也存在论域为~$\Nat$ 的非标准模型。当然，在这样的模型~$\Struct{M}$ 中，至少某些数不能扮演它们通常扮演的角色，因为必定存在某个数~$k$，使得对所有~$n \in \Nat$，都有 $k \neq \Value{\num{n}}{M}$。
 \end{explain}
 
 \begin{defn}
-!!^a{structure}~$\Struct{M}$ for $\Lang{L_A}$ is \emph{computable} iff
-  $\Domain{M} = \Nat$ and $\Assign{\prime}{M}$, $\Assign{+}{M}$,
-  $\Assign{\times}{M}$ are computable functions and $\Assign{<}{M}$ is
-  a decidable relation.
+一个 $\Lang{L_A}$ 的结构~$\Struct{M}$ 是\emph{可计算的}，当且仅当 $\Domain{M} = \Nat$，并且 $\Assign{\prime}{M}$、$\Assign{+}{M}$、$\Assign{\times}{M}$ 是可计算函数，且 $\Assign{<}{M}$ 是可判定关系。
 \end{defn}
 
 \begin{ex}\ollabel{ex:comp-model-q}
-Recall the structure $\Struct{K}$ from \olref[mdq]{ex:model-K-of-Q}.
-Its domain was $\Domain{K} = \Nat
-\cup \{a\}$ and interpretations
+回顾 \olref[mdq]{ex:model-K-of-Q} 中的结构 $\Struct{K}$。其论域为 $\Domain{K} = \Nat
+\cup \{a\}$，解释为
 \begin{align*}
   \Assign{\Obj{0}}{K} & = 0\\
   \Assign{\prime}{K}(x) & =
   \begin{cases}
-    x+1 & \text{if $x\in \Nat$}\\
-    a & \text{if $x = a$}
+    x+1 & \text{若 $x\in \Nat$}\\
+    a & \text{若 $x = a$}
   \end{cases}\\
   \Assign{+}{K}(x, y) & =
   \begin{cases}
-    x+y & \text{if $x$, $y \in\Nat$}\\
-    a & \text{otherwise}
+    x+y & \text{若 $x$, $y \in\Nat$}\\
+    a & \text{否则}
   \end{cases}\\
   \Assign{\times}{K}(x, y) & =
   \begin{cases}
-    xy & \text{if $x$, $y \in\Nat$}\\
-    0 & \text{if $x=0$ or $y=0$}\\
-    a & \text{otherwise}\\
+    xy & \text{若 $x$, $y \in\Nat$}\\
+    0 & \text{若 $x=0$ 或 $y=0$}\\
+    a & \text{否则}\\
   \end{cases}\\
   \Assign{<}{K} & =
-  \Setabs{\tuple{x,y}}{x, y \in \Nat \text{ and } x<y} \cup
+  \Setabs{\tuple{x,y}}{x, y \in \Nat \text{ 且 } x<y} \cup
   \Setabs{\tuple{x,a}}{n \in \Domain{K}}
 \end{align*}
-But $\Domain{K}$ is !!{denumerable} and so is equinumerous
-with~$\Nat$. For instance, $g\colon \Nat \to \Domain{K}$ with $g(0) =
-a$ and $g(n) = n+1$ for $n>0$ is !!a{bijection}.  We can turn it into
-an isomorphism between a new model~$\Struct{K'}$ of~$\Th{Q}$ and
-$\Struct{K}$.  In $\Struct{K'}$, we have to assign different functions
-and relations to the symbols of~$\Lang{L_A}$, since different
-!!{element}s of~$\Nat$ play the roles of standard and non-standard
-numbers.
+但 $\Domain{K}$ 是可数无穷的，因此与~$\Nat$ 等势。例如，令 $g\colon \Nat \to \Domain{K}$ 满足 $g(0) = a$ 且对 $n>0$ 有 $g(n) = n+1$，则 $g$ 是一个双射。我们可以利用它构造一个与 $\Struct{K}$ 同构的新的 $\Th{Q}$ 模型~$\Struct{K'}$。在 $\Struct{K'}$ 中，我们必须为 $\Lang{L_A}$ 的符号指派不同的函数和关系，因为 $\Nat$ 的不同元素现在扮演了标准数与非标准数的角色。
 
-Specifically, $0$ now plays the role of~$a$, not of the smallest
-standard number. The smallest standard number is now~$1$. So we assign
-$\Assign{\Obj{0}}{K'} = 1$. The successor function is also different
-now: given a standard number, i.e., an $n > 0$, it still returns
-$n+1$. But $0$ now plays the role of~$a$, which is its own
-successor. So $\Assign{\prime}{K'}(0) = 0$.  For addition and
-multiplication we likewise have
+具体来说，现在 $0$ 扮演的是~$a$ 的角色，而非最小的标准数。最小的标准数现在是~$1$。因此我们指派 $\Assign{\Obj{0}}{K'} = 1$。后继函数现在也不同了：给定一个标准数，即 $n > 0$，它仍然返回 $n+1$。但 $0$ 现在扮演~$a$ 的角色，而 $a$ 是它自己的后继。所以 $\Assign{\prime}{K'}(0) = 0$。对于加法和乘法，我们类似地有
 \begin{align*}
 \Assign{+}{K'}(x, y) & =
   \begin{cases}
-    x+y-1 & \text{if $x$, $y >0$}\\
-    0 & \text{otherwise}
+    x+y-1 & \text{若 $x$, $y >0$}\\
+    0 & \text{否则}
   \end{cases}\\
   \Assign{\times}{K'}(x, y) & =
   \begin{cases}
-    1 & \text{if $x = 1$ or $y = 1$}\\
-    xy - x - y + 2 & \text{if $x$, $y > 1$}\\
-    0 & \text{otherwise}\\
+    1 & \text{若 $x = 1$ 或 $y = 1$}\\
+    xy - x - y + 2 & \text{若 $x$, $y > 1$}\\
+    0 & \text{否则}\\
   \end{cases}
 \end{align*}
-And we have $\tuple{x, y} \in \Assign{<}{K'}$ iff $x < y$ and $x > 0$
-and $y > 0$, or if $y = 0$.
+并且 $\tuple{x, y} \in \Assign{<}{K'}$ 成立当且仅当 $x < y$ 且 $x > 0$ 且 $y > 0$，或者 $y = 0$。
 
-All of these functions are computable functions of natural numbers and
-$\Assign{<}{K'}$ is a decidable relation on~$\Nat$---but they are not
-the same functions as successor, addition, and multiplication
-on~$\Nat$, and $\Assign{<}{K'}$ is not the same relation as~$<$
-on~$\Nat$.
+所有这些函数都是自然数的可计算函数，且 $\Assign{<}{K'}$ 是 $\Nat$ 上的可判定关系——但它们与 $\Nat$ 上的后继、加法和乘法函数并不相同，$\Assign{<}{K'}$ 也与 $\Nat$ 上的小于关系~$<$ 不同。
 \end{ex}
 
 \begin{prob}
-Give !!a{structure}~$\Struct{L'}$ with $\Domain{L'} = \Nat$ isomorphic
-to~$\Struct{L}$ of \olref[mod][mar][mdq]{ex:model-L-of-Q}.
+给出一个与 \olref[mod][mar][mdq]{ex:model-L-of-Q} 中的 $\Struct{L}$ 同构的结构~$\Struct{L'}$，要求 $\Domain{L'} = \Nat$。
 \end{prob}
 
 \begin{explain}
-\Olref{ex:comp-model-q} shows that $\Th{Q}$ has computable
-non-standard models with domain~$\Nat$.  However, the following result
-shows that this is not true for models of~$\Th{PA}$ (and thus also for
-models of~$\Th{TA}$).
+\Olref{ex:comp-model-q} 表明，$\Th{Q}$ 具有论域为~$\Nat$ 的可计算非标准模型。然而，下面的结果说明，这对~$\Th{PA}$ 的模型（从而也对~$\Th{TA}$ 的模型）不成立。
 \end{explain}
 
-\begin{thm}[Tennenbaum's Theorem]
-$\Struct{N}$ is the only computable model of~$\Th{PA}$.
+\begin{thm}[Tennenbaum（特南鲍姆）定理]
+$\Struct{N}$ 是~$\Th{PA}$ 的唯一可计算模型。
 \end{thm}
-  
+
 \end{document}

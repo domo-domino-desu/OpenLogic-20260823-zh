@@ -8,118 +8,91 @@
 
 \olfileid{aml}{tl}{sem}
 
-\olsection{Semantics for Temporal Logic}
+\olsection{时态逻辑的语义}
 
 \begin{defn}
-The basic language of temporal logic contains
+时态逻辑的基本语言包含以下要素：
 \begin{enumerate}
-  \tagitem{prvFalse}{The propositional constant for !!{falsity}~$\lfalse$.}{}
-  \tagitem{prvTrue}{The propositional constant for !!{truth}~$\ltrue$.}{}
-  \item A !!{denumerable}s set of !!{propositional variable}s: $\Obj
-    p_0$, $\Obj p_1$, $\Obj p_2$, \dots
-  \item The propositional connectives: \startycommalist
-  \iftag{prvNot}{\ycomma $\lnot$ (negation)}{}%
-  \iftag{prvAnd}{\ycomma $\land$ (conjunction)}{}%
-  \iftag{prvOr}{\ycomma $\lor$ (disjunction)}{}%
-  \iftag{prvIf}{\ycomma $\lif$ (!!{conditional})}{}%
-  \iftag{prvIff}{\ycomma $\liff$ (!!{biconditional})}{}.
-  \item Past operators $\Ptemp$ and $\Htemp$.
-  \item Future operators $\Ftemp$ and $\Gtemp$.
+  \tagitem{prvFalse}{表示假的命题常项~$\lfalse$。}{}
+  \tagitem{prvTrue}{表示真的命题常项~$\ltrue$。}{}
+  \item 一个可数无穷的命题变元集合：$\Obj p_0$、$\Obj p_1$、$\Obj p_2$……
+  \item 命题联结词：\startycommalist
+  \iftag{prvNot}{\ycomma $\lnot$（否定）}{}%
+  \iftag{prvAnd}{\ycomma $\land$（合取）}{}%
+  \iftag{prvOr}{\ycomma $\lor$（析取）}{}%
+  \iftag{prvIf}{\ycomma $\lif$（条件句）}{}%
+  \iftag{prvIff}{\ycomma $\liff$（双条件句）}{}。
+  \item 过去时态算子 $\Ptemp$（曾有）和 $\Htemp$（过去一直）。
+  \item 未来时态算子 $\Ftemp$（将有）和 $\Gtemp$（将来一直）。
 \end{enumerate}
 \end{defn}
 
-Later on, we will discuss the potential addition of other kinds of modal operators.
+稍后，我们将讨论增加其他种类模态算子的可能性。
 
 \begin{defn}
-\emph{!!^{formula}s} of the temporal language are inductively
-  defined as follows:
+时态语言的\emph{公式}归纳定义如下：
 \begin{enumerate}
-\tagitem{prvFalse}{$\lfalse$ is an atomic !!{formula}.}{}
+\tagitem{prvFalse}{$\lfalse$ 是一个原子公式。}{}
 
-\tagitem{prvTrue}{$\ltrue$ is an atomic !!{formula}.}{}
+\tagitem{prvTrue}{$\ltrue$ 是一个原子公式。}{}
 
-\item Every propositional variable $\Obj p_i$ is an (atomic) !!{formula}.
+\item 每个命题变元 $\Obj p_i$ 都是一个（原子）公式。
 
-\tagitem{prvNot}{If $!A$ is !!a{formula}, then $\lnot !A$ is
-  !!a{formula}.}{}
+\tagitem{prvNot}{若 $!A$ 是公式，则 $\lnot !A$ 是公式。}{}
 
-\tagitem{prvAnd}{If $!A$ and $!B$ are !!{formula}s, then $(!A \land
-  !B)$ is !!a{formula}.}{}
+\tagitem{prvAnd}{若 $!A$ 和 $!B$ 是公式，则 $(!A \land !B)$ 是公式。}{}
 
-\tagitem{prvOr}{If $!A$ and $!B$ are !!{formula}s, then $(!A \lor !B)$
-  is !!a{formula}.}{}
+\tagitem{prvOr}{若 $!A$ 和 $!B$ 是公式，则 $(!A \lor !B)$ 是公式。}{}
 
-\tagitem{prvIf}{If $!A$ and $!B$ are !!{formula}s, then $(!A \lif !B)$
-  is !!a{formula}.}{}
+\tagitem{prvIf}{若 $!A$ 和 $!B$ 是公式，则 $(!A \lif !B)$ 是公式。}{}
 
-\tagitem{prvIff}{If $!A$ and $!B$ are !!{formula}s, then $(!A \liff !B)$
-  is !!a{formula}.}{}
+\tagitem{prvIff}{若 $!A$ 和 $!B$ 是公式，则 $(!A \liff !B)$ 是公式。}{}
 
-\item If $!A$ is !!a{formula}, then $\Ptemp  !A$, $\Htemp  !A$, $F !A$, $\Gtemp  !A$ are all
-  !!{formula}s.
+\item 若 $!A$ 是公式，则 $\Ptemp !A$、$\Htemp !A$、$\Ftemp !A$、$\Gtemp !A$ 均为公式。
 
-\tagitem{limitClause}{Nothing else is !!a{formula}.}{}
+\tagitem{limitClause}{其他均非公式。}{}
 \end{enumerate}
 \end{defn}
 
-The semantics of temporal logics are given in terms of relational models, as with other kinds of intensional logics. 
+与其他内涵逻辑一样，时态逻辑的语义也是借助关系模型给出的。
 
 \begin{defn}
-  A \emph{model} for temporal language is a triple
-  $\mModel{M} = \tuple{T, \prec, V}$, where
+  时态语言的一个\emph{模型}是一个三元组 $\mModel{M} = \tuple{T, \prec, V}$，其中
   \begin{enumerate}
-  \item $T$ is a nonempty set, interpreted as points in time.
-  \item $\prec$ is a binary relation on $T$.
-  \item $V$ is a function assigning to each !!{propositional
-    variable}~$p$ a set $V(p)$ of points in time.
+  \item $T$ 是一个非空集合，解释为时间点的集合。
+  \item $\prec$ 是 $T$ 上的一个二元关系。
+  \item $V$ 是一个函数，对每个命题变元~$p$ 指派一个时间点子集 $V(p)$。
   \end{enumerate}
-  When $t \prec t'$ holds, we say that $t$ \emph{precedes}~$t'$. 
-  When $t \in V(p)$ we say $p$ is \emph{true at}~$t$.
+  当 $t \prec t'$ 成立时，我们称 $t$ \emph{前驱于}~$t'$。
+  当 $t \in V(p)$ 时，我们称 $p$ \emph{在}~$t$ \emph{处为真}。
 \end{defn}
 
-For now, you will notice that we do not impose any conditions on our precedence relation $\prec$. This means that at present, there are no restrictions on the structure of our temporal models, so we could have models in which time is linear, branching, circular, or has any structure whatsoever. 
+目前，你会注意到我们没有对前驱关系 $\prec$ 施加任何条件。这意味着现阶段我们的时态模型结构没有任何限制，因此我们可以有时间为线性、分支、循环或具有任何结构的模型。
 
-Just as with normal modal logic, every temporal model determines which
-!!{formula}s count as true at which points in it. We use the same
-notation ``model $\mModel{M}$ makes !!{formula}~$!A$ true at
-point~$t$'' for the basic notion of relational semantics. The relation
-is defined inductively and is identical to the normal modal case for
-all non-modal operators.
+与正规模态逻辑一样，每个时态模型决定了其中哪些公式在哪些点处为真。对于关系语义的基本概念，我们沿用相同的记法“模型 $\mModel{M}$ 使公式~$!A$ 在点~$t$ 处为真”。该关系是归纳定义的，并且对所有非模态算子而言，与正规模态逻辑的情形完全相同。
 
 \begin{defn}\ollabel{defn:tmodels}
-  \emph{Truth of !!a{formula}~$!A$ at~$t$} in a~$\mModel M$, in symbols:
-  $\mSat{M}{!A}[t]$, is defined inductively as follows:
+  公式~$!A$ 在模型~$\mModel M$ 中的点~$t$ 处的\emph{真}，记作 $\mSat{M}{!A}[t]$，归纳定义如下：
   \begin{enumerate}
-  \tagitem{prvFalse}{\indcase{!A}{\lfalse}{Never $\mSat{M}{\lfalse}[t]$}.}{}
-  \tagitem{prvTrue}{\indcase{!A}{\ltrue}{Always $\mSat{M}{\ltrue}[t]$}.}{}
-  \item $\mSat{M}{p}[t]$ iff $t \in V(p)$
-  \tagitem{prvNot}{\indcase{!A}{\lnot !B}{$\mSat{M}{\indfrm}[t]$ iff
-    $\mSat/{M}{!B}[t]$}.}{}
-  \tagitem{prvAnd}{\indcase{!A}{(!B \land !C)}{$\mSat{M}{\indfrm}[t]$ iff
-    $\mSat{M}{!B}[t]$ and $\mSat{M}{!C}[t]$}.}{}
-  \tagitem{prvOr}{\indcase{!A}{(!B \lor !C)}{$\mSat{M}{\indfrm}[t]$ iff
-    $\mSat{M}{!B}[t]$ or $\mSat{M}{!C}[t]$} (or both).}{}
-  \tagitem{prvIf}{\indcase{!A}{(!B \lif !C)}{$\mSat{M}{\indfrm}[t]$ iff
-    $\mSat/{M}{!B}[t]$ or $\mSat{M}{!C}[t]$}.}{}
-  \tagitem{prvIff}{\indcase{!A}{(!B \liff !C)}{$\mSat{M}{\indfrm}[t]$ iff
-    either both $\mSat{M}{!B}[t]$ and $\mSat{M}{!C}[t]$ or
-    neither $\mSat{M}{!B}[t]$ nor $\mSat{M}{!C}[t]$}.}{}
+  \tagitem{prvFalse}{\indcase{!A}{\lfalse}{永不满足 $\mSat{M}{\lfalse}[t]$}。}{}
+  \tagitem{prvTrue}{\indcase{!A}{\ltrue}{总是满足 $\mSat{M}{\ltrue}[t]$}。}{}
+  \item $\mSat{M}{p}[t]$ 当且仅当 $t \in V(p)$。
+  \tagitem{prvNot}{\indcase{!A}{\lnot !B}{$\mSat{M}{\indfrm}[t]$ 当且仅当 $\mSat/{M}{!B}[t]$}。}{}
+  \tagitem{prvAnd}{\indcase{!A}{(!B \land !C)}{$\mSat{M}{\indfrm}[t]$ 当且仅当 $\mSat{M}{!B}[t]$ 且 $\mSat{M}{!C}[t]$}。}{}
+  \tagitem{prvOr}{\indcase{!A}{(!B \lor !C)}{$\mSat{M}{\indfrm}[t]$ 当且仅当 $\mSat{M}{!B}[t]$ 或 $\mSat{M}{!C}[t]$（或两者）}。}{}
+  \tagitem{prvIf}{\indcase{!A}{(!B \lif !C)}{$\mSat{M}{\indfrm}[t]$ 当且仅当 $\mSat/{M}{!B}[t]$ 或 $\mSat{M}{!C}[t]$}。}{}
+  \tagitem{prvIff}{\indcase{!A}{(!B \liff !C)}{$\mSat{M}{\indfrm}[t]$ 当且仅当要么 $\mSat{M}{!B}[t]$ 与 $\mSat{M}{!C}[t]$ 同时成立，要么 $\mSat{M}{!B}[t]$ 与 $\mSat{M}{!C}[t]$ 均不成立}。}{}
   \item\ollabel{defn:sub:mmodels-p}
-    \indcase{!A}{\Ptemp  !B}{$\mSat{M}{\indfrm}[t]$ iff
-    $\mSat{M}{!B}[t']$ for some $t' \in T$ with $t' \prec t$}
+    \indcase{!A}{\Ptemp !B}{$\mSat{M}{\indfrm}[t]$ 当且仅当对某个满足 $t' \prec t$ 的 $t' \in T$，有 $\mSat{M}{!B}[t']$}。
 \item\ollabel{defn:sub:mmodels-h}
-    \indcase{!A}{\Htemp  !B}{$\mSat{M}{\indfrm}[t]$ iff
-    $\mSat{M}{!B}[t']$ for every $t' \in T$ with $t' \prec t$}
+    \indcase{!A}{\Htemp !B}{$\mSat{M}{\indfrm}[t]$ 当且仅当对所有满足 $t' \prec t$ 的 $t' \in T$，都有 $\mSat{M}{!B}[t']$}。
    \item\ollabel{defn:sub:mmodels-f}
-    \indcase{!A}{\Ftemp  !B}{$\mSat{M}{\indfrm}[t]$ iff
-    $\mSat{M}{!B}[t']$ for some $t' \in T$ with $t \prec t'$}
+    \indcase{!A}{\Ftemp !B}{$\mSat{M}{\indfrm}[t]$ 当且仅当对某个满足 $t \prec t'$ 的 $t' \in T$，有 $\mSat{M}{!B}[t']$}。
 \item\ollabel{defn:sub:mmodels-g}
-    \indcase{!A}{\Gtemp  !B}{$\mSat{M}{\indfrm}[t]$ iff
-    $\mSat{M}{!B}[t']$ for every $t' \in T$ with $t \prec t'$}
-  \end{enumerate} 
+    \indcase{!A}{\Gtemp !B}{$\mSat{M}{\indfrm}[t]$ 当且仅当对所有满足 $t \prec t'$ 的 $t' \in T$，都有 $\mSat{M}{!B}[t']$}。
+  \end{enumerate}
 \end{defn}
 
-Based on the semantics, you might be able to see that the operators $\Ptemp$ and~$\Htemp$ are duals, as well as the
-operators $\Ftemp$ and $\Gtemp$, such that we could define $\Htemp  !A$ as $\lnot \Ptemp \lnot !A$, and the same with $\Gtemp$ and~$\Ftemp$.
+根据语义，或许能看出算子 $\Ptemp$ 与~$\Htemp$ 互为对偶，算子 $\Ftemp$ 与 $\Gtemp$ 也互为对偶，从而我们可以将 $\Htemp  !A$ 定义为 $\lnot \Ptemp \lnot !A$，$\Gtemp$ 与~$\Ftemp$ 之间的关系也是如此。
 
 \end{document}

@@ -7,104 +7,67 @@
 \begin{document}
 
 \olfileid{inc}{req}{rpc}
-\olsection{Functions Representable in $\Th{Q}$ are Computable}
+\olsection{在 $\Th{Q}$ 中可表示的函数都是可计算的}
 
-We'll prove that every function that is representable in~$\Th{Q}$ is
-computable. We first have to establish a lemma about functions
-representable in~$\Th{Q}$.
+我们将证明，在~$\Th{Q}$ 中可表示的函数都是可计算的。为此，首先需要证明一个关于在~$\Th{Q}$ 中可表示的函数的引理。
 
 \begin{lem}\ollabel{lem:rep-q}
-  If $f(x_0,
-  \dots, x_k)$ is representable in~$\Th{Q}$, there is
-  !!a{formula}~$!A(x_0, \dots, x_k, y)$ such that
+  如果 $f(x_0,
+  \dots, x_k)$ 在~$\Th{Q}$ 中可表示，则存在公式~$!A(x_0, \dots, x_k, y)$，使得
   \[
   \Th{Q} \Proves !A_f(\num{n_0}, \dots, \num{n_k}, \num{m})
-  \quad\text{iff}\quad m = f(n_0, \dots, n_k).
-  \]
+  \quad \text{当且仅当} \quad m = f(n_0, \dots, n_k).
+  \]。
 \end{lem}
 
 \begin{proof}
-  The ``if'' part is
-\olref[int]{defn:representable-fn}\olref[int]{defn:rep:a}. The ``only
-if'' part is seen as follows: Suppose $\Th{Q} \Proves !A_f(\num{n_0},
-\dots, \num{n_k}, \num{m})$ but $m \neq f(n_0, \dots, n_k)$. Let $l =
-f(n_0, \dots, n_k)$. By
-\olref[int]{defn:representable-fn}\olref[int]{defn:rep:a}, $\Th{Q}
-\Proves !A_f(\num{n_0}, \dots, \num{n_k}, \num{l})$. By
-\olref[int]{defn:representable-fn}\olref[int]{defn:rep:b},
+  “当”的方向由
+\olref[int]{defn:representable-fn}\olref[int]{defn:rep:a} 给出。“仅当”的方向论证如下：假设 $\Th{Q} \Proves !A_f(\num{n_0},
+\dots, \num{n_k}, \num{m})$ 但 $m \neq f(n_0, \dots, n_k)$。令 $l =
+f(n_0, \dots, n_k)$。根据
+\olref[int]{defn:representable-fn}\olref[int]{defn:rep:a}，$\Th{Q}
+\Proves !A_f(\num{n_0}, \dots, \num{n_k}, \num{l})$。根据
+\olref[int]{defn:representable-fn}\olref[int]{defn:rep:b}，
 $\lforall[y][(!A_f(\num{n_0}, \dots, \num{n_k}, y) \lif \num{l} =
-y)]$. Using logic and the assumption that $\Th{Q} \Proves
-!A_f(\num{n_0}, \dots, \num{n_k}, \num{m})$, we get that $\Th{Q}
-\Proves \eq[\num{l}][\num{m}]$. On the other hand, by
-\olref[bre]{lem:q-proves-neq}, $\Th{Q} \Proves
-\eq/[\num{l}][\num{m}]$. So $\Th{Q}$ is inconsistent. But that is
-impossible, since $\Th{Q}$ is satisfied by the standard model (see
-\olref[int][def]{def:standard-model}), $\Sat{N}{\Th{Q}}$, and
-satisfiable theories are always consistent by the Soundness Theorem
-(\tagrefs{prfAX/{fol:axd:sou:cor:consistency-soundness},
+y)]$。根据逻辑及 $\Th{Q} \Proves
+!A_f(\num{n_0}, \dots, \num{n_k}, \num{m})$ 的假设，可得 $\Th{Q}
+\Proves \eq[\num{l}][\num{m}]$。另一方面，由
+\olref[bre]{lem:q-proves-neq}，$\Th{Q} \Proves
+\eq/[\num{l}][\num{m}]$。于是 $\Th{Q}$ 不一致。但这是不可能的，因为 $\Th{Q}$ 被标准模型所满足（参见
+\olref[int][def]{def:standard-model}），即 $\Sat{N}{\Th{Q}}$，而根据可靠性定理，可满足的理论总是一致的（\tagrefs{prfAX/{fol:axd:sou:cor:consistency-soundness},
 prfSC/{fol:seq:sou:cor:consistency-soundness},
 prfND/{fol:ntd:sou:cor:consistency-soundness},
-prfTab/{fol:tab:sou:cor:consistency-soundness}}).
+prfTab/{fol:tab:sou:cor:consistency-soundness}}）。
 \end{proof}
 
 \begin{lem}
-Every function that is representable in $\Th{Q}$ is computable.
+每个在 $\Th{Q}$ 中可表示的函数都是可计算的。
 \end{lem}
 
 \begin{proof}
-Let's first give the intuitive idea for why this is true. To
-compute~$f$, we do the following.  List all the possible
-!!{derivation}s~$\delta$ in the language of arithmetic. This is
-possible to do mechanically. For each one, check if it is
-!!a{derivation} of !!a{formula} of the form~$!A_f(\num{n_0}, \dots,
-\num{n_k}, \num{m})$ (the !!{formula} representing $f$ in~$\Th{Q}$
-from \olref{lem:rep-q}). If it is, $m = f(n_0, \dots, n_k)$ by
-\olref{lem:rep-q}, and we've found the value of~$f$. The search
-terminates because $\Th{Q} \Proves !A_f(\num{n_0}, \dots, \num{n_k},
-\num{f(n_0, \dots, n_k)})$, so eventually we find a $\delta$ of the
-right sort.
+我们先直观地说明为什么这是成立的。为了计算~$f$，我们如下进行：枚举算术语言中所有可能的推导~$\delta$。这是可以机械完成的。对于每个推导，检查它是否是形如~$!A_f(\num{n_0}, \dots,
+\num{n_k}, \num{m})$（即根据 \olref{lem:rep-q} 在~$\Th{Q}$ 中表示 $f$ 的公式）的公式的一个推导。如果是，则由 \olref{lem:rep-q}，$m = f(n_0, \dots, n_k)$，于是我们找到了~$f$ 的值。由于 $\Th{Q} \Proves !A_f(\num{n_0}, \dots, \num{n_k},
+\num{f(n_0, \dots, n_k)})$，搜索必定终止，即我们最终会找到一个符合要求的 $\delta$。
 
-This is not quite precise because our procedure operates on
-!!{derivation}s and !!{formula}s instead of just on numbers, and we
-haven't explained exactly why ``listing all possible !!{derivation}s''
-is mechanically possible.  But as we've seen, it is possible to code
-terms, !!{formula}s, and !!{derivation}s by G\"odel numbers. We've
-also introduced a precise model of computation, the general recursive
-functions. And we've seen that the relation $\Prf[\Th{Q}](d,y)$, which
-holds iff $d$ is the G\"odel number of !!a{derivation} of the !!{formula}
-with G\"odel number~$y$ from the axioms of~$\Th{Q}$, is (primitive)
-recursive. Other primitive recursive functions we'll need are
-$\fn{num}$ (\olref[art][trm]{prop:num-primrec}) and $\fn{Subst}$
-(\olref[art][sub]{prop:subst-primrec}).  From these, it is possible to
-define~$f$ by minimization; thus, $f$ is recursive.
+这并不完全精确，因为我们的过程处理的对象是推导和公式，而不仅仅是数字，并且我们还没有确切解释为什么“枚举所有可能的推导”是机械可行的。但正如我们所见，可以用哥德尔数来编码项、公式和推导。我们也引入了一个精确的计算模型，即一般递归函数。而且我们已经看到，关系 $\Prf[\Th{Q}](d,y)$ 是（原始）递归的，该关系成立当且仅当 $d$ 是这样一个推导的哥德尔数：该推导是从~$\Th{Q}$ 的公理出发对哥德尔数为~$y$ 的公式所作的推导。我们需要的其他原始递归函数还有 $\fn{num}$（\olref[art][trm]{prop:num-primrec}）和 $\fn{Subst}$（\olref[art][sub]{prop:subst-primrec}）。利用这些函数，可以通过极小化来定义~$f$；因此 $f$ 是递归的。
 
-First, define
+首先，定义
 \begin{multline*}
   A(n_0, \dots, n_k, m) = \\
   \fn{Subst}(\fn{Subst}(\dots\fn{Subst}(\Gn{!A_f}, \fn{num}(n_0), \Gn{x_0}),\\ \dots),
   \fn{num}(n_k),  \Gn{x_k}), \fn{num}(m), \Gn{y})
 \end{multline*}
-This looks complicated, but it's just the function $A(n_0, \dots, n_k,
-m) = \Gn{!A_f(\num{n_0}, \dots, \num{n_k}, \num{m})}$.
+这看起来有些复杂，但它其实就是函数 $A(n_0, \dots, n_k,
+m) = \Gn{!A_f(\num{n_0}, \dots, \num{n_k}, \num{m})}$。
 
-Now, consider the relation~$R(n_0, \dots, n_k, s)$ which holds if
-$(s)_0$ is the G\"odel number of !!a{derivation} from~$\Th{Q}$ of
-$!A_f(\num{n_0}, \dots, \num{n_k}, \num{(s)_1})$:
+现在，考虑关系~$R(n_0, \dots, n_k, s)$，它成立当且仅当 $(s)_0$ 是从~$\Th{Q}$ 出发对 $!A_f(\num{n_0}, \dots, \num{n_k}, \num{(s)_1})$ 的一个推导的哥德尔数：
 \[
-R(n_0, \dots, n_k, s) \quad\text{iff}\quad \Prf[\Th{Q}]((s)_0, A(n_0,
+R(n_0, \dots, n_k, s) \quad \text{当且仅当} \quad \Prf[\Th{Q}]((s)_0, A(n_0,
 \dots, n_k, (s)_1))
 \]
-If we can find an~$s$ such that $R(n_0, \dots, n_k, s)$ holds, we have
-found a pair of numbers---$(s)_0$ and~$(s)_1$---such that $(s)_0$ is
-the G\"odel number of !!a{derivation} of~$A_f(\num{n_0}, \dots,
-\num{n_k}, (s)_1)$. So looking for~$s$ is like looking for the pair
-$d$ and $m$ in the informal proof. And a computable function that
-``looks for'' such an $s$ can be defined by regular minimization.
-Note that $R$ is regular: for every $n_0$, \dots, $n_k$, there is
-!!a{derivation}~$\delta$ of $\Th{Q} \Proves !A_f(\num{n_0}, \dots,
-\num{n_k}, \num{f(n_0, \dots, n_k)})$, so $R(n_0, \dots, n_k, s)$
-holds for $s = \tuple{\Gn{\delta}, f(n_0, \dots, n_k)}$.  So, we can
-write $f$ as
+如果我们能找到一个使 $R(n_0, \dots, n_k, s)$ 成立的~$s$，我们就找到了一对数——$(s)_0$ 和~$(s)_1$——使得 $(s)_0$ 是 $A_f(\num{n_0}, \dots,
+\num{n_k}, (s)_1)$ 的一个推导的哥德尔数。因此，寻找这样的~$s$ 就好比在非形式化证明中寻找数对 $d$ 和 $m$。而一个“寻找”这样的 $s$ 的可计算函数可以通过正则极小化来定义。注意 $R$ 是正则的：对每个 $n_0$, \dots, $n_k$，都存在 $\Th{Q} \Proves !A_f(\num{n_0}, \dots,
+\num{n_k}, \num{f(n_0, \dots, n_k)})$ 的一个推导~$\delta$，因此对于 $s = \tuple{\Gn{\delta}, f(n_0, \dots, n_k)}$，$R(n_0, \dots, n_k, s)$ 成立。所以，我们可以将 $f$ 写作
 \[
 f(n_0,\dots,n_{k}) = (\umin{s}{R(n_0, \dots, n_k, s)})_1.
 \]

@@ -8,48 +8,42 @@
 
 \olfileid{cnt}{int}{str}
 
-\olsection{The Strict Conditional}
+\olsection{严格条件句}
 
-Lewis introduced the \emph{strict conditional}~$\strictif$ and argued
-that it, not the material conditional, corresponds to implication.  In
-alethic modal logic, $!A \strictif !B$ can be defined as $\Box(!A \lif
-!B)$. A strict conditional is thus true (at a world) iff the
-corresponding material conditional is necessary.
+Lewis（刘易斯）引入了\emph{严格条件句}~$\strictif$，并论证它而非实质条件句才对应于蕴涵。
+在真势模态逻辑中，$!A \strictif !B$ 可以定义为 $\Box(!A \lif !B)$。 
+因此，一个严格条件句（在一个世界上）为真，当且仅当对应的实质条件句是必然的。
 
-How does the strict conditional fare vis-a-vis the paradoxes of the
-material conditional?  A strict conditional with a false antecedent
-and one with a true consequent, may be true, or it may be
-false. Moreover, $(!A \strictif !B) \lor (!B \strictif !A)$ is not
-valid. The strict conditional $!A \strictif !B$ is also not equivalent
-to $\lnot !A \lor !B$, so it is not truth functional.
+严格条件句在应对实质条件句的悖论方面表现如何？ 
+前件为假的严格条件句和后件为真的严格条件句，都可能为真，也可能为假。
+此外，$(!A \strictif !B) \lor (!B \strictif !A)$ 不是有效的。
+严格条件句 $!A \strictif !B$ 也不等价于 $\lnot !A \lor !B$，因此它不是真值函项的。
 
-We have:
+我们有：
 \begin{align}
   !A \strictif !B & \Entails \lnot !A \lor !B
-  \text{ but:}\\
+  \text{ 但：}\\
   \lnot !A \lor !B & \Entails/ !A \strictif !B\\
   !B & \Entails/ !A \strictif !B\\
   \lnot !A & \Entails/ !A \strictif !B\\
   \lnot(!A \lif !B) & \Entails/ !A \land \lnot !B
-  \text{ but:}\\
+  \text{ 但：}\\
   !A \land \lnot !B & \Entails \lnot(!A \strictif !B)
-  \intertext{However, the strict conditional still supports modus ponens:}
+  \intertext{然而，严格条件句仍然支持肯定前件式：}
   !A, !A \strictif !B & \Entails !B
-  \intertext{The strict conditional agglomerates:}
+  \intertext{严格条件句具有聚合性：}
   !A \strictif !B,  !A \strictif !C & \Entails !A \strictif (!B \land !C)
-  \intertext{Antecedent strengthening holds for the strict conditional:}
+  \intertext{前件强化在严格条件句中成立：}
   !A \strictif !B & \Entails (!A \land !C) \strictif !B
-  \intertext{The strict conditional is also transitive:}
+  \intertext{严格条件句也是传递的：}
   !A \strictif !B, !B \strictif !C & \Entails !A \strictif !C
-  \intertext{Finally, the strict conditional is equivalent to its
-    contrapositive:}
+  \intertext{最后，严格条件句等价于它的逆否命题：}
   !A \strictif !B & \Entails \lnot !B \strictif \lnot !A\\
   \lnot !B \strictif \lnot !A & \Entails !A \strictif !B
 \end{align}
 
 \begin{prob}
-  Give \Log{S5}-counterexamples to the entailment relations which do not hold
-  for the strict conditional, i.e., for:
+  针对以下对严格条件句不成立的后承关系，给出 \Log{S5} 反例：
   \begin{enumerate}
   \item $\lnot p \Entails/ \Box(p \lif q)$
   \item $q \Entails/ \Box(p \lif q)$
@@ -59,51 +53,44 @@ We have:
 \end{prob}
 
 \begin{prob}
-  Show that the valid entailment relations hold for the strict
-  conditional by giving \Log{S5}-proofs of:
+  通过给出以下公式的 \Log{S5} 证明，说明有效的后承关系对严格条件句成立：
   \begin{enumerate}
   \item  $\Box(!A \lif !B) \Entails \lnot !A \lor !B$
-  \item $!A \land \lnot !B \Entails \lnot\Box(!A \lif !B)$
-  \item $!A, \Box(!A \lif !B) \Entails !B$
-  \item $\Box(!A \lif !B), \Box(!A \lif !C) \Entails \Box(!A \lif (!B
+  \item  $!A \land \lnot !B \Entails \lnot\Box(!A \lif !B)$
+  \item  $!A, \Box(!A \lif !B) \Entails !B$
+  \item  $\Box(!A \lif !B), \Box(!A \lif !C) \Entails \Box(!A \lif (!B
     \land !C))$
-  \item $\Box(!A \lif !B) \Entails \Box((!A \land !C) \lif !B)$
-  \item $\Box(!A \lif !B), \Box(!B \lif !C) \Entails \Box(!A
+  \item  $\Box(!A \lif !B) \Entails \Box((!A \land !C) \lif !B)$
+  \item  $\Box(!A \lif !B), \Box(!B \lif !C) \Entails \Box(!A
     \lif !C)$
-  \item $\Box(!A \lif !B) \Entails \Box(\lnot !B \lif \lnot !A)$
-  \item $\Box(\lnot !B \lif \lnot !A) \Entails \Box(!A \lif !B)$
+  \item  $\Box(!A \lif !B) \Entails \Box(\lnot !B \lif \lnot !A)$
+  \item  $\Box(\lnot !B \lif \lnot !A) \Entails \Box(!A \lif !B)$
   \end{enumerate}
   \end{prob}
 
-However, the strict conditional still has its own ``paradoxes.'' Just
-as a material conditional with a false antecedent or a true consequent
-is true, a strict conditional with a \emph{necessarily} false
-antecedent or a necessarily true consequent is true. Moreover, any
-true strict conditional is necessarily true, and any false strict
-conditional is necessarily false. In other words, we have
+然而，严格条件句仍有其自身的“悖论”。
+正如前件为假或后件为真的实质条件句为真，前件\emph{必然}为假或后件必然为真的严格条件句也为真。
+此外，任何真的严格条件句都必然为真，任何假的严格条件句都必然为假。
+换言之，我们有
 \begin{align}
   \Box \lnot !A & \Entails !A \strictif !B\\
   \Box !B & \Entails !A \strictif !B\\
   !A \strictif !B& \Entails \Box(!A \strictif !B)\\
   \lnot(!A \strictif !B) & \Entails \Box\lnot(!A \strictif !B)
 \end{align}
-These are not problems if you think of $\strictif$ as ``implies.''
-Logical entailment relationships are, after all, mathematical facts and so
-can't be contingent. But they do raise issues if you want to use
-$\strictif$ as a logical connective that is supposed to capture ``if
-\dots then \dots,'' especially the last two. For surely there are ``if
-\dots then \dots'' statements that are contingently true or
-contingently false---in fact, they generally are neither necessary nor
-impossible.
+如果你将 $\strictif$ 看作“蕴涵”，这些并不是问题。
+毕竟，逻辑后承关系是数学事实，因此不可能是偶然的。
+但如果你想将 $\strictif$ 用作刻画“如果……那么……”的逻辑联结词，它们确实会引发问题，尤其是最后两条。
+因为毫无疑问，存在着偶然为真或偶然为假的“如果……那么……”陈述——事实上，它们通常既非必然也非不可能。
 
 \begin{prob}
-  Give proofs in \Log{S5} of:
+  给出以下公式在 \Log{S5} 中的证明：
   \begin{enumerate}
     \item  $\Box \lnot !A \Entails !A \strictif !B$
     \item $!A \strictif !B \Entails \Box(!A \strictif !B)$
     \item $\lnot(!A \strictif !B)  \Entails \Box\lnot(!A \strictif !B)$
   \end{enumerate}
-  Use the definition of $\strictif$ to do so.
+  请利用 $\strictif$ 的定义。
 \end{prob}
 
 \end{document}

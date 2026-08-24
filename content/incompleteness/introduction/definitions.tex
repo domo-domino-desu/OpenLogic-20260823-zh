@@ -8,101 +8,52 @@
 
 \olfileid{inc}{int}{def}
 
-\olsection{Definitions}
+\olsection{定义}
 
-In order to carry out Hilbert's project of formalizing mathematics and
-showing that such a formalization is consistent and complete, the
-first order of business would be that of picking a language, logical
-framework, and a system of axioms.  For our purposes, let us suppose
-that mathematics can be formalized in a first-order language, i.e.,
-that there is some set of !!{constant}s, !!{function}s, and
-!!{predicate}s which, together with the connectives and quantifiers of
-first-order logic, allow us to express the claims of mathematics.
-Most people agree that such a language exists: the language of set
-theory, in which $\in$ is the only non-logical symbol.  That such a
-simple language is so expressive is of course a very implausible claim
-at first sight, and it took a lot of work to establish that
-practically all of mathematics can be expressed in this very austere
-vocabulary.  To keep things simple, for now, let's restrict our
-discussion to arithmetic, so the part of mathematics that just deals
-with the natural numbers~$\Nat$.  The natural language in which to
-express facts of arithmetic is~$\Lang L_A$. $\Lang L_A$ contains a
-single two-place !!{predicate}~$<$, a single !!{constant}~$\Obj 0$,
-one one-place !!{function}~$\prime$, and two two-place
-!!{function}s~$+$ and~$\times$.
+为了实施 Hilbert 将数学形式化并证明该形式化既一致又完备的计划，首要任务将是选择一门语言、一个逻辑框架以及一套公理系统。为了我们的目的，不妨假设数学可以在一阶语言中形式化，也就是说，存在某个由常项符号、函数符号和谓词符号组成的集合，它们与一阶逻辑的联结词和量词一起，使我们能够表达数学命题。多数人同意这样的语言存在：集合论的语言，其中 $\in$ 是唯一的非逻辑符号。如此简单的语言竟具有如此强的表达力，初看起来当然是一个难以令人信服的断言，而且，要确立几乎所有数学都能用这个极其贫乏的词汇来表达这一事实，需要付出大量的工作。为了简单起见，现在让我们把讨论限制在算术，即只涉及自然数~$\Nat$ 的那部分数学。用来表达算术事实的最自然的语言是~$\Lang L_A$。$\Lang L_A$ 包含一个二元谓词符号~$<$、一个常项符号~$\Obj 0$、一个一元函数符号~$\prime$ 以及两个二元函数符号~$+$ 和~$\times$。
 
 \begin{defn}
-A set of !!{sentence}s~$\Gamma$ is a \emph{theory} if it is closed
-under entailment, i.e., if $\Gamma = \Setabs{!A}{\Gamma \Entails
-!A}$.
+一个语句集合~$\Gamma$ 是一个\emph{理论}，当且仅当它对语义后承封闭，即 $\Gamma = \Setabs{!A}{\Gamma \Entails
+!A}$。
 \end{defn}
 
-There are two easy ways to specify theories. One is as the set of
-!!{sentence}s true in some !!{structure}.  For instance, consider the
-!!{structure} for $\Lang L_A$ in which the !!{domain} is~$\Nat$ and
-all non-logical symbols are interpreted as you would expect.
+有两种简单的指定理论的方法。一种是将其指定为某个结构中为真的语句的集合。例如，考虑 $\Lang L_A$ 的这样一个结构：其论域是~$\Nat$，并且所有的非逻辑符号都按预期的方式解释。
 
 \begin{defn}\ollabel{def:standard-model}
-The \emph{standard model of arithmetic} is the !!{structure}~$\Struct
-N$ defined as follows:
+\emph{算术的标准模型}是结构~$\Struct N$，定义如下：
 \begin{enumerate}
 \item $\Domain N = \Nat$
 \item $\Assign{\Obj 0}{N} = 0$
-\item $\Assign{\Obj \prime}{N}(n) = n + 1$ for all $n \in \Nat$
-\item $\Assign{\Obj +}{N}(n, m) = n + m$ for all $n, m \in \Nat$
-\item $\Assign{\Obj \times}{N}(n, m) = n\cdot m$ for all $n, m \in \Nat$
+\item $\Assign{\Obj \prime}{N}(n) = n + 1$ 对所有 $n \in \Nat$ 成立
+\item $\Assign{\Obj +}{N}(n, m) = n + m$ 对所有 $n, m \in \Nat$ 成立
+\item $\Assign{\Obj \times}{N}(n, m) = n\cdot m$ 对所有 $n, m \in \Nat$ 成立
 \item $\Assign{\Obj <}{N} = \Setabs{\tuple{n, m}}{n \in \Nat, m \in
   \Nat, n < m}$
 \end{enumerate}
 \end{defn}
 
-Note the difference between `$\times$' and `$\cdot$': $\times$ is a
-symbol in the language of arithmetic. Of course, we've chosen it to
-remind us of multiplication, but $\times$ is not the multiplication
-operation but a two-place function symbol (officially, $\Obj f^2_1$).
-By contrast, $\cdot$~\emph{is} the ordinary multiplication function.
-When you see something like $n \cdot m$, we mean the product of the
-numbers $n$ and~$m$; when you see something like $x \times y$ we are
-talking about a term in the language of arithmetic. In the standard
-model, the function symbol~$\times$ is interpreted as the function
-$\cdot$ on the natural numbers. For addition, we use $+$ as both the
-function symbol of the language of arithmetic, and the addition
-function on the natural numbers. Here you have to use the context to
-determine what is meant.
+注意 `$\times$' 和 `$\cdot$' 的区别：$\times$ 是算术语言中的一个符号。当然，我们选择它是为了提醒我们乘法，但 $\times$ 并非乘法运算，而是一个二元函数符号（严格来说是 $\Obj f^2_1$）。相比之下，$\cdot$~\emph{才是}通常的乘法函数。当你看到像 $n \cdot m$ 这样的表达式时，我们指的是数字 $n$ 和~$m$ 的乘积；而当你看到像 $x \times y$ 这样的表达式时，我们讨论的是算术语言中的一个项。在标准模型中，函数符号~$\times$ 被解释为自然数上的函数 $\cdot$。对于加法，我们用 $+$ 既表示算术语言的函数符号，又表示自然数上的加法函数。这里需要根据上下文来确定其含义。
 
 \begin{defn}
-The theory of \emph{true arithmetic} is the set of !!{sentence}s
-satisfied in the standard model of arithmetic, i.e.,
+\emph{真算术}的理论是在算术标准模型中被满足的语句的集合，即
 \[
 \Th{TA} = \Setabs{!A}{\Sat{N}{!A}}.
 \]
 \end{defn}
 
-$\Th{TA}$ is a theory, for whenever $\Th{TA} \Entails !A$, $!A$ is
-satisfied in every !!{structure} which satisfies~$\Th{TA}$. Since
-$\Sat{N}{\Th{TA}}$, we have that~$\Sat{N}{!A}$, and so $!A \in \Th{TA}$.
+$\Th{TA}$ 是一个理论，因为若 $\Th{TA} \Entails !A$，则 $!A$ 在每个满足~$\Th{TA}$ 的结构中都被满足。由于 $\Sat{N}{\Th{TA}}$，我们有~$\Sat{N}{!A}$，因此 $!A \in \Th{TA}$。
 
-The other way to specify a theory~$\Gamma$ is as the set of
-!!{sentence}s entailed by some set of sentences~$\Gamma_0$. In that
-case, $\Gamma$ is the ``closure'' of $\Gamma_0$ under entailment.
-Specifying a theory this way is only interesting if $\Gamma_0$ is
-explicitly specified, e.g., if the !!{element}s of~$\Gamma_0$ are
-listed. At the very least, $\Gamma_0$ has to be decidable, i.e., there
-has to be a computable test for when !!a{sentence} counts as an
-element of~$\Gamma_0$ or not. We call the !!{sentence}s
-in~$\Gamma_0$ \emph{axioms} for~$\Gamma$, and $\Gamma$
-\emph{axiomatized} by~$\Gamma_0$.
+指定理论~$\Gamma$ 的另一种方式，是将其指定为某个语句集~$\Gamma_0$ 的所有语义后承组成的集合。在这种情况下，$\Gamma$ 是 $\Gamma_0$ 在语义后承下的“闭包”。只有当 $\Gamma_0$ 被显式指定时（例如，将~$\Gamma_0$ 的元素一一列出），以这种方式指定一个理论才有意义。至少，$\Gamma_0$ 必须是可判定的，也就是说，必须存在一种可计算的检验方法，以判定某个语句是否属于~$\Gamma_0$。我们称~$\Gamma_0$ 中的语句为~$\Gamma$ 的\emph{公理}，而称~$\Gamma$ 是由~$\Gamma_0$ \emph{公理化}的。
 
 \begin{defn}
-A theory~$\Gamma$ is \emph{axiomatized} by~$\Gamma_0$ iff
+一个理论~$\Gamma$ 是由~$\Gamma_0$ \emph{公理化}的，当且仅当
 \[
 \Gamma = \Setabs{!A}{\Gamma_0 \Entails !A}
 \]
 \end{defn}
 
 \begin{defn}
-The theory $\Th{Q}$ axiomatized by the following sentences is known
-as ``Robinson's $\Th{Q}$'' and is a very simple theory of arithmetic.
+由下列语句公理化而成的理论 $\Th{Q}$ 被称为“Robinson 的 $\Th{Q}$”，它是一个非常简单的算术理论。
 \begin{align*}
 & \lforall[x][\lforall[y][(\eq[x'][y'] \lif \eq[x][y])]] \tag{$!Q_1$}\\
 & \lforall[x][\eq/[\Obj 0][x']] \tag{$!Q_2$}\\
@@ -113,201 +64,123 @@ as ``Robinson's $\Th{Q}$'' and is a very simple theory of arithmetic.
 & \lforall[x][\lforall[y][\eq[(x \times y')][((x \times y) + x)]]] \tag{$!Q_7$}\\
 & \lforall[x][\lforall[y][(x < y \liff \lexists[z][\eq[(z' + x)][y]])]] \tag{$!Q_8$}
 \end{align*}
-The set of !!{sentence}s $\{!Q_1, \dots, !Q_8\}$ are the axioms of
-$\Th{Q}$, so $\Th{Q}$ consists of all !!{sentence}s entailed by them:
+语句集 $\{!Q_1, \dots, !Q_8\}$ 是 $\Th{Q}$ 的公理，因此 $\Th{Q}$ 由这些公理的所有语义后承组成：
 \[
 \Th{Q} = \Setabs{!A}{\{!Q_1, \dots, !Q_8\} \Entails !A}.
 \]
 \end{defn}
 
 \begin{defn}
-Suppose $!A(x)$ is !!a{formula} in $\Lang L_A$ with free variables~$x$
-and $y_1$, \dots, $y_n$. Then any !!{sentence} of the form
+设 $!A(x)$ 是 $\Lang L_A$ 中的一个公式，其自由变元为 $x$ 和 $y_1$, \dots, $y_n$。那么任何形如
 \[
 \lforall[y_1][\dots\lforall[y_n][((!A(\Obj 0) \land \lforall[x][(!A(x)
 \lif !A(x'))]) \lif \lforall[x][!A(x)])]]
 \]
-is an instance of the \emph{induction schema}.
+的语句都是\emph{归纳模式}的一个实例。
 
-\emph{Peano arithmetic}~$\Th{PA}$ is the theory axiomatized by the
-axioms of $\Th{Q}$ together with all instances of the induction
-schema.
+\emph{Peano 算术}~$\Th{PA}$ 是由 $\Th{Q}$ 的公理连同所有归纳模式的实例公理化而成的理论。
 \end{defn}
 
 \begin{explain}
-Every instance of the induction schema is true in~$\Struct{N}$. This
-is easiest to see if the !!{formula}~$!A$ only has one free
-!!{variable}~$x$.  Then $!A(x)$ defines a subset~$X_{!A}$ of~$\Nat$
-in~$\Struct{N}$.  $X_{!A}$ is the set of all~$n \in \Nat$ such that
-$\Sat{N}{!A(x)}[s]$ when $s(x) = n$.  The corresponding instance of
-the induction schema is
+归纳模式的每个实例都在~$\Struct{N}$ 中为真。
+如果公式~$!A$ 只含一个自由变元~$x$，这一点最易理解。
+此时，$!A(x)$ 在~$\Struct{N}$ 中定义了~$\Nat$ 的一个子集~$X_{!A}$。
+$X_{!A}$ 是所有使得在 $s(x) = n$ 时 $\Sat{N}{!A(x)}[s]$ 成立的~$n \in \Nat$ 组成的集合。
+对应的归纳模式实例是
 \[
 ((!A(\Obj 0) \land \lforall[x][(!A(x) \lif !A(x'))]) \lif 
   \lforall[x][!A(x)]).
 \]
-If its antecedent is true in~$\Struct{N}$, then $0 \in X_{!A}$ and,
-whenever $n \in X_{!A}$, so is $n+1$.  Since $0 \in X_{!A}$, we get
-$1 \in X_{!A}$. With $1 \in X_{!A}$ we get $2 \in X_{!A}$. And so on.
-So for every $n \in \Nat$, $n \in X_{!A}$. But this means that
-$\lforall[x][!A(x)]$ is satisfied in~$\Struct{N}$.
+如果它的前件在~$\Struct{N}$ 中为真，那么 $0 \in X_{!A}$，并且若 $n \in X_{!A}$，则 $n+1 \in X_{!A}$。
+既然 $0 \in X_{!A}$，我们就得到 $1 \in X_{!A}$；由 $1 \in X_{!A}$ 又得到 $2 \in X_{!A}$。依此类推。
+所以，对每个 $n \in \Nat$，都有 $n \in X_{!A}$。
+但这意味着 $\lforall[x][!A(x)]$ 在~$\Struct{N}$ 中被满足。
 \end{explain}
 
-Both $\Th{Q}$ and $\Th{PA}$ are axiomatized theories.  The big
-question is, how strong are they? For instance, can $\Th{PA}$ prove
-all the truths about~$\Nat$ that can be expressed in~$\Lang L_A$?
-Specifically, do the axioms of $\Th{PA}$ settle all the questions
-that can be formulated in~$\Lang L_A$?
+$\Th{Q}$ 和 $\Th{PA}$ 都是公理化的理论。
+一个大问题是：它们有多强？例如，$\Th{PA}$ 能否证明所有可以用~$\Lang L_A$ 表达的关于~$\Nat$ 的真理？
+具体而言，$\Th{PA}$ 的公理能否解决所有可以用~$\Lang L_A$ 表述的问题？
 
-Another way to put this is to ask: Is $\Th{PA} = \Th{TA}$?
-$\Th{TA}$ obviously does prove (i.e., it includes) all the truths
-about~$\Nat$, and it settles all the questions that can be formulated
-in~$\Lang L_A$, since if $!A$ is !!a{sentence} in $\Lang L_A$, then
-either $\Sat{N}{!A}$ or $\Sat{N}{\lnot !A}$, and so either $\Th{TA}
-\Entails !A$ or $\Th{TA} \Entails \lnot !A$.  Call such a theory
-\emph{!!{complete}}.
+另一种表述方式是问：是否有 $\Th{PA} = \Th{TA}$？
+显然，$\Th{TA}$ 确实能证出（即包含）所有关于~$\Nat$ 的真理，并且能解决所有可以用 $\Lang L_A$ 表述的问题，
+因为如果 $!A$ 是 $\Lang L_A$ 中的一个语句，那么要么 $\Sat{N}{!A}$，要么 $\Sat{N}{\lnot !A}$，从而要么 $\Th{TA} \Entails !A$，要么 $\Th{TA} \Entails \lnot !A$。
+我们把这样的理论称为\emph{完全的}。
 
 \begin{defn}
-A theory $\Gamma$ is \emph{!!{complete}} iff for every
-!!{sentence}~$!A$ in its language, either $\Gamma \Entails !A$ or
-$\Gamma \Entails \lnot !A$.
+一个理论~$\Gamma$ 是\emph{完全的}，当且仅当对其语言中的每个语句~$!A$，要么 $\Gamma \Entails !A$，要么 $\Gamma \Entails \lnot !A$。
 \end{defn}
 
 \begin{explain}
-By the Completeness Theorem, $\Gamma \Entails !A$ iff $\Gamma \Proves
-!A$, so $\Gamma$ is complete iff for every !!{sentence}~$!A$ in its
-language, either $\Gamma \Proves !A$ or $\Gamma \Proves \lnot !A$.
+由完备性定理，$\Gamma \Entails !A$ 当且仅当 $\Gamma \Proves !A$，
+所以 $\Gamma$ 是完全的当且仅当对其语言中的每个语句~$!A$，要么 $\Gamma \Proves !A$，要么 $\Gamma \Proves \lnot !A$。
 \end{explain}
 
-Another question we are led to ask is this: Is there a computational
-procedure we can use to test if !!a{sentence} is in~$\Th{TA}$, in
-$\Th{PA}$, or even just in~$\Th{Q}$?  We can make this more precise
-by defining when a set (e.g., a set of !!{sentence}s) is
-!!{decidable}.
+我们由此产生的另一个问题是：是否存在一个计算过程，可以用来检验一个语句是否属于~$\Th{TA}$、$\Th{PA}$，或者仅仅属于~$\Th{Q}$？
+我们可以通过定义一个集合（例如语句集）何为\emph{可判定的}，使这个问题更加精确。
 
 \begin{defn}
-A set $X$ is \emph{!!{decidable}} iff there is a computational procedure
-which on input~$x$ returns~$1$ if $x \in X$ and $0$ otherwise.
+一个集合 $X$ 是\emph{可判定的}，当且仅当存在一个计算过程，该过程对输入~$x$，
+若 $x \in X$ 则返回~$1$，否则返回~$0$。
 \end{defn}
 
-So our question becomes: Is $\Th{TA}$ ($\Th{PA}$, $\Th{Q}$) !!{decidable}?
+于是我们的问题变成了：$\Th{TA}$（$\Th{PA}$，$\Th{Q}$）是可判定的吗？
 
-The answer to all these questions will be: no. None of these theories
-are decidable. However, this phenomenon is not specific to these
-particular theories. In fact, \emph{any} theory that satisfies certain
-conditions is subject to the same results. One of these conditions,
-which $\Th{Q}$ and $\Th{PA}$ satisfy, is that they are axiomatized by
-!!a{decidable} set of axioms.
+所有这些问题的答案都将是：否。这些理论都是不可判定的。
+然而，这种现象并非这些特定理论所独有。事实上，\emph{任何}满足某些条件的理论都适用于同样的结论。
+$\Th{Q}$ 和 $\Th{PA}$ 满足的条件之一，就是它们由可判定的公理集所公理化。
 
 \begin{defn}
-A theory is \emph{!!{axiomatizable}} if it is axiomatized
-by !!a{decidable} set of axioms.
+一个理论是\emph{可公理化的}，如果它由一个可判定的公理集所公理化。
 \end{defn}
 
 \begin{ex}
-Any theory axiomatized by a finite set of !!{sentence}s is
-!!{axiomatizable}, since any finite set is !!{decidable}.
-Thus, $\Th{Q}$, for instance, is !!{axiomatizable}.
+任何由有限语句集公理化的理论都是可公理化的，因为任何有限集都是可判定的。
+因此，例如 $\Th{Q}$ 就是可公理化的。
 
-Schematically axiomatized theories like~$\Th{PA}$ are also
-!!{axiomatizable}. For to test if $!B$ is among the axioms
-of~$\Th{PA}$, i.e., to compute the function $\Char{X}$ where
-$\Char{X}(!B) = 1$ if $!B$ is an axiom of~$\Th{PA}$ and $= 0$
-otherwise, we can do the following: First, check if $!B$ is one of the
-axioms of~$\Th{Q}$. If it is, the answer is ``yes'' and the value of
-$\Char{X}(!B) = 1$. If not, test if it is an instance of the induction
-schema.  This can be done systematically; in this case, perhaps it's
-easiest to see that it can be done as follows: Any instance of the
-induction schema begins with a number of universal quantifiers, and
-then a sub-!!{formula} that is a conditional. The consequent of that
-conditional is $\lforall[x][!A(x, y_1, \dots, y_n)]$ where $x$ and
-$y_1$, \dots, $y_n$ are all the free variables of~$!A$ and the initial
-quantifiers of~$!B$ bind the variables~$y_1$, \dots,~$y_n$.  Once we
-have extracted this~$!A$ and checked that its free variables match the
-variables bound by the universal quantifiers at the front
-and~$\lforall[x]$, we go on to check that the antecedent of the
-conditional matches
-\[
+像~$\Th{PA}$ 这样通过模式公理化的理论也是可公理化的。
+因为要检验 $!B$ 是否是~$\Th{PA}$ 的公理之一（即计算函数 $\Char{X}$，其中若 $!B$ 是~$\Th{PA}$ 的公理则 $\Char{X}(!B) = 1$，否则 $\Char{X}(!B) = 0$），我们可以这样做：
+首先，检查 $!B$ 是否是~$\Th{Q}$ 的公理之一。如果是，答案为“是”且 $\Char{X}(!B) = 1$。
+如果不是，则检验它是否是归纳模式的一个实例。
+这可以系统地进行；下面或许是最容易看到的一种具体做法：
+归纳模式的任何一个实例都以若干全称量词开始，然后是一个作为条件句的子公式。
+该条件句的后件是 $\lforall[x][!A(x, y_1, \dots, y_n)]$，其中 $x$ 和 $y_1$, \dots, $y_n$ 是~$!A$ 的所有自由变元，并且~$!B$ 开头的量词约束了变元~$y_1$, \dots,~$y_n$。
+一旦我们提取出这个~$!A$，并检查了它的自由变元与开头的那些全称量词以及~$\lforall[x]$ 所约束的变元相匹配，
+我们就继续检查该条件句的前件是否与 \[
 !A(\Obj 0, y_1, \dots, y_n) \land \lforall[x][(!A(x, y_1, \dots, y_n)
 \lif !A(x', y_1, \dots, y_n))]
-\]
-Again, if it does, $!B$ is an instance of the induction schema, and if
-it doesn't, $!B$ isn't.
+\] 相匹配。
+同样，如果匹配，$!B$ 就是归纳模式的一个实例；如果不匹配，则不是。
 \end{ex}
 
-In answering this question---and the more general question of which
-theories are complete or decidable---it will be useful to consider
-also the following definition. Recall that a set $X$ is !!{enumerable}
-iff it is empty or if there is !!a{surjective} function~$f \colon \Nat
-\to X$. Such a function is called an enumeration of~$X$.
+在回答这个问题——以及哪些理论是完全的或可判定的这一更一般的问题——时，考虑以下定义也会有所帮助。
+回想一下，集合 $X$ 是\emph{可数的}，当且仅当它为空集或存在一个满射函数~$f \colon \Nat \to X$。这样的函数称为 $X$ 的一个枚举。
 
 \begin{defn}
-A set $X$ is called \emph{!!{computably enumerable}} (!!{c.e.} for
-short) iff it is empty or it has a computable enumeration.
+一个集合 $X$ 被称为\emph{可计算枚举的}（简称 c.e.\@），当且仅当它是空集或它拥有一个可计算的枚举。
 \end{defn}
 
-In addition to !!{axiomatizability}, another condition on theories to
-which the incompleteness theorems apply will be that they are strong
-enough to prove basic facts about computable functions and
-!!{decidable} relations. By ``basic facts,'' we mean !!{sentence}s
-which express what the values of computable functions are for each of
-their arguments.  And by ``strong enough'' we mean that the theories
-in question count these sentences among its theorems. For instance,
-consider a prototypical computable function: addition.  The value of
-$+$ for arguments $2$ and $3$ is~$5$, i.e., $2+3 = 5$. A sentence in
-the language of arithmetic that expresses that the value of $+$ for
-arguments $2$ and $3$ is~$5$ is: $(\num{2} + \num{3}) = \num{5}$.
-And, e.g., $\Th{Q}$ proves this sentence.  More generally, we would
-like there to be, for each computable function $f(x_1, x_2)$
-!!a{formula}~$!A_f(x_1, x_2, y)$ in~$\Lang{L_A}$ such that $\Th{Q}
-\Proves !A_f(\num{n_1}, \num{n_2}, \num{m})$ whenever $f(n_1, n_2) =
-m$. In this way, $\Th{Q}$ proves that the value of~$f$ for arguments
-$n_1$, $n_2$ is~$m$. In fact, we require that it proves a bit more,
-namely that no other number is the value of~$f$ for arguments
-$n_1$,~$n_2$. And the same goes for !!{decidable} relations. This is
-made precise in the following two definitions.
+除了可公理化之外，不完全性定理所适用的理论还需满足另一个条件，即它们必须足够强，足以证明关于可计算函数和可判定关系的基本事实。所谓“基本事实”，是指那些表达可计算函数在每个自变元处取什么值的语句。而“足够强”是指，所讨论的理论将这些语句作为其定理。例如，考虑一个典型的可计算函数：加法。$+$ 在自变元 $2$ 和 $3$ 处的值是~$5$，即 $2+3 = 5$。算术语言中表达 $+$ 在自变元 $2$ 和 $3$ 处值为~$5$ 的语句是：$(\num{2} + \num{3}) = \num{5}$。例如，$\Th{Q}$ 就能证明这个语句。更一般地，我们希望对于每个可计算函数 $f(x_1, x_2)$，都存在~$\Lang{L_A}$ 中的一个公式~$!A_f(x_1, x_2, y)$，使得只要 $f(n_1, n_2) =
+m$，就有 $\Th{Q}
+\Proves !A_f(\num{n_1}, \num{n_2}, \num{m})$。这样，$\Th{Q}$ 就证明了~$f$ 在自变元 $n_1$、$n_2$ 处的值是~$m$。事实上，我们要求它证明得还要多一点，即当自变元为 $n_1$、$n_2$ 时，没有其他数是~$f$ 的值。对于可判定关系也有类似的要求。下面的两个定义将这一点精确化。
 
 \begin{defn}
-A !!{formula}~$!A(x_1, \dots, x_k, y)$ \emph{!!{represents}} the
-function $f\colon \Nat^k \to \Nat$ in~$\Gamma$ iff whenever $f(n_1,
-\dots, n_k) = m$, then
+公式~$!A(x_1, \dots, x_k, y)$ 在~$\Gamma$ 中\emph{表示}函数 $f\colon \Nat^k \to \Nat$，当且仅当若 $f(n_1,
+\dots, n_k) = m$，则
 \begin{enumerate}
-\item $\Gamma \Proves !A(\num{n_1}, \dots, \num{n_k}, \num{m})$, and
+\item $\Gamma \Proves !A(\num{n_1}, \dots, \num{n_k}, \num{m})$，且
 \item $\Gamma \Proves \lforall[y](!A(\num{n_1}, \dots, \num{n_k},
-y) \lif y = \num{m})$.
+y) \lif y = \num{m})$。
 \end{enumerate}
 \end{defn}
 
 \begin{defn}
-A !!{formula}~$!A(x_1, \dots, x_k)$ \emph{!!{represents}} the
-relation $R \subseteq \Nat^k$ iff,
+公式~$!A(x_1, \dots, x_k)$ \emph{表示}关系 $R \subseteq \Nat^k$，当且仅当：
 \begin{enumerate}
-\item whenever $R(n_1, \dots, n_k)$, $\Gamma \Proves !A(\num{n_1},
-\dots, \num{n_k})$, and
-\item whenever not $R(n_1, \dots, n_k)$, $\Gamma \Proves \lnot
-!A(\num{n_1}, \dots, \num{n_k})$.
+\item 若 $R(n_1, \dots, n_k)$，则 $\Gamma \Proves !A(\num{n_1},
+\dots, \num{n_k})$，且
+\item 若并非 $R(n_1, \dots, n_k)$，则 $\Gamma \Proves \lnot
+!A(\num{n_1}, \dots, \num{n_k})$。
 \end{enumerate}
 \end{defn}
 
-A theory is ``strong enough'' for the incompleteness theorems to
-apply if it !!{represents} all computable functions and all
-!!{decidable} relations. $\Th{Q}$~and its extensions satisfy this
-condition, but it will take us a while to establish this---it's a
-non-trivial fact about the kinds of things $\Th{Q}$ can prove, and
-it's hard to show because $\Th{Q}$ has only a few axioms from which
-we'll have to prove all these facts. However, $\Th{Q}$ is a very weak
-theory. So although it's hard to prove that $\Th{Q}$ represents all
-computable functions, most interesting theories are stronger
-than~$\Th{Q}$, i.e., prove more than $\Th{Q}$ does. And if $\Th{Q}$
-proves something, any stronger theory does; since $\Th{Q}$ represents
-all computable functions, every stronger theory does. This means that
-many interesting theories meet this condition of the incompleteness
-theorems. So our hard work will pay off, since it shows that the
-incompleteness theorems apply to a wide range of theories. Certainly,
-any theory aiming to formalize ``all of mathematics'' must prove
-everything that $\Th{Q}$ proves, since it should at the very least be
-able to capture the results of elementary computations.  So any theory
-that is a candidate for a theory of ``all of mathematics'' will be one
-to which the incompleteness theorems apply.
-
-
-\end{document}
+要使不完全性定理适用，一个理论必须是“足够强”的，即它能表示所有可计算函数和所有可判定关系。$\Th{Q}$~及其扩张满足这个条件，但要证明这一点需要我们花些时间——这是关于$\Th{Q}$能证明哪些事实的一个非平凡结论，并且由于$\Th{Q}$仅有少数几条公理，我们必须从中推出所有这些事实，因此证明起来并不容易。然而，$\Th{Q}$是一个非常弱的理论。所以，尽管证明$\Th{Q}$表示所有可计算函数很困难，但大多数有趣的理论都比~$\Th{Q}$更强，也就是说，它们能证明比$\Th{Q}$更多的结论。而如果$\Th{Q}$证明了某个结论，任何更强的理论也能证明它；既然$\Th{Q}$能表示所有可计算函数，那么每个更强的理论也能。这意味着许多有趣的理论都满足不完全性定理的这个条件。因此，我们的努力不会白费，因为这表明不完全性定理适用于广泛的理论。当然，任何旨在形式化“全部数学”的理论都必须证明$\Th{Q}$所能证明的一切，因为它至少应该能够涵盖初等计算的结果。所以，任何作为“全部数学”理论候选者的理论，都将是不完全性定理适用的对象。

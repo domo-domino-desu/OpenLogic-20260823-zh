@@ -8,197 +8,155 @@
 
 \olfileid{nml}{com}{mod}
 
-\olsection{Modalities and Complete Consistent Sets}
+\olsection{模态词与完全一致集}
 
 \begin{explain}
-When we construct a model~$\mModel{M^\Sigma}$ whose set of worlds is
-given by the complete $\Sigma$-consistent sets~$\Delta$ in some normal
-modal logic~$\Sigma$, we will also need to define an accessibility
-relation~$R^\Sigma$ between such ``worlds.'' We want it to be the case
-that the accessibility relation (and the assignment $V^\Sigma)$ are
-defined in such a way that $\mSat{M^\Sigma}{!A}[\Delta]$ iff $!A \in
-\Delta$. How should we do this?
+当我们构造一个模型~$\mModel{M^\Sigma}$，其可能世界集由某个正规模态逻辑~$\Sigma$ 的完全 $\Sigma$ 一致集~$\Delta$ 给出时，我们还需要在这些“世界”之间定义一个可达关系~$R^\Sigma$。我们希望将可达关系（以及赋值 $V^\Sigma$）定义成满足：$\mSat{M^\Sigma}{!A}[\Delta]$ 当且仅当 $!A \in \Delta$。我们应当怎么做呢？
 
-Once the accessibility relation is defined, the definition of truth at
-a world ensures that \iftag{prvBox}{$\mSat{M^\Sigma}{\Box!A}[\Delta]$
-  iff $\mSat{M^\Sigma}{!A}[\Delta']$ for all $\Delta'$ such that
-  $R^\Sigma\Delta\Delta'$}{$\mSat{M^\Sigma}{\Diamond!A}[\Delta]$ iff
-  $\mSat{M^\Sigma}{!A}[\Delta']$ for at least one $\Delta'$ such that
-  $R^\Sigma\Delta\Delta'$}.  The proof that
-$\mSat{M^\Sigma}{!A}[\Delta]$ iff $!A \in \Delta$ requires that this
-is true in particular for !!{formula}s starting with a modal operator,
-i.e., \iftag{prvBox}{$\mSat{M^\Sigma}{\Box!A}[\Delta]$ iff $\Box !A
-  \in \Delta$}{$\mSat{M^\Sigma}{\Diamond!A}[\Delta]$ iff $\Diamond !A
-  \in \Delta$}. Combining this requirement with the definition of
-truth at a world for \iftag{prvBox}{$\Box !A$}{$\Diamond !A$} yields:
+一旦定义了可达关系，“在世界中为真”的定义就保证了 \iftag{prvBox}{$\mSat{M^\Sigma}{\Box!A}[\Delta]$当且仅当对所有满足 $R^\Sigma\Delta\Delta'$ 的 $\Delta'$ 都有$\mSat{M^\Sigma}{!A}[\Delta']$}{$\mSat{M^\Sigma}{\Diamond!A}[\Delta]$当且仅当至少存在一个满足 $R^\Sigma\Delta\Delta'$ 的 $\Delta'$ 使得$\mSat{M^\Sigma}{!A}[\Delta']$}。要证明$\mSat{M^\Sigma}{!A}[\Delta]$当且仅当 $!A \in \Delta$，特别地需要该结论对以模态算子开头的公式成立，即 \iftag{prvBox}{$\mSat{M^\Sigma}{\Box!A}[\Delta]$当且仅当 $\Box !A \in \Delta$}{$\mSat{M^\Sigma}{\Diamond!A}[\Delta]$当且仅当 $\Diamond !A \in \Delta$}。将此要求与 \iftag{prvBox}{$\Box !A$}{$\Diamond !A$} 在世界中为真的定义相结合，得到：
 \[
 \iftag{prvBox}{%
-  \Box!A \in \Delta \text{ iff } !A \in \Delta' \text{
-    for all $\Delta'$ with } R^\Sigma\Delta\Delta'}{%
-  \Diamond!A \in \Delta \text{ iff } !A \in \Delta' \text{ for at
-    least one } \Delta' \text{ with } R^\Sigma\Delta\Delta'}
-\]
-\iftag{prvBox}{Consider the left-to-right direction: it says that if
-  $\Box !A \in \Delta$, then $!A \in \Delta'$ for any $!A$ and any
-  $\Delta'$ with $R^\Sigma\Delta\Delta'$. If we stipulate that
-  $R^\Sigma\Delta\Delta'$ iff $!A \in \Delta'$ for all $\Box!A \in
-  \Delta$, then this holds. We can write the condition on the right of
-  the ``iff'' more compactly as: $\Setabs{!A}{\Box!A \in \Delta}
-  \subseteq \Delta'$.}{Consider the right-to-left direction: it says
-  that if $!A \in \Delta'$ then $\Diamond!A \in \Delta$, for any $!A$
-  and $\Delta'$ with $R^\Sigma\Delta\Delta'$. If we stipulate that
-  $R^\Sigma\Delta\Delta'$ holds whenever $\Diamond!A \in \Delta$ for
-  all $!A \in \Delta'$, then this holds.  We can write the condition
-  on the right of the ``iff'' more compactly as:
-  $\Setabs{\Diamond!A}{!A \in \Delta'} \subseteq \Delta$.}
+  \Box!A \in \Delta \text{ 当且仅当 } !A \in \Delta' \text{ 对所有满足 } R^\Sigma\Delta\Delta'}{%
+  \Diamond!A \in \Delta \text{ 的 $\Delta'$ 成立 } !A \in \Delta' \text{ 当且仅当对至少一个满足 } R^\Sigma\Delta\Delta'}
+\]\text{ 的  \Delta'  成立}
+\iftag{prvBox}{考虑从左到右的方向：它说的是，若 $\Box !A \in \Delta$，则对任意 $!A$ 及任意满足 $R^\Sigma\Delta\Delta'$ 的 $\Delta'$，都有 $!A \in \Delta'$。如果我们规定 $R^\Sigma\Delta\Delta'$ 当且仅当：对所有的 $\Box!A \in \Delta$，都有 $!A \in \Delta'$，那么这就成立了。我们可以将“当且仅当”右边的条件更简洁地写为：$\Setabs{!A}{\Box!A \in \Delta}
+  \subseteq \Delta'$。}{考虑从右到左的方向：它说的是，对任意 $!A$ 及满足 $R^\Sigma\Delta\Delta'$ 的 $\Delta'$，若 $!A \in \Delta'$ 则 $\Diamond!A \in \Delta$。如果我们规定，只要对所有的 $!A \in \Delta'$ 都有 $\Diamond!A \in \Delta$，就成立 $R^\Sigma\Delta\Delta'$，那么这就成立了。我们可以将“当且仅当”右边的条件更简洁地写为：$\Setabs{\Diamond!A}{!A \in \Delta'} \subseteq \Delta$。}
 
-So the question is: does this definition of $R^\Sigma$ in fact
-guarantee that \iftag{prvBox}{$\Box !A \in \Delta$ iff
-  $\mSat{M^\Sigma}{\Box !A}[\Delta]$? \iftag{prvDiamond}{Does it also
-    guarantee that }{}}{}\iftag{prvDiamond}{$\Diamond !A \in \Delta$
-  iff $\mSat{M^\Sigma}{\Diamond !A}[\Delta]$?}{} The next few results
-will establish this.
+那么问题在于：$R^\Sigma$ 的这个定义是否确实能保证 \iftag{prvBox}{$\Box !A \in \Delta$ 当且仅当$\mSat{M^\Sigma}{\Box !A}[\Delta]$？ \iftag{prvDiamond}{它是否也保证了 }{}}{}\iftag{prvDiamond}{$\Diamond !A \in \Delta$ 当且仅当$\mSat{M^\Sigma}{\Diamond !A}[\Delta]$？}{} 接下来的几个结论将确立这一点。
 \end{explain}
 
 \begin{defn}
-  If $\Gamma$ is a set of !!{formula}s, let
+  如果 $\Gamma$ 是一个公式集，令
   \begin{align*}
     \Box\Gamma & = \Setabs{\Box !B}{!B \in \Gamma}\\
     \Diamond\Gamma & = \Setabs{\Diamond !B}{!B \in \Gamma}\\
-    \intertext{and}
+    \intertext{且}
     \Box^{-1}\Gamma & = \Setabs{!B}{\Box !B \in \Gamma}\\
     \Diamond^{-1}\Gamma & = \Setabs{!B}{\Diamond !B \in \Gamma}\\
   \end{align*}
 \end{defn}
 
-In other words, $\Box\Gamma$ is $\Gamma$ with $\Box$ in front of every
-!!{formula} in~$\Gamma$; $\Box^{-1}\Gamma$ is all the $\Box$'ed
-!!{formula}s of~$\Gamma$ with the initial $\Box$'s removed.  This
-definition is not terribly important on its own, but will simplify the
-notation considerably.
+换句话说，$\Box\Gamma$ 是在 $\Gamma$ 的每个公式前加上 $\Box$ 所得的集合；$\Box^{-1}\Gamma$ 则是从 $\Gamma$ 中所有带 $\Box$ 的公式中去掉最前面的 $\Box$ 所得的集合。这个定义本身不太重要，但能极大地简化记号。
 
-Note that $\Box\Box^{-1}\Gamma \subseteq \Gamma$:
+注意 $\Box\Box^{-1}\Gamma \subseteq \Gamma$：
 \[
 \Box\Box^{-1}\Gamma = \Setabs{\Box!B}{\Box!B \in \Gamma}
 \]
-i.e., it's just the set of all those !!{formula}s of~$\Gamma$ that
-start with~$\Box$.
+也就是说，$\Box\Box^{-1}\Gamma$ 正好就是 $\Gamma$ 中所有以 $\Box$ 开头的公式组成的集合。
 
 \begin{lem}\ollabel{lem:box1}
-  If $\Gamma \Proves[\Sigma] !A$ then $\Box\Gamma \Proves[\Sigma] \Box
+  若 $\Gamma \Proves[\Sigma] !A$，则 $\Box\Gamma \Proves[\Sigma] \Box
   !A$.
 \end{lem}
 
 \begin{proof}
-  If $\Gamma \Proves[\Sigma] !A$ then there are $!B_1$, \dots, $!B_k
-  \in \Gamma$ such that $\Sigma \Proves !B_1 \lif (!B_2 \lif \cdots
-  (!B_n \lif !A)\cdots)$. Since $\Sigma$ is normal, by rule \RK{},
+  若 $\Gamma \Proves[\Sigma] !A$，则存在 $!B_1$, \dots, $!B_k
+  \in \Gamma$ 使得 $\Sigma \Proves !B_1 \lif (!B_2 \lif \cdots
+  (!B_n \lif !A)\cdots)$。由于 $\Sigma$ 是正规的，根据规则 \RK{},
   $\Sigma \Proves \Box!B_1 \lif (\Box!B_2 \lif \cdots (\Box!B_n \lif
-  \Box!A)\cdots)$, where obviously $\Box!B_1$, \dots, $\Box!B_k \in
-  \Box\Gamma$. Hence, by definition, $\Box\Gamma \Proves[\Sigma] \Box
+  \Box!A)\cdots)$，其中显然有 $\Box!B_1$, \dots, $\Box!B_k \in
+  \Box\Gamma$。因此，由定义知 $\Box\Gamma \Proves[\Sigma] \Box
   !A$.
 \end{proof}
 
 \begin{lem}\ollabel{lem:box2}
-  If $\Box^{-1} \Gamma \Proves[\Sigma] !A$ then $\Gamma
+  若 $\Box^{-1} \Gamma \Proves[\Sigma] !A$，则 $\Gamma
   \Proves[\Sigma] \Box!A$.
 \end{lem}
 
 \begin{proof}
-  Suppose $\Box^{-1}\Gamma \Proves[\Sigma] !A$; then by
-  \olref{lem:box1}, $\Box\Box^{-1}\Gamma \Proves \Box!A$. But since
-  $\Box\Box^{-1}\Gamma \subseteq \Gamma$, also $\Gamma \Proves[\Sigma]
-  \Box!A$ by monotonicity.
+  假设 $\Box^{-1}\Gamma \Proves[\Sigma] !A$；则由
+  \olref{lem:box1}，$\Box\Box^{-1}\Gamma \Proves \Box!A$。又因为
+  $\Box\Box^{-1}\Gamma \subseteq \Gamma$，根据单调性，也有 $\Gamma \Proves[\Sigma]
+  \Box!A$。
 \end{proof}
 
 \iftag{prvBox}{%
 % Box is primitive
   
+
 \begin{prop}\ollabel{prop:box}
-  If $\Gamma$ is complete $\Sigma$-consistent, then $\Box !A \in
-  \Gamma$ if and only if for every complete $\Sigma$-consistent
-  $\Delta$ such that $\Box^{-1} \Gamma \subseteq \Delta$, it holds
-  that $!A \in \Delta$.
+  若 $\Gamma$ 是完全 $\Sigma$ 一致的，则 $\Box !A \in
+  \Gamma$ 当且仅当：对于每个满足 $\Box^{-1} \Gamma \subseteq \Delta$ 的完全 $\Sigma$ 一致集 $\Delta$，都有 $!A \in \Delta$。
 \end{prop}
 
 \begin{proof}
-  Suppose $\Gamma$ is complete $\Sigma$-consistent. The ``only if''
-  direction is easy: Suppose $\Box !A \in \Gamma$ and that
-  $\Box^{-1}\Gamma \subseteq \Delta$. Since $\Box!A \in \Gamma$, $!A
-  \in \Box^{-1}\Gamma \subseteq \Delta$, so $!A \in \Delta$.
+  假设 $\Gamma$ 是完全 $\Sigma$ 一致的。“仅当”方向是容易的：假设 $\Box !A \in \Gamma$ 且 $\Box^{-1}\Gamma \subseteq \Delta$。由于 $\Box!A \in \Gamma$，$!A
+  \in \Box^{-1}\Gamma \subseteq \Delta$，故 $!A \in \Delta$。
 
-  For the ``if'' direction, we prove the contrapositive: Suppose
-  $\Box!A \notin \Gamma$. Since $\Gamma$ is complete
-  $\Sigma$-consistent, it is deductively closed, and hence $\Gamma
-  \Proves/[\Sigma] \Box !A$. By \olref{lem:box2},
-  $\Box^{-1}\Gamma \Proves/[\Sigma] !A$. By
+  对于“当”方向，我们用逆否法论证：假设
+  $\Box!A \notin \Gamma$。由于 $\Gamma$ 是完全 $\Sigma$ 一致的，它是演绎封闭的，因此 $\Gamma
+  \Proves/[\Sigma] \Box !A$。由 \olref{lem:box2},
+  $\Box^{-1}\Gamma \Proves/[\Sigma] !A$。根据
   \olref[prf][con]{prop:consistencyfacts}\olref[prf][con]{prop:consistencyfacts-b},
-  $\Box^{-1}\Gamma \cup \{ \lnot!A \}$ is $\Sigma$-consistent. By
-  Lindenbaum's Lemma, there is a complete $\Sigma$-consistent
-  set~$\Delta$ such that $\Box^{-1}\Gamma \cup \{ \lnot!A \} \subseteq
-  \Delta$. By consistency, $!A \notin \Delta$.
+  $\Box^{-1}\Gamma \cup \{ \lnot!A \}$ 是 $\Sigma$ 一致的。由 Lindenbaum 引理，存在一个完全 $\Sigma$ 一致集~$\Delta$ 使得 $\Box^{-1}\Gamma \cup \{ \lnot!A \} \subseteq
+  \Delta$。由一致性，$!A \notin \Delta$。
 \end{proof}
+
+
 }{%
 % Box is not primitive, only Diamond is
 
 \begin{prop}\ollabel{prop:diamond}
-  If $\Gamma$ is complete $\Sigma$-consistent, then $\Diamond !A \in
-  \Gamma$ if and only if for some complete $\Sigma$-consistent
-  $\Delta$ such that $\Diamond\Delta \subseteq
-  \Gamma$, it holds that $!A \in \Delta$.
+  若 $\Gamma$ 是完全 $\Sigma$ 一致的，则 $\Diamond !A \in
+  \Gamma$ 当且仅当存在某个完全 $\Sigma$ 一致集
+  $\Delta$ 使得 $\Diamond\Delta \subseteq
+  \Gamma$ 且 $!A \in \Delta$。
 \end{prop}
 
 \begin{proof}
-  Suppose $\Gamma$ is complete $\Sigma$-consistent. The right-to-left
-  part is easy: Let $\Delta$ be complete $\Sigma$-consistent such that
-  $\Diamond\Delta \subseteq \Gamma$ and $!A \in \Delta$.  Then
-  $\Diamond!A \in \Diamond\Delta \subseteq \Gamma$, i.e., $\Diamond!A
-  \in \Gamma$.
+  假设 $\Gamma$ 是完全 $\Sigma$ 一致的。
+  从右到左的部分是简单的：设 $\Delta$ 是完全 $\Sigma$ 一致的，且满足 $\Diamond\Delta \subseteq \Gamma$ 以及 $!A \in \Delta$。
+  那么 $\Diamond!A \in \Diamond\Delta \subseteq \Gamma$，即 $\Diamond!A
+  \in \Gamma$。
 
-  For the left-to-right direction, assume $\Diamond !A \in \Gamma$. We
-  have to show that there is a complete $\Sigma$-consistent $\Delta$
-  with $!A \in \Delta$ and $\Diamond\Delta \subseteq \Gamma$.  Since
-  $\Diamond !A \in \Gamma$, and $\Gamma$ is $\Sigma$-consistent,
-  $\Box\lnot !A \notin \Gamma$. Since $\Gamma$ is complete
-  $\Sigma$-consistent, it is deductively closed, so $\Gamma
-  \Proves/[\Sigma] \Box\lnot !A$.  By \olref{lem:box2},
-  $\Box^{-1}\Gamma \Proves/[\Sigma] \lnot !A$. By
-  \olref[prf][con]{prop:consistencyfacts}\olref[prf][con]{prop:consistencyfacts-b},
-  $\Box^{-1}\Gamma \cup \{ !A \}$ is $\Sigma$-consistent. By
-  Lindenbaum's Lemma, there is a complete $\Sigma$-consistent
-  set~$\Delta$ such that $\Box^{-1}\Gamma \cup \{ !A \} \subseteq
-  \Delta$. Clearly, $!A \in \Delta$.  To see that $\Diamond\Delta
-  \subseteq \Gamma$, assume it weren't: For some $!B \in \Delta$,
-  $\Diamond !B \notin \Gamma$. Then, since $\Gamma$ is complete
-  $\Sigma$-consistent, $\Box\lnot !B \in \Gamma$. But then also $\lnot
-  !B \in \Box^{-1}\Gamma \subseteq \Delta$, which would make $\Delta$
-  inconsistent.
+  对于从左到右的方向，假设 $\Diamond !A \in \Gamma$。
+  我们需要证明存在一个完全 $\Sigma$ 一致集 $\Delta$，满足 $!A \in \Delta$ 且 $\Diamond\Delta \subseteq \Gamma$。
+  既然 $\Diamond !A \in \Gamma$，且 $\Gamma$ 是 $\Sigma$ 一致的，则 $\Box\lnot !A \notin \Gamma$。
+  由于 $\Gamma$ 是完全 $\Sigma$ 一致的，它是演绎封闭的，所以 $\Gamma
+  \Proves/[\Sigma] \Box\lnot !A$。
+  根据 \olref{lem:box2}，$\Box^{-1}\Gamma \Proves/[\Sigma] \lnot !A$。
+  由
+  \olref[prf][con]{prop:consistencyfacts}\olref[prf][con]{prop:consistencyfacts-b}，
+  $\Box^{-1}\Gamma \cup \{ !A \}$ 是 $\Sigma$ 一致的。
+  根据 Lindenbaum 引理，存在一个完全 $\Sigma$ 一致集
+  $\Delta$ 使得 $\Box^{-1}\Gamma \cup \{ !A \} \subseteq
+  \Delta$。
+  显然，$!A \in \Delta$。
+  为证 $\Diamond\Delta \subseteq \Gamma$，假设这不成立：即存在 $!B \in \Delta$，
+  使得 $\Diamond !B \notin \Gamma$。
+  那么，由于 $\Gamma$ 是完全 $\Sigma$ 一致的，有 $\Box\lnot !B \in \Gamma$。
+  但这样 $\lnot
+  !B \in \Box^{-1}\Gamma \subseteq \Delta$ 也会成立，这将导致 $\Delta$ 不一致。
 \end{proof}
 }
 
 \begin{lem}\ollabel{lem:box-iff-diamond}
-  Suppose $\Gamma$ and $\Delta$ are complete
-  $\Sigma$-consistent. Then $\Box^{-1}\Gamma \subseteq \Delta$ if and
-  only if $\Diamond\Delta \subseteq \Gamma$.
+  假设 $\Gamma$ 和 $\Delta$ 都是完全
+  $\Sigma$ 一致的。则 $\Box^{-1}\Gamma \subseteq \Delta$ 当且仅当
+  $\Diamond\Delta \subseteq \Gamma$。
 \end{lem}
 
 \begin{proof}
-  ``Only if'' direction: Assume $\Box^{-1}\Gamma \subseteq \Delta$ and
-  suppose $\Diamond!A \in \Diamond\Delta$ (i.e., $!A \in \Delta$).  In
-  order to show $\Diamond!A \in \Gamma$, it suffices to show
-  $\Box\lnot!A \notin \Gamma$, for then by maximality, $\lnot\Box\lnot
-  !A \in \Gamma$. Now, if $\Box\lnot!A \in \Gamma$ then by hypothesis
-  $\lnot!A \in \Delta$, against the consistency of $\Delta$ (since $!A
-  \in \Delta$). Hence $\Box\lnot!A \notin \Gamma$, as required.
+  “仅当”方向：假设 $\Box^{-1}\Gamma \subseteq \Delta$ 并且
+  设 $\Diamond!A \in \Diamond\Delta$（即 $!A \in \Delta$）。
+  为证明 $\Diamond!A \in \Gamma$，只需证明
+  $\Box\lnot!A \notin \Gamma$，因为这样由极大性便有 $\lnot\Box\lnot
+  !A \in \Gamma$。
+  现在，若 $\Box\lnot!A \in \Gamma$，则根据假设
+  $\lnot!A \in \Delta$，这与 $\Delta$ 的一致性矛盾（因为 $!A
+  \in \Delta$）。
+  因此 $\Box\lnot!A \notin \Gamma$，符合要求。
 
-  ``If'' direction: Assume $\Diamond\Delta
-  \subseteq \Gamma$. We argue contrapositively: suppose $!A
-  \notin \Delta$ in order to show $\Box!A \notin \Gamma$. If
-  $!A \notin \Delta$ then by maximality $\lnot!A \in \Delta$
-  and so by hypothesis $\Diamond\lnot!A \in \Gamma$. But in a
-  normal modal logic $\Diamond\lnot!A$ is equivalent to
-  $\lnot\Box !A$, and if the latter is in $\Gamma$, by consistency
-  $\Box!A \notin\Gamma$, as required.
+  “当”方向：假设 $\Diamond\Delta
+  \subseteq \Gamma$。
+  我们用逆否法论证：假设 $!A
+  \notin \Delta$，以证明 $\Box!A \notin \Gamma$。
+  如果 $!A \notin \Delta$，则由极大性有 $\lnot!A \in \Delta$，
+  从而根据假设 $\Diamond\lnot!A \in \Gamma$。
+  但在正规模态逻辑中，$\Diamond\lnot!A$ 等价于
+  $\lnot\Box !A$，而若后者在 $\Gamma$ 中，由一致性可知
+  $\Box!A \notin\Gamma$，符合要求。
 \end{proof}
 
 \iftag{prvBox}{%
@@ -206,41 +164,43 @@ start with~$\Box$.
 % Box and Diamond are both primitive; prove
 % prop:diamond using lem:box-iff-diamond
   
+
 \begin{prop}\ollabel{prop:diamond}
-  If $\Gamma$ is complete $\Sigma$-consistent, then $\Diamond !A \in
-  \Gamma$ if and only if for some complete $\Sigma$-consistent
-  $\Delta$ such that $\Diamond\Delta \subseteq
-  \Gamma$, it holds that $!A \in \Delta$.
+  若 $\Gamma$ 是完全 $\Sigma$ 一致的，则 $\Diamond !A \in
+  \Gamma$ 当且仅当存在某个完全 $\Sigma$ 一致集
+  $\Delta$ 使得 $\Diamond\Delta \subseteq
+  \Gamma$ 且 $!A \in \Delta$。
 \end{prop}
 
 \begin{proof}
-Suppose $\Gamma$ is complete $\Sigma$-consistent.  $\Diamond!A \in
-\Gamma$ iff $\lnot\Box\lnot !A \in \Gamma$ by \Dual{} and closure.
-$\lnot\Box\lnot !A \in \Gamma$ iff $\Box\lnot !A \notin \Gamma$ by
-\olref[ccs]{prop:ccs-properties}\olref[ccs]{prop:ccs-lnot} since
-$\Gamma$ is complete $\Sigma$-consistent.  By \olref{prop:box},
-$\Box\lnot !A \notin \Gamma$ iff, for some complete
-$\Sigma$-consistent $\Delta$ with $\Box^{-1}\Gamma \subseteq \Delta$,
-$\lnot!A \notin \Delta$.  Now consider any such~$\Delta$. By
-\olref{lem:box-iff-diamond}, $\Box^{-1}\Gamma \subseteq \Delta$ iff
-$\Diamond\Delta \subseteq \Gamma$. Also, $\lnot !A \notin \Delta$ iff
-$!A \in \Delta$ by
-\olref[ccs]{prop:ccs-properties}\olref[ccs]{prop:ccs-lnot}.  So
-$\Diamond!A \in \Gamma$ iff, for some complete $\Sigma$-consistent
-$\Delta$ with $\Diamond\Delta \subseteq \Gamma$, $!A \in \Delta$.
+假设 $\Gamma$ 是完全 $\Sigma$ 一致的。
+根据 \Dual{} 及封闭性，$\Diamond!A \in
+\Gamma$ 当且仅当 $\lnot\Box\lnot !A \in \Gamma$。
+由于 $\Gamma$ 是完全 $\Sigma$ 一致的，根据
+\olref[ccs]{prop:ccs-properties}\olref[ccs]{prop:ccs-lnot}，$\lnot\Box\lnot !A \in \Gamma$ 当且仅当 $\Box\lnot !A \notin \Gamma$。
+由 \olref{prop:box}，$\Box\lnot !A \notin \Gamma$ 当且仅当存在某个完全
+$\Sigma$ 一致集 $\Delta$ 满足 $\Box^{-1}\Gamma \subseteq \Delta$ 且 $\lnot!A \notin \Delta$。
+现在考虑任意这样的~$\Delta$。
+根据 \olref{lem:box-iff-diamond}，$\Box^{-1}\Gamma \subseteq \Delta$ 当且仅当
+$\Diamond\Delta \subseteq \Gamma$。
+同时，由
+\olref[ccs]{prop:ccs-properties}\olref[ccs]{prop:ccs-lnot}，$\lnot !A \notin \Delta$ 当且仅当
+$!A \in \Delta$。
+因此，$\Diamond!A \in \Gamma$ 当且仅当存在某个完全 $\Sigma$ 一致集
+$\Delta$ 使得 $\Diamond\Delta \subseteq \Gamma$ 且 $!A \in \Delta$。
 \end{proof}
 
 }{}}{}
   
+
 \begin{prob}
-  Show that if $\Gamma$ is complete $\Sigma$-consistent, then
-  \iftag{prvBox}{$\Diamond !A \in \Gamma$ if and only if there is a
-    complete $\Sigma$-consistent $\Delta$ such that $\Box^{-1}\Gamma
-    \subseteq \Delta$ and $!A \in \Delta$.}{$\Box !A \in
-    \Gamma$ if and only if for every complete $\Sigma$-consistent
-    $\Delta$ such that $\Box^{-1} \Gamma \subseteq \Delta$, it holds
-    that $!A \in \Delta$.}  \emph{Do this without using
-    \olref[nml][com][mod]{lem:box-iff-diamond}}.
+  证明：若 $\Gamma$ 是完全 $\Sigma$ 一致的，则
+  \iftag{prvBox}{$\Diamond !A \in \Gamma$ 当且仅当存在一个
+    完全 $\Sigma$ 一致集 $\Delta$ 使得 $\Box^{-1}\Gamma
+    \subseteq \Delta$ 且 $!A \in \Delta$。}{$\Box !A \in
+    \Gamma$ 当且仅当对每个满足 $\Box^{-1} \Gamma \subseteq \Delta$ 的完全 $\Sigma$ 一致集
+    $\Delta$，都有 $!A \in \Delta$。} \emph{请在不使用
+    \olref[nml][com][mod]{lem:box-iff-diamond} 的前提下完成此题。}
 \end{prob}
 
 \end{document}

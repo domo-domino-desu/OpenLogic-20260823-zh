@@ -1,124 +1,99 @@
-% Part: lambda-calculus
-% Chapter: introduction
-% Section: primitive-recursion
-
 \documentclass[../../../include/open-logic-section]{subfiles}
 
 \begin{document}
 
 \olfileid{lam}{int}{pr}
-\olsection{\usetoken{S}{lambda definable} Functions are Closed under Primitive Recursion}
+\olsection{\usetoken{S}{lambda definable} 函数在原始递归下封闭}
 
-When it comes to primitive recursion, we finally need to do some
-work. We will have to proceed in stages. As before, on the assumption
-that we already have terms $G$ and $H$ that !!{lambda define} functions
-$g$ and~$h$, respectively, we want a term $H$ that !!{lambda define}s the
-function~$f$ defined by
+% Part: lambda-calculus
+% Chapter: introduction
+% Section: primitive-recursion
+
+至于原始递归，我们终于需要花点功夫了。我们必须分阶段进行。如前所述，假设我们已经有分别$\lambd$-定义函数$g$和~$h$的项$G$和~$H$，我们需要找到一个项$F$来$\lambd$-定义由
 \begin{align*}
 f(0, \vec z) & = g(\vec z) \\
 f(x+1, \vec z) & = h(z, f(x,\vec z), \vec z).
 \end{align*}
-So, in general, given lambda terms $G'$ and~$H'$, it suffices to find
-a term~$F$ such that
+定义的函数~$f$。
+因此，一般地，给定$\lambda$项$G'$和~$H'$，只需找到一个项~$F$使得
 \begin{align*}
 F(\num{0}, \vec z) & \equiv G(\vec z) \\
 F(\overline{n+1}, \vec z) & \equiv H(\num{n}, F(\num{n}, \vec z), \vec z)
 \end{align*}
-for every natural number~$n$; the fact that $G'$ and~$H'$ !!{lambda define}
-$g$ and~$h$ means that whenever we plug in numerals $\num{\vec m}$
-for $\vec z$, $F(\num{n+1}, \num{\vec m})$ will normalize to the
-right answer.
+对每个自然数~$n$成立即可；既然$G'$和~$H'$分别$\lambd$-定义了$g$和~$h$，这就意味着只要将数字$\num{\vec m}$代入$\vec z$，$F(\num{n+1}, \num{\vec m})$就会归约到正确的答案。
 
-But for this, it suffices to find a term~$F$ satisfying
+为此，只需找到一个满足
 \begin{align*}
 F(\num 0) & \equiv G \\
 F(\overline {n+1}) & \equiv H(\num{n},F(\num{n}))
-\intertext{for every natural number $n$,  where}
-G & = \lambd[\vec z][G'(\vec z)] \text{ and}\\
+\intertext{的项~$F$即可，其中对每个自然数$n$，有}
+G & = \lambd[\vec z][G'(\vec z)] \text{ 且}\\
 H(u,v) & = \lambd[\vec z][H'(u,v(u,\vec z),\vec z)].
 \end{align*}
-In other words, with lambda trickery, we can avoid having to worry
-about the extra parameters $\vec z$---they just get absorbed in the
-lambda notation.
+换言之，借助$\lambda$技巧，我们无需顾虑额外的参数$\vec z$——它们直接被吸收进了$\lambda$记法中。
 
-Before we define the term $F$, we need a mechanism for handling
-ordered pairs. This is provided by the next lemma.
+在定义项$F$之前，我们需要一个处理有序对的机制。这由下一个引理提供。
 
 \begin{lem}
-There is a lambda term $D$ such that for each pair of lambda terms $M$
-and~$N$, $D(M,N)(\num{0}) \red M$ and $D(M,N)(\num{1}) \red N$.
+存在一个λ-项 $D$，使得对每一对λ-项 $M$ 与~$N$，$D(M,N)(\num{0}) \red M$ 且 $D(M,N)(\num{1}) \red N$。
 \end{lem}
 
 \begin{proof}
-First, define the lambda term $K$ by
+首先，定义λ-项 $K$ 如下：
 \[
 K(y) = \lambd[x][y].
 \]
-In other words, $K$ is the term $\lambd[y][\lambd[x][y]]$. Looking at it
-differently, for every $M$, $K(M)$ is a constant function that
-returns~$M$ on any input.
+换句话说，$K$ 是项 $\lambd[y][\lambd[x][y]]$。换个角度看，对每个 $M$，$K(M)$ 都是一个常函数，无论输入什么都会返回~$M$。
 
-Now define $D(x,y,z)$ by $D(x,y,z) = z (K(y))x$. Then we have
+现在，通过 $D(x,y,z) = z (K(y))x$ 定义 $D(x,y,z)$。于是我们有
 \begin{align*}
-D(M,N,\num 0) & \red \num 0 (K(N)) M \red M \text{ and}\\
+D(M,N,\num 0) & \red \num 0 (K(N)) M \red M \text{ 且 }\\
 D(M,N,\num 1) & \red \num 1 (K(N)) M \red K(N) M \red N,
 \end{align*}
-as required.
+如所求。
 \end{proof}
 
-The idea is that $D(M,N)$ represents the pair $\tuple{M, N}$, and if
-$P$ is assumed to represent such a pair, $P(\num 0)$ and $P(\num 1)$
-represent the left and right projections, $(P)_0$ and $(P)_1$. We will
-use the latter notations.
+其核心想法是，$D(M,N)$ 表示有序对 $\tuple{M, N}$，并且若假定 $P$ 表示这样一个有序对，则 $P(\num 0)$ 和 $P(\num 1)$ 便分别表示左投影和右投影，即 $(P)_0$ 和 $(P)_1$。我们将采用后一种记法。
 
 \begin{lem}
-The !!{lambda definable} functions are closed under primitive recursion.
+λ-可定义函数在原始递归下封闭。
 \end{lem}
 
 \begin{proof}
-We need to show that given any terms, $G$ and $H$, we can find a term
-$F$ such that
+我们需要证明，对于任意给定的项 $G$ 和 $H$，都能找到一个项 $F$，使得对每个自然数~$n$，
 \begin{align*}
 F(\num{0}) & \equiv G \\
 F(\num{n+1}) & \equiv H(\num{n}, F(\num{n}))
-\end{align*}
-for every natural number~$n$. The idea is roughly to compute sequences
-of \emph{pairs}
+\end{align*}。
+大致思路是，以数字作为迭代器来计算\emph{有序对}的序列
 \[
 \tuple{\num 0, F(\num 0)}, \tuple{\num 1, F(\num 1)}, \dots,
-\]
-using numerals as iterators. Notice that the first pair is just
-$\tuple{\num 0, G}$. Given a pair $\tuple{\num{n}, F(\num{n})}$, the
-next pair, $\tuple{\num{n+1}, F(\num{n+1})}$ is supposed to
-be equivalent to $\tuple{\num{n+1}, H(\num{n}, F(\num{n}))}$. We
-will design a lambda term~$T$ that makes this one-step transition.
+\]。
+注意，第一个有序对就是 $\tuple{\num 0, G}$。给定一个有序对 $\tuple{\num{n}, F(\num{n})}$，下一个有序对 $\tuple{\num{n+1}, F(\num{n+1})}$ 应当与 $\tuple{\num{n+1}, H(\num{n}, F(\num{n}))}$ 等价。我们将设计一个实现这一单步转移的λ-项~$T$。
 
-The details are as follows. Define $T(u)$ by
+细节如下。定义 $T(u)$ 为：
 \[
 T(u) = \tuple{S((u)_0), H((u)_0,(u)_1)}.
 \]
-Now it is easy to verify that for any number~$n$,
+现在容易验证，对任意自然数~$n$，
 \[
 T(\tuple{\num{n}, M}) \red \tuple{\num{n+1}, H(\num{n}, M)}.
 \]
-As suggested above, given $G$ and $H$, define~$F(u)$ by
+如上所述，给定 $G$ 和 $H$，通过下式定义~$F(u)$：
 \[
 F(u) = (u(T,\tuple{\num 0, G}))_1.
 \]
-In other words, on input~$\num{n}$, $F$ iterates $T$ $n$ times on
-$\tuple{\num 0, G}$, and then returns the second component. To start
-with, we have
+换言之，以~$\num{n}$ 为输入，$F$ 将 $T$ 在 $\tuple{\num 0, G}$ 上迭代 $n$ 次，然后返回第二个分量。首先，我们有
 \begin{enumerate}
 \item $\num{0} (T, \tuple{\num 0, G}) \equiv \tuple{\num{0}, G}$
 \item $F(\num{0}) \equiv G$
 \end{enumerate}
-By induction on~$n$, we can show that for each natural number one has
-the following:
+通过对~$n$ 归纳，可证对每个自然数均有以下结论：
 \begin{enumerate}
 \item $\num{n+1}(T, \tuple{\num{0}, G}) \equiv \tuple{\num{n+1}, F(\num{n+1})}$
 \item $F(\num{n+1}) \equiv H(\num{n}, F(\num{n}))$
 \end{enumerate}
-For the second clause, we have
+对于第二条，我们有
 \begin{align*}
 F(\num{n+1}) & \red (\num{n+1}(T, \tuple{\num 0, G}))_1 \\
 & \equiv (T(\num{n} (T, \tuple{\num 0, G})))_1 \\
@@ -126,8 +101,7 @@ F(\num{n+1}) & \red (\num{n+1}(T, \tuple{\num 0, G}))_1 \\
 & \equiv (\tuple{\num{n+1}, H(\num{n}, F(\num{n}))})_1 \\
 & \equiv H(\num{n}, F(\num{n})).
 \end{align*}
-Here we have used the induction hypothesis on the second-to-last
-line. For the first clause, we have
+此处我们在倒数第二行用到了归纳假设。对于第一条，我们有
 \begin{align*}
 \num{n+1} (T, \tuple{\num 0, G}) &
 \equiv T(\num{n} (T, \tuple{\num 0, G})) \\
@@ -135,10 +109,8 @@ line. For the first clause, we have
 & \equiv \tuple{\num{n+1}, H(\num{n}, F(\num{n}))} \\
 & \equiv \tuple{\num{n+1}, F(\num{n+1})}.
 \end{align*}
-Here we have used the second clause in the last line. So we have shown
-$F(\num 0) \equiv G$ and, for every $n$, $F(\num {n+1}) \equiv H(\num
-n, F(\num{n}))$, which is exactly what we needed.
+此处我们在最后一行用到了第二条。因此，我们证明了 $F(\num 0) \equiv G$ 且对每个 $n$ 有 $F(\num {n+1}) \equiv H(\num
+n, F(\num{n}))$，而这正是我们所需要的。
 \end{proof}
 
 \end{document}
-

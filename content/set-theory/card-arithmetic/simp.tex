@@ -3,135 +3,103 @@
 \begin{document}
 \olfileid{sth}{card-arithmetic}{simp}
 
-\olsection{Simplifying Addition and Multiplication}
+\olsection{简化加法与乘法}
 
-It turns out that transfinite cardinal addition and multiplication is
-\emph{extremely} easy. This follows from the fact that cardinals are
-(certain) ordinals, and so well-ordered, and so can be manipulated in
-a certain way. Showing this, though, is \emph{not} so easy. To start,
-we need a tricksy definition:
+事实证明，超限基数的加法和乘法是\emph{极其}简单的。这是因为基数是（某种）序数，因而是良序的，所以能够以某种特定的方式来操作。然而，证明这一点可\emph{并不}容易。首先，我们需要一个巧妙的定义：
 
 \begin{defn}
-We define a \emph{canonical ordering}, $\canonord$, on pairs of
-ordinals, by stipulating that $\tuple{\alpha_1, \alpha_2} \canonord
-\tuple{\beta_1, \beta_2}$ iff either:
+我们在序数对上定义\emph{典范排序} $\canonord$，规定 $\tuple{\alpha_1, \alpha_2} \canonord
+\tuple{\beta_1, \beta_2}$ 当且仅当满足下列条件之一：
 \begin{enumerate}
-	\item $\max(\alpha_1, \alpha_2) < \max(\beta_1, \beta_2)$; or
-	\item $\max(\alpha_1, \alpha_2) = \max(\beta_1, \beta_2)$ and
-	$\alpha_1 < \beta_1$; or
-	\item $\max(\alpha_1, \alpha_2) = \max(\beta_1, \beta_2)$ and
-	$\alpha_1 = \beta_1$ and $\alpha_2 < \beta_2$
+	\item $\max(\alpha_1, \alpha_2) < \max(\beta_1, \beta_2)$；或
+	\item $\max(\alpha_1, \alpha_2) = \max(\beta_1, \beta_2)$ 且 $\alpha_1 < \beta_1$；或
+	\item $\max(\alpha_1, \alpha_2) = \max(\beta_1, \beta_2)$ 且 $\alpha_1 = \beta_1$ 且 $\alpha_2 < \beta_2$。
 \end{enumerate}
 \end{defn}
 
 \begin{lem}
-$\tuple{\alpha \times \alpha, \canonord}$ is a well-order, for any
-ordinal $\alpha$.
+对于任意序数 $\alpha$，$\tuple{\alpha \times \alpha, \canonord}$ 是一个良序。
 \end{lem}
 
 \begin{proof}
-Evidently $\canonord$ is connected on $\alpha \times \alpha$. For
-suppose that neither $\tuple{\alpha_1, \alpha_2}$ nor $\tuple{\beta_1,
-\beta_2}$ is $\canonord$-less than the other. Then $\max(\alpha_1,
-\alpha_2) = \max(\beta_1, \beta_2)$ and $\alpha_1 = \beta_1$ and
-$\alpha_2 = \beta_2$, so that $\tuple{\alpha_1, \alpha_2} =
-\tuple{\beta_1,  \beta_2}$.
+显然 $\canonord$ 在 $\alpha \times \alpha$ 上是连通的。假设 $\tuple{\alpha_1, \alpha_2}$ 和 $\tuple{\beta_1, \beta_2}$ 互不 $\canonord$-小于对方。那么 $\max(\alpha_1,
+\alpha_2) = \max(\beta_1, \beta_2)$，$\alpha_1 = \beta_1$ 且 $\alpha_2 = \beta_2$，因此 $\tuple{\alpha_1, \alpha_2} =
+\tuple{\beta_1,  \beta_2}$。
 
-To show well-ordering, let $X \subseteq \alpha\times\alpha$ be
-non-empty. Since $\alpha$ is an ordinal, some $\delta$ is the least
-member of $\Setabs{\max(\gamma_1, \gamma_2)}{\tuple{\gamma_1,
-\gamma_2} \in X}$. Now discard all pairs from
-$\Setabs{\tuple{\gamma_1,\gamma_2} \in X}{\max(\gamma_1, \gamma_2) =
-\delta}$ except those with least first coordinate; from among these,
-the pair with least second coordinate is the $\canonord$-least element
-of $X$.
+为证明它是良序，设 $X \subseteq \alpha\times\alpha$ 非空。由于 $\alpha$ 是序数，某个 $\delta$ 是 $\Setabs{\max(\gamma_1, \gamma_2)}{\tuple{\gamma_1,
+\gamma_2} \in X}$ 的最小元。现在，从 $\Setabs{\tuple{\gamma_1,\gamma_2} \in X}{\max(\gamma_1, \gamma_2) =
+\delta}$ 中剔除第一坐标不是最小的所有序对；在剩下的序对中，第二坐标最小的那个就是 $X$ 的 $\canonord$-最小元。
 \end{proof}
 \noindent
-Now for a teensy, simple observation:
+现在，我们做一个微小且简单的观察：
 
 \begin{prop}\ollabel{simplecardproduct}
-If $\cardeq{\alpha}{\beta}$, then $\cardeq{\alpha \times \alpha}{\beta
-\times \beta}$. 
+如果 $\cardeq{\alpha}{\beta}$，那么 $\cardeq{\alpha \times \alpha}{\beta
+\times \beta}$。 
 \end{prop}
 
 \begin{proof}
-Just let $f \colon \alpha \to \beta$ induce $\tuple{\gamma_1,
-\gamma_2} \mapsto \tuple{f(\gamma_1), f(\gamma_2)}$.
+只需令 $f \colon \alpha \to \beta$ 诱导出 $\tuple{\gamma_1,
+\gamma_2} \mapsto \tuple{f(\gamma_1), f(\gamma_2)}$。
 \end{proof}
 \noindent
-And now we will put all this to work, in proving a crucial lemma:
+现在我们就要把这些都用上，来证明一个关键的引理：
 \begin{lem}\ollabel{alphatimesalpha}
-$\cardeq{\alpha}{\alpha \times \alpha}$, for any infinite ordinal
-$\alpha$
+对任意无限序数 $\alpha$，有 $\cardeq{\alpha}{\alpha \times \alpha}$。
 \end{lem}
 
 \begin{proof}
-For reductio, let $\alpha$ be the least infinite ordinal for which
-this is false. \olref[sfr][siz][zigzag]{natsquaredenumerable} shows
-that $\cardeq{\omega}{\omega\times\omega}$, so $\omega \in \alpha$.
-Moreover, $\alpha$ is a cardinal: suppose otherwise, for reductio;
-then $\card{\alpha} \in \alpha$, so that
-$\cardeq{\card{\alpha}}{\card{\alpha} \times \card{\alpha}}$, by
-hypothesis; and $\cardeq{\card{\alpha}}{\alpha}$ by definition; so
-that $\cardeq{\alpha}{\alpha\times\alpha}$ by
-\olref{simplecardproduct}. 
+为归谬，令 $\alpha$ 是使该结论不成立的最小无限序数。\olref[sfr][siz][zigzag]{natsquaredenumerable} 表明 $\cardeq{\omega}{\omega\times\omega}$，所以 $\omega \in \alpha$。此外，$\alpha$ 是一个基数：为归谬，假设并非如此；那么 $\card{\alpha} \in \alpha$，于是由假设，有 $\cardeq{\card{\alpha}}{\card{\alpha} \times \card{\alpha}}$；而根据定义有 $\cardeq{\card{\alpha}}{\alpha}$；因此由 \olref{simplecardproduct} 可得 $\cardeq{\alpha}{\alpha\times\alpha}$。 
 
-Now, for each $\tuple{\gamma_1, \gamma_2} \in \alpha \times \alpha$,
-consider the segment:
+现在，对每个 $\tuple{\gamma_1, \gamma_2} \in \alpha \times \alpha$，考虑其前段：
 \begin{align*}
 	\text{Seg}(\gamma_1, \gamma_2) &= \Setabs{\tuple{\delta_1, \delta_2} \in \alpha \times \alpha}{\tuple{\delta_1, \delta_2} \canonord \tuple{\gamma_1, \gamma_2}}
 \end{align*}
-Letting $\gamma = \max(\gamma_1, \gamma_2)$, note that $\tuple{\gamma_1, \gamma_2} \canonord \tuple{\gamma+1, \gamma + 1}$. So, when $\gamma$ is infinite, observe:
+令 $\gamma = \max(\gamma_1, \gamma_2)$，注意 $\tuple{\gamma_1, \gamma_2} \canonord \tuple{\gamma+1, \gamma + 1}$。那么，当 $\gamma$ 无限时，观察：
 \begin{align*}
 	\text{Seg}(\gamma_1, \gamma_2) & 
 	\precsim ((\gamma \ordplus 1)\ordtimes (\gamma \ordplus 1))\\
 	&\approx (\gamma \ordtimes \gamma)
-	\text{, by \olref[ord-arithmetic][using-addition]{ordinfinitycharacter} and 
+	\text{，根据 \olref[ord-arithmetic][using-addition]{ordinfinitycharacter} 和 
 	\olref{simplecardproduct}}\\
-	&\approx \gamma \text{, by the induction hypothesis}\\
-	& \prec \alpha\text{, since $\alpha$ is a cardinal}
+	&\approx \gamma \text{，由归纳假设}\\
+	& \prec \alpha\text{，因为 $\alpha$ 是一个基数}
 \end{align*}
-So $\ordtype{\alpha\times \alpha, \canonord} \leq \alpha$, and hence
-$\cardle{\alpha \times \alpha}{\alpha}$. Since of course
-$\cardle{\alpha}{\alpha \times \alpha}$, the result follows by
-Schr\"oder-Bernstein. 
+所以 $\ordtype{\alpha\times \alpha, \canonord} \leq \alpha$，从而 $\cardle{\alpha \times \alpha}{\alpha}$。既然显然有 $\cardle{\alpha}{\alpha \times \alpha}$，那么根据 Schr\"oder-Bernstein 定理即得结论。 
 \end{proof}
 
-Finally, we get to our simplifying result:
+最后，我们得出简化结果：
 
 \begin{thm}\ollabel{cardplustimesmax}
-If $\cardfont{a}, \cardfont{b}$ are infinite cardinals, then:
+如果 $\cardfont{a}, \cardfont{b}$ 是无限基数，那么：
 \[
 	\cardfont{a}
 \cardtimes \cardfont{b} = \cardfont{a} \cardplus \cardfont{b} =
-\text{max}(\cardfont{a}, \cardfont{b}).
+\text{最大值}(\cardfont{a}, \cardfont{b}).
 \]
 \end{thm}
 
 \begin{proof}
-Without loss of generality, suppose $\cardfont{a} = \max(\cardfont{a},
-\cardfont{b})$. Then invoking \olref{alphatimesalpha},
-$\cardfont{a}\cardtimes\cardfont{a} = \cardfont{a} \leq \cardfont{a}
+不失一般性，假设 $\cardfont{a} = \max(\cardfont{a},
+\cardfont{b})$。那么由 \olref{alphatimesalpha}，有 $\cardfont{a}\cardtimes\cardfont{a} = \cardfont{a} \leq \cardfont{a}
 \cardplus \cardfont{b} \leq \cardfont{a} \cardplus \cardfont{a} \leq
-\cardfont{a} \cardtimes \cardfont{a}$. \end{proof}\noindent Similarly,
-if $\cardfont{a}$ is infinite, an $\cardfont{a}$-sized union of
-$\leq\cardfont{a}$-sized sets has size $\leq\cardfont{a}$:
+\cardfont{a} \cardtimes \cardfont{a}$。 \end{proof}\noindent 类似地，若 $\cardfont{a}$ 是无限基数，则由大小不超过 $\cardfont{a}$ 的集合构成的大小为 $\cardfont{a}$ 的并集，其大小也不超过 $\cardfont{a}$：
 
 \begin{prop}\ollabel{kappaunionkappasize}
-Let $\cardfont{a}$ be an infinite cardinal. For each ordinal $\beta
-\in \cardfont{a}$, let $X_\beta$ be a set with $\card{X_\beta} \leq
-\cardfont{a}$. Then $\card{\bigcup_{\beta \in \cardfont{a}} X_\beta}
-\leq \cardfont{a}$.
+设 $\cardfont{a}$ 是一个无限基数。对每个序数 $\beta
+\in \cardfont{a}$，令 $X_\beta$ 是一个满足 $\card{X_\beta} \leq
+\cardfont{a}$ 的集合。那么 $\card{\bigcup_{\beta \in \cardfont{a}} X_\beta}
+\leq \cardfont{a}$。
 \end{prop}
 
 \begin{proof}
-For each $\beta \in \cardfont{a}$, fix !!a{injection} $f_\beta \colon
-X_\beta \to \cardfont{a}$.\footnote{How are these ``fixed''? See \olref[sth][choice][countablechoice]{sec}.} Define !!a{injection} $g \colon
+对每个 $\beta \in \cardfont{a}$，取定一个单射 $f_\beta \colon
+X_\beta \to \cardfont{a}$。\footnote{这些单射是如何“取定”的？参见 \olref[sth][choice][countablechoice]{sec}。} 如下定义单射 $g \colon
 \bigcup_{\beta \in \cardfont{a}} X_\beta \to \cardfont{a} \times
-\cardfont{a}$ by $g(v) = \tuple{\beta, f_\beta(v)}$, where $v \in
-X_\beta$ and $v \notin X_\gamma$ for any $\gamma \in \beta$. Now
+\cardfont{a}$：$g(v) = \tuple{\beta, f_\beta(v)}$，其中 $v \in
+X_\beta$ 且对任意 $\gamma \in \beta$ 有 $v \notin X_\gamma$。现在
 $\bigcup_{\beta \in \cardfont{a}} X_\beta \preceq \cardfont{a} \times
-\cardfont{a} \approx \cardfont{a}$ by \olref{cardplustimesmax}.
+\cardfont{a} \approx \cardfont{a}$ 由 \olref{cardplustimesmax} 即得。
 \end{proof}
 
 \end{document}

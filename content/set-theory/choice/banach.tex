@@ -3,80 +3,43 @@
 \begin{document}
 
 \olfileid{sth}{choice}{banach}
-\olsection{The Banach--Tarski Paradox}
+\olsection{The Banach--Tarski（巴拿赫--塔斯基）悖论}
 
-We might also attempt to justify Choice, as Boolos attempted to
-justify Replacement, by appealing to \emph{extrinsic} considerations
-(see \olref[replacement][extrinsic]{sec}). After all, adopting Choice
-has many desirable consequences: the ability to compare every
-cardinal; the ability to well-order every set; the ability to treat
-cardinals as a particular kind of ordinal; etc. 
+正如 Boolos（布洛斯）尝试为替换公理辩护一样，我们或许也可以尝试诉诸\emph{外在理由}来为选择公理辩护（参见 \olref[replacement][extrinsic]{sec}）。毕竟，采用选择公理有许多理想的推论：能够比较每个基数；能够良序化每个集合；能够将基数视为特定种类的序数；等等。
 
-Sometimes, however, it is claimed that Choice has \emph{undesirable}
-consequences. Mostly, this is due to a result by
-\cite{BanachTarski1924}. 
+然而，有时人们声称选择公理有\emph{不良的}后果。这主要源于\cite{BanachTarski1924}的一个结果。
 
-\begin{thm}[Banach--Tarski Paradox (in $\ZFC$)]
-Any ball can be decomposed into finitely many pieces, which can be
-reassembled (by rotation and transportation) to form two copies of
-that ball.
+\begin{thm}[Banach--Tarski 悖论（在 $\ZFC$ 中）]
+任何球体都可以被分解为有限个部分，这些部分可以通过（旋转和平移）重新组装，形成该球体的两个副本。
 \end{thm}
-\noindent 
-At first glance, this is a bit amazing. Clearly the two balls have
-\emph{twice} the volume of the original ball. But rigid
-motions---rotation and transportation---do not change volume. So it
-looks as if Banach--Tarski allows us to magick new matter into
-existence.
 
-It gets worse.\footnote{See \citet[Theorem 3.12]{Wagon2016}.} Similar
-reasoning shows that a pea can be cut into finitely many pieces, which
-can then be reassembled (by rotation and transportation) to form an
-entity the shape and size of Big Ben.
+\noindent
+乍看之下，这有些令人惊异。显然，两个球体的体积是原球体的\emph{两倍}。但是刚体运动——旋转和平移——不改变体积。因此，Banach--Tarski 悖论看起来允许我们凭空变出新的物质。
 
-None of this, however, holds in $\ZF$ on its own.\footnote{Though
-Banach--Tarski can be proved with principles which are strictly weaker
-than Choice; see \citet[303]{Wagon2016}.} So we face a decision:
-reject Choice, or learn to live with the ``paradox''. 
+更夸张的是，\footnote{参见 \citet[Theorem 3.12]{Wagon2016}。}类似的推理表明，一颗豌豆可以被切成有限个部分，然后这些部分可以（通过旋转和平移）重新组装，形成一个形状和大小如同大本钟的物体。
 
-We're going to suggest that we should learn to live with the
-``paradox''. Indeed, we don't think it's much of a paradox at all. In
-particular, we don't see why it is any more or less paradoxical than
-any of the following results:\footnote{\citet[276--7]{Potter2004},
-\citet[16]{Weston2003}, \citet[31, 308--9]{Wagon2016}, make
-similar points, using other examples.}
+然而，仅凭 $\ZF$ 自身，这些都不成立。\footnote{不过，Banach--Tarski 悖论可以用严格弱于选择公理的原则证明；参见 \citet[303]{Wagon2016}。}因此我们面临一个抉择：拒绝选择公理，或者学会与这个“悖论”共存。
+
+我们的建议是，应当学会与这个“悖论”共存。事实上，我们根本不认为它算得上什么悖论。特别是，我们看不出它与以下任何结果相比更为悖谬：\footnote{\citet[276--7]{Potter2004}, \citet[16]{Weston2003}, \citet[31, 308--9]{Wagon2016} 使用其他例子提出了类似观点。}
+
 \begin{enumerate}
-	\item There are as many points in the interval $(0,1)$ as in  $\Real$. 
-	\\\emph{Proof}: consider $\tan(\pi(r-\nicefrac{1}{2})))$.
-	\item There are as many points in a line as in a square.
-	\\See \olref[his][set][pathology]{sec} and \olref[his][set][cantorplane]{sec}.
-	\item There are space-filling curves. 
-	\\See \olref[his][set][pathology]{sec} and \olref[his][set][hilbertcurve]{sec}.
+	\item 区间 $(0,1)$ 中的点和 $\Real$ 中的点一样多。
+	\\\emph{证明}: 考虑 $\tan(\pi(r-\nicefrac{1}{2})))$。
+	\item 一条线上的点和一个正方形中的点一样多。
+	\\参见 \olref[his][set][pathology]{sec} 和 \olref[his][set][cantorplane]{sec}。
+	\item 存在空间填充曲线。
+	\\参见 \olref[his][set][pathology]{sec} 和 \olref[his][set][hilbertcurve]{sec}。
 \end{enumerate}
-None of these three results require Choice. Indeed, we now just regard
-them as surprising, lovely, bits of mathematics. Maybe we should adopt
-the same attitude to the Banach--Tarski Paradox.
 
-To be sure, a technical observation is required here; but it only
-requires keeping a level head. Rigid motions preserve volume.
-Consequently, the five\footnote{We stated the Paradox in terms of
-``finitely many pieces''. In fact, \citet{Robinson1947} proved that
-the decomposition can be achieved with \emph{five} pieces
-(but no fewer). For a proof, see \citet[pp.~66--7]{Wagon2016}.} pieces
-into which the ball is decomposed cannot all be \emph{measurable}.
-Roughly put, then, it makes no sense to assign a volume to these
-individual pieces. You should think of these as unpicturable,
-``infinite scatterings'' of points. Now, maybe it is ``weird'' to
-conceive of such ``infinitely scattered'' sets. But their existence
-seems to fall out from the injunction, embodied in \stagesacc{}, that
-you should form \emph{all possible} collections of earlier-available
-sets. 
+这三个结果都不需要选择公理。事实上，我们现在只是把它们视为令人惊讶、奇妙的数学片段。也许我们应该对 Banach--Tarski 悖论采取同样的态度。
 
-If none of that convinces, here is a final (extrinsic) argument in
-favour of embracing the Banach--Tarski Paradox. It immediately entails
-the best math joke of all time:
+当然，这里需要一个技术性观察；但这只需保持清醒。刚体运动保持体积。因此，球体被分解成的那五个部分\footnote{我们陈述悖论时用了“有限个部分”。实际上，\citet{Robinson1947}（罗宾逊）证明分解可以用\emph{五}个部分完成（但不能再少）。证明参见 \citet[pp.~66--7]{Wagon2016}。}不可能都是\emph{可测的}。粗略地说，为这些单独的部分赋予体积是没有意义的。你应该把它们想象成无法描绘的、点的“无限散布”。如今，构想出这样的“无限散布”集合也许是“怪异”的。但它们的存在性似乎源于\stagesacc{}所体现的原则：你应该构造出所有可能的、由先前已得集合组成的汇集。
+
+如果所有这些都不能说服你，这里还有一个支持接纳 Banach--Tarski 悖论的最终（外在）理由。它直接引出了有史以来最好的数学笑话：
+
 \begin{enumerate}
-	\item[] \emph{Question}. What's an anagram of ``Banach--Tarski''? 
-	\item[] \emph{Answer}. ``Banach--Tarski Banach--Tarski''.
+	\item[] \emph{问}。“Banach--Tarski”的一个字母重排词是什么？
+	\item[] \emph{答}。“Banach--Tarski Banach--Tarski”。
 \end{enumerate}
 
 \end{document}

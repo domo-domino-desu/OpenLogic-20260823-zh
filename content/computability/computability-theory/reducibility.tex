@@ -7,69 +7,36 @@
 \begin{document}
 
 \olfileid{cmp}{thy}{red}
-\olsection{Reducibility}
+\olsection{归约性}
 
 \begin{explain}
-We now know that there is at least one set, $K_0$, that is computably
-enumerable but not computable. It should be clear that there are
-others. The method of reducibility provides a powerful method of
-showing that other sets have these properties, without constantly
-having to return to first principles.
+我们现在知道，至少存在一个集合 $K_0$，它是可计算枚举的但不可计算的。显然，这样的集合并不唯一。归约性方法提供了一种强有力的手段来证明其他集合也具有这些性质，而无需每次都从第一性原理出发。
 
-Generally speaking, a ``reduction'' of a set $A$ to a set~$B$ is a
-method of transforming answers to whether or not !!{element}s are in~$B$
-into answers as to whether or not !!{element}s are in~$A$. We will focus
-on a notion called ``many-one reducibility,'' but there are many other
-notions of reducibility available, with varying properties. Notions of
-reducibility are also central to the study of computational
-complexity, where efficiency issues have to be considered as well. For
-example, a set is said to be ``NP-complete'' if it is in NP and every
-NP problem can be reduced to it, using a notion of reduction that is
-similar to the one described below, only with the added requirement
-that the reduction can be computed in polynomial time.
+一般来说，将集合 $A$ \emph{归约}到集合~$B$，指的是这样一种方法：它能将判定元素是否属于~$B$ 的结果，转化为判定元素是否属于~$A$ 的结果。我们将主要关注一种被称为“多一归约”的概念，但还有许多其他可用的归约概念，它们具有各种不同的性质。归约的概念对于计算复杂性研究也至关重要，只不过在那里还必须考虑效率问题。例如，一个集合被称为“NP完全的”，如果它属于 NP 类并且任何 NP 问题都可归约到它；这里所用的归约概念与下面将要描述的类似，只不过附加了该归约必须在多项式时间内可计算的要求。
 
-We have already used the notion of reduction notion implicitly. Define
-the set~$K$ by
+我们已经隐含地用到了归约的概念。定义集合~$K$ 为
 \[
 K = \Setabs{x}{\cfind{x}(x) \fdefined},
 \]
-i.e., $K = \Setabs{x}{x \in W_x}$. Our proof that the halting problem
-in unsolvable (\olref[hlt]{thm:halting-problem}) shows most directly
-that $K$ is not computable. Recall that $K_0$ is the set
+即 $K = \Setabs{x}{x \in W_x}$。我们关于停机问题不可解的证明（\olref[hlt]{thm:halting-problem}）最直接地表明了 $K$ 是不可计算的。回想 $K_0$ 是集合
 \[
 K_0 = \Setabs{\tuple{e, x}}{\cfind{e}(x) \fdefined },
 \]
-i.e., $K_0 = \Setabs{\tuple{x,e}}{x \in W_e}$. It is easy to extend
-any proof of the uncomputability of~$K$ to the uncomputability
-of~$K_0$: if $K_0$ were computable, we could decide whether or not
-!!a{element}~$x$ is in $K$ simply by asking whether or not the pair
-$\tuple{x, x}$ is in $K_0$. The function~$f$ which maps $x$ to
-$\tuple{x, x}$ is an example of a \emph{reduction} of $K$ to $K_0$.
+即 $K_0 = \Setabs{\tuple{x,e}}{x \in W_e}$。将任何关于~$K$ 不可计算性的证明推广到~$K_0$ 的不可计算性很容易：如果 $K_0$ 是可计算的，那么我们只需检查有序对 $\tuple{x, x}$ 是否属于 $K_0$，就能判定元素~$x$ 是否属于 $K$。将 $x$ 映射到 $\tuple{x, x}$ 的函数~$f$，就是 $K$ 到 $K_0$ 的一个\emph{归约}例子。
 \end{explain}
 
 \begin{defn}
-Let $A$ and $B$ be sets of natural numbers. A computable
-function~$f\colon \Nat \to \Nat$ is a \emph{many-one reduction} of $A$
-to~$B$ iff, for every natural number~$x$,
+设 $A$ 和 $B$ 是自然数的集合。一个可计算函数~$f\colon \Nat \to \Nat$ 称为从 $A$ 到~$B$ 的\emph{多一归约}，当且仅当对每个自然数~$x$，
 \[
-x \in A \quad \text{if and only if} \quad f(x) \in B.
+x \in A \quad \text{当且仅当} \quad f(x) \in B.
 \]
-If such a reduction $f$ exists, we say that $A$ is \emph{many-one
-reducible} to~$B$, written $A \leq_m B$. If $A$ is many-one reducible
-to $B$ and vice-versa, then $A$ and $B$ are said to be \emph{many-one
-equivalent}, written $A \equiv_m B$.
+如果这样的归约 $f$ 存在，我们就说 $A$ 是\emph{多一可归约}到~$B$ 的，记作 $A \leq_m B$。如果 $A$ 多一可归约到 $B$ 且 $B$ 也多一可归约到 $A$，则称 $A$ 和 $B$ 是\emph{多一等价}的，记作 $A \equiv_m B$。
 \end{defn}
 
-If the function $f$ in the definition above happens to be injective,
-$A$~is said to be \emph{one-one reducible} to~$B$. Most of the
-reductions described below meet this stronger requirement, but we will
-not use this fact.
+如果上述定义中的函数 $f$ 恰好是单射的，则称 $A$\emph{一一可归约}到~$B$。下文描述的大多数归约都满足这个更强的要求，但我们不会使用这个事实。
 
 \begin{digress}
-It is true, but by no means obvious, that one-one reducibility really
-is a stronger requirement than many-one reducibility. In other words,
-there are infinite sets $A$ and~$B$ such that $A$ is many-one
-reducible to~$B$ but not one-one reducible to~$B$.
+一一可归约性确实比多一可归约性要求更强，但这一点绝非显然。换句话说，存在无穷集合 $A$ 和~$B$，使得 $A$ 多一可归约到~$B$，但并不一一可归约到~$B$。
 \end{digress}
 
 \end{document}

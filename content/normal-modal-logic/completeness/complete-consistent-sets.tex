@@ -8,130 +8,107 @@
 
 \olfileid{nml}{com}{ccs}
 
-\olsection{Complete $\Sigma$-Consistent Sets}
+\olsection{完全 $\Sigma$ 一致集}
 
-Suppose $\Sigma$ is a set of modal !!{formula}s---think of them as the
-axioms or defining principles of a normal modal logic. A set $\Gamma$
-is $\Sigma$-consistent iff $\Gamma \Proves/[\Sigma] \lfalse$, i.e., if
-there is no !!{derivation} of~$!A_1 \lif (!A_2 \lif \cdots (!A_n \lif
-\lfalse)\dots)$ from $\Sigma$, where each $!A_i \in \Gamma$. We will
-construct a ``canonical'' model in which each world is taken to be a
-special kind of $\Sigma$-consistent set: one which is not just
-$\Sigma$-consistent, but maximally so, in the sense that it settles
-the truth value of every modal !!{formula}: for every $!A$, either $!A
-\in \Gamma$ or $\lnot !A \in \Gamma$:
+假设 $\Sigma$ 是一个模态公式的集合——不妨将其视为某个正规模态逻辑的公理或定义性原则。一个集合 $\Gamma$ 是 $\Sigma$ 一致的，当且仅当 $\Gamma \Proves/[\Sigma] \lfalse$，即不存在从 $\Sigma$ 和属于 $\Gamma$ 的各 $!A_i$ 到 $!A_1 \lif (!A_2 \lif \cdots (!A_n \lif
+\lfalse)\dots)$ 的推导。我们将构造一个“典范”模型，其中每个世界都被视为一种特殊的 $\Sigma$ 一致集：它不仅仅是 $\Sigma$ 一致的，而且是极大的，即它确定了每个模态公式的真值：对每个 $!A$，要么 $!A \in \Gamma$，要么 $\lnot !A \in \Gamma$：
 
 \begin{defn}
-  A set $\Gamma$ is \emph{complete $\Sigma$-consistent} if and
-  only if it is $\Sigma$-consistent and for every~$!A$, either
-  $!A \in \Gamma$ or $\lnot !A \in \Gamma$.
+  一个集合 $\Gamma$ 是\emph{完全 $\Sigma$ 一致的}，当且仅当它是 $\Sigma$ 一致的，并且对每个公式~$!A$，要么 $!A \in \Gamma$，要么 $\lnot !A \in \Gamma$。
 \end{defn}
 
-Complete $\Sigma$-consistent sets $\Gamma$ have a number of useful
-properties. For one, they are deductively closed, i.e., if $\Gamma
-\Proves[\Sigma] !A$ then $!A \in \Gamma$. This means in particular
-that every instance of !!a{formula}~$!A \in \Sigma$ is also $\in
-\Gamma$. Moreover, membership in $\Gamma$ mirrors the truth conditions
-for the propositional connectives. This will be important when we
-define the ``canonical model.''
+完全 $\Sigma$ 一致集 $\Gamma$ 具有许多有用的性质。首先，它在 $\Sigma$ 中是演绎封闭的，即如果 $\Gamma \Proves[\Sigma] !A$，那么 $!A \in \Gamma$。这尤其意味着 $\Sigma$ 中每个公式的所有实例也都属于 $\Gamma$。此外，$\Gamma$ 中的成员关系反映了命题联结词的真值条件。当我们定义“典范模型”时，这一点将非常重要。
 
 \begin{prop}\ollabel{prop:ccs-properties}
-  Suppose $\Gamma$ is complete $\Sigma$-consistent. Then:
+  假设 $\Gamma$ 是完全 $\Sigma$ 一致的，那么：
   \begin{enumerate}
   \item \ollabel{prop:ccs-closed}%
-    $\Gamma$ is deductively closed in~$\Sigma$.
+    $\Gamma$ 在 $\Sigma$ 中是演绎封闭的。
   \item \ollabel{prop:ccs-sigma}%
-    $\Sigma \subseteq \Gamma$.
+    $\Sigma \subseteq \Gamma$。
   \tagitem{prvFalse}{\ollabel{prop:ccs-lfalse}%
     $\lfalse \notin \Gamma$}{}
   \tagitem{prvTrue}{\ollabel{prop:ccs-ltrue}%
     $\ltrue \in \Gamma$}{}
   \item \ollabel{prop:ccs-lnot}%
-    $\lnot!A \in \Gamma$ if and only if $!A \notin
-    \Gamma$.
+    $\lnot!A \in \Gamma$ 当且仅当 $!A \notin \Gamma$。
   \tagitem{prvAnd}{\ollabel{prop:ccs-land}%
-    $!A \land !B \in \Gamma$ iff $!A \in \Gamma$ and $!B \in \Gamma$}{}
+    $!A \land !B \in \Gamma$ 当且仅当 $!A \in \Gamma$ 且 $!B \in \Gamma$}{}
   \tagitem{prvOr}{\ollabel{prop:ccs-lor}%
-    $!A \lor !B \in \Gamma$ iff $!A \in \Gamma$ or $!B \in \Gamma$}{}
+    $!A \lor !B \in \Gamma$ 当且仅当 $!A \in \Gamma$ 或 $!B \in \Gamma$}{}
   \tagitem{prvIf}{\ollabel{prop:ccs-lif}%
-    $!A \lif !B \in \Gamma$ iff $!A \notin \Gamma$ or $!B \in \Gamma$}{}
+    $!A \lif !B \in \Gamma$ 当且仅当 $!A \notin \Gamma$ 或 $!B \in \Gamma$}{}
   \tagitem{prvIff}{\ollabel{prop:ccs-liff}%
-    $!A \liff !B \in \Gamma$ iff either $!A \in \Gamma$ and $!B \in
-    \Gamma$, or $!A \notin \Gamma$ and $!B \notin \Gamma$}{}
+    $!A \liff !B \in \Gamma$ 当且仅当要么 $!A \in \Gamma$ 且 $!B \in \Gamma$，要么 $!A \notin \Gamma$ 且 $!B \notin \Gamma$}{}
   \end{enumerate}
 \end{prop}
 
 \begin{proof}
   \begin{enumerate}
-  \item Suppose $\Gamma \Proves[\Sigma] !A$ but $!A \notin
-    \Gamma$. Then since $\Gamma$ is complete $\Sigma$-consistent,
-    $\lnot!A \in \Gamma$. This would make $\Gamma$ inconsistent, since
-    $!A, \lnot !A \Proves[\Sigma] \lfalse$.
+  \item 假设 $\Gamma \Proves[\Sigma] !A$ 但 $!A \notin
+    \Gamma$。那么由于 $\Gamma$ 是完全 $\Sigma$ 一致的，
+    $\lnot!A \in \Gamma$。这将导致 $\Gamma$ 不一致，因为
+    $!A, \lnot !A \Proves[\Sigma] \lfalse$。
     
-  \item If $!A \in \Sigma$ then $\Gamma \Proves[\Sigma] !A$, and $!A
-    \in \Gamma$ by deductive closure, i.e.,
-    case~\olref{prop:ccs-closed}.
+  \item 如果 $!A \in \Sigma$ 那么 $\Gamma \Proves[\Sigma] !A$，并且由演绎封闭性可知 $!A
+    \in \Gamma$，即由第~\olref{prop:ccs-closed}~项。
     
-  \tagitem{prvFalse}{If $\lfalse \in \Gamma$, then $\Gamma
-    \Proves[\Sigma] \lfalse$, so $\Gamma$ would be
-    $\Sigma$-inconsistent.}{}
+  \tagitem{prvFalse}{若 $\lfalse \in \Gamma$，则 $\Gamma
+    \Proves[\Sigma] \lfalse$，因此 $\Gamma$ 将是
+    $\Sigma$-不一致的。}{}
   
-  \tagitem{prvTrue}{$\Gamma \Proves[\Sigma] \ltrue$, so $\ltrue \in
-    \Gamma$ by deductive closure, i.e.,
-    case~\olref{prop:ccs-closed}.}{}
+  \tagitem{prvTrue}{$\Gamma \Proves[\Sigma] \ltrue$，故由演绎封闭性得 $\ltrue \in
+    \Gamma$，即由第~\olref{prop:ccs-closed}~项。}{}
 
-\item If $\lnot!A \in \Gamma$, then by consistency $!A \notin
-    \Gamma$; and if $!A \notin \Gamma$ then $!A \in \Gamma$ since
-    $\Gamma$ is complete $\Sigma$-consistent.
+\item 若 $\lnot!A \in \Gamma$，则由一致性可知 $!A \notin
+    \Gamma$；且若 $!A \notin \Gamma$，则由于 $\Gamma$ 是完全 $\Sigma$ 一致的，有 $\lnot!A \in \Gamma$。
     
-  \tagitem{prvAnd}{\iftag{probAnd}{Exercise.}{Suppose $!A \land !B \in
-      \Gamma$. Since $(!A \land !B) \lif !A$ is a tautological
-      instance, $!A \in \Gamma$ by deductive closure, i.e.,
-      case~\olref{prop:ccs-closed}. Similarly for $!B \in \Gamma$. On
-      the other hand, suppose both $!A \in \Gamma$ and $!B \in
-      \Gamma$. Then deductive closure implies $(!A \land !B) \in
-      \Gamma$, since $!A \lif (!B \lif (!A \land !B))$ is a
-      tautological instance.}}{}
+  \tagitem{prvAnd}{\iftag{probAnd}{练习。}{假设 $!A \land !B \in
+      \Gamma$。由于 $(!A \land !B) \lif !A$ 是一个重言式实例，故由演绎封闭性（即
+      第~\olref{prop:ccs-closed}~项）得 $!A \in \Gamma$。类似可得 $!B \in \Gamma$。
+      另一方面，假设 $!A \in \Gamma$ 且 $!B \in
+      \Gamma$。那么由演绎封闭性可得 $(!A \land !B) \in
+      \Gamma$，因为 $!A \lif (!B \lif (!A \land !B))$ 是一个
+      重言式实例。}}{}
 
-  \tagitem{prvOr}{\iftag{probOr}{Exercise.}{Suppose $!A \lor !B \in
-      \Gamma$, and $!A \notin \Gamma$ and $!B \notin \Gamma$. Since
-      $\Gamma$ is complete $\Sigma$-consistent, $\lnot!A \in \Gamma$
-      and $\lnot !B \in \Gamma$. Then $\lnot(!A \lor !B) \in \Gamma$
-      since $\lnot !A \lif (\lnot !B \lif \lnot (!A \lor !B))$ is a
-      tautological instance. This would mean that $\Gamma$ is
-      $\Sigma$-inconsistent, a contradiction.}}{}
+  \tagitem{prvOr}{\iftag{probOr}{练习。}{假设 $!A \lor !B \in
+      \Gamma$，且 $!A \notin \Gamma$ 以及 $!B \notin \Gamma$。由于
+      $\Gamma$ 是完全 $\Sigma$ 一致的，故 $\lnot!A \in \Gamma$
+      且 $\lnot !B \in \Gamma$。那么 $\lnot(!A \lor !B) \in \Gamma$，
+      因为 $\lnot !A \lif (\lnot !B \lif \lnot (!A \lor !B))$ 是一个
+      重言式实例。这将意味着 $\Gamma$ 是
+      $\Sigma$-不一致的，矛盾。}}{}
   
-  \tagitem{prvIf}{\iftag{probIf}{Exercise.}{Suppose $!A \lif !B \in
-      \Gamma$ and $!A \in \Gamma$; then $\Gamma \Proves[\Sigma] !B$,
-      whence $!B \in \Gamma$ by deductive closure. Conversely, if $!A
-      \lif !B \notin \Gamma$ then since $\Gamma$ is complete
-      $\Sigma$-consistent, $\lnot (!A \lif !B) \in \Gamma$. Since
-      $\lnot(!A \lif !B) \lif !A$ is a tautological instance, $!A \in
-      \Gamma$ by deductive closure. Since $\lnot(!A \lif !B) \lif
-      \lnot !B$ is a tautological instance, $\lnot !B \in
-      \Gamma$. Then $!B \notin \Gamma$ since $\Gamma$ is
-      $\Sigma$-consistent.}}{}
+  \tagitem{prvIf}{\iftag{probIf}{练习。}{假设 $!A \lif !B \in
+      \Gamma$ 且 $!A \in \Gamma$；则 $\Gamma \Proves[\Sigma] !B$，
+      从而由演绎封闭性得 $!B \in \Gamma$。反之，若 $!A
+      \lif !B \notin \Gamma$，则由于 $\Gamma$ 是完全
+      $\Sigma$ 一致的，有 $\lnot (!A \lif !B) \in \Gamma$。由于
+      $\lnot(!A \lif !B) \lif !A$ 是重言式实例，故由演绎封闭性得 $!A \in
+      \Gamma$。由于 $\lnot(!A \lif !B) \lif
+      \lnot !B$ 是重言式实例，故得 $\lnot !B \in
+      \Gamma$。那么由于 $\Gamma$ 是
+      $\Sigma$-一致的，有 $!B \notin \Gamma$。}}{}
   
-  \tagitem{prvIff}{\iftag{probIff}{Exercise.}{Suppose $!A \liff !B \in
-      \Gamma$. If $!A \in \Gamma$, then $!B \in \Gamma$, since $(!A
-      \liff !B) \lif (!A \lif !B)$ is a tautological
-      instance. Similarly, if $!B \in \Gamma$, then $!A \in \Gamma$.
-      So either both $!A \in \Gamma$ and $!B \in \Gamma$, or neither
-      $!A \in \Gamma$ nor $!B \in \Gamma$.
+  \tagitem{prvIff}{\iftag{probIff}{练习。}{假设 $!A \liff !B \in
+      \Gamma$。若 $!A \in \Gamma$，则 $!B \in \Gamma$，因为 $(!A
+      \liff !B) \lif (!A \lif !B)$ 是重言式
+      实例。类似地，若 $!B \in \Gamma$，则 $!A \in \Gamma$。
+      因此，要么 $!A \in \Gamma$ 且 $!B \in \Gamma$，要么 $!A \notin \Gamma$ 且 $!B \notin \Gamma$。
       
-      Conversely, suppose $!A \lif !B \notin \Gamma$. Since $\Gamma$
-      is complete $\Sigma$-consistent, $\lnot (!A \liff !B) \in
-      \Gamma$. Since $\lnot(!A \liff !B) \lif (!A \lif \lnot !B)$ is a
-      tautological instance, if $!A \in \Gamma$ then $\lnot !B \in
-      \Gamma$, and since $\Gamma$ is $\Sigma$-consistent, $!B \notin
-      \Gamma$. Similarly, if $!B \in \Gamma$ then $!A \notin \Gamma$.
-      So neither $!A \in \Gamma$ and $!B \in \Gamma$, nor $!A \notin
-      \Gamma$ and $!B \notin \Gamma$.}}{}
+      反之，假设 $!A \liff !B \notin \Gamma$。由于 $\Gamma$
+      是完全 $\Sigma$ 一致的，故 $\lnot (!A \liff !B) \in
+      \Gamma$。由于 $\lnot(!A \liff !B) \lif (!A \lif \lnot !B)$ 是一个
+      重言式实例，如果 $!A \in \Gamma$ 则 $\lnot !B \in
+      \Gamma$，并且由于 $\Gamma$ 是 $\Sigma$-一致的，故 $!B \notin
+      \Gamma$。类似地，如果 $!B \in \Gamma$ 则 $!A \notin \Gamma$。
+      因此，不可能出现 $!A \in \Gamma$ 且 $!B \in \Gamma$，也不可能出现 $!A \notin
+      \Gamma$ 且 $!B \notin \Gamma$。}}{}
   \end{enumerate}
 \end{proof}
 
 \begin{probtag}{probAnd,probOr,probIf,probIff}
-  Complete the proof of \olref[nml][com][ccs]{prop:ccs-properties}.
+  请完成 \olref[nml][com][ccs]{prop:ccs-properties} 的证明。
 \end{probtag}
 
 \end{document}

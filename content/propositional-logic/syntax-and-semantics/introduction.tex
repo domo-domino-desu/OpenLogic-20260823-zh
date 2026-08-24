@@ -8,72 +8,52 @@
 
 \olfileid{pl}{syn}{int}
 
-\olsection{Introduction}
+\olsection{引言}
 
-Propositional logic deals with !!{formula}s that are built from
-!!{propositional variable}s using the propositional connectives
-$\lnot$, $\land$, $\lor$, $\lif$, and $\liff$.  Intuitively,
-!!a{propositional variable}~$p$ stands for a sentence or proposition
-that is true or false. Whenever the ``truth value'' of the
-!!{propositional variable} in !!a{formula} is determined, so is the
-truth value of any !!{formula}s formed from them using propositional
-connectives.  We say that propositional logic is \emph{truth
-  functional}, because its semantics is given by functions of truth
-values. In particular, in propositional logic we leave out of
-consideration any further determination of truth and falsity, e.g.,
-whether something is necessarily true rather than just contingently
-true, or whether something is known to be true, or whether something
-is true now rather than was true or will be true.  We only consider
-two truth values true ($\True$) and false ($\False$), and so exclude
-from discussion the possibility that a statement may be neither true
-nor false, or only half true. We also concentrate only on connectives where
-the truth value of !!a{formula} built from them is completely
-determined by the truth values of its parts (and not, say, on its
-meaning). In particular, whether the truth value of conditionals in
-English is truth functional in this sense is contentious. The material
-conditional~$\lif$ is; other logics deal with conditionals that are
-not truth functional.
+命题逻辑研究的是由命题变元通过命题联结词
+$\lnot$、$\land$、$\lor$、$\lif$ 和 $\liff$ 构建而成的公式。
+直观地说，命题变元~$p$ 代表一个为真或为假的语句或命题。
+一旦公式中各命题变元的真值确定下来，任何由这些命题变元通过命题联结词构成的公式的真值也就随之确定。
+我们称命题逻辑是\emph{真值函数性的}，因为它的语义由真值上的函数给出。
+特别地，在命题逻辑中，我们不再对真和假作进一步的区分，
+例如某事物究竟是必然为真还是仅仅偶然为真，
+是不是已知为真，或者是现在为真而不是过去或将来为真。
+我们只考虑真（$\True$）和假（$\False$）两个真值，
+因此也不讨论一个语句既不真也不假，或者只有“一半真”的可能性。
+我们还只关注这样的联结词：由它们构造的公式的真值完全由其组成部分的真值（而非意义）来决定。
+特别地，英语中的条件句的真值是否在这种意义上是真值函数性的，这一点是有争议的。
+实质条件句~$\lif$ 是真值函数性的；其他逻辑则处理非真值函数性的条件句。
 
-In order to develop the theory and metatheory of truth-functional
-propositional logic, we must first define the syntax and semantics of
-its expressions.  We will describe one way of constructing
-!!{formula}s from !!{propositional variable}s using the connectives.
-Alternative definitions are possible. Other systems will choose
-different symbols, will select different sets of connectives as
-primitive, and will use parentheses differently (or even not at all,
-as in the case of so-called Polish notation).  What all approaches
-have in common, though, is that the formation rules define the set of
-!!{formula}s \emph{inductively}. If done properly, every expression
-can result essentially in only one way according to the formation
-rules.  The inductive definition resulting in expressions that are
-\emph{uniquely readable} means we can give meanings to these
-expressions using the same method---inductive definition.
+为建立真值函数命题逻辑的理论与元理论，
+我们必须首先定义其表达式的语法和语义。
+我们将描述一种从命题变元出发、利用联结词构造公式的方法。
+当然，也可以采用别的定义。
+不同的系统可能选用不同的符号、将不同的联结词集合作为初始联结词，并以不同的方式使用括号（甚至完全不使用括号，如所谓的波兰记法）。
+不过，各种方案有一点是共同的：
+形成规则都使用\emph{归纳}的方式来定义公式的集合。
+如果定义得当，根据形成规则，每个表达式本质上只能以一种方式生成。
+通过归纳定义得到的表达式是\emph{唯一可读的}，
+这意味着我们可以用同一种方法——归纳定义——来赋予这些表达式以意义。
 
-Giving the meaning of expressions is the domain of semantics.  The
-central concept in semantics for propositional logic is that of
-satisfaction in !!a{valuation}. !!^a{valuation}~$\pAssign{v}$ assigns
-truth values $\True$, $\False$ to the !!{propositional variable}s. Any
-!!{valuation} determines a truth value $\pValue{v}(!A)$ for any
-!!{formula}~$!A$.  !!^a{formula} is satisfied in
-!!a{valuation}~$\pAssign{v}$ iff $\pValue{v}(!A) = \True$---we write
-this as $\pSat{v}{!A}$. This relation can also be defined by induction on
-the structure of~$!A$, using the truth functions for the logical
-connectives to define, say, satisfaction of $!A \land !B$ in terms of
-satisfaction (or not) of $!A$ and~$!B$.
+赋予表达式意义属于语义学的领域。
+命题逻辑语义学的核心概念是在某个赋值下的满足。
+赋值~$\pAssign{v}$ 给命题变元分配真值 $\True$ 和 $\False$。
+任何赋值都为任一公式~$!A$ 确定一个真值 $\pValue{v}(!A)$。
+公式在一个赋值~$\pAssign{v}$ 中被满足，当且仅当
+$\pValue{v}(!A) = \True$——我们将其记作 $\pSat{v}{!A}$。
+这个关系也可以通过基于~$!A$ 结构的归纳来定义，
+即利用逻辑联结词的真值函数，根据 $!A$ 和~$!B$ 是否被满足来定义
+$!A \land !B$ 的满足。
 
-On the basis of the satisfaction relation $\pSat{v}{!A}$ for sentences
-we can then define the basic semantic notions of tautology,
-entailment, and satisfiability.  !!^a{formula} is a tautology,
-$\Entails !A$, if every !!{valuation} satisfies it, i.e.,
-$\pValue{v}(!A) = \True$ for any~$\pAssign{v}$. It is entailed by a
-set of !!{formula}s, $\Gamma \Entails !A$, if every !!{valuation} that
-satisfies all the !!{formula}s in~$\Gamma$ also satisfies~$!A$. And a
-set of !!{formula}s is satisfiable if some !!{valuation} satisfies all
-!!{formula}s in it at the same time.  Because !!{formula}s are
-inductively defined, and satisfaction is in turn defined by induction
-on the structure of !!{formula}s, we can use induction to prove
-properties of our semantics and to relate the semantic notions
-defined.
-
+在语句的满足关系 $\pSat{v}{!A}$ 的基础上，
+我们可以进而定义重言式、语义后承和可满足性这些基本的语义概念。
+一个公式是\emph{重言式}，记作 $\Entails !A$，
+若每个赋值都满足它，即对任意~$\pAssign{v}$ 都有
+$\pValue{v}(!A) = \True$。
+一个公式是某个公式集的\emph{语义后承}，记作 $\Gamma \Entails !A$，
+若每个满足~$\Gamma$ 中所有公式的赋值也满足~$!A$。
+而一个公式集是\emph{可满足的}，若存在某个赋值同时满足其中所有的公式。
+由于公式是归纳定义的，而满足关系又是基于公式结构归纳定义的，
+我们可以利用归纳法来证明我们语义的性质，并建立所定义的各个语义概念之间的联系。
 
 \end{document}

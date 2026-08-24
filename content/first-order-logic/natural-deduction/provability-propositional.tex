@@ -1,10 +1,3 @@
-% Part: first-order-logic
-% Chapter: natural-deduction
-% Section: provability-propositional
-
-% verification of properties of provability needed for maximally
-% consistent sets in the completeness chapter.
-
 \documentclass[../../../include/open-logic-section]{subfiles}
 
 \begin{document}
@@ -13,27 +6,32 @@
       {\olfileid{fol}{ntd}{ppr}}
       {\olfileid{pl}{ntd}{ppr}}
 
-\olsection{\usetoken{S}{derivability} and the Propositional Connectives}
+\olsection{\usetoken{S}{derivability}与命题联结词}
 
 \begin{explain}
-  We establish that the !!{derivability} relation~$\Proves$ of natural
- deduction is strong enough to establish some basic facts
-  involving the propositional connectives, such as that $!A \land !B
-  \Proves !A$ and $!A, !A \lif !B \Proves !B$ (modus ponens). These
-  facts are needed for the proof of the completeness theorem.
+我们将证明，自然演绎的可推导关系~$\Proves$ 足够强，
+能够确立一些涉及命题联结词的基本事实，
+例如 $!A \land !B \Proves !A$ 和 $!A, !A \lif !B \Proves !B$（肯定前件式）。
+在完备性定理的证明中需要用到这些事实。
 \end{explain}
+
+% Part: first-order-logic
+% Chapter: natural-deduction
+% Section: provability-propositional
+
+% verification of properties of provability needed for maximally
+% consistent sets in the completeness chapter.
 
 \begin{prop}\ollabel{prop:provability-land}
   \begin{enumerate}
-  \item \ollabel{prop:provability-land-left} Both $!A \land !B \Proves
-    !A$ and $!A \land !B \Proves !B$
-  \item \ollabel{prop:provability-land-right} $!A, !B \Proves !A \land !B$.
+  \item \ollabel{prop:provability-land-left} $!A \land !B \Proves !A$ 且 $!A \land !B \Proves !B$。
+  \item \ollabel{prop:provability-land-right} $!A, !B \Proves !A \land !B$。
   \end{enumerate}
 \end{prop}
 
 \begin{proof}
   \begin{enumerate}
-  \item We can !!{derive} both
+  \item 我们可以分别推导如下：
     \begin{prooftree}
       \AxiomC{$!A \land !B$}
       \RightLabel{\Elim{\land}}
@@ -43,7 +41,7 @@
       \RightLabel{\Elim{\land}}
       \UnaryInfC{$!B$}
     \end{prooftree}
-  \item We can !!{derive}:
+  \item 我们可以推导如下：
     \begin{prooftree}
       \AxiomC{$!A$}
       \AxiomC{$!B$}
@@ -53,17 +51,16 @@
   \end{enumerate}
 \end{proof}
 
-
 \begin{prop}\ollabel{prop:provability-lor}
   \begin{enumerate}
-  \item $!A \lor !B, \lnot !A, \lnot !B$ is inconsistent.
-  \item Both $!A \Proves !A \lor !B$ and $!B \Proves !A \lor !B$.
+  \item $!A \lor !B, \lnot !A, \lnot !B$ 是不一致的。
+  \item $!A \Proves !A \lor !B$ 且 $!B \Proves !A \lor !B$。
   \end{enumerate}
 \end{prop}
 
 \begin{proof}
   \begin{enumerate}
-  \item Consider the following !!{derivation}:
+  \item 考虑如下推导：
     \begin{prooftree}
       \AxiomC{$!A \lor !B$}
       \AxiomC{$\lnot !A$}
@@ -77,9 +74,8 @@
       \DischargeRule{\Elim{\lor}}{1}
       \TrinaryInfC{$\lfalse$}
     \end{prooftree}
-    This is !!a{derivation} of~$\lfalse$ from !!{undischarged}
-    assumptions $!A \lor !B$, $\lnot !A$, and $\lnot !B$.
-  \item We can !!{derive} both
+    这是一个从未解除的假设 $!A \lor !B$、$\lnot !A$ 和 $\lnot !B$ 推出 $\lfalse$ 的推导。
+  \item 我们可以分别推导如下：
     \begin{prooftree}
       \AxiomC{$!A$}
       \RightLabel{\Intro{\lor}}
@@ -94,15 +90,15 @@
 
 \begin{prop}\ollabel{prop:provability-lif}
   \begin{enumerate}
-  \item \ollabel{prop:provability-lif-left}  $!A, !A \lif !B \Proves !B$.
+  \item \ollabel{prop:provability-lif-left}  $!A, !A \lif !B \Proves !B$。
   \item \ollabel{prop:provability-lif-right}
-    Both $\lnot !A \Proves !A \lif !B$ and $!B \Proves !A \lif !B$.
+    $\lnot !A \Proves !A \lif !B$ 且 $!B \Proves !A \lif !B$。
   \end{enumerate}
 \end{prop}
 
 \begin{proof}
   \begin{enumerate}
-  \item We can !!{derive}:
+  \item 我们可以推导如下：
     \begin{prooftree}
       \AxiomC{$!A \lif !B$}
       \AxiomC{$!A$}
@@ -110,7 +106,7 @@
       \BinaryInfC{$!B$}
     \end{prooftree}
     
-  \item This is shown by the following two !!{derivation}s:
+  \item 这可通过以下两个推导展示：
     \begin{prooftree}
       \AxiomC{$\lnot !A$}
       \AxiomC{$\Discharge{!A}{1}$}
@@ -125,8 +121,7 @@
       \RightLabel{\Intro{\lif}}
       \UnaryInfC{$!A \lif !B$}
     \end{prooftree}
-    Note that $\Intro{\lif}$ may, but does not have to, !!{discharge} the
-    assumption~$!A$.
+    注意，$\Intro{\lif}$ 可以解除假设~$!A$，但并非必须解除。
   \end{enumerate}
 \end{proof}
 

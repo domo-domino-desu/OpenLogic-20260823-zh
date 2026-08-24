@@ -3,184 +3,148 @@
 \begin{document}
 
 \olfileid{sth}{cardinals}{classing}
-\olsection{Finite, \usetoken{S}{enumerable}, \usetoken{S}{nonenumerable}}
+\olsection{有限、可数与不可数基数}
 
-Now that we have been introduced to cardinals, it is worth spending a
-little time talking about different varieties of cardinals;
-specifically, finite, !!{enumerable}, and !!{nonenumerable} cardinals.
+在引入了基数之后，我们不妨花点时间来讨论不同种类的基数；
+具体地说，即有限、可数与不可数基数。
 
-Our first two results entail that the finite cardinals will be exactly
-the finite ordinals, which we defined as our \emph{natural numbers}
-back in \olref[z][infinity-again]{defnomega}: 
+我们的前两个结果蕴涵：有限基数恰好就是有限序数，
+我们在 \olref[z][infinity-again]{defnomega} 中将后者定义为\emph{自然数}：
 
 \begin{prop}\ollabel{finitecardisoequal}
-Let $n, m \in \omega$. Then $n = m$ iff $\cardeq{n}{m}$.
+令 $n, m \in \omega$。则 $n = m$ 当且仅当 $\cardeq{n}{m}$。
 \end{prop}
 
 \begin{proof}
-\emph{Left-to-right} is trivial. To prove \emph{right-to-left},
-suppose $\cardeq{n}{m}$ although $n \neq m$. By Trichotomy, either $n
-\in m$ or $m \in n$; suppose $n \in m$ without loss of generality.
-Then $n \subsetneq m$ and there is !!a{bijection} $f \colon m \to n$,
-so that $m$ is Dedekind infinite, contradicting
-\olref[z][infinity-again]{naturalnumbersarentinfinite}.
+\emph{从左到右}是平凡的。为证明\emph{从右到左}，
+假设 $\cardeq{n}{m}$ 但 $n \neq m$。
+由三歧律，要么 $n \in m$，要么 $m \in n$；不失一般性，设 $n \in m$。
+那么 $n \subsetneq m$，并且存在一个双射 $f \colon m \to n$，
+因此 $m$ 是 Dedekind（戴德金）无限的，
+这与 \olref[z][infinity-again]{naturalnumbersarentinfinite} 矛盾。
 \end{proof}
 
 \begin{cor}\ollabel{naturalsarecardinals}
-If $n \in \omega$, then $n$ is a cardinal. 
+若 $n \in \omega$，则 $n$ 是基数。
 \end{cor}
 
 \begin{proof}
-Immediate.
+直接可得。
 \end{proof}
 \noindent
-It also follows that several reasonable notions of what it might mean
-to describe a cardinal as ``finite'' or ``infinite'' coincide:
-\begin{thm}\ollabel{generalinfinitycharacter}For any set $A$, the following are equivalent:
+由此还可得出，描述基数何为“有限”或“无限”的几种合理概念是一致的：
+\begin{thm}\ollabel{generalinfinitycharacter}对任意集合 $A$，以下陈述等价：
 \begin{enumerate}
-	\item\ollabel{card:notinomega} $\card{A} \notin \omega$, i.e.,
-	$A$ is not a natural number;
-	\item\ollabel{card:omegaplus} $\omega \leq \card{A}$;
-	\item\ollabel{card:infinite} $A$ is Dedekind infinite.
+	\item\ollabel{card:notinomega} $\card{A} \notin \omega$，即
+	$A$ 不是一个自然数；
+	\item\ollabel{card:omegaplus} $\omega \leq \card{A}$；
+	\item\ollabel{card:infinite} $A$ 是 Dedekind 无限的。
 \end{enumerate}
 \end{thm}
 
 \begin{proof}
-From \olref[ord-arithmetic][using-addition]{ordinfinitycharacter},
-\olref[cardinals][cardsasords]{lem:CardinalsBehaveRight}, and
-\olref{naturalsarecardinals}. 
+由 \olref[ord-arithmetic][using-addition]{ordinfinitycharacter}、
+\olref[cardinals][cardsasords]{lem:CardinalsBehaveRight} 和
+\olref{naturalsarecardinals} 得出。
 \end{proof}
 
-This licenses the following \emph{definition} of some notions which we
-used rather informally in \olref[sfr][][]{part}:
+据此，我们可以为以下在 \olref[sfr][][]{part} 中颇为非正式地使用过的概念，给出如下\emph{定义}：
 
 \begin{defn}\ollabel{defnfinite}
-We say that $A$ is \emph{finite} iff $\card{A}$ is a natural number,
-i.e., $\card{A} \in \omega$. Otherwise, we say that $A$ is
-\emph{infinite}.
+我们称 $A$ 是\emph{有限的}，当且仅当 $\card{A}$ 是一个自然数，即 $\card{A} \in \omega$。
+否则，我们称 $A$ 是\emph{无限的}。
 \end{defn}
 \noindent 
-But note that this definition is presented against the background of
-$\ZFC$. After all, we needed Well-Ordering to guarantee that every set
-has a cardinality. And indeed, without Well-Ordering, there can be a
-set which is neither finite nor Dedekind infinite. We will return to
-this sort of issue in \olref[choice][]{chap}. For now, we continue to
-rely upon Well-Ordering.
+但需注意，此定义是在 $\ZFC$ 的背景下给出的。毕竟，我们需要良序定理来保证每个集合都有基数。
+事实上，没有良序定理，就可能存在既非有限亦非 Dedekind 无限的集合。
+我们将在 \olref[choice][]{chap} 中回到这类问题。目前，我们继续依赖良序定理。
 
-Let us now turn from the finite cardinals to the infinite cardinals.
-Here are two elementary points:
+现在，让我们从有限基数转向无限基数。
+以下是两个基本结论：
 
 \begin{cor}\ollabel{omegaisacardinal}
-$\omega$ is the least infinite cardinal. 
+$\omega$ 是最小的无限基数。
 \end{cor}
 
 \begin{proof}
-$\omega$ is a cardinal, since $\omega$ is Dedekind infinite and if
-$\cardeq{\omega}{n}$ for any $n \in \omega$ then $n$ would be Dedekind
-infinite, contradicting
-\olref[z][infinity-again]{naturalnumbersarentinfinite}. Now
-$\omega$ is the least infinite cardinal by definition. 
+$\omega$ 是基数，因为 $\omega$ 是 Dedekind 无限的，且若对任意 $n \in \omega$ 有 $\cardeq{\omega}{n}$，
+则 $n$ 将是 Dedekind 无限的，
+与 \olref[z][infinity-again]{naturalnumbersarentinfinite} 矛盾。
+由定义，$\omega$ 就是最小的无限基数。
 \end{proof}
 
 \begin{cor}
-Every infinite cardinal is a limit ordinal.
+每个无限基数都是一个极限序数。
 \end{cor}
 
 \begin{proof}
-Let $\alpha$ be an infinite successor ordinal, so $\alpha = \beta
-\ordplus 1$ for some $\beta$. By \olref{finitecardisoequal}, $\beta$
-is also infinite, so $\cardeq{\beta}{\beta \ordplus 1}$ by
-\olref[ord-arithmetic][using-addition]{ordinfinitycharacter}. Now
-$\card{\beta} = \card{\beta\ordplus 1} = \card{\alpha}$ by
-\olref[cardinals][cardsasords]{lem:CardinalsBehaveRight}, so
-that $\alpha \neq \card{\alpha}$.
+设 $\alpha$ 是一个无限后继序数，则存在某个 $\beta$ 使得 $\alpha = \beta
+\ordplus 1$。由 \olref{finitecardisoequal}，$\beta$
+也是无限的，所以根据 \olref[ord-arithmetic][using-addition]{ordinfinitycharacter} 有 $\cardeq{\beta}{\beta \ordplus 1}$。
+由 \olref[cardinals][cardsasords]{lem:CardinalsBehaveRight} 可得 $\card{\beta} = \card{\beta\ordplus 1} = \card{\alpha}$，
+因此 $\alpha \neq \card{\alpha}$。
 \end{proof}
 
-Now, as early as \olref[sfr][siz][enm-alt]{defn:enumerable}, we flagged we
-can distinguish between !!{enumerable} and !!{nonenumerable} infinite
-sets. That definition naturally leads to the following:
+早在 \olref[sfr][siz][enm-alt]{defn:enumerable} 中，我们就曾指出可以区分可数与不可数的无限集合。该定义自然引出以下结论：
 
 \begin{prop}
-$A$ is !!{enumerable} iff $\card{A} \leq \omega$, and $A$ is
-!!{nonenumerable} iff $\omega < \card{A}$.
+$A$ 是可数的当且仅当 $\card{A} \leq \omega$，而 $A$ 是不可数的当且仅当 $\omega < \card{A}$。
 \end{prop}
 
 \begin{proof}
-By Trichotomy, the two claims are equivalent, so it suffices to prove
-that $A$ is !!{enumerable} iff $\card{A} \leq \omega$. For
-\emph{right-to-left}: if $\card{A} \leq \omega$, then
-$\cardle{A}{\omega}$ by
-\olref[cardinals][cardsasords]{lem:CardinalsBehaveRight} and
-\olref{omegaisacardinal}. For \emph{left-to-right}: suppose $A$ is
-!!{enumerable}; then by \olref[sfr][siz][enm-alt]{defn:enumerable} there
-are three possible cases:
+由三歧律，这两个断言等价，因此只需证明 $A$ 可数当且仅当 $\card{A} \leq \omega$。
+\emph{从右到左}：若 $\card{A} \leq \omega$，则由
+\olref[cardinals][cardsasords]{lem:CardinalsBehaveRight} 和
+\olref{omegaisacardinal} 可得 $\cardle{A}{\omega}$。
+\emph{从左到右}：假设 $A$ 可数；则根据 \olref[sfr][siz][enm-alt]{defn:enumerable}，有三种可能情况：
 \begin{enumerate}
-	\item if $A = \emptyset$, then $\card{A} = 0 \in \omega$, by
-	\olref{naturalsarecardinals} and
-	\olref[cardinals][cardsasords]{lem:CardinalsBehaveRight}.
-	\item if $\cardeq{n}{A}$, then $\card{A} = n \in \omega$, by
-	\olref{naturalsarecardinals} and
-	\olref[cardinals][cardsasords]{lem:CardinalsBehaveRight}.
-	\item if $\cardeq{\omega}{A}$, then $\card{A} = \omega$, by \olref{omegaisacardinal}.
+	\item 若 $A = \emptyset$，则根据 \olref{naturalsarecardinals} 和
+	\olref[cardinals][cardsasords]{lem:CardinalsBehaveRight}，有 $\card{A} = 0 \in \omega$。
+	\item 若 $\cardeq{n}{A}$，则根据 \olref{naturalsarecardinals} 和
+	\olref[cardinals][cardsasords]{lem:CardinalsBehaveRight}，有 $\card{A} = n \in \omega$。
+	\item 若 $\cardeq{\omega}{A}$，则根据 \olref{omegaisacardinal}，有 $\card{A} = \omega$。
 \end{enumerate}
-So in all cases, $\card{A} \leq \omega$. 
+因此在所有情况下，都有 $\card{A} \leq \omega$。 
 \end{proof}
 \noindent
-Indeed, $\omega$ has a special place. Whilst there are many countable ordinals:
+事实上，$\omega$ 具有特殊地位。尽管存在许多可数序数：
 
 \begin{cor}
-$\omega$ is the only !!{enumerable} infinite cardinal.
+$\omega$ 是唯一的可数无限基数。
 \end{cor}
 
 \begin{proof}
-Let $\cardfont{a}$ be !!a{enumerable} infinite cardinal. Since
-$\cardfont{a}$ is infinite, $\omega \leq \cardfont{a}$. Since
-$\cardfont{a}$ is !!a{enumerable} cardinal, $\cardfont{a} =
-\card{\cardfont{a}} \leq \omega$. So $\cardfont{a} = \omega$ by
-Trichotomy. \end{proof}
+设 $\cardfont{a}$ 是一个可数无限基数。由于 $\cardfont{a}$ 是无限的，有 $\omega \leq \cardfont{a}$。由于 $\cardfont{a}$ 是可数基数，$\cardfont{a} =
+\card{\cardfont{a}} \leq \omega$。故由三歧律，$\cardfont{a} = \omega$。
+\end{proof}
 
-Of course, there are infinitely many cardinals. So we might ask:
-\emph{How many cardinals are there?} The following results show that
-we might want to reconsider that question.
+当然，存在无限多个基数。于是你或许会问：\emph{有多少个基数呢？} 以下结果表明，我们可能需要重新考虑这个问题。
 
 \begin{prop}\ollabel{unioncardinalscardinal}
-If every member of $X$ is a cardinal, then $\bigcup X$ is a cardinal.
+如果 $X$ 的每个成员都是基数，那么 $\bigcup X$ 也是基数。
 \end{prop}
 
 \begin{proof}
-It is easy to check that $\bigcup X$ is an ordinal. Let $\alpha \in
-\bigcup X$ be an ordinal; then $\alpha \in \cardfont{b} \in X$ for
-some cardinal $\cardfont{b}$. Since $\cardfont{b}$ is a cardinal,
-$\cardless{\alpha}{\cardfont{b}}$. Since $\cardfont{b} \subseteq
-\bigcup X$, we have $\cardle{\cardfont{b}}{\bigcup X}$, and so
-$\cardneq{\alpha}{\bigcup X}$. Generalising, $\bigcup X$ is a
-cardinal.
+容易验证 $\bigcup X$ 是一个序数。设 $\alpha \in \bigcup X$ 是一个序数；则存在某个基数 $\cardfont{b}$，使得 $\alpha \in \cardfont{b} \in X$。由于 $\cardfont{b}$ 是基数，有 $\cardless{\alpha}{\cardfont{b}}$。由于 $\cardfont{b} \subseteq \bigcup X$，我们有 $\cardle{\cardfont{b}}{\bigcup X}$，因此 $\cardneq{\alpha}{\bigcup X}$。推广可知，$\bigcup X$ 是一个基数。
 \end{proof} 
 
 \begin{thm}\ollabel{lem:NoLargestCardinal}
-There is no largest cardinal.
+不存在最大的基数。
 \end{thm}
 
 \begin{proof}
-For any cardinal $\cardfont{a}$, Cantor's Theorem
-(\olref[sfr][siz][car]{thm:cantor}) and
-\olref[cardinals][cardsasords]{lem:CardinalsExist} entail that
-$\cardfont{a} < \card{\Pow{\cardfont{a}}}$.
+对任意基数 $\cardfont{a}$，Cantor（康托尔）定理 (\olref[sfr][siz][car]{thm:cantor}) 与 \olref[cardinals][cardsasords]{lem:CardinalsExist} 蕴涵了 $\cardfont{a} < \card{\Pow{\cardfont{a}}}$。
 \end{proof}
 
 \begin{thm}
-The set of all cardinals does not exist.
+所有基数构成的集合不存在。
 \end{thm}
 
 \begin{proof}
-For reductio, suppose $C = \Setabs{\cardfont{a}}{\cardfont{a} \text{
-is a cardinal}}$. Now $\bigcup C$ is a cardinal by
-\olref{unioncardinalscardinal}, so by \olref{lem:NoLargestCardinal}
-there is a cardinal $\cardfont{b} > \bigcup C$. By definition
-$\cardfont{b} \in C$, so $\cardfont{b} \subseteq \bigcup{C}$, so that
-$\cardfont{b} \leq \bigcup C$, a contradiction.
+用归谬法，假设 $C = \Setabs{\cardfont{a}}{\cardfont{a} \text{
+is a cardinal}}$。根据 \olref{unioncardinalscardinal}，$\bigcup C$ 是一个基数，因此由 \olref{lem:NoLargestCardinal} 可知，存在一个基数 $\cardfont{b} > \bigcup C$。根据定义，$\cardfont{b} \in C$，所以 $\cardfont{b} \subseteq \bigcup{C}$，从而 $\cardfont{b} \leq \bigcup C$，得出矛盾。
 \end{proof}
 
-You should compare this with both Russell's Paradox and Burali-Forti. 
+应将此结论与 Russell（罗素）悖论及 Burali-Forti（布拉利-福尔蒂）悖论进行比较。
 
 \end{document}

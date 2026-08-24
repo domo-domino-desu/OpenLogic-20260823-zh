@@ -7,93 +7,71 @@
 \begin{document}
 
 \olfileid{sfr}{set}{pai}
-\olsection{Pairs, Tuples, Cartesian Products}
+\olsection{序对、元组与笛卡尔积}
 
 \begin{explain}
-It follows from extensionality that sets have no order to their
-elements. So if we want to represent order, we use \emph{ordered
-pairs} $\tuple{x, y}$. In an unordered pair $\{x, y\}$, the order does
-not matter: $\{x, y\} = \{y, x\}$. In an ordered pair, it does: if $x
-\neq y$, then $\tuple{x, y} \neq \tuple{y, x}$.
+根据外延性原理，集合的元素是没有顺序的。因此，如果要表示顺序，我们使用\emph{序对} $\tuple{x, y}$。在无序对 $\{x, y\}$ 中，顺序无关紧要：$\{x, y\} = \{y, x\}$。但在序对中则不然：如果 $x \neq y$，那么 $\tuple{x, y} \neq \tuple{y, x}$。
 
-How should we think about ordered pairs in set theory? Crucially, we
-want to preserve the idea that ordered pairs are identical iff they
-share the same first element and share the same second element, i.e.:
+我们该怎样在集合论中理解序对呢？关键在于，我们要保持以下性质：两个序对相同，当且仅当它们具有相同的第一分量和相同的第二分量，即：
 \[
-  \tuple{a, b}= \tuple{c, d}\text{ iff both }a = c \text{ and }b=d.
-\]
-We can define ordered pairs in set theory using the Wiener--Kuratowski
-definition.
+  \tuple{a, b}= \tuple{c, d}\text{ 当且仅当 }a = c \text{ 且 }b=d.
+\]。
+我们可以利用 Wiener--Kuratowski 定义在集合论中定义序对。
 \end{explain}
 
-\begin{defn}[Ordered pair]\ollabel{wienerkuratowski}
-	$\tuple{a, b} = \{\{a\}, \{a, b\}\}$.
+\begin{defn}[序对]\ollabel{wienerkuratowski}
+	$\tuple{a, b} = \{\{a\}, \{a, b\}\}$。
 \end{defn}
 
 \begin{prob}
-	Using \olref[sfr][set][pai]{wienerkuratowski}, prove that $\tuple{a,
-	b}= \tuple{c, d}$ iff both $a = c$ and $b=d$.
+	使用 \olref[sfr][set][pai]{wienerkuratowski}，证明 $\tuple{a,
+	b}= \tuple{c, d}$ 当且仅当 $a = c$ 且 $b=d$。
 \end{prob}
 
 \begin{explain}
-Having fixed a definition of an ordered pair, we can use it to define
-further sets. For example, sometimes we also want ordered sequences of
-more than two objects, e.g., \emph{triples} $\tuple{x, y, z}$,
-\emph{quadruples} $\tuple{x, y, z, u}$, and so on.  We can think of
-triples as special ordered pairs, where the first element is itself an
-ordered pair: $\tuple{x, y, z}$ is $\tuple{\tuple{x, y},z}$. The same
-is true for quadruples: $\tuple{x,y,z,u}$ is
-$\tuple{\tuple{\tuple{x,y},z},u}$, and so on. In general, we talk of
-\emph{ordered $n$-tuples} $\tuple{x_1, \dots, x_n}$.
+在确定了序对的定义之后，我们就可以用它来定义更多的集合。例如，有时我们也会需要多于两个对象的有序序列，比如\emph{三元组} $\tuple{x, y, z}$，\emph{四元组} $\tuple{x, y, z, u}$，等等。我们可以把三元组看作特殊的序对，其中第一个元素本身就是一个序对：$\tuple{x, y, z}$ 是 $\tuple{\tuple{x, y},z}$。四元组同理：$\tuple{x,y,z,u}$ 是 $\tuple{\tuple{\tuple{x,y},z},u}$，以此类推。一般地，我们会讨论\emph{有序 $n$ 元组} $\tuple{x_1, \dots, x_n}$。
 
-Certain sets of ordered pairs, or other ordered $n$-tuples, will be useful.
+由序对或其他有序 $n$ 元组构成的某些集合将会非常有用。
 \end{explain}
 
-\begin{defn}[Cartesian product]
-Given sets $A$ and $B$, their \emph{Cartesian product} $A \times B$ is
-defined by
+\begin{defn}[笛卡尔积]
+给定集合 $A$ 和 $B$，它们的\emph{笛卡尔积} $A \times B$ 定义为
 \[
-  A \times B = \Setabs{\tuple{x, y}}{x \in A \text{ and } y \in B}.
-\]
+  A \times B = \Setabs{\tuple{x, y}}{x \in A \text{ 且 } y \in B}.
+\]。
 \end{defn}
 
 \begin{ex}
-If $A = \{0, 1\}$, and $B = \{1, a, b\}$, then their product is
+如果 $A = \{0, 1\}$，并且 $B = \{1, a, b\}$，那么它们的笛卡尔积是
 \[
 A \times B = \{ \tuple{0, 1}, \tuple{0, a}, \tuple{0, b},
     \tuple{1, 1}, \tuple{1, a}, \tuple{1, b} \}.
-\]
+\]。
 \end{ex}
 
 \begin{ex}
-If $A$ is a set, the product of $A$ with itself, $A \times A$, is also
-written~$A^2$. It is the set of \emph{all} pairs $\tuple{x, y}$ with
-$x, y \in A$. The set of all triples $\tuple{x, y, z}$ is $A^3$, and
-so on. We can give a recursive definition:
+如果 $A$ 是一个集合，那么 $A$ 与自身的乘积 $A \times A$ 也记作~$A^2$。它是由\emph{所有}满足 $x, y \in A$ 的序对 $\tuple{x, y}$ 构成的集合。所有三元组 $\tuple{x, y, z}$ 构成的集合是 $A^3$，以此类推。我们可以给出一个递归定义：
 \begin{align*}
   A^1 & = A\\
   A^{k+1} & = A^k \times A
-\end{align*}
+\end{align*}。
 \end{ex}
 
 \begin{prob}
-List all !!{element}s of $\{1, 2, 3\}^3$.
+列出 $\{1, 2, 3\}^3$ 的所有元素。
 \end{prob}
 
 \begin{prop}\ollabel{cardnmprod}
-If $A$ has $n$ !!{element}s and $B$ has $m$ !!{element}s, then $A
-\times B$ has $n\cdot m$ elements.
+如果 $A$ 有 $n$ 个元素且 $B$ 有 $m$ 个元素，那么 $A \times B$ 有 $n\cdot m$ 个元素。
 \end{prop}
 
 \begin{proof}
-For every !!{element}~$x$ in~$A$, there are $m$ !!{element}s of the
-form $\tuple{x, y} \in A \times B$. Let $B_x = \Setabs{\tuple{x, y}}{y
-  \in B}$. Since whenever $x_1 \neq x_2$, $\tuple{x_1, y} \neq
-\tuple{x_2, y}$, $B_{x_1} \cap B_{x_2} = \emptyset$. But if $A = \{x_1,
-\dots, x_n\}$, then $A \times B = B_{x_1} \cup \dots \cup B_{x_n}$, and so has
-$n\cdot m$ !!{element}s.
+对于 $A$ 中的每个元素~$x$，都有 $m$ 个形如 $\tuple{x, y} \in A \times B$ 的元素。令 $B_x = \Setabs{\tuple{x, y}}{y
+  \in B}$。因为只要 $x_1 \neq x_2$，就有 $\tuple{x_1, y} \neq
+\tuple{x_2, y}$，所以 $B_{x_1} \cap B_{x_2} = \emptyset$。而如果 $A = \{x_1,
+\dots, x_n\}$，那么 $A \times B = B_{x_1} \cup \dots \cup B_{x_n}$，因此它有 $n\cdot m$ 个元素。
 
-To visualize this, arrange the !!{element}s of~$A \times B$ in a grid:
+为了直观理解，可以将 $A \times B$ 的元素排列成网格：
 \[
 \begin{array}{rcccc}
   B_{x_1} = & \{\tuple{x_1, y_1} & \tuple{x_1, y_2} & \dots & \tuple{x_1, y_m}\}\\
@@ -101,29 +79,19 @@ To visualize this, arrange the !!{element}s of~$A \times B$ in a grid:
   \vdots & & \vdots\\
   B_{x_n} = & \{\tuple{x_n, y_1} & \tuple{x_n, y_2} & \dots & \tuple{x_n, y_m}\}
 \end{array}
-\]
-Since the $x_i$ are all different, and the $y_j$ are all different, no
-two of the pairs in this grid are the same, and there are $n\cdot m$
-of them.
+\]。
+由于 $x_i$ 各不相同，$y_j$ 也各不相同，网格中的序对互不相同，并且总共有 $n\cdot m$ 个。
 \end{proof}
 
 \begin{prob}
-Show, by induction on~$k$, that for all $k \ge 1$, if $A$ has $n$
-!!{element}s, then $A^k$ has $n^k$ !!{element}s.
+通过对~$k$ 进行归纳，证明对于所有 $k \ge 1$，如果 $A$ 有 $n$ 个元素，那么 $A^k$ 有 $n^k$ 个元素。
 \end{prob}
 
 \begin{ex}
-If $A$ is a set, a \emph{word} over~$A$ is any sequence of
-!!{element}s of~$A$. A sequence can be thought of as an $n$-tuple of
-!!{element}s of~$A$. For instance, if $A = \{a, b, c\}$, then the
-sequence ``$bac$'' can be thought of as the triple~$\tuple{b, a, c}$.
-Words, i.e., sequences of symbols, are of crucial importance in
-computer science. By convention, we count !!{element}s of~$A$ as
-sequences of length~$1$, and $\emptyset$ as the sequence of length~$0$.
-The set of \emph{all} words over~$A$ then is
+如果 $A$ 是一个集合，那么 $A$ 上的一个\emph{单词}是指 $A$ 中元素的任意序列。一个序列可以看作 $A$ 中元素的一个 $n$ 元组。例如，如果 $A = \{a, b, c\}$，那么序列 ``$bac$'' 可以看作是三元组~$\tuple{b, a, c}$。单词，即符号序列，在计算机科学中至关重要。按照惯例，我们将 $A$ 的元素视为长度为~$1$ 的序列，将 $\emptyset$ 视为长度为~$0$ 的序列。那么，$A$ 上\emph{所有}单词构成的集合就是
 \[
 A^* = \{\emptyset\} \cup A \cup A^2 \cup A^3 \cup \dots
-\]
+\]。
 \end{ex}
 
 \end{document}

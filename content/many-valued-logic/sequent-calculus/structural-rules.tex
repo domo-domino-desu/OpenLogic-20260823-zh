@@ -8,10 +8,9 @@
 
 \olfileid{mvl}{seq}{str}
 
-\olsection{Structural Rules}
+\olsection{结构规则}
 
-The structural rules for $n$-sided sequent calculus operate as in the
-classical case, except for each position~$i$.
+$n$边相继式演算的结构规则与经典情形的运作方式相同，只是针对每个位置~$i$分别施用。
 
 \begin{defish}
 \begin{center}
@@ -34,11 +33,10 @@ classical case, except for each position~$i$.
 \end{center}
 \end{defish}
 
-A series of weakening, contraction, and exchange inferences will often
-be indicated by double inference lines.
+一系列弱化、收缩和交换推理通常会用双推理线来表示。
 
-The \Cut{} rule comes in several forms, one for every combination of
-distinct positions in the sequent $i \neq j$:
+\Cut{}规则有多种形式，分别对应相继式中不同位置 $i \neq j$ 的每一种组合：
+
 \begin{defish}
 \[
 \AxiomC{$ \Gamma_1 \nSequent \dots \nSequent !A, \Gamma_i \nSequent \dots \nSequent \Gamma_n $}

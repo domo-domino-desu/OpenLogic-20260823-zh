@@ -7,61 +7,54 @@
 \begin{document}
 
 \olfileid{mod}{bas}{red}
-\section{Reducts and Expansions}
+\section{归约与扩张}
 
-Often it is useful or necessary to compare languages which have
-symbols in common, as well as !!{structure}s for these languages.  The
-most common case is when all the symbols in !!a{language}~$\Lang{L}$
-are also part of !!a{language}~$\Lang{L'}$, i.e., $\Lang{L} \subseteq
-\Lang{L'}$. An $\Lang{L}$-!!{structure}~$\Struct{M}$ can then always
-be expanded to an $\Lang{L'}$-!!{structure} by adding interpretations
-of the additional symbols while leaving the interpretations of the
-common symbols the same.  On the other hand, from an
-$\Lang{L'}$-structure~$\Struct{M'}$ we can obtain an
-$\Lang{L}$-structure simply by ``forgetting'' the interpretations of
-the symbols that do not occur in~$\Lang{L}$.
+比较拥有共同符号的语言及其结构，往往是有用或必要的。
+最常见的情况是，语言~$\Lang{L}$ 中的所有符号也是语言~$\Lang{L'}$ 的一部分，
+即 $\Lang{L} \subseteq \Lang{L'}$。
+此时，一个 $\Lang{L}$-结构~$\Struct{M}$ 总可以通过添加额外符号的解释，
+同时保持共有符号的解释不变，从而扩张为一个 $\Lang{L'}$-结构。
+另一方面，从一个 $\Lang{L'}$-结构~$\Struct{M'}$ 出发，
+我们只需“忽略”那些不在~$\Lang{L}$ 中的符号的解释，
+即可得到一个 $\Lang{L}$-结构。
 
 \begin{defn}
 \ollabel{defn:reduct}
-Suppose $\Lang L \subseteq \Lang L'$, $\Struct M$ is an
-$\Lang L$-!!{structure} and $\Struct M'$ is an $\Lang L'$-!!{structure}.
-$\Struct M$ is the \emph{reduct} of $\Struct M'$ to $\Lang L$, and
-$\Struct M'$ is an \emph{expansion} of $\Struct M$ to $\Lang L'$ iff
+设 $\Lang L \subseteq \Lang L'$，$\Struct M$ 是 $\Lang L$-结构，$\Struct M'$ 是 $\Lang L'$-结构。
+$\Struct M$ 是 $\Struct M'$ 到 $\Lang L$ 的\emph{归约}，且 $\Struct M'$ 是 $\Struct M$ 到 $\Lang L'$ 的\emph{扩张}，当且仅当
 \begin{enumerate}
 \item $\Domain{M} = \Domain{M'}$
-\item For every !!{constant}~$c \in \Lang L$, $\Assign{c}{M} =
-  \Assign{c}{M'}$.
-\item For every !!{function}~$f \in \Lang L$, $\Assign{f}{M} =
-  \Assign{f}{M'}$.
-\item For every !!{predicate}~$P \in \Lang L$, $\Assign{P}{M} =
-  \Assign{P}{M'}$.
+\item 对每个常项符号~$c \in \Lang L$，$\Assign{c}{M} =
+  \Assign{c}{M'}$。
+\item 对每个函数符号~$f \in \Lang L$，$\Assign{f}{M} =
+  \Assign{f}{M'}$。
+\item 对每个谓词符号~$P \in \Lang L$，$\Assign{P}{M} =
+  \Assign{P}{M'}$。
 \end{enumerate}
 \end{defn}
 
 \begin{prop}
 \ollabel{prop:reduct}
-If an $\Lang{L}$-!!{structure}~$\Struct{M}$ is a reduct of an
-$\Lang{L'}$-!!{structure}~$\Struct{M'}$, then for all
-$\Lang{L}$-!!{sentence}s~$!A$,
+若 $\Lang{L}$-结构~$\Struct{M}$ 是 $\Lang{L'}$-结构~$\Struct{M'}$ 的归约，
+则对所有 $\Lang{L}$-语句~$!A$，
 \[
-\Sat{M}{!A} \text{ iff } \Sat{M'}{!A}.
+\Sat{M}{!A} \text{ 当且仅当 } \Sat{M'}{!A}.
 \]
 \end{prop}
 
 \begin{proof}
-  Exercise.
+  练习。
 \end{proof}
 
 \begin{prob}
-Prove \olref[mod][bas][red]{prop:reduct}.
+证明 \olref[mod][bas][red]{prop:reduct}。
 \end{prob}
 
 \begin{defn}
-When we have an $\Lang{L}$-structure $\Struct{M}$, and $\Lang{L'} =
-\Lang{L} \cup \{P\}$ is the expansion of $\Lang{L}$ obtained by adding
-a single $n$-place !!{predicate}~$P$, and $R \subseteq \Domain{M}^n$
-is an $n$-place relation, then we write $\Expan{M}{R}$ for the
-expansion~$\Struct{M'}$ of~$\Struct{M}$ with $\Assign{P}{M'} = R$.
+给定 $\Lang{L}$-结构 $\Struct{M}$，若 $\Lang{L'} =
+\Lang{L} \cup \{P\}$ 是通过添加一个 $n$ 元谓词符号~$P$ 得到的 $\Lang{L}$ 的扩张，
+且 $R \subseteq \Domain{M}^n$ 是一个 $n$ 元关系，
+则我们将满足 $\Assign{P}{M'} = R$ 的 $\Struct{M}$ 的扩张~$\Struct{M'}$ 记作 $\Expan{M}{R}$。
 \end{defn}
 
 \end{document}

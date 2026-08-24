@@ -10,24 +10,16 @@
       {\olfileid{fol}{axd}{pro}}
       {\olfileid{pl}{axd}{pro}}
 
-\olsection{Examples of \usetoken{P}{derivation}}
-
+\olsection{\usetoken{P}{derivation}示例}
 
 \begin{ex}
-Suppose we want to prove $(\lnot !D \lor !E) \lif (!D \lif
-!E)$. Clearly, this is not an instance of any of our axioms, so we
-have to use the \MP{} rule to !!{derive} it. Our only rule is~MP, which
-given $!A$ and $!A \lif !B$ allows us to justify~$!B$. One
-strategy would be to use \olref[prp]{ax:lor3} with $!A$ being $\lnot
-!D$, $!B$ being $!E$, and $!C$ being $!D \lif !E$, i.e., the instance
+假设我们要证明 $(\lnot !D \lor !E) \lif (!D \lif
+!E)$。显然，它不是我们任何公理的实例，因此我们必须使用 \MP{} 规则来推导它。我们唯一的规则是~\MP，在给定 $!A$ 和 $!A \lif !B$ 的情况下，它允许我们得出~$!B$。一种策略是使用 \olref[prp]{ax:lor3}，令 $!A$ 为 $\lnot !D$、$!B$ 为 $!E$、$!C$ 为 $!D \lif !E$，即实例
 \[
 (\lnot !D \lif (!D \lif !E)) \lif ((!E \lif (!D \lif !E)) \lif ((\lnot
 !D \lor !E) \lif (!D \lif !E))).
 \]
-Why? Two applications of MP yield the last part, which is what we
-want.  And we easily see that $\lnot !D \lif (!D \lif !E)$ is an
-instance of \olref[prp]{ax:lnot2}, and $!E \lif (!D \lif !E)$ is an
-instance of \olref[prp]{ax:lif1}. So our !!{derivation} is:
+为什么？两次应用 MP 会得到最后那部分，而这正是我们想要的。我们很容易看出 $\lnot !D \lif (!D \lif !E)$ 是 \olref[prp]{ax:lnot2} 的一个实例，而 $!E \lif (!D \lif !E)$ 是 \olref[prp]{ax:lif1} 的一个实例。因此我们的推导是：
 \begin{derivation}
   1. &  $\lnot !D \lif (!D \lif !E)$ & \olref[prp]{ax:lnot2} \\
   2. & $(\lnot !D \lif (!D \lif !E)) \lif {}$\\
@@ -39,36 +31,18 @@ instance of \olref[prp]{ax:lif1}. So our !!{derivation} is:
 \end{ex}
 
 \begin{ex}\ollabel{ex:identity}
-Let's try to find !!a{derivation} of $!D \lif !D$.  It is not an
-instance of an axiom, so we have to use \MP{} to !!{derive} it.
-\olref[prp]{ax:lif1} is an axiom of the form~$!A \lif !B$ to which we
-could apply~\MP. To be useful, of course, the $!B$ which \MP{} would
-justify as a correct step in this case would have to be~$!D \lif !D$,
-since this is what we want to !!{derive}. That means $!A$ would also
-have to be $!D$, i.e., we might look at this instance of
-\olref[prp]{ax:lif1}:
+让我们尝试寻找 $!D \lif !D$ 的一个推导。它不是公理的实例，所以我们必须用 \MP 来推导它。
+\olref[prp]{ax:lif1} 是形如~$!A \lif !B$ 的公理，我们可以对其应用~\MP。当然，为了使推导有意义，在这种情况下 \MP 作为正确步骤所验证的 $!B$ 必须是~$!D \lif !D$，因为这是我们想要推导的。这意味着 $!A$ 也必须是 $!D$，也就是说，我们可以考虑 \olref[prp]{ax:lif1} 的如下实例：
 \[
 !D \lif (!D \lif !D)
 \]
-In order to apply \MP, we would also need to justify the corresponding
-second premise, namely~$!A$. But in our case, that would be~$!D$, and
-we won't be able to !!{derive}~$!D$ by itself. So we need a different
-strategy.
+为了应用 \MP，我们还需要证明对应的第二个前提，即~$!A$。但在我们的情形中，那就是~$!D$，而我们无法单独推导出~$!D$。所以我们需要一个不同的策略。
 
-The other axiom involving just~$\lif$ is \olref[prp]{ax:lif2}, i.e.,
+另一个只涉及~$\lif$ 的公理是 \olref[prp]{ax:lif2}，即
 \[
 (!A \lif (!B \lif !C)) \lif ((!A \lif !B) \lif (!A \lif !C))
 \]
-We could get to the last nested conditional by applying \MP{}
-twice. Again, that would mean that we want an instance of
-\olref[prp]{ax:lif2} where $!A \lif !C$ is $!D \lif !D$, the !!{formula} we
-are aiming for. Then of course, $!A$ and $!C$ are both~$!D$. How
-should we pick~$!B$ so that both $!A \lif (!B \lif !C)$ and $!A \lif
-!B$, i.e., in our case $!D \lif (!B \lif !D)$ and $!D \lif !B$, are
-also !!{derivable}? Well, the first of these is already an instance of
-\olref[prp]{ax:lif1}, whatever we decide $!B$ to be. And $!D \lif !B$ would
-be another instance of \olref[prp]{ax:lif1} if $!B$ were $(!D \lif !D)$.
-So, our !!{derivation} is:
+我们可以通过两次应用 \MP 来得到最后那个嵌套的条件句。同样，这意味着我们希望 \olref[prp]{ax:lif2} 有一个实例，其中 $!A \lif !C$ 是 $!D \lif !D$，即我们的目标公式。那么当然，$!A$ 和 $!C$ 都是~$!D$。我们应该如何选择~$!B$，使得 $!A \lif (!B \lif !C)$ 和 $!A \lif !B$（即在我们的例子中的 $!D \lif (!B \lif !D)$ 和 $!D \lif !B$）也都是可推导的呢？其实，无论 $!B$ 取什么，第一个公式都已经是 \olref[prp]{ax:lif1} 的一个实例。而如果 $!B$ 是 $(!D \lif !D)$，那么 $!D \lif !B$ 就是 \olref[prp]{ax:lif1} 的另一个实例。因此，我们的推导是：
 \begin{derivation}
   1. & $!D \lif ((!D \lif !D) \lif !D)$ & \olref[prp]{ax:lif1}\\
   2. & $(!D \lif ((!D \lif !D) \lif !D)) \lif {}$\\
@@ -80,10 +54,8 @@ So, our !!{derivation} is:
 \end{ex}
 
 \begin{ex}\ollabel{ex:chain}
-Sometimes we want to show that there is !!a{derivation} of some
-!!{formula} from some other !!{formula}s~$\Gamma$. For instance, let's
-show that we can !!{derive} $!A \lif !C$ from $\Gamma = \{!A \lif !B,
-!B \lif !C\}$.
+有时我们想要证明，从其他一些公式~$\Gamma$ 可以推导出某个公式。例如，我们来证明从 $\Gamma = \{!A \lif !B,
+!B \lif !C\}$ 可以推导出 $!A \lif !C$。
 \begin{derivation}
   1. & $!A \lif !B$ & \Hyp\\
   2. & $!B \lif !C$ & \Hyp\\
@@ -94,39 +66,26 @@ show that we can !!{derive} $!A \lif !C$ from $\Gamma = \{!A \lif !B,
   6. & $((!A \lif !B) \lif (!A \lif !C))$ & 4, 5, \MP\\
   7. & $!A \lif !C$ & 1, 6, \MP
 \end{derivation}
-The lines labelled ``\Hyp'' (for ``hypothesis'') indicate that the
-!!{formula} on that line is !!a{element} of~$\Gamma$.
+标记为“\Hyp”（表示“假设”）的行，表示该行上的公式属于~$\Gamma$。
 \end{ex}
 
 \begin{prop}
-  \ollabel{prop:chain} If $\Gamma \Proves !A \lif !B$ and $\Gamma
-  \Proves !B \lif !C$, then $\Gamma \Proves !A \lif !C$
+  \ollabel{prop:chain} 如果 $\Gamma \Proves !A \lif !B$ 且 $\Gamma
+  \Proves !B \lif !C$，那么 $\Gamma \Proves !A \lif !C$。
 \end{prop}
 
 \begin{proof}
-  Suppose $\Gamma \Proves !A \lif !B$ and $\Gamma \Proves !B \lif
-  !C$. Then there is !!a{derivation} of $!A \lif !B$ from~$\Gamma$;
-  and !!a{derivation} of~$!B \lif !C$ from~$\Gamma$ as well. Combine
-  these into a single !!{derivation} by concatenating them. Now add
-  lines 3--7 of the !!{derivation} in the preceding example. This is
-  !!a{derivation} of $!A \lif !C$---which is the last line of the new
-  !!{derivation}---from~$\Gamma$. Note that the justifications of
-  lines 4 and~7 remain valid if the reference to line number~1 is
-  replaced by reference to the last line of the !!{derivation} of~$!A
-  \lif !B$, and reference to line number~2 by reference to the last
-  line of the !!{derivation} of~$!B \lif !C$.
+  假设 $\Gamma \Proves !A \lif !B$ 且 $\Gamma \Proves !B \lif
+  !C$。则存在从~$\Gamma$ 到 $!A \lif !B$ 的一个推导，以及从~$\Gamma$ 到 $!B \lif !C$ 的一个推导。将这两个推导拼接起来，合并为一个推导。现在添加上例中推导的第 3--7 行。这就得到了一个从~$\Gamma$ 到 $!A \lif !C$ 的推导——$!A \lif !C$ 也是新推导的最后一行。注意，如果将对第 1 行的引用替换为对 $!A \lif !B$ 推导最后一行的引用，将对第 2 行的引用替换为对 $!B \lif !C$ 推导最后一行的引用，那么第 4 行和第 7 行的依据仍然有效。
 \end{proof}
 
 \begin{prob} 
-Show that the following hold by exhibiting !!{derivation}s from the
-axioms:
+通过展示从公理出发的推导，证明以下命题：
 \begin{enumerate} 
 \item $(!A \land !B) \lif (!B \land !A)$
 \item $((!A \land !B) \lif !C) \lif (!A \lif (!B \lif !C))$
 \item $\lnot(!A \lor !B) \lif \lnot !A$
 \end{enumerate} 
 \end{prob}
-
-
 
 \end{document}

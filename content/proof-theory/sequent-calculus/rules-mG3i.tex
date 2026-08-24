@@ -8,10 +8,10 @@
 
 \begin{table}
 \begin{tabular}{@{}c@{}c@{}}
-\multicolumn{2}{@{}c@{}}{Axioms}\\[2ex]
+\multicolumn{2}{@{}c@{}}{公理}\\[2ex]
 $!C, \Gamma \Sequent \Delta, !C$ & $\lfalse, \Gamma \Sequent \Delta$
 \\[2ex]
-\multicolumn{2}{@{}c@{}}{Logical Rules}\\[2ex]
+\multicolumn{2}{@{}c@{}}{逻辑规则}\\[2ex]
 \Axiom$\lnot !A, \Gamma \fCenter \Delta, !A $
 \RightLabel{\LeftR{\lnot}}
 \UnaryInf$\lnot !A, \Gamma \fCenter \Delta$
@@ -74,13 +74,8 @@ $!C, \Gamma \Sequent \Delta, !C$ & $\lfalse, \Gamma \Sequent \Delta$
 \UnaryInf$ \Gamma \fCenter \Delta, \lexists[x][!A(x)]$
 \DisplayProof
 \end{tabular}
-\caption{Rules of multi-conclusion \Log{mG3i} for intuitionistic
-logic. In $\RightR{\forall}$ and $\LeftR{\exists}$, the
-!!{constant}~$a$ must not occur in the conclusion sequent.
-$\Gamma$~and $\Delta$ are multisets of !!{formula}s. In axioms, the
-!!{formula}~$!C$ must be atomic. \Log{mG1m} is
-\Log{mG1i} without axioms $\lfalse,
-\Gamma \Sequent \Delta$.}
+\caption{直觉主义逻辑的多结论相继式演算 \Log{mG3i} 的规则。在 $\RightR{\forall}$ 和 $\LeftR{\exists}$ 中，常项符号~$a$ 不得出现在结论相继式中。$\Gamma$ 和 $\Delta$ 是公式的多重集。在公理中，公式~$!C$ 必须是原子的。\Log{mG1m} 是去掉公理 $\lfalse,
+\Gamma \Sequent \Delta$ 后的 \Log{mG1i} 系统。}
 \ollabel{tab:G3c}
 \end{table}
 

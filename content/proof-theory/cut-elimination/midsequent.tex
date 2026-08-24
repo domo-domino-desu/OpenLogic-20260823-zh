@@ -8,44 +8,38 @@
 
 \olfileid{pt}{cut}{mid}
 
-\olsection{The Midsequent Theorem and Herbrand's Theorem}
+\olsection{中继式定理与 Herbrand 定理}
 
-An important consequence of the cut-elimination theorem is the
-midsequent theorem. It states that if there is !!a{proof}~$\pi$
-of~$\Gamma \Sequent \Delta$ in which every !!{formula} is prenex, then
-there is !!a{proof}~$\pi'$ containing a sequent $S \ident \Pi \Sequent
-\Lambda$ (called the \emph{midsequent}) such that all inferences above
-$S$ in~$\pi'$ are propositional and all inferences below~$S$ are
-quantifier inferences. (!!^a{formula}~$!A$ is \emph{prenex} (or in
-\emph{prenex form}) if it is of the form
-\[\mathsf{Q}_1x_1\dots\mathsf{Q}_nx_n\,!B(x_1,\dots,x_n)\] where each
-$\mathsf{Q}_i$ is either $\lforall$ or~$\lexists$.) An important
-consequence of the midsequent theorem is Herbrand's theorem. Its
-general case is a little hard to describe, but very generally it takes
-the form: for every !!{provable} !!{sentence}~$!A$ of first-order
-logic, there is a propositional tautology~$!A'$ from which $!A$ can be !!{prove}d. Here is the version for
-!!{sentence}s of the form~$\lexists[x][!B(x)]$ where $!B$ is
-quantifier-free:
+切割消去定理的一个重要推论是中继式定理。
+该定理断言：如果存在推导出~$\Gamma \Sequent \Delta$ 的推导~$\pi$，且其中每个公式都是前束的，
+那么就存在一个包含相继式 $S \ident \Pi \Sequent \Lambda$（称为\emph{中继式}）的推导~$\pi'$，
+使得在~$\pi'$ 中 $S$ 上方的所有推理都是命题推理，而 $S$ 下方的所有推理都是量词推理。
+（公式~$!A$ 是\emph{前束的}（或呈\emph{前束形}），如果它具有形式
+\[\mathsf{Q}_1x_1\dots\mathsf{Q}_nx_n\,!B(x_1,\dots,x_n)\]，其中每个 $\mathsf{Q}_i$ 是 $\lforall$ 或~$\lexists$。）
+中继式定理的一个重要推论是 Herbrand（埃尔布朗）定理。
+它的一般情形描述起来稍有困难，但大致可以表述为：对于一阶逻辑中每一个可推导的语句~$!A$，
+都存在一个命题重言式~$!A'$，使得 $!A$ 可以从 $!A'$ 推导出来。
+下面是对形如~$\lexists[x][!B(x)]$（其中 $!B$ 是无量词的）语句的版本：
 
-\begin{thm}[Herbrand's Theorem]
-Suppose that $!B(x)$ is quantifier-free and that $\Proves 
-\lexists[x][!B(x)]$. Then there are terms~$t_1$, \dots, $t_n$
-such that $\Proves !B(t_1) \lor \dots \lor !B(t_n)$.
+\begin{thm}[Herbrand 定理]
+假定 $!B(x)$ 是无量词的并且 $\Proves 
+\lexists[x][!B(x)]$。那么存在项~$t_1$, \dots, $t_n$，
+使得 $\Proves !B(t_1) \lor \dots \lor !B(t_n)$。
 \end{thm}
 
-The !!{formula}~$!B(t_1) \lor \dots \lor !B(t_n)$ is called a
-\emph{Herbrand disjunction} of~$\lexists[x][!B(x)]$. Since $!B$ is
-quantifier-free, this disjunction is also quantifier-free. So if it is
-!!{provable}, it is !!{provable} by a cut-free proof and consequently
-with !!a{proof} that only uses propositional inferences. Hence, it is
-a tautology.
+公式~$!B(t_1) \lor \dots \lor !B(t_n)$ 称为 $\lexists[x][!B(x)]$ 的一个
+\emph{Herbrand 析取式}。由于 $!B$ 是
+无量词的，这个析取式也是无量词的。因此，如果它是
+可推导的，就可以通过无切割证明来推导，进而
+通过一个只使用命题推理的推导来获得。故而，它
+是一个重言式。
 
-The difficult part of Herbrand's Theorem is showing that a Herbrand
-disjunction exists for every !!{provable}
-!!{formula}~$\lexists[x][!B(x)]$. The converse, i.e., that if
-$\lexists[x][!B(x)]$ has a Herbrand disjunction, then it is provable,
-is easy. In fact, the Herbrand disjunction entails $\lexists[x][!B(x)]$.
-E.g., here is !!a{proof} in~$\Log{G3c}$ for the case where $n=2$:
+Herbrand 定理的困难部分在于证明：对每个可推导的
+公式~$\lexists[x][!B(x)]$，都存在一个 Herbrand
+析取式。其逆命题，即如果
+$\lexists[x][!B(x)]$ 有一个 Herbrand 析取式，那么它就是可证的，
+则很简单。事实上，Herbrand 析取式语义地后承 $\lexists[x][!B(x)]$。
+例如，下面是在~$\Log{G3c}$ 中对 $n=2$ 情形的一个推导：
 \[
 \Axiom$!B(t_1) \fCenter \lexists[x][!B(x)], !B(t_1), !B(t_2)$
 \Axiom$!B(t_2) \fCenter \lexists[x][!B(x)], !B(t_1), !B(t_2)$
@@ -58,9 +52,9 @@ E.g., here is !!a{proof} in~$\Log{G3c}$ for the case where $n=2$:
 \DisplayProof
 \]
 
-To extract the Herbrand disjunction from !!a{proof}~$\pi$ of~$\Sequent
-\lexists[x][!B(x)]$, consider the case where all $\RightR{\lexists}$
-inferences in a cut-free !!{proof}~$\pi$ are at the end:
+为了从~$\Sequent
+\lexists[x][!B(x)]$ 的一个推导~$\pi$ 中提取 Herbrand 析取式，考虑无切割推导~$\pi$ 中所有 $\RightR{\lexists}$
+推理都在末尾的情况：
 \[
 \AxiomC{}
 \RightLabel{$\pi_1$}
@@ -71,63 +65,44 @@ inferences in a cut-free !!{proof}~$\pi$ are at the end:
 \Deduce$ \fCenter \lexists[x][!B(x)]$
 \DisplayProof
 \]
-If these are all the $\RightR{\lexists}$ inferences in~$\pi$ with
-$\lexists[x][!B(x)]$ active, then there are no other quantifier
-inferences in~$\pi_1'$. That's because $!B(x)$ contains no other
-quantifiers, and the end-sequent doesn't contain any !!{formula}s on
-the left. In other words, $ \fCenter \lexists[x][!B(x)], !B(t_1),
-\dots, !B(t_n)$ is the mid-sequent of~$\pi$. Moreover, since there are
-no quantifier inferences above the mid-sequent, all sequents above it
-contain $\lexists[x][!B(x)]$ and these are neither active nor
-principal. So they can be deleted from the !!{proof}~$\pi_1$, and we
-get !!a{proof} of~$\fCenter !B(t_1), \dots, !B(t_n)$, and using $n-1$
-applications of $\RightR{\lor}$, !!a{proof} of the Herbrand
-disjunction~$\Sequent !B(t_1) \lor \dots \lor !B(t_n)$.
+如果这些是~$\pi$ 中所有以
+$\lexists[x][!B(x)]$ 为活动公式的 $\RightR{\lexists}$ 推理，那么在~$\pi_1'$ 中就没有其他的量词
+推理了。这是因为 $!B(x)$ 不包含其他的
+量词，并且末尾相继式的左侧不包含任何公式。
+换句话说，$ \fCenter \lexists[x][!B(x)], !B(t_1),
+\dots, !B(t_n)$ 是~$\pi$ 的中继式。此外，由于在中继式
+上方没有量词推理，其上方的所有相继式都包含
+$\lexists[x][!B(x)]$，并且这些公式既不是活动公式也不是
+主公式。所以它们可以从推导~$\pi_1$ 中删除，于是我们
+得到~$\fCenter !B(t_1), \dots, !B(t_n)$ 的一个推导，再运用 $n-1$
+次 $\RightR{\lor}$ 规则，就得到了 Herbrand
+析取式~$\Sequent !B(t_1) \lor \dots \lor !B(t_n)$ 的一个推导。
 
-The trouble is that we can't assume that even a cut-free !!{proof} of
-$\Sequent \lexists[x][!B(x)]$ has all its \RightR{\lexists} inferences
-in one block at the end. There might be inferences in between these
-\RightR{\lexists} inferences in which some $!B(t_i)$ is principal.
-Hence, the need for the midsequent theorem.
+问题在于，即便是 $\Sequent \lexists[x][!B(x)]$ 的一个无切割推导，我们也不能假定其所有的 \RightR{\lexists} 推理都成块地集中在末尾。
+在这些 \RightR{\lexists} 推理之间，可能存在某些推理，其中某个 $!B(t_i)$ 是主公式。
+因此，我们需要中继式定理。
 
-\begin{thm}[Midsequent Theorem]\ollabel{thm:midsequent} If there is a
-  \Log{G3c}-!!{proof}~$\pi$ of $\Gamma \Sequent \Delta$ where all
-  !!{formula}s in $\Gamma$ and $\Delta$ are prenex, then there is
-  !!a{proof}~$\pi'$ containing a sequent $\Pi \Sequent \Lambda$ such
-  that all inferences below it are quantifier inferences and all
-  inferences above it are propositional inferences.
+\begin{thm}[中继式定理]\ollabel{thm:midsequent} 如果存在一个
+  $\Log{G3c}$-推导~$\pi$ 以证明 $\Gamma \Sequent \Delta$，其中
+  $\Gamma$ 和 $\Delta$ 中的所有公式都是前束的，那么就存在一个
+  推导~$\pi'$，它包含一个相继式 $\Pi \Sequent \Lambda$，使得
+  该相继式下方的所有推理都是量词推理，而其上方的所有推理都是命题推理。
 \end{thm}
 
 \begin{proof}
-  Define the \emph{order} of a quantifier inference in~$\pi$ as the
-  number of propositional inferences below it, and the order~$o(\pi)$
-  of $\pi$ as the sum of the orders of all its quantifier inferences.
-  If $o(\pi) = 0$, then no quantifier inference has a propositional
-  inference below it, and we are done: Since all quantifier inferences
-  have one premise, there is a single topmost quantifier inference.
-  Its premise is the midsequent.
+  将~$\pi$ 中量词推理的\emph{阶}定义为其下方的命题推理的数量，并将 $\pi$ 的\emph{阶}~$o(\pi)$ 定义为其所有量词推理的阶之和。
+  如果 $o(\pi) = 0$，那么没有量词推理下方有命题推理，证明就完成了：由于所有量词推理都只有一个前提，因此存在一个最顶层的量词推理，它的前提就是中继式。
 
-  If $o(\pi) > 0$, pick a bottom-most quantifier inference with order
-  $>0$. Since it has order $>0$, there must be a propositional
-  inference below it. Since it is a bottom-most one, its conclusion
-  can't be the premise of a quantifier inference: that second, lower
-  quantifier inference would also have a propositional inference below
-  it otherwise. We distinguish (many!) cases according to what quantifier
-  inference we have, and what the propositional inference below it is.
-  Because the end-sequent consists of prenex formulas only, the
-  principal formula of the quantifier inference can't be active in the
-  following propositional inference. Otherwise the principal formula
-  of that inference would have a quantifier in the scope of a
-  propositional connective. By the sub-!!{formula} property, this would
-  have to be a sub-!!{formula} of !!a{formula} in the end-sequent.
-  So, the principal !!{formula} of the quantifier inference is
-  !!a{element} of the context of the lower propositional inference.
+  如果 $o(\pi) > 0$，则选取一个最底部的、阶大于 $0$ 的量词推理。
+  因为它的阶大于 $0$，其下方必然有一个命题推理。
+  由于它是最底部的，其结论不能是某个量词推理的前提：否则，那个位于更下方的第二个量词推理下方也会有一个命题推理（从而其阶也大于0，这与我们选取的量词推理是最底部的相矛盾）。
+  我们根据所讨论的量词推理的类型以及其下方的命题推理的类型来区分（很多！）情况。
+  因为末尾相继式仅由前束公式组成，该量词推理的主公式不可能在紧随其后的命题推理中是活动的。否则，那个命题推理的主公式就会有一个量词出现在某个命题联结词的辖域内。根据子公式性质，这势必成为末尾相继式中某个公式的子公式。
+  因此，该量词推理的主公式是下方那个命题推理的上下文中的一个元素。
 
-  Here are two examples:
+  这里给出两个例子：
 
-First, suppose we have a $\RightR{\lforall}$ which ends in the right
-premise of $\LeftR{\lif}$. Then the relevant sub-!!{proof} of~$\pi$
-ends in the sub-!!{proof}~$\pi_1$.
+首先，假设我们有一个 $\RightR{\lforall}$，其结论是 $\LeftR{\lif}$ 推理的右前提。那么，$\pi$ 的相关子推导结束于子推导~$\pi_1$：
 \[
 \AxiomC{}
 \RightLabel{$\pi_2$}
@@ -141,9 +116,7 @@ ends in the sub-!!{proof}~$\pi_1$.
 \BinaryInf$!B \lif !C, \Gamma' \fCenter \Delta', \lforall[x][!A(x)]$
 \DisplayProof
 \]
-We can assume that $\pi$ is regular, and so the eigenvariable~$c$ does
-not occur outside~$\pi_3$; in particular, it does not occur in $!B
-\lif !C$ or in~$\pi_2$. Now consider the proof~$\pi_1'$:
+我们可以假设 $\pi$ 是正则的，因此特征变元~$c$ 不会出现在~$\pi_3$ 之外；特别地，它不会出现在 $!B \lif !C$ 或~$\pi_2$ 中。现在考虑证明~$\pi_1'$：
 \[
 \AxiomC{}
 \RightLabel{$\pi_2'$}
@@ -157,35 +130,19 @@ not occur outside~$\pi_3$; in particular, it does not occur in $!B
 \UnaryInf$!B \lif !C, \Gamma' \fCenter \Delta', \lforall[x][!A(x)], \lforall[x][!A(x)]$
 \DisplayProof
 \]
-where $\pi_2'$ is obtained from~$\pi_2$ by weakening with~$!A(c)$ on
-the right. (This does not add any inferences, in particular, no
-quantifier inferences which might affect the order. It also does not
-violate any eigenvariable conditions in~$\pi_2$, since no constants
-in~$!A(c)$ are used as eigenvariables in~$\pi_2$.) The eigenvariable
-condition on \RightR{\lforall} is still satisfied, since $c$ does not
-occur in~$!B \lif !C$.
+其中 $\pi_2'$ 是通过在右侧用~$!A(c)$ 进行弱化而由~$\pi_2$ 得到的。
+（这不会增加任何推理，特别是不会增加可能影响阶的量词推理。它也没有违反~$\pi_2$ 中的任何特征变元条件，因为~$!A(c)$ 中的常元没有被用作~$\pi_2$ 中的特征变元。）
+$\RightR{\lforall}$ 的特征变元条件仍然满足，因为 $c$ 不在~$!B \lif !C$ 中出现。
 
-We invoke the admissibility of contraction to
-obtain !!a{proof}~$\pi_1''$ of $!B \lif !C, \Gamma' \fCenter \Delta',
-\lforall[x][!A(x)]$. The proof of the admissibility of
-$\RightR{\Contraction}$ for $\lforall[x][!A(x)]$ and the proof of
-invertibility of $\RightR{\lforall}$ used in that proof did not change
-the order of any inference: it, at most, deleted inferences. Thus,
-there are no more quantifier inferences in~$\pi_1''$ than in~$\pi_1$,
-and each quantifier inference in~$\pi_1''$  has the same number of
-proposional inferences below it as its corresponding inference
-in~$\pi_1$---with the exception of the last \RightR{\lforall}: it had
-a \LeftR{\lif} below it in~$\pi$, which we have moved above it
-in~$\pi_1''$. Replace $\pi_1$ in $\pi$ by $\pi_1''$. The resulting
-!!{proof} has a lower order, since at least the order of the
-$\RightR{\lforall}$ inference has been reduced by (at least)~$1$.
-Now apply the inductive hypothesis.
+我们调用收缩的可接纳性，以获得 $!B \lif !C, \Gamma' \fCenter \Delta',
+\lforall[x][!A(x)]$ 的一个推导~$\pi_1''$。
+对 $\lforall[x][!A(x)]$ 证明 $\RightR{\Contraction}$ 的可接纳性，以及在该证明中用到的 $\RightR{\lforall}$ 的可逆性，都没有改变任何推理的阶：它们至多是删除了某些推理。
+因此，$\pi_1''$ 中的量词推理不比~$\pi_1$ 中多，并且 $\pi_1''$ 中的每个量词推理，其下方命题推理的数量与~$\pi_1$ 中对应的推理相同——除了最后一个 $\RightR{\lforall}$：在~$\pi$ 中它下面有一个 $\LeftR{\lif}$，而在~$\pi_1''$ 中我们已将其移到了该 $\RightR{\lforall}$ 的上方。
+将 $\pi$ 中的 $\pi_1$ 替换为 $\pi_1''$。得到的推导具有更低的阶，因为至少那个 $\RightR{\lforall}$ 推理的阶减少了（至少）~$1$。
+现在应用归纳假设。
 
-The cases where the quantifier inference is \RightR{\lexists} is even
-easier, since contraction is not needed and no eigenvariable condition
-needs to be worried about. E.g., suppose $\RightR{\lexists}$ is
-followed by $\RightR{\land}$ (this time as the left premise). The
-relevant sub-!!{proof} is $\pi_1$:
+量词推理是 $\RightR{\lexists}$ 的情况甚至更简单，因为不需要收缩，也无需担心特征变元条件。
+例如，假设 $\RightR{\lexists}$ 之后是 $\RightR{\land}$（这次是作为左前提）。相关的子推导是 $\pi_1$：
 \[
 \AxiomC{}
 \RightLabel{$\pi_2$}
@@ -199,7 +156,7 @@ relevant sub-!!{proof} is $\pi_1$:
 \BinaryInf$\Gamma' \fCenter \Delta', \lexists[x][!A(x)], !B \land !C$
 \DisplayProof
 \]
-Replace $\pi_1$ in~$\pi$ by $\pi_1'$:
+用 $\pi_1'$ 替换~$\pi$ 中的 $\pi_1$：
 \[
 \AxiomC{}
 \RightLabel{$\pi_2$}
@@ -213,35 +170,21 @@ Replace $\pi_1$ in~$\pi$ by $\pi_1'$:
 \UnaryInf$\Gamma' \fCenter \Delta', \lexists[x][!A(x)], !B \land !C$
 \DisplayProof
 \]
-where $\pi_3'$ is obtained from $\pi_3$ by weakening with~$!A(t)$ on
-the right. This weakening involves merely adding $!A(t)$ to the right
-side of every sequent in~$\pi_3$, so does not change the order of any
-quantifier inference. The order of quantifier inferences is the same
-in~$\pi'$ as in~$\pi$, except the order of the \RightR{\lexists}
-inference permuted with~\RightR{\land} has decreased by~$1$. The
-inductive hypothesis applies.
+其中 $\pi_3'$ 是通过在右侧用~$!A(t)$ 进行弱化而由 $\pi_3$ 得到的。
+这个弱化操作仅仅是将 $!A(t)$ 添加到~$\pi_3$ 中每个相继式的右边，因此不改变任何量词推理的阶。
+在~$\pi'$ 中，量词推理的阶与在~$\pi$ 中相同，除了那个与 $\RightR{\land}$ 换位的 $\RightR{\lexists}$ 推理的阶减少了~$1$。
+归纳假设适用。
 \end{proof}
 
 \begin{prob}
-Describe the cases in the proof of \olref{thm:midsequent} where
-\LeftR{\lexists} ends in the premise of~\RightR{\lif}, and where
-\LeftR{\lforall} ends in the left premise of~\LeftR{\lor}.
+描述 \olref{thm:midsequent} 证明中的以下情况：$\LeftR{\lexists}$ 结束于 $\RightR{\lif}$ 的前提，以及 $\LeftR{\lforall}$ 结束于 $\LeftR{\lor}$ 的左前提。
 \end{prob}
 
-\begin{proof}[Proof of Herbrand's Theorem]
-Suppose $\pi$ ends in $\Sequent \lexists[x][!A(x)]$. By
-\olref{thm:midsequent}, we can transform $\pi$ into !!a{proof}~$\pi'$
-with a midsequent~$S$, which must be of the form \[\Sequent
-\lexists[x][!A(x)], !A(t_1), \dots, !A(t_n).\] Since all inferences
-above $S$ are propositional, $\lexists[x][!A(x)]$ cannot be principal
-in an inference above~$S$. Since it is not atomic, it cannot be
-principal in an axiom. Since $\lexists[x][!A(x)]$ cannot be a proper
-subformula of $!A(t_1)$ (remember that $!A(x)$ is quantifier-free), it
-can also not be active above~$S$. Deleting $\lexists[x][!A(x)]$ from
-the sub-!!{proof} ending in~$S$ therefore yields a correct !!{proof}
-of $\Sequent !A(t_1), \dots, !A(t_n)$, from which !!a{proof} of
-$\Sequent !A(t_1) \lor \dots \lor !A(t_n)$ can be obtained by $n-1$
-$\RightR{\lor}$ inferences.
+\begin{proof}[Herbrand 定理的证明]
+设 $\pi$ 结束于 $\Sequent \lexists[x][!A(x)]$。根据
+\olref{thm:midsequent}，我们可以将 $\pi$ 变换为一个具有中继式~$S$ 的推导~$\pi'$，
+其中 $S$ 必具形式 \[\Sequent
+\lexists[x][!A(x)], !A(t_1), \dots, !A(t_n).\]。由于 $S$ 之上的所有推理都是命题的，$\lexists[x][!A(x)]$ 不可能在 $S$ 之上的某个推理中是主公式。由于它不是原子的，它也不可能是一个公理的主公式。由于 $\lexists[x][!A(x)]$ 不可能是 $!A(t_1)$ 的真子公式（记住 $!A(x)$ 是无量词的），它也不可能在 $S$ 上方是活动的。因此，从结束于~$S$ 的子推导中删除 $\lexists[x][!A(x)]$，便得到 $\Sequent !A(t_1), \dots, !A(t_n)$ 的一个正确推导，由此再施以 $n-1$ 次 $\RightR{\lor}$ 推理，即可获得 $\Sequent !A(t_1) \lor \dots \lor !A(t_n)$ 的一个推导。
 \end{proof}
 
 % \begin{prob}

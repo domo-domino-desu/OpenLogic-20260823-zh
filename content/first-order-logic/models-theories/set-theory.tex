@@ -8,115 +8,79 @@
 
 \olfileid{fol}{mat}{set}
 
-\olsection{The Theory of Sets}
+\olsection{集合论}
 
-Almost all of mathematics can be developed in the theory of sets.
-Developing mathematics in this theory involves a number of things.
-First, it requires a set of axioms for the relation~$\in$.  A number
-of different axiom systems have been developed, sometimes with
-conflicting properties of~$\in$.  The axiom system known as
-$\Log{ZFC}$, Zermelo--Fraenkel set theory with the axiom of choice
-stands out: it is by far the most widely used and studied, because it
-turns out that its axioms suffice to prove almost all the things
-mathematicians expect to be able to prove.  But before that can be
-established, it first is necessary to make clear how we can even
-\emph{express} all the things mathematicians would like to express.
-For starters, the language contains no !!{constant}s or !!{function}s,
-so it seems at first glance unclear that we can talk about particular
-sets (such as $\emptyset$ or $\Nat$), can talk about operations on
-sets (such as $X \cup Y$ and $\Pow{X}$), let alone other
-constructions which involve things other than sets, such as relations
-and functions.
+几乎所有数学都能在集合论中发展。在集合论中发展数学涉及多方面的工作。
+首先，它需要一组关于关系~$\in$ 的公理。
+人们已经发展出许多不同的公理系统，这些系统有时赋予~$\in$ 互相冲突的性质。
+被称为 $\Log{ZFC}$（带选择公理的 Zermelo--Fraenkel 集合论）的公理系统尤为突出：它是目前应用最广泛、研究最深入的，因为事实证明它的公理足以证明数学家期望能够证明的几乎所有结论。
+但是，在能够确立这一点之前，首先必须澄清我们如何才能\emph{表达}数学家想要表达的一切。
+一来，该语言不包含常项符号或函数符号，所以初看起来，我们能否谈论特定的集合（例如 $\emptyset$ 或 $\Nat$）、能否谈论集合上的运算（例如 $X \cup Y$ 和 $\Pow{X}$），乃至其他涉及非集合对象的构造（例如关系和函数），似乎都不甚清楚。
 
-To begin with, ``is an element of'' is not the only relation we are
-interested in: ``is a subset of'' seems almost as important.  But we
-can \emph{define} ``is a subset of'' in terms of ``is an element of.''
-To do this, we have to find !!a{formula}~$!A(x, y)$ in
-the language of set theory which is satisfied by a pair of
-sets~$\tuple{X, Y}$ iff $X \subseteq Y$.  But $X$ is a subset of $Y$
-just in case all !!{element}s of~$X$ are also !!{element}s of~$Y$.  So
-we can define $\subseteq$ by the formula
+起初，我们感兴趣的并非只有“属于”关系：“是……的子集”似乎几乎同样重要。
+但我们可以用“属于”来\emph{定义}“是……的子集”。
+要做到这一点，我们必须在集合论的语言中找到一个公式~$!A(x, y)$，使得一对集合~$\tuple{X, Y}$ 满足该公式当且仅当 $X \subseteq Y$。
+而 $X$ 是 $Y$ 的子集当且仅当 $X$ 的所有元素也是 $Y$ 的元素。
+因此我们可以用公式
 \[
 \lforall[z][(z \in x \lif z \in y)]
 \]
-Now, whenever we want to use the relation~$\subseteq$ in a formula, we
-could instead use that formula (with $x$ and $y$ suitably replaced,
-and the bound variable~$z$ renamed if necessary).  For instance,
-extensionality of sets means that if any sets~$x$ and $y$ are
-contained in each other, then $x$ and $y$ must be the same set. This
-can be expressed by $\lforall[x][\lforall[y][((x \subseteq y \land y
-    \subseteq x) \lif x = y)]]$, or, if we replace $\subseteq$ by the
-above definition, by
+来定义 $\subseteq$。
+现在，每当我们想在一个公式中使用关系~$\subseteq$ 时，我们可以改用那个公式（将 $x$ 和 $y$ 适当替换，并在必要时重命名约束变元~$z$）。
+例如，集合的外延性是指，如果任意集合~$x$ 和 $y$ 互为子集，那么 $x$ 和 $y$ 必定是同一个集合。
+这可以用 $\lforall[x][\lforall[y][((x \subseteq y \land y
+    \subseteq x) \lif x = y)]]$ 表达，或者，如果我们把 $\subseteq$ 替换为上面的定义，也可以用
 \[
 \lforall[x][\lforall[y][((\lforall[z][(z \in x \lif z \in y)] \land
     \lforall[z][(z \in y \lif z \in x)]) \lif x = y)]].
 \]
-This is in fact one of the axioms of $\Log{ZFC}$, the ``axiom of
-extensionality.''
+来表达。
+这实际上是 $\Log{ZFC}$ 的一条公理，即“外延性公理”。
 
-There is no !!{constant} for $\emptyset$, but we can express ``$x$ is
-empty'' by $\lnot \lexists[y][y \in x]$.  Then ``$\emptyset$ exists''
-becomes the !!{sentence}~$\lexists[x][\lnot \lexists[y][y \in
-    x]]$. This is another axiom of~$\Log{ZFC}$.  (Note that the axiom
-of extensionality implies that there is only one empty set.)  Whenever
-we want to talk about $\emptyset$ in the language of set theory, we
-would write this as ``there is a set that's empty and \dots'' As an
-example, to express the fact that $\emptyset$ is a subset of every
-set, we could write
+没有表示 $\emptyset$ 的常项符号，但我们可以用 $\lnot \lexists[y][y \in x]$ 来表达“$x$ 是空的”。
+那么“$\emptyset$ 存在”就转化为语句~$\lexists[x][\lnot \lexists[y][y \in
+    x]]$。
+这是 $\Log{ZFC}$ 的另一条公理。
+（注意，外延性公理意味着只有一个空集。）
+每当我们在集合论的语言中想要谈论 $\emptyset$ 时，我们会将其写成“存在一个空集且……”。
+举个例子，要表达“空集是所有集合的子集”这个事实，我们可以写
 \[
 \lexists[x][(\lnot\lexists[y][y \in x] \land \lforall[z][x \subseteq
     z])]
 \]
-where, of course, $x \subseteq z$ would in turn have to be replaced by
-its definition.
+当然，其中 $x \subseteq z$ 又必须用它的定义来替换。
 
-To talk about operations on sets, such as $X \cup Y$ and $\Pow{X}$, we
-have to use a similar trick.  There are no function symbols in the
-language of set theory, but we can express the functional relations $X
-\cup Y = Z$ and $\Pow{X} = Y$ by
+要谈论集合上的运算，比如 $X \cup Y$ 和 $\Pow{X}$，我们必须使用类似的技巧。
+集合论的语言中没有函数符号，但我们可以用
 \begin{align*}
 & \lforall[u][((u \in x \lor u \in y) \liff u \in z)]\\
 & \lforall[u][(u \subseteq x \liff u \in y )]
 \end{align*}
-since the !!{element}s of $X \cup Y$ are exactly the sets that are
-either !!{element}s of~$X$ or !!{element}s of~$Y$, and the
-!!{element}s of $\Pow{X}$ are exactly the subsets of~$X$.  However,
-this doesn't allow us to use $x \cup y$ or $\Pow{x}$ as if they were
-terms: we can only use the entire !!{formula}s that define the
-relations $X \cup Y = Z$ and $\Pow{X} = Y$. In fact, we do not know
-that these relations are ever satisfied, i.e., we do not know that
-unions and power sets always exist. For instance, the !!{sentence}
-$\lforall[x][\lexists[y][\Pow{x} = y]]$ is another axiom
-of~$\Log{ZFC}$ (the power set axiom).
+来表达函数关系 $X \cup Y = Z$ 和 $\Pow{X} = Y$，
+因为 $X \cup Y$ 的元素恰好是那些属于~$X$ 或属于~$Y$ 的集合，而 $\Pow{X}$ 的元素恰好是~$X$ 的子集。
+然而，这不允许我们像使用项那样使用 $x \cup y$ 或 $\Pow{x}$：我们只能使用定义关系 $X \cup Y = Z$ 和 $\Pow{X} = Y$ 的整个公式。
+事实上，我们并不知道这些关系是否总是被满足，也就是说，我们不知道并集和幂集是否总是存在。
+例如，句子 $\lforall[x][\lexists[y][\Pow{x} = y]]$ 就是 $\Log{ZFC}$ 的另一条公理（幂集公理）。
 
-Now what about talk of ordered pairs or functions?  Here we have to
-explain how we can think of ordered pairs and functions as special
-kinds of sets.  One way to define the ordered pair $\tuple{x, y}$ is
-as the set $\{\{x\}, \{x, y\}\}$.  But like before, we cannot
-introduce !!a{function} that names this set; we can only define the
-relation $\tuple{x, y} = z$, i.e., $\{\{x\}, \{x, y\}\} = z$:
+那么，如何谈论有序对或函数呢？这里我们必须解释如何将有序对和函数视为特殊种类的集合。
+定义有序对 $\tuple{x, y}$ 的一种方法是将其视为集合 $\{\{x\}, \{x, y\}\}$。
+但和之前一样，我们不能引入命名该集合的函数符号；我们只能定义关系 $\tuple{x, y} = z$，即 $\{\{x\}, \{x, y\}\} = z$：
 \[
 \lforall[u][(u \in z \liff (\lforall[v][(v \in u \liff v = x)] \lor
   \lforall[v][(v \in u \liff (v = x \lor v = y))]))]
 \]
-This says that the !!{element}s~$u$ of~$z$ are exactly those sets which
-either have $x$ as its only !!{element} or have $x$ and~$y$ as its
-only !!{element}s (in other words, those sets that are either identical
-to $\{x\}$ or identical to $\{x, y\}$).  Once we have this, we can say
-further things, e.g., that $X \times Y = Z$:
+这意味着，$z$ 的元素~$u$ 恰好是那些或者以 $x$ 为唯一元素、或者以 $x$ 和 $y$ 为唯一元素的集合（换句话说，那些要么等同于 $\{x\}$、要么等同于 $\{x, y\}$ 的集合）。
+一旦有了这个，我们就可以进一步表达其他关系，例如 $X \times Y = Z$：
 \[
 \lforall[z][(z \in Z \liff \lexists[x][\lexists[y][(x \in
         X \land y \in Y \land \tuple{x, y} = z)]])]
 \]
 
-A function $f \colon X \to Y$ can be thought of as the relation $f(x)
-= y$, i.e., as the set of pairs~$\Setabs{\tuple{x,y}}{f(x) = y}$. We
-can then say that a set~$f$ is a function from $X$ to $Y$ if (a) it is
-a relation $\subseteq X \times Y$, (b) it is total, i.e., for all $x
-\in X$ there is some $y \in Y$ such that $\tuple{x, y} \in f$ and (c)
-it is functional, i.e., whenever $\tuple{x, y}, \tuple{x, y'} \in f$,
-$y = y'$ (because values of functions must be unique). So ``$f$ is a
-function from $X$ to $Y$'' can be written as:
+一个函数 $f \colon X \to Y$ 可以被视为关系 $f(x)
+= y$，即视为序对集合~$\Setabs{\tuple{x,y}}{f(x) = y}$。于是，
+我们可以说一个集合~$f$ 是从 $X$ 到 $Y$ 的函数，当且仅当 它是 $X \times Y$ 的子集（即 $X \times Y$ 上的关系）， 它是全定义的，即对所有 $x
+\in X$ 都存在某个 $y \in Y$ 使得 $\tuple{x, y} \in f$，并且 它是单值的，即每当 $\tuple{x, y}, \tuple{x, y'} \in f$，
+就有 $y = y'$（因为函数值必须是唯一的）。因此，“$f$ 是从 $X$ 到 $Y$ 的函数”可以写成：
 \begin{align*}
  \lforall[u][(u \in f \lif {}] & \lexists[x][\lexists[y][(x \in X \land y \in
       Y \land \tuple{x, y} = u)]]) \land {}\\
@@ -125,58 +89,47 @@ function from $X$ to $Y$'' can be written as:
 & (\lforall[y][\lforall[y'][((\mathrm{maps}(f, x, y) \land
     \mathrm{maps}(f, x, y')) \lif y = y')]]))
 \end{align*}
-where $\mathrm{maps}(f, x, y)$ abbreviates $\lexists[v][(v \in f \land
-  \tuple{x, y} = v)]$ (this !!{formula} expresses ``$f(x) = y$'').
+其中 $\mathrm{maps}(f, x, y)$ 是 $\lexists[v][(v \in f \land
+  \tuple{x, y} = v)]$ 的缩写（这个公式表达的是“$f(x) = y$”）。
 
-It is now also not hard to express that $f\colon X \to Y$ is
-!!{injective}, for instance:
+这样一来，要表达 $f\colon X \to Y$ 是单射的也不难，例如：
 \begin{multline*}
  f \colon X \to Y \land \lforall[x][\lforall[x'][((x \in X \land x' \in
      X \land {}]] \\
  \lexists[y][(\mathrm{maps}(f, x, y) \land \mathrm{maps}(f,
         x', y))]) \lif x = x')
 \end{multline*}
-A function~$f\colon X \to Y$ is !!{injective} iff, whenever $f$ maps $x, x'
-\in X$ to a single~$y$, $x = x'$.  If we abbreviate this formula as
-$\mathrm{inj}(f, X, Y)$, we're already in a position to state in the
-language of set theory something as non-trivial as Cantor's theorem:
-there is no !!{injective} function from $\Pow{X}$ to $X$:
+函数~$f\colon X \to Y$ 是单射的，当且仅当只要 $f$ 将 $x, x'
+\in X$ 映射到同一个~$y$，就有 $x = x'$。如果我们把这个公式缩写为
+$\mathrm{inj}(f, X, Y)$，那么我们现在就已经能够用集合论的语言陈述像 Cantor（康托尔）定理这样非平凡的结论了：
+不存在从 $\Pow{X}$ 到 $X$ 的单射函数：
 \[
 \lforall[X][\lforall[Y][(\Pow{X} = Y \lif
     \lnot\lexists[f][\mathrm{inj}(f, Y, X)])]]
 \]
 
-One might think that set theory requires another axiom that guarantees
-the existence of a set for every defining property. If $!A(x)$ is a
-formula of set theory with the variable~$x$ free, we can consider the
-!!{sentence}
+人们可能会认为集合论需要另一条公理，来保证对于每个定义性质，都有一个集合存在。如果 $!A(x)$ 是一个集合论公式且变元~$x$ 自由，我们可以考虑语句
 \[
 \lexists[y][\lforall[x][(x \in y \liff !A(x))]].
 \]
-This !!{sentence} states that there is a set~$y$ whose !!{element}s
-are all and only those $x$ that satisfy~$!A(x)$. This schema is called
-the ``comprehension principle.''  It looks very useful; unfortunately
-it is inconsistent.  Take $!A(x) \ident \lnot x \in x$, then the
-comprehension principle states
+该语句断言存在一个集合~$y$，其元素是所有且仅是那些满足~$!A(x)$ 的 $x$。这个模式被称为“概括原则”。
+它看起来非常有用；不幸的是，它是不一致的。取 $!A(x) \ident \lnot x \in x$，那么概括原则断言
 \[
 \lexists[y][\lforall[x][(x \in y \liff x \notin x)]],
 \]
-i.e., it states the existence of a set of all sets that are not
-!!{element}s of themselves. No such set can exist---this is Russell's
-Paradox.  $\Log{ZFC}$, in fact, contains a restricted---and
-consistent---version of this principle, the separation principle:
+也就是说，它断言存在一个所有不属于自身的集合所构成的集合。这样的集合不可能存在——这就是 Russell（罗素）悖论。
+事实上，$\Log{ZFC}$ 包含该原则的一个受限制的——并且一致的——版本，即分离原则：
 \[
 \lforall[z][\lexists[y][\lforall[x][(x \in y \liff (x \in z \land
       !A(x))]]].
 \]
 
 \begin{prob}
-Show that the comprehension principle is inconsistent by giving
-!!a{derivation} that shows
+通过给出一个推导来证明概括原则是不一致的，该推导表明
 \[
 \lexists[y][\lforall[x][(x \in y \liff x \notin x)]] \Proves \lfalse.
 \]
-It may help to first show $(A \lif \lnot A) \land (\lnot A \lif A)
-\Proves \lfalse$.
+先证明 $(A \lif \lnot A) \land (\lnot A \lif A)
+\Proves \lfalse$ 可能会有所帮助。
 \end{prob}
 \end{document}

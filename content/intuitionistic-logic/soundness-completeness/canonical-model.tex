@@ -8,58 +8,43 @@
 
 \olfileid{int}{sc}{mod}
 
-\olsection{The Canonical Model}
+\olsection{典范模型}
 
-The worlds in our model will be finite sequences~$\sigma$ of natural
-numbers, i.e., $\sigma \in \Nat^*$. Note that $\Nat^*$ is inductively
-defined by:
+我们模型中的世界是自然数的有穷序列~$\sigma$，即 $\sigma \in \Nat^*$。注意，$\Nat^*$ 由以下规则归纳定义：
 \begin{enumerate}
-\item $\emptyseq \in \Nat^*$.
-\item If $\sigma \in \Nat^*$ and $n \in \Nat$, then $\sigma.n \in
-  \Nat^*$ (where $\sigma.n$ is $\sigma \concat \tuple{n}$ and $\sigma \concat \sigma'$ is the concatenation if $\sigma$ and $\sigma'$).
-\item Nothing else is in $\Nat^*$.
+\item $\emptyseq \in \Nat^*$。
+\item 若 $\sigma \in \Nat^*$ 且 $n \in \Nat$，则 $\sigma.n \in \Nat^*$（其中 $\sigma.n$ 指 $\sigma \concat \tuple{n}$，而 $\sigma \concat \sigma'$ 是 $\sigma$ 与 $\sigma'$ 的拼接）。
+\item 除此之外，没有其他元素属于 $\Nat^*$。
 \end{enumerate}
-So we can use $\Nat^*$ to give inductive definitions.
 
-Let $\tuple{!B_1, !C_1}$, $\tuple{!B_2, !C_2}$, \dots, be an
-enumeration of all pairs of !!{formula}s. Given a set of
-!!{formula}s~$\Delta$, define $\Delta(\sigma)$ by induction as
-follows:
+因此，我们可以用 $\Nat^*$ 给出归纳定义。
+
+令 $\tuple{!B_1, !C_1}$, $\tuple{!B_2, !C_2}$, \dots, 为所有公式对的一个枚举。给定一个公式集~$\Delta$，按如下方式归纳地定义 $\Delta(\sigma)$：
 \begin{enumerate}
 \item $\Delta(\emptyseq) = \Delta$
 \item $\Delta(\sigma.n) = {}$
   \[
   \begin{cases}
     (\Delta(\sigma) \cup \{!B_n\})^* &
-    \text{if $\Delta(\sigma) \cup \{!B_n\} \Proves/ !C_n$} \\
-    \Delta(\sigma) & \text{otherwise}
+    \text{若 $\Delta(\sigma) \cup \{!B_n\} \Proves/ !C_n$} \\
+    \Delta(\sigma) & \text{否则}
   \end{cases}
   \]
 \end{enumerate}
-Here by $(\Delta(\sigma) \cup \{!B_n\})^*$ we mean the prime set of
-!!{formula}s which exists by \olref[lin]{lem:lindenbaum} applied to the
-set $\Delta(\sigma) \cup \{!B_n\}$ and the !!{formula}~$!C_n$. Note that by this definition, if
-$\Delta(\sigma) \cup \{!B_n\} \Proves/ !C_n$, then $\Delta(\sigma.n)
-\Proves !B_n$ and $\Delta(\sigma.n) \Proves/ !C_n$.  Note also that
-$\Delta(\sigma) \subseteq \Delta(\sigma.n)$ for any~$n$. If $\Delta$
-is prime, then $\Delta(\sigma)$ is prime for all~$\sigma$.
+
+这里的 $(\Delta(\sigma) \cup \{!B_n\})^*$ 是指将 \olref[lin]{lem:lindenbaum} 应用于集合 $\Delta(\sigma) \cup \{!B_n\}$ 与公式~$!C_n$ 所得到的公式质集。注意，根据此定义，如果 $\Delta(\sigma) \cup \{!B_n\} \Proves/ !C_n$，那么 $\Delta(\sigma.n)
+\Proves !B_n$ 且 $\Delta(\sigma.n) \Proves/ !C_n$。此外注意，对任意~$n$，$\Delta(\sigma) \subseteq \Delta(\sigma.n)$。如果 $\Delta$ 是质集，那么对所有~$\sigma$，$\Delta(\sigma)$ 也是质集。
 
 \begin{defn}\ollabel{defn:canonical-model}
-  Suppose $\Delta$ is prime.  Then the \emph{canonical model} $\mModel{M(\Delta)}$ for
-  $\Delta$ is defined by:
+  假设 $\Delta$ 是质集。则 $\Delta$ 的\emph{典范模型} $\mModel{M(\Delta)}$ 定义如下：
   \begin{enumerate}
-  \item $W = \Nat^*$, the set of finite sequences of natural numbers.
-  \item $R$ is the partial order according to which $R\sigma\sigma'$
-    iff $\sigma$ is an initial segment of~$\sigma'$ (i.e., $\sigma' =
-    \sigma \concat \sigma''$ for some sequence~$\sigma''$).
-  \item $V(p) = \Setabs{\sigma}{p \in \Delta(\sigma)}$.
+  \item $W = \Nat^*$，即自然数的有穷序列的集合。
+  \item $R$ 是偏序关系，其中 $R\sigma\sigma'$ 当且仅当 $\sigma$ 是~$\sigma'$ 的初始段（即存在序列~$\sigma''$ 使得 $\sigma' = \sigma \concat \sigma''$）。
+  \item $V(p) = \Setabs{\sigma}{p \in \Delta(\sigma)}$。
   \end{enumerate}
 \end{defn}
 
-It is easy to verify that $R$ is indeed a partial order. Also, the
-monotonicity condition on~$V$ is satisfied.  Since $\Delta(\sigma)
-\subseteq \Delta(\sigma.n)$ we get $\Delta(\sigma)
-\subseteq \Delta(\sigma')$ whenever $R\sigma\sigma'$ by induction
-on~$\sigma$.
+容易验证 $R$ 是一个偏序关系。同时，关于~$V$ 的单调性条件也成立。由 $\Delta(\sigma)
+\subseteq \Delta(\sigma.n)$，通过对~$\sigma$ 进行归纳，可得每当 $R\sigma\sigma'$ 时，有 $\Delta(\sigma) \subseteq \Delta(\sigma')$。
 
 \end{document}

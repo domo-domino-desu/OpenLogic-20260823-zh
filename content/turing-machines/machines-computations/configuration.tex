@@ -7,98 +7,67 @@
 \begin{document}
 
 \olfileid{cmp}{tur}{con}
-\olsection{Configurations and Computations}
+\olsection{格局与计算}
 
 \begin{explain}
-Recall tracing through the configurations of the even machine earlier.
-The imaginary mechanism consisting of tape, read/write head, and
-Turing machine program is really just an intuitive way of visualizing
-what a Turing machine computation is.  Formally, we can define the
-computation of a Turing machine on a given input as a sequence of
-\emph{configurations}---and a configuration in turn is a sequence of
-symbols (corresponding to the contents of the tape at a given point in
-the computation), a number indicating the position of the read/write
-head, and a state. Using these, we can define what the Turing
-machine~$M$ computes on a given input.
+回想前面我们曾追踪过“偶数机”的格局。由磁带、读写头和图灵机程序组成的假想机制，其实只是一种直观呈现图灵机计算过程的方式。严格来说，我们可以将图灵机在给定输入上的计算定义为一个\emph{格局}序列——而格局本身又由一个符号序列（对应计算过程中某时刻磁带的内容）、一个指示读写头位置的数以及一个状态组成。基于这些概念，我们就可以定义图灵机~$M$ 在给定输入上计算了什么。
 \end{explain}
 
-\begin{defn}[Configuration]
-A \emph{configuration} of Turing machine $M = \tuple{Q, \Sigma, q_0,
-\delta}$ is a triple $\tuple{C, m, q}$ where
+\begin{defn}[格局]
+图灵机 $M = \tuple{Q, \Sigma, q_0,
+\delta}$ 的一个\emph{格局}是一个三元组 $\tuple{C, m, q}$，其中
 \begin{enumerate}
-\item $C \in \Sigma^*$ is a finite sequence of symbols from $\Sigma$,
-\item $m \in \Nat$ is a number $< \len{C}$, and
-\item $q \in Q$
+\item $C \in \Sigma^*$ 是 $\Sigma$ 上的有限符号序列；
+\item $m \in \Nat$ 是满足 $m < \len{C}$ 的数；
+\item $q \in Q$。
 \end{enumerate}
-Intuitively, the sequence~$C$ is the content of the tape (symbols of
-all squares from the leftmost square to the last non-blank or
-previously visited square), $m$~is the number of the square the
-read/write head is scanning (beginning with $0$ being the number of
-the leftmost square), and $q$ is the current state of the machine.
+直观上，序列~$C$ 是磁带的内容（即从最左方格到最后一个非空白或曾被访问的方格上的所有符号），$m$~是读写头正在扫描的方格编号（最左方格编号为~$0$），$q$ 是机器的当前状态。
 \end{defn}
 
 \begin{explain}
-The potential input for a Turing machine is a sequence of symbols,
-usually a sequence that encodes a number in some form.  The initial
-configuration of the Turing machine is that configuration in which we
-start the Turing machine to work on that input: the tape contains the
-tape end marker immediately followed by the input written on the
-squares to the right, the read/write head is scanning the leftmost
-square of the input (i.e., the square to the right of the left end
-marker), and the mechanism is in the designated start state~$q_0$.
+图灵机的可能输入是一个符号序列，通常是以某种形式编码数字的序列。图灵机的\emph{初始格局}是指我们启动图灵机处理该输入时所处的格局：磁带上首先是带端标记，紧接在其右侧的方格上写有输入串；读写头正扫描输入串最左侧的方格（即左端标记右侧的方格）；且机器处于指定的起始状态~$q_0$。
 \end{explain}
 
-\begin{defn}[Initial configuration]
-The \emph{initial configuration} of $M$ for input $I \in \Sigma^*$ is
+\begin{defn}[初始格局]
+图灵机 $M$ 对于输入 $I \in \Sigma^*$ 的\emph{初始格局}是
 \[
 \tuple{\TMendtape \frown I, 1, q_0}.
 \]
 \end{defn}
 
 \begin{explain}
-The~$\frown$ symbol is for \emph{concatenation}---the input string
-begins immediately to the left end marker.
+符号~$\frown$ 表示\emph{拼接}——输入串紧接在左端标记右侧开始。
 \end{explain}
 
 \begin{defn}
-We say that a configuration $\tuple{C, m, q}$ \emph{yields the
-configuration $\tuple{C', m', q'}$ in one step} (according to~$M$),
-iff
+我们称格局 $\tuple{C, m, q}$ \emph{在一步内（根据~$M$）生成格局 $\tuple{C', m', q'}$}，
+当且仅当
 \begin{enumerate}
-\item the $m$-th symbol of $C$ is $\sigma$,
-\item the instruction set of $M$ specifies $\delta(q, \sigma) =
-  \tuple{q', \sigma', D}$,
-\item the $m$-th symbol of $C'$ is $\sigma'$, and 
+\item $C$ 的第 $m$ 个符号是 $\sigma$，
+\item $M$ 的指令集指定了 $\delta(q, \sigma) =
+  \tuple{q', \sigma', D}$，
+\item $C'$ 的第 $m$ 个符号是 $\sigma'$，且
 \item
 \begin{enumerate}
-\item $D = L$ and $m' = m - 1$ if $m>0$, otherwise $m'=0$, or
-\item $D = R$ and $m' = m + 1$, or
-\item $D = N$ and $m' = m$,
+\item 若 $D = L$，且当 $m>0$ 时 $m' = m - 1$，否则 $m'=0$；或者
+\item $D = R$ 且 $m' = m + 1$；或者
+\item $D = N$ 且 $m' = m$，
 \end{enumerate}
-\item if $m' = \len{C}$, then $\len{C'} = \len{C} + 1$ and the $m'$-th
-  symbol of $C'$ is~$\TMblank$. Otherwise $\len{C'}=\len{C}$.
-\item for all $i$ such that $i < \len{C}$ and $i \neq m$, $C'(i) = C(i)$,
+\item 若 $m' = \len{C}$，则 $\len{C'} = \len{C} + 1$ 且 $C'$ 的第 $m'$ 个符号是~$\TMblank$；否则 $\len{C'}=\len{C}$。
+\item 对于所有满足 $i < \len{C}$ 且 $i \neq m$ 的 $i$，$C'(i) = C(i)$。
 \end{enumerate}
 \end{defn}
 
 \begin{defn}\ollabel{defn:run-output}
-A \emph{run of $M$ on input~$I$} is a sequence $C_i$ of configurations
-of $M$, where $C_0$ is the initial configuration of $M$ for input~$I$,
-and each $C_i$ yields $C_{i+1}$ in one step.
+$M$ 在输入~$I$ 上的一个\emph{运行}是 $M$ 的格局序列 $C_i$，其中 $C_0$ 是 $M$ 在输入~$I$ 上的初始格局，且每个 $C_i$ 在一步内生成 $C_{i+1}$。
 
-We say that $M$ \emph{halts on input $I$ after $k$ steps} if $C_k =
-\tuple{C, m, q}$, the $m$th symbol of~$C$ is~$\sigma$, and $\delta(q,
-\sigma)$ is undefined.  In that case, the \emph{output} of~$M$ for
-input~$I$ is~$O$, where $O$ is a string of symbols not ending
-in~$\TMblank$ such that $C = \TMendtape \concat O \concat \TMblank^j$
-for some~$j \in \Nat$. ($\TMblank^j$ is a sequence of $j$ $\TMblank$'s.)
+我们称 $M$ \emph{在输入 $I$ 上于 $k$ 步后停机}，如果 $C_k =
+\tuple{C, m, q}$，$C$ 的第 $m$ 个符号是~$\sigma$，且 $\delta(q,
+\sigma)$ 无定义。此时，$M$ 对输入~$I$ 的\emph{输出}是~$O$，其中 $O$ 是一个不以~$\TMblank$ 结尾的符号串，且存在某个~$j \in \Nat$ 使得 $C = \TMendtape \concat O \concat \TMblank^j$。（$\TMblank^j$ 表示由 $j$ 个 $\TMblank$ 组成的序列。）
 \end{defn}
 
 \begin{explain}
-According to this definition, the output~$O$ of~$M$ always 
-ends in a symbol other than~$\TMblank$, or, if at time~$k$ the entire
-tape is filled with~$\TMblank$ (except for the leftmost~$\TMendtape$),
-$O$~is the empty string.
+根据此定义，$M$ 的输出~$O$ 总是以除 $\TMblank$ 以外的符号结尾，或者，如果在时刻~$k$ 整条磁带（除最左端的~$\TMendtape$ 外）都被~$\TMblank$ 填满，则 $O$ 是空串。
 \end{explain}
 
 \end{document}

@@ -5,18 +5,13 @@
 \documentclass[../../../include/open-logic-section]{subfiles}
 
 \begin{document}
-
 \olfileid{nml}{seq}{rul}
 
-\olsection{Rules for \Log{K}}
+\olsection{\Log{K}的规则}
 
-The rules for the regular propositional connectives are the same as
-for regular sequent calculus~$\Log{LK}$. Axioms are also the same: any
-sequent of the form $!A \Sequent !A$ counts as an axiom.
+常规命题联结词的规则与标准相继式演算~$\Log{LK}$ 相同。公理也一样：任何形如 $!A \Sequent !A$ 的相继式都算作公理。
 
-For the modal operator\iftag{prvBox}{\iftag{prvDiamond}{s~$\Box$
-and}{~$\Box$}}{}\iftag{prvDiamond}{~$\Diamond$}{}, we have the
-following additional \iftag{notprvBox,notprvDiamond}{rule}{rules}:
+对于模态算子\iftag{prvBox}{\iftag{prvDiamond}{~$\Box$ 和}{~$\Box$}}{}\iftag{prvDiamond}{~$\Diamond$}{}，我们有以下附加\iftag{notprvBox,notprvDiamond}{规则}{规则}：
 \[
   \iftag{prvBox}{\iftag{prvDiamond}{% <> and [] primitive
     \Axiom$\Gamma \fCenter \Delta, !A$
@@ -40,29 +35,13 @@ following additional \iftag{notprvBox,notprvDiamond}{rule}{rules}:
   \DisplayProof
 }
 \]
-Here, \iftag{prvBox}{$\Box\Gamma$ means the sequence of !!{formula}s
-resulting from~$\Gamma$ by putting $\Box$ in front of every
-!!{formula} in~$\Gamma$\iftag{prvDiamond}{ and
-}{}}{}\iftag{prvDiamond}{$\Diamond\Delta$ is the sequence of
-!!{formula}s resulting from~$\Delta$ by putting $\Diamond$ in front of
-every !!{formula} in~$\Delta$}{}. \iftag{notprvDiamond}{The right side
-of the premise of the $\Box$ rule must contain at most one
-!!{formula}~$!A$. }{}%
-\iftag{notprvBox}{The left side of the premise of the $\Diamond$
-rule must contain at most one !!{formula}~$!A$. }{}%
-\iftag{prvBox}{$\Gamma$\iftag{prvDiamond}{~and~}{}}{}\iftag{prvDiamond}{$\Delta$}{}
-may be empty; in that case the corresponding part
-\iftag{prvBox}{$\Box\Gamma$\iftag{prvDiamond}{~and~}{}}{}\iftag{prvDiamond}{$\Diamond\Delta$}{}
-of the conclusion sequent is empty as well.
+这里，\iftag{prvBox}{$\Box\Gamma$ 表示在~$\Gamma$ 中的每个公式前加上 $\Box$ 后得到的公式序列\iftag{prvDiamond}{，而}{}}{}\iftag{prvDiamond}{$\Diamond\Delta$ 表示在~$\Delta$ 中的每个公式前加上 $\Diamond$ 后得到的公式序列}{}。\iftag{notprvDiamond}{$\Box$ 规则的前提的右端必须至多包含一个公式~$!A$。}{}%
+\iftag{notprvBox}{$\Diamond$ 规则的前提的左端必须至多包含一个公式~$!A$。}{}%
+\iftag{prvBox}{$\Gamma$\iftag{prvDiamond}{~和~}{}}{}\iftag{prvDiamond}{$\Delta$}{}可以为空；此时，结论相继式中对应的部分
+\iftag{prvBox}{$\Box\Gamma$\iftag{prvDiamond}{~和~}{}}{}\iftag{prvDiamond}{$\Diamond\Delta$}{}也同样为空。
 
-The restriction of adding a
-\iftag{prvBox}{$\Box$ on the right\iftag{prvDiamond}{ and
-}{}}{}\iftag{prvDiamond}{$\Diamond$ on the left}{}
-to a single !!{formula}~$!A$ is necessary. If we allowed to
-\iftag{prvBox}{add $\Box$ to any number of !!{formula}s on the
-right\iftag{prvDiamond}{ or to }{}}{}\iftag{prvDiamond}{add $\Diamond$
-to any number of !!{formula}s on the left}{} we would be able to
-!!{derive}:
+\iftag{prvBox}{在右侧仅对单个公式~$!A$ 添加 $\Box$\iftag{prvDiamond}{，以及}{}}{}\iftag{prvDiamond}{在左侧仅对单个公式~$!A$ 添加 $\Diamond$}{}，这一限制是必要的。如果我们允许
+\iftag{prvBox}{在右侧为任意多个公式添加 $\Box$\iftag{prvDiamond}{，或}{}}{}\iftag{prvDiamond}{在左侧为任意多个公式添加 $\Diamond$}{}，我们就能够推导出：
   \[
     \iftag{prvBox}{
       \Axiom$!A \fCenter !A$
@@ -87,15 +66,10 @@ to any number of !!{formula}s on the left}{} we would be able to
       \UnaryInf$ \fCenter \Diamond!A \lif \lnot\Diamond\lnot !A$
       \DisplayProof}{}
   \]
-But \iftag{prvBox}{$\Box!A \lor \Box \lnot !A$\iftag{prvDiamond}{ and
-$\Diamond!A \lif \lnot\Diamond\lnot !A$ are}{is}}{$\Diamond!A \lif
-\lnot\Diamond\lnot !A$ is} not valid in~$\Log{K}$.
+但 \iftag{prvBox}{$\Box!A \lor \Box \lnot !A$\iftag{prvDiamond}{ 和 $\Diamond!A \lif \lnot\Diamond\lnot !A$ 在~$\Log{K}$ 中并非}{在~$\Log{K}$ 中并非}}{$\Diamond!A \lif \lnot\Diamond\lnot !A$ 在~$\Log{K}$ 中并非}有效的。
 
-If we allowed side formulas in addition to~$!A$ in the premise, and
-allowed \iftag{prvBox}{the $\Box$ rule to add $\Box$ to only~$!A$ on
-the right\iftag{prvDiamond}{, or allowed }{}}{}\iftag{prvDiamond}{the
-$\Diamond$ rule to add $\Diamond$ to only~$!A$ on the left}{} (but do
-nothing to the side formulas) we would be able to !!{derive}:
+如果我们允许前提中除了~$!A$ 之外还有辅助公式，并且允许
+\iftag{prvBox}{$\Box$ 规则仅在右侧为~$!A$ 添加 $\Box$\iftag{prvDiamond}{，或允许}{}}{}\iftag{prvDiamond}{$\Diamond$ 规则仅在左侧为~$!A$ 添加 $\Diamond$}{}（而对辅助公式不作处理），我们就能够推导出：
 \[
   \iftag{prvBox}{
     \Axiom$!A \fCenter !A$
@@ -122,8 +96,6 @@ nothing to the side formulas) we would be able to !!{derive}:
     \UnaryInf$ \fCenter !A \lif \lnot\Diamond\lnot !A$
     \DisplayProof}{}
 \]
-But \iftag{prvBox}{$\lnot!A \lor \Box !A$ (which is equivalent to $!A
-\lif \Box!A$)\iftag{prvDiamond}{ and $!A \lif \lnot\Diamond\lnot !A$
-are}{is}}{$!A \lif \lnot\Diamond\lnot !A$ is} not valid in~$\Log{K}$.
+但 \iftag{prvBox}{$\lnot!A \lor \Box !A$（等价于 $!A \lif \Box!A$）\iftag{prvDiamond}{ 和 $!A \lif \lnot\Diamond\lnot !A$ 在~$\Log{K}$ 中并非}{在~$\Log{K}$ 中并非}}{$!A \lif \lnot\Diamond\lnot !A$ 在~$\Log{K}$ 中并非}有效的。
 
 \end{document}

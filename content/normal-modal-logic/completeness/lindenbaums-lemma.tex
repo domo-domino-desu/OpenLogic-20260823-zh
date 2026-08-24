@@ -8,100 +8,51 @@
 
 \olfileid{nml}{com}{lin}
 
-\olsection{Lindenbaum's Lemma}
+\olsection{林登鲍姆引理}
 
-Lindenbaum's Lemma establishes that every $\Sigma$-consistent set of
-!!{formula}s is contained in at least one \emph{complete}
-$\Sigma$-consistent set. Our construction of the canonical model will
-show that for each complete $\Sigma$-consistent set~$\Delta$, there is
-a world in the canonical model where all and only the !!{formula}s
-in~$\Delta$ are true. So Lindenbaum's Lemma guarantees that every
-$\Sigma$-consistent set is true at some world in the canonical model.
+林登鲍姆引理断言，每个 $\Sigma$ 一致的公式集都包含在至少一个\emph{完全的} $\Sigma$ 一致集中。我们构造典范模型时将表明，对于每个完全的 $\Sigma$ 一致集~$\Delta$，在典范模型中都有一个世界，使得 $\Delta$ 中的且仅有 $\Delta$ 中的公式为真。因此，林登鲍姆引理保证了每个 $\Sigma$ 一致集在典范模型的某个世界中为真。
 
-\begin{thm}[Lindenbaum's Lemma]\ollabel{thm:lindenbaum}
-  If $\Gamma$ is $\Sigma$-consistent then there is a complete
-  $\Sigma$-consistent set $\Delta$ extending~$\Gamma$.
+\begin{thm}[Lindenbaum 引理]\ollabel{thm:lindenbaum}
+  如果 $\Gamma$ 是 $\Sigma$ 一致的，那么存在一个扩张~$\Gamma$ 的完全 $\Sigma$ 一致集 $\Delta$。
 \end{thm}
 
 \begin{proof}
-Let $!A_0$, $!A_1$, \dots{} be an exhaustive listing of all formulas
-of the language (repetitions are allowed). For instance, start by
-listing $\Obj p_0$, and at each stage $n \ge 1$ list the finitely many
-formulas of length~$n$ using only variables among $\Obj p_0$,
-\dots,~$\Obj p_n$. We define sets of !!{formula}s $\Delta_n$ by
-induction on~$n$, and we then set $\Delta = \bigcup_n \Delta_n$. We
-first put $\Delta_0 = \Gamma$. Supposing that $\Delta_n$ has been
-defined, we define $\Delta_{n+1}$ by:
+令 $!A_0$, $!A_1$, \dots{} 为该语言所有公式的一个穷尽列举（允许重复）。例如，可以先列出 $\Obj p_0$，然后在每个阶段 $n \ge 1$，列出所有长度为~$n$、只使用变元 $\Obj p_0$, \dots,~$\Obj p_n$ 的有穷多个公式。我们通过对~$n$ 归纳来定义公式集 $\Delta_n$，然后令 $\Delta = \bigcup_n \Delta_n$。首先令 $\Delta_0 = \Gamma$。假设 $\Delta_n$ 已定义，我们按下式定义 $\Delta_{n+1}$：
 \[
 \Delta_{n+1} =
 \begin{cases}
-  \Delta_n \cup \{!A_n\}, & \text{if $\Delta_n \cup \{ !A_n\}$
-    is $\Sigma$-consistent;} \\
-  \Delta_n \cup \{ \lnot !A_n\}, & \text{otherwise.}
+  \Delta_n \cup \{!A_n\}, & \text{如果 $\Delta_n \cup \{ !A_n\}$
+    是 $\Sigma$ 一致的；} \\
+  \Delta_n \cup \{ \lnot !A_n\}, & \text{否则。}
 \end{cases}
 \]
-Now let $\Delta = \bigcup_{n=0}^\infty \Delta_n$.
+现在令 $\Delta = \bigcup_{n=0}^\infty \Delta_n$。
 
-We have to show that this definition actually yields a set $\Delta$
-with the required properties, i.e., $\Gamma \subseteq \Delta$ and
-$\Delta$ is complete $\Sigma$-consistent.
+我们需要证明这个定义确实产生了一个具有所需性质的集合 $\Delta$，即 $\Gamma \subseteq \Delta$ 且 $\Delta$ 是完全 $\Sigma$ 一致的。
 
-It's obvious that $\Gamma \subseteq \Delta$, since $\Delta_0 \subseteq
-\Delta$ by construction, and $\Delta_0 = \Gamma$. In fact, $\Delta_n
-\subseteq \Delta$ for all~$n$, since $\Delta$ is the union of
-all~$\Delta_n$. (Since in each step of the construction, we add
-!!a{formula} to the set already constructed, $\Delta_n \subseteq
-\Delta_{n+1}$, so since $\subseteq$ is transitive, $\Delta_n \subseteq
-\Delta_{m}$ whenever $n \le m$.)  At each stage of the construction, we
-either add $!A_n$ or $\lnot !A_n$, and every !!{formula} appears (at
-least once) in the list of all~$!A_n$. So, for every $!A$ either $!A
-\in \Delta$ or $\lnot !A \in \Delta$, so $\Delta$ is complete by
-definition.
+显然 $\Gamma \subseteq \Delta$，因为由构造有 $\Delta_0 \subseteq \Delta$，而 $\Delta_0 = \Gamma$。事实上，对所有~$n$ 都有 $\Delta_n \subseteq \Delta$，因为 $\Delta$ 是所有~$\Delta_n$ 的并集。（由于在构造的每一步，我们都向已构造的集合添加一个公式，$\Delta_n \subseteq
+\Delta_{n+1}$，而 $\subseteq$ 是传递的，因此只要 $n \le m$ 就有 $\Delta_n \subseteq \Delta_{m}$。）在构造的每个阶段，我们要么加入 $!A_n$ 要么加入 $\lnot !A_n$，并且每个公式都（至少一次）出现在所有~$!A_n$ 的列表中。所以，对于每个 $!A$，要么 $!A \in \Delta$，要么 $\lnot !A \in \Delta$，因此根据定义 $\Delta$ 是完全的。
 
-Finally, we have to show, that $\Delta$ is $\Sigma$-consistent.  To do
-this, we show that (a) if $\Delta$ were $\Sigma$-inconsistent, then
-some $\Delta_n$ would be $\Sigma$-inconsistent, and (b) all $\Delta_n$
-are $\Sigma$-consistent.
+最后，我们需要证明 $\Delta$ 是 $\Sigma$ 一致的。为此，我们证明 如果 $\Delta$ 是 $\Sigma$ 不一致的，那么某个 $\Delta_n$ 将是 $\Sigma$ 不一致的，以及 所有 $\Delta_n$ 都是 $\Sigma$ 一致的。
 
-So suppose $\Delta$ were $\Sigma$-inconsistent. Then $\Delta
-\Proves[\Sigma] \lfalse$, i.e., there are $!A_1$, \dots,~$!A_k \in
-\Delta$ such that $\Sigma \Proves !A_1 \lif (!A_2 \lif \cdots (!A_k
-\lif \lfalse)\dots)$. Since $\Delta = \bigcup_{n=0}^\infty \Delta_n$, each
-$!A_i \in \Delta_{n_i}$ for some~$n_i$. Let $n$ be the largest of
-these. Since $n_i \le n$, $\Delta_{n_i} \subseteq \Delta_n$. So, all
-$!A_i$ are in some~$\Delta_n$. This would mean $\Delta_n
-\Proves[\Sigma] \lfalse$, i.e., $\Delta_n$ is $\Sigma$-inconsistent.
+假设 $\Delta$ 是 $\Sigma$ 不一致的。那么 $\Delta \Proves[\Sigma] \lfalse$，即存在 $!A_1$, \dots,~$!A_k \in \Delta$ 使得 $\Sigma \Proves !A_1 \lif (!A_2 \lif \cdots (!A_k
+\lif \lfalse)\dots)$。由于 $\Delta = \bigcup_{n=0}^\infty \Delta_n$，每个 $!A_i \in \Delta_{n_i}$ 对某个~$n_i$ 成立。令 $n$ 为这些指标中最大的那个。因为 $n_i \le n$，$\Delta_{n_i} \subseteq \Delta_n$。所以，所有 $!A_i$ 都在某个~$\Delta_n$ 中。这将意味着 $\Delta_n \Proves[\Sigma] \lfalse$，即 $\Delta_n$ 是 $\Sigma$ 不一致的。
 
-To show that each $\Delta_n$ is $\Sigma$-consistent, we use a simple
-induction on~$n$. $\Delta_0 = \Gamma$, and we assumed $\Gamma$ was
-$\Sigma$-consistent. So the claim holds for $n = 0$. Now suppose it
-holds for $n$, i.e., $\Delta_n$ is $\Sigma$-consistent. $\Delta_{n+1}$
-is either $\Delta_n \cup \{!A_n\}$ if that is $\Sigma$-consistent,
-otherwise it is $\Delta_n \cup \{\lnot!A_n\}$. In the first case,
-$\Delta_{n+1}$ is clearly $\Sigma$-consistent. However, by
-\olref[prf][con]{prop:consistencyfacts}\olref[prf][con]{prop:consistencyfacts-c},
-either $\Delta_n \cup \{!A_n\}$ or $\Delta_n \cup \{\lnot!A_n\}$ is
-consistent, so $\Delta_{n+1}$ is consistent in the other case as well.
+为证明每个 $\Delta_n$ 是 $\Sigma$ 一致的，我们对~$n$ 进行简单的归纳。$\Delta_0 = \Gamma$，而我们假设了 $\Gamma$ 是 $\Sigma$ 一致的。所以命题对 $n = 0$ 成立。现在假设命题对 $n$ 成立，即 $\Delta_n$ 是 $\Sigma$ 一致的。$\Delta_{n+1}$ 要么是 $\Delta_n \cup \{!A_n\}$（如果它是 $\Sigma$ 一致的），否则就是 $\Delta_n \cup \{\lnot!A_n\}$。在第一种情况下，$\Delta_{n+1}$ 显然是 $\Sigma$ 一致的。然而，根据 \olref[prf][con]{prop:consistencyfacts}\olref[prf][con]{prop:consistencyfacts-c}，要么 $\Delta_n \cup \{!A_n\}$ 要么 $\Delta_n \cup \{\lnot!A_n\}$ 是 $\Sigma$ 一致的，所以在另一种情况下 $\Delta_{n+1}$ 也是 $\Sigma$ 一致的。
 \end{proof}
 
 \begin{cor}\ollabel{cor:provability-characterization}
-  $\Gamma \Proves[\Sigma] !A$ if and only if $!A \in \Delta$ for
-  each  complete $\Sigma$-consistent set $\Delta$ extending $\Gamma$
-  (including when $\Gamma = \emptyset$, in which case we get another
-  characterization of the modal system $\Sigma$.)
+  $\Gamma \Proves[\Sigma] !A$ 当且仅当对于每个扩张 $\Gamma$ 的完全 $\Sigma$ 一致集 $\Delta$（包括 $\Gamma = \emptyset$ 的情形，此时我们得到模态系统 $\Sigma$ 的另一种刻画），都有 $!A \in \Delta$。
 \end{cor}
 
 \begin{proof}
-  Suppose $\Gamma \Proves[\Sigma] !A$, and let $\Delta$ be any
-  complete $\Sigma$-consistent set extending $\Gamma$. If $!A
-  \notin \Delta$ then by maximality $\lnot!A \in \Delta$ and so
-  $\Delta \Proves[\Sigma] !A$ (by monotonicity) and $\Delta
-  \Proves[\Sigma] \lnot!A$ (by reflexivity), and so $\Delta$ is
-  inconsistent. Conversely if $\Gamma \Proves/[\Sigma] !A$, then
-  $\Gamma \cup \{ \lnot!A\}$ is $\Sigma$-consistent, and by
-  Lindenbaum's Lemma there is a complete consistent set $\Delta$
-  extending $\Gamma \cup \{ \lnot!A \}$. By consistency, $!A
-  \notin \Delta$.
+  设 $\Gamma \Proves[\Sigma] !A$，并令 $\Delta$ 为任意一个扩张 $\Gamma$ 的完全 $\Sigma$ 一致集。
+  若 $!A \notin \Delta$，则由极大性知 $\lnot!A \in \Delta$，
+  于是 $\Delta \Proves[\Sigma] !A$（由单调性）且 $\Delta \Proves[\Sigma] \lnot!A$（由自反性），
+  从而 $\Delta$ 是不一致的。
+  反之，若 $\Gamma \Proves/[\Sigma] !A$，则 $\Gamma \cup \{ \lnot!A\}$ 是 $\Sigma$ 一致的，
+  根据林登鲍姆引理，存在一个扩张 $\Gamma \cup \{ \lnot!A \}$ 的完全 $\Sigma$ 一致集 $\Delta$。
+  由一致性，$!A \notin \Delta$。
 \end{proof}
 
 \end{document}

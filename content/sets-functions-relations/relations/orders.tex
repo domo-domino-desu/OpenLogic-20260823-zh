@@ -7,162 +7,102 @@
 \begin{document}
 
 \olfileid{sfr}{rel}{ord}
-\olsection{Orders}
+\olsection{序}
 
 \begin{explain}
-Many of our comparisons involve describing some objects as being
-``less than'', ``equal to'', or ``greater than'' other objects, in a
-certain respect. These involve \emph{order} relations. But there are
-different kinds of order relations. For instance, some require that
-any two objects be comparable, others don't. Some include identity
-(like~$\le$) and some exclude it (like~$<$). It will help us to have a
-taxonomy here.
+我们的许多比较都涉及在某个方面将一些对象描述为“小于”、“等于”或“大于”另一些对象。这些比较涉及\emph{序}关系。但序关系有多种不同的类型。例如，有些要求任何两个对象都是可比的，有些则不要求；有些包含等同关系（如~$\le$），有些则排除等同关系（如~$<$）。在此建立一个分类法将会对我们有所帮助。
 \end{explain}
 
-\begin{defn}[Preorder]
-A relation which is both reflexive and transitive is called a
-\emph{preorder.}  
+\begin{defn}[预序]
+一个既自反又传递的关系称为\emph{预序}。  
 \end{defn}
 
-\begin{defn}[Partial order]
-A preorder which is also anti-symmetric is called a
-\emph{partial order}.
+\begin{defn}[偏序]
+一个同时也是反对称的预序称为\emph{偏序}。
 \end{defn}
 
-\begin{defn}[Linear order]\ollabel{def:linearorder}
-A partial order which is also connected is called a
-\emph{total order} or \emph{linear order.}
+\begin{defn}[全序]\ollabel{def:linearorder}
+一个同时也是连通的偏序称为\emph{全序}或\emph{线性序}。
 \end{defn}
 
 \begin{ex}
-Every linear order is also a partial order, and every partial order is
-also a preorder, but the converses don't hold. The universal relation
-on~$A$ is a preorder, since it is reflexive and transitive. But, if
-$A$ has more than one !!{element}, the universal relation is not
-anti-symmetric, and so not a partial order.
+每个线性序都是偏序，每个偏序也都是预序，但反之则不成立。集合~$A$ 上的全集关系是一个预序，因为它是自反且传递的。但是，如果 $A$ 的元素多于一个，那么全集关系就不是反对称的，因而也不是偏序。
 \end{ex}
 
 \begin{ex}
-Consider the \emph{no longer than} relation $\preccurlyeq$
-on~$\Bin^*$: $x \preccurlyeq y$ iff $\len{x} \le \len{y}$. This is a
-preorder (reflexive and transitive), and even connected, but not a
-partial order, since it is not anti-symmetric. For instance, $01
-\preccurlyeq 10$ and $10 \preccurlyeq 01$, but $01 \neq 10$.
+考虑~$\Bin^*$ 上的\emph{不长于}关系 $\preccurlyeq$：$x \preccurlyeq y$ 当且仅当 $\len{x} \le \len{y}$。这是一个预序（自反且传递），甚至是连通的，但不是偏序，因为它不是反对称的。例如，$01 \preccurlyeq 10$ 且 $10 \preccurlyeq 01$，但是 $01 \neq 10$。
 \end{ex}
 
 \begin{ex}
-An important partial order is the relation $\subseteq$ on a set of
-sets. This is not in general a linear order, since if $a \neq b$ and
-we consider $\Pow{\{a, b\}} = \{\emptyset, \{a\}, \{b\}, \{a,b\}\}$,
-we see that $\{a\} \nsubseteq \{b\}$ and $\{a\} \neq \{b\}$ and $\{b\}
-\nsubseteq \{a\}$.
+一个重要的偏序是集合族上的包含关系 $\subseteq$。它一般不是线性序，因为如果 $a \neq b$，我们考虑 $\Pow{\{a, b\}} = \{\emptyset, \{a\}, \{b\}, \{a,b\}\}$，
+就会看到 $\{a\} \nsubseteq \{b\}$ 且 $\{a\} \neq \{b\}$ 以及 $\{b\}
+\nsubseteq \{a\}$。
 \end{ex}
 
 \begin{ex}
-The relation of \emph{divisibility without remainder} gives us a
-partial order which isn't a linear order. For integers $n$ and~$m$, we
-write $n \mid m$ to mean $n$ (evenly) divides $m$, i.e., iff there is
-some integer~$k$ so that $m = kn$. On~$\Nat$, this is a partial order,
-but not a linear order: for instance, $2 \nmid 3$ and also $3 \nmid
-2$. Considered as a relation on $\Int$, divisibility is only a
-preorder since it is not anti-symmetric: $1 \mid -1$ and $-1 \mid 1$
-but $1 \neq -1$.
+\emph{无余数整除}关系给出了一个不是线性序的偏序。对于整数 $n$ 和~$m$，我们写作 $n \mid m$ 表示 $n$（整）除 $m$，即当且仅当存在某个整数~$k$ 使得 $m = kn$。在~$\Nat$ 上，这是一个偏序，但不是线性序：例如，$2 \nmid 3$ 且 $3 \nmid 2$。若将整除视为 $\Int$ 上的关系，则它只是一个预序，因为它不是反对称的：$1 \mid -1$ 且 $-1 \mid 1$，但 $1 \neq -1$。
 \end{ex}
 
 \begin{ex}
-The \emph{extension} relation on a set of sequences~$A^*$ is the
-following: $s \sqsubseteq s'$ iff $s = \emptyseq$ (the empty
-sequence), $s = s'$, or $s = \tuple{s_1, \dots, s_n}$ and $s' =
-\tuple{s_1, \dots, s_n, s_{n+1}, \dots, s_m}$. If $s \sqsubseteq s'$
-we also say that $s$ is an \emph{initial segment} of~$s'$. The
-extension relation on $A^*$ is a partial order but not a linear order,
-e.g., if $a \neq b$, then $ab \not\sqsubseteq ba$ and $ba \not\sqsubseteq ab$.
+序列集~$A^*$ 上的\emph{扩展}关系定义如下：$s \sqsubseteq s'$ 当且仅当 $s = \emptyseq$（空序列），$s = s'$，或者 $s = \tuple{s_1, \dots, s_n}$ 且 $s' =
+\tuple{s_1, \dots, s_n, s_{n+1}, \dots, s_m}$。如果 $s \sqsubseteq s'$，我们也说 $s$ 是~$s'$ 的一个\emph{初始段}。$A^*$ 上的扩展关系是偏序但不是线性序，例如，如果 $a \neq b$，那么 $ab \not\sqsubseteq ba$ 且 $ba \not\sqsubseteq ab$。
 \end{ex}
 
-\begin{defn}[Strict order]
-A \emph{strict order} is a relation which is irreflexive, asymmetric,
-and transitive.
+\begin{defn}[严格序]
+\emph{严格序}是一个反自反的、非对称的且传递的关系。
 \end{defn}
 
-\begin{defn}[Strict linear order]\ollabel{def:strictlinearorder}
-A strict order which is also connected is called a 
-\emph{strict total order} or \emph{strict linear order.}
+\begin{defn}[严格线性序]\ollabel{def:strictlinearorder}
+一个同时也是连通的严格序称为\emph{严格全序}或\emph{严格线性序}。
 \end{defn}
 
 \begin{ex}
-$\le$ is the linear order corresponding to the strict linear
-order~$<$. $\subseteq$ is the partial order corresponding to the
-strict order~$\subsetneq$.
+$\le$ 是对应于严格线性序~$<$ 的线性序。$\subseteq$ 是对应于严格序~$\subsetneq$ 的偏序。
 \end{ex}
 
-Any strict order $R$ on~$A$ can be turned into a partial order by
-adding the diagonal $\Id{A}$, i.e., adding all the pairs~$\tuple{x,
-x}$.  (This is called the \emph{reflexive closure} of~$R$.)
-Conversely, starting from a partial order, one can get a strict order
-by removing~$\Id{A}$. These next two results make this precise.
+任何~$A$ 上的严格序 $R$ 都可以通过添加对角线 $\Id{A}$，即添加所有序对~$\tuple{x, x}$，而变成一个偏序。（这称为 $R$ 的\emph{自反闭包}。）反之，从一个偏序出发，通过移除~$\Id{A}$ 可以得到一个严格序。下面两个结果精确地表述了这一点。
 
 \begin{prop}\ollabel{prop:stricttopartial}
-If $R$ is a strict order on~$A$, then $R^+ = R \cup \Id{A}$ is a
-partial order. Moreover, if $R$ is a strict linear order, then $R^+$ is 
-a linear order.
+如果 $R$ 是~$A$ 上的一个严格序，那么 $R^+ = R \cup \Id{A}$ 是一个偏序。此外，如果 $R$ 是一个严格线性序，那么 $R^+$ 是一个线性序。
 \end{prop}
 
 \begin{proof}
-Suppose $R$ is a strict order, i.e., $R \subseteq A^2$ and $R$ is
-irreflexive, asymmetric, and transitive. Let $R^+ = R \cup \Id{A}$. We
-have to show that $R^+$ is reflexive, anti-symmetric, and transitive.
+假设 $R$ 是一个严格序，即 $R \subseteq A^2$ 且 $R$ 是反自反的、非对称的、传递的。令 $R^+ = R \cup \Id{A}$。我们需要证明 $R^+$ 是自反的、反对称的和传递的。
 
-$R^+$ is clearly reflexive, since $\tuple{x, x} \in \Id{A} \subseteq
-R^+$ for all $x \in A$. 
+$R^+$ 显然是自反的，因为对所有 $x \in A$ 都有 $\tuple{x, x} \in \Id{A} \subseteq
+R^+$。 
 
-To show $R^+$ is anti-symmetric, suppose for reductio that $R^+xy$ and
-$R^+yx$ but $x \neq y$. Since $\tuple{x,y} \in R \cup \Id{A}$, but
-$\tuple{x, y} \notin \Id{A}$, we must have $\tuple{x, y} \in R$, i.e.,
-$Rxy$. Similarly,~$Ryx$. But this contradicts the assumption
-that $R$ is asymmetric.
+为证 $R^+$ 反对称，反设 $R^+xy$ 且 $R^+yx$ 但 $x \neq y$。由于 $\tuple{x,y} \in R \cup \Id{A}$，而 $\tuple{x, y} \notin \Id{A}$，我们必有 $\tuple{x, y} \in R$，即 $Rxy$。类似地，有 $Ryx$。但这与 $R$ 的非对称性矛盾。
 
-To establish transitivity, suppose that $R^+xy$ and $R^+yz$. If both
-$\tuple{x, y} \in R$ and $\tuple{y,z} \in R$, then $\tuple{x, z} \in
-R$ since $R$~is transitive. Otherwise, either $\tuple{x, y} \in
-\Id{A}$, i.e., $x = y$, or $\tuple{y, z} \in \Id{A}$, i.e., $y = z$.
-In the first case, we have that $R^+yz$ by assumption, $x = y$, hence
-$R^+xz$. Similarly in the second case. In either case, $R^+xz$, thus,
-$R^+$ is also transitive.
+要证传递性，假设 $R^+xy$ 且 $R^+yz$。如果 $\tuple{x, y} \in R$ 且 $\tuple{y,z} \in R$，那么由 $R$ 的传递性得 $\tuple{x, z} \in R$。否则，要么 $\tuple{x, y} \in
+\Id{A}$，即 $x = y$，要么 $\tuple{y, z} \in \Id{A}$，即 $y = z$。在第一种情况下，由假设知 $R^+yz$ 且 $x = y$，故 $R^+xz$。第二种情况同理。无论哪种情况，都有 $R^+xz$，故 $R^+$ 也是传递的。
 
-Concerning the ``moreover'' clause, suppose that $R$ is also connected. 
-So for all $x \neq y$, either $Rxy$ or~$Ryx$, i.e., either 
-$\tuple{x, y} \in R$ or $\tuple{y, x} \in R$. Since $R \subseteq R^+$, 
-this remains true of $R^+$, so $R^+$ is connected as well.
+关于“此外”的结论，假设 $R$ 也是连通的。那么对所有 $x \neq y$，要么 $Rxy$，要么 $Ryx$，即要么 $\tuple{x, y} \in R$，要么 $\tuple{y, x} \in R$。由于 $R \subseteq R^+$，这对 $R^+$ 依然成立，故 $R^+$ 也是连通的。
 \end{proof}
 
 \begin{prop}\ollabel{prop:partialtostrict}
-If $R$ is a partial order on~$A$, then $R^- = R \setminus \Id{A}$ is a
-strict order. Moreover, if $R$ is a linear order, then $R^-$ is a strict 
-linear order.
+如果 $R$ 是 $A$ 上的一个偏序，那么 $R^- = R \setminus \Id{A}$ 是一个严格序。此外，如果 $R$ 是一个线性序，那么 $R^-$ 是一个严格线性序。
 \end{prop}
 
 \begin{proof}
-This is left as an exercise.
+留作练习。
 \end{proof}
 
 \begin{prob}
-Give a proof of \olref[sfr][rel][ord]{prop:partialtostrict}. 
+请证明 \olref[sfr][rel][ord]{prop:partialtostrict}。 
 \end{prob}
 
-The following simple result establishes that strict linear orders
-satisfy an extensionality-like property:
+下述简单结果表明，严格线性序满足一种类似外延性的性质：
 
 \begin{prop}\ollabel{prop:extensionality-strictlinearorders}
-If $<$ is a strict linear order on $A$, then:
+如果 $<$ 是 $A$ 上的一个严格线性序，那么：
 \[
   (\forall a, b \in A)((\forall x \in A)(x < a \liff x < b) \lif a = b).
 \]
 \end{prop}
 
 \begin{proof}
-Suppose $(\forall x \in A)(x < a \liff x < b)$. If $a < b$, then $a <
-a$, contradicting the fact that $<$ is irreflexive; so $a \nless b$.
-Exactly similarly, $b \nless a$. So $a = b$, as $<$ is connected.
+假设 $(\forall x \in A)(x < a \liff x < b)$。如果 $a < b$，那么 $a < a$，这与 $<$ 的反自反性矛盾；所以 $a \nless b$。同理可得 $b \nless a$。又因为 $<$ 是连通的，所以 $a = b$。
 \end{proof}
 
 \end{document}

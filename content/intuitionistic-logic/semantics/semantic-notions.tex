@@ -8,66 +8,51 @@
 
 \olfileid{int}{sem}{sem}
 
-\olsection{Semantic Notions}
+\olsection{语义概念}
 
 \begin{defn}
-  We say $!A$ is \emph{true in the model $\mModel{M} = \tuple{W,R,V}$,} $
-  \mSat{M}{!A}$, iff $\mSat{M}{!A}[w]$ for all $w \in W$.
-  $!A$ is \emph{valid}, $\Entails !A$, iff it is true in all models.
-  We say a set of !!{formula}s~$\Gamma$ \emph{entails}~$!A$, $\Gamma
-  \Entails !A$, iff for every model~$\mModel{M}$ and every~$w$ such
-  that $\mSat{M}{\Gamma}[w]$, $\mSat{M}{!A}[w]$.
+  我们称 $!A$ \emph{在模型 $\mModel{M} = \tuple{W,R,V}$ 中为真}，记作 $\mSat{M}{!A}$，当且仅当 $\mSat{M}{!A}[w]$ 对所有 $w \in W$ 成立。
+  $!A$ 是\emph{有效的}，记作 $\Entails !A$，当且仅当它在所有模型中为真。
+  我们称公式集合~$\Gamma$ \emph{语义地后承}~$!A$，记作 $\Gamma \Entails !A$，当且仅当对每个模型~$\mModel{M}$ 和每个满足 $\mSat{M}{\Gamma}[w]$ 的~$w$，都有 $\mSat{M}{!A}[w]$。
 \end{defn}
 
 \begin{prop}\ollabel{prop:sat-entails}
   \begin{enumerate}
-  \item\ollabel{prop:sat-entails1} If $\mSat{M}{\Gamma}[w]$ and
-    $\Gamma \Entails !A$, then $\mSat{M}{!A}[w]$.
-  \item\ollabel{prop:sat-entails2} If $\mSat{M}{\Gamma}$ and $\Gamma
-    \Entails !A$, then $\mSat{M}{!A}$.
+  \item\ollabel{prop:sat-entails1} 如果 $\mSat{M}{\Gamma}[w]$ 且 $\Gamma \Entails !A$，那么 $\mSat{M}{!A}[w]$。
+  \item\ollabel{prop:sat-entails2} 如果 $\mSat{M}{\Gamma}$ 且 $\Gamma \Entails !A$，那么 $\mSat{M}{!A}$。
   \end{enumerate}
 \end{prop}
 
 \begin{proof}
   \begin{enumerate}
-  \item Suppose $\mSat{M}{\Gamma}$. Since $\Gamma \Entails !A$, we
-    know that if $\mSat{M}{\Gamma}[w]$, then $\mSat{M}{!A}[w]$. Since
-    $\mSat{M}{\Gamma}[u]$ for all every $u \in W$,
-    $\mSat{M}{\Gamma}[w]$. Hence $\mSat{M}{!A}[w]$.
-  \item Follows immediately from \olref{prop:sat-entails1}.
+  \item 假设 $\mSat{M}{\Gamma}$。因为 $\Gamma \Entails !A$，我们知道如果 $\mSat{M}{\Gamma}[w]$，那么 $\mSat{M}{!A}[w]$。由于对所有 $u \in W$ 都有 $\mSat{M}{\Gamma}[u]$，故 $\mSat{M}{\Gamma}[w]$ 成立。因此 $\mSat{M}{!A}[w]$。
+  \item 由 \olref{prop:sat-entails1} 直接可得。
   \end{enumerate}
 \end{proof}
 
-
 \begin{defn}\ollabel{defn:restrict}
-  Suppose $\mModel{M}$ is a relational model and $w \in W$. The
-  \emph{restriction} $\mModel{M}_w=\tuple{W_w, R_w, V_w}$
-  of~$\mModel{M}$ to~$w$ is given by:
+  假设 $\mModel{M}$ 是关系模型且 $w \in W$。$\mModel{M}$ 到~$w$ 的\emph{限制} $\mModel{M}_w=\tuple{W_w, R_w, V_w}$ 定义如下：
   \begin{align*}
     W_w & = \Setabs{u \in W}{Rwu},\\
-    R_w  & = R \cap (W_w)^2, \text{ and}\\
+    R_w  & = R \cap (W_w)^2, \text{ 以及}\\
     V_w(p) & = V(p) \cap W_w.
   \end{align*}
 \end{defn}
 
 \begin{prop}\ollabel{prop:restrict}
-  $\mSat{M}{!A}[w]$ iff $\mSat{M_w}{!A}$.
+  $\mSat{M}{!A}[w]$ 当且仅当 $\mSat{M_w}{!A}$。
 \end{prop}
 
 \begin{prob}
-  Prove \olref[int][sem][sem]{prop:restrict}. 
+  证明 \olref[int][sem][sem]{prop:restrict}。
 \end{prob}
 
 \begin{prop}
-  Suppose for every model~$\mModel{M}$ such that $\mSat{M}{\Gamma}$,
-  $\mSat{M}{!A}$. Then $\Gamma \Entails !A$.
+  假设对每个满足 $\mSat{M}{\Gamma}$ 的模型~$\mModel{M}$，都有 $\mSat{M}{!A}$。那么 $\Gamma \Entails !A$。
 \end{prop}
 
 \begin{proof}
-  Suppose that $\mSat{M}{\Gamma}[w]$. By the \olref{prop:restrict}
-  applied to every~$!B \in \Gamma$, we have $\mSat{M_w}{\Gamma}$. By
-  the assumption, we have $\mSat{M_w}{!A}$. By \olref{prop:restrict}
-  again, we get $\mSat{M}{!A}[w]$.
+  假设 $\mSat{M}{\Gamma}[w]$。对每个~$!B \in \Gamma$ 应用 \olref{prop:restrict}，可得 $\mSat{M_w}{\Gamma}$。由题设得 $\mSat{M_w}{!A}$。再次应用 \olref{prop:restrict}，可得 $\mSat{M}{!A}[w]$。
 \end{proof}
 
 \end{document}

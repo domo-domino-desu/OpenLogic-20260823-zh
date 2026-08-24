@@ -7,41 +7,33 @@
 \begin{document}
 
 \olfileid{cmp}{rec}{nft}
-\olsection{The Normal Form Theorem}
+\olsection{范式定理}
 
-\begin{thm}[Kleene's Normal Form Theorem]
+\begin{thm}[Kleene 范式定理]
 \ollabel{thm:kleene-nf}
-There is a primitive recursive relation $T(e, x, s)$ and a primitive
-recursive function $U(s)$, with the following property: if $f$ is any
-partial recursive function, then for some~$e$,
+存在原始递归关系 $T(e, x, s)$ 和原始递归函数 $U(s)$，满足以下性质：若 $f$ 为任意部分递归函数，则存在某个~$e$，使得
 \[
 f(x) \simeq U(\umin{s}{T(e, x, s)})
 \]
-for every $x$.
+对所有 $x$ 成立。
 \end{thm}
 
 \begin{explain}
-The proof of the normal form theorem is involved, but the basic idea
-is simple.  Every partial recursive function has an \emph{index}~$e$,
-intuitively, a number coding its program or definition.  If $f(x)
-\fdefined$, the computation can be recorded systematically and coded
-by some number~$s$, and the fact that $s$ codes the computation of~$f$
-on input~$x$ can be checked primitive recursively using only $x$ and
-the definition~$e$.  Consequently, the relation~$T$, ``the function
-with index~$e$ has a computation for input~$x$, and $s$ codes this
-computation,'' is primitive recursive. Given the full record of the
-computation~$s$, the ``upshot'' of~$s$ is the value of~$f(x)$, and it
-can be obtained from~$s$ primitive recursively as well.
+范式定理的证明颇为复杂，但其基本思想很简单。
+每个部分递归函数都有一个\emph{指标}~$e$，
+直观上，它是编码该函数“程序”或定义的数。
+若 $f(x) \fdefined$，
+则可系统地记录该计算过程并用某个数~$s$ 编码；
+而且，仅利用 $x$ 和定义~$e$ 就能原始递归地验证“$s$ 编码了函数~$f$ 在输入~$x$ 上的计算”这一事实。
+因此，关系~$T$——即“指标为~$e$ 的函数在输入~$x$ 上有计算，且 $s$ 编码了该计算”——是原始递归的。
+给定完整的计算记录~$s$，$s$ 的“最终结果”即为~$f(x)$ 的值，
+该值也能从~$s$ 原始递归地提取出来。
 
-The normal form theorem shows that only a single unbounded search is
-required for the definition of any partial recursive function.
-Basically, we can search through all numbers until we find one that
-codes a computation of the function with index~$e$ for input~$x$. We
-can use the numbers~$e$ as ``names'' of partial recursive functions,
-and write $\cfind{e}$ for the function~$f$ defined by the equation in
-the theorem.  Note that any partial recursive function can have more
-than one index---in fact, every partial recursive function has
-infinitely many indices.
+范式定理表明，定义任何部分递归函数只需一次无界搜索。
+基本上，我们可以搜索所有的数，直到找到一个数，
+它编码了指标为~$e$ 的函数在输入~$x$ 上的计算。
+我们可以用数~$e$ 作为部分递归函数的“名字”，
+并将定理中等式所定义的函数~$f$ 记作 $\cfind{e}$。
+注意，任何部分递归函数都可以有多个指标——事实上，每个部分递归函数都有无穷多个指标。
 \end{explain}
 \end{document}
-

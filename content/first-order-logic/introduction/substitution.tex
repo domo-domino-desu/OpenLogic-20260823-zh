@@ -8,40 +8,11 @@
 
 \olfileid{fol}{int}{sub}
 
-\olsection{Substitution}
+\olsection{代入}
 
-We'll discuss an example to illustrate how things hang together, and
-how the development of syntax and semantics lays the foundation for
-our more advanced investigations later. Our !!{derivation} systems should let
-us !!{derive} $\Atom{\Obj P}{\Obj a}$ from $\lforall[\Obj
-v_0][\Atom{\Obj P}]{\Obj v_0}$. Maybe we even want to state this as a
-rule of inference. However, to do so, we must be able to state it in
-the most general terms: not just for $\Obj P$, $\Obj a$, and $\Obj
-v_0$, but for any !!{formula}~$!A$, and term~$t$, and
-!!{variable}~$x$. (Recall that !!{constant}s are terms, but we'll
-consider also more complicated terms built from !!{constant}s and
-!!{function}s.) So we want to be able to say something like,
-``whenever you have !!{derive}d $\lforall[x][!A(x)]$ you are justified
-in inferring~$!A(t)$---the result of removing $\lforall[x]$ and
-replacing~$x$ by~$t$.'' But what exactly does ``replacing $x$ by~$t$''
-mean? What is the relation between $!A(x)$ and~$!A(t)$?  Does this
-always work?
+我们将通过一个例子来说明各个部分是如何联系在一起的，以及语法和语义的展开如何为后续更深入的研究奠定基础。我们的推导系统应该允许从 $\lforall[\Obj
+v_0][\Atom{\Obj P}]{\Obj v_0}$ 推导出 $\Atom{\Obj P}{\Obj a}$。我们甚至可能想把它陈述为一条推理规则。然而，要做到这一点，我们必须能够以最一般的形式来陈述它：不仅针对 $\Obj P$、$\Obj a$ 和 $\Obj v_0$，而且针对任意公式~$!A$、项~$t$ 和变元~$x$。（回想一下，常项符号是项，但我们也会考虑由常项符号和函数符号构成的更复杂的项。）因此，我们希望能这样表述：“只要推导出了 $\lforall[x][!A(x)]$，就有根据推断出~$!A(t)$——即去掉 $\lforall[x]$ 并将~$x$ 替换为~$t$ 的结果。”但“将 $x$ 替换为~$t$”究竟意味着什么？$!A(x)$ 和~$!A(t)$ 之间有什么关系？这总是行得通的吗？
 
-To make this precise, we define the operation of \emph{substitution}.
-Substitution is actually tricky, because we can't just replace
-all~$x$'s in~$!A$ by~$t$, and not every~$t$ can be substituted for
-any~$x$. We'll deal with this, again, using inductive definitions. But
-once this is done, specifying an inference rule as ``infer $!A(t)$
-from $\lforall[x][!A(x)]$'' becomes a precise definition.  Moreover,
-we'll be able to show that this is a good inference rule in the sense
-that $\lforall[x][!A(x)]$ entails~$!A(t)$. But to prove this, we have
-to again prove something that may at first glance prompt you to ask
-``why are we doing this?'' That $\lforall[x][!A(x)]$ entails~$!A(t)$
-relies on the fact that whether or not $\Sat{M}{!A(t)}$ holds depends
-only on the value of the term~$t$, i.e., if we let $m$ be whatever
-!!{element} of~$\Domain{M}$ is picked out by~$t$, then
-$\Sat{M}{!A(t)}[s]$ iff $\Sat{M}{!A(x)}[\Subst{s}{m}{x}]$. This holds
-even when $t$ contains !!{variable}s, but we'll have to be careful
-with how exactly we state the result.
+为了精确表达这一点，我们定义\emph{代入}运算。代入其实并不简单，因为我们不能只是把~$!A$ 中所有的~$x$ 统统替换为~$t$，而且也不是任何项~$t$ 都能代入任何变元~$x$。我们将再次使用归纳定义来处理这个问题。但一旦定义完毕，将推理规则规定为“从 $\lforall[x][!A(x)]$ 推断 $!A(t)$”就成了一种精确的定义。此外，我们将能够证明这是一条“好”的推理规则，其意义在于 $\lforall[x][!A(x)]$ 语义地后承~$!A(t)$。但要证明这一点，我们又必须去证某个乍看会让你想问“我们为什么要证这个？”的结论。$\lforall[x][!A(x)]$ 语义地后承~$!A(t)$ 依赖于这样一个事实：$\Sat{M}{!A(t)}$ 是否成立仅取决于项~$t$ 的值，也就是说，如果我们令 $m$ 为项~$t$ 在~$\Domain{M}$ 中所指称的元素，那么 $\Sat{M}{!A(t)}[s]$ 当且仅当 $\Sat{M}{!A(x)}[\Subst{s}{m}{x}]$。即使 $t$ 包含变元，这一点也成立，但在精确陈述该结论时我们必须谨慎。
 
 \end{document}

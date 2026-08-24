@@ -7,44 +7,34 @@
 \begin{document}
 
 \olfileid{tur}{und}{dec}
-\olsection{The Decision Problem}
+\olsection{判定问题}
 
-We say that first-order logic is \emph{decidable} iff there is an
-effective method for determining whether or not a given !!{sentence}
-is valid. As it turns out, there is no such method: the problem of
-deciding validity of first-order sentences is unsolvable.
+一阶逻辑是\emph{可判定的}，当且仅当存在一种有效方法，能判定任意给定语句是否有效。
+事实上，并不存在这样的方法：判定一阶语句有效性的问题是不可解的。
 
-In order to establish this important negative result, we prove that
-the decision problem cannot be solved by a Turing machine.  That is,
-we show that there is no Turing machine which, whenever it is started
-on a tape that contains a first-order !!{sentence}, eventually halts
-and outputs either $1$ or~$0$ depending on whether the
-!!{sentence} is valid or not. By the Church--Turing thesis, every
-function which is computable is Turing computable. So if this
-``validity function'' were effectively computable at all, it would be
-Turing computable. If it isn't Turing computable, then, it also cannot
-be effectively computable.
+为了证明这一重要的否定性结果，我们将证明判定问题无法由图灵机解决。
+也就是说，我们将证明不存在这样的图灵机：只要启动时磁带上写有一个一阶语句，它最终都会停机，
+并根据该语句是否有效输出 $1$ 或~$0$。
+根据丘奇-图灵论题，每个可计算函数都是图灵可计算的。
+因此，如果这个“有效性函数”是有效可计算的，那它就会是图灵可计算的。
+既然它不是图灵可计算的，它也就不是有效可计算的。
 
-Our strategy for proving that the decision problem is unsolvable is to
-reduce the halting problem to it.  This means the following: We have
-proved that the function~$h(e,w)$ that halts with output~$1$ if the
-Turing machine described by~$e$ halts on input~$w$ and outputs~$0$
-otherwise, is not Turing computable.  We will show that if there were
-a Turing machine that decides validity of first-order sentences, then
-there is also Turing machine that computes~$h$.  Since $h$ cannot be
-computed by a Turing machine, there cannot be a Turing machine that
-decides validity either.
+我们证明判定问题不可解的策略，是将停机问题归约到它。
+具体来说：我们已经证明了函数~$h(e,w)$ 不是图灵可计算的，
+该函数当由~$e$ 描述的图灵机对输入~$w$ 停机时输出~$1$，否则输出~$0$。
+我们将证明，如果存在一台判定一阶语句有效性的图灵机，
+那么也存在一台计算~$h$ 的图灵机。
+既然 $h$ 不能被任何图灵机计算，那么也就不可能存在判定有效性的图灵机。
 
-The first step in this strategy is to show that for every input~$w$
-and a Turing machine~$M$, we can effectively describe !!a{sentence}
-$!T(M, w)$ representing the instruction set of~$M$ and the input~$w$
-and !!a{sentence}~$!E(M, w)$ expressing ``$M$ eventually halts'' such
-that:
+该策略的第一步是表明，对于每个输入~$w$ 和图灵机~$M$，
+我们都能行地描述一个语句 $!T(M, w)$ 来表示~$M$ 的指令集与输入~$w$，
+以及一个表达“$M$ 最终停机”的语句~$!E(M, w)$，使得：
+
 \begin{quote}
-  $\Entails !T(M, w) \lif !E(M,w)$ iff $M$ halts for input~$w$.
+  $\Entails !T(M, w) \lif !E(M,w)$ 当且仅当 $M$ 对输入~$w$ 停机。
 \end{quote}
-The bulk of our proof will consist in describing these sentences
-$!T(M, w)$ and~$!E(M, w)$ and in verifying that $!T(M, w) \lif !E(M, w)$
-is valid iff $M$~halts on input~$w$.
+
+我们证明的主要部分将是描述这些语句 $!T(M, w)$ 和~$!E(M, w)$，
+并验证 $!T(M, w) \lif !E(M, w)$ 是有效的，当且仅当 $M$ 在输入~$w$ 上停机。
 
 \end{document}

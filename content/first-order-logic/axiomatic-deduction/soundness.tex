@@ -9,135 +9,114 @@
 \iftag{FOL}
       {\olfileid{fol}{axd}{sou}}
       {\olfileid{pl}{axd}{sou}}
-      
-\olsection{Soundness}
+
+\olsection{可靠性}
 
 \begin{explain}
-!!^a{derivation} system, such as axiomatic deduction, is \emph{sound}
-if it cannot !!{derive} things that do not actually hold.  Soundness is
-thus a kind of guaranteed safety property for !!{derivation} systems.
-Depending on which proof theoretic property is in question, we would
-like to know for instance, that
+一个推导系统（例如公理化演绎）是\emph{可靠的}，如果它不能推导出不成立的命题。
+因此，可靠性是推导系统的一种安全性保障。
+根据所讨论的证明论性质，我们希望知道例如：
 \begin{enumerate}
-\item every !!{derivable}~$!A$ is valid;
-\item if $!A$ is !!{derivable} from some others~$\Gamma$, it is also a
-  consequence of them;
-\item if a set of !!{formula}s~$\Gamma$ is inconsistent, it is
-  unsatisfiable.
+\item 每个可推导的~$!A$ 都是有效的；
+\item 如果 $!A$ 可从某个~$\Gamma$ 推导出，则它也是 $\Gamma$ 的后承；
+\item 如果公式集~$\Gamma$ 是不一致的，则它是不可满足的。
 \end{enumerate}
-These are important properties of !!a{derivation} system.  If any of them do
-not hold, the !!{derivation} system is deficient---it would !!{derive} too much.
-Consequently, establishing the soundness of !!a{derivation} system is of the
-utmost importance.
+这些是推导系统的重要性质。如果其中任何一条不成立，该推导系统就是有缺陷的——它会推导出过多的东西。
+因此，确立推导系统的可靠性至关重要。
 \end{explain}
 
 \begin{prop}
-  If $!A$ is an axiom, then
+  如果 $!A$ 是一条公理，那么
   \iftag{FOL}
-    {$\Sat{M}{!A}[s]$ for each !!{structure}~$\Struct{M}$ and assignment~$s$.}
-    {$\pSat{v}{!A}$ for each !!{valuation}~$\pAssign{v}$.}
+    {$\Sat{M}{!A}[s]$ 对每个结构~$\Struct{M}$ 和指派~$s$ 都成立。}
+    {$\pSat{v}{!A}$ 对每个赋值~$\pAssign{v}$ 都成立。}
 \end{prop}
 
 \begin{proof}
-\iftag{FOL}{We have to verify that all the axioms are valid. For
-  instance, here is the case for \olref[qua]{ax:q1}: suppose $t$ is
-  !!{free for} $x$ in $!A$, and assume
-  $\Sat{M}{\lforall[x][!A]}[s]$. Then by definition of satisfaction,
-  for each $\varAssign{s'}{s}{x}$, also $\Sat{M}{!A}[s']$, and in particular
-  this holds when $s'(x) = \Value{t}{M}[s]$. By
-  \olref[syn][ext]{prop:ext-formulas},
-  $\Sat{M}{\Subst{!A}{t}{x}}[s]$. This shows that
-  $\Sat{M}{(\lforall[x][!A] \lif \Subst{!A}{t}{x})}[s]$.}{Do truth
-  tables for each axiom to verify that they are tautologies.}
+\iftag{FOL}{我们需要验证所有公理都是有效的。例如，考虑 \olref[qua]{ax:q1} 的情形：假设 $t$ 对 $x$ 在 $!A$ 中自由，并设
+  $\Sat{M}{\lforall[x][!A]}[s]$。则根据满足的定义，
+  对每个 $\varAssign{s'}{s}{x}$，也有 $\Sat{M}{!A}[s']$，特别地，当
+  $s'(x) = \Value{t}{M}[s]$ 时亦成立。根据
+  \olref[syn][ext]{prop:ext-formulas}，
+  $\Sat{M}{\Subst{!A}{t}{x}}[s]$。这表明
+  $\Sat{M}{(\lforall[x][!A] \lif \Subst{!A}{t}{x})}[s]$。}{对每条公理列出真值表，可验证它们都是重言式。}
 \end{proof}
 
-\begin{thm}[Soundness]
+\begin{thm}[可靠性]
 \ollabel{thm:soundness}
-If $\Gamma \Proves !A$ then $\Gamma \Entails !A$.
+如果 $\Gamma \Proves !A$，则 $\Gamma \Entails !A$。
 \end{thm}
 
 \begin{proof}
-By induction on the length of the !!{derivation} of $!A$ from
-$\Gamma$. If there are no steps justified by inferences, then all
-!!{formula}s in the !!{derivation} are either instances of axioms or are
-in~$\Gamma$. By the previous proposition, all the axioms are
-\iftag{FOL}{valid}{tautologies}, and hence if $!A$ is an axiom then
-$\Gamma \Entails !A$. If $!A \in \Gamma$, then trivially $\Gamma
-\Entails !A$.
+对从 $\Gamma$ 推导 $!A$ 的长度施归纳。如果推导中没有由推理规则得出的步骤，则推导中的所有公式要么是公理的实例，要么属于~$\Gamma$。根据前一命题，所有公理都是
+\iftag{FOL}{有效的}{重言式}，因此如果 $!A$ 是公理，则 $\Gamma \Entails !A$。如果 $!A \in \Gamma$，则显然 $\Gamma
+\Entails !A$。
 
-If the last step of the !!{derivation} of~$!A$ is justified by modus
-ponens, then there are !!{formula}s $!B$ and $!B \lif !A$ in the
-!!{derivation}, and the induction hypothesis applies to the part of
-the !!{derivation} ending in those !!{formula}s (since they contain at
-least one fewer step justified by an inference).  So, by induction
-hypothesis, $\Gamma \Entails !B$ and $\Gamma \Entails !B \lif
-!A$. Then $\Gamma \Entails !A$ by
+如果推导~$!A$ 的最后一步由假言推理得出，则推导中存在公式 $!B$ 和 $!B \lif !A$，并且归纳假设适用于以这些公式结束的子推导（因为它们所含的推理步骤至少少一步）。因此，由归纳假设，$\Gamma \Entails !B$ 且 $\Gamma \Entails !B \lif
+!A$。于是由
 \iftag{FOL}
       {\olref[syn][sem]{thm:sem-deduction}}
-      {\olref[pl][syn][sem]{thm:sem-deduction}}.
+      {\olref[pl][syn][sem]{thm:sem-deduction}} 得 $\Gamma \Entails !A$。
 
-\iftag{FOL}{Now suppose the last step is justified by
-\QR. Then that step has the form $!C \lif \lforall[x][B(x)]$ and
-there is a preceding step $!C \lif !B(c)$ with $c$ not in $\Gamma$,
-$!C$, or $\lforall[x][B(x)]$. By induction hypothesis, $\Gamma
-\Entails !C \lif !B(c)$. By
-\olref[syn][sem]{thm:sem-deduction}, $\Gamma \cup \{!C\} \Entails
-!B(c)$.
+\iftag{FOL}{现在假设最后一步由
+\QR 得出。那么该步骤的形式为 $!C \lif \lforall[x][B(x)]$，
+并且存在一个先前的步骤 $!C \lif !B(c)$，其中 $c$ 不在 $\Gamma$、
+$!C$ 或 $\lforall[x][B(x)]$ 中出现。由归纳假设，$\Gamma
+\Entails !C \lif !B(c)$。由
+\olref[syn][sem]{thm:sem-deduction}，$\Gamma \cup \{!C\} \Entails
+!B(c)$。
 
-Consider some structure~$\Struct{M}$ such that $\Sat{M}{\Gamma \cup
-  \{!C\}}$.  We need to show that $\Sat{M}{\lforall[x][!B(x)]}$. Since
-$\lforall[x][!B(x)]$ is !!a{sentence}, this means we have to show that
-for every variable assignment~$s$, $\Sat{M}{!B(x)}[s]$
-(\olref[syn][ass]{prop:sat-quant}). Since $\Gamma \cup \{!C\}$
-consists entirely of sentences, $\Sat{M}{!D}[s]$ for all $!D \in
-\Gamma$ by \olref[syn][sat]{defn:satisfaction}.  Let $\Struct{M'}$ be
-like $\Struct{M}$ except that $\Assign{c}{M'} = s(x)$.  Since $c$ does
-not occur in~$\Gamma$ or~$!C$, $\Sat{M'}{\Gamma \cup \{!C\}}$ by
-\olref[syn][ext]{cor:extensionality-sent}. Since $\Gamma \cup \{!C\}
-\Entails !B(c)$, $\Sat{M'}{B(c)}$.  Since $!B(c)$ is !!a{sentence},
-$\Sat{M'}{!B(c)}[s]$ by
-\olref[syn][ass]{prop:sentence-sat-true}. $\Sat{M'}{!B(x)}[s]$ iff
-$\Sat{M'}{!B(c)}[s]$ by \olref[syn][ext]{prop:ext-formulas} (recall that
-$!B(c)$ is just $\Subst{!B(x)}{c}{x}$). So,
-$\Sat{M'}{!B(x)}[s]$. Since $c$ does not occur in~$!B(x)$, by
-\olref[syn][ext]{prop:extensionality}, $\Sat{M}{!B(x)}[s]$. But $s$
-was an arbitrary variable assignment, so
-$\Sat{M}{\lforall[x][!B(x)]}$. Thus $\Gamma \cup \{!C\} \Entails
-\lforall[x][!B(x)]$. By \olref[syn][sem]{thm:sem-deduction}, $\Gamma
-\Entails !C \lif \lforall[x][!B(x)]$.
+考虑某个满足 $\Sat{M}{\Gamma \cup
+  \{!C\}}$ 的结构~$\Struct{M}$。
+我们需要证明 $\Sat{M}{\lforall[x][!B(x)]}$。由于
+$\lforall[x][!B(x)]$ 是语句，这意味着我们必须证明：对于每个变元指派~$s$，$\Sat{M}{!B(x)}[s]$
+（\olref[syn][ass]{prop:sat-quant}）。因为 $\Gamma \cup \{!C\}$
+完全由语句组成，所以由 \olref[syn][sat]{defn:satisfaction}，$\Sat{M}{!D}[s]$ 对所有 $!D \in
+\Gamma$ 成立。令 $\Struct{M'}$ 与 $\Struct{M}$ 相同，除了 $\Assign{c}{M'} = s(x)$。
+由于 $c$ 不在~$\Gamma$ 或~$!C$ 中出现，由
+\olref[syn][ext]{cor:extensionality-sent}，$\Sat{M'}{\Gamma \cup \{!C\}}$。由于 $\Gamma \cup \{!C\}
+\Entails !B(c)$，$\Sat{M'}{B(c)}$。因为 $!B(c)$ 是语句，
+由 \olref[syn][ass]{prop:sentence-sat-true}，$\Sat{M'}{!B(c)}[s]$。$\Sat{M'}{!B(x)}[s]$ 当且仅当
+$\Sat{M'}{!B(c)}[s]$（根据 \olref[syn][ext]{prop:ext-formulas}；注意 $!B(c)$ 就是 $\Subst{!B(x)}{c}{x}$）。所以，
+$\Sat{M'}{!B(x)}[s]$。因为 $c$ 不在~$!B(x)$ 中出现，由
+\olref[syn][ext]{prop:extensionality}，$\Sat{M}{!B(x)}[s]$。但 $s$
+是任意的变元指派，所以
+$\Sat{M}{\lforall[x][!B(x)]}$。因此 $\Gamma \cup \{!C\} \Entails
+\lforall[x][!B(x)]$。由 \olref[syn][sem]{thm:sem-deduction}，$\Gamma
+\Entails !C \lif \lforall[x][!B(x)]$。
 
-The case where $!A$ is justified by \QR{} but is of the form
-$\lexists[x][!B(x)] \lif !C$ is left as an exercise.}{}
+至于 $!A$ 由 \QR 得出但形式为
+$\lexists[x][!B(x)] \lif !C$ 的情形，留作练习。}{}
 \end{proof}
 
 \tagprob{FOL}
+
 \begin{prob}
-  Complete the proof of \olref[fol][axd][sou]{thm:soundness}.
+  完成 \olref[fol][axd][sou]{thm:soundness} 的证明。
 \end{prob}
+
 \tagendprob
 
 \begin{cor}
 \ollabel{cor:weak-soundness}
-If $\Proves !A$, then $!A$ is \iftag{FOL}{valid}{a tautology}.
+如果 $\Proves !A$，则 $!A$ 是 \iftag{FOL}{有效的}{重言式}。
 \end{cor}
 
 \begin{cor}
 \ollabel{cor:consistency-soundness}
-If $\Gamma$ is satisfiable, then it is consistent.
+如果 $\Gamma$ 是可满足的，则它是一致的。
 \end{cor}
 
 \begin{proof}
-We prove the contrapositive.  Suppose that $\Gamma$ is not consistent.
-Then $\Gamma \Proves \lfalse$, i.e., there is !!a{derivation} of
-$\lfalse$ from~$\Gamma$. By \olref{thm:soundness}, any
-\iftag{FOL}{!!{structure}~$\Struct{M}$}{!!{valuation}~$\pAssign{v}$}
-that satisfies $\Gamma$ must satisfy~$\lfalse$.  Since
-\iftag{FOL}{$\Sat/{M}{\lfalse}$ for every
-  !!{structure}~$\Struct{M}$}{$\pSat/{v}{\lfalse}$ for every
-  !!{valuation}~$\pAssign{v}$}, no
-\iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} can satisfy $\Gamma$, i.e.,
-$\Gamma$ is not satisfiable.
+我们证明其逆否命题。假设 $\Gamma$ 不是一致的。
+那么 $\Gamma \Proves \lfalse$，即存在一个从~$\Gamma$ 到 $\lfalse$ 的推导。
+根据 \olref{thm:soundness}，任何满足 $\Gamma$ 的
+\iftag{FOL}{结构~$\Struct{M}$}{赋值~$\pAssign{v}$}
+都必须满足~$\lfalse$。由于
+\iftag{FOL}{对每个结构~$\Struct{M}$ 都有 $\Sat/{M}{\lfalse}$}{对每个赋值~$\pAssign{v}$ 都有 $\pSat/{v}{\lfalse}$}，
+没有
+\iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$}
+能满足 $\Gamma$，也就是说，$\Gamma$ 不是可满足的。
 \end{proof}
-
 
 \end{document}

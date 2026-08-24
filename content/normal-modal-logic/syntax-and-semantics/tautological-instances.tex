@@ -8,53 +8,33 @@
 
 \olfileid{nml}{syn}{tau}
 
-\olsection{Tautological Instances}
+\olsection{重言式实例}
 
 \begin{explain}
-A modal-free formula is a tautology if it is true under every
-truth-value assignment. Clearly, every tautology is true at every
-world in every model. But for !!{formula}s involving $\Box$
-and~$\Diamond$, the notion of tautology is not defined. Is it the
-case, e.g., that $\Box p \lor \lnot \Box p$---an instance of the
-principle of excluded middle---is valid? The notion of a
-\emph{tautological instance} helps: !!a{formula} that is a
-substitution instance of a (non-modal) tautology. It is not
-surprising, but still requires proof, that every tautological instance
-is valid.
+如果一个无模态公式在每个真值赋值下都为真，则它是\emph{重言式}。显然，每个重言式在任一模型的任一世界上都为真。但对于包含 $\Box$ 和~$\Diamond$ 的公式，重言式的概念并未定义。那么，像 $\Box p \lor \lnot \Box p$——排中律的一个实例——这样的公式是否有效呢？\emph{重言式实例}这一概念可以提供帮助：所谓重言式实例，即（非模态）重言式的代入实例。每个重言式实例都是有效的，这并不令人意外，但仍需给出证明。
 \end{explain}
 
 \begin{defn}
-  A modal !!{formula}~$!B$ is a \emph{tautological instance} if and
-  only if there is a modal-free tautology~$!A$ with !!{propositional
-    variable}s $p_1$, \dots,~$p_n$ and !!{formula}s $!D_1$,
-  \dots,~$!D_n$ such that $!B \ident \SSubst{!A}{\subst{!D_1}{p_1},
-    \dots, \subst{!D_n}{p_n}}$.
+  模态公式~$!B$ 是一个\emph{重言式实例}，当且仅当存在一个无模态的重言式~$!A$，其命题变元为 $p_1$, \dots,~$p_n$，且存在公式 $!D_1$, \dots,~$!D_n$，使得 $!B \ident \SSubst{!A}{\subst{!D_1}{p_1},
+    \dots, \subst{!D_n}{p_n}}$。
 \end{defn}
 
 \begin{lem}\ollabel{lem:valid-taut}
-  Suppose $!A$ is a modal-free !!{formula} whose !!{propositional
-  variable}s are $p_1$, \dots, $p_n$, and let $!D_1$, \dots,
-  $!D_n$ be modal !!{formula}s. Then for any assignment $\pAssign{v}$,
-  any model $\mModel{M} = \tuple{W, R, V}$, and any $w \in W$ such
-  that $\pAssign{v}(p_i) = \True$ if and only if $\mSat{M}{!D_i}[w]$ we have
-  that $\pSat{v}{!A}$ if and only if
-  $\mSat{M}{\SSubst{!A}{\subst{!D_1}{p_1}, \dots,
-      \subst{!D_n}{p_n}}}[w]$.
+  设 $!A$ 是一个无模态公式，其命题变元为 $p_1$, \dots, $p_n$，并令 $!D_1$, \dots, $!D_n$ 为模态公式。那么，对任意赋值 $\pAssign{v}$、任意模型 $\mModel{M} = \tuple{W, R, V}$ 以及任意满足 $\pAssign{v}(p_i) = \True$ 当且仅当 $\mSat{M}{!D_i}[w]$ 的 $w \in W$，都有 $\pSat{v}{!A}$ 当且仅当 $\mSat{M}{\SSubst{!A}{\subst{!D_1}{p_1}, \dots,
+      \subst{!D_n}{p_n}}}[w]$。
 \end{lem}
 
 \begin{proof}
-  By induction on $!A$.
+  对 $!A$ 进行归纳。
   \begin{enumerate}
-  \tagitem{prvFalse}{\indcase{!A}{\lfalse}{Both $\pSat/{v}{\lfalse}$
-      and $\mSat/{M}{\lfalse}[w]$}.}{}
-  \tagitem{prvTrue}{\indcase{!A}{\ltrue}{Both $\pSat{v}{\ltrue}$
-      and $\mSat{M}{\ltrue}[w]$}.}{}
+  \tagitem{prvFalse}{\indcase{!A}{\lfalse}{ $\pSat/{v}{\lfalse}$ 与 $\mSat/{M}{\lfalse}[w]$ 两者均成立。}}{}
+  \tagitem{prvTrue}{\indcase{!A}{\ltrue}{ $\pSat{v}{\ltrue}$ 与 $\mSat{M}{\ltrue}[w]$ 两者均成立。}}{}
   \item \indcase{!A}{p_i}{%
     \begin{align*}
       \pSat{v}{p_i} \Leftrightarrow {} & \pAssign{v}(p_i) = \True \\
-      & \qquad \text{by definition of $\pSat{v}{p_i}$}\\
+      & \qquad \text{据 $\pSat{v}{p_i}$ 的定义}\\
       \Leftrightarrow {} & \mSat{M}{!D_i}[w] \\
-      &\qquad \text{by assumption}\\
+      &\qquad \text{由假设}\\
       \Leftrightarrow {} & \mSat{M}{\SSubst{p_i}{\subst{!D_1}{p_1}, \dots,
           \subst{!D_n}{p_n}}}[w]\\
       &\qquad \text{since $\SSubst{p_i}{\subst{!D_1}{p_1}, \dots,
@@ -63,98 +43,96 @@ is valid.
   \tagitem{prvFalse}{\indcase{!A}{\lnot !B}{%
       \begin{align*}
         \pSat{v}{\lnot !B} \Leftrightarrow {} & \pSat/{v}{!B}\\
-        &\qquad \text{by definition of $\pSat{v}{}$};\\
+        &\qquad \text{据 $\pSat{v}{}$ 的定义};\\
         \Leftrightarrow {} & \mSat/{M}{\SSubst{!B}{\subst{!D_1}{p_1}, \dots,
           \subst{!D_n}{p_n}}}[w]\\
-        &\qquad \text{by induction hypothesis}\\
+        &\qquad \text{由归纳假设}\\
         \Leftrightarrow {} &
         \mSat{M}{\SSubst{\lnot !B}{\subst{!D_1}{p_1}, \dots,
           \subst{!D_n}{p_n}}}[w]\\
-        &\qquad \text{by definition of $\pSat{v}{}$}.
+        &\qquad \text{据 $\pSat{v}{}$ 的定义}.
       \end{align*}}}{}
   \tagitem{prvAnd}{\indcase{!A}{(!B \land !C)}{%
       \begin{align*}
         \pSat{v}{!B \land !C} \Leftrightarrow {} &
-        \pSat{v}{!B} \text{ and } \pSat{v}{!C}\\
-        &\qquad \text{by definition of $\pSat{v}{}$}\\
+        \pSat{v}{!B} \text{ 且 } \pSat{v}{!C}\\
+        &\qquad \text{据 $\pSat{v}{}$ 的定义}\\
         \Leftrightarrow {} &
         \mSat{M}{\SSubst{!B}{\subst{!D_1}{p_1}, \dots,
-            \subst{!D_n}{p_n}}}[w] \text{ and } \\
+            \subst{!D_n}{p_n}}}[w] \text{ 且 } \\
         & \mSat{M}{\SSubst{!C}{\subst{!D_1}{p_1}, \dots,
           \subst{!D_n}{p_n}}}[w]\\
-        &\qquad \text{by induction hypothesis}\\
+        &\qquad \text{由归纳假设}\\
         \Leftrightarrow{} &
         \mSat{M}{\SSubst{(!B \land !C)}{\subst{!D_1}{p_1}, \dots,
           \subst{!D_n}{p_n}}}[w]\\
-        &\qquad \text{by definition of $\mSat{M}{}[w]$}.
+        &\qquad \text{据 $\mSat{M}{}[w]$ 的定义}.
       \end{align*}}}{}
   \tagitem{prvOr}{\indcase{!A}{(!B \lor !C)}{%
       \begin{align*}
         \pSat{v}{!B \lor !C} \Leftrightarrow{} &
-        \pSat{v}{!B} \text{ or } \pSat{v}{!C}\\
-        &\qquad \text{by definition of $\pSat{v}{}$};\\
+        \pSat{v}{!B} \text{ 或 } \pSat{v}{!C}\\
+        &\qquad \text{据 $\pSat{v}{}$ 的定义};\\
         \Leftrightarrow{} & \mSat{M}{\SSubst{!B}{\subst{!D_1}{p_1}, \dots,
-            \subst{!D_n}{p_n}}}[w] \text{ or }\\
+            \subst{!D_n}{p_n}}}[w] \text{ 或 }\\
         & \mSat{M}{\SSubst{!C}{\subst{!D_1}{p_1}, \dots,
           \subst{!D_n}{p_n}}}[w]\\
-        &\qquad \text{by induction hypothesis}\\
+        &\qquad \text{由归纳假设}\\
         \Leftrightarrow{} &
         \mSat{M}{\SSubst{(!B \lor !C)}{\subst{!D_1}{p_1}, \dots,
           \subst{!D_n}{p_n}}}[w]\\
-        &\qquad \text{by definition of $\mSat{M}{}[w]$}.
+        &\qquad \text{据 $\mSat{M}{}[w]$ 的定义}.
       \end{align*}}}{}
   \tagitem{prvIf}{\indcase{!A}{(!B \lif !C)}{%
       \begin{align*}
         \pSat{v}{!B \lif !C} \Leftrightarrow{} &
-        \pSat/{v}{!B} \text{ or } \pSat{v}{!C}\\
-        &\qquad \text{by definition of $\pSat{v}{}$}\\
+        \pSat/{v}{!B} \text{ 或 } \pSat{v}{!C}\\
+        &\qquad \text{据 $\pSat{v}{}$ 的定义}\\
         \Leftrightarrow{} &
         \mSat/{M}{\SSubst{!B}{\subst{!D_1}{p_1}, \dots,
-            \subst{!D_n}{p_n}}}[w] \text{ or }\\
+            \subst{!D_n}{p_n}}}[w] \text{ 或 }\\
         & \mSat{M}{\SSubst{!C}{\subst{!D_1}{p_1}, \dots,
           \subst{!D_n}{p_n}}}[w]\\
-        &\qquad \text{by induction hypothesis}\\
+        &\qquad \text{由归纳假设}\\
         \Leftrightarrow{} &
         \mSat{M}{\SSubst{(!B \lif !C)}{\subst{!D_1}{p_1}, \dots,
           \subst{!D_n}{p_n}}}[w]\\
-        &\qquad \text{by definition of $\mSat{M}{}[w]$}.
+        &\qquad \text{据 $\mSat{M}{}[w]$ 的定义}.
       \end{align*}}}{}
   \tagitem{prvIff}{\indcase{!A}{(!B \liff !C)}{%
       \begin{align*}
         \pSat{v}{!B \lif !C} \Leftrightarrow {} &
-        \text{either } \pSat{v}{!B} \text{ and } \pSat{v}{!C}\\
-        & \text{or } \pSat/{v}{!B} \text{ and } \pSat/{v}{!C}\\
-        &\qquad \text{by definition of $\pSat{v}{}$}\\
+        \text{要么 } \pSat{v}{!B} \text{ 且 } \pSat{v}{!C}\\
+        & \text{要么 } \pSat/{v}{!B} \text{ 且 } \pSat/{v}{!C}\\
+        &\qquad \text{据 $\pSat{v}{}$ 的定义}\\
         \Leftrightarrow {} &
-        \text{either } \mSat{M}{\SSubst{!B}{\subst{!D_1}{p_1}, \dots,
-            \subst{!D_n}{p_n}}}[w] \text{ and }\\
+        \text{要么 } \mSat{M}{\SSubst{!B}{\subst{!D_1}{p_1}, \dots,
+            \subst{!D_n}{p_n}}}[w] \text{ 且 }\\
         & \qquad \mSat{M}{\SSubst{!C}{\subst{!D_1}{p_1}, \dots,
           \subst{!D_n}{p_n}}}[w]\\ 
-        &  \text{ or } \mSat/{M}{\SSubst{!B}{\subst{!D_1}{p_1}, \dots,
-            \subst{!D_n}{p_n}}}[w] \text{ and }\\
+        &  \text{要么 } \mSat/{M}{\SSubst{!B}{\subst{!D_1}{p_1}, \dots,
+            \subst{!D_n}{p_n}}}[w] \text{ 且 }\\
         & \qquad \mSat/{M}{\SSubst{!C}{\subst{!D_1}{p_1}, \dots,
           \subst{!D_n}{p_n}}}[w]\\
-        &\qquad\text{by induction hypothesis}\\
+        &\qquad\text{由归纳假设}\\
         \Leftrightarrow {} &
         \mSat{M}{\SSubst{(!B \liff !C)}{\subst{!D_1}{p_1}, \dots,
           \subst{!D_n}{p_n}}}[w]\\
-        &\qquad \text{by definition of $\mSat{M}{}[w]$}.
+        &\qquad \text{据 $\mSat{M}{}[w]$ 的定义}.
       \end{align*}}}{}
   \end{enumerate}
-  \end{proof}
+\end{proof}
 
 \begin{prop}\ollabel{prop:valid-taut}
-  All tautological instances are valid.
+  所有重言式实例都是有效的。
 \end{prop}
 
 \begin{proof}
-  Contrapositively, suppose $!A$ is such that
-  $\mSat/{M}{\SSubst{!A}{\subst{!D_1}{p_1}, \dots,
-  \subst{!D_n}{p_n}}}[w]$, for some model $\mModel{M}$ and world~$w$.
-  Define an assignment $\pAssign{v}$ such that $\pAssign{v}(p_i) =
-  \True$ if and only if $\mSat{M}{!D_i}[w]$ (and $\pAssign{v}$ assigns
-  arbitrary values to $q \notin \{p_1, \dots, p_n \}$).  Then by
-  \olref{lem:valid-taut}, $\pSat/{v}{!A}$, so $!A$ is not a tautology.
+  用逆否法证明，假设对某个模型 $\mModel{M}$ 和世界~$w$，$!A$ 满足 $\mSat/{M}{\SSubst{!A}{\subst{!D_1}{p_1}, \dots,
+  \subst{!D_n}{p_n}}}[w]$。
+  定义一个赋值 $\pAssign{v}$，使得 $\pAssign{v}(p_i) =
+  \True$ 当且仅当 $\mSat{M}{!D_i}[w]$（且 $\pAssign{v}$ 对 $q \notin \{p_1, \dots, p_n \}$ 赋任意值）。
+  那么根据 \olref{lem:valid-taut}，有 $\pSat/{v}{!A}$，因此 $!A$ 不是重言式。
 \end{proof}
 
 \end{document}

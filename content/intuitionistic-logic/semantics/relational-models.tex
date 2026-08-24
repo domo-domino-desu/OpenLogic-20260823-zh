@@ -10,63 +10,45 @@
 
 \olsection{\usetoken{P}{relational model}}
 
-In order to give a precise semantics for intuitionistic propositional
-logic, we have to give a definition of what counts as a model relative
-to which we can evaluate !!{formula}s. On the basis of such a
-definition it is then also possible to define semantics notions such
-as validity and entailment. One such semantics is given by
-!!{relational model}s.
+为了给直觉主义命题逻辑给出精确的语义，我们必须定义何种对象可作为评估公式的模型。在此基础上，还可以定义有效性和语义后承等语义概念。关系模型便提供了这样一种语义。
 
 \begin{defn}
-  !!^a{relational model} for intuitionistic propositional logic is a
-  triple $\mModel{M} = \tuple{W, R, V}$, where
+  直觉主义命题逻辑的一个关系模型是一个三元组 $\mModel{M} = \tuple{W, R, V}$，其中：
   \begin{enumerate}
-  \item $W$ is a non-empty set,
-  \item $R$ is a partial order (i.e., a reflexive, antisymmetric, and transitive binary relation) on~$W$, and
-  \item $V$ is a function assigning to each !!{propositional
-    variable}~$p$ a subset of~$W$, such that
-  \item $V$ is monotone with respect to $R$, i.e., if $w
-    \in V(p)$ and $Rww'$, then $w' \in V(p)$.
+  \item $W$ 是一个非空集合，
+  \item $R$ 是~$W$ 上的一个偏序（即，一个自反、反对称且传递的二元关系），且
+  \item $V$ 是一个函数，将~$W$ 的一个子集指派给每个命题变元~$p$，使得
+  \item $V$ 关于~$R$ 是单调的，即，如果 $w \in V(p)$ 且 $Rww'$，则 $w' \in V(p)$。
   \end{enumerate}
 \end{defn}
 
 \begin{defn}\ollabel{defn:true-at-w}
-  We define the notion of $!A$ \emph{being true at $w$ in
-    $\mModel{M}$}, $\mSat{M}{!A}[w]$, inductively as follows:
+  我们归纳地定义“$!A$ 在 $\mModel{M}$ 的 $w$ 处为真”的概念，记作 $\mSat{M}{!A}[w]$，如下：
   \begin{enumerate}
-  \item \indcase{!A}{p}{$\mSat{M}{\indfrm}[w]$ iff $w \in V(p)$.}
-  \item \indcase{!A}{\lfalse}{not $\mSat{M}{\indfrm}[w]$}.
-  \item \indcase{!A}{\lnot !B}{$\mSat{M}{\indfrm}[w]$ iff for no
-    $w'$ such that $Rww'$, $\mSat{M}{!B}[w']$}.
-  \item \indcase{!A}{!B \land !C}{$\mSat{M}{\indfrm}[w]$ iff
-    $\mSat{M}{!B}[w]$ and $\mSat{M}{!C}[w]$}.
-  \item \indcase{!A}{!B \lor !C}{$\mSat{M}{\indfrm}[w]$ iff
-    $\mSat{M}{!B}[w]$ or $\mSat{M}{!C}[w]$ (or both)}.
-  \item \indcase{!A}{!B \lif !C}{$\mSat{M}{\indfrm}[w]$ iff for every
-    $w'$ such that $Rww'$, not $\mSat{M}{!B}[w']$ or
-    $\mSat{M}{!C}[w']$} (or both).
+  \item \indcase{!A}{p}{$\mSat{M}{\indfrm}[w]$ 当且仅当 $w \in V(p)$。}
+  \item \indcase{!A}{\lfalse}{并非 $\mSat{M}{\indfrm}[w]$。}
+  \item \indcase{!A}{\lnot !B}{$\mSat{M}{\indfrm}[w]$ 当且仅当不存在满足 $Rww'$ 的 $w'$ 使得 $\mSat{M}{!B}[w']$。}
+  \item \indcase{!A}{!B \land !C}{$\mSat{M}{\indfrm}[w]$ 当且仅当 $\mSat{M}{!B}[w]$ 且 $\mSat{M}{!C}[w]$。}
+  \item \indcase{!A}{!B \lor !C}{$\mSat{M}{\indfrm}[w]$ 当且仅当 $\mSat{M}{!B}[w]$ 或 $\mSat{M}{!C}[w]$（或两者）。}
+  \item \indcase{!A}{!B \lif !C}{$\mSat{M}{\indfrm}[w]$ 当且仅当对每个满足 $Rww'$ 的 $w'$，并非 $\mSat{M}{!B}[w']$，或者 $\mSat{M}{!C}[w']$（或两者）。}
   \end{enumerate}
-  We write $\mSat/{M}{!A}[w]$ if not $\mSat{M}{!A}[w]$. If $\Gamma$ is
-  a set of !!{formula}s, $\mSat{M}{\Gamma}[w]$ means $\mSat{M}{!B}[w]$
-  for all $!B \in \Gamma$.
+  若并非 $\mSat{M}{!A}[w]$，则记作 $\mSat/{M}{!A}[w]$。若 $\Gamma$ 是一个公式集，$\mSat{M}{\Gamma}[w]$ 意指对所有 $!B \in \Gamma$ 都有 $\mSat{M}{!B}[w]$。
 \end{defn}
 
 \begin{prob}
-  Show that according to \olref[int][sem][rel]{defn:true-at-w},
-  $\mSat{M}{\lnot !A}[w]$ iff $\mSat{M}{!A \lif \lfalse}[w]$.
+  证明根据 \olref[int][sem][rel]{defn:true-at-w}，$\mSat{M}{\lnot !A}[w]$ 当且仅当 $\mSat{M}{!A \lif \lfalse}[w]$。
 \end{prob}
 
 \begin{prop}\ollabel{prop:true-monotonic}
-  Truth at worlds is monotonic with respect to~$R$, i.e., if
-  $\mSat{M}{!A}[w]$ and $Rww'$, then $\mSat{M}{!A}[w']$.
+  真值在世界处关于~$R$ 是单调的，即，如果 $\mSat{M}{!A}[w]$ 且 $Rww'$，则 $\mSat{M}{!A}[w']$。
 \end{prop}
 
 \begin{proof}
-  Exercise.
+  练习。
 \end{proof}
 
 \begin{prob}
-  Prove \olref[int][sem][rel]{prop:true-monotonic}.
+  证明 \olref[int][sem][rel]{prop:true-monotonic}。
 \end{prob}
 
 \end{document}

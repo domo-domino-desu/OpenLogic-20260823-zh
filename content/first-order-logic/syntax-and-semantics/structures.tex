@@ -8,102 +8,67 @@
 
 \olfileid{fol}{syn}{str}
 
-\olsection{\printtoken{P}{structure} for First-order Languages}
+\olsection{一阶语言的\printtoken{P}{structure}}
 
 \begin{explain}
-First-order languages are, by themselves, \emph{uninterpreted:} the
-!!{constant}s, !!{function}s, and !!{predicate}s have no specific
-meaning attached to them.  Meanings are given by specifying
-\article{structure} \emph{!!{structure}}. It specifies the
-\emph{domain}, i.e., the objects which the !!{constant}s pick out, the
-!!{function}s operate on, and the quantifiers range over. In addition,
-it specifies which !!{constant}s pick out which objects, how
-!!a{function} maps objects to objects, and which objects the
-!!{predicate}s apply to.  !!^{structure}s are the basis for
-\emph{semantic} notions in logic, e.g., the notion of consequence,
-validity, satisfiability. They are variously called ``structures,''
-``interpretations,'' or ``models'' in the literature.
+一阶语言本身是\emph{未解释的}：常项符号、函数符号和谓词符号没有特定的意义。
+意义是通过指定一个\article{structure} \emph{结构}给出的。
+该结构规定了\emph{论域}，即常项符号所指称的对象、函数符号所作用的对象，以及量词所遍历的对象。
+此外，它还具体规定了哪个常项符号指称哪个对象、函数符号如何将对象映射到对象，以及谓词符号适用于哪些对象。
+结构是逻辑中\emph{语义}概念（例如后承、有效性、可满足性）的基础。
+它们在文献中有不同的称谓，如“结构”“解释”或“模型”。
 \end{explain}
 
-\begin{defn}[!!^{structure}s]
-\Article{structure} \emph{!!{structure}}~$\Struct M$, for a language
-$\Lang{L}$ of first-order logic consists of the following elements:
+\begin{defn}[结构]
+\Article{structure} 一阶逻辑语言 $\Lang{L}$ 的一个\emph{结构}~$\Struct M$ 由以下要素组成：
 \begin{enumerate}
-\item \emph{Domain:} a non-empty set, $\Domain M$
-\item \emph{Interpretation of !!{constant}s:} for each !!{constant}~$c$ of
-  $\Lang{L}$, !!a{element} $\Assign{c}{M} \in \Domain M$
-\item \emph{Interpretation of !!{predicate}s:} for each $n$-place
-  !!{predicate}~$R$ of $\Lang{L}$ (other than $\eq$), an $n$-place
-  relation $\Assign{R}{M} \subseteq \Domain{M}^n$
-\item \emph{Interpretation of !!{function}s:} for each $n$-place
-  !!{function}~$f$ of $\Lang{L}$, an $n$-place function $\Assign{f}{M}
-  \colon \Domain{M}^n \to \Domain{M}$
+\item \emph{论域：}一个非空集合 $\Domain M$。
+\item \emph{常项符号的解释：}对 $\Lang{L}$ 中的每个常项符号~$c$，指定一个元素 $\Assign{c}{M} \in \Domain M$。
+\item \emph{谓词符号的解释：}对 $\Lang{L}$ 中的每个 $n$ 元谓词符号~$R$（$\eq$ 除外），指定一个 $n$ 元关系 $\Assign{R}{M} \subseteq \Domain{M}^n$。
+\item \emph{函数符号的解释：}对 $\Lang{L}$ 中的每个 $n$ 元函数符号~$f$，指定一个 $n$ 元函数 $\Assign{f}{M}
+  \colon \Domain{M}^n \to \Domain{M}$。
 \end{enumerate}
 \end{defn}
 
 \begin{ex}
-!!^a{structure}~$\Struct M$ for the language of arithmetic consists of a
-  set, an element of $\Domain M$, $\Assign{\Obj 0}{M}$, as
-  interpretation of the !!{constant}~$\Obj 0$, a one-place function
-  $\Assign{\Obj \prime}{M} \colon \Domain{M} \to \Domain M$, two
-  two-place functions $\Assign{\Obj +}{M}$ and $\Assign{\Obj
-    \times}{M}$, both $\Domain M^2 \to \Domain M$, and a two-place
-  relation $\Assign{\Obj <}{M} \subseteq \Domain{M}^2$.
+算术语言的一个结构~$\Struct M$ 包含一个集合（作为论域），一个元素 $\Assign{\Obj 0}{M}$ 作为常项符号~$\Obj 0$ 的解释，一个一元函数 $\Assign{\Obj \prime}{M} \colon \Domain{M} \to \Domain M$，两个二元函数 $\Assign{\Obj +}{M}$ 与 $\Assign{\Obj
+    \times}{M}$（均为 $\Domain M^2 \to \Domain M$），以及一个二元关系 $\Assign{\Obj <}{M} \subseteq \Domain{M}^2$。
 
-An obvious example of such a structure is the following:
+此类结构的一个显而易见的例子如下：
 \begin{enumerate}
 \item $\Domain N = \Nat$
 \item $\Assign{\Obj 0}{N} = 0$
-\item $\Assign{\Obj \prime}{N}(n) = n + 1$ for all $n \in \Nat$
-\item $\Assign{\Obj +}{N}(n, m) = n + m$ for all $n, m \in \Nat$
-\item $\Assign{\Obj \times}{N}(n, m) = n\cdot m$ for all $n, m \in \Nat$
+\item $\Assign{\Obj \prime}{N}(n) = n + 1$，对所有 $n \in \Nat$
+\item $\Assign{\Obj +}{N}(n, m) = n + m$，对所有 $n, m \in \Nat$
+\item $\Assign{\Obj \times}{N}(n, m) = n\cdot m$，对所有 $n, m \in \Nat$
 \item $\Assign{\Obj <}{N} = \Setabs{\tuple{n, m}}{n \in \Nat, m \in
   \Nat, n < m}$
 \end{enumerate}
-The structure~$\Struct N$ for $\Lang L_A$ so defined is called the
-\emph{standard model of arithmetic}, because it interprets the
-non-logical constants of~$\Lang L_A$ exactly how you would expect.
+如此定义的 $\Lang L_A$ 的结构~$\Struct N$ 被称为\emph{算术的标准模型}，因为它对~$\Lang L_A$ 中非逻辑常项的解释正如你所预期。
 
-However, there are many other possible !!{structure}s for~$\Lang
-L_A$. For instance, we might take as the domain the set~$\Int$ of
-integers instead of~$\Nat$, and define the interpretations of $\Obj
-0$, $\Obj \prime$, $\Obj +$, $\Obj \times$, $\Obj <$ accordingly.  But
-we can also define structures for~$\Lang L_A$ which have nothing even
-remotely to do with numbers.
+然而，对于~$\Lang L_A$ 还存在许多其他可能的结构。
+例如，我们可以取整数集~$\Int$ 而非~$\Nat$ 作为论域，并相应地定义 $\Obj 0$、$\Obj \prime$、$\Obj +$、$\Obj \times$、$\Obj <$ 的解释。
+但我们也可以定义与数字甚至毫无关联的~$\Lang L_A$ 的结构。
 \end{ex}
 
 \begin{ex}
-A structure~$\Struct M$ for the language~$\Lang L_Z$ of set theory requires
-just a set and a single-two place relation. So technically, e.g., the
-set of people plus the relation ``$x$ is older than $y$'' could be
-used as !!a{structure} for $\Lang L_Z$, as well as $\Nat$ together
-with $n \ge m$ for $n, m \in \Nat$.
+集合论语言~$\Lang L_Z$ 的一个结构~$\Struct M$ 只需要一个集合和一个二元关系。
+因此从技术上讲，例如，所有人的集合以及关系“$x$ 比 $y$ 年长”，或者 $\Nat$ 连同关系 $n \ge m$（$n, m \in \Nat$），都可以用作 $\Lang L_Z$ 的结构。
 
-A particularly interesting !!{structure} for $\Lang L_Z$ in which the
-!!{element}s of the domain are actually sets, and the interpretation
-of $\Obj \in$ actually is the relation ``$x$ is !!a{element} of~$y$''
-is the !!{structure}~$\Struct{{HF}}$ of \emph{hereditarily finite sets}:
+$\Lang L_Z$ 的一个特别有趣的结构是\emph{遗传有穷集}结构~$\Struct{{HF}}$：其论域中的元素本身就是集合，且 $\Obj \in$ 的解释确实就是关系“$x$ 是~$y$ 的元素”：
 \begin{enumerate}
 \item $\Domain{{{HF}}} = \emptyset \cup \Pow{\emptyset} \cup
-  \Pow{\Pow{\emptyset}} \cup \Pow{\Pow{\Pow{\emptyset}}} \cup \dots$;
+  \Pow{\Pow{\emptyset}} \cup \Pow{\Pow{\Pow{\emptyset}}} \cup \dots$；
 \item $\Assign{\Obj \in}{{{HF}}} = \Setabs{\tuple{x, y}}{x, y \in
-  \Domain{{{HF}}}, x \in y}$.
+  \Domain{{{HF}}}, x \in y}$。
 \end{enumerate}
 \end{ex}
 
 \begin{digress}
-The stipulations we make as to what counts as !!a{structure} impact
-our logic. For example, the choice to prevent empty domains ensures,
-given the usual account of satisfaction (or truth) for quantified
-sentences, that $\lexists[x][(!A(x) \lor \lnot !A(x))]$ is
-valid---that is, a logical truth. And the stipulation that all
-!!{constant}s must refer to an object in the domain ensures that the
-existential generalization is a sound pattern of inference: $!A(a)$,
-therefore $\lexists[x][!A(x)]$. If we allowed names to refer outside
-the domain, or to not refer, then we would be on our way to a
-\emph{free logic}, in which existential generalization requires an
-additional premise: $!A(a)$ and $\lexists[x][\eq[x][a]]$, therefore
-$\lexists[x][!A(x)]$.
+我们对什么算作一个结构所作的规定，会影响我们的逻辑。
+例如，禁止空论域的规定保证了（在关于量化语句的满足（或真）的通常定义下）$\lexists[x][(!A(x) \lor \lnot !A(x))]$ 是有效的——即，它是一个逻辑真理。
+而规定所有常项符号必须指称论域中的一个对象，则保证了存在概括是一种可靠的推理模式：$!A(a)$，因此 $\lexists[x][!A(x)]$。
+如果我们允许名字指称论域之外的对象，或不具有指称，那么我们就是在走向一种\emph{自由逻辑}；在自由逻辑中，存在概括需要一个额外的前提：$!A(a)$ 且 $\lexists[x][\eq[x][a]]$，因此 $\lexists[x][!A(x)]$。
 \end{digress}
 
 \end{document}

@@ -8,27 +8,16 @@
 
 \olfileid{pt}{seq}{adm}
 
-\olsection{Admissible and Derivable Rules}
+\olsection{可容许规则与可导出规则}
 
-Many results of proof theory concern---or use---results about whether
-everything that can be !!{prove}d using a specific rule can also be
-!!{prove}d without that rule. The cut-elimination theorem is the most
-well-known example. It shows that any sequent that can be !!{prove}d
-using the rules of a sequent system with~\Cut{} can also be !!{prove}d
-without~\Cut. Because this kind of property is so important, it has a
-name.
+证明论的许多结果涉及——或者说使用了——关于是否所有使用特定规则可导出的内容，在没有该规则时也可导出的结论。切割消去定理就是最著名的例子。它表明，任何能够在一个带有~\Cut{} 规则的相继式系统中推导出的相继式，也能够在没有~\Cut{} 的情况下推导出来。由于这类性质非常重要，它有自己的名称。
 
 \begin{defn}
-A rule~$R$ is \emph{admissible} in a sequent system if any sequent
-that can be proved in that system together with the rule~$R$ can also
-be proved without~$R$.
+在一个相继式系统中，如果任何在该系统连同规则~$R$ 中能够被证明的相继式，不使用~$R$ 也能被证明，则称规则~$R$ 是\emph{可容许的}。
 \end{defn}
 
 \begin{ex}\ollabel{ex:land-deriv}
-The rule $\LeftR{\land}$ takes different forms in \Log{G1c} and
-\Log{G3c}. In \Log{G1c} there are two versions of the rule, one with
-the left conjunct $!A$ of the principal !!{formula}~$!A \land !B$ in
-the premise, and one with the right conjunct~$!B$:
+$\LeftR{\land}$ 规则在 \Log{G1c} 和 \Log{G3c} 中具有不同的形式。在 \Log{G1c} 中，该规则有两个版本：一个在前提中包含主公式~$!A \land !B$ 的左合取支 $!A$，另一个在前提中包含右合取支~$!B$：
 \[
 \Axiom$ !A, \Gamma \fCenter \Delta$
 \RightLabel{$\LeftR{\land}_1$}
@@ -40,18 +29,14 @@ the premise, and one with the right conjunct~$!B$:
 \UnaryInf$!A \land !B, \Gamma \fCenter \Delta$
 \DisplayProof
 \]
-By contrast, \Log{G3c} has only one rule:
+相比之下，\Log{G3c} 只有一个规则：
 \[
 \Axiom$ !A, !B, \Gamma \fCenter \Delta$
 \RightLabel{$\LeftR{\land}_3$}
 \UnaryInf$ !A \land !B, \Gamma \fCenter \Delta$
 \DisplayProof
 \]
-We might now ask, ``Is \Log{G3c}'s rule $\LeftR{\land}_3$ admissible
-in \Log{G1c}?'' It is: we can directly simulate any inference using
-$\LeftR{\land}_3$ using only the rules of~\Log{G1c}. In addition to
-$\LeftR{\land}_1$ and $\LeftR{\land}_2$ we'll also need the structural
-rule~$\LeftR{\Contraction}$:
+我们现在可能会问：“\Log{G3c} 的规则 $\LeftR{\land}_3$ 在 \Log{G1c} 中是可容许的吗？”答案是肯定的：我们可以仅使用~\Log{G1c} 的规则来直接模拟任何使用 $\LeftR{\land}_3$ 的推理。除了 $\LeftR{\land}_1$ 和 $\LeftR{\land}_2$，我们还需要结构规则~$\LeftR{\Contraction}$：
 \[
 \Axiom$!A, !B, \Gamma \fCenter \Delta$
 \RightLabel{$\LeftR{\land}_1$}
@@ -64,13 +49,10 @@ rule~$\LeftR{\Contraction}$:
 \]
 \end{ex}
 
-Simulating a inferences using one rule using other rules is one way to
-show that a rule is admissible. But it is not the only way, and some
-rules are admissible but can't be so simulated. Rules that can be are
-called \emph{derivable}.
+使用其他规则来模拟某条规则所作的推理，是证明该规则可容许的一种方法。但这并不是唯一的方法，有些规则是可容许的，但却不能如此被模拟。能够如此模拟的规则被称为\emph{可导出的}。
 
 \begin{defn}
-A rule~$R$,
+一个规则~$R$，
 \[
 \AxiomC{$S_1$}
 \AxiomC{$\dots$}
@@ -79,35 +61,27 @@ A rule~$R$,
 \TrinaryInfC{$S$}
 \DisplayProof
 \]
-is called \emph{derivable} in a system if there is a schematic
-!!{proof} of the sequent~$S$ using the rules and axioms of the system
-together with additional initial sequents of the forms of~$S_1$, \dots,~$S_n$.
+在一个系统中被称为\emph{可导出的}，如果存在相继式~$S$ 的一个图式推导，该推导使用该系统的公理和规则，并将形如~$S_1$, \dots,~$S_n$ 的相继式作为额外初始相继式。
 \end{defn}
 
-The !!{proof} given in \olref{ex:land-deriv} shows that
-$\LeftR{\land}_3$ is a derivable rule in~\Log{G1c}, as that !!{proof}
-is a schematic !!{proof} of the conclusion of $\LeftR{\land}_3$ from
-the premises of $\LeftR{\land}_3$ as initial sequents using only rules
-of \Log{G1c}. (It didn't use any of the axioms of \Log{G1c}.)
+在 \olref{ex:land-deriv} 中给出的推导表明，$\LeftR{\land}_3$ 是~\Log{G1c} 中的一个可导出规则，因为该推导正是一个图式推导：它将 $\LeftR{\land}_3$ 的前提作为初始相继式，仅使用 \Log{G1c} 的规则推导出 $\LeftR{\land}_3$ 的结论。（它没有使用 \Log{G1c} 的任何公理。）
 
 \begin{prop}\ollabel{prop:lor-G3-adm}
-The rules $\LeftR{\land}$ and $\RightR{\lor}$ of~\Log{G3c} are
-derivable in~\Log{G1c}.
+\Log{G3c} 的规则 $\LeftR{\land}$ 和 $\RightR{\lor}$ 在~\Log{G1c} 中是可导出的。
 \end{prop}
 
 \begin{proof}
-  The proof for $\LeftR{\land}$ is given in \olref{ex:land-deriv}. The
-  proof for $\RightR{\lor}$ is left as an exercise.
+  $\LeftR{\land}$ 的证明已在 \olref{ex:land-deriv} 中给出。$\RightR{\lor}$ 的证明留作练习。
 \end{proof}
 
 \begin{prob}
-Show that the rule $\RightR{\lor}$ of \Log{G3c} is derivable
-in~\Log{G1c}.
+证明 \Log{G3c} 的规则 $\RightR{\lor}$ 在~\Log{G1c} 中是可导出的。
 \end{prob}
 
 \begin{prob}
-Suppose $\liff$ is a defined !!{operator}: $!A \liff !B$ is short for
-$(!A \lif !B) \land (!B \lif !A)$. Show that the rules
+假设 $\liff$ 是一个被定义的逻辑算子：$!A \liff !B$ 是
+$(!A \lif !B) \land (!B \lif !A)$
+的简写。证明以下规则
 \begin{enumerate}
 \item \Axiom$\Gamma, !A, !B \fCenter \Delta$
 \Axiom$\Gamma \fCenter \Delta, !A, !B$
@@ -121,59 +95,26 @@ $(!A \lif !B) \land (!B \lif !A)$. Show that the rules
 \BinaryInf$\Gamma \fCenter \Delta, !A \liff !B$
 \DisplayProof
 \end{enumerate}
-are derivable in (a)~\Log{G1c} and (b)~\Log{G3c}.
+在 (a)~\Log{G1c} 和 (b)~\Log{G3c} 中是可导出的。
 \end{prob}
 
-
 \begin{ex}\ollabel{ex:weak-adm}
-The rule $\RightR{\Weakening}$ of \Log{G1c},
+\Log{G1c} 的规则 $\RightR{\Weakening}$，
 \[
 \Axiom$ \Gamma \fCenter \Delta$
 \RightLabel{\RightR{\Weakening}}
 \UnaryInf$ \Gamma \fCenter \Delta, !A$
 \DisplayProof
 \]
-is admissible
-in~\Log{G3c}. The idea of the proof is simple: suppose there is
-!!a{proof}~$\pi$ of the premise $\Gamma \Sequent \Delta$ in~\Log{G3c}.
-Add the !!{formula}~$!A$ to the succedent of every sequent
-in~$\pi$. Axioms remain axioms; correct inferences are still correct
-inferences. The end-!!{formula} of the new !!{proof} is $\Gamma \Sequent
-\Delta, !A$.
+在~\Log{G3c} 中是可容许的。证明的思路很简单：假设在~\Log{G3c} 中存在 $\Gamma \Sequent \Delta$ 的一个推导~$\pi$。将公式~$!A$ 添加到~$\pi$ 中每个相继式的后件。公理仍然是公理；正确的推理仍保持正确。新推导的结束式就是 $\Gamma \Sequent \Delta, !A$。
 
-The rule $\RightR{\Weakening}$ is, however, not derivable
-in~\Log{G3c}. For suppose it were, i.e., suppose one could find
-!!a{proof} of $\Gamma \Sequent
-\Delta, !A$ using only the axioms and rules of~\Log{G3c} plus possibly
-the additional initial sequent~$\Gamma \Sequent \Delta$. If this
-!!{proof} is, as would be required for $\RightR{\Weakening}$ to be
-derivable, purely schematic, we could turn it into !!a{proof}
-of~$\Sequent !A$ by deleting $\Gamma$ and~$\Delta$. This would turn
-the additional initial sequents~$\Gamma \Sequent \Delta$ into the
-empty sequent~$\quad \Sequent \quad$. Since the empty sequent contains
-no !!{formula}s at all, but all rules of~\Log{G3c} require at least
-one active !!{formula} in their premises, the empty sequent can't be a
-premise of any inference in this schematic !!{proof}. Consequently, the
-!!{proof} can only be schematic if it doesn't actually use the additional
-sequent $\Gamma \Sequent \Delta$ as an initial sequent. In other
-words, it would be a schematic derivation of $\Gamma \Sequent
-\Delta, !A$ using only the axioms and rules of~\Log{G3c} and we would
-have shown that any sequent of this form has !!a{proof} in~\Log{G3c}.
-But this is impossible, since \Log{G3c} is sound and so can only !!{prove}
-sequents that are true in every !!{structure}. Taking $\Gamma = \Delta
-= \emptyset$ and $!A \ident \lfalse$, \Log{G3c} would have to !!{prove},
-e.g., the sequent $\quad \Sequent \lfalse$, which it does not.
+然而，规则 $\RightR{\Weakening}$ 在~\Log{G3c} 中不是可导出的。因为假设它是可导出的，即假设能够找到一个 $\Gamma \Sequent \Delta, !A$ 的推导，该推导仅使用~\Log{G3c} 的公理和规则，并可能以~$\Gamma \Sequent \Delta$ 作为额外初始相继式。如果这个推导是纯图式的（这是 $\RightR{\Weakening}$ 成为可推导规则的要求），那么我们可以通过删除 $\Gamma$ 和~$\Delta$ 将它变成一个~$\Sequent !A$ 的推导。这将把额外的初始相继式~$\Gamma \Sequent \Delta$ 变成空相继式~$\quad \Sequent \quad$。由于空相继式不包含任何公式，而~\Log{G3c} 的所有规则都要求其前提中至少有一个活跃公式，因此空相继式不能成为这个图式推导中任何推理的前提。所以，只有当这个推导实际上不使用额外相继式 $\Gamma \Sequent \Delta$ 作为初始相继式时，它才可能是纯图式的。换言之，它将是仅使用~\Log{G3c} 的公理和规则对 $\Gamma \Sequent \Delta, !A$ 所作的图式推导，从而我们就证明了任何这种形式的相继式在~\Log{G3c} 中都有一个推导。但这是不可能的，因为 \Log{G3c} 是可靠的，因此只能推导出在所有结构中都为真的相继式。取 $\Gamma = \Delta = \emptyset$ 且 $!A \ident \lfalse$，\Log{G3c} 将不得不推导出例如相继式 $\quad \Sequent \lfalse$，而它并不能推导出该式。
 \end{ex}
 
-Let's give a nice inductive proof of the result that weakening is an
-admissible rule in~\Log{G3c}. In fact, a slightly stronger result
-holds, as the intuitive argument shows: by adding $!A$ to the right side
-of every sequent of~$\pi$, we do not change the structure of the
-!!{proof}, in particular, we do not increase the height. Since this is
-important, it deserves its own definition.
+下面我们为“弱化在~\Log{G3c} 中是可容许规则”这一结果给出一个漂亮的归纳证明。事实上，正如直观论证所示，一个稍强的结果成立：通过将 $!A$ 加到~$\pi$ 的每个相继式的右边，我们并没有改变推导的结构，特别地，没有增加其高度。由于这一点很重要，它值得拥有自己的定义。
 
 \begin{defn}
-A rule~$R$,
+一个规则~$R$，
 \[
 \AxiomC{$S_1$}
 \AxiomC{$\dots$}
@@ -182,41 +123,18 @@ A rule~$R$,
 \TrinaryInfC{$S$}
 \DisplayProof
 \]
-is \emph{!!{height}-preserving admissible} (or
-\emph{!!{hp}-admissible}) in a system if, whenever $\Proves[h_i] S_i$
-for $i = 1$, \dots,~$n$, then $\Proves_m S$ with $m = \max(h_1, \dots,
-h_n)$.
+在一个系统中是\emph{保持高度可容许的}（或称 \emph{hp-可容许的}），如果只要对 $i = 1$, \dots,~$n$ 有 $\Proves[h_i] S_i$，就有 $\Proves_m S$ 且 $m = \max(h_1, \dots,
+h_n)$。
 \end{defn}
 
-Note that it is enough for a rule to be !!{height}-preserving
-admissable that, whenever the premises~$S_i$ have !!{proof}s~$\pi_i$
-with !!{height}~$h_i = \pheight{\pi_i}$, there is !!a{proof}~$\pi$ of
-the conclusion of !!{height}~$\pheight{\pi}$ no greater than the
-maximum of the~$h_i$. In particular, if there is only one
-premise~$S_1$, it is enough that $\pheight{\pi} \le \pheight{\pi_1}$.
-In the case of $\RightR{\Weakening}$ and $\LeftR{\Weakening}$ we
-actually have $\pheight{\pi} = \pheight{\pi_1}$, but that is not
-necessary.
+注意，要使一个规则保持高度可容许，只需：若前提~$S_i$ 有高度为~$h_i = \pheight{\pi_i}$ 的推导~$\pi_i$，则存在结论的一个推导~$\pi$，其高度~$\pheight{\pi}$ 不超过~$h_i$ 的最大值即可。特别地，如果只有一个前提~$S_1$，那么只需满足 $\pheight{\pi} \le \pheight{\pi_1}$ 即可。对于 $\RightR{\Weakening}$ 和 $\LeftR{\Weakening}$ 规则，我们实际上有 $\pheight{\pi} = \pheight{\pi_1}$，但这不是必需的。
 
 \begin{prop}\ollabel{prop:weak-G3c-adm}
-The rules $\RightR{\Weakening}$ and $\LeftR{\Weakening}$ of \Log{G1c} are
-!!{height}-preserving admissible in~\Log{G3c}.
+\Log{G1c} 的规则 $\RightR{\Weakening}$ 和 $\LeftR{\Weakening}$ 在~\Log{G3c} 中是保持高度可容许的。
 \end{prop}
 
 \begin{proof}
-  We have to show that if $\Log{G3c} \Proves \Gamma \Sequent \Delta$
-  with a !!{proof}~$\pi$ of !!{height}~$\pheight{\pi} = n$ then there
-  is a \Log{G3c}-!!{proof} $\pi'$ of $\Gamma \Sequent \Delta, !A$ with
-  $\pheight{\pi'} = n$. We prove this by induction on~$n$. If $n=0$,
-  then $\pi$ is just the axiom $\Gamma \Sequent \Delta$ (i.e., some
-  atomic $!C$ occurs in both $\Gamma$ and~$\Delta$), and so is $\Gamma
-  \Sequent \Delta, !A$. If $n = \pheight{\pi} >0$, the !!{proof}~$\pi$
-  has a last inference. We distinguish cases according to which rule
-  was used. We give just one example: suppose the last inference was
-  $\RightR{\land}$. Then $\Delta = \Delta', !B \land !C$ and the
-  immediate sub-!!{proof}s $\pi_1$ and~$\pi_2$ of the last inference
-  have end-sequents $\Gamma \Sequent \Delta', !B$ and $\Gamma \Sequent
-  \Delta', !C$, respectively. In other words, $\pi$ looks like this:
+  我们需要证明，如果 $\Gamma \Sequent \Delta$ 在~\Log{G3c} 中有一个高度为~$\pheight{\pi} = n$ 的推导~$\pi$，那么 $\Gamma \Sequent \Delta, !A$ 也有一个 \Log{G3c}-推导 $\pi'$，且 $\pheight{\pi'} = n$。我们对~$n$ 进行归纳证明。如果 $n=0$，那么 $\pi$ 就是一个公理 $\Gamma \Sequent \Delta$（即某个原子 $!C$ 同时出现在 $\Gamma$ 和~$\Delta$ 中），因而 $\Gamma \Sequent \Delta, !A$ 也是一条公理。如果 $n = \pheight{\pi} >0$，推导~$\pi$ 有最后一个推理。我们根据所使用的规则分情况讨论。我们只举一个例子：假设最后一个推理是 $\RightR{\land}$。那么 $\Delta = \Delta', !B \land !C$，并且该最后推理的两个直接子推导 $\pi_1$ 和~$\pi_2$ 的结束式分别是 $\Gamma \Sequent \Delta', !B$ 和 $\Gamma \Sequent \Delta', !C$。换言之，$\pi$ 看起来是这样的：
   \[
   \AxiomC{}
   \RightLabel{$\pi_1$}
@@ -228,13 +146,9 @@ The rules $\RightR{\Weakening}$ and $\LeftR{\Weakening}$ of \Log{G1c} are
   \BinaryInf$\Gamma \fCenter \Delta', !B \land !C$
   \DisplayProof
   \]
-  We also have that $n =
-  \max(\pheight{\pi_1}, \pheight{\pi_2}) + 1$. So $\pheight{\pi_1} <
-  n$ and $\pheight{\pi_2} < n$, and the inductive hypothesis applies:
-  there are !!{proof}s $\pi_1'$ and~$\pi_2'$ of $\Gamma \Sequent
-  \Delta', !B, !A$ and $\Gamma \Sequent \Delta', !C, !A$. Using the
-  $\RightR{\land}$ rule, we obtain !!a{proof}~$\pi'$ of $\Gamma
-  \Sequent \Delta', !B \land !C, !A$:
+  我们还知道 $n =
+  \max(\pheight{\pi_1}, \pheight{\pi_2}) + 1$。因此 $\pheight{\pi_1} < n$ 且 $\pheight{\pi_2} < n$，归纳假设适用：存在推导 $\pi_1'$ 和~$\pi_2'$ 分别推出 $\Gamma \Sequent \Delta', !B, !A$ 和 $\Gamma \Sequent \Delta', !C, !A$。使用 $\RightR{\land}$ 规则，我们得到 $\Gamma
+  \Sequent \Delta', !B \land !C, !A$ 的一个推导~$\pi'$：
   \[
   \AxiomC{}
   \RightLabel{$\pi_1'$}
@@ -246,17 +160,9 @@ The rules $\RightR{\Weakening}$ and $\LeftR{\Weakening}$ of \Log{G1c} are
   \BinaryInf$\Gamma \fCenter \Delta', !B \land !C, !A$
   \DisplayProof
   \]
-  We have $\pheight{\pi'} =
-  \max(\pheight{\pi_1'}, \pheight{\pi_2'}) + 1 = \max(\pheight{\pi_1},
-  \pheight{\pi_2}) + 1 = \pheight{\pi}$.
+  我们有 $\pheight{\pi'} = \max(\pheight{\pi_1'}, \pheight{\pi_2'}) + 1 = \max(\pheight{\pi_1}, \pheight{\pi_2}) + 1 = \pheight{\pi}$。
 \end{proof}
 
-\olref{prop:weak-G3c-adm} is extremely useful. We'll introduce a
-notation for repeated application of it: if $\pi$ is !!a{proof}
-of~$\Gamma \Sequent \Delta$ then $\pi[\Pi \Sequent \Lambda]$ is the
-result of applying admissibility of weakening on the left with all the
-!!{formula}s in~$\Pi$ and admissibility of weakening on the right with
-all !!{formula}s in~$\Lambda$. It is !!a{proof} of $\Gamma, \Pi
-\Sequent \Delta, \Lambda$.
+\olref{prop:weak-G3c-adm} 极其有用。我们将为它的重复应用引入一个记号：如果 $\pi$ 是~$\Gamma \Sequent \Delta$ 的一个推导，那么 $\pi[\Pi \Sequent \Lambda]$ 表示对 $\pi$ 运用左弱化的可容许性（加入~$\Pi$ 中的所有公式）和右弱化的可容许性（加入~$\Lambda$ 中的所有公式）所得的结果。它是 $\Gamma, \Pi \Sequent \Delta, \Lambda$ 的一个推导。
 
 \end{document}

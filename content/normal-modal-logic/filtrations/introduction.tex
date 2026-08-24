@@ -8,124 +8,69 @@
 
 \olfileid{nml}{fil}{int}
 
-\olsection{Introduction}
+\olsection{引言}
 
-One important question about a logic is always whether it is
-decidable, i.e., if there is an effective procedure which will answer
-the question ``is this !!{formula} valid.'' Propositional logic is
-decidable: we can effectively test if !!a{formula} is a tautology by
-constructing a truth table, and for a given !!{formula}, the truth
-table is finite.  But we can't obviously test if a modal formula is
-true in all models, for there are infinitely many of them.  We can
-list all the finite models relevant to a given formula, since only the
-assignment of subsets of worlds to !!{propositional variable}s which
-actually occur in the !!{formula} are relevant. If the accessibility
-relation is fixed, the possible different assignments $V(p)$ are just
-all the subsets of~$W$, and if $\card{W} = n$ there are $2^n$ of
-those. If our !!{formula}~$!A$ contains $m$ !!{propositional
-  variable}s there are then $2^{nm}$ different models with~$n$
-worlds. For each one, we can test if~$!A$ is true at all worlds,
-simply by computing the truth value of~$!A$ in each. Of course, we
-also have to check all possible accessibility relations, but there are
-only finitely many relations on~$n$ worlds as well (specifically, the
-number of subsets of $W \times W$, i.e., $2^{n^2}$.
+关于一个逻辑，始终重要的一个问题是它是否可判定，
+即是否存在一个能行程序来回答“该公式是否有效”。
+命题逻辑是可判定的：我们可以通过构造真值表来能行地测试一个公式是否是重言式，
+并且对于给定的公式，真值表是有穷的。
+但我们显然不能测试一个模态公式是否在所有模型中为真，
+因为模型有无穷多个。
+不过，我们可以列出与给定公式相关的所有有穷模型，
+因为只有对公式中实际出现的命题变元指派世界的子集才是相关的。
+如果可达关系固定，所有可能的不同赋值 $V(p)$ 就是 $W$ 的所有子集，
+而如果 $\card{W} = n$，则这样的子集有 $2^n$ 个。
+如果我们的公式 $!A$ 包含 $m$ 个命题变元，那么具有 $n$ 个世界的不同模型就有 $2^{nm}$ 个。
+对其中每一个模型，我们只需通过在每个世界中计算 $!A$ 的真值，
+就可以测试 $!A$ 是否在所有世界上为真。
+当然，我们还必须检查所有可能的可达关系，
+但 $n$ 个世界上也只有有穷多种关系（具体而言，是 $W \times W$ 的子集数，即 $2^{n^2}$）。
 
-If we are not interested in the logic~\Log{K}, but a logic defined by
-some class of models (e.g., the reflexive transitive models), we also
-have to be able to test if the accessibility relation is of the right
-kind. We can do that whenever the frames we are interested in are
-definable by modal !!{formula}s (e.g., by testing if \Ax{T} and \Ax{4}
-valid in the frame). So, the idea would be to run through all the
-finite frames, test each one if it is a frame in the class we're
-interested in, then list all the possible models on that frame and
-test if $!A$ is true in each. If not, stop: $!A$ is not valid in the
-class of models of interest.
+如果我们关心的不是逻辑 $\Log{K}$，而是由某个模型类（例如，自反传递模型）定义的逻辑，
+我们还必须能测试可达关系是否属于所需的类型。
+只要我们所关心的框架类可由模态公式定义（例如，通过测试公式 \Ax{T} 和 \Ax{4} 在该框架中是否有效），我们就能做到这一点。
+因此，我们的想法会是：遍历所有有穷框架，
+测试每个框架是否属于我们感兴趣的类；
+然后列出该框架上所有可能的模型，
+并测试 $!A$ 在其中是否为真。
+如果不是，就停止：$!A$ 在我们感兴趣的模型类中不是有效的。
 
-There is a problem with this idea: we don't know when, if ever, we can
-stop looking. If the !!{formula} has a finite countermodel, our procedure will
-find it. But if it has no finite countermodel, we won't get an
-answer. The !!{formula} may be valid (no countermodels at all), or it
-may have only an infinite countermodel, which we'll never look at. This
-problem can be overcome if we can show that every !!{formula} that has
-a countermodel has a finite countermodel. If this is the case we say
-the logic has the \emph{finite model property}.
+这个想法有一个问题：我们不知道何时（如果真有那一刻的话）可以停止搜索。
+如果公式有一个有穷反模型，我们的过程会找到它。
+但如果它没有有穷反模型，我们就得不到答案。
+该公式可能是有效的（根本没有反模型），
+或者它可能只有一个无穷的反模型，而我们永远不会检查到。
+如果我们能证明，每个有反模型的公式都有一个有穷反模型，那么这个问题就能得到解决。
+如果情况如此，我们就说该逻辑具有\emph{有穷模型性质}。
 
-But how would we show that a logic has the finite model property? One
-way of doing this would be to find a way to turn an infinite
-(counter)model of~$!A$ into a finite one. If that can be done, then
-whenever there is a model in which $!A$ is not true, then the
-resulting finite model also makes $!A$ not true. That finite model
-will show up on our list of all finite models, and we will eventually
-determine, for every formula that is not valid, that it isn't. Our
-procedure won't terminate if the formula is valid. If we can show in
-addition that there is some maximum size that the finite model our
-procedure provides can have, and that this maximum size depends only
-on the !!{formula}~$!A$, we will have a size up to which we have to
-test finite models in our search for countermodels. If we haven't
-found a countermodel by then, there are none. Then our procedure will,
-in fact, decide the question ``is $!A$ valid?'' for any
-!!{formula}~$!A$.
+但我们如何证明一个逻辑具有有穷模型性质呢？
+一种方法是找到一种将 $!A$ 的无穷（反）模型转化为有穷模型的方法。
+如果能做到这一点，那么每当存在一个 $!A$ 在其中不为真的模型时，
+转化得到的有穷模型也会使 $!A$ 不为真。
+那个有穷模型将会出现在我们所有有穷模型的列表中，
+而我们最终将对每个不是有效的公式判定它不是有效的。
+如果公式是有效的，我们的过程将不会终止。
+如果我们还能进一步证明，我们过程所给出的有穷模型存在一个最大大小，
+并且这个最大大小只依赖于公式 $!A$，
+那么我们在搜索反模型时，只需测试不超过该大小的有穷模型。
+如果到那时还没有找到反模型，那就说明没有反模型。
+这样一来，我们的过程实际上就能对任意公式 $!A$ 判定“$!A$ 是否有效？”这个问题。
 
-A strategy that often works for turning infinite structures into
-finite structures is that of ``identifying'' !!{element}s of the
-structure which behave the same way in relevant respects. If there are
-infinitely many worlds in~$\mModel{M}$ that behave the same in
-relevant respects, then we may be able to collect \emph{all} worlds in
-finitely many (possibly infinite) ``classes'' of such worlds. In other
-words, we should partition the set of worlds in the right way, i.e.,
-in such a way that each partition contains infinitely many worlds, but
-there are only finitely many partitions. Then we define a new
-model~$\mModel{M^*}$ where the worlds are the partitions. Finitely
-many partitions in the old model give us finitely many worlds in the
-new model, i.e., a finite model. Let's call the partition a world~$w$
-is in $[w]$. We'll want it to be the case that $\mSat{M}{!A}[w]$ iff
-$\mSat{M^*}{!A}[{[w]}]$, since we want the new model to be a
-countermodel to~$!A$ if the old one was. This requires that we define
-the partition, as well as the accessibility relation of~$\mModel{M^*}$
-in the right way.
+一种常能成功地将无穷结构转化为有穷结构的策略是，将结构中在相关方面行为相同的元素“等同”起来。
+如果 $\mModel{M}$ 中有无穷多个世界在相关方面行为相同，
+那么我们或许就能将所有世界收集到有穷多个（可能无穷的）此类世界的“类”中。
+换句话说，我们应该以正确的方式划分世界集合，
+即，使得每个划分块包含无穷多个世界，但只有有穷多个划分块。
+然后我们定义一个新模型 $\mModel{M^*}$，其中的世界就是这些划分块。
+旧模型中的有穷多个划分块给了我们新模型中的有穷多个世界，即一个有穷模型。
+让我们称世界 $w$ 所在的划分块为 $[w]$。
+我们希望 $\mSat{M}{!A}[w]$ 当且仅当
+$\mSat{M^*}{!A}[{[w]}]$，因为我们希望如果旧模型是 $!A$ 的反模型，那么新模型也是。
+这就要求我们以正确的方式来定义划分以及 $\mModel{M^*}$ 的可达关系。
 
-To see how this would go, first imagine we have no accessibility
-relation. $\mSat{M}{\Box !B}[w]$ iff for some $v \in W$,
-$\mSat{M}{\Box !B}[v]$, and the same for $\mModel{M^*}$, except with
-$[w]$ and $[v]$. As a first idea, let's say that two worlds $u$ and
-$v$ are equivalent (belong to the same partition) if they agree on all
-!!{propositional variable}s in~$\mModel{M}$, i.e., $\mSat{M}{p}[u]$
-iff $\mSat{M}{p}[v]$. Let $V^*(p) = \Setabs{[w]}{\mSat{M}{p}[w]}$.
-Our aim is to show that $\mSat{M}{!A}[w]$ iff
-$\mSat{M^*}{!A}[{[w]}]$. Obviously, we'd prove this by induction: The
-base case would be $!A \equiv p$. First suppose $\mSat{M}{p}[w]$. Then
-$[w] \in V^*$ by definition, so $\mSat{M^*}{p}[{[w]}]$. Now suppose
-that $\mSat{M^*}{p}[{[w]}]$. That means that $[w] \in V^*(p)$, i.e.,
-for some $v$ equivalent to~$w$, $\mSat{M}{p}[v]$. But ``$w$ equivalent
-to $v$'' means ``$w$ and $v$ make all the same !!{propositional variable}s
-true,'' so $\mSat{M}{p}[w]$. Now for the inductive step, e.g., $!A
-\ident \lnot !B$. Then $\mSat{M}{\lnot !B}[w]$ iff $\mSat/{M}{!B}[w]$
-iff $\mSat/{M^*}{!B}[{[w]}]$ (by inductive hypothesis) iff
-$\mSat{M^*}{\lnot !B}[{[w]}]$. Similarly for the other non-modal
-operators. It also works for $\Box$: suppose $\mSat{M^*}{\Box
-  !B}[{[w]}]$. That means that for every $[u]$,
-$\mSat{M^*}{!B}[{[u]}]$. By inductive hypothesis, for every $u$,
-$\mSat{M}{!B}[u]$. Consequently, $\mSat{M}{\Box !B}[w]$.
+为了看清具体怎么做，首先想象我们没有可达关系。$\mSat{M}{\Box !B}[w]$ 当且仅当存在某个 $v \in W$ 使得 $\mSat{M}{\Box !B}[v]$，对于 $\mModel{M^*}$ 也是如此，只是要把 $w$ 和 $v$ 换成 $[w]$ 和 $[v]$。作为初步的想法，如果两个世界 $u$ 和 $v$ 在 $\mModel{M}$ 中对所有命题变元的赋值一致，我们就说它们是等价的（属于同一个划分），即 $\mSat{M}{p}[u]$ 当且仅当 $\mSat{M}{p}[v]$。令 $V^*(p) = \Setabs{[w]}{\mSat{M}{p}[w]}$。我们的目标是证明 $\mSat{M}{!A}[w]$ 当且仅当 $\mSat{M^*}{!A}[{[w]}]$。显然，我们可以用归纳法来证明这一点：基始情形是 $!A \equiv p$。先假设 $\mSat{M}{p}[w]$。那么根据定义，$[w] \in V^*$，所以 $\mSat{M^*}{p}[{[w]}]$。现在假设 $\mSat{M^*}{p}[{[w]}]$。这意味着 $[w] \in V^*(p)$，即存在某个与 $w$ 等价的 $v$，使得 $\mSat{M}{p}[v]$。但“$w$ 等价于 $v$”意味着“$w$ 和 $v$ 使相同的命题变元为真”，所以 $\mSat{M}{p}[w]$。现在来看归纳步骤，例如 $!A \ident \lnot !B$ 的情形。那么 $\mSat{M}{\lnot !B}[w]$ 当且仅当 $\mSat/{M}{!B}[w]$ 当且仅当 $\mSat/{M^*}{!B}[{[w]}]$（由归纳假设）当且仅当 $\mSat{M^*}{\lnot !B}[{[w]}]$。其他非模态算子的情形类似。对于 $\Box$ 也成立：假设 $\mSat{M^*}{\Box
+  !B}[{[w]}]$。这意味着对于每个 $[u]$，$\mSat{M^*}{!B}[{[u]}]$。由归纳假设，对于每个 $u$，$\mSat{M}{!B}[u]$。因此，$\mSat{M}{\Box !B}[w]$。
 
-In the general case, where we have to also define the accessibility
-relation for $\mModel{M^*}$, things are more complicated. We'll call a
-model~$\mModel{M^*}$ a \emph{filtration} if its accessibility
-relation~$R^*$ satisfies the conditions required to make the inductive
-proof above go through. Then any filtration~$\mModel{M^*}$ will make
-$!A$ true at $[w]$ iff $\mModel{M}$ makes $!A$ true at~$w$. However,
-now we also have to show that there \emph{are} filtrations, i.e., we
-can define~$R^*$ so that it satisfies the required conditions. In
-order for this to work, however, we have to require that worlds $u$,
-$v$ count as equivalent not just when they agree on all
-!!{propositional variable}s, but on all sub-!!{formula}s
-of~$!A$. Since $!A$ has only finitely many sub-!!{formula}s, this will
-still guarantee that the filtration is finite. There is not just one
-way to define a filtration, and in order to make sure that the
-accessibility relation of the filtration satisfies the required
-properties (e.g., reflexive, transitive, etc.) we have to be inventive
-with the definition of~$R^*$.
-
+在一般情形下，即我们还需要为 $\mModel{M^*}$ 定义可达关系时，事情就变得更复杂了。如果模型 $\mModel{M^*}$ 的可达关系 $R^*$ 满足使上述归纳证明成立所需的条件，我们就称该模型为一个\emph{滤过}。那么，任何滤过 $\mModel{M^*}$ 都会使得 $!A$ 在 $[w]$ 上为真，当且仅当 $\mModel{M}$ 使得 $!A$ 在 $w$ 上为真。然而，现在我们还必须证明滤过\emph{存在}，也就是说，我们可以定义 $R^*$ 使其满足所需的条件。但是，为了使这能行得通，我们必须要求世界 $u$、$v$ 被视为等价的条件，不仅仅是它们对所有命题变元的赋值一致，而且是对 $!A$ 的所有子公式的赋值也一致。由于 $!A$ 只有有穷多个子公式，这仍然能保证滤过是有穷的。定义滤过的方法不止一种，而为了确保滤过的可达关系满足所需的性质（例如自反、传递等），我们必须在 $R^*$ 的定义上发挥创造性。
 
 \end{document}
-
-

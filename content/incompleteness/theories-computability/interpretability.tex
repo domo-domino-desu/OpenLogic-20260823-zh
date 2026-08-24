@@ -8,62 +8,32 @@
 
 \olfileid{inc}{tcp}{itp}
 
-\olsection{Theories in which $\Th{Q}$ is Interpretable are Undecidable}
+\olsection{$\Th{Q}$ 可在其中被解释的理论是不可判定的}
 
-We can strengthen these results even more. Informally, an
-interpretation of a language $\Lang{L_1}$ in another language
-$\Lang{L_2}$ involves defining the universe, relation symbols, and
-function symbols of $\Lang{L_1}$ with !!{formula}s in
-$\Lang{L_2}$. Though we won't take the time to do this, one can make
-this definition precise.
+我们还可以进一步强化这些结果。通俗地说，将语言 $\Lang{L_1}$ \emph{解释}到另一种语言 $\Lang{L_2}$ 中，是指用 $\Lang{L_2}$ 中的公式来定义 $\Lang{L_1}$ 的论域、关系符号和函数符号。尽管我们不在此花篇幅详述，但这一定义是可以严格给出的。
 
 \begin{thm}
-  Suppose $\Th{T}$ is a theory in a language in which one can
-  interpret the language of arithmetic, in such a way that $\Th{T}$ is
-  consistent with the interpretation of $\Th{Q}$. Then $\Th{T}$ is
-  undecidable. If $\Th{T}$ proves the interpretation of the axioms of
-  $\Th{Q}$, then no consistent extension of $\Th{T}$ is decidable.
+  假设 $\Th{T}$ 是某语言中的理论，该语言可以解释算术语言，且 $\Th{T}$ 与 $\Th{Q}$ 的解释是一致的。那么 $\Th{T}$ 是不可判定的。如果 $\Th{T}$ 能证明 $\Th{Q}$ 的公理的解释，那么 $\Th{T}$ 的任何一致扩张都不可判定。
 \end{thm}
 
-The proof is just a small modification of the proof of the last
-theorem; one could use a counterexample to get a separation of $\Th{Q}$ and
-$\Th{\bar Q}$. One can take $\Th{ZFC}$, Zermelo--Fraenkel set theory with the
-axiom of choice, to be an axiomatic foundation that is powerful enough
-to carry out a good deal of ordinary mathematics. In $\Th{ZFC}$ one
-can define the natural numbers, and via this interpretation, the
-axioms of $\Th{Q}$ are true. So we have
+证明只需对上一条定理的证明稍作修改；可以通过构造反例将 $\Th{Q}$ 与 $\Th{\bar Q}$ 分离开来。可以取 $\Th{ZFC}$，即带选择公理的 Zermelo--Fraenkel（弗兰克尔）集合论，作为一个足够强大、足以展开大量日常数学的公理化基础。在 $\Th{ZFC}$ 中可以定义自然数，且通过这一解释，$\Th{Q}$ 的公理为真。因此我们有
 
 \begin{cor}
-There is no decidable extension of $\Th{ZFC}$.
+$\Th{ZFC}$ 没有可判定的扩张。
 \end{cor}
 
 \begin{cor}
-There is no complete, consistent, computably !!{axiomatizable} extension of
-$\Th{ZFC}$. 
+$\Th{ZFC}$ 没有完备、一致且可计算公理化的扩张。
 \end{cor}
 
-The language of $\Th{ZFC}$ has only a single binary relation,
-$\in$. (In fact, you don't even need equality.) So we have
+$\Th{ZFC}$ 的语言只有一个二元关系符号 $\in$。（事实上，甚至不需要等词。）所以我们有
 
 \begin{cor}
-First-order logic for any language with a binary relation symbol is
-undecidable.
+任何带有一个二元关系符号的语言的一阶逻辑都是不可判定的。
 \end{cor}
 
-This result extends to any language with two unary function symbols,
-since one can use these to simulate a binary relation symbol. The
-results just cited are tight: it turns out that first-order logic for
-a language with only \emph{unary} relation symbols and at most one
-\emph{unary} function symbol is decidable.
+这一结果可以推广到任何带有两个一元函数符号的语言，因为可用它们来模拟一个二元关系符号。上述结果是最佳的：事实上，仅带有\emph{一元}关系符号和至多一个\emph{一元}函数符号的语言，其一阶逻辑是可判定的。
 
-One more bit of trivia. We know that the set of sentences in the
-language $\Obj 0$, $'$, $+$, $\times$, $<$ true in the standard model
-is undecidable. In fact, one can define $<$ in terms of the other
-symbols, and then one can define $+$ in terms of $\times$ and $'$. So
-the set of true sentences in the language $\Obj 0$, $'$, $\times$ is
-undecidable. On the other hand, Presburger has shown that the set of
-sentences in the language $\Obj 0$, $'$, $+$ true in the language of
-arithmetic is decidable. The procedure is computationally infeasible,
-however.
+再补充一点旁注。我们知道，语言 $\Obj 0$, $'$, $+$, $\times$, $<$ 中在标准模型下为真的语句集是不可判定的。事实上，可以用其他符号定义 $<$，进而用 $\times$ 和 $'$ 定义 $+$。因此，语言 $\Obj 0$, $'$, $\times$ 中的真语句集是不可判定的。另一方面，Presburger（普雷斯伯格）已经证明，语言 $\Obj 0$, $'$, $+$ 中在算术语言里为真的语句集是可判定的。然而，该判定过程在计算上是不可行的。
 
 \end{document}

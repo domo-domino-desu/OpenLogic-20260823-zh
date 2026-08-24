@@ -3,90 +3,64 @@
 \begin{document}
 
 \olfileid{sth}{cardinals}{cardsasords}
-\olsection{Cardinals as Ordinals}
+\olsection{作为序数的基数}
 
-In fact, our theory of cardinals will just make (shameless) use of our
-theory of ordinals. That is: we will just define cardinals as certain
-specific ordinals. In particular, we will offer the following:
+实际上，我们的基数理论将（毫不客气地）直接利用我们的序数理论。
+也就是说：我们将直接把基数定义为某些特定的序数。
+具体而言，我们给出如下定义：
 
 \begin{defn}\ollabel{defcardinalasordinal}
-If $A$ can be well-ordered, then $\card{A}$ is the least ordinal
-$\gamma$ such that $\cardeq{A}{\gamma}$. For any ordinal $\gamma$, we
-say that $\gamma$ is a \emph{cardinal} iff $\gamma = \card{\gamma}$.
+如果 $A$ 可以良序化，那么 $\card{A}$ 就是使得 $\cardeq{A}{\gamma}$ 成立的最小序数 $\gamma$。
+对于任意序数 $\gamma$，我们称 $\gamma$ 为\emph{基数}，当且仅当 $\gamma = \card{\gamma}$。
 \end{defn}
 
-We just used the phrase ``$A$ can be well-ordered''. As is almost
-always the case in mathematics, the modal locution here is just a
-hand-waving gloss on an existential claim: to say ``$A$ can be
-well-ordered'' is just to say ``there is a relation which
-well-orders~$A$''. 
+我们刚才用了“$A$ 可以良序化”这个短语。正如数学中几乎总是如此，这里的模态表述不过是对一个存在性主张的粗略说法：说“$A$ \emph{可以}良序化”，就只是说“存在一个关系，它能良序化 $A$”。
 
-But there is a snag with \olref{defcardinalasordinal}. We would like
-it to be the case that \emph{every} set has a size, i.e., that
-$\card{A}$ exists for every~$A$. The definition we just gave, though,
-begins with a conditional: ``\emph{If} $A$ can be
-well-ordered\ldots''. If there is some set $A$ which cannot be
-well-ordered, then our definition will simply fail to define an object~$\card{A}$.
+但 \olref{defcardinalasordinal} 有一个问题。我们希望\emph{每个}集合都有一个大小，也就是说，对每个 $A$，$\card{A}$ 都存在。但我们刚刚给出的定义是以一个条件句开头的：“\emph{如果} $A$ 可以良序化……”。如果存在某个不能良序化的集合 $A$，那么我们的定义将根本无法定义对象 $\card{A}$。
 
-So, to use \olref{defcardinalasordinal}, we need a guarantee that
-every set can be well-ordered. Sadly, though, this guarantee is
-unavailable in~$\ZF$. So, if we want to use
-\olref{defcardinalasordinal}, there is no alternative but to add a new
-axiom, such as:
-\begin{axiom}[Well-Ordering]
-Every set can be well-ordered.
+所以，要使用 \olref{defcardinalasordinal}，我们需要一个保证：每个集合都能被良序化。遗憾的是，这个保证在 $\ZF$ 中是无法得到的。因此，如果我们想使用 \olref{defcardinalasordinal}，除了增加一条新公理之外别无他法，例如：
+
+\begin{axiom}[良序公理]
+每个集合都可以被良序化。
 \end{axiom}
-We will discuss whether the Well-Ordering Axiom is acceptable in
-\olref[choice][]{chap}. From now on, though, we will simply help
-ourselves to it. And, using it, it is quite straightforward to prove
-that cardinals (as defined in \olref{defcardinalasordinal}) exist and
-behave nicely:
+
+我们将在 \olref[choice][]{chap} 中讨论良序公理是否可接受。不过，从现在开始，我们将径自采用它。并且，利用它，可以非常直接地证明（按 \olref{defcardinalasordinal} 定义的）基数是存在的并且行为良好：
 
 \begin{lem}\ollabel{lem:CardinalsExist}
-For every set $A$:
+对于任意集合 $A$：
 \begin{enumerate}
-	\item\ollabel{cardaexists} $\card{A}$ exists and is unique;
-	\item\ollabel{cardaapprox}  $\cardeq{\card{A}}{A}$;
-	\item\ollabel{cardaidem}  $\card{A}$ is a cardinal, i.e.,
-	$\card{A} = \card{\card{A}}$;
+	\item\ollabel{cardaexists} $\card{A}$ 存在且唯一；
+	\item\ollabel{cardaapprox}  $\cardeq{\card{A}}{A}$；
+	\item\ollabel{cardaidem}  $\card{A}$ 是一个基数，即
+	$\card{A} = \card{\card{A}}$；
 \end{enumerate}
 \end{lem}
 
 \begin{proof}
-Fix $A$. By Well-Ordering, there is a well-ordering $\tuple{A, R}$. By
-\olref[ordinals][ordtype]{thmOrdinalRepresentation}, $\tuple{A,
-R}$ is isomorphic to a unique ordinal, $\beta$. So
-$\cardeq{A}{\beta}$. By Transfinite Induction, there is a uniquely
-least ordinal, $\gamma$, such that $\cardeq{A}{\gamma}$. So $\card{A}
-= \gamma$, establishing \olref{cardaexists} and \olref{cardaapprox}.
-To establish \olref{cardaidem}, note that if $\delta \in \gamma$ then
-$\cardless{\delta}{A}$, by our choice of $\gamma$, so that also
-$\cardless{\delta}{\gamma}$ since equinumerosity is an equivalence
-relation (\olref[sfr][siz][equ]{equinumerosityisequi}). So $\gamma =
-\card{\gamma}$. 
+固定 $A$。由良序公理，存在一个良序结构 $\tuple{A, R}$。根据
+\olref[ordinals][ordtype]{thmOrdinalRepresentation}，$\tuple{A,
+ R}$ 同构于唯一的一个序数 $\beta$。所以
+$\cardeq{A}{\beta}$。根据超限归纳法，存在唯一的最小序数 $\gamma$，使得 $\cardeq{A}{\gamma}$。所以 $\card{A}
+= \gamma$，这就证明了 \olref{cardaexists} 和 \olref{cardaapprox}。
+为证明 \olref{cardaidem}，由 $\gamma$ 的选取可知，若 $\delta \in \gamma$ 则 $\cardless{\delta}{A}$；又因等势是等价关系（\olref[sfr][siz][equ]{equinumerosityisequi}），故亦有 $\cardless{\delta}{\gamma}$。所以 $\gamma =
+\card{\gamma}$。 
 %So, for reductio, suppose that there is some ordinal $\delta \in \gamma$ such that $\cardeq{\gamma}{\delta}$. Then, $\cardeq{\cardeq{A}{\gamma}}{\delta}$ so that $\cardeq{A}{\delta}$ by \olref[sfr][set][equ]{equinumerosityisequi}, which contradicts the choice of $\gamma$ as the least ordinal such that $\cardeq{A}{\gamma}$. 
 \end{proof}
 
-The next result guarantees Cantor's Principle, and more besides.
-(Note that cardinals inherit their ordering from the ordinals, i.e.,
-$\cardfont{a} < \cardfont{b}$ iff $\cardfont{a} \in \cardfont{b}$. In
-formulating this, we will use Fraktur letters for objects we know to be
-cardinals. This is fairly standard. A common alternative is to use
-Greek letters, since cardinals are ordinals, but to choose them from
-the middle of the alphabet, e.g.: $\kappa, \lambda$.):
+下一个结果保证了 Cantor 原理乃至更多内容。
+（注意基数继承了序数的序关系，即 $\cardfont{a} < \cardfont{b}$ 当且仅当 $\cardfont{a} \in \cardfont{b}$。
+在以下表述中，我们将用哥特体字母表示已知为基数的对象。这相当标准。另一个常见的替代方案是用希腊字母——因为基数是序数——但选自字母表中部，例如：$\kappa, \lambda$。）：
 \begin{lem}\ollabel{lem:CardinalsBehaveRight}
-For any sets $A$ and $B$:
+对于任意集合 $A$ 和 $B$：
 \begin{align*}
-	\cardeq{A}{B} &\text{ iff } \card{A} = \card{B}\\
-	\cardle{A}{B} &\text{ iff } \card{A} \leq \card{B}\\
-	\cardless{A}{B}&\text{ iff } \card{A} < \card{B}
+	\cardeq{A}{B} &\text{ 当且仅当 } \card{A} = \card{B}\\
+	\cardle{A}{B} &\text{ 当且仅当 } \card{A} \leq \card{B}\\
+	\cardless{A}{B}&\text{ 当且仅当 } \card{A} < \card{B}
 \end{align*}
 \end{lem}
 
 \begin{proof}
-We will prove the left-to-right direction of the second claim (the
-other cases are similar, and left as an exercise). So, consider the
-following diagram:
+我们将证明第二个断言中从左到右的方向（其他情况类似，留作练习）。那么，考虑下图：
 \begin{center}
 	\begin{tikzpicture}
 	\node (nodea) {$A$};
@@ -99,30 +73,25 @@ following diagram:
 	\draw[->, dashed] (nodecarda)--(nodecardb);
 \end{tikzpicture}
 \end{center}
-The double-headed arrows indicate !!{bijection}s, whose existence is
-guaranteed by \olref{lem:CardinalsExist}. In assuming that
-$\cardle{A}{B}$, there is !!a{injection}  $A\to B$. Now,
-chasing the arrows around from $\card{A}$ to $A$ to $B$ to $\card{B}$,
-we obtain !!a{injection} $\card{A} \to \card{B}$ (the dashed arrow).
-\end{proof}\noindent We can also use \olref{lem:CardinalsBehaveRight}
-to re-prove Schr\"{o}der--Bernstein. This is the claim that if
-$\cardle{A}{B}$ and $\cardle{B}{A}$ then $\cardeq{A}{B}$. We stated
-this as \olref[sfr][siz][sb]{thm:schroder-bernstein}, but first proved
-it---with some effort---in \olref[sfr][infinite][card-sb]{sec}.
-Now consider:
+双箭头表示双射，其存在性由 \olref{lem:CardinalsExist} 保证。由 $\cardle{A}{B}$ 的假设，存在一个单射 $A\to B$。现在，从 $\card{A}$ 出发，经 $A$ 到 $B$ 再到 $\card{B}$ 沿箭头追踪，我们便得到了一个单射 $\card{A} \to \card{B}$（虚线箭头）。
+\end{proof}\noindent 我们也可以利用 \olref{lem:CardinalsBehaveRight}
+重新证明 Schr\"{o}der--Bernstein 定理。该定理断言：若
+$\cardle{A}{B}$ 且 $\cardle{B}{A}$，则 $\cardeq{A}{B}$。我们曾将它陈述为
+\olref[sfr][siz][sb]{thm:schroder-bernstein}，但最初是在
+\olref[sfr][infinite][card-sb]{sec} 中——颇费周折地——证明的。
+现在考虑：
 
-\begin{proof}[Re-proof of Schr\"oder-Bernstein]
-If $\cardle{A}{B}$ and $\cardle{B}{A}$, then $\card{A} \leq \card{B}$
-and $\card{B} \leq \card{A}$ by \olref{lem:CardinalsBehaveRight}. So
-$\card{A} = \card{B}$ and $\cardeq{A}{B}$ by Trichotomy and
-\olref{lem:CardinalsBehaveRight}.
+\begin{proof}[施罗德-伯恩斯坦定理的重新证明]
+若 $\cardle{A}{B}$ 且 $\cardle{B}{A}$，则由 \olref{lem:CardinalsBehaveRight} 得
+$\card{A} \leq \card{B}$ 且 $\card{B} \leq \card{A}$。
+于是由三分律及 \olref{lem:CardinalsBehaveRight} 得 $\card{A} = \card{B}$，
+从而 $\cardeq{A}{B}$。
 \end{proof}
+
 \noindent
-Whilst this is a very simple proof, it implicitly relies on both
-Replacement (to secure
-\olref[ordinals][ordtype]{thmOrdinalRepresentation}) and on
-Well-Ordering (to guarantee \olref{lem:CardinalsBehaveRight}). By
-contrast, the proof of \olref[sfr][infinite][card-sb]{sec} was much
-more self-standing (indeed, it can be carried out in~$\Zminus$).
+尽管这个证明非常简单，但它隐含地依赖于替换公理（用以确保
+\olref[ordinals][ordtype]{thmOrdinalRepresentation}）和良序公理（用以保证
+\olref{lem:CardinalsBehaveRight}）。相比之下，\olref[sfr][infinite][card-sb]{sec}
+中的证明则自足得多（事实上，它可以在~$\Zminus$ 中完成）。
 
 \end{document}

@@ -7,68 +7,54 @@
 \begin{document}
 
 \olfileid{inc}{req}{und}
-\olsection{Undecidability}
+\olsection{不可判定性}
 
-We call a theory $\Th{T}$ \emph{undecidable} if there is no
-computational procedure which, after finitely many steps and
-unfailingly, provides a correct answer to the question ``does $\Th{T}$
-prove~$!A$?'' for any sentence~$!A$ in the language of~$\Th{T}$.  So
-$\Th{Q}$ would be decidable iff there were a computational procedure
-which decides, given a sentence~$!A$ in the language of arithmetic,
-whether $\Th{Q} \Proves !A$ or not.  We can make this more precise by
-asking: Is the relation~$\Prov[\Th{Q}](y)$, which holds of~$y$
-iff $y$ is the G\"odel number of a sentence provable in~$\Th{Q}$,
-recursive?  The answer is: no.
+我们称一个理论~$\Th{T}$ 是\emph{不可判定的}，如果不存在一种计算过程，使得对于~$\Th{T}$ 的语言中的任意语句~$!A$，该过程都能在有限步内且确定无误地对“$\Th{T}$ 是否证明~$!A$？”这一问题给出正确答案。
+因此，$\Th{Q}$ 是可判定的，当且仅当存在一种计算过程，它能判定算术语言中的任意语句~$!A$ 是否有 $\Th{Q} \Proves !A$。
+我们可以更精确地提出问题：关系~$\Prov[\Th{Q}](y)$（即当且仅当 $y$ 是 $\Th{Q}$ 中可证语句的哥德尔数时该关系成立）是递归的吗？答案是否定的。
 
 \begin{thm}
-$\Th{Q}$ is undecidable, i.e., the relation
+$\Th{Q}$ 是不可判定的，即关系
 \[
 \Prov[\Th{Q}](y) \defiff \fn{Sent}(y) \land
 \lexists[x][\Prf[\Th{Q}](x, y)]
 \]
-is not recursive.
+不是递归的。
 \end{thm}
 
 \begin{proof}
-Suppose it were.  Then we could solve the halting problem as follows:
-Given $e$ and $n$, we know that $\cfind{e}(n) \fdefined$ iff there is
-an~$s$ such that $T(e, n, s)$, where $T$ is Kleene's predicate from
-\olref[cmp][rec][nft]{thm:kleene-nf}.  Since $T$ is primitive recursive
-it is representable in~$\Th{Q}$ by a formula $!B_T$, that is, $\Th{Q}
-\Proves !B_T(\num{e}, \num{n}, \num{s})$ iff $T(e, n, s)$.  If $\Th{Q}
-\Proves !B_T(\num{e}, \num{n}, \num{s})$ then also $ \Th{Q} \Proves
-\lexists[y][!B_T(\num{e}, \num{n}, y)]$.  If no such $s$ exists, then
-$\Th{Q} \Proves \lnot !B_T(\num{e}, \num{n}, \num{s})$ for
-every~$s$.  But $\Th{Q}$ is $\omega$-consistent, i.e., if $\Th{Q}
-\Proves \lnot !A(\num{n})$ for every~$n \in \Nat$, then $\Th{Q}
-\Proves/ \lexists[y][!A(y)]$.  We know this because the axioms of
-$\Th{Q}$ are true in the standard model~$\Struct{N}$.  So, $\Th{Q}
-\Proves/ \lexists[y][!B_T(\num{e}, \num{n}, y)]$.  In other words,
-$\Th{Q} \Proves \lexists[y][!B_T(\num{e}, \num{n}, y)]$ iff there is
-an $s$ such that $T(e, n, s)$, i.e., iff $\cfind{e}(n) \fdefined$.
-From $e$ and~$n$ we can compute $\Gn{\lexists[y][!B_T(\num{e},
-    \num{n}, y)]}$, let $g(e, n)$ be the primitive recursive function
-which does that.  So
+假设它是递归的。那么我们可以如下解决停机问题：
+给定 $e$ 和 $n$，我们知道 $\cfind{e}(n) \fdefined$ 当且仅当存在一个~$s$ 使得 $T(e, n, s)$ 成立，其中 $T$ 是来自 \olref[cmp][rec][nft]{thm:kleene-nf} 的 Kleene 谓词。
+由于 $T$ 是原始递归的，它在~$\Th{Q}$ 中可由公式 $!B_T$ 表示，也就是说，$\Th{Q}
+\Proves !B_T(\num{e}, \num{n}, \num{s})$ 当且仅当 $T(e, n, s)$。如果 $\Th{Q}
+\Proves !B_T(\num{e}, \num{n}, \num{s})$，那么也有 $ \Th{Q} \Proves
+\lexists[y][!B_T(\num{e}, \num{n}, y)]$。如果不存在这样的 $s$，则对每个~$s$ 都有 $\Th{Q} \Proves \lnot !B_T(\num{e}, \num{n}, \num{s})$。
+但 $\Th{Q}$ 是 $\omega$-一致的，即如果对每个~$n \in \Nat$ 都有 $\Th{Q}
+\Proves \lnot !A(\num{n})$，那么 $\Th{Q}
+\Proves/ \lexists[y][!A(y)]$。我们知道这一点是因为 $\Th{Q}$ 的公理在标准模型~$\Struct{N}$ 中为真。
+所以，$\Th{Q}
+\Proves/ \lexists[y][!B_T(\num{e}, \num{n}, y)]$。
+换言之，
+$\Th{Q} \Proves \lexists[y][!B_T(\num{e}, \num{n}, y)]$ 当且仅当存在 $s$ 使得 $T(e, n, s)$ 成立，即当且仅当 $\cfind{e}(n) \fdefined$。
+由 $e$ 和~$n$ 我们可以计算出 $\Gn{\lexists[y][!B_T(\num{e},
+    \num{n}, y)]}$，令 $g(e, n)$ 为完成这一计算的原始递归函数。
+于是
 \[
 h(e, n) =
 \begin{cases}
-1 & \text{if $\Prov[\Th{Q}](g(e, n))$}\\
-0 & \text{otherwise}.
+1 & \text{如果 $\Prov[\Th{Q}](g(e, n))$}\\
+0 & \text{否则}.
 \end{cases}
 \]
-This would show that $h$ is recursive if $\Prov[\Th{Q}]$ is. But~$h$
-is not recursive, by \olref[cmp][rec][hlt]{thm:halting-problem}, so
-$\Prov[\Th{Q}]$ cannot be either.
+这将表明，如果 $\Prov[\Th{Q}]$ 是递归的，那么 $h$ 也是递归的。但根据 \olref[cmp][rec][hlt]{thm:halting-problem}，$h$ 不是递归的，所以 $\Prov[\Th{Q}]$ 也不可能是递归的。
 \end{proof}
 
 \begin{cor}
-First-order logic is undecidable.
+一阶逻辑是不可判定的。
 \end{cor}
 
 \begin{proof}
-If first-order logic were decidable, provability in~$\Th{Q}$ would be
-as well, since $\Th{Q} \Proves !A$ iff $\Proves !T \lif !A$, where
-$!T$ is the conjunction of the axioms of~$\Th{Q}$.
+如果一阶逻辑是可判定的，那么 $\Th{Q}$ 中的可证性也将是可判定的，因为 $\Th{Q} \Proves !A$ 当且仅当 $\Proves !T \lif !A$，其中 $!T$ 是 $\Th{Q}$ 的公理的合取。
 \end{proof}
 
 \end{document}

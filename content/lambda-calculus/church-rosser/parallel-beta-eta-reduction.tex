@@ -8,94 +8,88 @@
 
 \olfileid{lam}{cr}{pbe}
 
-\olsection{Parallel $\beta\eta$-reduction}
+\olsection{并行 $\beta\eta$-归约}
 
-In this section we prove the Church-Rosser property for parallel
-$\beta\eta$-reduction, the parallel reduction notion corresponding to
-$\beta\eta$-reduction. 
+本节证明并行 $\beta\eta$-归约的 Church-Rosser 性质，这是与 $\beta\eta$-归约相对应的并行归约概念。
 
-\begin{defn}[Parallel $\beta\eta$-reduction, $\beredpar$] \ollabel{defn:beredpar}
-  \emph{Parallel $\beta\eta$-reduction} ($\beredpar$) on terms is
-  inductively defined as follows:
+\begin{defn}[并行 $\beta\eta$-归约，$\beredpar$] \ollabel{defn:beredpar}
+  \emph{并行 $\beta\eta$-归约}（$\beredpar$）在项上归纳定义如下：
   \begin{enumerate}
-    \item \ollabel{defn:beredpar1} $x \beredpar x$.
-    \item \ollabel{defn:beredpar2} If $N \xrightarrow{\beta} N'$ then $\lambd[x][N] \beredpar
-      \lambd[x][N']$.
-    \item \ollabel{defn:beredpar3} If $P \beredpar P'$ and $Q \beredpar Q'$ then $PQ \beredpar
-      P'Q'$.
-    \item \ollabel{defn:beredpar4} If $N \beredpar N'$ and $Q \beredpar Q'$ then
-      $(\lambd[x][N])Q \beredpar \Subst{N'}{Q'}{x}$.
-    \item \ollabel{defn:beredpar5} If $N \beredpar N'$ then $\lambd[x][Nx]
-      \beredpar N'$, provided $x \notin FV(N)$.
+    \item \ollabel{defn:beredpar1} $x \beredpar x$。
+    \item \ollabel{defn:beredpar2} 若 $N \xrightarrow{\beta} N'$，则 $\lambd[x][N] \beredpar
+      \lambd[x][N']$。
+    \item \ollabel{defn:beredpar3} 若 $P \beredpar P'$ 且 $Q \beredpar Q'$，则 $PQ \beredpar
+      P'Q'$。
+    \item \ollabel{defn:beredpar4} 若 $N \beredpar N'$ 且 $Q \beredpar Q'$，则
+      $(\lambd[x][N])Q \beredpar \Subst{N'}{Q'}{x}$。
+    \item \ollabel{defn:beredpar5} 若 $N \beredpar N'$，则 $\lambd[x][Nx]
+      \beredpar N'$，前提是 $x \notin FV(N)$。
   \end{enumerate}
 \end{defn}
 
 \begin{thm}\ollabel{thm:refl}
-  $M \beredpar M$.
+  $M \beredpar M$。
 \end{thm}
 
 \begin{proof}
-  Exercise.
+  练习。
 \end{proof}
 
 \begin{prob}
-  Prove \olref[lam][cr][pbe]{thm:refl}.
+  证明 \olref[lam][cr][pbe]{thm:refl}。
 \end{prob}
 
-\begin{defn}[$\beta\eta$-complete development]\ollabel{defn:becd}
-  The \emph{$\beta\eta$-complete development}~$\becd{M}$ of~$M$ is defined
-  as follows:
+\begin{defn}[$\beta\eta$-完全发展]\ollabel{defn:becd}
+  $M$ 的\emph{$\beta\eta$-完全发展}~$\becd{M}$ 定义如下：
   \begin{align}
     \becd{x} &= x \ollabel{defn:becd1} \\
     \becd{(\lambd[x][N])} &= \lambd[x][\becd{N}] \ollabel{defn:becd2}\\
-    \becd{(PQ)} &= \becd{P}\becd{Q} && \text{if $P$ is not a $\lambd$-abstract} 
+    \becd{(PQ)} &= \becd{P}\becd{Q} && \text{若 $P$ 不是 $\lambd$-抽象} 
     \ollabel{defn:becd3} \\
     \becd{((\lambd[x][N])Q)} &= \Subst{\becd{N}}{\becd{Q}}{x}
                              \ollabel{defn:becd4} \\
-    \becd{(\lambd[x][Nx])} &= \becd{N} \ollabel{defn:becd5} & \text{if $x
+    \becd{(\lambd[x][Nx])} &= \becd{N} \ollabel{defn:becd5} & \text{若 $x
                                                       \notin FV(N)$}
   \end{align}
 \end{defn}
 
 \begin{lem}\ollabel{lem:comp}
-  If $M \beredpar M'$ and $R \beredpar R'$, then $\Subst{M}{R}{y}
-  \beredpar \Subst{M'}{R'}{y}$.
+  若 $M \beredpar M'$ 且 $R \beredpar R'$，则 $\Subst{M}{R}{y}
+  \beredpar \Subst{M'}{R'}{y}$。
 \end{lem}
 
 \begin{proof}
-  By induction on the !!{derivation} of $M \beredpar M'$.
+  对 $M \beredpar M'$ 的推导进行归纳。
 
-  The first four cases are exactly like those in \olref[pb]{lem:comp}.
-  If the last rule is \olref{defn:beredpar5}, then $M$ is
-  $\lambd[x][Nx]$, $M'$ is $N'$ for some $x$ and~$N'$ where $x \notin
-  FV(N)$, and $N \beredpar N'$. We want to show that
-  $\Subst{(\lambd[x][Nx])}{R}{y} \beredpar \Subst{N'}{R'}{y}$, i.e.,
-  $\lambd[x][\Subst{N}{R}{y} x] \beredpar \Subst{N'}{R'}{y}$. It
-  follows by \olref{defn:beredpar}\olref{defn:beredpar5} and the
-  induction hypothesis.
+  前四种情况与 \olref[pb]{lem:comp} 中的完全相同。
+  若最后一条规则是 \olref{defn:beredpar5}，则存在 $x$ 和 $N'$，使得 $M$ 是
+  $\lambd[x][Nx]$，$M'$ 是 $N'$，其中 $x \notin
+  FV(N)$ 且 $N \beredpar N'$。我们要证
+  $\Subst{(\lambd[x][Nx])}{R}{y} \beredpar \Subst{N'}{R'}{y}$，即
+  $\lambd[x][\Subst{N}{R}{y} x] \beredpar \Subst{N'}{R'}{y}$。这可由
+  \olref{defn:beredpar}\olref{defn:beredpar5} 及归纳假设得出。
 \end{proof}
 
 \begin{lem}\ollabel{lem:cont}
-  If $M \beredpar M'$ then $M' \beredpar \becd{M}$.
+  若 $M \beredpar M'$，则 $M' \beredpar \becd{M}$。
 \end{lem}
 
 \begin{proof}
-  By induction on the !!{derivation} of $M \beredpar M'$.
+  对 $M \beredpar M'$ 的推导进行归纳。
 
-  The first four cases are like those in \olref[pb]{lem:cont}. If the
-  last rule is \olref{defn:beredpar5}, then $M$ is $\lambd[x][Nx]$ and
-  $M'$ is $N'$ for some $x$, $N$, $N'$ where $x \notin FV(N)$ and $N
-  \beredpar N'$. We want to show that $N' \beredpar
-  \becd{(\lambd[x][Nx])}$, i.e., $N' \beredpar \becd{N}$, which is
-  immediate by induction hypothesis.
+  前四种情况与 \olref[pb]{lem:cont} 中的类似。若
+  最后一条规则是 \olref{defn:beredpar5}，则存在 $x$、$N$ 和 $N'$，使得 $M$ 是 $\lambd[x][Nx]$，
+  $M'$ 是 $N'$，其中 $x \notin FV(N)$ 且 $N
+  \beredpar N'$。我们要证 $N' \beredpar
+  \becd{(\lambd[x][Nx])}$，即 $N' \beredpar \becd{N}$，这由归纳假设立得。
 \end{proof}
 
 \begin{thm}\ollabel{thm:cr}
-  $\beredpar$ has the Church-Rosser property.
+  $\beredpar$ 具有 Church-Rosser 性质。
 \end{thm}
 
 \begin{proof}
-  Immediate from \olref{lem:cont}.
+  由 \olref{lem:cont} 直接可得。
 \end{proof}
 
 \end{document}

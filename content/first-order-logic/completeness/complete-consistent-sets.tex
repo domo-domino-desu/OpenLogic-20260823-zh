@@ -13,77 +13,48 @@
 \iftag{FOL}
       {\olfileid{fol}{com}{ccs}}
       {\olfileid{pl}{com}{ccs}}
-      
-\olsection{Complete Consistent Sets of \usetoken{P}{sentence}}
 
-\begin{defn}[Complete set]
-\ollabel{def:complete-set} A set~$\Gamma$ of !!{sentence}s is
-\emph{!!{complete}} iff for any !!{sentence}~$!A$, either $!A \in
-\Gamma$ or $\lnot !A \in \Gamma$.
+\olsection{\usetoken{P}{sentence}的完全一致集}
+
+\begin{defn}[完全集]
+\ollabel{def:complete-set} 语句集~$\Gamma$ 是\emph{完全的}，当且仅当对任意语句~$!A$，要么 $!A \in \Gamma$，要么 $\lnot !A \in \Gamma$。
 \end{defn}
 
 \begin{explain}
-!!^{complete} sets of sentences leave no questions unanswered. For
-any !!{sentence}~$!A$, $\Gamma$ ``says'' if $!A$ is true or false.  The
-importance of !!{complete} sets extends beyond the proof of the
-completeness theorem. A theory which is !!{complete} and
-axiomatizable, for instance, is always decidable.
+完全的语句集不留任何未决的问题。对于任何语句~$!A$，$\Gamma$ 都会“指出”$!A$ 为真还是为假。完全集的重要性不限于完备性定理的证明。例如，一个完全且可公理化的理论总是可判定的。
 \end{explain}
 
 \begin{explain}
-!!^{complete} consistent sets are important in the completeness proof
-since we can guarantee that every consistent set of
-!!{sentence}s~$\Gamma$ is contained in !!a{complete} consistent
-set~$\Gamma^*$.  !!^a{complete} consistent set contains, for each
-!!{sentence}~$!A$, either $!A$ or its negation $\lnot !A$, but not
-both. This is true in particular for \iftag{FOL}{atomic
-!!{sentence}s}{propositional variables}, so from !!a{complete}
-consistent set\iftag{FOL}{ in a language suitably expanded by
-!!{constant}s}{}, we can construct
-\iftag{FOL}{!!a{structure}}{!!a{valuation}} where the
-\iftag{FOL}{interpretation of !!{predicate}s}{truth value assigned to
-propositional variables} is defined according to which
-\iftag{FOL}{atomic !!{sentence}s}{!!{propositional variable}s} are
-in~$\Gamma^*$. This \iftag{FOL}{!!{structure}}{!!{valuation}} can then
-be shown to make all !!{sentence}s in~$\Gamma^*$ (and hence also all
-those in~$\Gamma$) true. The proof of this latter fact requires that
-$\lnot !A \in \Gamma^*$ iff $!A \notin \Gamma^*$, $(!A \lor !B) \in
-\Gamma^*$ iff $!A \in \Gamma^*$ or $!B \in \Gamma^*$, etc.
+完全一致集在完备性证明中非常重要，因为我们可以保证，每个一致的语句集~$\Gamma$ 都包含于某个完全一致集~$\Gamma^*$ 中。一个完全一致集对每个语句~$!A$ 都包含 $!A$ 或其否定 $\lnot !A$，但不同时包含两者。这对于\iftag{FOL}{原子语句}{命题变元}尤其成立，因此从一个完全一致集\iftag{FOL}{（在经适当添加常项符号而扩充的语言中）}{}，我们可以构造一个\iftag{FOL}{结构}{赋值}，其中\iftag{FOL}{谓词符号的解释}{指派给命题变元的真值}是根据哪些\iftag{FOL}{原子语句}{命题变元}在~$\Gamma^*$ 中来定义的。然后可以证明，这个\iftag{FOL}{结构}{赋值}使~$\Gamma^*$ 中的所有语句（从而也使~$\Gamma$ 中的所有语句）为真。证明后一个事实需要：$\lnot !A \in \Gamma^*$ 当且仅当 $!A \notin \Gamma^*$，$(!A \lor !B) \in
+\Gamma^*$ 当且仅当 $!A \in \Gamma^*$ 或 $!B \in \Gamma^*$，等等。
 \end{explain}
 
-In what follows, we will often tacitly use the properties of
-reflexivity, monotonicity, and transitivity of $\Proves$ (see
-\iftag{FOL}{%
+在下文中，我们将经常默认使用 $\Proves$ 的自反性、单调性和传递性（参见\iftag{FOL}{%
   \tagrefs{prfSC/{fol:seq:ptn:sec},prfND/{fol:ntd:ptn:sec},prfAX/{fol:axd:ptn:sec},prfTab/{fol:tab:ptn:sec}}}{%
-  \tagrefs{prfSC/{pl:seq:ptn:sec},prfND/{pl:ntd:ptn:sec},prfAX/{pl:axd:ptn:sec},prfTab/{pl:tab:ptn:sec}}}).
+  \tagrefs{prfSC/{pl:seq:ptn:sec},prfND/{pl:ntd:ptn:sec},prfAX/{pl:axd:ptn:sec},prfTab/{pl:tab:ptn:sec}}}）。
 
 \begin{prop}
 \ollabel{prop:ccs}
-Suppose $\Gamma$ is !!{complete} and consistent. Then:
+设 $\Gamma$ 是完全且一致的。则：
 \begin{enumerate}
-\item \ollabel{prop:ccs-prov-in} If $\Gamma \Proves !A$, then $!A \in
-  \Gamma$.
+\item \ollabel{prop:ccs-prov-in} 若 $\Gamma \Proves !A$，则 $!A \in \Gamma$。
 
-\tagitem{prvAnd}{\ollabel{prop:ccs-and} $!A \land !B \in \Gamma$
-  iff both $!A \in \Gamma$ and $!B \in \Gamma$.}{}
+\tagitem{prvAnd}{\ollabel{prop:ccs-and} $!A \land !B \in \Gamma$ 当且仅当 $!A \in \Gamma$ 且 $!B \in \Gamma$。}{}
 
-\tagitem{prvOr}{\ollabel{prop:ccs-or} $!A \lor !B \in \Gamma$ iff
-  either $!A \in \Gamma$ or $!B \in \Gamma$.}{}
+\tagitem{prvOr}{\ollabel{prop:ccs-or} $!A \lor !B \in \Gamma$ 当且仅当 $!A \in \Gamma$ 或 $!B \in \Gamma$。}{}
 
-\tagitem{prvIf}{\ollabel{prop:ccs-if} $!A \lif !B \in \Gamma$ iff
-  either $!A \notin \Gamma$ or $!B \in \Gamma$.}{}
+\tagitem{prvIf}{\ollabel{prop:ccs-if} $!A \lif !B \in \Gamma$ 当且仅当 $!A \notin \Gamma$ 或 $!B \in \Gamma$。}{}
 \end{enumerate}
 \end{prop}
 
 \begin{proof}
-Let us suppose for all of the following that $\Gamma$ is !!{complete} and
-consistent.
+以下我们始终假设 $\Gamma$ 是完全且一致的。
 \begin{enumerate}
-\item If $\Gamma \Proves !A$, then $!A \in \Gamma$.
+\item 若 $\Gamma \Proves !A$，则 $!A \in \Gamma$。
 
-Suppose that $\Gamma \Proves !A$. Suppose to the contrary that $!A
-\notin \Gamma$. Since $\Gamma$ is !!{complete}, $\lnot !A \in \Gamma$.
-By
+假设 $\Gamma \Proves !A$。为了反证，设 $!A
+\notin \Gamma$。由于 $\Gamma$ 是完全的，故 $\lnot !A \in \Gamma$。
+根据
 \iftag{FOL}{%
   \tagrefs{prfSC/{fol:seq:prv:prop:explicit-inc},
     prfND/{fol:ntd:prv:prop:explicit-inc},
@@ -92,17 +63,15 @@ By
   \tagrefs{prfSC/{pl:seq:prv:prop:explicit-inc},
     prfND/{pl:ntd:prv:prop:explicit-inc},
     prfAX/{pl:axd:prv:prop:explicit-inc},
-    prfTab/{pl:tab:prv:prop:explicit-inc}}},
-$\Gamma$ is inconsistent. This contradicts the assumption that
-$\Gamma$ is consistent. Hence, it cannot be the case that $!A \notin
-\Gamma$, so $!A \in \Gamma$.
+    prfTab/{pl:tab:prv:prop:explicit-inc}}}，
+$\Gamma$ 是不一致的。这与 $\Gamma$ 一致的假设矛盾。因此，$!A \notin
+\Gamma$ 不可能成立，所以 $!A \in \Gamma$。
 
 \tagitem{defAnd}{}{%
-\iftag{probAnd}{Exercise.}{%
-$!A \land !B \in \Gamma$ iff both $!A \in \Gamma$ and $!B \in \Gamma$:
+\iftag{probAnd}{练习。}{%
+$!A \land !B \in \Gamma$ 当且仅当 $!A \in \Gamma$ 且 $!B \in \Gamma$：
 
-For the forward direction, suppose $!A \land !B \in \Gamma$. Then
-by
+先证正向：设 $!A \land !B \in \Gamma$。则根据
 \iftag{FOL}{%
   \tagrefs{prfSC/{fol:seq:ppr:prop:provability-land},
     prfND/{fol:ntd:ppr:prop:provability-land},
@@ -111,13 +80,11 @@ by
   \tagrefs{prfSC/{pl:seq:ppr:prop:provability-land},
     prfND/{pl:ntd:ppr:prop:provability-land},
     prfAX/{pl:axd:ppr:prop:provability-land},
-    prfTab/{pl:tab:ppr:prop:provability-land}}}, item~(1),
-$\Gamma \Proves !A$ and $\Gamma \Proves !B$. By
-\olref{prop:ccs-prov-in}, $!A \in \Gamma$ and $!B \in \Gamma$, as
-required.
+    prfTab/{pl:tab:ppr:prop:provability-land}}} 第 (1) 条，
+有 $\Gamma \Proves !A$ 且 $\Gamma \Proves !B$。由 \olref{prop:ccs-prov-in}，$!A \in \Gamma$ 且 $!B \in \Gamma$，如所需。
 
-For the reverse direction, let $!A \in \Gamma$ and $!B \in
-\Gamma$. By
+再证反向：设 $!A \in \Gamma$ 且 $!B \in
+\Gamma$。根据
 \iftag{FOL}{%
   \tagrefs{prfSC/{fol:seq:ppr:prop:provability-land},
     prfND/{fol:ntd:ppr:prop:provability-land},
@@ -126,16 +93,15 @@ For the reverse direction, let $!A \in \Gamma$ and $!B \in
   \tagrefs{prfSC/{pl:seq:ppr:prop:provability-land},
     prfND/{pl:ntd:ppr:prop:provability-land},
     prfAX/{pl:axd:ppr:prop:provability-land},
-    prfTab/{pl:tab:ppr:prop:provability-land}}}, item~(2),
-$\Gamma \Proves !A \land !B$. By \olref{prop:ccs-prov-in}, $!A \land
-!B \in \Gamma$.}}
+    prfTab/{pl:tab:ppr:prop:provability-land}}} 第 (2) 条，
+有 $\Gamma \Proves !A \land !B$。再由 \olref{prop:ccs-prov-in}，得 $!A \land
+!B \in \Gamma$。}}
 
 \tagitem{defOr}{}{%
-\iftag{probOr}{Exercise.}{%
-First we show that if $!A \lor !B \in \Gamma$, then either $!A \in
-\Gamma$ or $!B \in \Gamma$. Suppose $!A \lor !B \in \Gamma$ but $!A
-\notin \Gamma$ and $!B \notin \Gamma$.  Since $\Gamma$ is
-!!{complete}, $\lnot !A \in \Gamma$ and $\lnot !B \in \Gamma$. By
+\iftag{probOr}{练习。}{%
+先证若 $!A \lor !B \in \Gamma$，则 $!A \in
+\Gamma$ 或 $!B \in \Gamma$。设 $!A \lor !B \in \Gamma$，但 $!A
+\notin \Gamma$ 且 $!B \notin \Gamma$。由于 $\Gamma$ 是完全的，故 $\lnot !A \in \Gamma$ 且 $\lnot !B \in \Gamma$。根据
 \iftag{FOL}{%
   \tagrefs{prfSC/{fol:seq:ppr:prop:provability-lor},
     prfND/{fol:ntd:ppr:prop:provability-lor},
@@ -144,12 +110,11 @@ First we show that if $!A \lor !B \in \Gamma$, then either $!A \in
   \tagrefs{prfSC/{pl:seq:ppr:prop:provability-lor},
     prfND/{pl:ntd:ppr:prop:provability-lor},
     prfAX/{pl:axd:ppr:prop:provability-lor},
-    prfTab/{pl:tab:ppr:prop:provability-lor}}},
-item (1), $\Gamma$ is inconsistent, a contradiction. Hence, either $!A
-\in \Gamma$ or $!B \in \Gamma$.
+    prfTab/{pl:tab:ppr:prop:provability-lor}}}
+第 (1) 条，$\Gamma$ 不一致，矛盾。因此，$!A \in \Gamma$ 或 $!B \in \Gamma$。
 
-For the reverse direction, suppose that $!A \in \Gamma$ or $!B \in
-\Gamma$. By
+再证反向：设 $!A \in \Gamma$ 或 $!B \in
+\Gamma$。根据
 \iftag{FOL}{%
   \tagrefs{prfSC/{fol:seq:ppr:prop:provability-lor},
     prfND/{fol:ntd:ppr:prop:provability-lor},
@@ -158,15 +123,13 @@ For the reverse direction, suppose that $!A \in \Gamma$ or $!B \in
   \tagrefs{prfSC/{pl:seq:ppr:prop:provability-lor},
     prfND/{pl:ntd:ppr:prop:provability-lor},
     prfAX/{pl:axd:ppr:prop:provability-lor},
-    prfTab/{pl:tab:ppr:prop:provability-lor}}}, item (2),
-$\Gamma \Proves !A \lor !B$. By \olref{prop:ccs-prov-in}, $!A \lor
-!B \in \Gamma$, as required.}}
+    prfTab/{pl:tab:ppr:prop:provability-lor}}} 第 (2) 条，
+有 $\Gamma \Proves !A \lor !B$。由 \olref{prop:ccs-prov-in}，得 $!A \lor
+!B \in \Gamma$，如所需。}}
 
 \tagitem{defIf}{}{%
-\iftag{probIf}{Exercise.}{%
-For the forward direction, suppose $!A \lif !B \in \Gamma$, and suppose
-to the contrary that $!A \in \Gamma$ and $!B \notin \Gamma$. On these
-assumptions, $!A \lif !B \in \Gamma$ and $!A \in \Gamma$. By
+\iftag{probIf}{练习。}{%
+先证正向：设 $!A \lif !B \in \Gamma$，并为了反证，设 $!A \in \Gamma$ 且 $!B \notin \Gamma$。在这些假设下，有 $!A \lif !B \in \Gamma$ 和 $!A \in \Gamma$。根据
 \iftag{FOL}{%
   \tagrefs{prfSC/{fol:seq:ppr:prop:provability-lif},
     prfND/{fol:ntd:ppr:prop:provability-lif},
@@ -175,12 +138,12 @@ assumptions, $!A \lif !B \in \Gamma$ and $!A \in \Gamma$. By
   \tagrefs{prfSC/{pl:seq:ppr:prop:provability-lif},
     prfND/{pl:ntd:ppr:prop:provability-lif},
     prfAX/{pl:axd:ppr:prop:provability-lif},
-    prfTab/{pl:tab:ppr:prop:provability-lif}}}, item (1),
-$\Gamma \Proves !B$. But then by \olref{prop:ccs-prov-in}, $!B \in
-\Gamma$, contradicting the assumption that $!B \notin \Gamma$.
+    prfTab/{pl:tab:ppr:prop:provability-lif}}} 第 (1) 条，
+$\Gamma \Proves !B$。但由 \olref{prop:ccs-prov-in}，则有 $!B \in
+\Gamma$，这与 $!B \notin \Gamma$ 的假设矛盾。
 
-For the reverse direction, first consider the case where $!A \notin
-\Gamma$. Since $\Gamma$ is !!{complete}, $\lnot !A \in \Gamma$.  By
+再证反向：首先考虑 $!A \notin
+\Gamma$ 的情形。由于 $\Gamma$ 是完全的，故 $\lnot !A \in \Gamma$。根据
 \iftag{FOL}{%
   \tagrefs{prfSC/{fol:seq:ppr:prop:provability-lif},
     prfND/{fol:ntd:ppr:prop:provability-lif},
@@ -189,11 +152,10 @@ For the reverse direction, first consider the case where $!A \notin
   \tagrefs{prfSC/{pl:seq:ppr:prop:provability-lif},
     prfND/{pl:ntd:ppr:prop:provability-lif},
     prfAX/{pl:axd:ppr:prop:provability-lif},
-    prfTab/{pl:tab:ppr:prop:provability-lif}}}, item (2),
-$\Gamma \Proves !A \lif !B$. Again by \olref{prop:ccs-prov-in}, we get
-that $!A \lif !B \in \Gamma$, as required.
+    prfTab/{pl:tab:ppr:prop:provability-lif}}} 第 (2) 条，
+$\Gamma \Proves !A \lif !B$。再次由 \olref{prop:ccs-prov-in}，得 $!A \lif !B \in \Gamma$，如所需。
 
-Now consider the case where $!B \in \Gamma$.  By
+现考虑 $!B \in \Gamma$ 的情形。根据
 \iftag{FOL}{%
   \tagrefs{prfSC/{fol:seq:ppr:prop:provability-lif},
     prfND/{fol:ntd:ppr:prop:provability-lif},
@@ -202,22 +164,30 @@ Now consider the case where $!B \in \Gamma$.  By
   \tagrefs{prfSC/{pl:seq:ppr:prop:provability-lif},
     prfND/{pl:ntd:ppr:prop:provability-lif},
     prfTab/{pl:tab:ppr:prop:provability-lif},
-    prfAX/{pl:axd:ppr:prop:provability-lif}}},
-item (2) again, $\Gamma \Proves !A \lif !B$. By
-\olref{prop:ccs-prov-in}, $!A \lif !B \in \Gamma$.}}
+    prfAX/{pl:axd:ppr:prop:provability-lif}}}
+第 (2) 条同样有 $\Gamma \Proves !A \lif !B$。由
+\olref{prop:ccs-prov-in}，得 $!A \lif !B \in \Gamma$。}}
 \end{enumerate}
 \end{proof}
 
 \tagprob{FOL}
+
+
 \begin{prob}
-Complete the proof of \olref[fol][com][ccs]{prop:ccs}.
+完成 \olref[fol][com][ccs]{prop:ccs} 的证明。
 \end{prob}
+
+
 \tagendprob
 
 \tagprob{notFOL}
+
+
 \begin{prob}
-Complete the proof of \olref[pl][com][ccs]{prop:ccs}.
+完成 \olref[pl][com][ccs]{prop:ccs} 的证明。
 \end{prob}
+
+
 \tagendprob
 
 \end{document}

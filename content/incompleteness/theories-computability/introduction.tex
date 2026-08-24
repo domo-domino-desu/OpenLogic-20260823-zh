@@ -8,35 +8,20 @@
 
 \olfileid{inc}{tcp}{int}
 
-\olsection{Introduction}
+\olsection{导言}
 
 \begin{editorial}
-This section should be rewritten.  
+本节需重写。
 \end{editorial}
 
-We have the following:
+我们已有以下内容：
 \begin{enumerate}
-\item A definition of what it means for a function to be representable
-  in $\Th{Q}$ (\olref[req][int]{defn:representable-fn})
-\item a definition of what it means for a relation to be representable
-  in $\Th{Q}$ (\olref[req][rel]{defn:representing-relations})
-\item a theorem asserting that the representable functions of $\Th{Q}$
-  are exactly the computable ones
-  (\olref[req][int]{thm:representable-iff-comp})
-\item a theorem asserting that the representable relations of $\Th{Q}$
-  are exactly the computable ones
-  \olref[req][rel]{thm:representing-rels})
+\item 函数在 $\Th{Q}$ 中可表示的定义（\olref[req][int]{defn:representable-fn}）
+\item 关系在 $\Th{Q}$ 中可表示的定义（\olref[req][rel]{defn:representing-relations}）
+\item 断言 $\Th{Q}$ 的可表示函数恰好就是可计算函数的定理（\olref[req][int]{thm:representable-iff-comp}）
+\item 断言 $\Th{Q}$ 的可表示关系恰好就是可计算关系的定理（\olref[req][rel]{thm:representing-rels}）
 \end{enumerate}
 
-A {\em theory} is a set of sentences that is deductively closed, that
-is, with the property that whenever $T$ proves $!A$ then $!A$ is in
-$T$. It is probably best to think of a theory as being a collection of
-sentences, together with all the things that these sentences imply.
-From now on, we will use $\Th{Q}$ to refer to the {\em theory}
-consisting of the set of sentences derivable from the eight axioms in
-\olref[req][int]{sec}.  Remember that we can code formula of $\Th{Q}$
-as numbers; if $!A$ is such a formula, let $\Gn{!A}$ denote the number
-coding $!A$. Modulo this coding, we can now ask whether various sets
-of formulas are computable or not.
+{\em 理论}是演绎封闭的语句集合，即：只要 $T$ 证明了 $!A$，$!A$ 就属于 $T$。最好将理论理解为一组语句，连同由这些语句所蕴涵的一切。从现在起，我们将用 $\Th{Q}$ 指称由\olref[req][int]{sec}中八条公理可推导出的全体语句所构成的{\em 理论}。请注意，我们可以将 $\Th{Q}$ 的公式编码为数字；若 $!A$ 是这样一个公式，令 $\Gn{!A}$ 表示编码 $!A$ 的数字。借助于此编码，我们现在就可以探讨各种公式集合是否可计算。
 
 \end{document}

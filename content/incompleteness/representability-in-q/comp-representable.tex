@@ -7,53 +7,20 @@
 \begin{document}
 
 \olfileid{inc}{req}{crq}
-\olsection{Computable Functions are Representable in $\Th{Q}$}
+\olsection{可计算函数在 $\Th{Q}$ 中可表示}
 
 \begin{thm}
-Every computable function is representable in~$\Th{Q}$.
+每个可计算函数都在~$\Th{Q}$ 中可表示。
 \end{thm}
 
 \begin{proof}
-For definiteness, and using the Church--Turing Thesis, let's say that a
-function is computable iff it is general recursive. The general
-recursive functions are those which can be defined from the zero
-function~$\Zero$, the successor function~$\Succ$, and the projection
-function~$\Proj{n}{i}$ using composition, primitive recursion, and
-regular minimization. By \olref[pri]{lem:prim-rec}, any function~$h$
-that can be defined from $f$ and~$g$ can also be defined using
-composition and regular minimization from $f$, $g$, and $\Zero$,
-$\Succ$, $\Proj{n}{i}$, $\Add$, $\Mult$, $\Char{=}$. Consequently, a
-function is general recursive iff it can be defined from $\Zero$,
-$\Succ$, $\Proj{n}{i}$, $\Add$, $\Mult$, $\Char{=}$ using composition
-and regular minimization.
+为明确起见，并借助丘奇--图灵论题，我们设定一个函数是可计算的当且仅当它是一般递归的。一般递归函数是指那些能从零函数~$\Zero$、后继函数~$\Succ$ 和投影函数~$\Proj{n}{i}$ 出发，通过复合、原始递归和正则极小化定义的函数。根据 \olref[pri]{lem:prim-rec}，任何使用原始递归从 $f$ 和~$g$ 定义的函数~$h$，也能从 $f$、$g$ 以及 $\Zero$、$\Succ$、$\Proj{n}{i}$、$\Add$、$\Mult$、$\Char{=}$ 出发，通过复合和正则极小化来定义。因此，一个函数是一般递归的，当且仅当它能从 $\Zero$、$\Succ$、$\Proj{n}{i}$、$\Add$、$\Mult$、$\Char{=}$ 出发，通过复合和正则极小化来定义。
 
-We've furthermore shown that the basic functions in question are
-representable in~$\Th{Q}$
-(\cref{inc:req:bre:prop:rep-zero,inc:req:bre:prop:rep-succ,inc:req:bre:prop:rep-proj,inc:req:bre:prop:rep-id,inc:req:bre:prop:rep-add,inc:req:bre:prop:rep-mult}),
-and that any function defined from representable functions by
-composition or regular minimization
-(\olref[cmp]{prop:rep-composition},
-\olref[min]{prop:rep-minimization}) is also representable. Thus every
-general recursive function is representable in~$\Th{Q}$.
+此外我们已经证明，上述基本函数在~$\Th{Q}$ 中是可表示的（\cref{inc:req:bre:prop:rep-zero,inc:req:bre:prop:rep-succ,inc:req:bre:prop:rep-proj,inc:req:bre:prop:rep-id,inc:req:bre:prop:rep-add,inc:req:bre:prop:rep-mult}），并且任何由可表示函数通过复合或正则极小化（\olref[cmp]{prop:rep-composition}、\olref[min]{prop:rep-minimization}）定义的函数也是可表示的。因此，每个一般递归函数都在~$\Th{Q}$ 中可表示。
 \end{proof}
 
 \begin{explain}
-We have shown that the set of computable functions can be
-characterized as the set of functions representable in $\Th{Q}$. In
-fact, the proof is more general. From the definition of
-representability, it is not hard to see that any theory extending
-$\Th{Q}$ (or in which one can interpret $\Th{Q}$) can represent the
-computable functions. But, conversely, in any !!{derivation} system in
-which the notion of !!{derivation} is computable, every representable
-function is computable. So, for example, the set of computable
-functions can be characterized as the set of functions representable
-in Peano arithmetic, or even Zermelo--Fraenkel set theory. As G\"odel
-noted, this is somewhat surprising.  We will see that when it comes to
-provability, questions are very sensitive to which theory you
-consider; roughly, the stronger the axioms, the more you can prove.
-But across a wide range of axiomatic theories, the representable
-functions are exactly the computable ones; stronger theories do not
-represent more functions as long as they are axiomatizable.
+我们已经证明，可计算函数集可以刻画为在 $\Th{Q}$ 中可表示的函数集。事实上，该证明更具一般性。从可表示性的定义不难看出，任何扩张 $\Th{Q}$ 的理论（或者 $\Th{Q}$ 可在其中解释的理论）都能表示可计算函数。但反过来说，在推导关系可计算的任何推导系统中，每个可表示的函数都是可计算的。因此，举例来说，可计算函数集也可以刻画为在皮亚诺算术中、甚至是在策梅洛--Fraenkel 集合论中可表示的函数集。正如 G\"odel 所指出的，这多少有些令人惊讶。我们将会看到，一旦涉及可证性，问题对所考虑的理论非常敏感；粗略地说，公理越强，能证明的命题就越多。然而，在广泛的公理化理论中，可表示的函数恰好就是可计算的函数；只要理论是可公理化的，更强的理论也不会表示更多的函数。
 \end{explain}
 
 \end{document}

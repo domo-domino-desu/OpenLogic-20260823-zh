@@ -7,63 +7,50 @@
 \begin{document}
 
 \olfileid{lam}{int}{min}
-\olsection{The \usetoken{S}{lambda definable} Functions are Closed under Minimization}
+\olsection{$\lambd$-可定义函数在极小化运算下封闭}
 
 \begin{lem}
-Suppose $f(x,y)$ is !!{lambda definable}. Let $g$ be defined by
+设 $f(x,y)$ 是 $\lambd$-可定义的。令 $g$ 由
 \[
 g(x) \simeq \umin{y}{f(x,y)}.
 \]
-Then $g$ is !!{lambda definable}.
+定义，则 $g$ 也是 $\lambd$-可定义的。
 \end{lem}
 
 \begin{proof}
-The idea is roughly as follows. Given $x$, we will use the fixed-point
-lambda term $Y$ to define a function $h_x(n)$ which searches for a~$y$
-starting at~$n$; then $g(x)$ is just $h_x(0)$. The function~$h_x$ can
-be expressed as the solution of a fixed-point equation:
+思路大致如下。给定 $x$，我们将使用不动点 λ-项 $Y$ 来定义一个函数 $h_x(n)$，它从 $n$ 开始搜索 $y$；那么 $g(x)$ 就是 $h_x(0)$。函数 $h_x$ 可以表达为一个不动点方程的解：
 \[
 h_x(n) \simeq
 \begin{cases}
-n & \text{if $f(x,n) = 0$} \\
-h_x(n+1) & \text{otherwise.}
+n & \text{若 $f(x,n) = 0$} \\
+h_x(n+1) & \text{否则。}
 \end{cases}
 \]
 
-Here are the details. Since $f$ is primitive recursive, it is
-!!{lambda defined} by some term $F$. Remember that we also have a lambda
-term~$D$, such that $D(M, N, \bar{0}) \red M$ and $D(M, N, \bar{1})
-\red N$. Fixing $x$ for the moment, to !!{lambda define} $h_x$ we want to
-find a term~$H$ (depending on~$x$) satisfying
+具体细节如下。由于 $f$ 是原始递归的，它由某个项 $F$ 所 $\lambd$-定义。回想一下，我们还有一个 λ-项 $D$，使得 $D(M, N, \bar{0}) \red M$ 且 $D(M, N, \bar{1})
+\red N$。暂时固定 $x$。为了 $\lambd$-定义 $h_x$，我们需要找到一个依赖于 $x$ 的项 $H$，满足
 \[
 H(\num{n}) \equiv D(\num{n}, H(S(\num{n})), F(x, \num{n})).
 \]
-We can do this using the fixed-point term~$Y$. First, let $U$ be the
-term
+我们可以利用不动点项 $Y$ 做到这一点。首先，令 $U$ 为如下项
 \[
 \lambd[h][\lambd[z][D(z,(h(Sz)),F(x,z))]],
 \]
-and then let $H$ be the term~$YU$. Notice that the only free variable
-in~$H$ is~$x$. Let us show that $H$ satisfies the equation above.
+再令 $H$ 为项 $YU$。注意，$H$ 中唯一的自由变元是 $x$。我们来证明 $H$ 满足上述方程。
 
-By the definition of $Y$, we have
+根据 $Y$ 的定义，我们有
 \[
 H = YU \equiv U(YU) = U(H).
 \]
-In particular, for each natural number~$n$, we have
+特别地，对每个自然数 $n$，我们有
 \begin{align*}
 H(\num{n}) & \equiv U(H, \num{n}) \\
 & \red D(\num{n}, H(S(\num{n})), F(x, \num{n})),
 \end{align*}
-as required. Notice that if you substitute a numeral $\num{m}$ for~$x$
-in the last line, the expression reduces to $\num{n}$ if $F(\num{m},
-\num{n})$ reduces to $\num{0}$, and it reduces to $H(S(\num{n}))$ if
-$F(\num{m}, \num{n})$ reduces to any other numeral.
+如所求。请注意，如果在最后一行中将数码 $\num{m}$ 代入 $x$，那么当 $F(\num{m},
+\num{n})$ 归约到 $\num{0}$ 时，该表达式归约到 $\num{n}$；而当 $F(\num{m}, \num{n})$ 归约到任何其他数码时，它归约到 $H(S(\num{n}))$。
 
-To finish off the proof, let $G$ be $\lambd[x][H(\num 0)]$. Then $G$
-!!{lambda define}s~$g$; in other words, for every~$m$, $G(\num m)$
-reduces to~$\overline {g(m)}$, if $g(m)$ is defined, and has no normal
-form otherwise.
+证明的最后，令 $G$ 为 $\lambd[x][H(\num 0)]$。则 $G$ $\lambd$-定义了 $g$；换言之，对每个 $m$，若 $g(m)$ 有定义，则 $G(\num m)$ 归约到 $\overline {g(m)}$，否则 $G(\num m)$ 无范式。
 \end{proof}
 
 \end{document}

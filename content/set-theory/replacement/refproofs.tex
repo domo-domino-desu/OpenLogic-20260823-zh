@@ -3,37 +3,27 @@
 \begin{document}
 
 \olfileid{sth}{replacement}{refproofs}
-\olsection{Appendix: Results surrounding Replacement}
+\olsection{附录：与替代公理相关的若干结果}
 
-In this section, we will prove Reflection within $\ZF$. We will also
-prove a sense in which Reflection is equivalent to Replacement. And we
-will prove an interesting consequence of all this, concerning the
-strength of Reflection/Replacement. \emph{Warning: this is easily the
-most advanced bit of mathematics in this textbook.} 
+本节我们将在 $\ZF$ 中证明反射原理，并将证明在某种意义下反射原理等价于替代公理。此外，我们还将证明一个关于反射原理/替代公理之强度的有趣推论。\emph{警告：这可能是本教材中数学上最艰深的部分。}
 
-We'll start with a lemma which, for brevity, employs the notational
-device of \emph{overlining} to deal with sequences of variables or
-objects. So: ``$\overline{a}_k$'' abbreviates ``$a_{k_1}$, \dots,
-$a_{k_n}$'', where $n$ is determined by context.
+我们先给出一个引理，为简洁起见，该引理采用\emph{上划线}记法来处理变元或对象的序列。即：“$\overline{a}_k$”是“$a_{k_1}$, \dots, $a_{k_n}$”的缩写，其中 $n$ 由上下文确定。
 
 \begin{lem}\ollabel{lemreflection}
-For each $1 \leq i \leq k$, let $\phi_i(\overline{v}_i, x)$ be a
-formula. Then for each $\alpha$
-there is some $\beta > \alpha$ such that, for any $\overline{a}_1,
-\ldots, \overline{a}_k \in V_\beta$ and each $1 \leq i \leq k$:
+对每个 $1 \leq i \leq k$，令 $\phi_i(\overline{v}_i, x)$ 为一个公式。则对每个 $\alpha$，存在某个 $\beta > \alpha$，使得对任意 $\overline{a}_1,
+\ldots, \overline{a}_k \in V_\beta$ 及每个 $1 \leq i \leq k$，有：
 \[
 	\exists x\phi_i(\overline{a}_i, x) \rightarrow (\exists x \in V_\beta) \phi_i(\overline{a}_i, x)
 \]
 \end{lem}
 
 \begin{proof}
-We define a term $\mu$ as follows: $\mu(\overline{a}_1, \ldots,
-\overline{a}_k)$ is the least stage, $V$, which satisfies all of the
-following conditionals, for $1 \leq i \leq k$:
+我们如下定义项 $\mu$：$\mu(\overline{a}_1, \ldots,
+\overline{a}_k)$ 是满足以下所有条件句（对 $1 \leq i \leq k$）的最小阶段 $V$：
 \[
 \exists x\phi_i(\overline{a}_i, x) \rightarrow (\exists x \in V) \phi_i(\overline{a}_i, x))
 \]
-It is easy to confirm that $\mu(\overline{a}_1, \ldots, \overline{a}_k)$ exists for all $\overline{a}_1, \ldots, \overline{a}_k$. Now, using Replacement and our recursion theorem, define:
+容易验证对所有 $\overline{a}_1, \ldots, \overline{a}_k$，$\mu(\overline{a}_1, \ldots, \overline{a}_k)$ 存在。现在，利用替代公理与递归定理，定义：
 \begin{align*}
 	S_0 & = V_{\alpha+1}\\
 	S_{n+1} & = S_n \cup \bigcup
@@ -41,138 +31,104 @@ It is easy to confirm that $\mu(\overline{a}_1, \ldots, \overline{a}_k)$ exists 
 	{\overline{a}_1, \ldots, \overline{a}_k \in S_n} \\
 	S &= \bigcup_{m < \omega} S_n.
 \end{align*}
-Each $S_n$, and hence $S$ itself, is a stage after $V_\alpha$. Now fix
-$\overline{a}_1$, \dots,~$\overline{a}_k \in S$; so there is some $n <
-\omega$ such that $\overline{a}_1$, \dots, $\overline{a}_k \in S_n$.
-Fix some $1 \leq i \leq k$, and suppose that $\exists x
-\phi_i(\overline{a}_i,x)$. So $(\exists x \in \mu(\overline{a}_1,
-\ldots, \overline{a}_k))\phi_i(\overline{a}_i, x)$ by construction, so
-$(\exists x \in S_{n+1})\phi_i(\overline{a}_i, x)$ and hence
-$(\exists x \in S)\phi_i(\overline{a}_i, x)$. So $S$ is our $V_\beta$.
+每个 $S_n$，因而 $S$ 本身，都是 $V_\alpha$ 之后的阶段。现取定 $\overline{a}_1$, \dots,~$\overline{a}_k \in S$；于是存在某个 $n < \omega$ 使得 $\overline{a}_1$, \dots, $\overline{a}_k \in S_n$。取定某个 $1 \leq i \leq k$，并假设 $\exists x
+\phi_i(\overline{a}_i,x)$。由构造可知 $(\exists x \in \mu(\overline{a}_1,
+\ldots, \overline{a}_k))\phi_i(\overline{a}_i, x)$，因此 $(\exists x \in S_{n+1})\phi_i(\overline{a}_i, x)$，进而 $(\exists x \in S)\phi_i(\overline{a}_i, x)$。所以 $S$ 就是我们的 $V_\beta$。
 \end{proof}
-\noindent 
-We can now prove \olref[sth][replacement][ref]{reflectionschema} quite
-straightforwardly:
 
-\begin{proof}[Proof] 
-Fix $\alpha$. Without loss of generality, we can assume $\phi$'s only
-connectives are $\exists$, $\lnot$ and $\land$ (since these are
-expressively adequate). Let $\psi_1, \ldots, \psi_k$ enumerate each of
-$\phi$'s subformulas according to complexity, so that $\psi_k = \phi$.
-By \olref{lemreflection}, there is a $\beta > \alpha$ such that, for
-any $\overline{a}_i \in V_\beta$ and each $1 \leq i \leq k$:
+
+\noindent
+我们现在可以相当直接地证明 \olref[sth][replacement][ref]{reflectionschema}：
+
+\begin{proof}[证明]
+取定 $\alpha$。不失一般性，我们可假设 $\phi$ 的联结词仅为 $\exists$、$\lnot$ 和 $\land$（因为它们具有足够的表达力）。将 $\phi$ 的每个子公式按复杂度排列为 $\psi_1, \ldots, \psi_k$，使得 $\psi_k = \phi$。根据 \olref{lemreflection}，存在 $\beta > \alpha$，使得对任意 $\overline{a}_i \in V_\beta$ 和每个 $1 \leq i \leq k$：
 \begin{align}\label{reflectionnicelybehaved}
 	\exists x\psi_i(\overline{a}_i, x) \rightarrow 
 	(\exists x \in V_\beta) \psi_i(\overline{a}_i, x)\tag{*}
 \end{align}
-By induction on complexity of $\psi_i$, we will show that
-$\psi_i(\overline{a}_i) \leftrightarrow
-\psi_i^{V_\beta}(\overline{a}_i)$, for any  $\overline{a}_i \in
-V_\beta$. 	If $\psi_i$ is atomic, this is trivial. The biconditional
-also establishes that, when $\psi_i$ is a negation or conjunction of
-subformulas satisfying this property, $\psi_i$ itself satisfies this
-property. So the only interesting case concerns quantification. Fix
-$\overline{a}_i \in V_\beta$; then:
+通过对 $\psi_i$ 的复杂度归纳，我们将证明对任意 $\overline{a}_i \in V_\beta$，有 $\psi_i(\overline{a}_i) \leftrightarrow
+\psi_i^{V_\beta}(\overline{a}_i)$。
+若 $\psi_i$ 是原子公式，这是平凡成立的。该双条件句也表明，当 $\psi_i$ 是满足此性质的子公式的否定或合取时，$\psi_i$ 自身也满足此性质。因此，唯一值得注意的情形涉及量词。取定 $\overline{a}_i \in V_\beta$；则有：
 \begin{align*}
 	(\exists x \psi_i(\overline{a}_i, x))^{V_\beta}
-	&\text{ iff }
+	&\text{ 当且仅当 }
 	(\exists x \in V_\beta)\psi_i^{V_\beta}(\overline{a}_i, x)
-	&&\text{by definition}\\
-	&\text{ iff }
+	&&\text{据定义}\\
+	&\text{ 当且仅当 }
 	(\exists x \in V_\beta)\psi_i(\overline{a}_i,  x)
-	&&\text{by hypothesis}\\
-	&\text{ iff }
+	&&\text{据归纳假设}\\
+	&\text{ 当且仅当 }
 	\exists x \psi_i(\overline{a}_i, x)
-	&&\text{by \eqref{reflectionnicelybehaved}}
+	&&\text{据 \eqref{reflectionnicelybehaved}}
 \end{align*}
-This completes the induction; the result follows as $\psi_k = \phi$.
+这就完成了归纳；由于 $\psi_k = \phi$，结果得证。
 \end{proof}
 
-We have proved Reflection in $\ZF$. Our proof essentially
-followed \citet{Montague1961}. We now want to prove in $\Z$ that
-Reflection entails Replacement. The proof follows \citet{Levy1960},
-but with a simplification. 
+我们已在 $\ZF$ 中证明了反射原理，证明本质上遵循了 \citet{Montague1961}。现在我们要在 $\Z$ 中证明反射原理蕴含替代公理。该证明遵循 \citet{Levy1960}，但做了简化。
 
-Since we are working in $\Z$, we cannot present Reflection in exactly
-the form given above. After all, we formulated Reflection using the
-``$V_\alpha$'' notation, and that cannot be defined in $\Z$ (see
-\olref[sth][spine][zf]{sec}). So instead we will offer an apparently
-weaker formulation of Replacement, as follows:
+由于我们是在 $\Z$ 中讨论，不能完全按上述形式呈现反射原理。毕竟，我们是用“$V_\alpha$”记法来表述反射原理的，而这在 $\Z$ 中无法定义（参见 \olref[sth][spine][zf]{sec}）。因此，我们改为给出一个看似更弱的反射原理表述，如下：
 
 \begin{defish}
-\emph{Weak-Reflection.} For any formula $\phi$, there is a transitive
-set $S$ such that $0$, $1$, and any parameters to $\phi$ are
-!!{element}s of $S$, and $(\forall \overline{x} \in S)(\phi \liff
-\phi^S)$.
+\emph{弱反射。} 对任意公式 $\phi$，存在一个传递集 $S$，使得 $0$、$1$ 以及 $\phi$ 的任意参数都是 $S$ 的元素，并且 $(\forall \overline{x} \in S)(\phi \liff
+\phi^S)$。
 \end{defish}
 
-To use this to prove Replacement, we will first follow \citet[first
-part of Theorem 2]{Levy1960} and show that we can ``reflect'' two
-formulas at once:
+为了用它证明替代公理，我们首先遵循 \citet[first part of Theorem 2]{Levy1960}，证明我们可以同时“反射”两个公式：
 
-\begin{lem}[in $\Z + \text{Weak-Reflection}$.]\ollabel{lem:reflect}
-For any formulas $\psi, \chi$, there is a transitive set $S$ such that
-$0$ and $1$ (and any parameters to the formulas) are !!{element}s of
-$S$, and $(\forall \overline{x} \in S)((\psi \liff \psi^S) \land (\chi
-\liff \chi^S))$.
+\begin{lem}[在 $\Z + \text{弱反射}$ 中]\ollabel{lem:reflect}
+对任意公式 $\psi, \chi$，存在一个传递集 $S$，使得 $0$ 和 $1$（以及公式的任意参数）是 $S$ 的元素，并且 $(\forall \overline{x} \in S)((\psi \liff \psi^S) \land (\chi
+\liff \chi^S))$。
 \end{lem}
 
 \begin{proof}
-Let $\phi$ be the formula $(z = 0 \land \psi) \lor (z = 1 \land \chi)$. 
+令 $\phi$ 为公式 $(z = 0 \land \psi) \lor (z = 1 \land \chi)$。
 
-Here we use an abbreviation; we should spell out ``$z = 0$'' as
-``$\forall t\, t \notin z$'' and ``$z =1$'' as ``$\forall s(s \in z
-\liff \forall t\, t \notin s)$''. But since $0, 1 \in S$ and $S$ is
-transitive, these formulas are \emph{absolute} for $S$; that is, they
-will apply to the same object whether we restrict their quantifiers to
-$S$.\footnote{More formally, letting $\xi$ be either of these
-formulas, $\xi(z) \liff \xi^S(z)$.}
+此处我们用了一个缩写；我们应当将“$z = 0$”展开为“$\forall t\, t \notin z$”，将“$z =1$”展开为“$\forall s(s \in z
+\liff \forall t\, t \notin s)$”。但由于 $0, 1 \in S$ 且 $S$ 是传递集，这些公式对 $S$ 是\emph{绝对的}；也就是说，无论是否将其量词限制于 $S$，它们都适用于同一个对象。\footnote{更形式化地说，令 $\xi$ 为这两个公式之一，则 $\xi(z) \liff \xi^S(z)$。}
 
-By Weak-Reflection, we have some appropriate $S$ such that:
+由弱反射，存在某个适当的 $S$ 使得：
 \begin{align*}
 	(\forall z, \overline{x} \in S)(&\phi \liff \phi^S)\\
-	\text{i.e. }(\forall z, \overline{x} \in S)(&((z = 0 \land \psi) \lor (z = 1 \land \chi)) \liff {}\\
+	\text{即 }(\forall z, \overline{x} \in S)(&((z = 0 \land \psi) \lor (z = 1 \land \chi)) \liff {}\\
 	&\phantom{(}((z = 0 \land \psi) \lor (z = 1 \land \chi))^S)\\
-	\text{i.e. }(\forall z, \overline{x} \in S)(&((z = 0 \land \psi) \lor (z = 1 \land \chi))\liff {}\\
+	\text{即 }(\forall z, \overline{x} \in S)(&((z = 0 \land \psi) \lor (z = 1 \land \chi))\liff {}\\
 	&\phantom{(}((z = 0 \land \psi^S) \lor (z = 1 \land \chi^S)))\\
-	\text{i.e. }(\forall \overline{x} \in S)(&(\psi \liff \psi^S) \land (\chi \liff \chi^S))
+	\text{即 }(\forall \overline{x} \in S)(&(\psi \liff \psi^S) \land (\chi \liff \chi^S))
 \end{align*}
-The second claim entails the third because ``$z = 0$'' and ``$z=1$''
-are absolute for $S$; the fourth claim follows since $0 \neq 1$.
-\end{proof}\noindent We can now obtain Replacement, just by following and simplifying 
-\citet[Theorem 6]{Levy1960}:
+第二个断言蕴含第三个，是因为“$z = 0$”和“$z=1$”对 $S$ 是绝对的；第四个断言成立，是因为 $0 \neq 1$。
+\end{proof}
 
-\begin{thm}[in $\Z$ + Weak-Reflection]\label{thm:replacement} 
-For any formula $\phi(v,w)$, and any $A$, if $(\forall x \in A)\lexists![y][\phi(x,y)]$, then
-$\Setabs{y}{(\exists x \in A)\phi(x,y}$ exists.
+\noindent 现在只需遵循并简化 \citet[Theorem 6]{Levy1960} 的证明，即可得到替代公理：
+
+\begin{thm}[在 $\Z + \text{弱反射}$ 中]\label{thm:replacement}
+对任意公式 $\phi(v,w)$ 和任意 $A$，若 $(\forall x \in A)\lexists![y][\phi(x,y)]$，则
+$\Setabs{y}{(\exists x \in A)\phi(x,y}$ 存在。
 \end{thm}
 
 \begin{proof}
-Fix $A$ such that $(\forall x \in A)\lexists![y][\phi(x,y)]$, and
-define formulas:
+取定 $A$ 使得 $(\forall x \in A)\lexists![y][\phi(x,y)]$，并
+定义公式：
 \begin{align*}
-	\psi &\text{ is } (\phi(x, z) \land A = A)\\
-	\chi &\text{ is } \lexists[y][\phi(x, y)]
+	\psi &\text{ 是 } (\phi(x, z) \land A = A)\\
+	\chi &\text{ 是 } \lexists[y][\phi(x, y)]
 \end{align*}
-Using \olref{lem:reflect}, since $A$ is a parameter to $\psi$, there
-is a transitive~$S$ such that $0, 1, A \in S$  (along with any other
-parameters), and such that:
+利用 \olref{lem:reflect}，由于 $A$ 是 $\psi$ 的参数，故存在传递集~$S$，使得 $0, 1, A \in S$（连同任意其他参数），并且满足：
 \[
 	(\forall x,z \in S)((\psi \liff \psi^S) \land (\chi \liff \chi^S))
 \]
-So in particular:
+因此特别地：
 \begin{align*}
 	(\forall  x, z \in S)(&\phi(x, z) \liff \phi^S(x, z))\\
 	(\forall x \in S)(&\exists y\phi(x, y) \liff (\exists y \in S)\phi^S(x, y)) 
 \end{align*}
-Combining these, and observing that $A \subseteq S$ since $A \in S$ and $S$ is transitive:
+结合这两点，并注意到由于 $A \in S$ 且 $S$ 是传递的，有 $A \subseteq S$：
 \begin{align*}
 	(\forall x \in A)(&\exists y\phi(x, y) \liff (\exists y \in S)\phi(x, y))
 \end{align*}
-Now $(\forall x \in A)(\lexists![y \in S])\phi(x, y)$, because
-$(\forall x \in A)\lexists![y][\phi(x, y)]$. Now Separation yields
+现在 $(\forall x \in A)(\lexists![y \in S])\phi(x, y)$，因为
+$(\forall x \in A)\lexists![y][\phi(x, y)]$。于是由分离公理即得
 $\Setabs{y \in S}{(\exists x \in A) \phi(x, y)} = \Setabs{y}{(\exists
-x \in A) \phi(x, y)}$. 
+x \in A) \phi(x, y)}$。
 \end{proof}
 
 \end{document}

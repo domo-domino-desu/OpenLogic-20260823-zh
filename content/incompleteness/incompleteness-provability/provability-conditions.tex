@@ -8,71 +8,42 @@
 
 \olfileid{inc}{inp}{prc}
 
-\olsection{The \usetoken{S}{derivability} Conditions for $\Th{PA}$}
+\olsection{$\Th{PA}$ 的可推导性条件}
 
-Peano arithmetic, or $\Th{PA}$, is the theory extending $\Th{Q}$ with
-induction axioms for all !!{formula}s. In other words, one adds to $\Th{Q}$
-axioms of the form
+皮亚诺算术（Peano arithmetic），或称 $\Th{PA}$，是对 $\Th{Q}$ 为所有公式附加归纳公理而扩张的理论。换言之，对于每个公式~$!A$，向 $\Th{Q}$ 中添加形如
 \[
 (!A(0) \land \lforall[x][(!A(x) \lif !A(x'))]) \lif \lforall[x][!A(x)]
 \]
-for every !!{formula}~$!A$. Notice that this is really a
-\emph{schema}, which is to say, infinitely many axioms (and it turns
-out that $\Th{PA}$ is {\em not} finitely axiomatizable). But since one
-can effectively determine whether or not a string of symbols is an
-instance of an induction axiom, the set of axioms for $\Th{PA}$ is
-computable. $\Th{PA}$ is a much more robust theory than~$\Th{Q}$. For
-example, one can easily prove that addition and multiplication are
-commutative, using induction in the usual way. In fact, most finitary
-number-theoretic and combinatorial arguments can be carried out
-in~$\Th{PA}$.
+的公理。注意这实际上是一个\emph{公理模式}，也就是说，有无穷多条公理（而且事实证明 $\Th{PA}$ 并\emph{非}有限可公理化的）。但由于可以有效地判定一个符号串是否是归纳公理的一个实例，因此 $\Th{PA}$ 的公理集是可计算的。$\Th{PA}$ 是比~$\Th{Q}$ 强健得多的理论。例如，利用通常的归纳法，容易证明加法和乘法满足交换律。事实上，大多数有限性的数论与组合论证都可以在~$\Th{PA}$ 中完成。
 
-Since $\Th{PA}$ is computably axiomatized, the !!{derivability}
-predicate $\Prf[\Th{PA}](x,y)$ is computable and hence represented
-in~$\Th{Q}$ (and so, in~$\Th{PA}$). As before, we will take
-$\OPrf[\Th{PA}](x,y)$ to denote the formula representing the relation.
-Let $\OProv[\Th{PA}](y)$ be the formula
-$\lexists[x][\Prf[\Th{PA}](x,y)]$, which, intuitively says, ``$y$ is
-!!{derivable} from the axioms of $\Th{PA}$.''  The reason we need a
-little bit more than the axioms of $\Th{Q}$ is we need to know that
-the theory we are using is strong enough to !!{derive} a few basic
-facts about this !!{derivability} predicate. In fact, what we need are
-the following facts:
+由于 $\Th{PA}$ 是可计算公理化的，其可推导性谓词 $\Prf[\Th{PA}](x,y)$ 是可计算的，因而在~$\Th{Q}$（进而在~$\Th{PA}$）中可表示。如前所述，我们将用 $\OPrf[\Th{PA}](x,y)$ 来表示该关系的公式。令 $\OProv[\Th{PA}](y)$ 为公式 $\lexists[x][\Prf[\Th{PA}](x,y)]$，该公式直观上表示“$y$ 可由 $\Th{PA}$ 的公理推导出来”。我们之所以需要比 $\Th{Q}$ 的公理更强一点的理论，是因为我们需要确保所用的理论足够强，能够推导出关于这个可推导性谓词的一些基本事实。事实上，我们需要的是以下事实：
+
 \begin{enumerate}
-\item[P1.] If $\Th{PA} \Proves !A$, then $\Th{PA} \Proves
-  \OProv[\Th{PA}](\gn{!A})$.
-\item[P2.] For all !!{formula}s $!A$ and $!B$,
+\item[P1.] 若 $\Th{PA} \Proves !A$，则 $\Th{PA} \Proves
+  \OProv[\Th{PA}](\gn{!A})$。
+\item[P2.] 对所有公式 $!A$ 和 $!B$，
   \[
   \Th{PA} \Proves \OProv[\Th{PA}](\gn{!A \lif !B}) \lif
   (\OProv[\Th{PA}](\gn{!A}) \lif \OProv[\Th{PA}](\gn{!B})).
   \]
-\item[P3.] For every !!{formula}~$!A$,
+\item[P3.] 对每个公式~$!A$，
   \[
   \Th{PA} \Proves \OProv[\Th{PA}](\gn{!A})
   \lif \OProv[\Th{PA}](\gn{\OProv[\Th{PA}](\gn{!A})}).
   \]
 \end{enumerate}
-The only way to verify that these three properties hold is to describe
-the !!{formula} $\OProv[\Th{PA}](y)$ carefully and use the axioms of
-$\Th{PA}$ to describe the relevant formal !!{derivation}s. Conditions (1)
-and~(2) are easy; it is really condition~(3) that requires
-work. (Think about what kind of work it entails \dots) Carrying out the
-details would be tedious and uninteresting, so here we will ask you to
-take it on faith that $\Th{PA}$ has the three properties listed
-above. A reasonable choice of $\OProv[\Th{PA}](y)$ will also satisfy
+
+要验证这三个性质成立，唯一的方法是仔细描述公式 $\OProv[\Th{PA}](y)$，并利用 $\Th{PA}$ 的公理来描述相关的形式推导。条件 (1) 和~(2) 是容易的；真正需要下功夫的是条件~(3)。（想想这会涉及什么样的工作……）展开所有细节会既繁琐又无趣，因此这里我们请你暂且相信 $\Th{PA}$ 具有上述列出的三个性质。对 $\OProv[\Th{PA}](y)$ 的合理选择还会满足
+
 \begin{enumerate}
-\item[P4.] If $\Th{PA} \Proves \OProv[\Th{PA}](\gn{!A})$, then
-  $\Th{PA} \Proves !A$.
+\item[P4.] 若 $\Th{PA} \Proves \OProv[\Th{PA}](\gn{!A})$，则
+  $\Th{PA} \Proves !A$。
 \end{enumerate}
-But we will not need this fact.
+
+不过我们用不上这个事实。
 
 \begin{digress}
-Incidentally, G\"odel was lazy in the same way we are
-being now. At the end of the 1931 paper, he sketches the proof of the
-second incompleteness theorem, and promises the details in a later
-paper. He never got around to it; since everyone who understood the
-argument believed that it could be carried out (he did not need to
-fill in the details.)
+顺便提一下，Gödel（哥德尔）当时也和我们现在一样偷懒。在那篇1931年的论文结尾，他概述了第二不完全性定理的证明，并承诺会在后续论文中给出细节。他后来一直没有来得及做这件事；因为所有理解该论证的人都相信它是可以完成的（他并不需要补充这些细节）。
 \end{digress}
 
 \end{document}

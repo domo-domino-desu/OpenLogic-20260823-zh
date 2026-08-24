@@ -1,67 +1,31 @@
-% Part: first-order-logic
-% Chapter: beyond
-% Section: many-sorted-logic
-
 \documentclass[../../../include/open-logic-section]{subfiles}
 
 \begin{document}
 
+% Part: first-order-logic
+% Chapter: beyond
+% Section: many-sorted-logic
+
 \olfileid{fol}{byd}{msl}
 
-\olsection{Many-Sorted Logic}
+\olsection{多类逻辑}
 
-In first-order logic, variables and quantifiers range over a single
-!!{domain}. But it is often useful to have multiple (disjoint)
-!!{domain}s: for example, you might want to have !!a{domain} of numbers,
-!!a{domain} of geometric objects, !!a{domain} of functions from
-numbers to numbers, !!a{domain} of abelian groups, and so on.
+在一阶逻辑中，变元和量词仅在单一论域上遍历。但拥有多个（互不相交的）论域通常很有用：例如，我们可能需要一个数的论域、一个几何对象的论域、一个从数到数的函数的论域、一个阿贝尔群的论域，等等。
 
-Many-sorted logic provides this kind of framework. One starts with a
-list of ``sorts''---the ``sort'' of an object indicates the
-``!!{domain}'' it is supposed to inhabit. One then has !!{variable}s
-and quantifiers for each sort, and (usually) an !!{identity} for each
-sort. Functions and relations are also ``typed'' by the sorts of
-objects they can take as arguments. Otherwise, one keeps the usual
-rules of first-order logic, with versions of the quantifier-rules
-repeated for each sort.
+多类逻辑恰好提供了这样的框架。首先给出一个“类”的列表——对象的“类”表明了它应当属于哪个“论域”。然后，为每个类引入变元和量词，并且（通常）为每个类引入一个等词谓词。函数和关系也根据它们所取自变元的类而被“赋予类型”。除此之外，我们保留一阶逻辑的通常规则，只是为每个类各重复一版量词规则。
 
-For example, to study international relations we might choose a
-language with two sorts of objects, French citizens and German
-citizens. We might have a unary relation, ``drinks wine,'' for objects
-of the first sort; another unary relation, ``eats wurst,'' for objects
-of the second sort; and a binary relation, ``forms a multinational
-married couple,'' which takes two arguments, where the first argument
-is of the first sort and the second argument is of the second sort. If
-we use variables $a$, $b$, $c$ to range over French citizens and $x$, $y$, $z$
-to range over German citizens, then
+例如，为了研究国际关系，我们可能会选择一种包含两类对象的语言：法国公民和德国公民。我们可能会有一个一元关系“喝葡萄酒”，适用于第一类对象；另一个一元关系“吃香肠”，适用于第二类对象；以及一个二元关系“结成跨国夫妻”，它取两个自变元，其中第一个自变元属于第一类，第二个自变元属于第二类。如果我们让变元 $a$、$b$、$c$ 遍历法国公民，让变元 $x$、$y$、$z$ 遍历德国公民，那么
 \[
 \lforall[a][\lforall x][(\Atom{\Obj{MarriedTo}}{a,x} \lif
 (\Atom{\Obj{DrinksWine}}{a} \lor \lnot \Atom{\Obj{EatsWurst}}{x})]]
 \]
-asserts that if any French person is married to a German, either the
-French person drinks wine or the German doesn't eat wurst.
+断言：若任何法国人与某个德国人结婚，则要么该法国人喝葡萄酒，要么该德国人不吃香肠。
 
-Many-sorted logic can be embedded in first-order logic in a natural
-way, by lumping all the objects of the many-sorted !!{domain}s together
-into one first-order !!{domain}, using unary !!{predicate}s to keep track of
-the sorts, and relativizing quantifiers. For example, the first-order
-language corresponding to the example above would have unary !!{predicate}s
-``$\Obj{German}$'' and ``$\Obj{French}$,'' in addition to the other relations
-described, with the sort requirements erased. A sorted quantifier $\lforall[x][!A]$, where $x$ is !!a{variable} of the German sort, translates to
+多类逻辑可以以一种自然的方式嵌入到一阶逻辑中，方法是将所有多类论域中的对象合并成一个单一的一阶论域，使用一元谓词符号来记录对象的类，并对量词进行相对化。例如，与上述例子对应的一阶语言将拥有一元谓词符号“$\Obj{German}$”和“$\Obj{French}$”，以及前面描述过的其他关系，但原有的类要求被去除。一个带类量词 $\lforall[x][!A]$（其中 $x$ 是德国类的变元）被翻译为
 \[
 \lforall[x][(\Atom{\Obj{German}}{x} \lif !A)].
 \]
-We need to add axioms that insure that the sorts are separate---e.g.,
-$\lforall[x][\lnot (\Atom{\Obj{German}}{x} \land
-  \Atom{\Obj{French}}{x})]$---as well as axioms that guarantee that
-``drinks wine'' only holds of objects satisfying the predicate
-$\Atom{\Obj{French}}{x}$, etc. With these conventions and axioms, it
-is not difficult to show that many-sorted !!{sentence}s translate to
-first-order !!{sentence}s, and many-sorted !!{derivation}s translate
-to first-order !!{derivation}s. Also, many-sorted !!{structure}s
-``translate'' to corresponding first-order !!{structure}s and
-vice-versa, so we also have a completeness theorem for many-sorted
-logic.
+我们需要添加一些公理来确保这些类是互不相交的——例如，$\lforall[x][\lnot (\Atom{\Obj{German}}{x} \land
+  \Atom{\Obj{French}}{x})]$——以及一些公理来保证“喝葡萄酒”只对满足谓词 $\Atom{\Obj{French}}{x}$ 的对象成立，等等。有了这些约定和公理，就不难证明多类语句可以翻译为一阶语句，且多类推导可以翻译为一阶推导。此外，多类结构也可以“翻译”成相应的一阶结构，反之亦然，由此我们也得到了多类逻辑的完备性定理。
 
 \end{document}
-

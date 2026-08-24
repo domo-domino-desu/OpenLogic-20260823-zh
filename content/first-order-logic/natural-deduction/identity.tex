@@ -8,9 +8,9 @@
 
 \olfileid{fol}{ntd}{ide}
 
-\olsection{\usetoken{P}{derivation} with \usetoken{S}{identity}}
+\olsection{带\usetoken{P}{derivation}的\usetoken{S}{identity}}
 
-!!^{derivation}s with !!{identity} require additional inference rules.
+带等词的推导需要额外的推理规则。
 
 \begin{defish}
 \AxiomC{}
@@ -33,37 +33,33 @@
 \end{tabular}
 \end{defish}
 
-In the above rules, $t$, $t_1$, and $t_2$ are closed terms. The
-\Intro{\eq} rule allows us to !!{derive} any identity statement of the
-form $\eq[t][t]$ outright, from no assumptions.
+在上述规则中，$t$、$t_1$ 和 $t_2$ 都是闭项。\Intro{\eq} 规则允许我们在无任何假设的情况下，直接推导出任何形如 $\eq[t][t]$ 的等式。
 
 \begin{ex}
-If $s$ and $t$ are closed terms, then $!A(s), \eq[s][t] \Proves !A(t)$:
+如果 $s$ 和 $t$ 是闭项，那么 $!A(s), \eq[s][t] \Proves !A(t)$：
 \begin{prooftree}
 \AxiomC{$\eq[s][t]$}
 \AxiomC{$!A(s)$}
 \RightLabel{$\Elim{\eq}$}
 \BinaryInfC{$!A(t)$}
 \end{prooftree}
-This may be familiar as the ``principle of substitutability of
-identicals,'' or Leibniz' Law.
+这通常被称为「等同物的可替换性」原则，或称 Leibniz 律（莱布尼茨律）。
 \end{ex}
 
 \begin{prob}
-Prove that $=$ is both symmetric and transitive, i.e., give
-!!{derivation}s of $\lforall[x][\lforall[y][(\eq[x][y] \lif
-    \eq[y][x])]]$ and $\lforall[x][\lforall[y][\lforall[z]((\eq[x][y]
-    \land \eq[y][z]) \lif \eq[x][z])]]$
+证明 $=$ 既是对称的又是传递的，即给出 $\lforall[x][\lforall[y][(\eq[x][y] \lif
+    \eq[y][x])]]$ 和 $\lforall[x][\lforall[y][\lforall[z]((\eq[x][y]
+    \land \eq[y][z]) \lif \eq[x][z])]]$ 的推导。
 \end{prob}
 
 \begin{ex}
-We !!{derive} the !!{sentence}
+我们从语句
 \begin{align*}
-& \lforall[x][\lforall[y][((!A(x) \land !A(y)) \lif \eq[x][y])]]
-\intertext{from the !!{sentence}}
 & \lexists[x][\lforall[y][(!A(y) \lif \eq[y][x])]]
+\intertext{推导语句}
+& \lforall[x][\lforall[y][((!A(x) \land !A(y)) \lif \eq[x][y])]]
 \end{align*}
-We develop the !!{derivation} backwards:
+我们逆向构造该推导：
 \begin{prooftree}
 \AxiomC{$\lexists[x][\lforall[y][(!A(y) \lif \eq[y][x])]]
 \quad \Discharge{!A(a) \land !A(b)}{1}$}
@@ -75,9 +71,7 @@ We develop the !!{derivation} backwards:
 \RightLabel{\Intro{\lforall}}
 \UnaryInfC{$\lforall[x][\lforall[y][((!A(x) \land !A(y)) \lif \eq[x][y])]]$}
 \end{prooftree}
-We'll now have to use the main assumption: since it is an existential
-!!{formula}, we use \Elim{\lexists} to !!{derive} the intermediary
-conclusion $\eq[a][b]$.
+现在我们需要用到主假设：既然它是存在公式，我们使用 \Elim{\lexists} 推导出中间结论 $\eq[a][b]$。
 \begin{prooftree}
 \AxiomC{$\lexists[x][\lforall[y][(!A(y) \lif \eq[y][x])]]$}
 \AxiomC{$\Discharge{\lforall[y][(!A(y) \lif \eq[y][c]])}{2}$}
@@ -93,10 +87,7 @@ conclusion $\eq[a][b]$.
 \RightLabel{\Intro{\lforall}}
 \UnaryInfC{$\lforall[x][\lforall[y][((!A(x) \land !A(y)) \lif \eq[x][y])]]$}
 \end{prooftree}
-The sub-!!{derivation} on the top right is completed by using its
-assumptions to show that $\eq[a][c]$ and $\eq[b][c]$. This requires two
-separate !!{derivation}s. The !!{derivation} for $\eq[a][c]$ is as
-follows:
+右上角的子推导利用其假设证明了 $\eq[a][c]$ 和 $\eq[b][c]$。这需要两个独立的推导。$\eq[a][c]$ 的推导如下：
 \begin{prooftree}
 \AxiomC{$\Discharge{\lforall[y][(!A(y) \lif \eq[y][c]])}{2}$}
 \RightLabel{\Elim{\lforall}}
@@ -107,12 +98,11 @@ follows:
 \RightLabel{\Elim{\lif}}
 \BinaryInfC{$\eq[a][c]$}
 \end{prooftree}
-From $\eq[a][c]$ and $\eq[b][c]$ we !!{derive} $\eq[a][b]$ by
-\Elim{\eq}.
+由 $\eq[a][c]$ 和 $\eq[b][c]$，我们通过 \Elim{\eq} 推导出 $\eq[a][b]$。
 \end{ex}
 
 \begin{prob}
-Give !!{derivation}s of the following !!{formula}s:
+给出下列公式的推导：
 \begin{enumerate}
 \item $\lforall[x][\lforall[y][((\eq[x][y] \land !A(x)) \lif !A(y))]]$
 \item $\lexists[x][!A(x)] \land \lforall[y][\lforall[z][((!A(y) \land

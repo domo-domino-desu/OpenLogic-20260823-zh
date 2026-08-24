@@ -7,24 +7,19 @@
 \begin{document}
 
 \olfileid{lam}{int}{com}
-\olsection{The \usetoken{S}{lambda definable} Functions are Closed under Composition}
+\olsection{\usetoken{S}{lambda definable} 函数在复合下封闭}
 
 \begin{lem}
-The !!{lambda definable} functions are closed under composition.
+$\lambd$-可定义函数在复合下封闭。
 \end{lem}
 
 \begin{proof}
-Suppose $f$ is defined by composition from $h$, $g_0,$
-\dots,~$g_{k-1}$. Assuming $h$, $g_0$, \dots,~$g_{k-1}$ are
-!!{lambda defined} by $H$, $G_0$, \dots,~$G_{k-1}$,
-respectively, we need to find a term~$F$ that !!{lambda define}s~$f$. But we
-can simply define~$F$ by
+假设 $f$ 是由 $h$、$g_0$、……、$g_{k-1}$ 复合定义的，并设 $h$、$g_0$、……、$g_{k-1}$ 分别由 $H$、$G_0$、……、$G_{k-1}$ $\lambd$-定义。我们需要找到一个 $\lambd$-项~$F$ 使得 $F$ $\lambd$-定义~$f$。但我们只需简单地将~$F$ 定义为
 \[
 F(x_0, \dots, x_{l-1}) = H(G_0(x_0, \dots, x_{l-1}),
 \dots, G_{k-1}(x_0, \dots, x_{l-1})).
 \]
-In other words, the language of the lambda calculus is well suited to
-represent composition.
+换句话说，$\lambda$ 演算的语言非常适合表示复合。
 \end{proof}
 
 \end{document}

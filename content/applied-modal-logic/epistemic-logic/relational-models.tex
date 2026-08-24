@@ -8,42 +8,29 @@
 
 \olfileid{aml}{el}{rel}
 
-\olsection{Relational Models}
+\olsection{关系模型}
 
-The basic semantic concept for epistemic logics is the same as that of
-ordinary modal logics. Relational models still consist of a set of
-worlds, and an assignment that determines which !!{propositional
-variable}s count as ``true'' at which worlds. And if we are only
-dealing with a single agent, we have a single accessibility relation
-as usual. However, if we have a multi-agent epistemic logic, then our
-single accessibility relation becomes a set of accessibility
-relations, one for each~$a$ in our set of agent symbols~$G$.
+认知逻辑的基本语义概念与通常的模态逻辑相同。
+关系模型仍然由一个可能世界的集合和一个赋值构成，该赋值决定了哪些命题变元在哪些世界上为“真”。
+如果我们只处理单一主体，那么和通常一样，我们只有一个可达关系。
+然而，如果我们处理的是多主体认知逻辑，那么单一的可达关系就变成了一组可达关系，主体符号集~$G$ 中的每个~$a$ 对应一个可达关系。
 
-A \emph{relational model} consists of a set of worlds, which are
-related by binary accessibility relations---one for each
-agent---together with an assignment which determines which
-!!{propositional variable}s are true at which worlds.
+一个\emph{关系模型}由一个可能世界的集合和赋值组成，世界之间通过二元可达关系——每个主体对应一个——相联系，而赋值则决定了哪些命题变元在哪些世界上为真。
 
 \begin{defn}
-  A \emph{model} for the multi-agent epistemic language is a triple
-  $\mModel{M} = \tuple{W, R, V}$, where
+  多主体认知语言的\emph{模型}是一个三元组
+  $\mModel{M} = \tuple{W, R, V}$，其中
   \begin{enumerate}
-  \item $W$ is a nonempty set of ``worlds,''
-  \item For each $a \in G$, ${R}_a$ is a binary accessibility relation
-  on~$W$, and
-  \item $V$ is a function assigning to each !!{propositional
-    variable}~$p$ a set $V(p)$ of possible worlds.
+  \item $W$ 是一个非空的“世界”集合，
+  \item 对每个 $a \in G$，${R}_a$ 是 $W$ 上的一个二元可达关系，且
+  \item $V$ 是一个函数，为每个命题变元~$p$ 指派一个可能世界的集合 $V(p)$。
   \end{enumerate}
-  When $R_a ww'$ holds, we say that $w'$ is \emph{accessible by a
-    from}~$w$. When $w \in V(p)$ we say $p$ is \emph{true at}~$w$.
+  若 $R_a ww'$ 成立，我们说 $w'$ \emph{从 $w$ 经由 $a$ 可达}。若 $w \in V(p)$，我们说 $p$ \emph{在 $w$ 上为真}。
 \end{defn}
 
-The mechanics are just like the mechanics for normal modal logic, just
-with more accessibility relations added in. For a given agent, we will
-generally interpret their accessibility relation as representing
-something about their informational states. For example, we often
-treat $R_a ww'$, as expressing that $w'$ is consistent with~$a$'s
-information at~$w$. Or to put it another way, at~$w$, they cannot tell
-the difference between world $w$ and world~$w'$.  
+其机制与正规模态逻辑的机制相同，只是增加了更多的可达关系。
+对于给定的主体，我们通常将其可达关系解释为刻画其信息状态的某些方面。
+例如，我们常将 $R_a ww'$ 视为表示 $w'$ 与~$a$ 在~$w$ 处的信息相一致。
+换言之，在~$w$ 处，主体~$a$ 无法区分世界 $w$ 和世界~$w'$。
 
 \end{document}

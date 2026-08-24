@@ -8,36 +8,16 @@
 
 \olfileid{pt}{seq}{irl}
 
-\olsection{Interpretation of Rules}
+\olsection{规则的诠释}
 
-Recall the interpretation of a sequent: A sequent $\Gamma \Sequent
-\Delta$ is true in !!a{structure}~$\Struct{M}$ if either at least one
-$!A \in \Gamma$ is false or at least one~$!A \in \Delta$ is true. We
-can read the logical rules of~\Log{G3c} as codifying the truth
-conditions for their principal !!{formula}s. Consider \RightR{\lif}.
-Its principal !!{formula} is $!A \lif !B$. It is true if either $!A$
-is false or~$!B$ is true. Hence the sequent $\ \Sequent !A \lif !B$ is
-true iff $!A \Sequent !B$ is true. If we add the context !!{formula}s
-$\Gamma$, $\Delta$ to the antecedents and succedents of these
-sequents, we get exactly the conclusion and premise of the
-\RightR{\lif} rule. The situation is similar for~\LeftR{\lif}. $!A
-\lif !B$ is false if $!A$~is true and $!B$~is false. So $!A \lif !B
-\Sequent \ $ is true iff both $\ \Sequent !A$ and $!B \Sequent \ $ are
-true. The conclusion of \LeftR{\lif} is equivalent to the
-conjunction of its premises. This pattern ensures that the rules
-of~\Log{G3c} are sound (if all premises are true, the conclusion is
-true). They also ensure completeness.
+回顾一下相继式的解释：相继式 $\Gamma \Sequent
+\Delta$ 在结构~$\Struct{M}$ 中为真，如果前件~$\Gamma$ 中至少有一个公式为假，或者后件~$\Delta$ 中至少有一个公式为真。我们可以将~\Log{G3c} 的逻辑规则理解为对其主公式真值条件的编码。考虑 \RightR{\lif} 规则。其主公式是 $!A \lif !B$。如果 $!A$ 为假或者 $!B$ 为真，则它为真。因此，相继式 $\ \Sequent !A \lif !B$ 为真当且仅当 $!A \Sequent !B$ 为真。如果我们在这些相继式的前件和后件中分别加入上下文公式 $\Gamma$ 和 $\Delta$，就恰好得到了 \RightR{\lif} 规则的结论和前提。\LeftR{\lif} 的情况类似。如果 $!A$ 为真且 $!B$ 为假，则 $!A \lif !B$ 为假。所以 $!A \lif !B
+\Sequent \ $ 为真当且仅当 $\ \Sequent !A$ 和 $!B \Sequent \ $ 同时为真。\LeftR{\lif} 的结论等价于其前提的合取。这种模式确保了~\Log{G3c} 的规则是可靠的（如果所有前提为真，则结论为真）。它们也确保了完备性。
 
-In fact, the truth conditions for any truth-functional connective can
-be described in this way as a set of sequents. This follows from the
-fact that every truth-function in classical logic can be described by
-!!a{formula} in conjunctive normal form: a conjunction of disjunctions
-of atomic and negated atomic !!{formula}s. For instance, take $!A
-\oplus !B$ to be true iff exactly one of $!A$ and $!B$ is true, i.e.,
-``exclusive or.'' Then $!A \oplus !B$ is true iff $(!A \lor !B) \land
-(\lnot !A \lor \lnot !B)$ is, and it is false if $(\lnot !A \lor !B)
-\land (!A \lor \lnot !B)$ is true. Hence, we could introduce sequent
-calculus rules for $\oplus$ as
+事实上，任何真值函数联结词的真值条件都可以用这种方式描述为一组相继式。这是因为经典逻辑中的每个真值函数都可以用一个合取范式公式来描述：即原子公式及其否定的析取的合取。例如，令 $!A
+\oplus !B$ 为真当且仅当 $!A$ 和 $!B$ 中恰好有一个为真，即“异或”。那么 $!A \oplus !B$ 为真当且仅当 $(!A \lor !B) \land
+(\lnot !A \lor \lnot !B)$ 为真，且如果 $(\lnot !A \lor !B)
+\land (!A \lor \lnot !B)$ 为真则它为假。因此，我们可以为 $\oplus$ 引入相继式演算规则如下：
 \begin{align*}
 &
 \Axiom$!A, \Gamma \fCenter \Delta, !B$
@@ -53,53 +33,22 @@ calculus rules for $\oplus$ as
 \BinaryInf$\Gamma \fCenter \Delta, !A \oplus !B$
 \DisplayProof
 \end{align*}
-and these rules would also be sound and complete. Their conclusions
-are true iff all premises are true.
+并且这些规则也会是可靠且完备的。它们的结论为真当且仅当其所有前提为真。
 
 \begin{prob}
-Suppose $!A \downarrow !B$ is true iff neither $!A$ nor~$!B$ is true
-(``NOR''). What would its \Log{G3c} rules be? (Find two sequents which
-are true at the same time iff $!A \downarrow !B$ is true. That gives
-you the \RightR{\downarrow} rule. Then find one sequent that is true
-iff $!A \downarrow !B$ is false. That gives you the \LeftR{\downarrow}
-rule.)
+假设 $!A \downarrow !B$ 为真当且仅当 $!A$ 和 $!B$ 均不为真（“或非”）。它的 \Log{G3c} 规则会是怎样的？（找出两个相继式，使得这两个相继式同时为真当且仅当 $!A \downarrow !B$ 为真。这将给出 \RightR{\downarrow} 规则。然后找出一个为真当且仅当 $!A \downarrow !B$ 为假的相继式。这将给出 \LeftR{\downarrow} 规则。）
 \end{prob}
 
-In \Log{G3c}, each connective and quantifier has exactly two rules: a
-left rule and a right rule. In \Log{G1c}, however, there are two
-\LeftR{\land} and two \RightR{\lor} rules. The reason is that
-Gentzen's original system~\Log{LK}, on which \Log{G1c} is modeled, had
-a variant~\Log{LJ} for an important non-classical logic, viz.,
-intuitionistic logic. To get a system that was sound and complete for
-intuitionistic logic, the succedents of any sequent in~\Log{LJ} is
-restricted to contain at most one !!{formula}. This makes it
-impossible to use the \RightR{\lor} rule of~\Log{G3c}, as its premise
-contains both $!A$ and~$!B$ in the succedent. Gentzen thus used a pair
-of \RightR{\lor} rules for \Log{LJ}, and used the same for~\Log{LK}.
-The intuitionistic version~\Log{G1i} similarly is just~\Log{G1c} with
-all succedents restricted to at most one !!{formula}. (\Log{G3c} also
-has an intuitionistic version, but it some of its rules differ from
-the corresponding rules in~\Log{G3c}. For instance, it, too, uses a
-pair of \RightR{\lor} rules.)
+在 \Log{G3c} 中，每个联结词和量词都恰好有两个规则：一个左规则和一个右规则。然而在 \Log{G1c} 中，却有两个 \LeftR{\land} 规则和两个 \RightR{\lor} 规则。原因是 Gentzen 最初构建的系统~\Log{LK}（\Log{G1c} 以其为蓝本）有一个变体~\Log{LJ}，用于一种重要的非经典逻辑，亦即直觉主义逻辑。为了得到一个对直觉主义逻辑可靠且完备的系统，\Log{LJ} 中任何相继式的后件被限制为至多含一个公式。这就使得无法使用 \Log{G3c} 的 \RightR{\lor} 规则，因为它的前提在后件中同时包含 $!A$ 和 $!B$。因此，Gentzen 为 \Log{LJ} 使用了一对 \RightR{\lor} 规则，并在 \Log{LK} 中也采用了相同的规则。类似地，直觉主义版本 \Log{G1i} 就是将 \Log{G1c} 中所有后件限制为至多一个公式。（\Log{G3c} 也有一个直觉主义版本，但其部分规则与 \Log{G3c} 中对应的规则不同。例如，它也使用一对 \RightR{\lor} 规则。）
 
-That the structural rules of~\Log{G1c} are sound is easy to see. For
-instance, if $\Gamma \Sequent \Delta$ contains a false !!{formula} on
-the right or a true !!{formula} on the left, so does $\Gamma \Sequent
-\Delta, !A$: the same one, whether $!A$ is true or false is
-irrelevant. So if the premise of~\RightR{\Weakening} is true, so is
-its conclusion. Note that here the converse is not true. The
-conclusion may be true because $!A$ is true, and then the premise is
-not guaranteed to be true.
+\Log{G1c} 的结构规则是可靠的，这很容易看出。例如，如果 $\Gamma \Sequent \Delta$ 在右边包含一个假公式或在左边包含一个真公式，那么 $\Gamma \Sequent
+\Delta, !A$ 也是如此（包含同一个公式）：无论 $!A$ 是真是假都无关紧要。因此，如果 \RightR{\Weakening} 的前提为真，其结论也为真。注意，这里的逆命题并不成立。结论可能因为 $!A$ 为真而为真，而此时前提不一定为真。
 
-Why have structural rules at all? Contraction (\RightR{\Contraction},
-\LeftR{\Contraction}) is needed for instance to !!{prove} $\ \Sequent !A
-\lor \lnot !A$. If you start with $!A \Sequent !A$ you first get
-$\Sequent !A, \lnot !A$ by~\RightR{\lnot}. Then you can use the two
-versions of \RightR{\lor} in succession, once to get $!A \lor \lnot
-!A$ from $\lnot !A$, and once to get $!A \lor \lnot !A$ from~$!A$.
-What you get is $\ \Sequent !A \lor \lnot !A, !A \lor \lnot !A$. So to
-get $\Sequent !A \lor \lnot !A$ in~\Log{G1c} you need to be able to
-``contract'' two occurrences of the same !!{formula} in !!a{proof}:
+为什么要有结构规则呢？例如，推导 $\ \Sequent !A \lor \lnot !A$ 就需要用到收缩规则（\RightR{\Contraction}、
+\LeftR{\Contraction}）。如果你从 $!A \Sequent !A$ 出发，首先通过~\RightR{\lnot} 得到
+$\Sequent !A, \lnot !A$。然后你可以连续使用 \RightR{\lor} 规则的两种形式，一次从 $\lnot !A$ 得到 $!A \lor \lnot !A$，一次从~$!A$ 得到
+$!A \lor \lnot !A$。你得到的是 $\ \Sequent !A \lor \lnot !A, !A \lor \lnot !A$。因此，为了在~\Log{G1c} 中
+得到 $\Sequent !A \lor \lnot !A$，需要能够在推导中“收缩”同一个公式的两次出现：
 \[
 \Axiom$!A \fCenter !A$
 \RightLabel{\RightR{\lnot}}
@@ -112,12 +61,11 @@ get $\Sequent !A \lor \lnot !A$ in~\Log{G1c} you need to be able to
 \UnaryInf$\fCenter !A \lor \lnot !A$
 \DisplayProof
 \]
-There are in fact valid sequents which you could not !!{prove}
-in~\Log{G1c} without weakening or contraction. For instance,
-!!a{proof} of the sequent $!A \Sequent !B \lif !A$ in~\Log{G1c} has to
-end in \RightR{\lif} (since only $!B \lif !A$ can be principal), and
-that requires $!B, !A \Sequent !A$ as a premise. This, in turn,
-requires \LeftR{\Weakening} to get it from the axiom $!A \Sequent !A$:
+
+事实上，有些有效相继式在没有弱化或收缩规则的情况下是无法在~\Log{G1c} 中推导出来的。
+例如，在~\Log{G1c} 中推导相继式 $!A \Sequent !B \lif !A$ 必须以 \RightR{\lif} 结束
+（因为只有 $!B \lif !A$ 可以成为主公式），而这需要 $!B, !A \Sequent !A$
+作为前提。而这又需要通过 \LeftR{\Weakening} 规则，从公理 $!A \Sequent !A$ 得到该前提：
 \[
 \Axiom$!A \fCenter !A$
 \RightLabel{\LeftR{\Weakening}}
@@ -127,17 +75,13 @@ requires \LeftR{\Weakening} to get it from the axiom $!A \Sequent !A$:
 \DisplayProof
 \]
 
-In \Log{G3c} the contraction and weakening rules are not needed at
-all. Weakening is built into the axioms. Contraction can mostly be
-avoided by merging the two copies of the context $\Gamma$, $\Delta$ in
-rules with two premises into one. Both \Log{G1c} and \Log{G3c} have
-such ``context sharing'' rules. In one-premise rules, contraction is
-only needed for \RightR{\lor}, \LeftR{\land}, \RightR{\lexists},
-and~\LeftR{\lforall}. The versions of these rules in~\Log{G3c} make
-contraction entirely superfluous. There is a system \Log{G2c} (see
-\olref{tab:G2c}) in which the two-premise rules have independent
-contexts. In \Log{G2c} contraction is even more important than
-in~\Log{G1c}.
+在 \Log{G3c} 中，完全不需要收缩规则和弱化规则。弱化被内置到了公理中。
+对于具有两个前提的规则，只需将上下文 $\Gamma$、$\Delta$ 的两个副本合并为一个，便可在大多数情况下避免收缩。
+\Log{G1c} 和 \Log{G3c} 都有这种“上下文共享”的规则。在单前提规则中，收缩只在
+\RightR{\lor}、\LeftR{\land}、\RightR{\lexists} 和~\LeftR{\lforall} 中才需要。
+而在~\Log{G3c} 中，这些规则的版本使得收缩变得完全多余。还有一个系统 \Log{G2c}
+（参见 \olref{tab:G2c}），其中的双前提规则具有独立的上下文。在 \Log{G2c} 中，
+收缩规则甚至比在~\Log{G1c} 中更为重要。
 
 \subfile{rules-G2c}
 

@@ -8,48 +8,28 @@
 
 \olfileid{nml}{syn}{ent}
 
-\olsection{Entailment}
+\olsection{语义后承}
 
 \begin{explain}
-  With the definition of truth at a world, we can define an entailment
-  relation between !!{formula}s. !!^a{formula}~$!B$ entails~$!A$ iff,
-  whenever $!B$ is true, $!A$ is true as well. Here, ``whenever''
-  means both ``whichever model we consider'' as well as ``whichever
-  world in that model we consider.''
+  有了在世界处为真的定义，我们就可以定义公式之间的一种后承关系。
+  公式~$!B$ \emph{语义后承}公式~$!A$，当且仅当，只要 $!B$ 为真，$!A$ 就为真。
+  这里的“只要”既意指“无论考虑哪个模型”，也意指“无论考虑该模型中的哪个世界”。
 \end{explain}
 
 \begin{defn}
-  If $\Gamma$ is a set of !!{formula}s and $!A$ !!a{formula}, then
-  $\Gamma$ \emph{entails}~$!A$, in symbols: $\Gamma \Entails !A$, if
-  and only if for every model $\mModel{M} = \tuple{W, R, V}$ and world
-  $w \in W$, if $\mSat{M}{!B}[w]$ for every $!B \in \Gamma$, then
-  $\mSat{M}{!A}[w]$. If $\Gamma$ contains a single !!{formula}~$!B$,
-  then we write $!B \Entails !A$.
+  如果 $\Gamma$ 是一个公式集且 $!A$ 是一个公式，则 $\Gamma$ \emph{语义地后承}~$!A$，记作：$\Gamma \Entails !A$，当且仅当对每个模型 $\mModel{M} = \tuple{W, R, V}$ 和每个世界 $w \in W$，若对每个 $!B \in \Gamma$ 都有 $\mSat{M}{!B}[w]$，则 $\mSat{M}{!A}[w]$。若 $\Gamma$ 仅包含单个公式~$!B$，则我们记作 $!B \Entails !A$。
 \end{defn}
 
 \begin{ex}
-  To show that !!a{formula} entails another, we have to reason about
-  all models, using the definition of $\mSat{M}{}[w]$. For instance,
-  to show $p \lif \Diamond p \Entails \Box\lnot p \lif \lnot p$, we
-  might argue as follows: Consider a model $\mModel{M} = \tuple{W, R,
-    V}$ and $w \in W$, and suppose $\mSat{M}{p \lif \Diamond
-    p}[w]$. We have to show that $\mSat{M}{\Box\lnot p \lif \lnot
-    p}[w]$. Suppose not. Then $\mSat{M}{\Box\lnot p}[w]$ and
-  $\mSat/{M}{\lnot p}[w]$. Since $\mSat/{M}{\lnot p}[w]$, $\mSat{M}{
-    p}[w]$. By assumption, $\mSat{M}{p \lif \Diamond p}[w]$, hence
-  $\mSat{M}{\Diamond p}[w]$. By definition of $\mSat{M}{\Diamond
-    p}[w]$, there is some $w'$ with $Rww'$ such that
-  $\mSat{M}{p}[w']$. Since also $\mSat{M}{\Box \lnot p}[w]$,
-  $\mSat{M}{\lnot p}[w']$, a contradiction.
+  要证明一个公式语义地后承另一个公式，我们必须利用 $\mSat{M}{}[w]$ 的定义对所有模型进行推理。例如，为了证明 $p \lif \Diamond p \Entails \Box\lnot p \lif \lnot p$，我们可以这样论证：考虑模型 $\mModel{M} = \tuple{W, R,
+    V}$ 与 $w \in W$，并假设 $\mSat{M}{p \lif \Diamond
+    p}[w]$。我们需要证明 $\mSat{M}{\Box\lnot p \lif \lnot
+    p}[w]$。假设并非如此，则 $\mSat{M}{\Box\lnot p}[w]$ 且 $\mSat/{M}{\lnot p}[w]$。由于 $\mSat/{M}{\lnot p}[w]$，故 $\mSat{M}{p}[w]$。根据假设，$\mSat{M}{p \lif \Diamond p}[w]$，因此 $\mSat{M}{\Diamond p}[w]$。根据 $\mSat{M}{\Diamond
+    p}[w]$ 的定义，存在某个 $w'$ 满足 $Rww'$ 且 $\mSat{M}{p}[w']$。因为也有 $\mSat{M}{\Box \lnot p}[w]$，故 $\mSat{M}{\lnot p}[w']$，矛盾。
 
-  To show that !!a{formula}~$!B$ does not entail another~$!A$, we have
-  to give a counterexample, i.e., a model $\mModel{M} = \tuple{W, R,
-    V}$ where we show that at some world~$w \in W$, $\mSat{M}{!B}[w]$
-  but $\mSat/{M}{!A}[w]$. Let's show that $p \lif \Diamond p \Entails/
-  \Box p \lif p$. Consider the model in \olref{fig:counterex}.  We
-  have $\mSat{M}{\Diamond p}[w_1]$ and hence $\mSat{M}{p \lif
-    \Diamond p}[w_1]$. However, since $\mSat{M}{\Box p}[w_1]$ but
-  $\mSat/{M}{p}[w_1]$, we have $\mSat/{M}{\Box p \lif p}[w_1]$.
+  要证明公式~$!B$ 不语义地后承公式~$!A$，我们需要给出一个反例，即给出模型 $\mModel{M} = \tuple{W, R,
+    V}$，并表明在其中存在某个世界~$w \in W$，使得 $\mSat{M}{!B}[w]$ 但 $\mSat/{M}{!A}[w]$。我们来证明 $p \lif \Diamond p \Entails/ \Box p \lif p$。考虑 \olref{fig:counterex} 中的模型。我们有 $\mSat{M}{\Diamond p}[w_1]$，因此 $\mSat{M}{p \lif
+    \Diamond p}[w_1]$。然而，由于 $\mSat{M}{\Box p}[w_1]$ 但 $\mSat/{M}{p}[w_1]$，我们有 $\mSat/{M}{\Box p \lif p}[w_1]$。
   \begin{figure}
   \begin{center}
     \begin{tikzpicture}[modal]
@@ -60,26 +40,22 @@
       \draw[->] (w1) to (w3);
     \end{tikzpicture}
   \end{center}
-  \caption{Counterexample to $p \lif \Diamond p
-  \Entails \Box p \lif p$.}
+  \caption{$p \lif \Diamond p \Entails \Box p \lif p$ 的反例。}
   \ollabel{fig:counterex}
   \end{figure}
   
-  Often very simple counterexamples suffice. The model $\mModel{M'} =
-  \{W', R', V'\}$ with $W' = \{w\}$, $R' = \emptyset$, and $V'(p) =
-  \emptyset$ is also a counterexample: Since $\mSat/{M'}{p}[w]$,
-  $\mSat{M'}{p \lif \Diamond p}[w]$. As no worlds are accessible
-  from~$w$, we have $\mSat{M'}{\Box p}[w]$, and so $\mSat/{M'}{\Box p
-    \lif p}[w]$.
+  通常非常简单的反例就足够了。满足 $W' = \{w\}$、$R' = \emptyset$ 且 $V'(p) = \emptyset$ 的模型 $\mModel{M'} =
+  \{W', R', V'\}$ 也是一个反例：因为 $\mSat/{M'}{p}[w]$，所以 $\mSat{M'}{p \lif \Diamond p}[w]$。由于从~$w$ 出发没有可达世界，我们有 $\mSat{M'}{\Box p}[w]$，因此 $\mSat/{M'}{\Box p
+    \lif p}[w]$。
 \end{ex}
 
 \begin{prob}
-  Show that $\Box (!A \land !B) \Entails \Box !A$.
+  证明 $\Box (!A \land !B) \Entails \Box !A$。
 \end{prob}
 
 \begin{prob}
-  Show that $\Box (p \lif q) \Entails/ p \lif \Box q$ and $p \lif \Box
-  q \Entails/\Box (p \lif q)$.
+  证明 $\Box (p \lif q) \Entails/ p \lif \Box q$ 与 $p \lif \Box
+  q \Entails/\Box (p \lif q)$。
 \end{prob}
 
 \end{document}

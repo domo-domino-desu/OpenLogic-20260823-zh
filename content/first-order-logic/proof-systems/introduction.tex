@@ -10,92 +10,58 @@
       {\olfileid{fol}{prf}{int}}
       {\olfileid{pl}{prf}{int}}
 
-\olsection{Introduction}
+\olsection{引言}
 
-Logics commonly have both a semantics and !!a{derivation}
-system. The semantics concerns concepts such as truth, satisfiability,
-validity, and entailment.  The purpose of !!{derivation} systems is to
-provide a purely syntactic method of establishing entailment and
-validity.  They are purely syntactic in the sense that a
-!!{derivation} in such a system is a finite syntactic object, usually
-a sequence (or other finite arrangement) of !!{sentence}s or
-!!{formula}s.  Good !!{derivation} systems have the property that any
-given sequence or arrangement of !!{sentence}s or !!{formula}s can be
-verified mechanically to be ``correct.''
+逻辑学通常兼具语义学与推导系统。
+语义学涉及诸如真、可满足性、有效性和语义后承等概念。
+推导系统的目的则是提供一种确立语义后承与有效性的纯句法方法。
+之所以说它们是纯句法的，是因为在这样的系统中，一个推导就是一个有限的句法对象，通常是一个语句或公式的序列（或其他有限的排列方式）。
+良好推导系统的性质是：任何给定的语句或公式序列（或排列），都可以被机械地验证为“正确”。
 
-The simplest (and historically first) !!{derivation} systems for
-first-order logic were \emph{axiomatic}.  A sequence of !!{formula}s
-counts as !!a{derivation} in such a system if each individual
-!!{formula} in it is either among a fixed set of ``axioms'' or follows
-from !!{formula}s coming before it in the sequence by one of a fixed
-number of ``inference rules''---and it can be mechanically verified if
-!!a{formula} is an axiom and whether it follows correctly from other
-!!{formula}s by one of the inference rules.  Axiomatic !!{derivation}
-systems are easy to describe---and also easy to handle
-meta-theoretically---but !!{derivation}s in them are hard to read and
-understand, and are also hard to produce.
+一阶逻辑最简单（也是历史上最早）的推导系统是\emph{公理化的}。
+在这样的系统中，一个公式序列构成一个推导，当且仅当其中每个单独的公式要么属于一个固定的“公理”集，
+要么通过有限多条“推理规则”从序列中位于它前面的公式推出——并且可以机械地验证一个公式是否为公理，
+以及它是否通过某条推理规则从其他公式正确推出。
+公理化推导系统易于描述——也易于在元理论层面处理——但其中的推导难以阅读和理解，也难以构造。
 
-Other !!{derivation} systems have been developed with the aim of
-making it easier to construct !!{derivation}s or easier to understand
-!!{derivation}s once they are complete.  Examples are natural
-deduction, truth trees, also known as tableaux proofs, and the sequent
-calculus.  Some !!{derivation} systems are designed especially with
-mechanization in mind, e.g., the resolution method is easy to
-implement in software (but its !!{derivation}s are essentially
-impossible to understand). Most of these other !!{derivation} systems
-represent !!{derivation}s as trees of !!{formula}s rather than
-sequences. This makes it easier to see which parts of !!a{derivation}
-depend on which other parts.
+人们开发了其他推导系统，旨在便于构造推导，或使推导完成后更易理解。
+例如自然演绎、真值树（也称为分析表证明）以及矢列演算。
+有些推导系统特别为机械化而设计，例如归结法易于在软件中实现（但它的推导根本无法理解）。
+这些其他推导系统大多将推导表示为公式的树，而非序列。
+这使得便于看清推导的各个部分依赖于哪些其他部分。
 
-So for a given logic, such as first-order logic, the different
-!!{derivation} systems will give different explications of what it is
-for !!a{sentence} to be a \emph{theorem} and what it means for
-!!a{sentence} to be !!{derivable} from some others. However that is
-done (via axiomatic !!{derivation}s, natural deductions, sequent
-!!{derivation}s, truth trees, resolution refutations), we want these
-relations to match the semantic notions of validity and
-entailment. Let's write $\Proves !A$ for ``$!A$~is a theorem'' and
-``$\Gamma \Proves !A$'' for ``$!A$~is !!{derivable} from~$\Gamma$.''
-However $\Proves$~is defined, we want it to match up with $\Entails$,
-that is:
+因此，对于给定的逻辑（如一阶逻辑），不同的推导系统会对什么是语句为\emph{定理}、
+以及语句从其他语句可推导意味着什么，给出不同的界定。
+无论采用何种方式（公理推导、自然演绎、矢列推导、真值树、归结反驳），
+我们都希望这些关系与语义上的有效性和语义后承概念相匹配。
+我们用 $\Proves !A$ 表示“$!A$~是定理”，用 $\Gamma \Proves !A$ 表示“$!A$~可从~$\Gamma$ 推导”。
+无论 $\Proves$~如何定义，我们都希望它与 $\Entails$ 匹配，即：
+
 \begin{enumerate}
-\item $\Proves !A$ if and only if $\Entails !A$
-\item $\Gamma \Proves !A$ if and only if $\Gamma \Entails !A$
+\item $\Proves !A$ 当且仅当 $\Entails !A$
+\item $\Gamma \Proves !A$ 当且仅当 $\Gamma \Entails !A$
 \end{enumerate}
-The ``only if'' direction of the above is called
-\emph{soundness}. !!^a{derivation} system is sound if !!{derivability}
-guarantees entailment (or validity). Every decent !!{derivation}
-system has to be sound; unsound !!{derivation} systems are not useful
-at all. After all, the entire purpose of !!a{derivation} is to provide
-a syntactic guarantee of validity or entailment. We'll prove soundness
-for the !!{derivation} systems we present.
 
-The converse ``if'' direction is also important: it is called
-\emph{completeness}. A complete !!{derivation} system is strong enough
-to show that $!A$~is a theorem whenever $!A$~is valid, and that
-$\Gamma \Proves !A$ whenever $\Gamma \Entails !A$.
-Completeness is harder to establish, and some logics have no complete
-!!{derivation} systems. First-order logic does. Kurt G\"odel was the
-first one to prove completeness for !!a{derivation} system of
-first-order logic in his 1929 dissertation.
+上述条件的“仅当”方向称为\emph{可靠性}。
+如果可推导性保证了语义后承（或有效性），则该推导系统是可靠的。
+每个合格的推导系统都必须是可靠的；不可靠的推导系统完全无用。
+毕竟，推导的全部目的就是为有效性或语义后承提供一种句法保证。我们将为所介绍的推导系统证明可靠性。
 
-Another concept that is connected to !!{derivation} systems is that of
-\emph{consistency}. A set of !!{sentence}s is called inconsistent if
-anything whatsoever can be !!{derive}d from it, and consistent
-otherwise.  Inconsistency is the syntactic counterpart to
-unsatisfiablity: like unsatisfiable sets, inconsistent sets of
-!!{sentence}s do not make good theories, they are defective in a
-fundamental way. Consistent sets of !!{sentence}s may not be true or
-useful, but at least they pass that minimal threshold of logical
-usefulness.  For different !!{derivation} systems the specific
-definition of consistency of sets of !!{sentence}s might differ, but
-like~$\Proves$, we want consistency to coincide with its semantic
-counterpart, satisfiability. We want it to always be the case that
-$\Gamma$ is consistent if and only if it is satisfiable. Here, the
-``only if'' direction amounts to completeness (consistency guarantees
-satisfiability), and the ``if'' direction amounts to soundness
-(satisfiability guarantees consistency).  In fact, for classical
-first-order logic, the two versions of soundness and completeness are
-equivalent.
+相反的“如果”方向也很重要：它称为\emph{完备性}。
+一个完备的推导系统足够强大，能够证出只要 $!A$~有效，$!A$~就是定理；
+并且只要 $\Gamma \Entails !A$，就有 $\Gamma \Proves !A$。
+完备性更难确立，有些逻辑没有完备的推导系统。一阶逻辑则拥有完备的推导系统。
+Kurt Gödel 在其1929年的博士论文中首次证明了一阶逻辑推导系统的完备性。
+
+另一个与推导系统相关的概念是\emph{一致性}。
+如果从一个语句集合可以推导出任意语句，则称该集合为\emph{不一致的}；否则，称其为\emph{一致的}。
+不一致性是不可满足性在句法上的对应物：就像不可满足的集合一样，
+不一致的语句集合不能构成合格的理论，它们在根本层面上是有缺陷的。
+虽然一致的语句集合未必为真或未必有用，但至少它们跨过了逻辑有用性的最低门槛。
+对于不同的推导系统，语句集合一致性的具体定义可能有所不同；
+但就像~$\Proves$ 一样，我们希望一致性能与其语义上的对应物——可满足性——相吻合。
+我们希望始终满足：$\Gamma$ 是一致的，当且仅当它是可满足的。
+这里，“仅当”方向相当于完备性（一致性保证可满足性），而“当”方向则相当于可靠性（可满足性保证一致性）。
+事实上，对于经典一阶逻辑而言，可靠性与完备性的这两种表述是等价的。
 
 \end{document}

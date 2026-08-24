@@ -8,19 +8,17 @@
 
 \olfileid{pt}{nor}{per}
 
-\olsection{Permutation Conversions}
+\olsection{置换转换}
 
-Cuts in \Log{N1i} are segments that end in the major premise of
-!!a{elimination} rule. One case in the normalization proof is to
-reduce the length of maximal cuts, and with it the cut length of the
-!!{proof}. A cut of length $>1$ can end in many ways depending on
-whether the last !!{formula} occurrence of~$!A$ in the cut is the
-conclusion of (\Elim{\lor} or \Elim{\lexists}) and depending on the
-!!{elimination} inference it is the major premise of.
+\Log{N1i} 中的切割是以消去规则的主前提结束的切割段。
+正规化证明的其中一步是减少最大切割的长度，
+从而也减少推导的切割长度。
+长度大于 $1$ 的切割可能以多种方式结束，
+这取决于切割中最后一个公式出现~$!A$ 是否是 \Elim{\lor} 或 \Elim{\lexists} 的结论，
+以及它是哪个消去推理的主前提。
 
-For instance, if the inferences involved are \Elim{\lor} and
-\Elim{\land}, $!A \ident !B \lor !C$ and there is a
-sub-!!{proof}~$\delta_1$ that ends in:
+例如，若涉及的推理是 \Elim{\lor} 和 \Elim{\land}，
+且 $!A \ident !B \lor !C$，并存在一个结束于如下结构的子推导~$\delta_1$：
 \[
 \AxiomC{}
 \RightLabel{$\delta_2$}
@@ -37,14 +35,11 @@ sub-!!{proof}~$\delta_1$ that ends in:
 \UnaryInfC{$!B$}
 \DisplayProof
 \]
-The last !!{formula} occurrence~$!A_n$ in the cut is the conclusion
-of~\Elim{\lor}, the lower $!B \land !C$. The second-to-last
-!!{formula} occurrence~$!A_{n-1}$ is one of the minor premises
-of~\Elim{\lor}.
+那么切割中的最后一个公式出现~$!A_n$ 是~\Elim{\lor} 的结论，即下方的 $!B \land !C$。
+倒数第二个公式出现~$!A_{n-1}$ 则是~\Elim{\lor} 的某个小前提。
 
-To reduce the length of this cut, we can switch the order
-(``permute'') of the \Elim{\lor} and \Elim{\land} inferences. That is,
-we replace the subproof~$\delta_1$ in~$\delta$ by the following:
+为了减少这个切割的长度，我们可以调换（“置换”）\Elim{\lor} 和 \Elim{\land} 推理的顺序。
+也就是说，我们把~$\delta$ 中的子推导~$\delta_1$ 替换为如下形式：
 \[
 \AxiomC{}
 \RightLabel{$\delta_2$}
@@ -63,33 +58,14 @@ we replace the subproof~$\delta_1$ in~$\delta$ by the following:
 \TrinaryInfC{$!B$}
 \DisplayProof
 \]
-The cuts that ended in the premise of \Elim{\land} below \Elim{\lor}
-now end in the premise of one of the \Elim{\land} inferences above the
-minor premises of \Elim{\lor}, i.e., the length of each has decreased
-by~$1$.
+原先终止于 \Elim{\lor} 下方 \Elim{\land} 前提的切割，现在终止于 \Elim{\lor} 小前提上方的某个 \Elim{\land} 推理的前提，也就是说，每个切割的长度都减少了~1。
 
-Moreover, any cut that lies entirely within $\delta_2$, $\delta_3$, or
-$\delta_4$, or entirely outside~$\delta_1$ in~$\delta$ is unchanged:
-it still involves the same !!{formula}s, goes through the same
-inferences, so in particular has the same rank and length as the
-corresponding cut in~$\delta$. So the cut rank of the new !!{proof} has
-not increased, and the cut length of the new !!{proof} is less than that
-of the old !!{proof}.
+此外，完全位于 $\delta_2$、$\delta_3$ 或 $\delta_4$ 中，或完全位于~$\delta$ 的 $\delta_1$ 之外的那些切割保持不变：它们仍然涉及相同的公式，经过相同的推理，因此，特别地，其秩和长度与原推导~$\delta$ 中对应切割相同。所以新推导的切割秩没有增加，并且新推导的切割长度小于旧推导的切割长度。
+ \begin{prob}
+ 经过一次置换转换后，至少有一个切割的长度减少了~1。如果我们将 \Elim{\land} 置换到 \Elim{\lor} 之上，实际上有两个切割段的长度减少了，因此在这种情况下，推导的切割长度至少减少~2。单次这样的置换是否能使一个推导的切割长度减少超过~2？切割的\emph{秩}能否减少？
+ \end{prob}
 
-\begin{prob}
-After a permutation conversion, the length of at least one cut is
-reduced by~$1$. If we permute \Elim{\land} across an~\Elim{\lor},
-there are actually two cut segments the length of which decrease, so
-in this case the cut length of the !!{proof} decreases by at
-least~$2$. Can the cut length of !!a{proof} decrease by more than~$2$
-by a single such permutation? Can the cut \emph{rank} decrease?
-\end{prob}
-
-The process of moving !!a{elimination} rule above an \Elim{\lor} or
-\Elim{\lexists} rule is called a \emph{permutation conversion}. The
-patterns for some of the rule pairs is given in
-\olref{tab:permutation-conversions}. (The remaining are left as
-exercises.) 
+ 将一个消去规则移到 \Elim{\lor} 或 \Elim{\lexists} 规则之上的过程称为\emph{置换转换}。部分规则组合的模式见 \olref{tab:permutation-conversions}。（其余留作练习。）
 
 % \begin{table}
 % \begin{multline*}
@@ -215,7 +191,6 @@ exercises.)
 % \ollabel{tab:permutation-conversions}
 % \end{table}
 
-{\small
 \begin{longtable}{@{}l@{}}
 \AxiomC{$!D \lor !E$}
 \AxiomC{$\Discharge{!D}{x}$}
@@ -335,25 +310,20 @@ $\longrightarrow$\\[6ex]
 \TrinaryInfC{$!B(t)$}
 \DisplayProof
 \\
-\caption{Some permutation conversions for \Log{N1i}.}
+\caption{\Log{N1i} 的一些置换转换。}
 \ollabel{tab:permutation-conversions}
 \end{longtable}
-}
+
 
 \begin{prob}
-Give the permutation conversions for \Elim{\lor} followed by
-\Elim{\lor} or \Elim{\lnot}.
+给出先 \Elim{\lor} 后 \Elim{\lor}，或先 \Elim{\lor} 后 \Elim{\lnot} 的置换转换。
 \end{prob}
 
 \begin{prob}
-Give the permutation conversions for \Elim{\lexists} followed by
-\Elim{\exists}. Explain why no eigenvariable condition is violated in
-the latter.
+给出先 \Elim{\lexists} 后 \Elim{\lexists} 的置换转换。解释为什么在后者中不会违反任何特征变元条件。
 \end{prob}
 
-We should convince ourselves that when applying a permutation
-conversion, we don't perhaps violate an eigenvariable condition.
-Consider
+我们需要确信，在进行置换转换时，不会违反特征变元条件。考虑
 \[
 \AxiomC{}
 \RightLabel{$\delta_2$}
@@ -373,7 +343,7 @@ Consider
 \BinaryInfC{$!C$}
 \DisplayProof
 \]
-If we replace this by
+如果我们将其替换为
 \[
 \AxiomC{}
 \RightLabel{$\delta_2$}
@@ -398,28 +368,8 @@ If we replace this by
 \TrinaryInfC{$!C$}
 \DisplayProof
 \]
-we might worry that the eigenvariable~$c$ might occur in, say,~$!D$.
-After all, the assumption $!D$ is discharged above the
-original~$\Elim{\lexists}$ and so in the original !!{proof} it does not
-occur in an assumption that's open above the major premise of
-the~\Elim{\exists} inference, and so there the eigenvariable condition
-is satisfied. But in the new !!{proof}, $!D$~is not discharged until after
-the~\Elim{\lexists} inferences, and so the eigenvariable condition
-would be violated. Recall, however, that we assume our !!{proof}s are
-regular: every eigenvariable is the eigenvariable of a single
-inference and only occurs above the minor premise of \Elim{\lexists}
-in the !!{proof}. In particular, $c$~cannot occur in $\delta_3$
-or~$\delta_4$.
+我们可能会担心特征变元~$c$ 出现在（比如说）$!D$ 中。毕竟，在原始推导中，假设 $!D$ 是在原先的~$\Elim{\lexists}$ 之上解除的，因此它并不出现在 $\Elim{\exists}$ 推理的主前提之上仍然开放的假设中，所以那里的特征变元条件得到满足。但在新的推导中，$!D$~直到 $\Elim{\lexists}$ 推理之后才被解除，因此特征变元条件将被违反。然而回想一下，我们假设推导是正则的：每个特征变元都是唯一一个推理的特征变元，并且仅出现在推导中该推理的小前提之上。特别地，$c$~不可能出现在 $\delta_3$ 或~$\delta_4$ 中。
 
-This example shows something else: Note that the new !!{proof} has two
-copies of~$\delta_5$. This means that if $\delta_5$ contains a maximal
-cut, we have \emph{not} reduced the cut length! Thus we must take care
-that we apply a permutation conversion only when we know that there is
-no maximal cut in $\delta_5$. We will ensure this by always selecting
-a \emph{topmost} maximal cut, that is a maximal cut such that the
-sub-!!{proof} (in this case,~$\delta_1$) contains no maximal cut that
-ends above the last inference in the sub-!!{proof}. This rules out the
-possibility that there are other maximal cuts in~$\delta_5$ (or indeed
-in $\delta_2$, $\delta_3$, or~$\delta_4$).
+这个例子还说明了另一点：注意新的推导有两份~$\delta_5$ 的副本。这意味着，如果 $\delta_5$ 包含一个最大切割，我们并\emph{没有}减少切割的长度！因此我们必须注意，只有当知道 $\delta_5$ 中没有最大切割时，才应用置换转换。我们将通过总是选择\emph{最高层}的最大切割来确保这一点，即该最大切割的子推导（在此例中为~$\delta_1$）中，不包含任何结束于该子推导最后一个推理之上的最大切割。这就排除了在~$\delta_5$ 中（或者实际上在 $\delta_2$、$\delta_3$ 或~$\delta_4$ 中）还存在其他最大切割的可能性。
 
 \end{document}

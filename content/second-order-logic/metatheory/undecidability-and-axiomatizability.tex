@@ -8,44 +8,24 @@
 
 \olfileid{sol}{met}{nax}
 
-\olsection{Second-order Logic is not Axiomatizable}
-
+\olsection{二阶逻辑不可公理化}
 
 \begin{thm}
 \ollabel{thm:sol-undecidable}
-Second-order logic is undecidable.
+二阶逻辑是不可判定的。
 \end{thm}
 
 \begin{proof}
-A first-order !!{sentence} is valid in first-order logic iff it is
-valid in second-order logic, and first-order logic is undecidable.
+一阶语句在一阶逻辑中有效当且仅当它在二阶逻辑中有效，而一阶逻辑是不可判定的。
 \end{proof}
 
 \begin{thm}
 \ollabel{cor:sol-not-axiomatizable}
-There is no sound and complete !!{derivation} system for second-order logic.
+不存在二阶逻辑的可靠且完备的推导系统。
 \end{thm}
 
 \begin{proof}
-Let $!A$ be !!a{sentence} in the language of arithmetic.  $\Sat{N}{!A}$
-iff $\Th{PA^2} \Entails !A$. Let $!P$ be the conjunction of the nine
-axioms of~$\Th{PA^2}$. $\Th{PA^2} \Entails !A$ iff $\Entails !P \lif
-!A$, i.e., $\Sat{M}{!P \lif !A$}. Now consider the !!{sentence}
-$\lforall[z][\lforall[u][\lforall[u'][\lforall[u''][\lforall[L][(!P' \lif !A')]]]]]$ resulting by
-replacing $\Obj{0}$ by $z$, $\prime$ by the one-place function
-variable $u$, $+$ and $\times$ by the two-place function-variables 
-$u'$ and  $u''$, respectively,
-and $<$ by the two-place relation variable~$L$ and
-universally quantifying.  It is a valid sentence of pure second-order
-logic iff the original sentence was valid iff $\Th{PA^2} \Entails !A$
-iff $\Sat{N}{!A}$.  Thus if there were a sound and complete proof
-system for second-order logic, we could use it to define a computable
-enumeration $f\colon \Nat \to \Sent[L_A]$ of the !!{sentence}s true
-in~$\Struct{N}$. This function would be representable in~$\Th{Q}$ by
-some first-order formula~$!B_f(x, y)$. Then the
-!!{formula}~$\lexists[x][!B_f(x, y)]$ would define the set of true
-first-order !!{sentence}s of~$\Struct{N}$, contradicting Tarski's
-Theorem.
+设 $!A$ 为算术语言中的一个语句。$\Sat{N}{!A}$ 当且仅当 $\Th{PA^2} \Entails !A$。令 $!P$ 为 $\Th{PA^2}$ 的九条公理的合取。$\Th{PA^2} \Entails !A$ 当且仅当 $\Entails !P \lif !A$，即对任意结构 $M$，$\Sat{M}{!P \lif !A$}。现在考虑由原语句经如下替换并加以全称量化得到的语句 $\lforall[z][\lforall[u][\lforall[u'][\lforall[u''][\lforall[L][(!P' \lif !A')]]]]]$：将 $\Obj{0}$ 替换为 $z$，$\prime$ 替换为一元函数变元 $u$，$+$ 与 $\times$ 分别替换为二元函数变元 $u'$ 与 $u''$，$<$ 替换为二元关系变元 $L$，然后对这些替换引入的变元进行全称量化。该语句是纯二阶逻辑中的有效语句，当且仅当原语句有效，当且仅当 $\Th{PA^2} \Entails !A$，当且仅当 $\Sat{N}{!A}$。因此，如果存在二阶逻辑的可靠且完备的证明系统，我们就可用它来定义 $\Struct{N}$ 中真语句的一个可计算枚举 $f\colon \Nat \to \Sent[L_A]$。该函数在 $\Th{Q}$ 中可由某个一阶公式 $!B_f(x, y)$ 表示。于是，公式 $\lexists[x][!B_f(x, y)]$ 将定义 $\Struct{N}$ 中一阶真语句的集合，这与 Tarski 定理矛盾。
 \end{proof}
 
 

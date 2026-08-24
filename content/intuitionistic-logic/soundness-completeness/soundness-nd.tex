@@ -8,141 +8,66 @@
 
 \olfileid{int}{sc}{snd}
 
-\olsection{Soundness of Natural Deduction}
+\olsection{自然演绎的可靠性}
 
-We will now prove soundness of natural deduction with regards to the
-relational semantics, that is, showing that if !!a{formula} is !!{derivable}
-from a set of assumptions then the set of assumptions entails the
-!!{formula}.
+我们现在将证明自然演绎系统相对于关系语义的可靠性，即证明：若一个公式可从一组假设推导出来，则这组假设语义后承该公式。
 
-\begin{thm}[Soundness]
+\begin{thm}[可靠性]
   \ollabel{thm:soundness}
-  If $\Gamma \Proves !A$, then $ \Gamma \Entails !A$.
+  若 $\Gamma \Proves !A$，则 $\Gamma \Entails !A$。
 \end{thm}
 
 \begin{proof}
-  We prove that if $\Gamma \Proves !A$, then $\Gamma \Entails !A$.
-  The proof is by induction on the !!{derivation} of~$!A$
-  from~$\Gamma$.
+  我们证明，若 $\Gamma \Proves !A$，则 $\Gamma \Entails !A$。
+  证明对 $!A$ 从 $\Gamma$ 的推导施归纳。
   
   \begin{enumerate}
-  \item If the !!{derivation} consists of just the assumption~$!A$, we
-    have $!A \Proves !A$, and want to show that $!A \Entails !A$.
-    Suppose that $\mSat{M}{!A}[w]$. Then trivially $\mSat{M}{!A}[w]$.
+  \item 若推导仅由假设 $!A$ 构成，则有 $!A \Proves !A$，需要证明 $!A \Entails !A$。
+    设 $\mSat{M}{!A}[w]$。则显然有 $\mSat{M}{!A}[w]$。
 
-  \item The !!{derivation} ends in $\Intro{\land}$:
-    \iftag{probAnd}{Exercise.}{The !!{derivation}s of the premises
-      $!B$ from !!{undischarged} assumptions~$\Gamma$ and of~$!C$ from
-      !!{undischarged} assumptions~$\Delta$ show that $\Gamma \Proves
-      !B$ and $\Delta \Proves !C$. By induction hypothesis we have
-      that $\Gamma \Entails !B$ and $\Delta \Entails !C$. We have to
-      show that $\Gamma \cup \Delta \Entails !A \land !B$, since the
-      !!{undischarged} assumptions of the entire !!{derivation} are
-      $\Gamma$ together with $\Delta$.  So suppose $\mSat{M}{\Gamma
-        \cup \Delta}[w]$. Then also $\mSat{M}{\Gamma}[w]$. Since $\Gamma
-      \Entails !B$, $\mSat{M}{!B}[w]$. Similarly, $\mSat{M}{!C}[w]$. So
-      $\mSat{M}{!B \land !C}[w]$.}
+  \item 推导以 $\Intro{\land}$ 结束：
+    \iftag{probAnd}{练习。}{前提 $!B$ 从未解除假设 $\Gamma$ 的推导，以及 $!C$ 从未解除假设 $\Delta$ 的推导表明，$\Gamma \Proves !B$ 且 $\Delta \Proves !C$。根据归纳假设，$\Gamma \Entails !B$ 且 $\Delta \Entails !C$。因为整个推导的未解除假设是 $\Gamma \cup \Delta$，我们需要证明 $\Gamma \cup \Delta \Entails !A \land !B$。设 $\mSat{M}{\Gamma
+        \cup \Delta}[w]$。则也有 $\mSat{M}{\Gamma}[w]$。由于 $\Gamma \Entails !B$，有 $\mSat{M}{!B}[w]$。类似地，$\mSat{M}{!C}[w]$。因此，$\mSat{M}{!B \land !C}[w]$。}
 
-  \item The !!{derivation} ends in $\Elim{\land}$:
-    \iftag{probAnd}{Exercise.}{The !!{derivation} of the premise $!B
-        \land !C$ from !!{undischarged} assumptions $\Gamma$ shows
-        that $\Gamma \Proves !B \land !C$. By induction hypothesis,
-        $\Gamma \Entails !B \land !C$. We have to show that $\Gamma
-        \Entails !B$. So suppose $\mSat{M}{\Gamma}[w]$. Since $\Gamma
-        \Entails !B \land !C$, $\mSat{M}{!B \land !C}[w]$. Then also
-        $\mSat{M}{!B}[w]$. Similarly if $\Elim\land$ ends in~$!C$, then
-        $\Gamma \Entails !C$.}
+  \item 推导以 $\Elim{\land}$ 结束：
+    \iftag{probAnd}{练习。}{前提 $!B \land !C$ 从未解除假设 $\Gamma$ 的推导表明 $\Gamma \Proves !B \land !C$。根据归纳假设，$\Gamma \Entails !B \land !C$。我们需要证明 $\Gamma \Entails !B$。设 $\mSat{M}{\Gamma}[w]$。由于 $\Gamma \Entails !B \land !C$，有 $\mSat{M}{!B \land !C}[w]$。则也有 $\mSat{M}{!B}[w]$。类似地，若 $\Elim\land$ 以 $!C$ 结束，则 $\Gamma \Entails !C$。}
 
-  \item The !!{derivation} ends in $\Intro{\lor}$:
-    \iftag{probOr}{Exercise.}{Suppose the premise is $!B$, and the
-      !!{undischarged} assumptions of the !!{derivation} ending
-      in~$!B$ are $\Gamma$. Then we have $\Gamma \Proves !B$ and by
-      inductive hypothesis, $\Gamma \Entails !B$. We have to show that
-      $\Gamma \Entails !B \lor !C$. Suppose $\mSat{M}{\Gamma}[w]$. Since
-      $\Gamma \Entails !B$, $\mSat{M}{!B}[w]$. But then also $\mSat{M}{!B
-        \lor !C}[w]$. Similarly, if the premise is~$!C$, we have that
-      $\Gamma \Entails !C$.}
+  \item 推导以 $\Intro{\lor}$ 结束：
+    \iftag{probOr}{练习。}{设前提为 $!B$，且该推导的未解除假设为 $\Gamma$。则 $\Gamma \Proves !B$，根据归纳假设，$\Gamma \Entails !B$。我们需要证明 $\Gamma \Entails !B \lor !C$。设 $\mSat{M}{\Gamma}[w]$。由于 $\Gamma \Entails !B$，有 $\mSat{M}{!B}[w]$。从而也有 $\mSat{M}{!B
+        \lor !C}[w]$。类似地，若前提是 $!C$，则 $\Gamma \Entails !C$。}
     
-  \item The !!{derivation} ends in~$\Elim{\lor}$:
-    \iftag{probOr}{Exercise.}{The !!{derivation}s ending in the
-      premises are of $!B \lor !C$ from !!{undischarged}
-      assumptions~$\Gamma$, of $!D$ from !!{undischarged} assumptions
-      $\Delta_1 \cup \{!B\}$, and of $!D$ from !!{undischarged}
-      assumptions~$\Delta_2 \cup \{!C\}$. So we have $\Gamma \Proves
-      !B \lor !C$, $\Delta_1 \cup \{!B\} \Proves !D$, and $\Delta_2
-      \cup \{!C\} \Proves !D$.  By induction hypothesis, $\Gamma
-      \Entails !B \lor !C$, $\Delta_1 \cup \{!B\} \Entails !D$, and
-      $\Delta_2 \cup \{!C\} \Entails !D$.  We have to prove that
-      $\Gamma \cup \Delta_1 \cup \Delta_2 \Entails !D$.
+  \item 推导以 $\Elim{\lor}$ 结束：
+    \iftag{probOr}{练习。}{以各前提为结论的推导分别为：$!B \lor !C$ 来自未解除假设 $\Gamma$，$!D$ 来自未解除假设 $\Delta_1 \cup \{!B\}$，以及 $!D$ 来自未解除假设 $\Delta_2 \cup \{!C\}$。因此我们有 $\Gamma \Proves !B \lor !C$，$\Delta_1 \cup \{!B\} \Proves !D$，以及 $\Delta_2
+      \cup \{!C\} \Proves !D$。根据归纳假设，$\Gamma \Entails !B \lor !C$，$\Delta_1 \cup \{!B\} \Entails !D$，以及 $\Delta_2 \cup \{!C\} \Entails !D$。我们需要证明 $\Gamma \cup \Delta_1 \cup \Delta_2 \Entails !D$。
 
-    Suppose $\mSat{M}{\Gamma \cup \Delta_1 \cup \Delta_2}[w]$. Then
-    $\mSat{M}{\Gamma}[w]$ and since $\Gamma \Entails !B \lor !C$,
-    $\mSat{M}{!B \lor !C}[w]$. By definition of $\mSat{M}{}$, either
-    $\mSat{M}{!B}[w]$ or $\mSat{M}{!C}[w]$. So we distinguish cases:
-    (a)~$\mSat{M}{!B}$[w]. Then $\mSat{M}{\Delta_1 \cup \{!B\}}[w]$.
-    Since $\Delta_1 \cup !B \Entails !D$, we have $\mSat{M}{!D}[w]$.
-    (b)~$\mSat{M}{!C}[w]$. Then $\mSat{M}{\Delta_2 \cup \{!C\}}[w]$.
-    Since $\Delta_2 \cup !C \Entails !D$, we have $\mSat{M}{!D}[w]$. So
-    in either case, $\mSat{M}{!D}[w]$, as we wanted to show.}
+    设 $\mSat{M}{\Gamma \cup \Delta_1 \cup \Delta_2}[w]$。则 $\mSat{M}{\Gamma}[w]$，且由于 $\Gamma \Entails !B \lor !C$，有 $\mSat{M}{!B \lor !C}[w]$。根据 $\mSat{M}{}$ 的定义，要么 $\mSat{M}{!B}[w]$，要么 $\mSat{M}{!C}[w]$。我们分情况讨论：
+    (a)~$\mSat{M}{!B}$[w]。则 $\mSat{M}{\Delta_1 \cup \{!B\}}[w]$。
+    由于 $\Delta_1 \cup !B \Entails !D$，我们有 $\mSat{M}{!D}[w]$。
+    (b)~$\mSat{M}{!C}[w]$。则 $\mSat{M}{\Delta_2 \cup \{!C\}}[w]$。
+    由于 $\Delta_2 \cup !C \Entails !D$，我们有 $\mSat{M}{!D}[w]$。所以，无论哪种情况都有 $\mSat{M}{!D}[w]$，这正是我们要证明的。}
 
-  \item The !!{derivation} ends with $\Intro{\lif}$ concluding~$!B\lif
-    !C$. Then the premise is~$!C$, and the !!{derivation} ending in
-    the premise has !!{undischarged} assumptions~$\Gamma \cup
-    \{!B\}$. So we have that $\Gamma \cup \{!B\} \Proves !C$, and by
-    induction hypothesis that $\Gamma \cup \{!B\} \Entails !C$. We
-    have to show that $\Gamma \Entails !B \lif !C$.
+  \item 推导以 $\Intro{\lif}$ 结束，结论为 $!B \lif !C$。则前提为 $!C$，且该推导的未解除假设为 $\Gamma \cup \{!B\}$。于是我们有 $\Gamma \cup \{!B\} \Proves !C$，且根据归纳假设有 $\Gamma \cup \{!B\} \Entails !C$。我们需要证明 $\Gamma \Entails !B \lif !C$。
 
-    Suppose $\mSat{M}{\Gamma}[w]$. We want to show that for all
-    $w'$ such that $Rww'$, if $\mSat{M}{!B}[w']$, then
-    $\mSat{M}{!C}[w']$. So assume that $Rww'$ and
-    $\mSat{M}{!B}[w']$. By \olref[sem][rel]{prop:true-monotonic},
-    $\mSat{M}{\Gamma}[w']$. Since $\Gamma \cup \{!B\} \Entails !C$,
-    $\mSat{M}{!C}[w']$, which is what we wanted to show. 
+    设 $\mSat{M}{\Gamma}[w]$。需要证明，对所有满足 $Rww'$ 的 $w'$，若 $\mSat{M}{!B}[w']$，则 $\mSat{M}{!C}[w']$。因此设 $Rww'$ 且 $\mSat{M}{!B}[w']$。根据 \olref[sem][rel]{prop:true-monotonic}，有 $\mSat{M}{\Gamma}[w']$。由于 $\Gamma \cup \{!B\} \Entails !C$，就有 $\mSat{M}{!C}[w']$，这正是我们要证明的。 
 
-  \item The !!{derivation} ends in $\Elim{\lif}$ and
-    conclusion~$!C$. The premises are $!B \lif !C$ and $!B$, with
-    !!{derivation}s from !!{undischarged} assumptions $\Gamma$,
-    $\Delta$. So we have $\Gamma \Proves !B \lif !C$ and $\Delta
-    \Proves !B$. By inductive hypothesis, $\Gamma \Entails !B \lif !C$
-    and $\Delta \Entails !B$. We have to show that $\Gamma \cup \Delta
-    \Entails !C$.
+  \item 推导以 $\Elim{\lif}$ 结束，结论为 $!C$。前提为 $!B \lif !C$ 和 $!B$，其推导分别从未解除假设 $\Gamma$ 和 $\Delta$ 出发。因此我们有 $\Gamma \Proves !B \lif !C$ 和 $\Delta \Proves !B$。根据归纳假设，$\Gamma \Entails !B \lif !C$ 且 $\Delta \Entails !B$。我们需要证明 $\Gamma \cup \Delta \Entails !C$。
 
-    Suppose $\mSat{M}{\Gamma \cup \Delta}[w]$. Since
-    $\mSat{M}{\Gamma}[w]$ and $\Gamma \Entails !B \lif !C$,
-    $\mSat{M}{!B \lif !C}[w]$. By definition, this means that for all
-    $w'$ such that $Rww'$, if $\mSat{M}{!B}[w']$ then
-    $\mSat{M}{!C}[w']$. Since $R$ is reflexive, $w$ is among the $w'$
-    such that $Rww'$, i.e., we have that if $\mSat{M}{!B}[w]$ then
-    $\mSat{M}{!C}[w]$. Since $\mSat{M}{\Delta}[w]$ and $\Delta
-    \Entails !B$, $\mSat{M}{!B}[w]$. So, $\mSat{M}{!C}[w]$, as we
-    wanted to show.
+    设 $\mSat{M}{\Gamma \cup \Delta}[w]$。由于 $\mSat{M}{\Gamma}[w]$ 且 $\Gamma \Entails !B \lif !C$，有 $\mSat{M}{!B \lif !C}[w]$。根据定义，这意味着对所有满足 $Rww'$ 的 $w'$，若 $\mSat{M}{!B}[w']$ 则 $\mSat{M}{!C}[w']$。由于 $R$ 是自反的，$w$ 就在那些满足 $Rww'$ 的 $w'$ 之中，即：若 $\mSat{M}{!B}[w]$，则 $\mSat{M}{!C}[w]$。由于 $\mSat{M}{\Delta}[w]$ 且 $\Delta \Entails !B$，有 $\mSat{M}{!B}[w]$。因此，$\mSat{M}{!C}[w]$，这正是我们要证明的。
 
-  \item The !!{derivation} ends in $\FalseInt$, concluding~$!A$. The
-    premise is $\lfalse$ and the !!{undischarged} assumptions of the
-    !!{derivation} of the premise are~$\Gamma$. Then $\Gamma \Proves
-    \lfalse$. By inductive hypothesis, $\Gamma \Entails \lfalse$. We
-    have to show $\Gamma \Entails !A$.
+  \item 推导以 $\FalseInt$ 结束，结论为 $!A$。前提为 $\lfalse$，且该前提的推导的未解除假设为 $\Gamma$。于是 $\Gamma \Proves \lfalse$。根据归纳假设，$\Gamma \Entails \lfalse$。我们需要证明 $\Gamma \Entails !A$。
 
-    We proceed indirectly. If $\Gamma \Entails/ !A$ there is a
-    model~$\mModel{M}$ and world~$w$ such that $\mSat{M}{\Gamma}[w]$
-    and $\mSat/{M}{!A}[w]$.  Since $\Gamma \Entails \lfalse$,
-    $\mSat{M}{\lfalse}[w]$. But that's impossible, since by
-    definition, $\mSat/{M}{\lfalse}[w]$. So $\Gamma \Entails !A$.
-  \item The !!{derivation} ends in $\Intro\lnot$: Exercise.
-  \item The !!{derivation} ends in $\Elim\lnot$: Exercise.
+    我们采用间接证明。若 $\Gamma \Entails/ !A$，则存在模型 $\mModel{M}$ 和世界 $w$，使得 $\mSat{M}{\Gamma}[w]$ 且 $\mSat/{M}{!A}[w]$。由于 $\Gamma \Entails \lfalse$，有 $\mSat{M}{\lfalse}[w]$。但这是不可能的，因为根据定义，$\mSat/{M}{\lfalse}[w]$。所以 $\Gamma \Entails !A$。
+  \item 推导以 $\Intro\lnot$ 结束：练习。
+  \item 推导以 $\Elim\lnot$ 结束：练习。
   \end{enumerate}
 \end{proof}
 
 \begin{prob}
-  Complete the proof of \olref[int][sc][snd]{thm:soundness}. For the
-  cases for $\Intro\lnot$ and $\Elim\lnot$, use the definition of
-  $\mSat{M}{\lnot !A}[w]$ in \olref[int][sem][rel]{defn:true-at-w}, i.e.,
-  don't treat $\lnot !A$ as defined by $!A \lif \lfalse$.
+  补全 \olref[int][sc][snd]{thm:soundness} 的证明。对于 $\Intro\lnot$ 和 $\Elim\lnot$ 的情况，利用 \olref[int][sem][rel]{defn:true-at-w} 中关于 $\mSat{M}{\lnot !A}[w]$ 的定义，即不要将 $\lnot !A$ 视作 $!A \lif \lfalse$ 的缩写来处理。
 \end{prob}
 
 \begin{prob}
-  Show that the following !!{formula}s are not !!{derivable} in
-  intuitionistic logic:
+  证明下列公式在直觉主义逻辑中是不可推导的：
   \begin{enumerate}
     \item $(!A \lif !B) \lor (!B \lif !A)$
     \item $(\lnot\lnot !A \lif !A) \lif (!A \lor \lnot !A)$

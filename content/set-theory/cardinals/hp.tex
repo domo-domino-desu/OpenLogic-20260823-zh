@@ -3,97 +3,46 @@
 \begin{document}
 
 \olfileid{sth}{cardinals}{hp}
-\olsection{Appendix: Hume's Principle}
+\olsection{附录：休谟原则}
 
-In \olref[cp]{sec}, we described Cantor's Principle. This was:
+在 \olref[cp]{sec} 中，我们描述了康托原则。它是：
 \begin{align*}
-	\card{A} = \card{B} & \text{ iff } A \approx B.
-\intertext{This is very similar to what is now called
-\emph{Hume's Principle}, which says:}
-	\fregenum{x} {F(x)} = \fregenum{x}{G(x)} & \text{ iff } F \sim G
+	\card{A} = \card{B} & \text{ 当且仅当 } A \approx B.
+\intertext{这与现在所谓的\emph{休谟原则}非常相似，后者说的是：}
+	\fregenum{x} {F(x)} = \fregenum{x}{G(x)} & \text{ 当且仅当 } F \sim G
 \end{align*}
-where `$F \sim G$' abbreviates that there are exactly as many $F$s as
-$G$s, i.e., the $F$s can be put into a bijection with the $G$s, i.e.:
+其中‘$F \sim G$’是“$F$ 和 $G$ 在数量上恰好一样多”的缩写，即 $F$ 与 $G$ 之间可以建立双射，亦即：
 \begin{align*}
 	\exists R(&\forall v\forall y(Rvy \lif (Fv \land Gy)) \land {}\\
 		&\forall v(Fv \lif \lexists![y][Rvy]) \land {}\\
 		&\forall y(Gy \lif \lexists![v][Rvy]))
 \end{align*}
-But there is a type-difference between Hume's Principle and Cantor's
-Principle. In the statement of Cantor's Principle, the variables
-``$A$'' and ``$B$'' are first-order terms which stand for \emph{sets}.
-In the statement of Hume's Principle, ``$F$'', ``$G$'' and ``$R$'' are
-\emph{not} first-order terms; rather, they are in \emph{predicate
-position}. (Maybe they stand for \emph{properties}.) So we might gloss
-Hume's Principle in English as: the number of $F$s is the number of
-$G$s iff the $F$s are bijective with the~$G$s. This is called
-\emph{Hume's Principle}, because Hume once wrote this:
+但休谟原则与康托原则之间存在类型差异。在康托原则的陈述中，变元“$A$”和“$B$”是代表\emph{集合}的一阶项。在休谟原则的陈述中，“$F$”、“$G$”和“$R$”\emph{不是}一阶项；相反，它们处于\emph{谓词位置}。（也许它们代表\emph{性质}。）因此，我们可以用自然语言将休谟原则表述为：$F$ 的数量等于 $G$ 的数量，当且仅当 $F$ 与 $G$ 之间存在双射。这之所以被称为\emph{休谟原则}，是因为休谟曾写道：
+
 \begin{quote}
-  When two numbers are so combined as that the one has always an unit
-  answering to every unit of the other, we pronounce them equal.
+  当两个数以如此方式结合在一起，使得其中一个数的每个单位总是对应于另一个数的每个单位时，我们就宣布它们相等。
   \citep[Pt.III Bk.1 \S1]{Hume1740}
 \end{quote}
-And Hume's Principle was brought to contemporary mathematico-logical
-prominence by \citet[\S63]{Frege1884}, who quoted this passage from
-Hume, before (in effect) sketching (what we have called) Hume's
-Principle. 
 
-You should note the structural similarity between Hume's Principle and
-Basic Law~V. We formulated this in \olref[story][blv]{sec} as
-follows:
+休谟原则被 \citet[\S63]{Frege1884} 带到了当代数理逻辑研究的显著位置，他引用了休谟的这段话，然后（实际上）概述了（我们所说的）休谟原则。
+
+你应该注意到休谟原则与基本定律 V 在结构上的相似性。我们在 \olref[story][blv]{sec} 中将其表述如下：
 \[
-	\fregeext{x}{F(x)} = \fregeext{x}{G(x)} \text{iff } \lforall[x][(F(x) \liff G(x))].
+	\fregeext{x}{F(x)} = \fregeext{x}{G(x)} \text{当且仅当 } \lforall[x][(F(x) \liff G(x))].
 \]
-And, at this point, some commentary and comparison might help. 
+在此，一些评论和比较或许有所帮助。
 
-There are two ways to take a principle like Hume's Principle or Basic
-Law~V: \emph{predicatively} or \emph{impredicatively} (recall
-\olref[story][predicative]{sec}). On the impredicative reading of
-Basic Law~V, for each~$F$, the object $\fregeext{x}{F(x)}$ falls
-within the domain of quantification that we used in formulating Basic
-Law~V itself. Similarly, on the impredicative reading of Hume's
-Principle, for each~$F$, the object $\fregenum{x}{F(x)}$ falls within
-the domain of quantification that we used in formulating Hume's
-Principle. By contrast, on the \emph{predicative} understanding, the
-objects $\fregeext{x}{F(x)}$ and~$\fregenum{x}{F(x)}$ would be
-entities from some \emph{different} domain. 
+理解像休谟原则或基本定律 V 这样的原理有两种方式：\emph{直谓地}或\emph{非直谓地}（回忆 \olref[story][predicative]{sec}）。在基本定律 V 的非直谓解读下，对于每个 $F$，对象 $\fregeext{x}{F(x)}$ 都落在我们表述基本定律 V 本身时所使用的量化论域中。类似地，在休谟原则的非直谓解读下，对于每个 $F$，对象 $\fregenum{x}{F(x)}$ 也落在我们表述休谟原则时所使用的量化论域中。相比之下，在\emph{直谓}的理解下，对象 $\fregeext{x}{F(x)}$ 和 $\fregenum{x}{F(x)}$ 将是来自某个\emph{不同}论域的实体。
 
-Now, if we read Basic Law~V impredicatively, it leads to
-inconsistency, via Na\"ive Comprehension (for the details, see
-\olref[story][blv]{sec}). Much like Na\"ive Comprehension, it can be
-rendered consistent by reading it \emph{predicatively}. But it
-probably will not do everything that we wanted it to. 
+现在，如果我们以非直谓的方式解读基本定律 V，它会通过朴素概括（详情参见 \olref[story][blv]{sec}）导致不一致。与朴素概括非常相似，通过以\emph{直谓}的方式解读它，可以使它变得一致。但这可能无法实现我们希望它做到的所有事情。
 
-Hume's Principle, however, \emph{can} consistently be read
-impredicatively. And, read thus, it is quite powerful.
+然而，休谟原则\emph{可以}一致地以非直谓的方式解读。而且，这样解读时，它相当强大。
 
-To illustrate: consider the predicate ``$x \neq x$'', which obviously
-nothing satisfies. Hume's Principle now yields an object $\# x( x\neq
-x)$. We might treat this as the number~$0$. Now, on the
-\emph{impredicative} understanding---but \emph{only} on the
-impredicative understanding---this entity $0$ falls within our
-original domain of quantification. So we can sensibly apply Hume's
-Principle with the predicate ``$x = 0$'' to obtain an object $\#x (x =
-0)$. We might treat this as the number~$1$. Moreover, Hume's Principle
-entails that $0 \neq 1$, since there cannot be a bijection from the
-non-self-identical objects to the objects identical with $0$ (there
-are none of the former, but one of the latter). Now, working
-impredicatively again, $1$~falls within our original domain of
-quantification. So we can sensibly apply Hume's Principle with the
-predicate ``$(x = 0 \lor x = 1)$'' to obtain an object $\#x(x = 0 \lor
-x = 1)$. We might treat this as the number~$2$, and we can show that
-$0\neq 2$ and $1 \neq 2$ and so on. 
+举例说明：考虑谓词“$x \neq x$”，显然没有东西满足它。休谟原则现在产生一个对象 $\# x( x\neq x)$。我们可以将其视为数 $0$。现在，在\emph{非直谓}的理解下——但\emph{只有在}非直谓的理解下——这个实体 $0$ 落在我们最初的量化论域中。因此，我们可以合理地将休谟原则应用于谓词“$x = 0$”以获得一个对象 $\#x (x = 0)$。我们可以将其视为数 $1$。此外，休谟原则后承 $0 \neq 1$，因为不可能存在一个从不等同于自身的对象到等同于 $0$ 的对象之间的双射（前者数量为零，而后者有一个）。现在，再次采用非直谓的方式，$1$ 落在我们最初的量化论域中。因此，我们可以合理地将休谟原则应用于谓词“$(x = 0 \lor x = 1)$”以获得一个对象 $\#x(x = 0 \lor
+x = 1)$。我们可以将其视为数 $2$，并且我们可以证明 $0\neq 2$ 和 $1 \neq 2$，等等。
 
-In short, taken impredicatively, Hume's Principle entails that there
-are \emph{infinitely many objects}. And this has encouraged
-\emph{neo-Fregean logicists} to take Hume's Principle as the
-foundation for arithmetic. 
+简而言之，以非直谓方式理解时，休谟原则后承存在\emph{无穷多个对象}。这促使\emph{新弗雷格主义逻辑主义者}将休谟原则作为算术的基础。
 
-Frege \emph{himself}, though, did not take Hume's Principle as his
-foundation for arithmetic. Instead, Frege proved Hume's Principle from
-an explicit definition: $\fregenum{x}{F(x)}$ is defined as the extension of
-the concept $F \sim \Phi$. In modern terms, we might attempt to render
-this as $\fregenum{x}{F(x)} = \Setabs{G}{F \sim G}$; but this will pull us
-back into the problems of Na\"ive Comprehension.
+然而，弗雷格\emph{本人}并没有将休谟原则作为他的算术基础。相反，弗雷格基于一个显式定义证明了休谟原则：$\fregenum{x}{F(x)}$ 被定义为概念 $F \sim \Phi$ 的外延。用现代术语来说，我们可能会尝试将其表述为 $\fregenum{x}{F(x)} = \Setabs{G}{F \sim G}$；但这将把我们重新拉回朴素概括的问题之中。
 
 \end{document}

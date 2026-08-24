@@ -7,66 +7,45 @@
 \begin{document}
 
 \olfileid{lam}{int}{syn}
-\olsection{The Syntax of the Lambda Calculus}
+\olsection{λ-演算的语法}
 
-One starts with a sequence of variables $x$, $y$, $z$,~\dots and some
-constant symbols $a$, $b$, $c$,~\dots. The set of terms is defined
-inductively, as follows:
+我们从变元序列 $x$, $y$, $z$,~\dots 以及一些常项符号 $a$, $b$, $c$,~\dots 出发。项的集合归纳定义如下：
 \begin{enumerate}
-\item Each variable is a term.
-\item Each constant is a term.
-\item If $M$ and $N$ are terms, so is $(MN)$.
-\item If $M$ is a term and $x$ is a variable, then $(\lambd[x][M])$ is a
-  term.
+\item 每个变元都是项。
+\item 每个常项都是项。
+\item 如果 $M$ 和 $N$ 是项，那么 $(MN)$ 也是项。
+\item 如果 $M$ 是项且 $x$ 是变元，那么 $(\lambd[x][M])$ 也是项。
 \end{enumerate}
-Terms of the form $(MN)$ are called \emph{applications} and those of
-the form $(\lambd[x][M])$ \emph{abstractions}.
 
-The system without any constants at all is called the \emph{pure}
-lambda calculus. We'll mainly be working in the pure
-$\lambd$-calculus, so all lowercase letters will stand for variables.
-We use uppercase letters ($M$, $N$, etc.) to stand for terms of the
-$\lambd$-calculus.
+形如 $(MN)$ 的项称为\emph{应用}，形如 $(\lambd[x][M])$ 的项称为\emph{抽象}。
 
-We will follow a few notational conventions:
+不含任何常项的系统称为\emph{纯} $\lambd$-演算。我们主要在纯 $\lambd$-演算中进行讨论，因此所有小写字母都表示变元。我们用大写字母（$M$, $N$ 等）来表示 $\lambd$-演算中的项。
+
+我们将遵循以下记法约定：
 
 \begin{conv}
 \begin{enumerate}
-\item When parentheses are left out, application takes place from left
-  to right. For example, if $M$, $N$, $P$, and $Q$ are terms, then
-  $MNPQ$ abbreviates $(((MN)P)Q)$.
-\item Again, when parentheses are left out, lambda abstraction is to
-  be given the widest scope possible. From example, $\lambd[x][MNP]$ is
-  read $(\lambd[x][((MN)P)])$.
-\item A lambda can be used to abstract multiple variables. For
-  example, $\lambd[xyz][M]$ is short for
-  $\lambd[x][\lambd[y][\lambd[z][M]]]$.
+\item 省略括号时，应用的结合从左向右进行。例如，如果 $M$, $N$, $P$, $Q$ 是项，那么 $MNPQ$ 是 $(((MN)P)Q)$ 的缩写。
+\item 同样，省略括号时，$\lambd$-抽象应取得尽可能广的辖域。例如，$\lambd[x][MNP]$ 读作 $(\lambd[x][((MN)P)])$。
+\item 一个 $\lambd$ 可用于抽象多个变元。例如，$\lambd[xyz][M]$ 是 $\lambd[x][\lambd[y][\lambd[z][M]]]$ 的缩写。
 \end{enumerate}
 \end{conv}
 
-For example,
+例如，
 \[
 \lambd[xy][xxyx \lambd[z][xz]]
 \]
-abbreviates
+是
 \[
 \lambd[x][\lambd[y][((((xx)y)x)(\lambd[z][(xz)]))]].
 \]
-You should memorize these conventions. They will drive you crazy at
-first, but you will get used to them, and after a while they will
-drive you less crazy than having to deal with a morass of parentheses.
+的缩写。
+你应当记住这些约定。一开始它们可能会令你抓狂，但你会习惯的；过一段时间，比起处理一大堆括号，这些约定带来的困扰就要小得多了。
 
-Two terms that differ only in the names of the bound variables are
-called $\alpha$-equivalent; for example, $\lambd[x][x]$ and
-$\lambd[y][y]$. It will be convenient to think of these as being the
-``same'' term; in other words, when we say that $M$ and $N$ are the
-same, we also mean ``up to renamings of the bound variables.''
-Variables that are in the scope of a $\lambd$ are called ``bound'',
-while others are called ``free.'' There are no free variables in the
-previous example; but in
+仅约束变元的名称不同的两个项称为 $\alpha$-等价的；例如 $\lambd[x][x]$ 和 $\lambd[y][y]$。为方便起见，可以将这些项视为“同一个”项；换言之，当我们说 $M$ 和 $N$ 相同时，也意味着“至多相差约束变元的重命名”。处于 $\lambd$ 辖域内的变元称为“约束的”，其余的变元称为“自由的”。前面的例子中没有自由变元；但在
 \[
 (\lambd[z][yz])x
 \]
-$y$ and $x$ are free, and $z$ is bound.
+中，$y$ 和 $x$ 是自由的，而 $z$ 是约束的。
 
 \end{document}

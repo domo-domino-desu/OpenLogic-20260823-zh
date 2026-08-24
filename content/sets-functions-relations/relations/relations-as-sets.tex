@@ -7,61 +7,49 @@
 \begin{document}
 
 \olfileid{sfr}{rel}{set}
-\olsection{Relations as Sets}
+\olsection{关系作为集合}
 
 \begin{explain}
-In \olref[sfr][set][imp]{sec}, we mentioned some important sets:
-$\Nat$, $\Int$, $\Rat$, $\Real$. You will no doubt remember some
-interesting relations between the !!{element}s of some of these sets.
-For instance, each of these sets has a completely standard \emph{order
-relation} on it.  There is also the relation \emph{is identical with}
-that every object bears to itself and to no other thing. There are
-many more interesting relations that we'll encounter, and even more
-possible relations. Before we review them, though, we will start by
-pointing out that we can look at relations as a special sort of set. 
-  
-For this, recall two things from \olref[sfr][set][pai]{sec}. First,
-recall the notion of an \emph{ordered pair}: given $a$ and $b$, we can
-form~$\tuple{a, b}$. Importantly, the order of elements \emph{does}
-matter here. So if $a \neq b$ then $\tuple{a, b} \neq \tuple{b, a}$.
-(Contrast this with unordered pairs, i.e., $2$-element sets, where
-$\{a, b\}=\{b, a\}$.) Second, recall the notion of a \emph{Cartesian
-product}: if $A$ and $B$ are sets, then we can form~$A \times B$, the
-set of all pairs $\tuple{x, y}$ with $x \in A$ and $y \in B$. In
-particular, $A^{2}= A \times A$ is the set of all ordered pairs
-from~$A$.
-  
-Now we will consider a particular relation on a set: the $<$-relation
-on the set~$\Nat$ of natural numbers. Consider the set of all pairs of
-numbers $\tuple{n, m}$ where $n<m$, i.e.,
-\[
-  R=\Setabs{\tuple{n, m}}{n, m \in \Nat \text{ and } n<m}.
-\]
-There is a close connection between $n$ being less than $m$, and the
-pair $\tuple{n, m}$ being a member of $R$, namely:
-\[
-      n<m\text{ iff }\tuple{n, m} \in R.
-\]
-Indeed, without any loss of information, we can consider the set $R$
-to \emph{be} the $<$-relation on $\Nat$. 
+在 \olref[sfr][set][imp]{sec} 中，我们提到了一些重要的集合：
+$\Nat$、$\Int$、$\Rat$、$\Real$。你肯定记得这些集合元素之间的一些有趣关系。
+例如，每个这样的集合上都有一个完全标准的\emph{序关系}。
+此外，还有每个对象对自身且仅对自身具有的\emph{恒等}关系。
+我们还会遇到更多有趣的关系，可能的关系甚至更多。
+但在回顾它们之前，我们先要指出，我们可以把关系看作一种特殊的集合。
 
-In the same way we can construct a subset of $\Nat^{2}$ for any
-relation between numbers. Conversely, given any set of pairs of
-numbers $S \subseteq \Nat^{2}$, there is a corresponding relation
-between numbers, namely, the relationship $n$ bears to $m$ if and only
-if $\tuple{n, m} \in S$. This justifies the following definition:
+为此，请回忆 \olref[sfr][set][pai]{sec} 中的两点。
+首先，回忆\emph{有序对}的概念：给定 $a$ 和 $b$，我们可以构成~$\tuple{a, b}$。
+重要的是，这里元素的顺序\emph{确实}重要。所以如果 $a \neq b$，那么 $\tuple{a, b} \neq \tuple{b, a}$。
+（这与无序对（即二元集合）形成对比，在无序对中 $\{a, b\}=\{b, a\}$。）
+其次，回忆\emph{笛卡尔积}的概念：如果 $A$ 和 $B$ 是集合，那么我们可以构成~$A \times B$，
+即所有满足 $x \in A$ 且 $y \in B$ 的序对 $\tuple{x, y}$ 的集合。
+特别地，$A^{2}= A \times A$ 是来自~$A$ 的所有有序对的集合。
+
+现在我们来考虑集合上的一个特定关系：自然数集合~$\Nat$ 上的 $<$-关系。
+考虑所有满足 $n<m$ 的数对 $\tuple{n, m}$ 的集合，即
+\[
+  R=\Setabs{\tuple{n, m}}{n, m \in \Nat \text{ 且 } n<m}.
+\]
+$n$ 小于 $m$ 与序对 $\tuple{n, m}$ 属于 $R$ 之间有着密切的联系，即：
+\[
+      n<m\text{ 当且仅当 }\tuple{n, m} \in R.
+\]
+事实上，我们可以在不丢失任何信息的情况下，将集合 $R$ 视为 $\Nat$ 上的 $<$-关系\emph{本身}。
+
+同样，我们可以为数之间的任意关系构造一个 $\Nat^{2}$ 的子集。
+反过来，给定任意数对集合 $S \subseteq \Nat^{2}$，都有一个对应的数之间的关系，
+即 $n$ 对 $m$ 具有该关系当且仅当 $\tuple{n, m} \in S$。这就为下面的定义提供了依据：
 \end{explain}
-  
-\begin{defn}[Binary relation] 
-A \emph{binary relation} on a set $A$ is a subset of~$A^{2}$. If $R
-\subseteq A^{2}$ is a binary relation on~$A$ and $x, y \in A$, we
-sometimes write $Rxy$ (or $xRy$) for $\tuple{x, y} \in R$.
+
+\begin{defn}[二元关系]
+集合 $A$ 上的一个\emph{二元关系}是~$A^{2}$ 的一个子集。
+如果 $R \subseteq A^{2}$ 是~$A$ 上的一个二元关系，且 $x, y \in A$，
+我们有时将 $\tuple{x, y} \in R$ 记作 $Rxy$（或 $xRy$）。
 \end{defn}
-  
+
 \begin{ex}
   \ollabel{relations}
-The set $\Nat^{2}$ of pairs of natural numbers can be listed in a
-2-dimensional matrix like this:
+自然数对构成的集合 $\Nat^{2}$ 可以排列成如下的二维矩阵：
 \[
   \begin{array}{ccccc}
   \mathbf{\tuple{ 0,0 }} & \tuple{ 0,1 } &
@@ -75,51 +63,45 @@ The set $\Nat^{2}$ of pairs of natural numbers can be listed in a
   \vdots & \vdots & \vdots & \vdots & \mathbf{\ddots}
   \end{array}
 \]
-We have put the diagonal, here, in bold, since the subset of $\Nat^2$
-consisting of the pairs lying on the diagonal, i.e.,
+
+这里我们把对角线加粗显示，因为 $\Nat^2$ 中位于对角线上的那些序对构成的子集，即
 \[
   \{\tuple{0,0 }, \tuple{ 1,1 }, \tuple{ 2,2 }, \dots\},
   \]
-is the \emph{identity relation on}~$\Nat$. (Since the identity
-relation is popular, let's define $\Id{A}=\Setabs{\tuple{ x,x }}{x \in
-A}$ for any set $A$.) The subset of all pairs lying above the
-diagonal, i.e.,
+就是 $\Nat$ 上的\emph{恒等关系}。
+（由于恒等关系很常用，让我们定义 $\Id{A}=\Setabs{\tuple{ x,x }}{x \in
+A}$ 为任何集合 $A$ 上的恒等关系。）
+所有位于对角线上方的序对构成的子集，即
 \[
   L = \{\tuple{ 0,1 },\tuple{ 0,2 },\ldots,\tuple{ 1,2 },
   \tuple{ 1,3 }, \dots, \tuple{ 2,3 }, \tuple{ 2,4 },\ldots\},
 \]
-is the \emph{less than} relation, i.e., $Lnm$ iff $n<m$. The subset of
-pairs below the diagonal, i.e.,
+是\emph{小于}关系，即 $Lnm$ 当且仅当 $n<m$。所有位于对角线下方的序对构成的子集，即
 \[
   G=\{ \tuple{ 1,0 },\tuple{ 2,0 },\tuple{
     2,1 }, \tuple{ 3,0 },\tuple{ 3,1 },\tuple{ 3,2 }, \dots\},
 \]
-is the \emph{greater than} relation, i.e., $Gnm$ iff $n>m$. The union
-of $L$ with $I$, which we might call $K=L\cup I$, is the \emph{less
-than or equal to} relation: $Knm$ iff $n \le m$. Similarly, $H=G \cup
-I$ is the \emph{greater than or equal to relation.} These relations
-$L$, $G$, $K$, and $H$ are special kinds of relations called
-\emph{orders}. $L$ and $G$ have the property that no number bears $L$
-or $G$ to itself (i.e., for all $n$, neither $Lnn$ nor $Gnn$).
-Relations with this property are called \emph{irreflexive}, and, if
-they also happen to be orders, they are called \emph{strict orders.}
+是\emph{大于}关系，即 $Gnm$ 当且仅当 $n>m$。$L$ 与 $I$ 的并集，我们可以称之为 $K=L\cup I$，是\emph{小于等于}关系：
+$Knm$ 当且仅当 $n \le m$。类似地，$H=G \cup I$ 是\emph{大于等于关系}。
+这些关系 $L$、$G$、$K$ 和 $H$ 是一类特殊的关系，称为\emph{序}。
+$L$ 和 $G$ 具有这样的性质：没有任何数对自身具有 $L$ 或 $G$ 关系（即，对所有 $n$，既非 $Lnn$ 也非 $Gnn$）。
+具有这种性质的关系被称为\emph{反自反的}，并且，如果它们同时也是序，则被称为\emph{严格序}。
 \end{ex}
 
 \begin{explain}
-Although orders and identity are important and natural relations, it
-should be emphasized that according to our definition \emph{any}
-subset of $A^{2}$ is a relation on~$A$, regardless of how unnatural or
-contrived it seems. In particular, $\emptyset$ is a relation on any
-set (the \emph{empty relation}, which no pair of elements bears), and
-$A^{2}$~itself is a relation on~$A$ as well (one which every pair
-bears), called the \emph{universal relation}. But also something like
-$E=\Setabs{\tuple{n, m}}{n>5 \text{ or } m \times n \ge 34}$ counts as
-a relation.
+尽管序和恒等是重要且自然的关系，但应该强调的是，根据我们的定义，\emph{任何} $A^{2}$ 的子集都是~$A$ 上的一个关系，
+无论它看起来多么不自然或多么刻意。
+特别地，$\emptyset$ 是任何集合上的一个关系（\emph{空关系}，没有任何元素对具有该关系），
+而 $A^{2}$~本身也是~$A$ 上的一个关系，称为\emph{全关系}（所有元素对都具有该关系）。
+但即使是像
+$E=\Setabs{\tuple{n, m}}{n>5 \text{ or } m \times n \ge 34}$
+这样的集合也算作一个关系。
 \end{explain}
-  
+
 \begin{prob}
-  List the !!{element}s of the relation $\subseteq$ on the set
-  $\Pow{\{a, b, c\}}$.
+  列出集合
+  $\Pow{\{a, b, c\}}$
+  上关系 $\subseteq$ 的所有元素。
 \end{prob}
 
 \end{document}

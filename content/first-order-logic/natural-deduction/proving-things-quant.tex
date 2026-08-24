@@ -8,36 +8,26 @@
 
 \olfileid{fol}{ntd}{prq}
 
-\olsection{\usetoken{P}{derivation} with Quantifiers}
+\olsection{带量词的\usetoken{P}{derivation}}
 
 \begin{ex}
-When dealing with quantifiers, we have to make sure not to violate the
-eigenvariable condition, and sometimes this requires us to play around
-with the order of carrying out certain inferences. In general, it
-helps to try and take care of rules subject to the eigenvariable
-condition first (they will be lower down in the finished proof).
+处理量词时，我们必须确保不违反本征变元条件，而这有时需要我们调整某些推理的进行顺序。一般来说，先处理那些受本征变元条件约束的规则会很有帮助（它们会出现在完成后的证明中靠近底部的位置）。
 
-Let's see how we'd give !!a{derivation} of the !!{formula}
-$\lexists[x][\lnot !A(x)] \lif \lnot \lforall[x][!A(x)]$.
-Starting as usual, we write
+下面我们来看看如何给出公式 $\lexists[x][\lnot !A(x)] \lif \lnot \lforall[x][!A(x)]$ 的一个推导。
+像往常一样，我们这样开始：
 \begin{prooftree}
 \AxiomC{}
 \UnaryInfC{$\lexists[x][\lnot !A(x)]\lif \lnot \lforall[x][!A(x)]$}
 \end{prooftree}
-We start by writing down what it would take to justify that last step
-using the \Intro{\lif} rule.
+我们首先写下，若要使用 \Intro{\lif} 规则得出最后一步，需要什么前提。
 \begin{prooftree}
 \AxiomC{$\Discharge{\lexists[x][\lnot !A(x)]}{1}$}
 \DeduceC{$\lnot \lforall[x][!A(x)]$}
 \DischargeRule{\Intro{\lif}}{1}
 \UnaryInfC{$\lexists[x][\lnot !A(x)]\lif \lnot \lforall[x][!A(x)]$}
 \end{prooftree}
-Since there is no obvious rule to apply to $\lnot \lforall[x][!A(x)]$,
-we will proceed by setting up the !!{derivation} so we can use the
-\Elim{\lexists} rule. Here we must pay attention to the eigenvariable
-condition, and choose a constant that does not appear in
-$\lexists[x][!A(x)]$ or any assumptions that it depends on.
-(Since no !!{constant}s appear, however, any choice will do fine.)
+由于对 $\lnot \lforall[x][!A(x)]$ 没有明显的可用规则，我们将继续构造推导，以便使用 \Elim{\lexists} 规则。此处我们必须关注本征变元条件，并选择一个不在 $\lexists[x][!A(x)]$ 中、也不在其所依赖的任何假设中出现的常项符号。
+（不过，既然目前没有出现任何常项符号，那么怎么选择都可以。）
 \begin{prooftree}
 \AxiomC{$\Discharge{\lexists[x][\lnot !A(x)]}{1}$}
 \AxiomC{$\Discharge{\lnot !A(a)}{2}$}
@@ -47,12 +37,7 @@ $\lexists[x][!A(x)]$ or any assumptions that it depends on.
 \DischargeRule{\Intro{\lif}}{1}
 \UnaryInfC{$\lexists[x][\lnot !A(x)] \lif \lnot \lforall[x][!A(x)]$}
 \end{prooftree}
-In order to derive $\lnot \lforall[x][!A(x)]$, we will attempt to use
-the \Intro{\lnot} rule: this requires that we derive a contradiction,
-possibly using $\lforall[x][!A(x)]$ as an additional assumption. Of
-course, this contradiction may involve the assumption $\lnot !A(a)$
-which will be discharged by the \Elim{\lexists} inference. We can set it
-up as follows:
+为了推导出 $\lnot \lforall[x][!A(x)]$，我们将尝试使用 \Intro{\lnot} 规则：这要求我们推导出一个矛盾，可能需要使用 $\lforall[x][!A(x)]$ 作为额外假设。当然，这个矛盾可能涉及假设 $\lnot !A(a)$，而该假设将被 \Elim{\lexists} 推理解除。我们可以如下设置：
 \begin{prooftree}
 \AxiomC{$\Discharge{\lexists[x][\lnot !A(x)]}{1}$}
 \AxiomC{$\Discharge{\lnot !A(a)}{2}, \Discharge{\lforall[x][!A(x)]}{3}$}
@@ -64,11 +49,7 @@ up as follows:
 \DischargeRule{\Intro{\lif}}{1}
 \UnaryInfC{$\lexists[x][\lnot !A(x)]\lif \lnot \lforall[x][!A(x)]$}
 \end{prooftree}
-It looks like we are close to getting a contradiction. The easiest
-rule to apply is the \Elim{\lforall}, which has no eigenvariable
-conditions. Since we can use any term we want to replace the
-universally quantified~$x$, it makes the most sense to continue
-using~$a$ so we can reach a contradiction.
+看起来我们已经接近得出矛盾了。最容易应用的规则是 \Elim{\lforall}，它没有本征变元条件。由于我们可以使用任何想要的项来替换全称量化的~$x$，因此最合理的做法是继续使用~$a$，这样我们就能得出矛盾。
 \begin{prooftree}
 \AxiomC{$\Discharge{\lexists[x][\lnot !A(x)]}{1}$}
 \AxiomC{$\Discharge{\lnot !A(a)}{2}$}
@@ -85,35 +66,21 @@ using~$a$ so we can reach a contradiction.
 \UnaryInfC{$\lexists[x][\lnot !A(x)]\lif \lnot \lforall[x][!A(x)]$}
 \end{prooftree}
 
-It is important, especially when dealing with quantifiers, to double
-check at this point that the eigenvariable condition has not been
-violated. Since the only rule we applied that is subject to the
-eigenvariable condition was \Elim{\exists}, and the eigenvariable~$a$
-does not occur in any assumptions it depends on, this is a
-correct !!{derivation}.
+在此时复查本征变元条件是否被违反尤为重要，特别是在处理量词时。由于我们应用的唯一受制于本征变元条件的规则是 \Elim{\exists}，且本征变元~$a$ 并未出现在它所依赖的任何假设中，因此这是一个正确的推导。
 \end{ex}
 
 \begin{ex}
-Sometimes we may derive !!a{formula} from other !!{formula}s.
-In these cases, we may have undischarged assumptions. It is 
-important to keep track of our assumptions as well
-as the end goal.
+有时我们需要从另一些公式推导出一个公式。在这些情况下，我们可能会有未解除的假设。记录好我们的假设以及最终目标是非常重要的。
 
-Let's see how we'd give !!a{derivation} of the !!{formula}
-$\lexists[x][!C(x,b)]$ from the assumptions $\lexists[x][(!A(x) 
-\land !B(x))]$ and $\lforall[x][(!B(x) \lif !C(x,b))]$.
-Starting as usual, we write the conclusion at the
-bottom.
+我们来看看如何从假设 $\lexists[x][(!A(x) 
+\land !B(x))]$ 和 $\lforall[x][(!B(x) \lif !C(x,b))]$ 推导出公式 $\lexists[x][!C(x,b)]$。像往常一样，我们将结论写在底部。
 \begin{prooftree}
 \AxiomC{}
 \UnaryInfC{$\lexists[x][!C(x,b)]$}
 \end{prooftree}
 
-We have two premises to work with. To use the first, i.e., try to find
-!!a{derivation} of $\lexists[x][!C(x, b)]$ from $\lexists[x][(!A(x)
-  \land !B(x))]$ we would use the \Elim{\lexists} rule. Since it has
-an eigenvariable condition, we will apply that rule first. We get the
-following:
+我们有两个前提可以利用。要使用第一个前提，即试图从 $\lexists[x][(!A(x)
+  \land !B(x))]$ 推导出 $\lexists[x][!C(x, b)]$，我们会用到 \Elim{\lexists} 规则。由于它受本征变元条件约束，我们将首先应用该规则。我们得到如下推导：
 \begin{prooftree}
 \AxiomC{$\lexists[x][(!A(x) \land !B(x))]$}
 \AxiomC{$\Discharge{!A(a) \land !B(a)}{1}$}
@@ -121,8 +88,7 @@ following:
 \DischargeRule{\Elim{\lexists}}{1}
 \BinaryInfC{$\lexists[x][!C(x,b)]$}
 \end{prooftree}
-The two assumptions we are working with share~$!B$.  It may be useful
-at this point to apply \Elim{\land} to separate out~$!B(a)$.
+我们正在使用的两个假设都包含~$!B$。此时应用 \Elim{\land} 规则来分离出~$!B(a)$ 可能会很有帮助。
 \begin{prooftree}
 \AxiomC{$\lexists[x][(!A(x) \land !B(x)])$}
 \AxiomC{$\Discharge{!A(a) 
@@ -134,12 +100,8 @@ at this point to apply \Elim{\land} to separate out~$!B(a)$.
 \BinaryInfC{$\lexists[x][!C(x,b)]$}
 \end{prooftree}
 
-The second assumption we have to work with is~$\lforall[x][(!B(x) \lif
-  !C(x,b))]$. Since there is no eigenvariable condition we can
-instantiate $x$ with the !!{constant}~$a$ using \Elim{\lforall} to get
-$!B(a) \lif !C(a, b)$.  We now have both $!B(a) \lif !C(a,b)$ and
-$!B(a)$. Our next move should be a straightforward application of the
-\Elim{\lif} rule.
+我们要使用的第二个假设是~$\lforall[x][(!B(x) \lif
+  !C(x,b))]$。由于它不受本征变元条件约束，我们可以用 \Elim{\lforall} 规则将 $x$ 实例化为常项符号~$a$，从而得到 $!B(a) \lif !C(a, b)$。现在我们既有 $!B(a) \lif !C(a,b)$ 又有 $!B(a)$。我们下一步应该是直接应用 \Elim{\lif} 规则。
 \begin{prooftree}
 \AxiomC{$\lexists[x][(!A(x) \land !B(x))]$}
 \AxiomC{$\lforall[x][(!B(x) \lif !C(x,b))]$}
@@ -156,8 +118,7 @@ $!B(a)$. Our next move should be a straightforward application of the
 \insertBetweenHyps{\hspace{-5em}}
 \BinaryInfC{$\lexists[x][!C(x,b)]$}
 \end{prooftree}
-We are so close!{} One application of \Intro{\lexists} and we
-have reached our goal.
+就快完成了！{} 再应用一次 \Intro{\lexists} 规则，我们就达到目标了。
 \begin{prooftree}
 \AxiomC{$\lexists[x][(!A(x) \land !B(x))]$}
 \AxiomC{$\lforall[x][(!B(x) \lif !C(x,b))]$}
@@ -175,33 +136,24 @@ have reached our goal.
 \insertBetweenHyps{\hspace{-5em}}
 \BinaryInfC{$\lexists[x][!C(x,b)]$}
 \end{prooftree}
-Since we ensured at each step that the eigenvariable
-conditions were not violated, we can be confident that this
-is a correct !!{derivation}.
+由于我们在每一步都确保了本征变元条件没有被违反，因此我们可以确信这是一个正确的推导。
 \end{ex}
 
 \begin{ex}
-Give !!a{derivation} of the !!{formula}
-$\lnot\lforall[x][!A(x)]$ from the assumptions $\lforall[x][!A(x)] 
-\lif \lexists[y][!B(y)]$ and $\lnot\lexists[y][!B(y)]$.
-Starting as usual, we write the target !!{formula} at the bottom.
+试给出从假设 $\lforall[x][!A(x)] 
+\lif \lexists[y][!B(y)]$ 和 $\lnot\lexists[y][!B(y)]$ 推导公式 $\lnot\lforall[x][!A(x)]$ 的过程。像往常一样，我们将目标公式写在底部。
 \begin{prooftree}
 \AxiomC{}
 \UnaryInfC{$\lnot\lforall[x][!A(x)]$}
 \end{prooftree}
-The last line of the !!{derivation} is a negation, so let's try using
-\Intro{\lnot}. This will require that we figure out how to !!{derive}
-a contradiction.
+推导的最后一行是一个否定式，所以让我们尝试使用 \Intro{\lnot} 规则。这要求我们找出如何推导出一个矛盾。
 \begin{prooftree}
 \AxiomC{$\Discharge{\lforall[x][!A(x)]}{1}$}
 \DeduceC{$\lfalse$}
 \DischargeRule{\Intro{\lnot}}{1}
 \UnaryInfC{$\lnot\lforall[x][!A(x)]$}
 \end{prooftree}
-So far so good. We can use \Elim{\lforall} but it's not obvious
-if that will help us get to our goal. Instead, let's use one of our 
-assumptions. $\lforall[x][!A(x)] \lif \lexists[y][!B(y)]$ together
-with $\lforall[x][!A(x)]$ will allow us to use the \Elim{\lif} rule.
+目前进展顺利。我们可以使用 \Elim{\lforall} 规则，但这能否帮助我们达到目标尚不明确。不如先使用我们的一个假设。$\lforall[x][!A(x)] \lif \lexists[y][!B(y)]$ 与 $\lforall[x][!A(x)]$ 结合将允许我们使用 \Elim{\lif} 规则。
 \begin{prooftree}
 \AxiomC{$\lforall[x][!A(x)] \lif \lexists[y][!B(y)]$}
 \AxiomC{$\Discharge{\lforall[x][!A(x)]}{1}$}
@@ -211,9 +163,7 @@ with $\lforall[x][!A(x)]$ will allow us to use the \Elim{\lif} rule.
 \DischargeRule{\Intro{\lnot}}{1}
 \UnaryInfC{$\lnot\lforall[x][!A(x)]$}
 \end{prooftree}
-We now have one final assumption to work with,
-and it looks like this will help us reach a contradiction
-by using \Elim{\lnot}.
+现在我们还有最后一个假设可以利用，它看起来能帮助我们通过 \Elim{\lnot} 规则得出矛盾。
 \begin{prooftree}
 \AxiomC{$\lnot\lexists[y][!B(y)]$}
 \AxiomC{$\lforall[x][!A(x)] \lif \lexists[y][!B(y)]$}
@@ -228,7 +178,7 @@ by using \Elim{\lnot}.
 \end{ex}
 
 \begin{prob}
-Give !!{derivation}s that show the following:
+给出推导以证明以下各式：
 \begin{enumerate}
 \item $\Proves (\lforall[x][!A(x)] \land \lforall[y][!B(y)]) \lif
 \lforall[z][(!A(z) \land !B(z))]$.
@@ -243,13 +193,13 @@ Give !!{derivation}s that show the following:
 \end{prob}
 
 \begin{prob}
-Give !!{derivation}s that show the following:
+给出推导以证明以下各式：
 \begin{enumerate}
 \item $\Proves \lnot\lforall[x][!A(x)] \lif \lexists[x][\lnot!A(x)]$.
 \item $(\lforall[x][!A(x)] \lif !B) \Proves \lexists[y][(!A(y) \lif !B)]$.
 \item $\Proves \lexists[x][(!A(x) \lif \lforall[y][!A(y)])]$.
 \end{enumerate}
-(These all require the $\FalseCl$~rule.)
+（这些题目都需要用到 $\FalseCl$~规则。）
 \end{prob}
 
 \end{document}

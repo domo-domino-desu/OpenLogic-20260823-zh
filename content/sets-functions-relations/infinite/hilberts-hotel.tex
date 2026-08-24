@@ -7,27 +7,14 @@
 \begin{document}
 
 \olfileid{sfr}{infinite}{hilbert}
-\olsection{Hilbert's Hotel}
+\olsection{希尔伯特旅馆}
 
-The set of the natural numbers is obviously infinite. So, if we do not
-want to \emph{help ourselves} to the natural numbers, our first step
-must be characterize an infinite set in terms that do not require
-mentioning the natural numbers themselves. Here is a nice approach,
-presented by Hilbert in a lecture from 1924. He asks us to imagine
+自然数集显然是无穷的。所以，如果我们不想\emph{直接诉诸}自然数，那么第一步就必须用不涉及自然数本身的术语来刻画无穷集合。这里有一个很好的方法，由 Hilbert 在 1924 年的一次讲座中提出。他让我们想象
+
 \begin{quote}
-[\ldots] a hotel with a finite number of rooms. All of these rooms
-should be occupied by exactly one guest. If the guests now swap their
-rooms somehow, [but] so that each room still contains no more than one
-person, then no rooms will become free, and the hotel-owner cannot in
-this way create a new place for a newly arriving guest [\ldots
-\textparagraph \ldots]
+[\ldots] 一个拥有有限个房间的旅馆。每间房都应当恰好住着一位客人。如果现在客人以某种方式调换房间，[但]使得每个房间仍然至多只有一个人，那么不会有任何房间空出来，旅馆主人也就无法通过这种方式为新到来的客人腾出新的位置[\ldots \textparagraph \ldots]
 
-Now we stipulate that the hotel shall have infinitely many numbered
-rooms $1$, $2$, $3$, $4$, $5$, \dots, each of which is occupied by
-exactly one guest. As soon as a new guest comes along, the owner only
-needs to move each of the old guests into the room associated with the
-number one higher, and room~$1$ will be free for the newly-arriving
-guest. 
+现在我们规定，这个旅馆拥有无穷多个编号为 $1$， $2$， $3$， $4$， $5$， \dots 的房间，其中每个房间都恰好住着一位客人。一旦有新客人到来，旅馆主人只需要把每位老客人移到房号大~$1$ 的房间里，那么房间~$1$ 就会空出来给新到来的客人。
 	\begin{center}
 		\begin{tikzpicture}[scale = .75]
 		\foreach \x in {1, 2, 3, 4, 5, 6, 7, 8, 9}
@@ -49,18 +36,14 @@ guest.
 		\draw (1,1) circle (.4);
 		\end{tikzpicture}
 	\end{center}
-	(published in \citealt[730]{EwaldSieg2013}; our translation)
+	（发表于 \citealt[730]{EwaldSieg2013}；由我们翻译）
 \end{quote}
-The crucial point is that Hilbert's Hotel has infinitely many rooms;
-and we can take his explanation to define what it means to say this.
-Indeed, this was Dedekind's approach (presented here, of course, with
-massive anachronism; Dedekind's definition is from
-\citeyear{Dedekind1888}):
+
+关键点在于，希尔伯特旅馆拥有无穷多个房间；我们可以把他的解释用来定义“拥有无穷多”意味着什么。事实上，这正是 Dedekind 的进路（当然，这里的呈现有着严重的时代错位；Dedekind 的定义来自 \citeyear{Dedekind1888}）：
 
 \begin{defn}\ollabel{defn:DedekindInfinite}
-A set $A$ is \emph{Dedekind infinite} iff there is !!a{injection}
-from~$A$ to a proper subset of~$A$. That is, there is some $o \in A$
-and !!a{injection} $f \colon A \to A$ such that $o \notin \ran{f}$.
+集合 $A$ 是 \emph{Dedekind 无穷的}，当且仅当存在一个从~$A$ 到其真子集的单射。
+也就是说，存在某个 $o \in A$ 以及一个单射 $f \colon A \to A$，使得 $o \notin \ran{f}$。
 \end{defn}
 
 \end{document}

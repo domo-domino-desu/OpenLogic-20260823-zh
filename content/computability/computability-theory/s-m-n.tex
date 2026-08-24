@@ -7,20 +7,17 @@
 \begin{document}
 
 \olfileid{cmp}{thy}{smn}
-\olsection{The $s$-$m$-$n$ Theorem}
+\olsection{$s$-$m$-$n$ 定理}
 
 \begin{explain}
-The next theorem is known as the ``$s$-$m$-$n$ theorem,'' for a reason
-that will be clear in a moment. The hard part is understanding just
-what the theorem says; once you understand the statement, it will seem
-fairly obvious.
+下一个定理被称为“$s$-$m$-$n$定理”，稍后就会明白其得名原因。
+理解这个定理究竟在说什么才是难点所在；一旦理解了它的内容，就会发现它其实相当显然。
 \end{explain}
 
 \begin{thm}
 \ollabel{thm:s-m-n}
-  For each pair of natural numbers $n$ and~$m$, there is a primitive
-  recursive function~$s^m_n$ such that for every sequence
-  $e$, $a_0$, \dots, $a_{m-1}$, $y_0$ ,\dots, $y_{n-1}$, we have
+  对于任意一对自然数 $n$ 和~$m$，都存在一个原始递归函数~$s^m_n$，
+  使得对任意 $e$, $a_0$, \dots, $a_{m-1}$, $y_0$, \dots, $y_{n-1}$，都有
   \[
   \cfind{s^m_n(e, a_0, \dots, a_{m-1})}[n](y_0, \dots, y_{n-1}) \simeq
   \cfind{e}[m+n](a_0, \dots, a_{m-1}, y_0, \dots, y_{n-1}).
@@ -28,17 +25,9 @@ fairly obvious.
 \end{thm}
 
 \begin{explain}
-It is helpful to think of $s^m_n$ as acting on \emph{programs}. That
-is, $s^m_n$ takes a program~$e$ for an $(m+n)$-ary function, as well
-as fixed inputs $a_0$, \dots, $a_{m-1}$; and it returns a program
-$s^m_n(x, a_0, \dots, a_{m-1})$ for the $n$-ary function of the
-remaining arguments. \iftag{TMs}{It you think of $x$ as the description of a
-Turing machine, then $s^m_n(e, a_0, \dots, a_{m-1})$ is the Turing
-machine that, on input $y_0$, \dots,~$y_{n-1}$, prepends
-$a_0$, \dots,~$a_{m-1}$ to the input string, and runs~$e$. Each $s^m_n$
-is then just a primitive recursive function that finds a code for the
-appropriate Turing machine.}{}
+将 $s^m_n$ 视为对\emph{程序}的操作会很有助于理解。
+也就是说，$s^m_n$ 以一个 $(m+n)$ 元函数的程序~$e$ 以及固定的输入 $a_0$, \dots, $a_{m-1}$ 为自变元，并返回一个程序
+$s^m_n(x, a_0, \dots, a_{m-1})$，该程序对应于由剩余自变元构成的 $n$ 元函数。\iftag{TMs}{若将 $e$ 视为一台图灵机的描述，那么 $s^m_n(e, a_0, \dots, a_{m-1})$ 便是这样一台图灵机：当输入为 $y_0$, \dots,~$y_{n-1}$ 时，它将 $a_0$, \dots,~$a_{m-1}$ 前置到输入串上，并运行~$e$。由此，每个 $s^m_n$ 不过是一个寻找相应图灵机编码的原始递归函数。}{}
 \end{explain}
 
 \end{document}
-

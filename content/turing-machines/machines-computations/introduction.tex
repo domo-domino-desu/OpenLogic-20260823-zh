@@ -7,124 +7,39 @@
 \begin{document}
 
 \olfileid{tur}{mac}{int}
-\olsection{Introduction}
+\olsection{引言}
 
-What does it mean for a function, say, from $\Nat$ to $\Nat$ to be
-\emph{computable}? Among the first answers, and the most well known
-one, is that a function is computable if it can be computed by a
-Turing machine. This notion was set out by Alan Turing in 1936.
-Turing machines are an example of \emph{a model of computation}---they
-are a mathematically precise way of defining the idea of a
-``computational procedure.''  What exactly that means is debated, but
-it is widely agreed that Turing machines are one way of specifying
-computational procedures.  Even though the term ``Turing machine''
-evokes the image of a physical machine with moving parts, strictly
-speaking a Turing machine is a purely mathematical construct, and as
-such it idealizes the idea of a computational procedure.  For
-instance, we place no restriction on either the time or memory
-requirements of a Turing machine: Turing machines can compute
-something even if the computation would require more storage space or
-more steps than there are atoms in the universe.
+一个函数（比如从 $\Nat$ 到 $\Nat$ 的函数）是\emph{可计算的}，这是什么意思？最早的、也是最著名的答案之一是：如果一个函数能被图灵机计算，那么它就是可计算的。这个概念由 Alan Turing（艾伦·图灵）于 1936 年提出。图灵机是\emph{计算模型}的一个例子——它用数学上精确的方式定义了“计算过程”这一概念。这种定义的确切含义尚有争议，但人们普遍同意，图灵机是规定计算过程的一种方式。尽管“图灵机”这个术语会让人联想到带有活动部件的物理机器，但严格来说，图灵机是一种纯粹的数学构造，因而它是对计算过程概念的一种理想化。例如，我们对图灵机的时间或内存需求没有任何限制：即使某项计算所需的存储空间或步骤比宇宙中的原子还要多，图灵机依然能完成计算。
 
 \begin{explain}
-It is perhaps best to think of a Turing
-machine as a program for a special kind of imaginary mechanism. This
-mechanism consists of a \emph{tape} and a \emph{read-write head}. In
-our version of Turing machines, the tape is infinite in one direction
-(to the right), and it is divided into \emph{squares}, each of which
-may contain a symbol from a finite \emph{alphabet}. Such alphabets can
-contain any number of different symbols, but we will mainly make do
-with three: $\TMendtape$, $\TMblank$, and $\TMstroke$. When the
-mechanism is started, the tape is empty (i.e., each square contains
-the symbol $\TMblank$) except for the leftmost square, which contains
-$\TMendtape$, and a finite number of squares which contain the
-\emph{input}. At any time, the mechanism is in one of a finite number
-of \emph{states}. At the outset, the head scans the leftmost square
-and in a specified \emph{initial state}. At each step of the
-mechanism's run, the content of the square currently scanned together
-with the state the mechanism is in and the Turing machine program
-determine what happens next. The Turing machine program is given by a
-partial function which takes as input a state~$q$ and a
-symbol~$\sigma$ and outputs a triple~$\tuple{q', \sigma',
-  D}$. Whenever the mechanism is in state $q$ and reads symbol
-$\sigma$, it replaces the symbol on the current square with $\sigma'$,
-the head moves left, right, or stays put according to whether $D$ is
-$\TMleft$, $\TMright$, or $\TMstay$, and the mechanism goes into
-state~$q'$.
+或许最好把图灵机看作一种特殊假想机制的程序。这个机制由一个\emph{纸带}和一个\emph{读写头}组成。在我们这个版本的图灵机中，纸带是单向（向右）无限的，并且被划分成\emph{方格}，每个方格可以包含一个来自有限\emph{字母表}的符号。这样的字母表可以包含任意多个不同的符号，但我们主要使用三个符号：$\TMendtape$、$\TMblank$ 和 $\TMstroke$。当机制启动时，除了最左边的方格包含 $\TMendtape$ 以及有限个包含\emph{输入}的方格外，纸带的其余部分是空的（即每个方格包含符号 $\TMblank$）。在任何时刻，该机制都处于有限个\emph{状态}之一。开始时，读写头扫描最左边的方格，并处于一个指定的\emph{初始状态}。在该机制运行的每一步，当前扫描方格的内容、机制所处的状态以及图灵机程序共同决定了接下来会发生什么。图灵机程序由一个偏函数给出，该函数以状态~$q$ 和符号~$\sigma$ 作为输入，并输出一个三元组~$\tuple{q', \sigma', D}$。每当机制处于状态 $q$ 并读取符号 $\sigma$ 时，它就会将当前方格上的符号替换为 $\sigma'$，读写头根据 $D$ 为 $\TMleft$、$\TMright$ 或 $\TMstay$ 而向左移动、向右移动或保持不动，并且机制进入状态~$q'$。
 
-For instance, consider the situation in \olref{fig:tm}.
+例如，考虑 \olref{fig:tm} 中的情形。
 \begin{figure}
   \olasset{\olpath/assets/diagrams/turing-machine.tikz}
-  \caption{A Turing machine executing its program.}
+  \caption{一台正在执行其程序的图灵机。}
   \ollabel{fig:tm}
 \end{figure}
-The visible part of the tape of the Turing machine contains the
-end-of-tape symbol $\TMendtape$ on the leftmost square, followed by
-three $1$'s, a $0$, and four more $1$'s.  The
-head is reading the third square from the left, which contains
-a~$1$, and is in state~$q_1$---we say ``the machine is reading
-a $1$ in state~$q_1$.'' If the program of the Turing machine
-returns, for input $\tuple{q_1, 1}$, the triple $\tuple{q_2,
-0, \TMstay}$, the machine would now replace the~$1$ on
-the third square with a~$0$, leave the read/write head where it
-is, and switch to state~$q_2$.  If then the program returns
-$\tuple{q_3, 0, \TMright}$ for input $\tuple{q_2, 0}$,
-the machine would now overwrite the~$0$ with another~$0$
-(effectively, leaving the content of the tape under the read/write
-head unchanged), move one square to the right, and enter state~$q_3$.
-And so on.
+图灵机纸带的可见部分在最左边的方格包含纸带结束符 $\TMendtape$，随后是三个 $1$、一个 $0$ 以及另外四个 $1$。读写头正在从左数第三个方格读取内容，该方格包含一个~$1$，且机器处于状态~$q_1$——我们称“机器正在状态~$q_1$ 下读取一个 $1$”。如果图灵机的程序在输入 $\tuple{q_1, 1}$ 时返回三元组 $\tuple{q_2, 0, \TMstay}$，那么机器就会将第三个方格上的~$1$ 替换为~$0$，让读写头停留在原地，并切换到状态~$q_2$。然后，如果程序在输入 $\tuple{q_2, 0}$ 时返回 $\tuple{q_3, 0, \TMright}$，那么机器就会用另一个~$0$ 覆盖原来的~$0$（实际上，保持读写头下方纸带内容不变），向右移动一个方格，并进入状态~$q_3$。以此类推。
 
-We say that the machine \emph{halts} when it encounters some state,
-$q_n$, and symbol, $\sigma$ such that there is no instruction for
-$\tuple{q_n, \sigma}$, i.e., the transition function for input
-$\tuple{q_n,\sigma}$ is undefined. In other words, the machine has no
-instruction to carry out, and at that point, it ceases
-operation. Halting is sometimes represented by a specific halt
-state~$h$.  This will be demonstrated in more detail later on.
+我们说，当机器处于某个状态 $q_n$ 并读到某个符号 $\sigma$，而程序中没有针对 $\tuple{q_n, \sigma}$ 的指令时，即针对输入 $\tuple{q_n,\sigma}$ 的转移函数无定义时，机器\emph{停机}。换句话说，机器没有要执行的指令，此时它停止运行。有时停机用一个特定的停机状态~$h$ 来表示。这一点将在后面更详细地展示。
 \end{explain}
 
 \begin{digress}
-The beauty of Turing's paper, ``On computable numbers,'' is that he
-presents not only a formal definition, but also an argument that the
-definition captures the intuitive notion of computability.
-From the definition, it should be clear that any function computable
-by a Turing machine is computable in the intuitive sense. Turing
-offers three types of argument that the converse is true, i.e., that
-any function that we would naturally regard as computable is
-computable by such a machine. They are (in Turing's words):
+图灵论文《论可计算数》的精妙之处在于，他不仅提出了一个形式定义，还论证了这个定义捕捉了直观的可计算性概念。
+从定义出发，不难看出任何由图灵机可计算的函数在直观意义上也是可计算的。
+图灵提供了三类论证来说明其逆亦真，即任何我们自然会视作可计算的函数，都能由这样的机器计算。用图灵的话说，它们是：
 \begin{enumerate}
-\item A direct appeal to intuition.
-\item A proof of the equivalence of two definitions (in case the new
-  definition has a greater intuitive appeal).
-\item Giving examples of large classes of numbers which are
-  computable.
+\item 直接诉诸直觉。
+\item 证明两个定义的等价性（如果新定义具有更强的直观说服力）。
+\item 给出可计算数的大类作为例子。
 \end{enumerate}
-Our goal is to try to define the notion of computability ``in
-principle,'' i.e., without taking into account practical limitations
-of time and space. Of course, with the broadest definition of
-computability in place, one can then go on to consider computation
-with bounded resources; this forms the heart of the subject known as
-``computational complexity.''
+我们的目标是尝试定义“原则上”的可计算性概念，即不考虑时间和空间的实际限制。
+当然，有了最宽泛的可计算性定义之后，人们就可以进而研究资源受限的计算；这构成了被称为“计算复杂性”的学科的核心。
 \end{digress}
 
 \begin{history}
-Alan Turing invented Turing machines in 1936. While his interest at
-the time was the decidability of first-order logic, the paper has been
-described as a definitive paper on the foundations of computer
-design. In the paper, Turing focuses on computable real numbers, i.e.,
-real numbers whose decimal expansions are computable; but he notes
-that it is not hard to adapt his notions to computable functions on
-the natural numbers, and so on.  Notice that this was a full five
-years before the first working general purpose computer was built in
-1941 (by the German Konrad Zuse in his parent's living room), seven
-years before Turing and his colleagues at Bletchley Park built the
-code-breaking Colossus (1943), nine years before the American ENIAC
-(1945), twelve years before the first British general purpose
-computer---the Manchester Small-Scale Experimental Machine---was built in
-Manchester (1948), and thirteen years before the Americans first
-tested the BINAC (1949). The Manchester SSEM has the distinction of
-being the first stored-program computer---previous machines had to be
-rewired by hand for each new task.
+Alan Turing 在 1936 年发明了图灵机。虽然他当时的兴趣是一阶逻辑的可判定性，但这篇论文被描述为关于计算机设计基础的权威文献。在文中，图灵主要关注可计算实数，即其十进制展开是可计算的实数；但他指出，将他的概念推广到自然数上的可计算函数等并不困难。请注意，这比第一台实际工作的通用计算机的诞生（1941年由德国人Konrad Zuse在他父母的客厅里建造）早了整整五年，比 Alan Turing 及其在布莱切利园的同事们建造破译密码的巨人计算机（Colossus，1943年）早了七年，比美国的ENIAC（1945年）早了九年，比第一台英国通用计算机——曼彻斯特小型实验机（SSEM）在曼彻斯特建成（1948年）早了十二年，比美国人首次测试BINAC（1949年）早了十三年。曼彻斯特SSEM的独特之处在于它是第一台存储程序计算机——此前的机器必须为每个新任务手动重新接线。
 \end{history}
 
 \end{document}

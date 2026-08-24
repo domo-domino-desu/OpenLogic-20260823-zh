@@ -7,222 +7,166 @@
 \begin{document}
 
 \olfileid{mod}{bas}{nsa}
-\section{Non-standard Models of Arithmetic}
+\section{算术的非标准模型}
 
 \begin{defn}
-Let $\Lang{L_N}$ be the !!{language} of arithmetic, comprising a
-!!{constant} $\Obj{0}$, a 2-place !!{predicate} $<$, a 1-place
-!!{function} $\prime$, and 2-place !!{function}s $+$ and $\times$.
+设 $\Lang{L_N}$ 为算术语言，包含常项符号 $\Obj{0}$、二元谓词符号 $<$、一元函数符号 $\prime$ 以及二元函数符号 $+$ 和 $\times$。
 \begin{enumerate}
-\item The \emph{standard model} of arithmetic is the !!{structure}
-  $\Struct{N}$ for $\Lang{L_N}$ having $\Nat = \{ 0, 1, 2, \dots\}$
-  and interpreting $\Obj{0}$ as $0$, $<$ as the less-than relation
-  over~$\Nat$, and $\prime$, $+$ and $\times$ as successor, addition,
-  and multiplication over $\Nat$, respectively.
-\item \emph{True arithmetic} is the theory $\Theory{N}$.
+\item 算术的\emph{标准模型}是 $\Lang{L_N}$ 的结构 $\Struct{N}$，其论域为 $\Nat = \{ 0, 1, 2, \dots\}$
+且将 $\Obj{0}$ 解释为 $0$，将 $<$ 解释为 $\Nat$ 上的小于关系，将 $\prime$、$+$ 和 $\times$ 分别解释为 $\Nat$ 上的后继、加法和乘法。
+\item \emph{真算术}即理论 $\Theory{N}$。
 \end{enumerate}
 \end{defn}
 
-When working in $\Lang{L_N}$ we abbreviate each term of
-the form $\Obj{0}^{\prime\dots\prime}$, with $n$ applications of the
-successor function to $\Obj{0}$, as~$\num{n}$.
+在 $\Lang{L_N}$ 中工作时，我们将形如 $\Obj{0}^{\prime\dots\prime}$（即对 $\Obj{0}$ 应用 $n$ 次后继函数）的项简记为~$\num{n}$。
 
 \begin{defn}
-A !!{structure}~$\Struct{M}$ for $\Lang{L_N}$ is \emph{standard} if
-and only $\Struct{N} \iso \Struct{M}$.
+一个 $\Lang{L_N}$ 的结构~$\Struct{M}$ 是\emph{标准的}，当且仅当 $\Struct{N} \iso \Struct{M}$。
 \end{defn}
 
 \begin{thm}\ollabel{thm:non-std}
-There are non-standard !!{enumerable} models of true arithmetic.
+真算术存在非标准的可数模型。
 \end{thm}
 
 \begin{proof}
-Expand $\Lang{L_N}$ by introducing a new !!{constant}~$c$, and
-consider the theory
+扩充语言 $\Lang{L_N}$，引入一个新常项符号~$c$，并考虑理论
 \[
 \Theory{N} \cup \Setabs{\num{n} < c}{n \in \Nat}.
 \]
-The theory is finitely satisfiable, so by compactness it has a model
-$\Struct{M}$, which can be taken to be !!{enumerable} by the Downward
-L\"owenheim--Skolem theorem. Where $\Domain{M}$ is the domain of
-$\Struct{M}$, let $\Struct{M}$ interpret the non-logical constants of
-$\Lang{L}$ as $\mathbf{z} = \Assign{\Obj{0}}{M} \in \Domain{M}$, ${\prec} =
-\Assign{<}{M} \subseteq M^2$, $* = \Assign{\prime}{M} \colon
-\Domain{M} \to \Domain{M}$, and $\oplus = \Assign{+}{M}, \otimes =
-\Assign{\times}{M} \colon \Domain{M}^2 \to \Domain{M}$. For each $x
-\in \Domain{M}$, we write $x^*$ for the element of $\Domain{M}$
-obtained from $x$ by application of~$*$.
+该理论是有限可满足的，因此由紧致性定理可知它有一个模型 $\Struct{M}$。根据 Löwenheim–Skolem 下降定理，可以取 $\Struct{M}$ 为可数的。设 $\Domain{M}$ 为 $\Struct{M}$ 的论域，并设 $\Struct{M}$ 将 $\Lang{L}$ 的非逻辑常项解释为 $\mathbf{z} = \Assign{\Obj{0}}{M} \in \Domain{M}$、${\prec} =
+\Assign{<}{M} \subseteq M^2$、$* = \Assign{\prime}{M} \colon
+\Domain{M} \to \Domain{M}$ 和 $\oplus = \Assign{+}{M}, \otimes =
+\Assign{\times}{M} \colon \Domain{M}^2 \to \Domain{M}$。对每个 $x \in \Domain{M}$，我们用 $x^*$ 表示对 $x$ 应用 $*$ 所得到的 $\Domain{M}$ 中的元素。
 
-Now, if $h$ were an isomorphism of $\Struct{N}$ and $\Struct{M}$,
-there would be $n \in \Nat$ such that $h(n) = \Assign{c}{M}$.  So let
-$s$ be any assignment in $\Struct{N}$ such that $s(x) = n$. Then
-$\Sat{N}{\eq[\num{n}][x]}[s]$; by the proof of \olref[iso]{thm:isom},
-also $\Sat{M}{\eq[\num{n}][x]}[h \circ s]$, so that $\Assign{c}{M} =
-\mathbf{z}^{*\cdots *}$ (with $*$ iterated $n$ times). But this is impossible
-since by assumption $\Sat{M}{\num{n} < c}$ and $\prec$ is
-irreflexive. So $\Struct{M}$ is non-standard.
+现在，如果 $h$ 是 $\Struct{N}$ 与 $\Struct{M}$ 之间的同构，则存在 $n \in \Nat$ 使得 $h(n) = \Assign{c}{M}$。于是，设 $s$ 为 $\Struct{N}$ 中满足 $s(x) = n$ 的任意赋值。则 $\Sat{N}{\eq[\num{n}][x]}[s]$；根据 \olref[iso]{thm:isom} 的证明，亦有 $\Sat{M}{\eq[\num{n}][x]}[h \circ s]$，从而 $\Assign{c}{M} =
+\mathbf{z}^{*\cdots *}$（其中 $*$ 迭代了 $n$ 次）。但这是不可能的，因为由假设 $\Sat{M}{\num{n} < c}$ 且 $\prec$ 是反自反的。所以 $\Struct{M}$ 是非标准的。
 \end{proof}
 
 \begin{prob}
-A relation $R$ over a set $X$ is \emph{well-founded} if and only if
-there are no infinite descending chains in~$R$, i.e., if there are no
-$x_0$, $x_1$, $x_2$,~\dots in $X$ such that $\dots x_2Rx_1Rx_0$.  Assuming
-Zermelo--Fraenkel set theory~$ZF$ is consistent, show that there are
-non-well-founded models of $ZF$, i.e., models $\mathfrak{M}$ such that
-$\dots x_2 \in x_1 \in x_0$.
+集合 $X$ 上的一个关系 $R$ 是\emph{良基的}，当且仅当 $R$ 中不存在无限下降链，即不存在 $X$ 中的元素 $x_0$, $x_1$, $x_2$, \dots 使得 $\dots x_2Rx_1Rx_0$。假设 Zermelo–Fraenkel 集合论 $ZF$ 是一致的，证明存在 $ZF$ 的\emph{非良基模型}，即满足 $\dots x_2 \in x_1 \in x_0$ 的模型 $\mathfrak{M}$。
 \end{prob}
 
-Since the non-standard model $\Struct{M}$ from \olref{thm:non-std} is
-elementarily equivalent to the standard one, a number of properties of
-$\Struct{M}$ can be derived. The rest of this section is devoted to
-such a task, which will allow us to obtain a precise characterization
-of !!{enumerable} non-standard models of $\Theory{N}$.
+由于 \olref{thm:non-std} 中的非标准模型 $\Struct{M}$ 与标准模型初等等价，我们可以推导出 $\Struct{M}$ 的许多性质。本节余下部分将致力于此，以便精确刻画 $\Theory{N}$ 的可数非标准模型。
 
 \begin{enumerate}
-\item No member of $\Domain{M}$ is $\prec$-less than itself: the sentence
-  $\lforall[x][\lnot x < x]$ is true in $\Struct{N}$ and therefore in
-  $\Struct{M}$.
-\item By a similar reasoning we obtain that $\prec$ is a \emph{linear
-    ordering} of $\Domain{M}$, i.e., a total, irreflexive, transitive relation
-  on $\Domain{M}$. 
-\item The element $\mathbf{z}$ is the $\prec$-least element of $\Domain{M}$.
-\item Any member of $\Domain{M}$ is $\prec$-less than its $*$-successor and
-  $x^*$ is the $\prec$-least member of $\Domain{M}$ greater than $x$.
-\item $\Struct{M}$ contains an initial segment (of $\prec$) isomorphic
-  to $\Nat$: $\mathbf{z}, \mathbf{z}^*, \mathbf{z}^{**}, \dots$, which
-  we call the \emph{standard part} of $\Domain{M}$. Any other member
-  of $\Domain{M}$ is \emph{non-standard}. There must be non-standard
-  members of $\Domain{M}$, or else the function $h$ from the proof of
-  \olref{thm:non-std} is an isomorphism.  We use $n, m, \dots$ as
-  !!{variable}s ranging on this standard part of $\Struct{M}$.
-\item Every non-standard element is greater than any standard one;
-  this is because for every $n \in \Nat$,
+\item $\Domain{M}$中没有成员$\prec$小于自身：语句
+  $\lforall[x][\lnot x < x]$在$\Struct{N}$中为真，从而在
+  $\Struct{M}$中也为真。
+\item 通过类似的推理，我们得到$\prec$是$\Domain{M}$的一个\emph{线性序}，
+  即$\Domain{M}$上的一个全、反自反且传递的关系。
+\item 元素$\mathbf{z}$是$\Domain{M}$的$\prec$最小元。
+\item $\Domain{M}$的任何成员都$\prec$小于其$*$-后继，并且
+  $x^*$是$\Domain{M}$中大于$x$的$\prec$最小成员。
+\item $\Struct{M}$包含一个（关于$\prec$的）初始段，它同构于
+  $\Nat$：$\mathbf{z}, \mathbf{z}^*, \mathbf{z}^{**}, \dots$，我们称之为
+  $\Domain{M}$的\emph{标准部分}。$\Domain{M}$的任何其他成员
+  都是\emph{非标准的}。$\Domain{M}$中必须有非标准成员，否则
+  \olref{thm:non-std}证明中的函数$h$就是一个同构。
+  我们用$n, m, \dots$作为变元，在此标准部分上取值。
+\item 每个非标准元素都大于任何标准元素；
+  这是因为对于每个$n \in \Nat$，
   \[
   \Sat{N}{\lforall[z][(\lnot(\eq[z][\Obj{0}] \lor
   \dots \lor \eq[z][\num{n}]) \lif \num{n} < z)]},
   \]
-  so if $z \in \Domain{M}$ is different from all the standard
-  elements, it must be \emph{greater} than all of them.
-\item Any member of $\Domain{M}$ other than $\mathbf{z}$ is the
-  $*$-successor of some unique element of $\Domain{M}$, denoted by
-  $^*x$. If $x = y^*$ then both $x$ and $y$ are standard if one of
-  them is (and both non-standard if one of them is).
-\item Define an equivalence relation $\approx$ over $\Domain{M}$ by
-  saying that $x \approx y$ if and only if for some \emph{standard}
-  $n$, either $x \oplus n = y$ or $y \oplus n =x$. In other words, $x
-  \approx y$ if and only if $x$ and $y$ are a finite distance
-  apart. If $n$ and $m$ are standard then $n \approx m$. Define the
-  \emph{block} of $x$ to be the equivalence class $[x] = \Setabs{y}{x
-  \approx y}$.
-\item Suppose that $x \prec y$ where $x \not\approx y$. Since
+  所以，如果$z \in \Domain{M}$不同于所有标准元素，它必须\emph{大于}
+  所有标准元素。
+\item $\Domain{M}$中除$\mathbf{z}$外的任何成员，都是
+  $\Domain{M}$中某个唯一元素的$*$-后继，记作$^*x$。
+  如果$x = y^*$，那么若其中一个是标准的，则两者皆是标准的
+  （若其中一个是非标准的，则两者皆是非标准的）。
+\item 在$\Domain{M}$上定义等价关系$\approx$为：
+  $x \approx y$当且仅当存在某个\emph{标准}的$n$，使得
+  要么$x \oplus n = y$，要么$y \oplus n =x$。
+  换言之，$x \approx y$当且仅当$x$和$y$相距有限距离。
+  如果$n$和$m$都是标准的，那么$n \approx m$。
+  定义$x$的\emph{块}为其等价类$[x] = \Setabs{y}{x
+  \approx y}$。
+\item 假设$x \prec y$且$x \not\approx y$。由于
   $\Sat{N}{\lforall[x][\lforall[y][(x < y \lif (x' < y \lor x' =
-      y))]]}$, either $x^* \prec y$ or $x^* = y$. The latter is
-  impossible because it implies $x \approx y$, so $x \prec
-  y$. Similarly, if $x \prec y$ and $x \not\approx y$, then $x \prec
-  {^*y}$. Therefore if $x \prec y$ and $x \not\approx y$, then every
-  $w \approx x$ is $\prec$-less than every $v \approx y$. Accordingly,
-  each block $[x]$ forms a doubly infinite chain
+      y))]]}$，要么$x^* \prec y$，要么$x^* = y$。
+  后者不可能，因为这会推出$x \approx y$，所以$x^* \prec
+  y$。类似地，如果$x \prec y$且$x \not\approx y$，那么$x \prec
+  {^*y}$。因此，如果$x \prec y$且$x \not\approx y$，那么每个
+  与$x$等价的$w$都$\prec$小于每个与$y$等价的$v$。相应地，
+  每个块$[x]$构成一个双向无穷链
   \[
   \cdots \prec  {^{**}x} \prec {^*}x \prec x \prec x^* \prec x^{**}
   \prec \cdots
   \]
-  which is referred to as a $Z$-chain because it has the order type of
-  the integers.
-\item The $\prec$ ordering can be lifted up to the blocks: if $x \prec y$
-  then the block of $x$ is less than the block of $y$. A block is
-  \emph{non-standard} if it contains a non-standard element. The
-  standard block is the least block. 
-\item There is no least non-standard block: if $y$ is non-standard
-  then there is a $x \prec y$ where $x$ is also non-standard and $x
-  \not\approx y$. Proof: in the standard model $\Struct{N}$, every
-  number is divisible by two, possibly with remainder one, i.e.,
+  它被称为一个$Z$-链，因为其序型与整数集相同。
+\item 可以将$\prec$序提升到块上：如果$x \prec y$，
+  则$x$所在的块小于$y$所在的块。一个块如果包含非标准元素，它就是
+  \emph{非标准的}。标准块是最小的块。
+\item 不存在最小的非标准块：如果$y$是非标准的，
+  那么存在$x \prec y$，其中$x$也是非标准的且$x
+  \not\approx y$。证明：在标准模型$\Struct{N}$中，每个
+  数都能被2整除（可能余1），即
   $\Sat{N}{\lforall[y][\lforall[x][(y = x + x \lor y = x + x +
-        \Obj{0}')]]}$. By elementary equivalence, for every $y \in
-  \Domain{M}$ there is $x \in \Domain{M}$ such that either $x \oplus x
-  = y$ or $x \oplus x \oplus \mathbf{z}^*= y$. If $x$ were standard,
-  then so would be $y$; so $x$ is non-standard. Furthermore, $x$ and
-  $y$ belong to different blocks, i.e, $x \not\approx y$.  To see
-  this, assume they did belong to the same block, i.e., $x \oplus n =
-  y$ for some standard $n$. If $y = x \oplus x$, then $x \oplus n = x
-  \oplus x$, whence $x = n$ by the cancellation law for addition
-  (which holds in $\Struct{N}$ and therefore in $\Struct{M}$ as well),
-  and $x$ would be standard after all. Similarly if $y = x \oplus x
-  \oplus \mathbf{z}^*$.
-\item By a similar argument, there is no greatest block. 
-\item The ordering of the blocks is dense: if $[x]$ is less than $[y]$
-  (where $x \not\approx y$), then there is a block $[z]$ distinct from
-  both that is between them. Suppose $x \prec y$. As before, $x \oplus
-  y$ is divisible by two (possibly with remainder) so there is a $u
-  \in \Domain{M}$ such that either $x \oplus y = u \oplus u$ or $x
-  \oplus y = u \oplus u \oplus \mathbf{z}^*$. The element $u$ is the
-  average of $x$ and $y$, and so is between them. Assume $x \oplus y =
-  u \oplus u$ (the other case being similar): if $u \approx x$ then
-  for some standard $n$:
+        \Obj{0}')]]}$。根据初等等价，对于每个$y \in
+  \Domain{M}$，都存在$x \in \Domain{M}$使得要么$x \oplus x
+  = y$，要么$x \oplus x \oplus \mathbf{z}^*= y$。如果$x$是标准的，
+  那么$y$也会是标准的；所以$x$是非标准的。此外，$x$和
+  $y$属于不同的块，即$x \not\approx y$。要明白这一点，
+  假设它们属于同一块，即对某个标准$n$有$x \oplus n =
+  y$。如果$y = x \oplus x$，那么$x \oplus n = x
+  \oplus x$，由此根据加法消去律（它在$\Struct{N}$中成立，因此在
+  $\Struct{M}$中也成立），可得$x = n$，从而$x$仍是标准的。
+  类似地，如果$y = x \oplus x
+  \oplus \mathbf{z}^*$。
+\item 根据类似的论证，不存在最大的块。
+\item 块的序是稠密的：如果$[x]$小于$[y]$
+  （其中$x \not\approx y$），那么存在一个不同于两者的块$[z]$介于它们之间。
+  假设$x \prec y$。如前所述，$x \oplus
+  y$能被2整除（可能余1），所以存在$u
+  \in \Domain{M}$使得要么$x \oplus y = u \oplus u$，要么$x
+  \oplus y = u \oplus u \oplus \mathbf{z}^*$。元素$u$是
+  $x$与$y$的平均值，因此介于它们之间。假设$x \oplus y =
+  u \oplus u$（另一种情况类似）：如果$u \approx x$，那么对某个标准$n$：
   \[
   x \oplus y = x \oplus n \oplus x \oplus n,
   \]
-  so $y = x \oplus n \oplus n$ and we would have $x \approx y$,
-  against assumption. We conclude that $u \not\approx x$. A similar
-  argument gives $u \not\approx y$.
+  于是$y = x \oplus n \oplus n$，则可得$x \approx y$，
+  与假设矛盾。我们断定$u \not\approx x$。类似的
+  论证可得出$u \not\approx y$。
 \end{enumerate}
-The non-standard blocks are therefore ordered like the rationals: they
-form !!a{enumerable} linear ordering without endpoints.  It follows
-that for any two !!{enumerable} non-standard models $\Struct{M}_1$ and
-$\Struct{M_2}$ of true arithmetic, their reducts to the language
-containing $<$ and $=$ only are isomorphic. Indeed, an isomorphism $h$
-can be defined as follows: the standard parts of $\Struct{M_1}$ and
-$\Struct{M_2}$ are isomorphic to the standard model $\Struct{N}$ and
-hence to each other. The blocks making up the non-standard part are
-themselves ordered like the rationals and therefore by
-\olref[dlo]{thm:cantorQ} are isomorphic; an isomorphism of the blocks
-can be extended to an isomorphism \emph{within} the blocks by matching
-up arbitrary elements in each, and then taking the image of the
-successor of $x$ in $\Struct{M_1}$ to be the successor of the image of
-$x$ in $\Struct{M_2}$. Note that it does \emph{not} follow that
-$\mathfrak{M}_1$ and $\mathfrak{M}_2$ are isomorphic in the full
-language of arithmetic (indeed, isomorphism is always relative to a
-signature), as there are non-isomorphic ways to define addition and
-multiplication over $\Domain{M_1}$ and $\Domain{M_2}$. (This also
-follows from a famous theorem due to Vaught that the number of
-countable models of a complete theory cannot be~2.)
+
+因此，非标准块的排序如同有理数集：它们构成一个没有端点的可数线性序。
+由此可得，对于真算术的任意两个可数非标准模型 $\Struct{M}_1$ 和 $\Struct{M_2}$，
+它们在仅含 $<$ 和 $=$ 的语言上的归约是同构的。
+事实上，可以如下定义一个同构 $h$：
+$\Struct{M}_1$ 和 $\Struct{M}_2$ 的标准部分都同构于标准模型 $\Struct{N}$，从而彼此同构。
+构成非标准部分的那些块本身如同有理数集般排序，因此根据 \olref[dlo]{thm:cantorQ}，它们也是同构的；
+块之间的同构可以通过以下方式扩展到块\emph{内部}的同构：先在每对对应的块中各任选一个元素进行匹配，然后将 $\Struct{M}_1$ 中 $x$ 的后继的像取为 $\Struct{M}_2$ 中 $x$ 的像的后继。
+注意，这\emph{并}不\emph{意味着} $\mathfrak{M}_1$ 和 $\mathfrak{M}_2$ 在算术的完整语言中也是同构的（实际上，同构总是相对于一个符号集的），因为在 $\Domain{M_1}$ 和 $\Domain{M_2}$ 上定义加法和乘法存在非同构的方式。（这一点也可以从 Vaught 的一个著名定理得出：一个完备理论的可数模型个数不可能为~2。）
 
 \begin{prob}
-Show that there can be no greatest block in a non-standard model of
-arithmetic.
+证明在算术的非标准模型中不可能存在最大的块。
 \end{prob}
 
-\begin{prob} 
-Let $\Lang{L}$ be the first-order !!{language} containing $<$ as its
-only !!{predicate} (besides $\eq$), and let $\Struct{N} = (\Nat,
-<)$. All the finite or cofinite subsets of $\Struct{N}$ are
-definable. Show that these are the \emph{only} definable subsets of
-$\Struct{N}$.
+\begin{prob}
+设 $\Lang{L}$ 是仅以 $<$ 为谓词符号（等词 $\eq$ 除外）的一阶语言，
+并令 $\Struct{N} = (\Nat, <)$。$\Struct{N}$ 的所有有限或余有限子集都是可定义的。
+证明这些是 $\Struct{N}$ 的\emph{仅有的}可定义子集。
  
-(Hint: First, let $\Obj{prc}(x,y)$ be the
-$\Lang{L}$-formula abbreviating ``$x$ is the immediate predecessor
-of $y$:''
+（提示：首先，令 $\Obj{prc}(x,y)$ 为缩写“$x$ 是 $y$ 的直接前驱”的 $\Lang{L}$-公式：
 \[
 x<y \land \lnot \lexists[z][(x<z \land z < y)].
 \]
-Now, to any definable subset of $\Struct{N}$ there corresponds a
-formula $!A(x)$ in $\Lang{L}$. For any such $!A$,
-consider the sentence $!D$:
+现在，对于 $\Struct{N}$ 的任意可定义子集，都对应着 $\Lang{L}$ 中的一个公式 $!A(x)$。
+对任意这样的 $!A$，考虑语句 $!D$：
 \[
 \lexists[x][\lforall[y][\lforall[z][((x<y \land x<z \land \Obj{prc}(y,z)
   \land !A(y)) \lif !A(z))]]].
 \]
-Show that $\Sat{N}{!D}$ if and only if the subset of
-$\Struct{N}$ defined by $!A$ is either finite or cofinite.
+证明 $\Sat{N}{!D}$ 当且仅当由 $!A$ 定义的 $\Struct{N}$ 的子集是有限或余有限的。
 
-Now, let $\Struct{M}$ be a non-standard model elementarily
-equivalent to $\Struct{N}$.  If $a \in \Domain{M}$ is
-non-standard, let $b, c \in \Domain{M}$ be greater than $a$, and
-let $b$ be the immediate predecessor of~$c$. Then there is an
-automorphism $h$ of $\Domain{M}$ such that $h(b)=c$
-(why?). Therefore, if $b$ satisfies $!A$, so does $c$ (why?). It
-follows that $!D$ is true in $\Struct{M}$, and hence also in
-$\Struct{N}$. But this implies that the subset of $\Struct{N}$
-defined by $!A$ is either finite or co-finite.
+现在，设 $\Struct{M}$ 是一个与 $\Struct{N}$ 初等等价的非标准模型。
+如果 $a \in \Domain{M}$ 是非标准的，取 $b, c \in \Domain{M}$ 均大于 $a$，并且令 $b$ 是 $c$ 的直接前驱。
+那么存在 $\Domain{M}$ 的一个自同构 $h$ 使得 $h(b)=c$（为什么？）。
+因此，如果 $b$ 满足 $!A$，那么 $c$ 亦满足 $!A$（为什么？）。
+由此可得 $!D$ 在 $\Struct{M}$ 中为真，从而在 $\Struct{N}$ 中亦真。
+但这意味着由 $!A$ 定义的 $\Struct{N}$ 的子集是有限或余有限的。）
 \end{prob}
 
 \end{document}

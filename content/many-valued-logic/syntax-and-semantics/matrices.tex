@@ -8,67 +8,60 @@
 
 \olfileid{mvl}{syn}{mat}
 
-\olsection{Matrices}
+\olsection{矩阵}
 
-A many-valued logic is defined by its language, its set of truth
-values~$V$, a subset of designated truth values, and truth functions
-for its connective.  Together, these elements are called a \emph{matrix}.  
+一种多值逻辑由其语言、其真值集~$V$、由指定真值构成的子集以及其联结词的真值函数所定义。这些要素合在一起，称为一个\emph{矩阵}。
 
-\begin{defn}[Matrix]
+\begin{defn}[矩阵]
 \ollabel{defn:matrix}
-A \emph{matrix} for the logic~$\Log L$ consists of:
+逻辑~$\Log L$ 的\emph{矩阵}由以下部分组成：
 \begin{enumerate}
-\item a set of connectives making up a language~$\Lang L$;
-\item a set $V \neq \emptyset$ of truth values;
-\item a set $V^+ \subseteq V$ of designated truth values;
-\item for each $n$-place connective $\star$ in $\Lang L$, a truth
-function~$\tf{\star} : V^n \to V$. If $n = 0$, then $\tf{\star}$ is
-just an element of~$V$.
+\item 构成语言~$\Lang L$ 的联结词集合；
+\item 真值集 $V \neq \emptyset$；
+\item 指定真值集 $V^+ \subseteq V$；
+\item 对于 $\Lang L$ 中每个 $n$ 元联结词 $\star$，一个真值函数 $\tf{\star} : V^n \to V$。若 $n = 0$，则 $\tf{\star}$ 就是 $V$ 中的一个元素。
 \end{enumerate}
 \end{defn}
 
 \begin{ex}
-The matrix for classical logic~\LogCL{} consists of:
+经典逻辑~\LogCL{} 的矩阵由以下部分组成：
 \begin{enumerate}
-  \item The standard propositional language $\Lang L_0$ with
-  $\lfalse$, $\lnot$, $\land$, $\lor$, $\lif$.
-  \item The set of truth values $V = \{\True, \False\}$.
-  \item $\True$ is the only designated value, i.e., $V^+ = \{\True\}$.
-  \item For $\lfalse$, we have $\tf{\lfalse} = \False$. The other
-  truth functions are given by the usual truth tables (see
-  \olref{fig:tf-CL}).
+  \item 带有 $\lfalse$、$\lnot$、$\land$、$\lor$、$\lif$ 的标准命题语言 $\Lang L_0$。
+  \item 真值集 $V = \{\True, \False\}$。
+  \item $\True$ 是唯一的指定值，即 $V^+ = \{\True\}$。
+  \item 对于 $\lfalse$，有 $\tf{\lfalse} = \False$。其他真值函数由通常的真值表给出（见 \olref{fig:tf-CL}）。
 \end{enumerate}
 \begin{figure}
   \begin{center}
-      \begin{tabular}{c|c} 
-        $\tf{\lnot}$ & \\ 
-        \hline  
-        $\True$ & $\False$ \\ 
-        $\False$ & $\True$ 
+      \begin{tabular}{c|c}
+        $\tf{\lnot}$ & \\
+        \hline
+        $\True$ & $\False$ \\
+        $\False$ & $\True$
       \end{tabular}
       \quad
-      \begin{tabular}{c|cc} 
-        $\tf{\land}$ & $\True$ & $\False$ \\ 
-        \hline 
-        $\True$ & $\True$ & $\False$ \\ 
-        $\False$ & $\False$ & $\False$ 
+      \begin{tabular}{c|cc}
+        $\tf{\land}$ & $\True$ & $\False$ \\
+        \hline
+        $\True$ & $\True$ & $\False$ \\
+        $\False$ & $\False$ & $\False$
       \end{tabular}
       \quad
-      \begin{tabular}{c|cc} 
-        $\tf{\lor}$ & $\True$ & $\False$ \\ 
-        \hline 
-        $\True$ & $\True$ & $\True$ \\ 
-        $\False$ & $\True$ & $\False$ 
+      \begin{tabular}{c|cc}
+        $\tf{\lor}$ & $\True$ & $\False$ \\
+        \hline
+        $\True$ & $\True$ & $\True$ \\
+        $\False$ & $\True$ & $\False$
       \end{tabular}
       \quad
-      \begin{tabular}{c|cc} 
-        $\tf{\lif}$ & $\True$ & $\False$ \\ 
-        \hline 
-        $\True$ & $\True$ & $\False$ \\ 
-        $\False$ & $\True$ & $\True$ 
+      \begin{tabular}{c|cc}
+        $\tf{\lif}$ & $\True$ & $\False$ \\
+        \hline
+        $\True$ & $\True$ & $\False$ \\
+        $\False$ & $\True$ & $\True$
       \end{tabular}
-    \end{center} 
-    \caption{Truth functions for classical logic~$\LogCL$.}
+    \end{center}
+    \caption{经典逻辑~$\LogCL$ 的真值函数。}
     \ollabel{fig:tf-CL}
   \end{figure}
   \end{ex}

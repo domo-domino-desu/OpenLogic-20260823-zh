@@ -1,130 +1,104 @@
-% Part: turing-machines 
-% Chapter: undecidability 
-% Section: verification
-
 \documentclass[../../../include/open-logic-section]{subfiles}
 
 \begin{document}
 
-\olfileid{tur}{und}{ver} 
-\olsection{Verifying the Representation}
+% Part: turing-machines 
+% Chapter: undecidability 
+% Section: verification
+
+\olfileid{tur}{und}{ver}
+\olsection{验证表示}
 
 \begin{explain}
-In order to verify that our representation works, we have to prove two
-things. First, we have to show that if $M$ halts on input~$w$, then
-$!T(M, w) \lif !E(M, w)$ is valid. Then, we have to show the converse,
-i.e., that if $!T(M, w) \lif !E(M, w)$ is valid, then $M$ does in fact
-eventually halt when run on input~$w$.
+为了验证我们的表示是可行的，我们必须证明两件事。首先，我们必须证明，如果 $M$ 在输入~$w$ 上停机，那么
+$!T(M, w) \lif !E(M, w)$ 是有效的。其次，我们必须证明其逆命题，
+即，如果 $!T(M, w) \lif !E(M, w)$ 是有效的，那么 $M$ 在输入~$w$ 上运行时最终确实会停机。
 
-The strategy for proving these is very different. For the first
-result, we have to show that !!a{sentence} of first-order logic
-(namely, $!T(M, w) \lif !E(M, w)$) is valid. The easiest way to do
-this is to give !!a{derivation}. Our proof is supposed to work for all
-$M$ and $w$, though, so there isn't really a single !!{sentence} for
-which we have to give !!a{derivation}, but infinitely many.  So the best
-we can do is to prove by induction that, whatever $M$ and~$w$ look
-like, and however many steps it takes $M$ to halt on input~$w$, there
-will be !!a{derivation} of $!T(M, w) \lif !E(M, w)$.
+证明这两点的策略非常不同。对于第一个结果，我们必须证明一个一阶逻辑语句（即
+$!T(M, w) \lif !E(M, w)$）是有效的。最简单的办法是给出一个推导。然而，我们的证明需要对所有
+$M$ 和 $w$ 都成立，因此我们并非只需为单个语句给出推导，而是要为无穷多个语句给出推导。
+所以，我们能采取的最佳策略是用归纳法证明：无论 $M$ 和~$w$ 具体是什么样，也无论 $M$ 在输入~$w$ 上停机需要多少步，总存在 $!T(M, w) \lif !E(M, w)$ 的推导。
 
-Naturally, our induction will proceed on the number of steps $M$ takes
-before it reaches a halting configuration. In our inductive proof,
-we'll establish that for each step~$n$ of the run of $M$ on input~$w$,
-$!T(M, w) \Entails !C(M, w, n)$, where $!C(M, w, n)$ correctly
-describes the configuration of $M$ run on~$w$ after~$n$ steps. Now if
-$M$ halts on input~$w$ after, say, $n$ steps, $!C(M, w, n)$ will
-describe a halting configuration. We'll also show that $!C(M, w, n)
-\Entails !E(M, w)$, whenever $!C(M, w, n)$ describes a halting
-configuration.  So, if $M$ halts on input~$w$, then for some~$n$, $M$
-will be in a halting configuration after $n$~steps. Hence, $!T(M, w)
-\Entails !C(M, w, n)$ where $!C(M, w, n)$ describes a halting
-configuration, and since in that case $!C(M, w, n) \Entails !E(M, w)$,
-we get that $T(M, w) \Entails !E(M, w)$, i.e., that $\Entails !T(M, w)
-\lif !E(M, w)$.
+很自然地，我们的归纳将基于 $M$ 抵达停机配置之前所用的步数进行。在我们的归纳证明中，将确立：对于 $M$ 在输入~$w$ 上运行的每一步~$n$，
+$!T(M, w) \Entails !C(M, w, n)$，其中 $!C(M, w, n)$ 正确地
+描述了 $M$ 在~$w$ 上运行~$n$ 步后的配置。那么，如果
+$M$ 在输入~$w$ 上，比如说，于 $n$ 步后停机，$!C(M, w, n)$ 将描述一个停机配置。我们还将证明，只要 $!C(M, w, n)$ 描述一个停机配置，
+$!C(M, w, n)
+\Entails !E(M, w)$。因此，如果 $M$ 在输入~$w$ 上停机，则存在某个~$n$，使得 $M$
+在 $n$~步后处于一个停机配置。于是，
+$!T(M, w)
+\Entails !C(M, w, n)$，其中 $!C(M, w, n)$ 描述了一个停机配置，且由于在该情况下
+$!C(M, w, n) \Entails !E(M, w)$，
+我们得到 $T(M, w) \Entails !E(M, w)$，即
+$\Entails !T(M, w)
+\lif !E(M, w)$。
 
-The strategy for the converse is very different. Here we assume that
-$\Entails !T(M, w) \lif !E(M, w)$ and have to prove that $M$ halts on
-input~$w$.  From the hypothesis we get that $!T(M, w) \Entails !E(M,
-w)$, i.e., $!E(M, w)$ is true in every !!{structure} in which $!T(M,
-w)$ is true. So we'll describe !!a{structure}~$\Struct{M}$ in which
-$!T(M, w)$ is true: its domain will be $\Nat$, and the interpretation
-of all the $\Obj Q_q$ and $\Obj S_\sigma$ will be given by the
-configurations of~$M$ during a run on input~$w$.  So, e.g.,
-$\Sat{M}{\Obj Q_q(\num{m}, \num{n})}$ iff $T$, when run on input~$w$
-for $n$ steps, is in state~$q$ and scanning square~$m$.  Now since
-$!T(M, w) \Entails !E(M, w)$ by hypothesis, and since $\Sat{M}{!T(M,
-  w)}$ by construction, $\Sat{M}{!E(M, w)}$.  But $\Sat{M}{!E(M, w)}$
-iff there is some $n \in \Domain{M} = \Nat$ so that $M$, run on
-input~$w$, is in a halting configuration after~$n$ steps.
+证明其逆命题的策略则迥然不同。这里我们假设
+$\Entails !T(M, w) \lif !E(M, w)$，并且必须证明 $M$ 在输入~$w$ 上停机。
+由该假设我们得到 $!T(M, w) \Entails !E(M,
+w)$，即 $!E(M, w)$ 在所有使得 $!T(M,
+w)$ 为真的结构中为真。因此，我们将描述一个结构~$\Struct{M}$，在其中
+$!T(M, w)$ 为真：其论域将是 $\Nat$，且所有 $\Obj Q_q$ 和 $\Obj S_\sigma$ 的解释将由 $M$ 在输入~$w$ 上运行期间的配置给出。举例来说，
+$\Sat{M}{\Obj Q_q(\num{m}, \num{n})}$ 当且仅当 $M$ 在输入~$w$
+上运行 $n$ 步后，正处于状态~$q$ 且扫描着方格~$m$。现在，由于根据假设
+$!T(M, w) \Entails !E(M, w)$，并且根据构造有
+$\Sat{M}{!T(M,
+  w)}$，因此
+$\Sat{M}{!E(M, w)}$。 但是
+$\Sat{M}{!E(M, w)}$
+当且仅当存在某个 $n \in \Domain{M} = \Nat$，使得 $M$ 在输入~$w$ 上运行 $n$ 步后处于一个停机配置。
 \end{explain}
 
-\begin{defn} 
-Let $!C(M, w, n)$ be the !!{sentence}
+\begin{defn}
+令 $!C(M, w, n)$ 为如下语句：
 \[ 
 \Obj Q_q(\num{m}, \num{n}) \land \Obj S_{\sigma_0}(\num{0}, \num{n})
 \land \dots \land \Obj S_{\sigma_k}(\num{k}, \num{n}) \land
 \lforall[x][(\num{k} < x \lif \Obj S_\TMblank(x, \num{n}))]
-\] 
-where $q$ is the state of $M$ at time~$n$, $M$ is scanning square~$m$
-at time~$n$, square~$i$ contains symbol~$\sigma_i$ at time~$n$ for $0
-\le i \le k$ and $k$ is the right-most non-blank square of the tape at
-time~$0$, or the right-most square the tape head has visited after $n$
-steps, whichever is greater.
+\]
+其中 $q$ 是 $M$ 在时刻~$n$ 的状态，$M$ 在时刻~$n$ 正在扫描方格~$m$，对于 $0 \le i \le k$，方格~$i$ 在时刻~$n$ 包含符号~$\sigma_i$，并且 $k$ 是时刻~$0$ 时纸带上最右边的非空白方格，或者 $n$ 步后读写头访问过的最右边的方格，取两者中较大的那个。
 \end{defn}
 
 \begin{lem}\ollabel{lem:halt-config-implies-halt}
-If $M$ run on input~$w$ is in a halting configuration after $n$ steps,
-then $!C(M, w, n) \Entails !E(M, w)$.
+如果 $M$ 在输入~$w$ 上运行 $n$ 步后处于一个停机配置，那么 $!C(M, w, n) \Entails !E(M, w)$。
 \end{lem}
 
 \begin{proof}
-Suppose that $M$ halts for input~$w$ after $n$ steps.
-There is some state~$q$, square~$m$, and symbol~$\sigma$ such that:
-\begin{enumerate} 
-\item After $n$ steps, $M$ is in state~$q$ scanning square~$m$ on
-  which~$\sigma$ appears.
-\item The transition function $\delta(q, \sigma)$ is undefined.
+假设 $M$ 在输入~$w$ 上于 $n$ 步后停机。
+则存在某个状态~$q$、方格~$m$ 和符号~$\sigma$，使得：
+\begin{enumerate}
+\item $n$ 步后，$M$ 处于状态~$q$，正在扫描包含~$\sigma$ 的方格~$m$。
+\item 转移函数 $\delta(q, \sigma)$ 无定义。
 \end{enumerate}
-$!C(M, w, n)$ is the description of this configuration and will
-include the clauses $\Obj Q_{q}(\num{m}, \num{n})$ and $\Obj
-S_{\sigma}(\num{m}, \num{n})$. These clauses together imply $!E(M,
-w)$:
+$!C(M, w, n)$ 描述了这个配置，并且将包含子句 $\Obj Q_{q}(\num{m}, \num{n})$ 和 $\Obj
+S_{\sigma}(\num{m}, \num{n})$。这两个子句一起蕴涵 $!E(M, w)$：
 \[
 \lexists[x][\lexists[y][(\bigvee_{\tuple{q, \sigma} \in
       X}(\Obj Q_q(x, y) \land \Obj S_\sigma(x, y)))]]
 \]
-since $\Obj Q_{q'}(\num{m}, \num{n}) \land S_{\sigma'}(\num{m},
-\num{n}) \Entails \bigvee_{\tuple{q, \sigma} \in X} (\Obj Q_q(\num{m},
-\num{n}) \land \Obj S_{\sigma}(\num{m}, \num{n}))$, as
-$\tuple{q',\sigma'} \in X$. 
+因为 $\Obj Q_{q'}(\num{m}, \num{n}) \land S_{\sigma'}(\num{m}, \num{n}) \Entails \bigvee_{\tuple{q, \sigma} \in X} (\Obj Q_q(\num{m}, \num{n}) \land \Obj S_{\sigma}(\num{m}, \num{n}))$，这是由于 $\tuple{q',\sigma'} \in X$。
 \end{proof}
 
 \begin{explain}
-So if $M$ halts for input $w$, then there is some~$n$ such that $!C(M,
-w, n) \Entails !E(M,w)$.  We will now show that for any time~$n$,
-$!T(M, w) \Entails !C(M, w, n)$.
+因此，如果 $M$ 在输入 $w$ 上停机，那么存在某个~$n$ 使得 $!C(M,
+w, n) \Entails !E(M,w)$。我们现在来证明，对于任意时刻~$n$，都有 $!T(M, w) \Entails !C(M, w, n)$。
 \end{explain}
 
 \begin{lem}
 \ollabel{lem:config}
-For each $n$, if $M$ has not halted after $n$ steps, $!T(M, w)
-\Entails !C(M, w, n)$.
+对每个 $n$，如果 $M$ 在 $n$ 步后尚未停机，那么 $!T(M, w)
+\Entails !C(M, w, n)$。
 \end{lem}
 
 \begin{proof}
-Induction basis: If $n = 0$, then the conjuncts of $!C(M, w, 0)$ are
-also conjuncts of $!T(M, w)$, so entailed by it.
+归纳基始：若 $n = 0$，则 $!C(M, w, 0)$ 的合取项同时也是 $!T(M, w)$ 的合取项，因此被后者所蕴涵。
 
-Inductive hypothesis: If $M$ has not halted before the $n$th step,
-then $!T(M,w) \Entails !C(M, w, n)$. We have to show that (unless
-$!C(M, w, n)$ describes a halting configuration), $!T(M, w) \Entails
-!C(M, w, n+1)$.
+归纳假设：若 $M$ 在第 $n$ 步之前尚未停机，则 $!T(M,w) \Entails !C(M, w, n)$。我们需要证明（除非 $!C(M, w, n)$ 描述了一个停机配置），$!T(M, w) \Entails
+!C(M, w, n+1)$。
 
-Suppose $n > 0$ and after $n$ steps, $M$ started on $w$ is in
-state~$q$ scanning square~$m$. Since $M$ does not halt after~$n$
-steps, there must be an instruction of one of the following three
-forms in the program of~$M$:
+假设 $n > 0$，且在 $n$ 步之后，以 $w$ 为输入启动的 $M$ 处于状态~$q$，正在扫描方格~$m$。由于 $M$ 在~$n$ 步后并未停机，其程序中必有一条指令属于以下三种形式之一：
 
-\begin{enumerate} 
+\begin{enumerate}
 \item \ollabel{right} $\delta(q, \sigma) = \tuple{q', \sigma', \TMright}$
 
 \item \ollabel{left} $\delta(q, \sigma) = \tuple{q', \sigma', \TMleft}$
@@ -132,74 +106,61 @@ forms in the program of~$M$:
 \item \ollabel{stay} $\delta(q, \sigma) = \tuple{q', \sigma', \TMstay}$
 \end{enumerate}
 
-We will consider each of these three cases in turn. 
+我们将依次考虑这三种情况。
 
-\begin{enumerate} 
-\item Suppose there is an instruction of the form~\olref{right}.
-  By \olref[rep]{defn:tm-descr}\olref[rep]{rep-right}, this means that
+\begin{enumerate}
+\item 假设有一条形如~\olref{right} 的指令。
+  根据 \olref[rep]{defn:tm-descr}\olref[rep]{rep-right}，这意味着
 \begin{align*} 
 & \lforall[x][\lforall[y][((\Obj Q_{q}(x,
   y) \land \Obj S_\sigma(x, y)) \lif {}]]\\
 & \qquad (\Obj Q_{q'}(x',
   y') \land \Obj S_{\sigma'}(x, y') \land !A(x, y)))  
-\intertext{is a conjunct of $!T(M,w)$. This entails the following
-  !!{sentence} (universal instantiation, $\num{m}$ for~$x$ and
-  $\num{n}$ for~$y$):}
+ \intertext{是 $!T(M,w)$ 的一个合取项。这蕴涵了以下语句（全称实例化，以 $\num{m}$ 代~$x$，以 $\num{n}$ 代~$y$）：}
 & (\Obj Q_{q}(\num{m}, \num{n}) \land \Obj S_{\sigma}(\num{m},
 \num{n})) \lif {}\\
 & \qquad (\Obj Q_{q'}(\num{m}', \num{n}') \land
 \Obj S_{\sigma'}(\num{m}, \num{n}') \land !A(\num{m}, \num{n})).
-\intertext{By induction hypothesis, $!T(M, w) \Entails !C(M, w, n)$,
-  i.e.,}
+ \intertext{由归纳假设，$!T(M, w) \Entails !C(M, w, n)$，即}
 & \Obj Q_q(\num{m}, \num{n}) \land \Obj S_{\sigma_0}(\num{0}, \num{n})
 \land \dots \land \Obj S_{\sigma_k}(\num{k}, \num{n}) \land \\
 & \qquad\lforall[x][(\num{k} < x \lif \Obj S_\TMblank(x, \num{n}))]\\
-\intertext{Since after $n$ steps, tape square~$m$ contains~$\sigma$,
-  the corresponding conjunct is~$\Obj S_\sigma(\num{m}, \num{n})$,
-  so this entails:}
+ \intertext{由于在 $n$ 步后，纸带第 $m$ 个方格包含~$\sigma$，对应的合取项是~$\Obj S_\sigma(\num{m}, \num{n})$，因此这蕴涵：}
 & \Obj Q_{q}(\num{m}, \num{n}) \land \Obj S_{\sigma}(\num{m},
    \num{n})
-\intertext{We now get}
+ \intertext{现在我们得到}
 & \Obj Q_{q'}(\num{m}', \num{n}') \land \Obj S_{\sigma'}(\num{m},
   \num{n}') \land {}\\
 & \qquad\Obj S_{\sigma_0}(\num{0}, \num{n}') \land \dots \land
   \Obj S_{\sigma_k}(\num{k}, \num{n}') \land {}\\
 & \qquad \lforall[x][(\num{k} < x \lif \Obj S_\TMblank(x, \num{n}'))]
 \end{align*}
-as follows: The first line comes directly from the consequent of the
-preceding conditional, by modus ponens. Each conjunct in the middle
-line---which excludes $S_{\sigma_m}(\num{m},\num{n}')$---follows from
-the corresponding conjunct in~$!C(M, w, n)$ together with $!A(\num{m},
-\num{n})$.
+具体如下：第一行直接由前一个条件句的后件经肯定前件得出。中间一行（不含 $S_{\sigma_m}(\num{m},\num{n}')$）的每个合取项，均由 $!C(M, w, n)$ 中的对应合取项连同 $!A(\num{m},
+\num{n})$ 推出。
 
-If $m < k$, $!T(M,w) \Proves \num{m} < \num {k}$
-(\olref[rep]{prop:mlessk}) and by transitivity of~$<$, we have
-$\lforall[x][(\num{k} < x \lif \num{m} < x)]$.  If $m = k$, then
-$\lforall[x][(\num{k} < x \lif \num{m} < x)]$ by logic alone.  The
-last line then follows from the corresponding conjunct in $!C(M, w,
-n)$, $\lforall[x][(\num{k} < x \lif \num{m} < x)]$, and $!A(\num{m},
-\num{n})$.  If $m<k$, this already is $!C(M, w, n+1)$.
+若 $m < k$，则 $!T(M,w) \Proves \num{m} < \num {k}$
+（\olref[rep]{prop:mlessk}）且由~$<$ 的传递性，我们有
+$\lforall[x][(\num{k} < x \lif \num{m} < x)]$。若 $m = k$，则
+$\lforall[x][(\num{k} < x \lif \num{m} < x)]$ 仅凭逻辑即可得出。
+于是最后一行可由 $!C(M, w, n)$ 的对应合取项、$\lforall[x][(\num{k} < x \lif \num{m} < x)]$ 以及 $!A(\num{m},
+\num{n})$ 得出。若 $m<k$，这已经是 $!C(M, w, n+1)$。
 
-Now suppose $m=k$. In that case, after $n+1$ steps, the tape head has
-also visited square~$k+1$, which now is the right-most square
-visited.  So $!C(M, w, n+1)$ has a new conjunct, $\Obj
-S_\TMblank(\num{k}',\num{n}')$, and the last conjunct is
-$\lforall[x][(\num{k}' < x \lif \Obj S_\TMblank(x, \num{n}'))]$. We
-have to verify that these two !!{sentence}s are also implied.
+现在假设 $m=k$。在这种情况下，在 $n+1$ 步后，读写头也访问了方格~$k+1$，该方格现已成为访问过的最右边的方格。
+故而 $!C(M, w, n+1)$ 有一个新的合取项 $\Obj
+S_\TMblank(\num{k}',\num{n}')$，且最后一个合取项是
+$\lforall[x][(\num{k}' < x \lif \Obj S_\TMblank(x, \num{n}'))]$。我们需要验证这两个语句也被蕴涵。
 
-We already have $\lforall[x][(\num{k} < x \lif \Obj S_\TMblank(x,
-  \num{n}'))]$. In particular, this gives us $\num{k} < \num{k}' \lif
-\Obj S_\TMblank(\num{k}', \num{n}')$. From the axiom $\lforall[x][x <
-  x']$ we get $\num{k} < \num{k}'$. By modus ponens, $\Obj
-S_\TMblank(\num{k}',\num{n}')$ follows.
+我们已有 $\lforall[x][(\num{k} < x \lif \Obj S_\TMblank(x,
+  \num{n}'))]$。特别地，由此可得 $\num{k} < \num{k}' \lif
+\Obj S_\TMblank(\num{k}', \num{n}')$。从公理 $\lforall[x][x <
+  x']$ 可得 $\num{k} < \num{k}'$。经肯定前件，得出 $\Obj
+S_\TMblank(\num{k}',\num{n}')$。
 
-Also, since $!T(M,w) \Proves \num{k} < \num{k}'$, the axiom for
-transitivity of~$<$ gives us $\lforall[x][(\num{k}' < x \lif \Obj
-  S_\TMblank(x, \num{n}'))]$. (We leave the verification of this as an
-exercise.)
+另外，由于 $!T(M,w) \Proves \num{k} < \num{k}'$，关于~$<$ 的传递性公理给出 $\lforall[x][(\num{k}' < x \lif \Obj
+  S_\TMblank(x, \num{n}'))]$。（此验证留作练习。）
 
-\item Suppose there is an instruction of the form~\olref{left}.
-  Then, by \olref[rep]{defn:tm-descr}\olref[rep]{rep-left},
+\item 假设有一条形如~\olref{left} 的指令。
+  那么，由 \olref[rep]{defn:tm-descr}\olref[rep]{rep-left}，
 \begin{align*} 
 & \lforall[x][\lforall[y][((\Obj Q_{q}(x', y) \land \Obj
     S_{\sigma}(x', y)) \lif {}]]\\
@@ -209,114 +170,94 @@ exercise.)
     y)) \lif {}]\\
 & \qquad (\Obj Q_{q_j}(\num{0}, y') \land \Obj S_{\sigma'}(\num{0}, y')
   \land !A(\num{0}, y)))
-\intertext{is a conjunct of $!T(M,w)$. If $m>0$, then let $l = m - 1$
-  (i.e., $m = l+1$). The first conjunct of the above !!{sentence}
-  entails the following:}
+ \intertext{是 $!T(M,w)$ 的一个合取项。若 $m>0$，则令 $l = m - 1$（即 $m = l+1$）。上述语句的第一个合取项蕴涵以下内容：}
 & (\Obj Q_{q}(\num{l}', \num{n}) \land \Obj S_{\sigma}(\num{l}', \num{n}))
 \lif {} \\
 & \qquad (\Obj Q_{q'}(\num{l}, \num{n}') \land \Obj S_{\sigma'}(\num{l}',
 \num{n}') \land !A(\num{l}, \num{n}))
-\intertext{Otherwise, let $l = m = 0$ and consider the following !!{sentence}
-  entailed by the second conjunct:}
+ \intertext{否则，令 $l = m = 0$，并考虑第二个合取项所蕴涵的以下语句：}
 & ((\Obj Q_{q_i}(\num{0}, \num{n}) \land \Obj S_{\sigma}(\num{0}, \num{n})) \lif {}\\
 & \qquad   (\Obj Q_{q_j}(\num{0}, \num{n}') \land \Obj S_{\sigma'}(\num{0}, \num{n}') \land
 !A(\num{0}, \num{n}))) 
-\intertext{Either sentence implies}
+ \intertext{任一语句均可如前推出}
 &  \Obj Q_{q'}(\num{l}, \num{n}') \land \Obj S_{\sigma'}(\num{m},
   \num{n}') \land {}\\
 &\qquad  \Obj S_{\sigma_0}(\num{0}, \num{n}')\land \dots \land
   \Obj S_{\sigma_k}(\num{k}, \num{n}')  \land {} \\
 & \qquad  \lforall[x][(\num{k} < x
   \lif \Obj S_\TMblank(x, \num{n}'))]
-\end{align*}
-as before. (Note that in the first case, $\num{l}' \ident \num{l+1}
-\ident \num{m}$ and in the second case $\num{l} \ident \num{0}$.) But
-this just is $!C(M, w, n+1)$.
+\end{align*}。
+（注意，第一种情形下 $\num{l}' \ident \num{l+1}
+\ident \num{m}$，第二种情形下 $\num{l} \ident \num{0}$。）而这正是 $!C(M, w, n+1)$。
 
-\item Case \olref{stay} is left as an exercise.
+\item 情况 \olref{stay} 留作练习。
 \end{enumerate}
-We have shown that for any~$n$, $!T(M, w) \Entails !C(M, w, n)$.
+我们已证明，对任意~$n$，$!T(M, w) \Entails !C(M, w, n)$。
 \end{proof}
 
 \begin{prob}
-Complete case~\olref[tur][und][ver]{stay} of the proof of
-\olref[tur][und][ver]{lem:config}.
+完成 \olref[tur][und][ver]{lem:config} 证明中的情况~\olref[tur][und][ver]{stay}。
 \end{prob}
 
 \begin{prob}
-Give !!a{derivation} of $\Obj S_{\sigma_i}(\num{i}, \num{n}')$ from
-$\Obj S_{\sigma_i}(\num{i}, \num{n})$ and $!A(m, n)$ (assuming $i \neq
-m$, i.e., either $i < m$ or $m < i$).
+给出从
+$\Obj S_{\sigma_i}(\num{i}, \num{n})$ 和 $!A(m, n)$ 到 $\Obj S_{\sigma_i}(\num{i}, \num{n}')$ 的一个推导（假设 $i \neq
+m$，即 $i < m$ 或 $m < i$）。
 \end{prob}
 
 \begin{prob}
-Give !!a{derivation} of $\lforall[x][(\num{k}' < x \lif \Obj
-  S_\TMblank(x, \num{n}'))]$ from $\lforall[x][(\num{k} < x \lif \Obj
-  S_\TMblank(x, \num{n}'))]$, $\lforall[x][x < x']$, and
+给出从 $\lforall[x][(\num{k} < x \lif \Obj
+  S_\TMblank(x, \num{n}'))]$、$\lforall[x][x < x']$ 以及
 $\lforall[x][\lforall[y][\lforall[z][ ((x < y \land y < z) \lif x <
-      z)]]]$.)
+      z)]]]$ 到 $\lforall[x][(\num{k}' < x \lif \Obj
+  S_\TMblank(x, \num{n}'))]$ 的一个推导。
 \end{prob}
-
 
 \begin{lem}
 \ollabel{lem:valid-if-halt}
-If $M$ halts on input~$w$, then $!T(M, w) \lif
-!E(M, w)$ is valid.
+若 $M$ 在输入~$w$ 上停机，则 $!T(M, w) \lif
+!E(M, w)$ 是有效的。
 \end{lem}
 
 \begin{proof}
-By \olref{lem:config}, we know that, for any time~$n$, the
-description~$!C(M, w, n)$ of the configuration of $M$ at time~$n$ is
-entailed by~$!T(M, w)$.  Suppose $M$ halts after $k$ steps. At that
-point, it will be scanning square~$m$, for some~$m \in \Nat$. Then
-$!C(M, w, k)$ describes a halting configuration of~$M$, i.e., it
-contains as conjuncts both $\Obj Q_q(\num{m}, \num{k})$ and $\Obj
-S_\sigma(\num{m}, \num{k})$ with $\delta(q,\sigma)$ undefined.  Thus,
-by \olref{lem:halt-config-implies-halt}, $!C(M, w, k) \Entails !E(M,
-w)$. But since $!T(M, w) \Entails !C(M, w, k)$, we have $!T(M, w)
-\Entails !E(M, w)$ and therefore $!T(M, w) \lif !E(M, w)$ is valid.
+由 \olref{lem:config} 可知，对任意时刻~$n$，关于 $M$ 在时刻~$n$ 的配置描述~$!C(M, w, n)$ 被~$!T(M, w)$ 所蕴涵。
+假设 $M$ 在 $k$ 步后停机。此时，存在某个 $m \in \Nat$，使得它正在扫描方格~$m$。
+那么 $!C(M, w, k)$ 描述了~$M$ 的一个停机配置，即它同时包含 $\Obj Q_q(\num{m}, \num{k})$ 和 $\Obj
+S_\sigma(\num{m}, \num{k})$ 作为其合取项，且 $\delta(q,\sigma)$ 无定义。
+因此，由 \olref{lem:halt-config-implies-halt}，$!C(M, w, k) \Entails !E(M,
+w)$。但由于 $!T(M, w) \Entails !C(M, w, k)$，我们有 $!T(M, w)
+\Entails !E(M, w)$，故而 $!T(M, w) \lif !E(M, w)$ 是有效的。
 \end{proof}
 
-
-\begin{explain} 
-To complete the verification of our claim, we also have to
-establish the reverse direction: if $!T(M, w) \lif !E(M, w)$ is valid, then
-$M$ does in fact halt when started on input~$w$. 
+\begin{explain}
+要完成我们断言的验证，我们还必须确立逆方向的蕴涵关系：若 $!T(M, w) \lif !E(M, w)$ 是有效的，则
+$M$ 以输入~$w$ 启动时确实会停机。
 \end{explain}
 
 \begin{lem}
 \ollabel{lem:halt-if-valid}
-If $\Entails !T(M, w) \lif !E(M, w)$, then $M$ halts on input~$w$.
+若 $\Entails !T(M, w) \lif !E(M, w)$，则 $M$ 在输入~$w$ 上停机。
 \end{lem}
 
 \begin{proof}
-Consider the $\Lang L_M$-!!{structure}~$\Struct M$ with
-domain~$\Nat$ which interprets $\Obj 0$ as~$0$, $\prime$~as the successor
-function, and $<$~as the less-than relation, and the predicates $\Obj Q_q$
-and~$\Obj S_\sigma$ as follows:
+考虑 $\Lang L_M$-结构~$\Struct M$，其论域为~$\Nat$，它将 $\Obj 0$ 解释为~$0$，将 $\prime$~解释为后继函数，将 $<$~解释为小于关系，并将谓词 $\Obj Q_q$ 和~$\Obj S_\sigma$ 解释如下：
 \begin{align*}
   \Assign{\Obj Q_q}{M} & =
-\Setabs{\tuple{m, n}}{\begin{array}{ll}\text{started on~$w$, after~$n$ steps,}\\ \text{$M$ is in state $q$
-  scanning square~$m$}\end{array}} \\
+\Setabs{\tuple{m, n}}{\begin{array}{ll}\text{以~$w$ 为输入启动，在~$n$ 步之后，}\\ \text{$M$ 处于状态 $q$ 并扫描方格~$m$}\end{array}} \\
 \Assign{\Obj S_\sigma}{M} & = \Setabs{\tuple{m, n}}{\begin{array}{ll}
-\text{started on~$w$, after $n$ steps,}\\ \text{square~$m$ of $M$ contains
-  symbol~$\sigma$}\end{array}}
+\text{以~$w$ 为输入启动，在 $n$ 步之后，}\\ \text{$M$ 的方格~$m$ 包含符号~$\sigma$}\end{array}}
 \end{align*}
-In other words, we construct the !!{structure}~$\Struct{M}$ so that it
-describes what $M$ started on input~$w$ actually does, step by step.
-Clearly, $\Sat{M}{!T(M, w)}$. If $\Entails !T(M, w) \lif !E(M, w)$,
-then also $\Sat{M}{!E(M, w)}$, i.e.,
+换句话说，我们构造结构~$\Struct{M}$，使得它逐步描述了 $M$ 以输入~$w$ 启动时的实际运行过程。
+显然，$\Sat{M}{!T(M, w)}$。若 $\Entails !T(M, w) \lif !E(M, w)$，
+则亦有 $\Sat{M}{!E(M, w)}$，即
 \[
 \Sat{M}{\lexists[x][\lexists[y][(\bigvee_{\tuple{q, \sigma} \in
       X}(\Obj Q_q(x, y) \land \Obj S_\sigma(x, y)))]]}.
 \]
-As $\Domain{M} = \Nat$, there must be $m$, $n \in \Nat$ so that
+由于 $\Domain{M} = \Nat$，故必存在 $m, n \in \Nat$ 使得
 $\Sat{M}{\Obj Q_q(\num{m}, \num{n}) \land \Obj S_\sigma(\num{m},
-\num{n})}$ for some~$q$ and~$\sigma$ such that $\delta(q, \sigma)$ is
-undefined. By the definition of~$\Struct M$, this means that $M$
-started on input~$w$ after~$n$ steps is in state~$q$ and reading
-symbol~$\sigma$, and the transition function is undefined, i.e.,
-$M$~has halted.
+\num{n})}$ 对于某个使 $\delta(q, \sigma)$ 无定义的 $q$ 和~$\sigma$ 成立。
+根据~$\Struct M$ 的定义，这意味着 $M$ 以输入~$w$ 启动 $n$ 步之后处于状态~$q$ 且正在读取符号~$\sigma$，而转移函数无定义，即 $M$~已经停机。
 \end{proof}
 
 \end{document}

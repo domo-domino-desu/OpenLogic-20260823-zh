@@ -8,28 +8,21 @@
 
 \olfileid{mvl}{inf}{int}
 
-\olsection{Introduction}
+\olsection{引言}
 
-The number of truth values of a matrix need not be finite.  An obvious
-choice for a set of infinitely many truth values is the set of
-rational numbers between $0$ and~$1$, $V_\infty = [0,1] \cap \Rat$,
-i.e.,
+一个矩阵的真值个数不必有限。对于无穷多真值构成的集合，一个显然的选择是 $0$ 与~$1$ 之间的有理数集，$V_\infty = [0,1] \cap \Rat$，
+即：
 \begin{align*}
-    V_\infty & = \Setabs{\frac{n}{m}}{n,m \in \Nat \text{ and } n\le m}.
-\intertext{When considering this infinite truth value set, it is often
-useful to also consider the subsets}
-V_m & = \Setabs{\frac{n}{m-1}}{n \in \Nat \text{ and } n\le m}
-\intertext{For instance, $V_5$ is the set with $5$ evenly spaced truth values,}
+    V_\infty & = \Setabs{\frac{n}{m}}{n,m \in \Nat \text{ 与 } n\le m}.
+\intertext{在考察此无穷真值集时，常常也会考虑其子集：}
+V_m & = \Setabs{\frac{n}{m-1}}{n \in \Nat \text{ 与 } n\le m}
+\intertext{例如，$V_5$ 就是包含 $5$ 个等距真值的集合：}
 V_5 & = \{0, \frac{1}{4}, \frac{1}{2}, \frac{3}{4}, 1\}.
 \end{align*}
-In logics based on these truth value sets, usually only $1$ is
-designated, i.e., $V^+ = \{1\}$.  In other words, we let $1$ play the
-role of (absolute) truth, $0$ as absolute falsity, but !!{formula}s
-may take any intermediate value in~$V$.
+在基于这些真值集的逻辑中，通常只有 $1$ 是指定值，即 $V^+ = \{1\}$。
+换句话说，我们令 $1$ 扮演（绝对）真的角色，$0$ 扮演绝对假的角色，但公式可以取~$V$ 中的任何中间值。
 
-One can also consider the set $V_{[0,1]} = [0,1]$ of all
-\emph{real} numbers between $0$ and~$1$, or other infinite subsets of
-$[0,1]$, however. Logics with this truth value set are often called \emph{fuzzy}.
-
+不过，我们也可以考虑所有 $0$ 与~$1$ 之间的\emph{实}数构成的集合 $V_{[0,1]} = [0,1]$，或者 $[0,1]$ 的其他无穷子集。
+具有此类真值集的逻辑通常被称为\emph{模糊}逻辑。
 
 \end{document}

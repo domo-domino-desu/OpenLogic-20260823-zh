@@ -7,46 +7,34 @@
 \begin{document}
 
 \olfileid{lam}{syn}{trm}
-\olsection{Terms}
+\olsection{项}
 
-The terms of the lambda calculus are built up inductively from an
-infinite supply of variables $\Obj{v_0}$, $\Obj{v_1}$, \dots, the
-symbol~``$\lambd$'', and parentheses. We will use $x$, $y$, $z$, \dots{}
-to designate variables, and $M$, $N$, $P$, \dots{} to desginate terms.
+λ-演算的项是从无穷多个变元 $\Obj{v_0}$、$\Obj{v_1}$、……，符号“$\lambd$”，以及括号出发，归纳地构造出来的。
+我们将用 $x$、$y$、$z$、…… 表示变元，用 $M$、$N$、$P$、…… 表示项。
 
-\begin{defn}[Terms] \ollabel{defn:term}
-The set of \emph{terms} of the lambda calculus is defined inductively by:
+\begin{defn}[项] \ollabel{defn:term}
+λ-演算的\emph{项}的集合归纳定义如下：
 \begin{enumerate}
-  \item \ollabel{defn:term-var} If $x$ is a variable, then $x$ is a
-    term.
-  \item \ollabel{defn:term-abs} If $x$ is a variable and $M$ is a
-    term, then $(\lambd[x][M])$ is a term.
-  \item \ollabel{defn:term-app} If both $M$ and $N$ are terms, then
-    $(MN)$ is a term.
+  \item \ollabel{defn:term-var} 若 $x$ 是变元，则 $x$ 是项。
+  \item \ollabel{defn:term-abs} 若 $x$ 是变元且 $M$ 是项，则 $(\lambd[x][M])$ 是项。
+  \item \ollabel{defn:term-app} 若 $M$ 和 $N$ 都是项，则 $(MN)$ 是项。
 \end{enumerate}
 \end{defn}
 
-If a term $(\lambd[x][M])$ is formed according to
-\olref{defn:term-abs} we say it is the result of an
-\emph{abstraction}, and the $x$ in $\lambd[x]$ is called a
-\emph{!!{parameter}}.  A term $(MN)$ formed according to
-\olref{defn:term-app} is the result of an \emph{application}.
+如果一个项 $(\lambd[x][M])$ 是依据 \olref{defn:term-abs} 形成的，我们称其为\emph{抽象}的结果，而 $\lambd[x]$ 中的 $x$ 称为\emph{参数}。
+依据 \olref{defn:term-app} 形成的项 $(MN)$ 则是\emph{应用}的结果。
 
-The terms defined above are fully parenthesized. This can get rather
-cumbersome, as the term
-$(\lambd[x][((\lambd[x][x])(\lambd[x][(xx)]))])$ demnostrates. We will
-introduce conventions for avoiding parentheses.  However, the official
-definition makes it easy to determine how a term is constructed
-according to \olref{defn:term}. For example, the last step of forming
-the term $(\lambd[x][((\lambd[x][x])(\lambd[x][(xx)]))])$ must be
-abstraction where the !!{parameter} is~$x$. It results by abstraction
-from the term $((\lambd[x][x])(\lambd[x][(xx)]))$, which is an
-application of two terms. Each of these two terms is the result of an
-abstraction, and so on.
+上面定义的项是完全括号化的。正如项
+$(\lambd[x][((\lambd[x][x])(\lambd[x][(xx)]))])$ 所示，这会变得相当繁琐。
+我们将引入省略括号的约定。
+不过，原定义使我们很容易判断一个项是如何依据 \olref{defn:term} 构造出来的。
+例如，形成项 $(\lambd[x][((\lambd[x][x])(\lambd[x][(xx)]))])$ 的最后一步必定是以~$x$ 为参数的抽象。
+它由对项 $((\lambd[x][x])(\lambd[x][(xx)]))$ 进行抽象而来，而该项又是两个项的应用。
+这两个项各自又是抽象的结果，依此类推。
 
 \begin{prob}
-Describe the formation of $(\lambd[g][(\lambd[x][(g (x x))])
-  (\lambd[x][(g (x x))])])$.
+描述 $(\lambd[g][(\lambd[x][(g (x x))])
+  (\lambd[x][(g (x x))])])$ 的构造过程。
 \end{prob}
 
 \end{document}

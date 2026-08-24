@@ -1,40 +1,25 @@
-% Part: second-order-logic
-% Chapter: metatheory
-% Section: introduction
-
 \documentclass[../../../include/open-logic-section]{subfiles}
 
 \begin{document}
 
 \olfileid{sol}{met}{int}
 
-\olsection{Introduction}
+\olsection{引言}
 
-First-order logic has a number of nice properties. We know it is not
-decidable, but at least it is axiomatizable. That is, there are proof
-systems for first-order logic which are sound and complete, i.e., they
-give rise to !!a{derivability} relation~$\Proves$ with the property
-that for any set of !!{sentence}s~$\Gamma$ and !!{sentence}~$!A$,
-$\Gamma \Entails !A$ iff $\Gamma \Proves !A$.  This means in
-particular that the validities of first-order logic are !!{computably
-  enumerable}. There is a computable function~$f\colon \Nat \to
-\Sent[L]$ such that the values of~$f$ are all and only the valid
-!!{sentence}s of~$\Lang{L}$. This is so because !!{derivation}s can be
-enumerated, and those that !!{derive} a single~!!{sentence} are then
-mapped to that !!{sentence}.  Second-order logic is more expressive
-than first-order logic, and so it is in general more complicated to
-capture its validities.  In fact, we'll show that second-order logic
-is not only undecidable, but its validities are not even !!{computably
-  enumerable}. This means there can be no sound and complete proof
-system for second-order logic (although sound, but incomplete proof
-systems are available and in fact are important objects of research).
+一阶逻辑具有若干良好性质。我们知道它是不可判定的，但它至少是可公理化的。
+也就是说，存在一阶逻辑的证明系统，它们是可靠且完备的；
+即，它们产生可推导关系~$\Proves$，
+满足：对任意语句集~$\Gamma$ 和语句~$!A$，$\Gamma \Entails !A$ 当且仅当 $\Gamma \Proves !A$。
+这尤其意味着一阶逻辑的有效式是可计算枚举的。% Part: second-order-logic
+存在一个可计算函数~$f\colon \Nat \to \Sent[L]$，
+使得~$f$ 的值恰好是且仅是~$\Lang{L}$ 的所有有效语句。
+这是因为推导本身可以被枚举，而那些推导出单一语句的推导则可以映射到该语句。
+二阶逻辑比一阶逻辑表达能力更强，因此一般而言，刻画它的有效式也更为复杂。
+事实上，我们将会证明，二阶逻辑不仅是不可判定的，甚至它的有效式也不是可计算枚举的。
+这意味着二阶逻辑不可能有可靠且完备的证明系统（尽管可靠但不完备的证明系统是存在的，并且事实上是重要的研究对象）。% Chapter: metatheory
 
-First-order logic also has two more properties: it is compact (if
-every finite subset of a set~$\Gamma$ of !!{sentence}s is satisfiable,
-$\Gamma$ itself is satisfiable) and the L\"owenheim--Skolem Theorem
-holds for it (if $\Gamma$ has an infinite model it has
-!!a{denumerable} model). Both of these results fail for second-order
-logic. Again, the reason is that second-order logic can express facts
-about the size of !!{domain}s that first-order logic cannot.
+一阶逻辑还有另外两个性质：它是紧致的（如果一个语句集~$\Gamma$ 的每个有穷子集都是可满足的，那么~$\Gamma$ 本身也是可满足的），
+并且 L\"owenheim--Skolem 定理对它成立（如果 $\Gamma$ 有一个无穷模型，那么它也有一个可数无穷模型）。
+这两个结果对于二阶逻辑都不成立。原因同样在于，二阶逻辑能够表达关于论域大小的事实，而一阶逻辑则不能。% Section: introduction
 
 \end{document}

@@ -8,19 +8,15 @@
 
 \olfileid{nml}{seq}{int}
 
-\olsection{Introduction}
+\olsection{引言}
 
-The sequent calculus for propositional logic can be extended by
-additional rules that deal
-with~\iftag{prvBox}{$\Box$\iftag{prvDiamond}{ and~}{}}{}%
-\iftag{prvDiamond}{$\Diamond$}{}. For instance, for~$\Log{K}$, we
-have \Log{LK} plus:
+通过添加处理~\iftag{prvBox}{$\Box$\iftag{prvDiamond}{ 和~}{}}{}%\iftag{prvDiamond}{$\Diamond$}{} 的规则，可以扩展命题逻辑的相继式演算。例如，对于~$\Log{K}$，我们在~$\Log{LK}$ 之外加上如下规则：
 \[
   \iftag{prvBox}{\iftag{prvDiamond}{% <> and [] primitive
     \Axiom$\Gamma \fCenter \Delta, !A$
     \RightLabel{$\Box$}
     \UnaryInf$\Box\Gamma \fCenter \Diamond\Delta, \Box!A$
-    \DisplayProof  
+    \DisplayProof
     \qquad
     \Axiom$!A, \Gamma \fCenter \Delta$
     \RightLabel{$\Diamond$}
@@ -38,14 +34,8 @@ have \Log{LK} plus:
   \DisplayProof
 }
 \]
-For extensions of~$\Log{K}$, additional rules have to be added as
-well.
+对于~$\Log{K}$ 的扩展逻辑，也必须添加额外的规则。
 
-Not every modal logic has such a sequent calculus.  Even $\Log{S5}$,
-which is semantically simple (it can be defined without using
-accessibility relations at all) is not known to have a sequent
-calculus that results from~$\Log{LK}$ which is complete without the
-rule~\Cut. However, it has a cut-free complete \emph{hypersequent}
-calculus.
+然而，并非每个模态逻辑都有这样的相继式演算。即使是~$\Log{S5}$——它在语义上非常简单（无需使用可达关系即可定义）——目前也尚不知是否存在一种由~$\Log{LK}$ 得到且在无~\Cut 规则时仍然完备的相继式演算。不过，它确实具有一种无切割且完备的\emph{超相继式}演算。
 
 \end{document}

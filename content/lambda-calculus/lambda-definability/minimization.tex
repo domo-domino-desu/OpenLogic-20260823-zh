@@ -7,65 +7,53 @@
 \begin{document}
 
 \olfileid{lam}{ldf}{min}
-\olsection{Minimization}
+\olsection{极小化}
 
-The general recursive functions are those that can be obtained from
-the basic functions $\Zero$, $\Succ$, $\Proj{n}{i}$ by composition,
-primitive recursion, and regular minimization. To show that all
-general recursive functions are !!{lambda definable} we have to show
-that any function defined by regular minimization from !!a{lambda
-  definable} function is itself !!{lambda definable}.
+一般递归函数是指那些能从基本函数 $\Zero$、$\Succ$、$\Proj{n}{i}$ 出发，通过复合、原始递归和正则极小化得到的函数。为了证明所有一般递归函数都是 $\lambd$-可定义的，我们需要证明：从 $\lambd$-可定义的函数通过正则极小化定义的任何函数，其本身也是 $\lambd$-可定义的。
 
 \begin{lem}
-  \ollabel{lem:min} If $f(x_1, \dots, x_k, y)$ is regular and
-  !!{lambda definable}, then $g$~defined by
+  \ollabel{lem:min} 如果 $f(x_1, \dots, x_k, y)$ 是正则的且
+  $\lambd$-可定义，则由
   \[
   g(x_1, \dots, x_k) = \umin{y}{f(x_1,\dots,x_k, y) = 0}
   \]
-  is also !!{lambda definable}.
+  定义的 $g$ 也是 $\lambd$-可定义的。
 \end{lem}
 
 \begin{proof}
-  Suppose the lambda term~$F$ $\lambda$-defines the regular
-  function $f(\vec x, y)$. To !!{lambda define}~$h$ we use a search
-  function and a fixpoint combinator:
+  假设 $\lambda$-项~$F$ $\lambda$-定义了正则函数 $f(\vec x, y)$。为了 $\lambd$-定义~$h$，我们使用一个搜索函数和一个不动点组合子：
   \begin{align*}
     \fn{Search} & \ident \lambd[g][\lambd[f\,\vec{x}\,y][
         \fn{IsZero} (f\, \vec{x}\, y)\, y\, (g\, \vec{x} (\fn{Succ}\, y)]]\\
     H & \ident \lambd[\vec x][(Y \, \fn{Search}) F\, \vec{x}\, \num{0}],
   \end{align*}
-  where $Y$ is any fixpoint combinator. Informally speaking,
-  $\fn{Search}$ is a self-referencing function: starting with~$y$,
-  test whether $f\, \vec x\, y$ is zero: if so, return~$y$, otherwise call
-  itself with $\fn{Succ}\, y$. Thus $(Y \, \fn{Search}) F
-  \num{n_1}\dots\num{n_k}\,\num{0}$ returns the least~$m$ for which $f(n_1,
-  \dots, n_k, m) = 0$.
+  其中 $Y$ 是任意一个不动点组合子。非形式地说，$\fn{Search}$ 是一个自引用函数：从~$y$ 开始，测试 $f\, \vec x\, y$ 是否为零：若是，则返回~$y$；否则，以 $\fn{Succ}\, y$ 为参数调用自身。因此，$(Y \, \fn{Search}) F
+  \num{n_1}\dots\num{n_k}\,\num{0}$ 返回的是使 $f(n_1,
+  \dots, n_k, m) = 0$ 成立的最小~$m$。
   
-  Specifically, observe that
+  具体来说，观察到
   \begin{align*}
     (Y \, \fn{Search}) F \num{n_1}
     \dots\num{n_k}\, \num{m} & \red \num{m}
-    \intertext{if $f(n_1, \dots,
-      n_k, m) = 0$, or}
+    \intertext{如果 $f(n_1, \dots,
+      n_k, m) = 0$，或}
     & \red (Y \, \fn{Search}) F\, \num{n_1} \dots\num{n_k}\, \num{m+1}
-    \intertext{otherwise. Since $f$ is regular, $f(n_1, \dots, n_k, y)
-      = 0$ for some $y$, and so}
+    \intertext{否则。由于 $f$ 是正则的，对某个 $y$，有 $f(n_1, \dots, n_k, y)
+      = 0$，因此}
     (Y \, \fn{Search}) F \num{n_1} \dots\num{n_k}\,\num{0}
     & \red \num{h(n_1, \dots, n_k)}.
     \end{align*}
 \end{proof}
 
-
 \begin{prop}
-  Every general recursive function is !!{lambda definable}.
+  每个一般递归函数都是 $\lambd$-可定义的。
 \end{prop}
 
 \begin{proof}
- By \olref[prf]{lem:basic}, all basic functions are
- !!{lambda definable}, and by \olref[prf]{lem:comp},
- \olref[prf]{lem:prim}, and \olref{lem:min}, the !!{lambda definable}
- functions are closed under composition, primitive recursion, and
- regular minimization.
+ 根据 \olref[prf]{lem:basic}，所有基本函数都是
+ $\lambd$-可定义的，并且根据 \olref[prf]{lem:comp}、
+ \olref[prf]{lem:prim} 和 \olref{lem:min}，$\lambd$-可定义
+ 函数在复合、原始递归和正则极小化下封闭。
 \end{proof}
 
 \end{document}

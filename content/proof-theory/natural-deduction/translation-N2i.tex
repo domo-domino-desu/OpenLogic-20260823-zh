@@ -8,27 +8,21 @@
 
 \olfileid{pt}{nat}{tni}
 
-\olsection{Translating from \Log{N2} to \Log{G2}}
+\olsection{从 \Log{N2} 到 \Log{G2} 的翻译}
 
-\begin{prop}\ollabel{prop:N2-to-G2} If $\Log{N2c}\ (\Log{N2i}) \Proves
-\Gamma \Sequent !A$ then $\Log{G2c}\ (\Log{N2i}) + \Cut \Proves \Gamma'
-\Sequent \Delta$ where $\Gamma'$ is the multiset of !!{formula}s
-resulting from $\Gamma$ by removing labels, and $\Delta = \{!A\}$ if
-$!A$ is not~$\lfalse$, and $\Delta = \emptyset$ if it is.
+\begin{prop}\ollabel{prop:N2-to-G2}
+如果 $\Log{N2c}\ (\Log{N2i}) \Proves
+\Gamma \Sequent !A$，则 $\Log{G2c}\ (\Log{N2i}) + \Cut \Proves \Gamma'
+\Sequent \Delta$，其中 $\Gamma'$ 是从 $\Gamma$ 中去除标签后得到的公式多重集，且当 $!A$ 不是 $\lfalse$ 时 $\Delta = \{!A\}$，当 $!A$ 是 $\lfalse$ 时 $\Delta = \emptyset$。
 \end{prop}
 
 \begin{proof}
-The proof is again by induction on the height of the
-!!{proof}~$\delta$ of $\Gamma \Sequent !A$. If $\delta$ is an axiom
-$x:!A \Sequent !A$, $\pi$ is the corresponding axiom $!A \Sequent !A$
-or $\lfalse \Sequent \ $ if $!A \ident \lfalse$.
+证明再次对推导 $\delta$（即 $\Gamma \Sequent !A$ 的推导）的高度施归纳。若 $\delta$ 是公理 $x:!A \Sequent !A$，则 $\pi$ 为相应的公理 $!A \Sequent !A$；当 $!A \ident \lfalse$ 时，则为 $\lfalse \Sequent \ $。
 
-If $\delta$ ends in an inference rule, we distinguish cases:
+若 $\delta$ 的最后一步是某条推理规则，则分情况讨论如下：
 \begin{enumerate}
-  \item If $R$ is \Intro{\lif} with principal formula $!B \lif !C$ and
-  $x:!B$ is present in the context of the premise but not the
-  conclusion, then $\delta$ ends in
-  \[
+    \item 若 $R$ 为 \Intro{\lif}，其主公式为 $!B \lif !C$，且 $x:!B$ 出现在前提的语境中但不出现在结论中，则 $\delta$ 结束于
+    \[
   \AxiomC{}
   \RightLabel{$\delta_1$}
   \Deduce$x:!B, \Gamma \fCenter !C$
@@ -36,14 +30,9 @@ If $\delta$ ends in an inference rule, we distinguish cases:
   \UnaryInf$\Gamma \fCenter !B \lif !C$
   \DisplayProof
   \]
-  The inductive hypothesis yields !!a{proof}~$\pi_1$ of $!B, \Gamma'
-  \Sequent !C$ (or of $!B, \Gamma'
-  \Sequent \ $ if $!C \ident \lfalse$), from which we obtain $\pi$ by
-  applying~\RightR{\lif} (after applying \RightR{\Weakening} in case
-  $!C \ident \lfalse$).
-  \item If $R$ is \Intro{\lif}, but $x:!B$ is not present in the
-  context of the premise, then $\delta$ ends in
-  \[
+    由归纳假设（对 $\delta_1$）可得 $!B, \Gamma' \Sequent !C$ 的推导 $\pi_1$（若 $!C \ident \lfalse$，则为 $!B, \Gamma' \Sequent \ $ 的推导），对其施 \RightR{\lif}（若 $!C \ident \lfalse$，则需先施 \RightR{\Weakening}）即得 $\pi$。
+    \item 若 $R$ 为 \Intro{\lif}，但 $x:!B$ 不出现在前提的语境中，则 $\delta$ 结束于
+    \[
   \AxiomC{}
   \RightLabel{$\delta_1$}
   \Deduce$\Gamma \fCenter !C$
@@ -51,11 +40,9 @@ If $\delta$ ends in an inference rule, we distinguish cases:
   \UnaryInf$\Gamma \fCenter !B \lif !C$
   \DisplayProof
   \]
-  The inductive hypothesis yields !!a{proof}~$\pi_1$ of $\Gamma'
-  \Sequent !C$, from which we obtain $\pi$ by applying
-  \LeftR{\Weakening} with~$!B$, and then~\RightR{\lif}.
-  \item If $R$ is \Elim{\lif}, $\delta$ ends in
-  \[
+    由归纳假设（对 $\delta_1$）可得 $\Gamma' \Sequent !C$ 的推导 $\pi_1$，先以 $!B$ 施 \LeftR{\Weakening}，再施 \RightR{\lif}，即得 $\pi$。
+    \item 若 $R$ 为 \Elim{\lif}，则 $\delta$ 结束于
+    \[
   \AxiomC{}
   \RightLabel{$\delta_1$}
   \Deduce$\Gamma_1 \fCenter !B \lif !A$
@@ -66,10 +53,8 @@ If $\delta$ ends in an inference rule, we distinguish cases:
   \BinaryInf$\Gamma_1, \Gamma_2 \fCenter !A$
   \DisplayProof
   \]
-  where $\Gamma = \Gamma_1 \cup \Gamma_2$. The inductive hypothesis
-  yields !!{proof}s $\pi_1$ of $\Gamma_1' \Sequent !B \lif !A$ and
-  $\pi_2$ of $\Gamma_2' \Sequent !B$. We obtain the !!{proof}~$\pi$ as
-  \[
+    其中 $\Gamma = \Gamma_1 \cup \Gamma_2$。由归纳假设（分别对 $\delta_1$ 和 $\delta_2$）可得 $\Gamma_1' \Sequent !B \lif !A$ 的推导 $\pi_1$ 与 $\Gamma_2' \Sequent !B$ 的推导 $\pi_2$。将推导 $\pi$ 构造为
+    \[
   \AxiomC{}
   \RightLabel{$\pi_1$}
   \Deduce$\Gamma_1' \fCenter !B \lif !A$
@@ -83,18 +68,12 @@ If $\delta$ ends in an inference rule, we distinguish cases:
   \BinaryInf$\Gamma_1', \Gamma_2' \fCenter !A$
   \DisplayProof
   \]
-  The multiset $\Gamma_1' \cup \Gamma_2'$ may not equal $\Gamma' =
-  (\Gamma_1 \cup \Gamma_2)'$: e.g., if both $\Gamma_1$ and $\Gamma_2$
-  contain $x:!C$ then $\Gamma_1' \cup \Gamma_2'$ contains two copies of
-  $!C$ but $(\Gamma_1 \cup \Gamma_2)'$ contains only one copy. We can
-  correct this by adding suitable \LeftR{\Contraction} inferences.
+    多重集 $\Gamma_1' \cup \Gamma_2'$ 可能不等于 $\Gamma' =
+  (\Gamma_1 \cup \Gamma_2)'$：例如，若 $\Gamma_1$ 和 $\Gamma_2$ 均包含 $x:!C$，则 $\Gamma_1' \cup \Gamma_2'$ 含两份 $!C$，而 $(\Gamma_1 \cup \Gamma_2)'$ 仅含一份。这可通过适当添加 \LeftR{\Contraction} 推理来修正。
 
-  In the event that $!A \ident \lfalse$, the inductive hypothesis
-  applied to $\delta_2$ yields !!a{proof} of $\Gamma_2' \Sequent \ $,
-  from which we can obtain the !!{proof}~$\pi$ by adding suitable
-  \LeftR{\Weakening} inferences and a \RightR{\Weakening} with~$!A$.
-\item If $R$ is \FalseCl, $\delta$ ends in
-  \[
+    当 $!A \ident \lfalse$ 时，对 $\delta_2$ 施用归纳假设可得 $\Gamma_2' \Sequent \ $ 的推导，由此通过适当添加 \LeftR{\Weakening} 推理以及一个以 $!A$ 为公式的 \RightR{\Weakening} 即可得到推导 $\pi$。
+\item 若 $R$ 为 \FalseCl，则 $\delta$ 结束于
+    \[
   \AxiomC{}
   \RightLabel{$\delta_1$}
   \Deduce$x: \lnot !A, \Gamma \fCenter \lfalse$
@@ -102,9 +81,8 @@ If $\delta$ ends in an inference rule, we distinguish cases:
   \UnaryInf$\Gamma \fCenter !A$
   \DisplayProof
   \]
-  By inductive hypothesis, there is !!a{proof} $\pi_1$ of $\lnot !A,
-  \Gamma' \Sequent \ $. We take the !!{proof}~$\pi$ to be
-  \[
+    由归纳假设，存在 $\lnot !A, \Gamma' \Sequent \ $ 的推导 $\pi_1$。取推导 $\pi$ 为
+    \[
   \Axiom$!A \fCenter !A$
   \RightLabel{\RightR{\lnot}}
   \UnaryInf$\fCenter !A, \lnot !A$
@@ -116,9 +94,7 @@ If $\delta$ ends in an inference rule, we distinguish cases:
   \DisplayProof
   \]
 \end{enumerate}
-Note that only the translation of \FalseCl{} results in
-!!a{proof}~$\pi$ with more than one !!{formula} on the right. That is,
-the translation of a~\Log{N2i} !!{proof} is a \Log{G2i}-!!{proof}.
+注意，唯有 \FalseCl{} 的翻译会使所得推导 $\pi$ 的右端出现多于一个公式。也就是说，\Log{N2i} 推导的翻译结果是 \Log{G2i} 推导。
 \end{proof}
 
 \end{document}

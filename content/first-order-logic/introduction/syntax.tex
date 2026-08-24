@@ -8,47 +8,12 @@
 
 \olfileid{fol}{int}{syn}
 
-\olsection{Syntax}
+\olsection{句法}
 
-We first must make precise what strings of symbols count as
-!!{sentence}s of first-order logic.  We'll do this later; for now
-we'll just proceed by example.  The basic building blocks---the
-vocabulary---of first-order logic divides into two parts. The first
-part is the symbols we use to say specific things or to pick out
-specific things. We pick out things using !!{constant}s, and we say
-stuff about the things we pick out using !!{predicate}s.  E.g, we
-might use $\Obj a$ as !!a{constant} to pick out a single thing, and
-then say something about it using the !!{sentence}~$\Atom{\Obj P}{\Obj
-a}$.  If you have meanings for ``$\Obj a$'' and ``$\Obj P$'' in mind,
-you can read $\Atom{\Obj P}{\Obj a}$ as a sentence of English (and you
-probably have done so when you first learned formal logic).  Once you
-have such simple !!{sentence}s of first-order logic, you can build
-more complex ones using the second part of the vocabulary: the logical
-symbols (connectives and quantifiers). So, for instance, we can form
-expressions like $(\Atom{\Obj P}{\Obj a} \land \Atom{\Obj Q}{\Obj b})$
-or~$\lexists[\Obj x][\Atom{\Obj P}{\Obj x}]$.
+我们首先必须精确界定哪些符号串算作一阶逻辑的语句。这要留待稍后进行；眼下我们暂且通过举例来推进。一阶逻辑的基本构件——词汇——分为两部分。第一部分是我们用来表达特定内容或指称特定事物的符号。我们用常项符号指称事物，并用谓词符号对我们所指称的事物作出陈述。例如，我们可以用 $\Obj a$ 作为常项符号来指称单个事物，然后用语句~$\Atom{\Obj P}{\Obj a}$ 对它作出某种断言。如果你心目中为“$\Obj a$”和“$\Obj P$”赋予了特定含义，你就可以将 $\Atom{\Obj P}{\Obj a}$ 读作一个英语句子（而且在你初次学习形式逻辑时，很可能已经这样做了）。有了一阶逻辑的此类简单语句后，你就可以利用词汇的第二部分——逻辑符号（联结词和量词）——来构建更复杂的语句。因此，例如，我们可以构造像 $(\Atom{\Obj P}{\Obj a} \land \Atom{\Obj Q}{\Obj b})$ 或~$\lexists[\Obj x][\Atom{\Obj P}{\Obj x}]$ 这样的表达式。
 
-In order to provide the precise definitions of semantics and the rules
-of our !!{derivation} systems required for rigorous meta-logical study, we
-first of all have to give a precise definition of what counts as
-!!a{sentence} of first-order logic. The basic idea is easy enough to
-understand: there are some simple !!{sentence}s we can form from just
-!!{predicate}s and !!{constant}s, such as~$\Atom{\Obj P}{\Obj a}$. And
-then from these we form more complex ones using the connectives and
-quantifiers. But what exactly are the rules by which we are allowed to
-form more complex !!{sentence}s?  These must be specified, otherwise
-we have not defined ``!!{sentence} of first-order logic'' precisely
-enough. There are a few issues. The first one is to get the right
-strings to count as !!{sentence}s. The second one is to do this in
-such a way that we can give mathematical proofs about \emph{all}
-!!{sentence}s. Finally, we'll have to also give precise definitions of
-some rudimentary operations with !!{sentence}s, such as ``replace
-every $\Obj x$ in~$!A$ by~$\Obj b$.'' The trouble is that the
-quantifiers and !!{variable}s we have in first-order logic make it not
-entirely obvious how this should be done. E.g., should $\lexists[\Obj
-x][\Atom{\Obj P}{\Obj a}]$ count as !!a{sentence}? What about
-$\lexists[\Obj x][\lexists[\Obj x][\Atom{\Obj P}{\Obj x}]]$? What
-should the result of ``replace $\Obj x$ by~$\Obj b$ in $(\Atom{\Obj
-P}{\Obj x} \land \lexists[\Obj x][\Atom{\Obj P}{\Obj x}])$'' be?
+为了给语义及推导系统规则提供精确定义，以便进行严格的元逻辑研究，我们首先必须精确地定义什么算作一阶逻辑的语句。其基本思想很容易理解：我们可以仅凭谓词符号和常项符号形成一些简单语句，例如~$\Atom{\Obj P}{\Obj a}$。然后再利用联结词和量词，由这些简单语句形成更复杂的语句。但是，允许我们形成更复杂语句的规则究竟是什么？这些规则必须得到明确，否则我们对“一阶逻辑语句”的定义就不够精确。这里有几点问题。第一，要让正确的符号串算作语句；第二，要以一种使我们能够对\emph{所有}语句给出数学证明的方式来实现这一点。最后，我们还必须给出关于语句的一些基本操作的精确定义，例如“将~$!A$ 中的每个~$\Obj x$ 替换为~$\Obj b$”。麻烦在于，一阶逻辑中的量词和变元使得如何进行这一操作并非显而易见。例如，$\lexists[\Obj
+x][\Atom{\Obj P}{\Obj a}]$ 应该算作一个语句吗？$\lexists[\Obj x][\lexists[\Obj x][\Atom{\Obj P}{\Obj x}]]$ 又如何？“将 $(\Atom{\Obj
+P}{\Obj x} \land \lexists[\Obj x][\Atom{\Obj P}{\Obj x}])$ 中的 $\Obj x$ 替换为~$\Obj b$”的结果该是什么？
 
 \end{document}

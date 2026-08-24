@@ -8,103 +8,48 @@
 
 \olfileid{int}{pty}{typ}
 
-\olsection{Types}
+\olsection{类型}
 
-A proof term such as $(MN)$ by itself does not uniquely determine the
-proof it is a proof term of. That's because the free variables, i.e.,
-the proof terms of axioms, do not specify the !!{formula}s in the
-corresponding axioms. However, if we specify these in a
-context~$\Gamma$, the proof \emph{is} uniquely determined.
+像 $(MN)$ 这样的证明项，其本身并不能唯一确定它所对应的证明。这是因为自由变元（即公理的证明项）并未指明对应公理中的公式。然而，如果我们在一个语境~$\Gamma$ 中指明这些公式，那么这个证明\emph{就}能被唯一确定。
 
 \begin{defn}
-A \emph{context} for a proof term~$N$ is a set $\Gamma$ such that for
-every free variable of~$N$, $\Gamma$ contains exactly one pair $x : !A$.
+证明项~$N$ 的一个\emph{语境}是一个集合 $\Gamma$，它满足：对于~$N$ 的每个自由变元，$\Gamma$ 都恰好包含一个对 $x : !A$。
 \end{defn}
 
-Note that the definition does not require that $\Gamma$ contains
-$x:!A$ \emph{only} for free variables of~$N$. This, e.g., $\Gamma =
-\{x:!A, y:!B, z:!C\}$ is a context for $\pair{x}{y}$.
+注意，该定义并不要求 $\Gamma$ 包含的 $x:!A$ \emph{仅}针对 $N$ 的自由变元。例如，$\Gamma =
+\{x:!A, y:!B, z:!C\}$ 就是 $\pair{x}{y}$ 的一个语境。
 
 \begin{defn}\ollabel{defn:type}
-  Suppose $\Gamma$ is a context for~$N$. The \emph{type} of~$N$
-  (relative to~$\Gamma$) is inductively defined as follows:
+  设 $\Gamma$ 是~$N$ 的一个语境。$N$ 的\emph{类型}（相对于~$\Gamma$）归纳定义如下：
   \begin{enumerate}
-  \item The type of $x$ is $!A$ iff $x:!A \in \Gamma$.
-  \item If $N$ has type~$!B$ relative to $x:!A, \Gamma$, then the type of $\lambd[\typeof{x}{!A}][N]$ is $!A \lif !B$.
-  \item If $N$ has type $!A \lif !B$ and $M$ has type~$!A$ then $(NM)$
-  has type~$!B$
-  \item If $N$ has type $!A$ and $M$ has type~$!B$, then $\pair{N}{M}$
-  has type $!A \land !B$.
-  \item If $N$ has type~$!A_1 \land !A_2$, then $\proj{i}{N}$ has type~$!A_i$.
-  \item If $N$ has type $!A$, then
-    $\inj[!B]{i}{!M}$ has type $!A \lor !B$ if $i=1$ and type $!B \lor
-    !A$ if $i=2$.
-  \item If $M$ has type $!A \lor !B$, $N_1$ has type $!C$ relative
-  to $x_1:!A, \Gamma$, and $N_2$ has type~$!C$ relative to $x_2:!B,
-  \Gamma$, then $\dcase{M}{x_1}{N_1}{x_2}{N_2}$ has type~$!C$.
-  \item If $N$ has type~$\lfalse$, then
-    $\abort{!A}{N}$ has type~$!A$.
+  \item $x$ 的类型是 $!A$，当且仅当 $x:!A \in \Gamma$。
+  \item 若 $N$ 相对于 $x:!A, \Gamma$ 有类型~$!B$，则 $\lambd[\typeof{x}{!A}][N]$ 的类型为 $!A \lif !B$。
+  \item 若 $N$ 有类型 $!A \lif !B$ 且 $M$ 有类型~$!A$，则 $(NM)$ 有类型~$!B$。
+  \item 若 $N$ 有类型 $!A$ 且 $M$ 有类型~$!B$，则 $\pair{N}{M}$ 有类型 $!A \land !B$。
+  \item 若 $N$ 有类型~$!A_1 \land !A_2$，则 $\proj{i}{N}$ 有类型~$!A_i$。
+  \item 若 $N$ 有类型 $!A$，则
+    $\inj[!B]{i}{!M}$ 在 $i=1$ 时有类型 $!A \lor !B$，在 $i=2$ 时有类型 $!B \lor !A$。
+  \item 若 $M$ 有类型 $!A \lor !B$，$N_1$ 相对于 $x_1:!A, \Gamma$ 有类型 $!C$，且 $N_2$ 相对于 $x_2:!B, \Gamma$ 有类型~$!C$，则 $\dcase{M}{x_1}{N_1}{x_2}{N_2}$ 有类型~$!C$。
+  \item 若 $N$ 有类型~$\lfalse$，则 $\abort{!A}{N}$ 有类型~$!A$。
   \end{enumerate}
 \end{defn}
 
 \begin{prop}
-Every proof term~$N$ has exactly one type relative to a
-context~$\Gamma$ for~$N$, if it has a type at all (i.e., is a correct
-proof term).
+若一个证明项~$N$ 有类型（即它是一个正确的证明项），则它相对于它的一个语境~$\Gamma$ 有且仅有一个类型。
 \end{prop}
 
 \begin{proof}
-  By induction on~$N$.
+  对~$N$ 归纳证明。
 \end{proof}
 
-We write $\Gamma \Sequent N : !A$ if the type of $N$ relative to
-$\Gamma$ is~$!A$. The clauses in \olref{defn:type} should seem familiar:
-they are precisely the rules of \Log{tN2i} with one slight difference:
-the context~$\Gamma$ is the same throughout. We can codify the
-definition as a calculus \Log{tN3i} with the rules given in \olref{tab:tN2ip}.
+当 $N$ 相对于 $\Gamma$ 的类型是~$!A$ 时，我们写作 $\Gamma \Sequent N : !A$。\olref{defn:type}中的分款看起来应该很熟悉：它们正是 \Log{tN2i} 的规则，只有一点细微差别：语境~$\Gamma$ 在整个过程中保持不变。我们可以将这个定义编码为一个演算系统 \Log{tN3i}，其规则如 \olref{tab:tN2ip} 所示。
 
 \subfile{rules-tN3}
 
-Proof terms are terms in a version of the $\lambd$-calculus, the
-\emph{typed $\lambd$-calculus with products, sums, and empty type}. The
-classical $\lambd$-calculus only has term built from variables,
-\emph{$\lambd$-abstracts}~$\lambd[x][N]$ and application $(MN)$, and
-it lacks the annotation by~$!A$ of the typed $\lambd$-abstract
-$\lambd[\typeof{x}{!A}][N]$. The $\lambd$-calculus is a model of
-computation which is Turing complete (i.e., every partial computable
-function can be represented in it by a term). The version of the
-$\lambd$-calculus given by proof terms and typing rules is a
-restricted model of computation, but the basic ideas are the same. It
-is restricted by the type assignment: only \emph{well-typed} terms,
-i.e., proof terms with types (relative to a context~$\Gamma$) are
-legal terms. For instance, $\lambd[x][(xx)]$ is a legal term in the
-classical untyped $\lambd$-calculus, but
-$\lambd[\typeof{x}{!A}][(xx)]$ is not well-typed for any $!A$. That's
-because the typing rules require that in order for $(xx)$ to have a
-type, the first~$x$ would have to have type $!A \lif !B$ and the
-second $x$ type~$!A$, and that's impossible since $!A$ is a proper
-sub-!!{formula} of~$!A \lif !B$.
+证明项是某个版本的$\lambd$-演算中的项，即\emph{带积、和与空类型的带类型$\lambd$-演算}。经典的$\lambd$-演算只包含由变元、\emph{$\lambd$-抽象}~$\lambd[x][N]$ 和作用 $(MN)$ 构建的项，并且缺少带类型的$\lambd$-抽象 $\lambd[\typeof{x}{!A}][N]$ 中对~$!A$ 的标注。$\lambd$-演算是一种图灵完备的计算模型（即每个部分可计算函数都可以在其中用一个项来表示）。由证明项和类型规则给出的这个$\lambd$-演算版本是一个受限的计算模型，但基本思想相同。它的限制在于类型指派：只有\emph{良类型的}项，即相对于某个语境~$\Gamma$ 有类型的证明项，才是合法的项。例如，$\lambd[x][(xx)]$ 是经典无类型$\lambd$-演算中的一个合法项，但对于任何 $!A$，$\lambd[\typeof{x}{!A}][(xx)]$ 都不是良类型的。这是因为类型规则要求，为了使 $(xx)$ 有类型，第一个~$x$ 必须具有类型 $!A \lif !B$ 而第二个 $x$ 具有类型~$!A$，而这是不可能的，因为 $!A$ 是 $!A \lif !B$ 的一个真子公式。
 
-We can think of types intuitively as the kind of thing named by a term
-of that type. So a term of type $!A \land !B$ picks out a pair with
-first component of type~$!A$ and second component of type~$!B$, i.e.,
-!!a{element} of the product~$!A \times !B$. A term of type $!A \lif !B$
-is a function from things of type $!A$ to things of type~$!B$. A term
-of type $!A \lor !B$ is either something of type $!A$ or something of
-type~$!B$, plus the information which one it is. This is like the
-disjoint union of the two sets $!A$ and $!B$ defined as $\{\tuple{i,x}
-: i = 1 \text{ or } 2, x \in !A \text{ if } i = 1, x \in !B \text{ if
-} i=2\}$. The type $\lfalse$ is the empty set, i.e., if a term has
-that type it can't name anything. Since natural deduction (including
-\Log{tN3i}) is consistent, there is no !!{proof} of~$\lfalse$ unless
-there are open assumptions, and so there is no closed proof term (term
-without free variables) that has type~$\lfalse$.
+我们可以直观地将类型理解为：具有该类型的项所命名的对象的类别。因此，一个类型为 $!A \land !B$ 的项挑选的是一对元素，其第一个分量的类型是~$!A$，第二个分量的类型是~$!B$，即积~$!A \times !B$ 中的一个元素。一个类型为 $!A \lif !B$ 的项是一个从类型 $!A$ 的对象到类型~$!B$ 的对象的函数。一个类型为 $!A \lor !B$ 的项要么是类型 $!A$ 的对象，要么是类型~$!B$ 的对象，并且还附带说明它是哪一个的信息。这类似于两个集合 $!A$ 和 $!B$ 的无交并，定义为 $\{\tuple{i,x} : i = 1 \text{ 或 } 2, x \in !A \text{ 若 } i = 1, x \in !B \text{ 若 } i=2\}$。类型 $\lfalse$ 是空集，也就是说，如果一个项具有该类型，它就不能命名任何东西。由于自然演绎（包括 \Log{tN3i}）是一致的，除非存在未解除的假设，否则不能推导出~$\lfalse$，因此不存在类型为~$\lfalse$ 的闭证明项（不含自由变元的项）。
 
-The operators of the typed $\lambd$-calculus produce terms that
-intuitively name the right sort of thing, provided the terms it is
-applied to name certain things. E.g., ``if $N_1 : !A$ and $N_2 : !B$,
-then $\pair{N_1}{N_2} : !A \land !B$'' says that if $N_1$ names
-somethign of type~$!A$ and $N_2$ names something of type~$!B$, then
-$\pair{N_1}{N_2}$ names something of type $!A \land !B$.
+带类型的 $\lambd$-演算的算子会产生一些项，这些项直观地命名了正确类别的对象，前提是它所作用的那些项命名了某些对象。例如，“若 $N_1 : !A$ 且 $N_2 : !B$，则 $\pair{N_1}{N_2} : !A \land !B$” 的意思是：如果 $N_1$ 命名了一个类型为~$!A$ 的对象，并且 $N_2$ 命名了一个类型为~$!B$ 的对象，那么 $\pair{N_1}{N_2}$ 就命名了一个类型为 $!A \land !B$ 的对象。
 
 \end{document}

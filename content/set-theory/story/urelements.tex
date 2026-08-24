@@ -3,20 +3,12 @@
 \begin{document}
 
 \olfileid{sth}{story}{urelements}
-\olsection{Urelements or Not?}
+\olsection{是否包含本元？}
 
-In the next few chapters, we will try to extract axioms from the
-cumulative-iterative conception of set. But, before going any further,
-we need to say something more about \emph{urelements}. 
+在接下来的几章中，我们将尝试从集合的累积迭代概念中提取公理。但在进一步讨论之前，我们需要对\emph{本元}多作一些说明。
 
-The picture of \olref[approach]{sec} allowed us only to form new sets
-from old \emph{sets}. However, we might want to allow that certain
-\emph{non-sets}---cows, pigs, grains of sand, or whatever---can be
-!!{element}s of sets. In that case, we would start with certain basic
-elements, \emph{urelements}, and then say that at each stage $S$ we
-would form ``all possible'' sets consisting of urelements or sets
-formed at stages before $S$ (in any combination). The resulting
-picture would look more like this:
+\olref[approach]{sec}节的图景只允许我们由已有的\emph{集合}来形成新的集合。然而，我们可能希望允许某些\emph{非集合}——牛、猪、沙粒或其他任何事物——成为集合的元素。如果是这样，我们将从某些基本元素（即\emph{本元}）出发，然后说在每一阶段~$S$，我们会形成由本元或在~$S$ 之前的阶段形成的集合（以任意方式组合）所组成的“所有可能的”集合。最终得到的图景将更像这样：
+
 \begin{center}
 	\begin{tikzpicture}[scale=0.6]
 	\tikzset{cut_here/.style={densely dotted}}
@@ -38,45 +30,21 @@ picture would look more like this:
 	\node[label] at (5, 6) {\small 6};
 	\end{tikzpicture}
 \end{center}
-So now we have a decision to take: \emph{Should we allow urelements?}
 
-Philosophically, it makes sense to include urelements in our
-theorising. The main reason for this is to make our set theory
-\emph{applicable}. To illustrate the point, recall from
-\olref[sfr][siz][]{chap} that we say that two sets $A$ and~$B$ have
-the same size, i.e., $\cardeq{A}{B}$, iff there is a bijection between
-them. Now, if the cows in the field and the pigs in the sty both form
-sets, we can offer a set-theoretical treatment of the claim ``there
-are as many cows as pigs''. But if we ban urelements, so that the cows
-and the pigs do \emph{not} form sets, then that set-theoretical
-treatment will be unavailable. Indeed, we will have no straightforward
-ability to apply set theory to anything other than sets themselves.
-(For more reasons to include urelements, see \citealt[pp.~vi, 24,
-50--1]{Potter2004}.)
+所以现在我们需要做一个决定：\emph{我们应该允许本元吗？}
 
-Mathematically, however, it is quite rare to allow urelements. In
-part, this is because it is \emph{very slightly} easier to formulate
-set theory without urelements. But, occasionally, one finds more
-interesting justifications for excluding urelement from set theory:
+从哲学上讲，将本元纳入我们的理论建构是有道理的。这样做的主要理由是使我们的集合论具有\emph{适用性}。为了说明这一点，回顾\olref[sfr][siz][]{chap}，我们说两个集合~$A$ 和~$B$ 大小相同，即 $\cardeq{A}{B}$，当且仅当它们之间存在一个双射。现在，如果田野里的牛和猪圈里的猪都能构成集合，我们就可以对“牛和猪一样多”这一论断提供一种集合论的处理方式。但如果我们禁止本元，使得牛和猪\emph{不}构成集合，那么这种集合论的处理方式就不可用了。事实上，我们将无法直接将集合论应用于集合本身以外的任何事物。（关于包含本元的更多理由，参见 \citealt[pp.~vi, 24, 50--1]{Potter2004}。）
+
+然而，在数学上，允许本元的情况相当罕见。部分原因是，表述不含本元的集合论要\emph{略微}容易一些。但偶尔，人们也会给出更有趣的理由来将本元排除在集合论之外：
+
 \begin{quote}
-	In accordance with the belief that set theory is the foundation of
-	mathematics, we should be able to capture all of mathematics by
-	just talking about sets, so our variable should not range over
-	objects like cows and pigs. 
+	根据集合论作为数学基础这一信念，我们应该能够仅通过谈论集合来涵盖所有数学，因此我们的变元不应遍历像牛和猪这样的对象。
 	%But if $C$ is a cow, $\{C\}$ is a set, but not a legitimate mathematical object. 
 	\citep[p.~8]{Kunen1980}
 \end{quote}
-So: a focus on applicability would suggest \emph{including}
-urelements; a focus on a reductive foundational goal (reducing
-mathematics to pure set theory) might suggest \emph{excluding} them.
-Mild laziness, too, points in the direction of excluding urelements. 
 
-We will follow the laziest path. Partly, though, there is a
-pedagogical justification. Our aim is to introduce you to the elements
-of set theory that you would need in order to get started on the
-philosophy of set theory. And most of that philosophical literature
-discusses set theories formulated \emph{without} urelements. So this
-book will, perhaps, be of more use, if it hews fairly closely to that
-literature.
+因此：关注适用性倾向于\emph{包含}本元；而关注还原论的基础目标（将数学还原为纯集合论）则可能倾向于\emph{排除}它们。一点轻微的惰性，也指向了排除本元的方向。
+
+我们将选择最省力的路径。不过，这在一定程度上也有教学法上的理由。我们的目标是向你介绍入门集合论哲学所需的集合论基础知识。而大部分相关的哲学文献讨论的都是\emph{不}包含本元的形式化集合论。因此，如果本书能相当贴近那些文献，或许会更有用。
 
 \end{document}

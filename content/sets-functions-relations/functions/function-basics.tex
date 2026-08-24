@@ -1,4 +1,18 @@
 % Part: sets-functions-relations
+如果一个集合与自然数集 $\Nat$ 之间存在双射，则称该集合是\emph{可数无穷的}（\emph{denumerable}）。
+等价地，可数无穷集可以看作一个能按第一个元素、第二个元素……的方式列出其所有元素的集合。
+由于 $\Nat$ 是最初的或者说典型的无穷集，因此使用“denumerable”这个词。
+有时人们也使用“countably infinite”这个术语。
+
+例如，自然数集合 $\Nat$ 显然是可数无穷的；
+整数集 $\Int$ 和有理数集 $\Rat$ 也是可数无穷的。
+（$\Int$ 的可数性很容易证明；至于 $\Rat$，可数性的证明需要更多论证，我们会在后面给出。）
+
+但并非所有无穷集都是可数无穷的。
+有些集合，比如实数集 $\Real$，是\emph{不可数的}。
+所有由 $0$ 和 $1$ 构成的无限序列的集合 $\mathbf{2}^{\Nat}$ 就不是可数无穷的，这一点可以通过\emph{对角线论证}法来证明。
+而 $\Real$ 是不可数的，因为 $\Real$ 的一个子集与 $\mathbf{2}^{\Nat}$ 可建立双射（即，每个无限 $0$-$1$ 序列都可以被看作是某个实数的二进制展开）。
+我们将在后面给出完整的证明。
 % Chapter: functions
 % Section: basics
 
@@ -7,134 +21,79 @@
 \begin{document}
 
 \olfileid{sfr}{fun}{bas}
-\olsection{Basics}
+\olsection{基本概念}
 
 \begin{explain}
-A \emph{function} is a map which sends each !!{element} of a given set
-to a specific !!{element} in some (other) given set. For instance, the
-operation of adding~$1$ defines a function: each number~$n$ is mapped
-to a unique number~$n+1$. 
-  
-More generally, functions may take pairs, triples, etc., as inputs and
-return some kind of output. Many functions are familiar to us from
-basic arithmetic. For instance, addition and multiplication are
-functions. They take in two numbers and return a third.
+\emph{函数}是一种映射，它将给定集合中的每个元素映射到某个（另一个）给定集合中的特定元素。例如，加~$1$ 的运算定义了一个函数：每个数~$n$ 被映射到唯一的数~$n+1$。
 
-In this mathematical, abstract sense, a function is a \emph{black
-box}: what matters is only what output is paired with what input, not
-the method for calculating the output.
+更一般地，函数可以以有序对、三元组等为输入，并返回某种输出。我们从基础算术中就已经熟悉许多函数。例如，加法和乘法都是函数。它们接受两个数作为输入，返回第三个数。
+
+在这种抽象的数学意义下，函数就是一个\emph{黑箱}：重要的仅仅是哪个输入与哪个输出配对，而非计算输出的方法。
 \end{explain}
 
-\begin{defn}[Function]
-A \emph{function} $f \colon A \to B$ is a mapping of each !!{element}
-of~$A$ to an !!{element} of~$B$.
+\begin{defn}[函数]
+\emph{函数} $f \colon A \to B$ 指的是将~$A$ 的每个元素映射到~$B$ 的一个元素的映射。
 
-We call $A$ the \emph{domain} of~$f$ and $B$ the \emph{codomain}
-of~$f$.  The !!{element}s of~$A$ are called inputs or \emph{arguments}
-of~$f$, and the !!{element} of~$B$ that is paired with an argument~$x$
-by~$f$ is called the \emph{value of~$f$} for argument~$x$,
-written~$f(x)$.
+我们称 $A$ 为~$f$ 的\emph{定义域}，$B$ 为~$f$ 的\emph{陪域}。$A$ 的元素称为~$f$ 的输入或\emph{自变元}，而由~$f$ 与自变元~$x$ 相配对的~$B$ 中的元素称为~$f$ 在自变元~$x$ 处的\emph{值}，记作~$f(x)$。
 
-The \emph{range} $\ran{f}$ of~$f$ is the subset of the codomain
-consisting of the values of~$f$ for some argument; $\ran{f} =
-\Setabs{f(x)}{x \in A}$.
+$f$ 的\emph{值域} $\ran{f}$ 是陪域的一个子集，由 $f$ 在某自变元处取到的所有值组成；$\ran{f} =
+\Setabs{f(x)}{x \in A}$。
 \end{defn}
 
-The diagram in \olref{fig:function} may help to think about functions. The ellipse
-on the left represents the function's \emph{domain}; the ellipse on
-the right represents the function's \emph{codomain}; and an arrow
-points from an \emph{argument} in the domain to the corresponding
-\emph{value} in the codomain.
+\olref{fig:function} 中的图示可能有助于思考函数。左侧的椭圆代表函数的\emph{定义域}；右侧的椭圆代表函数的\emph{陪域}；箭头从定义域中的一个\emph{自变元}指向陪域中对应的\emph{值}。
 
 \begin{figure}
   \olasset{assets/diagrams/function.tikz}
-  \caption{A function is a mapping of each !!{element} of one set to
-    !!a{element} of another. An arrow points from an argument in the
-    domain to the corresponding value in the codomain.}
+  \caption{函数是将一个集合的每个元素映射到另一个集合中某个元素的映射。箭头从定义域中的一个自变元指向陪域中对应的值。}
   \ollabel{fig:function}
 \end{figure}
 
 \begin{ex}
-Multiplication takes pairs of natural numbers as inputs and maps them
-to natural numbers as outputs, so goes from $\Nat \times \Nat$ (the
-domain) to $\Nat$ (the codomain). As it turns out, the range is also
-$\Nat$, since every $n \in \Nat$ is $n \times 1$.
+乘法以自然数对作为输入，并将它们映射到自然数作为输出，因此它是从 $\Nat \times \Nat$（定义域）到 $\Nat$（陪域）的映射。事实上，它的值域也是 $\Nat$，因为每个 $n \in \Nat$ 都可以表示为 $n \times 1$。
 \end{ex}
 
 \begin{ex}
-Multiplication is a function because it pairs each input---each pair
-of natural numbers---with a single output: $\times \colon \Nat^2 \to
-\Nat$. By contrast, mapping a natural number~$n$ to a real~$x$ such
-that $x^2 = n$ is not functional, since each positive integer~$n$ has two
-square roots: $\sqrt{n}$ and~$-\sqrt{n}$. We can make it functional by
-only returning the positive square root: $\sqrt{\phantom{X}} \colon
-\Nat \to \Real$. 
+乘法是一个函数，因为它将每个输入（每个自然数对）与唯一的一个输出配对：$\times \colon \Nat^2 \to \Nat$。相比之下，将一个自然数~$n$ 映射到一个满足 $x^2 = n$ 的实数~$x$ 则不是函数，因为每个正整数~$n$ 都有两个平方根：$\sqrt{n}$ 和~$-\sqrt{n}$。我们可以通过只返回正平方根使其成为函数：$\sqrt{\phantom{X}} \colon
+\Nat \to \Real$。
 \end{ex}
 
 \begin{ex}
-The relation that pairs each student in a class with their final grade
-is a function---no student can get two different final grades in the
-same class. The relation that pairs each student in a class with their
-parents is not a function: students can have zero, or two, or more
-parents.
+将班级里每个学生与其最终成绩配对的关系是一个函数——没有学生能在同一门课中获得两个不同的最终成绩。将班级里每个学生与其父母配对的关系则不是函数：学生可能有零个、两个或更多的父母。
 \end{ex}
 
 \begin{explain}
-We can define functions by specifying in some precise way what the
-value of the function is for every possible argument. Different ways of
-doing this are by giving a formula, describing a method for computing
-the value, or listing the values for each argument. However functions
-are defined, we must make sure that for each argument we specify one,
-and only one, value.
+我们可以通过某种精确的方式，为每个可能的自变元指定函数的值，以此来定义函数。不同的定义方式包括：给出一个公式，描述一种计算值的方法，或者列出每个自变元对应的值。然而，无论函数如何定义，我们都必须确保为每个自变元指定一个，且仅有一个值。
 \end{explain}
 
 
 \begin{ex}
-Let $f \colon \Nat \to \Nat$ be defined such that $f(x) = x+1$. This
-is a definition that specifies $f$ as a function which takes in
-natural numbers and outputs natural numbers. It tells us that, given a
-natural number~$x$, $f$ will output its successor~$x+1$.
-In this case, the codomain $\Nat$ is not the range of~$f$, since the
-natural number~$0$ is not the successor of any natural number. The
-range of~$f$ is the set of all positive integers, $\Int^{+}$.
+定义 $f \colon \Nat \to \Nat$ 使得 $f(x) = x+1$。这个定义将 $f$ 确定为一个以自然数为输入并以自然数为输出的函数。它告诉我们，给定一个自然数~$x$，$f$ 将输出它的后继~$x+1$。
+在这种情况下，陪域 $\Nat$ 并不是~$f$ 的值域，因为自然数~$0$ 不是任何自然数的后继。$f$ 的值域是所有正整数的集合 $\Int^{+}$。
 \end{ex}
 
 \begin{ex}\ollabel{examplefunext}
-Let $g \colon \Nat \to \Nat$ be defined such that $g(x) = x+2-1$. This
-tells us that $g$ is a function which takes in natural numbers and
-outputs natural numbers. Given a natural number~$n$, $g$ will output
-the predecessor of the successor of the successor of~$x$, i.e.,
-$x+1$.
+定义 $g \colon \Nat \to \Nat$ 使得 $g(x) = x+2-1$。这告诉我们 $g$ 是一个以自然数为输入并输出自然数的函数。给定一个自然数~$n$，$g$ 将输出~$x$ 的后继的后继的前驱，即 $x+1$。
 \end{ex}
 
 \begin{explain}
-We just considered two functions, $f$ and $g$, with different
-\emph{definitions}. However, these are the \emph{same function}. After
-all, for any natural number~$n$, we have that $f(n) = n+1 = n+2-1 =
-g(n)$. Otherwise put: our  definitions for $f$ and~$g$ specify the
-same mapping by means of different equations. Implicitly, then, we are
-relying upon a principle of extensionality for functions, 
+我们刚刚考察了两个定义不同的函数 $f$ 和 $g$。然而，它们是\emph{同一个函数}。毕竟，对于任何自然数~$n$，我们有 $f(n) = n+1 = n+2-1 =
+g(n)$。换句话说：我们对 $f$ 和~$g$ 的定义通过不同的方程指定了相同的映射。隐含地，我们实际上是依赖于函数的外延性原理，
 \[
-  \text{if }\forall x\, f(x) = g(x)\text{, then }f = g
+  \text{若 }\forall x\, f(x) = g(x)\text{, 则 }f = g
 \]
-provided that $f$ and~$g$ share the same domain and codomain.
+前提是 $f$ 和~$g$ 具有相同的定义域和陪域。
 \end{explain}
 
 \begin{ex}
-We can also define functions by cases. For instance, we could define
-$h \colon \Nat \to \Nat$  by
+我们也可以用分情况的方式来定义函数。例如，我们可以如下定义 $h \colon \Nat \to \Nat$：
 \[
 h(x) =
 \begin{cases}
-  \frac{x}{2} & \text{if $x$ is even} \\
-  \frac{x+1}{2} & \text{if $x$ is odd.}
+  \frac{x}{2} & \text{若 $x$ 是偶数} \\
+  \frac{x+1}{2} & \text{若 $x$ 是奇数。}
 \end{cases}
 \]
-Since every natural number is either even or odd, the output of this
-function will always be a natural number. Just remember that if you
-define a function by cases, every possible input must fall into
-exactly one case.  In some cases, this will require a proof that the
-cases are exhaustive and exclusive.
+由于每个自然数要么是偶数要么是奇数，因此这个函数的输出总是一个自然数。只需记住，如果你用分情况的方式定义一个函数，那么每一个可能的输入都必须恰好落入一种情况。在某些情况下，这需要证明这些情况是穷尽且互斥的。
 \end{ex}
 
 \end{document}

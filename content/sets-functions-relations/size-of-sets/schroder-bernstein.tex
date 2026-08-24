@@ -8,46 +8,26 @@
 
 \olfileid{sfr}{siz}{sb}
 
-\olsection{The Notion of Size, and Schr\"oder-Bernstein}
+\olsection{大小的概念与 Schr\"oder-Bernstein 定理}
 
 \begin{explain}
-Here is an intuitive thought: if $A$ is no larger than $B$ and $B$ is
-no larger than $A$, then $A$ and $B$ are equinumerous. To be honest,
-if this thought were \emph{wrong}, then we could scarcely justify the
-thought that our defined notion of equinumerosity has anything to do
-with comparisons of ``sizes'' between sets!{} Fortunately, though,
-the intuitive thought is correct. This is justified by the
-Schr\"oder-Bernstein Theorem.
+这里有一个直观的想法：如果 $A$ 不比 $B$ 大，且 $B$ 也不比 $A$ 大，那么 $A$ 和 $B$ 就是等势的。坦率地说，如果这个想法是\emph{错的}，我们就很难再主张：我们所定义的等势概念与集合间“大小”的比较有什么关系！不过幸运的是，这个直观的想法是正确的。这一点由 Schr\"oder-Bernstein 定理所证实。
 \end{explain}
 
 \begin{thm}[Schr\"oder-Bernstein]
 	\ollabel{thm:schroder-bernstein}
-	If $\cardle{A}{B}$ and $\cardle{B}{A}$,
-	then $\cardeq{A}{B}$.
+	如果 $\cardle{A}{B}$ 且 $\cardle{B}{A}$，
+	则 $\cardeq{A}{B}$。
 \end{thm}
 
 \begin{explain}
-In other words, if there is !!a{injection} from $A$ to~$B$, and
-!!a{injection} from $B$ to~$A$, then there is !!a{bijection} from $A$
-to~$B$. 
+换句话说，如果存在从 $A$ 到~$B$ 的单射，以及从 $B$ 到~$A$ 的单射，那么存在从 $A$ 到~$B$ 的双射。
 
-This result, however, is really rather \emph{difficult} to prove.
-Indeed, although Cantor stated the result, others proved
-it.\footnote{For more on the history, see e.g.,
-\citet[pp.~165--6]{Potter2004}.}
-\oliflabeldef{sfr:cardinals:card-sb:sec}{We will only be in
-a position to \emph{prove} Schr\"oder-Bernstein in
-\olref[sfr][cardinals][card-sb]{sec}.}{}% 
-For now, you can (and must)
-take it on trust. 
+然而，这个结果实际上相当\emph{难以}证明。事实上，尽管 Cantor 陈述了这一结果，但给出证明的却是他人。\footnote{关于更多历史细节，例如可参见 \citet[pp.~165--6]{Potter2004}。}
+\oliflabeldef{sfr:cardinals:card-sb:sec}{我们要到 \olref[sfr][cardinals][card-sb]{sec} 节才能\emph{证明} Schr\"oder-Bernstein 定理。}{}% 
+目前，你只能（也必须）暂且接受它。
 
-Fortunately, Schr\"oder-Bernstein is \emph{correct}, and it
-vindicates our thinking of the relations we defined, i.e.,
-$\cardeq{A}{B}$ and $\cardle{A}{B}$, as having something to do with
-``size''. Moreover, Schr\"oder-Bernstein is very \emph{useful}. It
-can be difficult to think of !!a{bijection} between two equinumerous
-sets. The Schr\"oder-Bernstein Theorem allows us to break the comparison
-down into cases so we only have to think of !!a{injection} from the
-first to the second, and vice-versa.
+幸运的是，Schr\"oder-Bernstein 定理是\emph{正确的}，它证实了我们把所定义的关系——即 $\cardeq{A}{B}$ 和 $\cardle{A}{B}$——视为与“大小”有关的想法。此外，Schr\"oder-Bernstein 定理非常\emph{有用}。想出两个等势集合之间的双射往往很困难。Schr\"oder-Bernstein 定理允许我们将比较拆分开来，这样我们就只需考虑从第一个集合到第二个集合的单射，反之亦然。
 \end{explain}
+
 \end{document}

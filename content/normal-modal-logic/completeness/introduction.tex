@@ -8,66 +8,17 @@
 
 \olfileid{nml}{com}{int}
 
-\olsection{Introduction}
+\olsection{引言}
 
-If $\Sigma$ is a modal system, then the soundness theorem establishes
-that if $\Sigma \Proves !A$, then $!A$ is valid in any class
-$\mClass{C}$ of models in which all instances of all !!{formula}s
-in~$\Sigma$ are valid. In particular that means that if $\Log{K}
-\Proves !A$ then $!A$ is true in all models; if $\Log{KT} \Proves !A$
-then $!A$ is true in all reflexive models; if $\Log{KD} \Proves !A$
-then $!A$ is true in all serial models, etc.
+如果 $\Sigma$ 是一个模态系统，那么可靠性定理表明：若 $\Sigma \Proves !A$，则 $!A$ 在任何满足如下条件的模型类 $\mClass{C}$ 中都是有效的：$\Sigma$ 中所有公式的所有实例在 $\mClass{C}$ 中都有效。
+特别地，这意味着：若 $\Log{K} \Proves !A$，则 $!A$ 在所有模型中为真；若 $\Log{KT} \Proves !A$，则 $!A$ 在所有自反模型中为真；若 $\Log{KD} \Proves !A$，则 $!A$ 在所有持续模型中为真；等等。
 
-Completeness is the converse of soundness: that \Log{K} is complete
-means that if !!a{formula}~$!A$ is valid, $\Proves !A$, for instance.
-Proving completeness is a lot harder to do than proving soundness.  It
-is useful, first, to consider the contrapositive: \Log{K} is complete
-iff whenever $\Proves/ !A$, there is a countermodel, i.e., a
-model~$\mModel{M}$ such that $\mSat/{M}{!A}$. Equivalently (negating
-$!A$), we could prove that whenever $\Proves/ \lnot !A$, there is a
-model of~$!A$.  In the construction of such a model, we can use
-information contained in $!A$.  When we find models for specific
-!!{formula}s we often do the same: e.g., if we want to find a
-countermodel to $p \lif \Box q$, we know that it has to contain a
-world where $p$ is true and $\Box q$ is false. And a world where $\Box
-q$ is false means there has to be a world accessible from it where $q$
-is false. And that's all we need to know: which worlds make the
-!!{propositional variable}s true, and which worlds are accessible from
-which worlds.
+完备性是可靠性的逆：例如，\Log{K} 是完备的意味着，如果一个公式~$!A$ 是有效的，则 $\Proves !A$。证明完备性比证明可靠性要困难得多。首先，考虑其逆否命题是有用的：\Log{K} 是完备的当且仅当只要 $\Proves/ !A$，就存在一个反模型，即一个模型~$\mModel{M}$ 使得 $\mSat/{M}{!A}$。等价地（取 $!A$ 的否定），我们可以证明，只要 $\Proves/ \lnot !A$，就存在一个~$!A$ 的模型。在构造这样一个模型时，我们可以利用 $!A$ 所包含的信息。当我们为特定公式寻找模型时，也经常这样做：例如，如果我们想为 $p \lif \Box q$ 找一个反模型，我们知道它必须包含一个 $p$ 为真而 $\Box q$ 为假的世界。而一个 $\Box q$ 为假的世界，意味着必须存在一个从它可达的世界，在其中 $q$ 为假。这就是我们需要知道的全部信息：哪些世界使得命题变元为真，以及哪些世界可从哪些世界可达。
 
-In the case of proving completeness, however, we don't have a specific
-!!{formula}~$!A$ for which we are constructing a model. We want to
-establish that a model exists for every $!A$ such that
-$\Proves/[\Sigma] \lnot !A$. This is a minimal requirement, since
-\emph{if} $\Proves[\Sigma] \lnot !A$, by soundness, there is no model
-for~$!A$ (in which $\Sigma$ is true).  Now note that $\Proves/[\Sigma]
-\lnot !A$ iff $!A$ is $\Sigma$-consistent.  (Recall that $\Sigma
-\Proves/[\Sigma] \lnot !A$ and $!A \Proves/[\Sigma] \lfalse$ are
-equivalent.)  So our task is to construct a model for every
-$\Sigma$-consistent !!{formula}.
+然而，在证明完备性的情况下，我们并没有一个为其构造模型的特定公式~$!A$。我们希望确立的是，对每个满足 $\Proves/[\Sigma] \lnot !A$ 的 $!A$，都存在一个模型。这是一个最低要求，因为\emph{如果} $\Proves[\Sigma] \lnot !A$，根据可靠性，就不存在~$!A$ 的（使得 $\Sigma$ 为真的）模型。现在注意到，$\Proves/[\Sigma] \lnot !A$ 当且仅当 $!A$ 是 $\Sigma$-一致的。（回想一下，$\Sigma \Proves/[\Sigma] \lnot !A$ 与 $!A \Proves/[\Sigma] \lfalse$ 是等价的。）所以我们的任务是为每个 $\Sigma$-一致的公式构造一个模型。
 
-The trick we'll use is to find a $\Sigma$-consistent set of
-!!{formula}s that contains~$!A$, but also other formulas which tell us
-what the world that makes $!A$ true has to look like. Such sets are
-\emph{complete} $\Sigma$-consistent sets. It's not enough to
-construct a model with a single world to make~$!A$ true, it will have
-to contain multiple worlds and an accessibility relation. The complete
-$\Sigma$-consistent set containing~$!A$ will also contain other
-!!{formula}s of the form $\Box !B$ and~$\Diamond !C$. In all
-accessible worlds, $!B$ has to be true; in at least one, $!C$ has to
-be true. In order to accomplish this, we'll simply take \emph{all}
-possible complete $\Sigma$-consistent sets as the basis for the set of
-worlds. A tricky part will be to figure out when a complete
-$\Sigma$-consistent set should count as being accessible from another
-in our model.
+我们将使用的技巧是找到一个 $\Sigma$-一致的公式集合，它包含~$!A$，同时也包含其他一些公式，这些公式告诉我们使 $!A$ 为真的世界必须具有怎样的特征。这样的集合就是\emph{完全的} $\Sigma$-一致集合。仅构造一个只有单个世界的模型来使~$!A$ 为真是不够的，它必须包含多个世界和一个可达关系。包含~$!A$ 的完全 $\Sigma$-一致集合也会包含形如 $\Box !B$ 和~$\Diamond !C$ 的其他公式。在所有可达世界中，$!B$ 必须为真；在至少一个可达世界中，$!C$ 必须为真。为了实现这一点，我们只需简单地取\emph{所有}可能的完全 $\Sigma$-一致集合作为世界集合的基础。棘手之处在于确定在我们的模型中，何时一个完全的 $\Sigma$-一致集合应当被视为可从另一个到达。
 
-We'll show that in the model so defined, $!A$ is true at a
-world---which is also a complete $\Sigma$-consistent set---iff $!A$ is
-!!a{element} of that set.  If $!A$ is $\Sigma$-consistent, it will be
-!!a{element} of at least one complete $\Sigma$-consistent set (a fact
-we'll prove), and so there will be a world where $!A$~is true. So we
-will have a single model where every $\Sigma$-consistent
-!!{formula}~$!A$ is true at some world.  This single model is the
-\emph{canonical} model for~$\Sigma$.
+我们将证明，在如此定义的模型中，$!A$ 在某个世界（该世界也是一个完全的 $\Sigma$-一致集合）中为真，当且仅当 $!A$ 属于该集合。如果 $!A$ 是 $\Sigma$-一致的，它将属于至少一个完全的 $\Sigma$-一致集合（我们将证明这一事实），因此就会存在一个世界使得 $!A$~为真。这样，我们将得到一个单一的模型，其中每个 $\Sigma$-一致的公式~$!A$ 都在某个世界为真。这个单一的模型就是~$\Sigma$ 的\emph{典范}模型。
 
 \end{document}

@@ -7,67 +7,50 @@
 \begin{document}
 
 \olfileid{cmp}{thy}{fix}
-\olsection{The Fixed-Point Theorem}
+\olsection{不动点定理}
 
-Let's consider the halting problem again. As temporary
-notation, let us write $\gn{\cfind{x}(y)}$ for $\tuple{x, y}$; think of
-this as representing a ``name'' for the value $\cfind{x}(y)$. With this
-notation, we can reword one of our proofs that the halting problem is
-undecidable.
+再次考虑停机问题。作为临时记号，我们用 $\gn{\cfind{x}(y)}$ 表示 $\tuple{x, y}$；可将其视为值 $\cfind{x}(y)$ 的一个“名称”。利用这个记号，我们可以重述停机问题不可判定的一种证明。
 
-Question: is there a computable function $h$, with the
-following property? For every $x$ and $y$,
+问题：是否存在具有以下性质的可计算函数 $h$：对所有的 $x$ 和 $y$，
 \[
 h(\gn{\cfind{x}(y)}) =
 \begin{cases}
-1 & \text{if $\cfind{x}(y) \fdefined$} \\
-0 & \text{otherwise.}
+1 & \text{若 $\cfind{x}(y) \fdefined$} \\
+0 & \text{否则。}
 \end{cases}
 \]
 
-Answer: No; otherwise, the partial function
+答案：不存在；若存在，则偏函数
 \[
 g(x) \simeq
 \begin{cases}
 0 & \text{if $h(\gn{\cfind{x}(x)}) = 0$} \\
-\text{undefined} & \text{otherwise}
+\text{无定义} & \text{否则}
 \end{cases}
 \]
-would be computable, and so have some index~$e$. But then we have
+将是可计算的，因而具有某个指标~$e$。但这样一来，就有
 \[
 \cfind{e}(e) \simeq
 \begin{cases}
 0 & \text{if $h(\gn{\cfind{e}(e)}) = 0$} \\
-\text{undefined} & \text{otherwise,}
+\text{无定义} & \text{否则，}
 \end{cases}
 \]
-in which case $\cfind{e}(e)$ is defined if and only if it isn't, a
-contradiction.
+此时 $\cfind{e}(e)$ 有定义当且仅当它无定义，矛盾。
 
-Now, take a look at the equation with $\cfind{e}$. There is an instance of
-self-reference there, in a sense: we have arranged for the value of
-$\cfind{e}(e)$ to depend on $\gn{\cfind{e}(e)}$, in a certain way. The
-fixed-point theorem says that we {\em can} do this, in general---not
-just for the sake of proving contradictions.
+现在，观察含有 $\cfind{e}$ 的那个方程。从某种意义上说，其中存在一种自指：我们设法使 $\cfind{e}(e)$ 的值以某种方式依赖于 $\gn{\cfind{e}(e)}$。不动点定理表明，我们\emph{确实可以}一般地做到这一点——不仅仅是为了推出矛盾。
 
-\olref{lem:fixed-equiv} gives two equivalent ways of stating the
-fixed-point theorem. Logically speaking, the fact that the statements
-are equivalent follows from the fact that they are both true; but what
-we really mean is that each one follows straightforwardly from the
-other, so that they can be taken as alternative statements of the same
-theorem.
+\olref{lem:fixed-equiv} 给出了表述不动点定理的两种等价方式。从逻辑上讲，既然这两个陈述都为真，它们自然是等价的；但我们真正想表达的是，它们彼此可以直接互推，因此可作为同一定理的不同表述。
 
 \begin{lem}
 \ollabel{lem:fixed-equiv}
-The following statements are equivalent:
+以下陈述等价：
 \begin{enumerate}
-\item For every partial computable function $g(x,y)$, there is an
-  index~$e$ such that for every~$y$,
+\item 对每个部分可计算函数 $g(x,y)$，存在一个指标~$e$，使得对每个~$y$，
 \[
 \cfind{e}(y) \simeq g(e,y).
 \]
-\item For every computable function~$f(x)$, there is an index~$e$ such
-  that for every~$y$,
+\item 对每个可计算函数~$f(x)$，存在一个指标~$e$，使得对每个~$y$，
 \[
 \cfind{e}(y) \simeq \cfind{f(e)}(y).
 \]
@@ -75,69 +58,51 @@ The following statements are equivalent:
 \end{lem}
 
 \begin{proof}
-$(1) \Rightarrow (2)$: Given $f$, define $g$ by $g(x,y) \simeq
-\fn{Un}(f(x),y)$. Use (1) to get an index~$e$ such that for every~$y$,
+$(1) \Rightarrow (2)$：给定 $f$，定义 $g$ 为 $g(x,y) \simeq
+\fn{Un}(f(x),y)$。利用 (1)，可得指标~$e$，使得对每个~$y$，
 \begin{align*}
 \cfind{e}(y) & = \fn{Un}(f(e),y) \\
 & = \cfind{f(e)}(y).
 \end{align*}
 
-$(2) \Rightarrow (1)$: Given $g$, use the $s$-$m$-$n$ theorem to get $f$ such
-that for every $x$ and~$y$, $\cfind{f(x)}(y) \simeq g(x,y)$. Use (2) to
-get an index~$e$ such that
+$(2) \Rightarrow (1)$：给定 $g$，利用 $s$-$m$-$n$ 定理得到 $f$，使得对每个 $x$ 和~$y$，$\cfind{f(x)}(y) \simeq g(x,y)$。利用 (2)，可得指标~$e$，使得
 \begin{align*}
 \cfind{e}(y) & = \cfind{f(e)}(y) \\
 & = g(e,y).
 \end{align*}
-This concludes the proof.
+证毕。
 \end{proof}
 
 \begin{explain}
-Before showing that statement (1) is true (and hence (2) as well),
-consider how bizarre it is. Think of $e$ as being a computer program;
-statement (1) says that given any partial computable $g(x,y)$, you can
-find a computer program $e$ that computes $g_e(y) \simeq g(e,y)$. In
-other words, you can find a computer program that computes a function
-that references the program itself.
+在证明陈述 (1) 为真（从而 (2) 也为真）之前，先体会一下它的奇特之处。将 $e$ 视为一个计算机程序；陈述 (1) 是说，对于任意部分可计算的 $g(x,y)$，都能找到一个计算 $g_e(y) \simeq g(e,y)$ 的计算机程序 $e$。换言之，可以找到一个计算某个函数的程序，而该函数引用了程序自身。
 \end{explain}
 
 \begin{thm}
-The two statements in \olref{lem:fixed-equiv} are
-true. Specifically, for every partial computable function $g(x,y)$,
-there is an index~$e$ such that for every~$y$,
+\olref{lem:fixed-equiv} 中的两个陈述为真。具体而言，对每个部分可计算函数 $g(x,y)$，存在一个指标~$e$，使得对每个~$y$，
 \[
 \cfind{e}(y) \simeq g(e,y).
 \]
 \end{thm}
 
 \begin{proof}
-The ingredients are already implicit in the discussion of the halting
-problem above. Let $\fn{diag}(x)$ be a computable function which for each
-$x$ returns an index for the function $f_x(y) \simeq \cfind{x}(x,y)$,
-i.e.
+证明所需的要素已隐含在上文关于停机问题的讨论中。令 $\fn{diag}(x)$ 为可计算函数，对每个 $x$，它返回函数 $f_x(y) \simeq \cfind{x}(x,y)$ 的一个指标，即
 \[
 \cfind{\fn{diag}(x)}(y) \simeq \cfind{x}(x,y).
 \]
-Think of $\fn{diag}$ as a function that transforms a program for a 2-ary
-function into a program for a 1-ary function, obtained by fixing the
-original program as its first argument. The function $\fn{diag}$ can be
-defined formally as follows: first define $s$ by
+可以将 $\fn{diag}$ 视为这样一个函数：它把一个二元函数的程序变换成一个一元函数的程序，该变换将原程序固定为第一个自变元。函数 $\fn{diag}$ 可以形式化定义如下：首先，定义 $s$ 为
 \[
 s(x,y) \simeq \fn{Un}^2(x,x,y),
 \]
-where $\fn{Un}^2$ is a 3-ary function that is universal for partial computable
-2-ary functions. Then, by the $s$-$m$-$n$ theorem, we can find a primitive
-recursive function $\fn{diag}$ satisfying
+其中 $\fn{Un}^2$ 是通用二元部分可计算函数的三元函数。然后，根据 $s$-$m$-$n$ 定理，存在原始递归函数 $\fn{diag}$ 满足
 \[
 \cfind{\fn{diag}(x)}(y) \simeq s(x,y).
 \]
 
-Now, define the function $l$ by
+现在，定义函数 $l$ 为
 \[
 l(x,y) \simeq g(\fn{diag}(x),y).
 \]
-and let $\gn{l}$ be an index for $l$. Finally, let $e = \fn{diag}(\gn{l})$.
-Then for every $y$, we have
+并令 $\gn{l}$ 为 $l$ 的指标。最后，令 $e = \fn{diag}(\gn{l})$。则对每个 $y$，有
 \begin{align*}
 \cfind{e}(y) & \simeq \cfind{\fn{diag}(\gn{l})}(y) \\
 & \simeq \cfind{\gn{l}}(\gn{l}, y) \\
@@ -145,98 +110,77 @@ Then for every $y$, we have
 & \simeq g(\fn{diag}(\gn{l}),y) \\
 & \simeq g(e, y),
 \end{align*}
-as required.
+符合要求。
 \end{proof}
 
 \begin{explain}
-What's going on? Suppose you are given the task of writing a computer
-program that prints itself out. Suppose further, however, that you are
-working with a programming language with a rich and bizarre library of
-string functions. In particular, suppose your programming language has
-a function $\fn{diag}$ which works as follows: given an input
-string~$s$, $\fn{diag}$ locates each instance of the symbol `x'
-occurring in~$s$, and replaces it by a quoted version of the original
-string. For example, given the string
+这到底是怎么回事？假设你的任务是编写一个打印自身的计算机程序。
+进一步假设你使用的编程语言拥有一个丰富而奇特的字符串函数库。
+具体而言，假设你的语言有一个函数 $\fn{diag}$，其工作方式如下：
+给定输入字符串~$s$，$\fn{diag}$ 会找到~$s$ 中出现的每个符号 `x`，并将其替换为原字符串加引号的版本。
+例如，给定字符串
 \begin{quote}
 \begin{verbatim}
 hello x world
 \end{verbatim}
 \end{quote}
-as input, the function returns
+作为输入时，函数返回
 \begin{quote}
 \begin{verbatim}
 hello 'hello x world' world
 \end{verbatim}
 \end{quote}
-as output. In that case, it is easy to write the desired program; you
-can check that
+作为输出。在这种情况下，编写所需的程序就很容易了；可以验证
 \begin{quote}
 \begin{verbatim}
 print(diag('print(diag(x))'))
 \end{verbatim}
 \end{quote}
-does the trick. For more common programming languages like C++ and
-Java, the same idea (with a more involved implementation) still works.
+即可实现。对于像 C++ 和 Java 这样更常见的编程语言，同样的思想（只是实现上更复杂）依然有效。
 
-We are only a couple of steps away from the proof of the fixed-point
-theorem. Suppose a variant of the print function $\fn{print}(x,y)$
-accepts a string $x$ and another numeric argument $y$, and prints the
-string $x$ repeatedly, $y$ times. Then the ``program''
+我们离不动点定理的证明只有几步之遥了。假设打印函数 $\fn{print}(x,y)$ 的一个变体接受一个字符串 $x$ 和另一个数值自变元 $y$，并将字符串 $x$ 重复打印 $y$ 次。那么“程序”
 \begin{quote}
 \begin{verbatim}
 getinput(y);
 print(diag('getinput(y); print(diag(x), y)'), y)
 \end{verbatim}
 \end{quote}
-prints itself out $y$ times, on input $y$. Replacing the
-$\fn{getinput}$---$\fn{print}$---$\fn{diag}$ skeleton by an
-arbitrary function $g(x,y)$ yields
+在输入为 $y$ 时，会将自身打印 $y$ 次。用任意函数 $g(x,y)$ 替换 $\fn{getinput}$---$\fn{print}$---$\fn{diag}$ 这一骨架，便得到
 \begin{quote}
 \begin{verbatim}
 g(diag('g(diag(x), y)'), y)
 \end{verbatim}
 \end{quote}
-which is a program that, on input $y$, runs $g$ on the program itself
-and $y$. Thinking of ``quoting'' with ``using an index for,'' we have
-the proof above.
+这个程序在输入为 $y$ 时，会用程序本身和 $y$ 作为自变元来运行 $g$。将这里的“加引号”理解为“使用……的指标”，就得到了上面的证明。
 
-For now, it is o.k.\ if you want to think of the proof as formal
-trickery, or black magic. But you should be able to reconstruct the
-details of the argument given above. When we prove the incompleteness
-theorems (and the related ``fixed-point theorem'') we will discuss
-other ways of understanding why it works.
+现在，如果你想把证明看作形式技巧或黑魔法，这也无妨。但你应该能够复现上面给出的论证细节。当我们证明不完全性定理（以及相关的“不动点定理”）时，我们会讨论理解它为何成立的其他角度。
 \end{explain}
 
 \begin{tagblock}{lambda}
 \begin{digress}
-The same idea can be used to get a ``fixed point'' combinator. Suppose
-you have a lambda term $g$, and you want another term $k$ with the
-property that $k$ is $\beta$-equivalent to $gk$. Define terms
+同样的思想可以用来得到一个不动点组合子。假设你有一个 λ 项 $g$，想得到另一个项 $k$，使得 $k$ β-等价于 $gk$。根据我们的记法约定定义项
 \[
 \fn{diag}(x) = xx
 \]
-and
+和
 \[
 l(x) = g(\fn{diag}(x))
 \]
-using our notational conventions; in other words, $l$ is the term
-$\lambd[x][g(xx)]$. Let $k$ be the term $ll$. Then we have
+；换句话说，$l$ 就是项 $\lambd[x][g(xx)]$。令 $k$ 为项 $ll$。那么我们有
 \begin{align*}
 k & = (\lambd[x][g(xx)])(\lambd[x][g(xx)]) \\
 & \red  g((\lambd[x][g(xx)])(\lambd[x][g(xx)])) \\
 & = gk.
 \end{align*}
-If one takes
+若取
 \[
 Y = \lambd[g][((\lambd[x][g(xx)])(\lambd[x][g(xx)]))]
 \]
-then $Yg$ and $g(Yg)$ reduce to a common term; so $Yg \equiv_\beta
-g(Yg)$. This is known as ``Curry's combinator.'' If instead one takes
+则 $Yg$ 和 $g(Yg)$ 会归约到相同的项；因此 $Yg \equiv_\beta g(Yg)$。这被称为 Curry 组合子。若改为取
 \[
 Y = (\lambd[xg][g(xxg)])(\lambd[xg][g(xxg)])
 \]
-then in fact $Yg$ reduces to $g(Yg)$, which is a stronger statement.
-This latter version of $Y$ is known as ``Turing's combinator.''
+则事实上 $Yg$ 会归约到 $g(Yg)$，这是一个更强的结论。后一版本的 $Y$ 被称为 Turing 组合子。
 \end{digress}
 \end{tagblock}
 

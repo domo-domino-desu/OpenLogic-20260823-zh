@@ -3,38 +3,27 @@
 \begin{document}
 
 \olfileid{sth}{replacement}{ref}
-\olsection{Replacement and Reflection}
+\olsection{替换与反射}
 
-Our last attempt to justify Replacement, via \stagesinex, begins with a deep and lovely result:\footnote{A reminder: all formulas can have parameters (unless explicitly stated otherwise).}
+我们借助 \stagesinex{} 为替换公理提供辩护的最后一次尝试，始于一个深刻而优美的结果：\footnote{提醒：所有公式均可带参数（除非另有明确说明）。}
 %In this, I will use overlining, such as $x_1, \ldots, x_n$, to
 %abbreviate ``$x_1, \ldots, x_n$'': 
-\begin{thm}[Reflection Schema]\ollabel{reflectionschema}
-For any formula $\phi$:
+
+
+\begin{thm}[反射模式]\ollabel{reflectionschema}
+对任意公式 $\phi$：
 \[
 \forall \alpha \exists \beta > \alpha (\forall x_1 \ldots, x_n \in
 V_\beta)(\phi(x_1, \ldots, x_n) \liff \phi^{V_\beta}(x_1, \ldots, x_n))
 \]
 \end{thm}
-\noindent 
-As in \olref[sth][replacement][strength]{formularelativization}, $\phi^{V_\beta}$ is the result of restricting every
-quantifier in $\phi$ to the set~$V_\beta$. So, intuitively, Reflection
-says this: if $\phi$ is true in the entire hierarchy, then $\phi$ is
-true in arbitrarily many \emph{initial segments} of the hierarchy. 
 
-\citet{Montague1961} and \citet{Levy1960} showed that (suitable
-formulations of) Replacement and Reflection are equivalent,
-modulo~$\Z$, so that adding either gives you~$\ZF$. (We prove these results in \olref[sth][replacement][refproofs]{sec}.) Given this
-equivalence, one might hope to justify Reflection  and Replacement via
-\stagesinex{} as follows: given \stagesinex, the hierarchy should be
-very, very tall; so tall, in fact, that nothing we can say about it is
-sufficient to bound its height. And we can understand this as the
-thought that, if any sentence~$\phi$ is true in the entire hierarchy,
-then it is true in arbitrarily many initial segments of the hierarchy.
-And that is just Reflection. 
 
-Again, this seems like a genuinely promising attempt to provide an
-intrinsic justification for Replacement. But there is much too much to
-say about it here. You must now decide for yourself whether it
-succeeds.\footnote{Though you might like to continue by reading \citet[95--100]{Incurvati2020}.}
+\noindent
+如第 \olref[sth][replacement][strength]{formularelativization} 节所述，$\phi^{V_\beta}$ 是将 $\phi$ 中的所有量词限制到集合~$V_\beta$ 所得的结果。因此，直观上，反射说的是：如果 $\phi$ 在整个层级中为真，那么 $\phi$ 在该层级任意多个\emph{初始段}中亦为真。
+
+\citet{Montague1961} 和 \citet{Levy1960} 证明了，（适当表述下的）替换公理与反射在~$\Z$ 之上等价，因此添加其中任何一个皆可得到~$\ZF$。（我们将在第 \olref[sth][replacement][refproofs]{sec} 节证明这些结果。）鉴于这种等价性，人们或许能如下地借助 \stagesinex{} 为反射与替换公理提供辩护：根据 \stagesinex{}，层级应当极高；事实上高到，我们对其所能作出的任何断言都不足以限制其高度。我们可以将此理解为：如果任一语句~$\phi$ 在整个层级中为真，那么它在层级任意多个初始段中亦为真。而这正是反射。
+
+同样，这似乎是一种颇具前景的尝试，旨在为替换公理提供内在辩护。但关于这一点可讨论的内容实在太多。现在，你必须自行判断这种尝试是否成功。\footnote{不过，你可能想继续阅读 \citet[95--100]{Incurvati2020}。}
 
 \end{document}

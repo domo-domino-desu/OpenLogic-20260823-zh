@@ -8,10 +8,10 @@
 
 \begin{table}
 \begin{tabular}{@{}c@{}c@{}}
-\multicolumn{2}{@{}c@{}}{Axioms}\\[2ex]
+\multicolumn{2}{@{}c@{}}{公理}\\[2ex]
 $!A \Sequent !A$ & $\lfalse \Sequent \quad$
 \\[2ex]
-\multicolumn{2}{@{}c@{}}{Structural Rules}\\[2ex]
+\multicolumn{2}{@{}c@{}}{结构规则}\\[2ex]
 \Axiom$ \Gamma \fCenter \Delta $
 \RightLabel{\LeftR{\Weakening}}
 \UnaryInf$ !A, \Gamma \fCenter \Delta$
@@ -32,7 +32,7 @@ $!A \Sequent !A$ & $\lfalse \Sequent \quad$
 \UnaryInf$ \Gamma \fCenter \Delta, !A$
 \DisplayProof
 \\[4ex]
-\multicolumn{2}{@{}c@{}}{Logical Rules}\\[2ex]
+\multicolumn{2}{@{}c@{}}{逻辑规则}\\[2ex]
 \Axiom$ \Gamma \fCenter \Delta, !A $
 \RightLabel{\LeftR{\lnot}}
 \UnaryInf$ \lnot !A, \Gamma \fCenter \Delta$
@@ -108,10 +108,7 @@ $!A \Sequent !A$ & $\lfalse \Sequent \quad$
 \UnaryInf$ \Gamma \fCenter \Delta, \lexists[x][!A(x)]$
 \DisplayProof
 \end{tabular}
-\caption{Rules of \Log{G1c}. In $\RightR{\forall}$ and
-$\LeftR{\exists}$, the !!{constant}~$a$ must not occur in the
-conclusion sequent. $\Gamma$~and $\Delta$ are
-multisets of !!{formula}s.}
+\caption{\Log{G1c} 的规则。在 $\RightR{\forall}$ 和 $\LeftR{\exists}$ 规则中，常项符号~$a$ 不得出现在结论相继式中。$\Gamma$~和 $\Delta$ 是公式的多重集。}
 \ollabel{tab:G1c}
 \end{table}
 

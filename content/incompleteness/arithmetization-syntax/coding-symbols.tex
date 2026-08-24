@@ -7,33 +7,24 @@
 \begin{document}
 
 \olfileid{inc}{art}{cod}
-\olsection{Coding Symbols}
+\olsection{编码符号}
 
-The basic language~$\Lang L$ of first order logic makes use of the symbols
+一阶逻辑的基本语言~$\Lang L$ 使用符号
 \[
 \lfalse \quad \lnot \quad \lor \quad \land \quad \lif \quad \lforall
 \quad \lexists \quad \eq \quad ( \quad ) \quad ,
 \]
-together with !!{enumerable} sets of variables and !!{constant}s, and
-!!{enumerable} sets of !!{function}s and !!{predicate}s of arbitrary
-arity.  We can assign \emph{codes} to each of these symbols in such a
-way that every symbol is assigned a unique number as its code, and no
-two different symbols are assigned the same number.  We know that this
-is possible since the set of all symbols is !!{enumerable} and so
-there is !!a{bijection} between it and the set of natural numbers.
-But we want to make sure that we can recover the symbol (as well as
-some information about it, e.g., the arity of !!a{function}) from its
-code in a computable way.  There are many possible ways of doing this,
-of course.  Here is one such way, which uses primitive recursive
-functions.  (Recall that $\tuple{n_0, \dots, n_k}$ is the number
-coding the sequence of numbers $n_0$, \dots, $n_k$.)
+，以及可数的变元集与常项符号集，和任意元数的可数函数符号集与谓词符号集。
+我们可以为每个符号分配一个唯一的数字作为其\emph{代码}，且不同符号的代码不同。
+我们知道这是可行的，因为所有符号的集合是可数的，从而它与自然数集之间存在双射。
+但我们还希望确保能够从代码中\emph{可计算地}还原出符号（以及关于它的一些信息，例如函数符号的元数）。
+当然，实现这一点有很多方式。这里给出一种基于原始递归函数的方法。
+（回忆一下，$\tuple{n_0, \dots, n_k}$ 是编码数序列 $n_0$, \dots, $n_k$ 的数。）
 
 \begin{defn}
-If $s$ is a symbol of~$\Lang L$, let the \emph{symbol code}~$\scode s$ be
-defined as follows:
+若 $s$ 是语言~$\Lang L$ 的符号，则其\emph{符号码}~$\scode s$ 定义如下：
 \begin{enumerate}
-\item If $s$ is among the logical symbols, $\scode s$ is given by the
-  following table:
+\item 若 $s$ 是逻辑符号之一，则 $\scode s$ 由下表给出：
 \[
 \begin{array}{cccccccccc}
   \lfalse & \lnot & \lor & \land & \lif & \lforall \\
@@ -44,59 +35,51 @@ defined as follows:
 \tuple{0, 8} & \tuple{0, 9} & \tuple{0, 10}
 \end{array}
 \]
-\item If $s$ is the $i$-th variable $\Obj v_i$, then $\scode s = \tuple{1, i}$.
-\item If $s$ is the $i$-th !!{constant}~$\Obj c_i$, then
-  $\scode s = \tuple{2, i}$.
-\item If $s$ is the $i$-th $n$-ary !!{function}~$\Obj f_i^n$, then
-  $\scode s = \tuple{3, n, i}$.
-\item If $s$ is the $i$-th $n$-ary !!{predicate}~$\Obj P_i^n$, then
-  $\scode s = \tuple{4, n, i}$.
+\item 若 $s$ 是第 $i$ 个变元 $\Obj v_i$，则 $\scode s = \tuple{1, i}$。
+\item 若 $s$ 是第 $i$ 个常项符号~$\Obj c_i$，则
+  $\scode s = \tuple{2, i}$。
+\item 若 $s$ 是第 $i$ 个 $n$ 元函数符号~$\Obj f_i^n$，则
+  $\scode s = \tuple{3, n, i}$。
+\item 若 $s$ 是第 $i$ 个 $n$ 元谓词符号~$\Obj P_i^n$，则
+  $\scode s = \tuple{4, n, i}$。
 \end{enumerate}
 \end{defn}
 
 \begin{prop}
-The following relations are primitive recursive:
+下列关系是原始递归的：
 \begin{enumerate}
-\item $\fn{Fn}(x, n)$ iff $x$ is the code of $\Obj f^n_i$ for
-  some~$i$, i.e., $x$ is the code of an $n$-ary !!{function}.
-\item $\fn{Pred}(x, n)$ iff $x$ is the code of $\Obj P^n_i$ for
-  some~$i$ or $x$ is the code of $\eq$ and $n = 2$, i.e., $x$ is the
-  code of an $n$-ary !!{predicate}.
+\item $\fn{Fn}(x, n)$ 成立当且仅当 $x$ 是某个~$i$ 对应的 $\Obj f^n_i$ 的代码，即 $x$ 是一个 $n$ 元函数符号的代码。
+\item $\fn{Pred}(x, n)$ 成立当且仅当 $x$ 是某个~$i$ 对应的 $\Obj P^n_i$ 的代码，或者 $x$ 是 $\eq$ 的代码且 $n = 2$，即 $x$ 是一个 $n$ 元谓词符号的代码。
 \end{enumerate}
 \end{prop}
 
 \begin{defn}
-If $s_0, \dots, s_{n-1}$ is a sequence of symbols, its \emph{G\"odel
-  number} is $\tuple{\scode{s_0}, \dots, \scode{s_{n-1}}}$.
+如果 $s_0, \dots, s_{n-1}$ 是一个符号序列，则其 \emph{哥德尔数} 为 $\tuple{\scode{s_0}, \dots, \scode{s_{n-1}}}$。
 \end{defn}
 
 \begin{explain}
-Note that \emph{codes} and \emph{G\"odel numbers} are different
-things. For instance, the variable~$\Obj v_5$ has a code~$\scode{\Obj
-  v_5} = \tuple{1, 5} = 2^2\cdot 3^6$. But the variable~$\Obj v_5$
-considered as a term is also a sequence of symbols (of
-length~$1$). The \emph{G\"odel number}~$\Gn{\Obj v_5}$ of the
-\emph{term}~$\Obj v_5$ is $\tuple{\scode{\Obj v_5}} = 2^{\scode{\Obj
-    v_5} + 1} = 2^{2^2\cdot 3^6 + 1}$.
+注意，\emph{代码}和\emph{哥德尔数}是不同的。
+例如，变元~$\Obj v_5$ 有一个代码~$\scode{\Obj
+  v_5} = \tuple{1, 5} = 2^2\cdot 3^6$。
+但是，变元~$\Obj v_5$ 作为一项，也是一个（长度为~$1$ 的）符号序列。
+\emph{项}~$\Obj v_5$ 的\emph{哥德尔数}~$\Gn{\Obj v_5}$ 是 $\tuple{\scode{\Obj v_5}} = 2^{\scode{\Obj
+    v_5} + 1} = 2^{2^2\cdot 3^6 + 1}$。
 \end{explain}
 
 \begin{ex}
-Recall that if $k_0$, \dots, $k_{n-1}$ is a sequence of numbers, then
-the code of the sequence $\tuple{k_0, \dots, k_{n-1}}$ in the
-power-of-primes coding is
+回想一下，如果 $k_0$, \dots, $k_{n-1}$ 是一个数序列，那么在素数幂编码下，该序列 $\tuple{k_0, \dots, k_{n-1}}$ 的代码是
 \[
 2^{k_0+1}\cdot3^{k_1+1}\cdot \dots \cdot p_{n-1}^{k_{n-1}+1},
 \]
-where $p_i$ is the $i$-th prime (starting with $p_0 = 2$). So for
-instance, the formula $\eq[\Obj v_0][\Obj 0]$, or, more explicitly,
-${\eq}(\Obj v_0,\Obj c_0)$, has the G\"odel number
+其中 $p_i$ 是第 $i$ 个素数（从 $p_0 = 2$ 开始）。
+因此，举例来说，公式 $\eq[\Obj v_0][\Obj 0]$，或者更明确地写为 ${\eq}(\Obj v_0,\Obj c_0)$，其哥德尔数是
 \[
 \tuple{\scode{\eq},\scode{(},\scode{\Obj v_0},\scode{,}, \scode{\Obj
     c_0},\scode{)}}.
 \]
-Here, $\scode{\eq}$ is $\tuple{0,7} = 2^{0+1}\cdot
-3^{7+1}$, $\scode{\Obj v_0}$ is $\tuple{1,0} = 2^{1+1}\cdot3^{0+1}$,
-etc. So $\Gn{=(\Obj v_0,\Obj c_0)}$ is
+这里，$\scode{\eq}$ 是 $\tuple{0,7} = 2^{0+1}\cdot
+3^{7+1}$，$\scode{\Obj v_0}$ 是 $\tuple{1,0} = 2^{1+1}\cdot3^{0+1}$，
+依此类推。所以 $\Gn{=(\Obj v_0,\Obj c_0)}$ 是
 \begin{multline*}
 2^{\scode{=} + 1}\cdot 3^{\scode{(}+1}\cdot 5^{\scode{\Obj v_0}+1}
 \cdot 7^{\scode{,} + 1} \cdot 11^{\scode{\Obj c_0}+1} \cdot

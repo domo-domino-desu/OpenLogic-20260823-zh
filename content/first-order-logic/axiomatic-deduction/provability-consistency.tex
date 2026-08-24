@@ -10,84 +10,73 @@
       {\olfileid{fol}{axd}{prv}}
       {\olfileid{pl}{axd}{prv}}
 
-\olsection{\usetoken{S}{derivability} and Consistency}
+\olsection{可推导性与一致性}
 
-We will now establish a number of properties of the !!{derivability}
-relation.  They are independently interesting, but each will play a
-role in the proof of the completeness theorem.
+现在我们将建立可推导性关系的若干性质。这些性质本身也很有意义，且每一个都将在完备性定理的证明中发挥作用。
 
 \begin{prop}\ollabel{prop:provability-contr}
-  If $\Gamma \Proves !A$ and $\Gamma \cup \{!A\}$ is inconsistent,
-  then $\Gamma$ is inconsistent.
+  如果 $\Gamma \Proves !A$ 且 $\Gamma \cup \{!A\}$ 不一致，
+  则 $\Gamma$ 不一致。
 \end{prop}
 
 \begin{proof}
-  If $\Gamma \cup \{!A\}$ is inconsistent, then $\Gamma \cup \{!A\}
-  \Proves \lfalse$. By \olref[ptn]{prop:reflexivity}, $\Gamma \Proves
-  !B$ for every $!B \in \Gamma$. Since also $\Gamma \Proves !A$ by
-  hypothesis, $\Gamma \Proves !B$ for every $!B \in \Gamma \cup
-  \{!A\}$. By \olref[ptn]{prop:transitivity}, $\Gamma \Proves
-  \lfalse$, i.e., $\Gamma$ is inconsistent.
+  如果 $\Gamma \cup \{!A\}$ 不一致，则 $\Gamma \cup \{!A\}
+  \Proves \lfalse$。由 \olref[ptn]{prop:reflexivity}，对每个 $!B \in \Gamma$，$\Gamma \Proves
+  !B$。根据假设，又有 $\Gamma \Proves !A$，因此对每个 $!B \in \Gamma \cup
+  \{!A\}$，$\Gamma \Proves !B$。由 \olref[ptn]{prop:transitivity}，$\Gamma \Proves
+  \lfalse$，即 $\Gamma$ 不一致。
 \end{proof}
 
 \begin{prop}
 \ollabel{prop:prov-incons}
-$\Gamma \Proves !A$ iff $\Gamma \cup \{\lnot !A\}$ is inconsistent.
+$\Gamma \Proves !A$ 当且仅当 $\Gamma \cup \{\lnot !A\}$ 不一致。
 \end{prop}
 
 \begin{proof}
-First suppose $\Gamma \Proves !A$. Then $\Gamma \cup \{\lnot !A\}
-\Proves !A$ by \olref[ptn]{prop:monotonicity}. $\Gamma \cup \{\lnot
-!A\} \Proves \lnot !A$ by \olref[ptn]{prop:reflexivity}.  We also have
-$\Proves \lnot !A \lif (!A \lif \lfalse)$ by \olref[prp]{ax:lnot2}. So
-by two applications of \olref[ded]{prop:mp}, we have $\Gamma \cup \{\lnot
-!A\} \Proves \lfalse$.
+首先假设 $\Gamma \Proves !A$。则由 \olref[ptn]{prop:monotonicity} 可得 $\Gamma \cup \{\lnot !A\}
+\Proves !A$；由 \olref[ptn]{prop:reflexivity} 可得 $\Gamma \cup \{\lnot
+!A\} \Proves \lnot !A$；又由 \olref[prp]{ax:lnot2} 可得 $\Proves \lnot !A \lif (!A \lif \lfalse)$。因此，两次应用 \olref[ded]{prop:mp}，即得 $\Gamma \cup \{\lnot
+!A\} \Proves \lfalse$。
 
-Now assume $\Gamma \cup \{\lnot !A\}$ is inconsistent, i.e., $\Gamma
-\cup \{\lnot !A\} \Proves \lfalse$. By the deduction theorem, $\Gamma
-\Proves \lnot !A \lif \lfalse$. $\Gamma \Proves (\lnot !A \lif
-\lfalse) \lif \lnot\lnot !A$ by \olref[prp]{ax:lfalse2}, so $\Gamma
-\Proves \lnot\lnot !A$ by \olref[ded]{prop:mp}. Since $\Gamma \Proves
-\lnot\lnot !A \lif !A$ (\olref[prp]{ax:dne}), we have $\Gamma
-\Proves !A$ by \olref[ded]{prop:mp} again.
+反之，假设 $\Gamma \cup \{\lnot !A\}$ 不一致，即 $\Gamma
+\cup \{\lnot !A\} \Proves \lfalse$。由演绎定理，$\Gamma
+\Proves \lnot !A \lif \lfalse$。而由 \olref[prp]{ax:lfalse2} 可得 $\Gamma \Proves (\lnot !A \lif
+\lfalse) \lif \lnot\lnot !A$，因此再应用 \olref[ded]{prop:mp}，得 $\Gamma \Proves \lnot\lnot !A$。由于 $\Gamma \Proves
+\lnot\lnot !A \lif !A$（\olref[prp]{ax:dne}），再次应用 \olref[ded]{prop:mp}，即得 $\Gamma
+\Proves !A$。
 \end{proof}
 
 \begin{prob}
-Prove that $\Gamma \Proves \lnot !A$ iff $\Gamma \cup \{!A\}$ is
-inconsistent.
+证明：$\Gamma \Proves \lnot !A$ 当且仅当 $\Gamma \cup \{!A\}$ 不一致。
 \end{prob}
 
 \begin{prop}\ollabel{prop:explicit-inc}
-  If $\Gamma \Proves !A$ and $\lnot !A \in \Gamma$, then $\Gamma$ is
-  inconsistent.
+  如果 $\Gamma \Proves !A$ 且 $\lnot !A \in \Gamma$，则 $\Gamma$ 不一致。
 \end{prop}
 
 \begin{proof}
-  $\Gamma \Proves \lnot !A \lif (!A \lif \lfalse)$ by \olref[prp]{ax:lnot2}.
-  $\Gamma \Proves \lfalse$ by two applications of \olref[ded]{prop:mp}.
+  由 \olref[prp]{ax:lnot2} 可得 $\Gamma \Proves \lnot !A \lif (!A \lif \lfalse)$。
+  两次应用 \olref[ded]{prop:mp}，即得 $\Gamma \Proves \lfalse$。
 \end{proof}
 
-
 \begin{prop}\ollabel{prop:provability-exhaustive}
-  If $\Gamma \cup \{!A\}$ and $\Gamma \cup \{\lnot !A\}$ are both
-  inconsistent, then $\Gamma$ is inconsistent.
+  如果 $\Gamma \cup \{!A\}$ 与 $\Gamma \cup \{\lnot !A\}$ 均不一致，则 $\Gamma$ 不一致。
 \end{prop}
 
 \begin{proof}
-Exercise.
+练习。
 \end{proof}
 
 \tagprob{FOL}
 \begin{prob}
-  Prove \olref[fol][axd][prv]{prop:provability-exhaustive}
+  证明 \olref[fol][axd][prv]{prop:provability-exhaustive}。
 \end{prob}
 \tagendprob
 
 \tagprob{notFOL}
 \begin{prob}
-  Prove \olref[pl][axd][prv]{prop:provability-exhaustive}
+  证明 \olref[pl][axd][prv]{prop:provability-exhaustive}。
 \end{prob}
 \tagendprob
-
 
 \end{document}

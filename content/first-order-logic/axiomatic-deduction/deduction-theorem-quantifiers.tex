@@ -8,51 +8,44 @@
 
 \olfileid{fol}{axd}{ddq}
 
-\olsection{The Deduction Theorem with Quantifiers}
+\olsection{带量词的演绎定理}
 
-\begin{thm}[Deduction Theorem]
-\ollabel{thm:deduction-thm-q} If $\Gamma \cup \{!A\} \Proves !B$,
-then $\Gamma \Proves !A \lif !B$.
+\begin{thm}[演绎定理]
+\ollabel{thm:deduction-thm-q} 如果 $\Gamma \cup \{!A\} \Proves !B$，
+则 $\Gamma \Proves !A \lif !B$。
 \end{thm}
 
 \begin{proof}
-We again proceed by induction on the length
-of the !!{derivation} of $!B$ from $\Gamma \cup \{!A\}$.
+我们再次对从 $\Gamma \cup \{!A\}$ 推出 $!B$ 的推导长度进行归纳。
 
-The proof of the induction basis is identical to that in the proof
-of~\olref[ded]{thm:deduction-thm}.
+归纳基始的证明与 \olref[ded]{thm:deduction-thm} 中的证明相同。
 
-For the inductive step, suppose again that the !!{derivation} of $!B$
-from $\Gamma \cup \{!A\}$ ends with a step~$!B$ which is justified by
-an inference rule. If the inference rule is modus ponens, we proceed
-as in the proof of \olref[ded]{thm:deduction-thm}. If the inference
-rule is \QR, we know that $!B \ident !C \lif \lforall[x][!D(x)]$ and
-!!a{formula} of the form $!C \lif !D(a)$ appears earlier in the
-!!{derivation}, where $a$ does not occur in~$!C$, $!A$, or $\Gamma$. We
-thus have that
+对于归纳步骤，同样假设从 $\Gamma \cup \{!A\}$ 推出 $!B$ 的推导的最后一步~$!B$ 由某条推理规则证成。
+如果该推理规则是肯定前件，我们按照 \olref[ded]{thm:deduction-thm} 的证明进行处理。
+如果该推理规则是 \QR，我们可知 $!B \ident !C \lif \lforall[x][!D(x)]$，并且形如 $!C \lif !D(a)$ 的公式在此前的推导中出现过，其中 $a$ 不在~$!C$、$!A$ 或 $\Gamma$ 中出现。
+于是我们有
 \begin{align*}
   \Gamma \cup \{!A\} & \Proves !C \lif !D(a),\\
-  \intertext{and the induction hypothesis applies, i.e., we have that}
+  \intertext{并且归纳假设适用，即我们有}
     \Gamma & \Proves !A \lif (!C \lif !D(a)).\\
-  \intertext{By}
+  \intertext{由}
   & \Proves (!A \lif (!C \lif !D(a))) \lif ((!A \land !C) \lif !D(a))\\
-  \intertext{and modus ponens we get}
+  \intertext{以及肯定前件，我们得到}
   \Gamma & \Proves (!A \land !C) \lif !D(a).\\
-  \intertext{Since the eigenvariable condition still applies, we can add a step to this !!{derivation} justified by \QR, and get}
+  \intertext{由于本征变元条件仍然适用，我们可以在该推导中增加一步由 \QR 证成的步骤，从而得到}
     \Gamma & \Proves (!A \land !C) \lif \lforall[x][!D(x)].\\
-    \intertext{We also have}
+    \intertext{我们还有}
     & \Proves ((!A \land !C) \lif \lforall[x][!D(x)]) \lif (!A \lif (!C \lif \lforall[x][!D(x)]),\\
-    \intertext{so by modus ponens,}
+    \intertext{因此通过肯定前件，}
     \Gamma & \Proves !A \lif (!C \lif \lforall[x][!D(x)]),
 \end{align*}
-i.e., $\Gamma \Proves !A \lif !B$.
+即 $\Gamma \Proves !A \lif !B$。
 
-We leave the case where $!B$ is justified by the rule \QR, but is of
-the form $\lexists[x][!D(x)] \lif !C$, as an exercise.
+我们将 $!B$ 由规则 \QR 证成但形式为 $\lexists[x][!D(x)] \lif !C$ 的情形留作练习。
 \end{proof}
 
 \begin{prob}
-  Complete the proof of \olref[fol][axd][ddq]{thm:deduction-thm-q}.
+  完成 \olref[fol][axd][ddq]{thm:deduction-thm-q} 的证明。
 \end{prob}
 
 \end{document}

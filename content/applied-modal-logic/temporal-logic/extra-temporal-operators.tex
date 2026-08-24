@@ -8,37 +8,31 @@
 
 \olfileid{aml}{tl}{ext}
 
-\olsection{Additional Operators for Temporal Logic}
+\olsection{时态逻辑的附加算子}
 
-In addition to the unary operators for past and future, temporal
-logics also sometimes include binary operators $\Since $ and~$\Until$,
-intended to symbolize ``since'' and ``until''. This means adding
-$\Since $ and~$\Until$ into the language of temporal logic and adding
-the following clause into the definition of a temporal !!{formula}:
+除了过去和未来的一元算子之外，时态逻辑有时也包含二元算子 $\Since $ 和~$\Until$，意在符号化“自……以来”与“直到……”。这意味着需将 $\Since $ 和~$\Until$ 添加到时态逻辑的语言中，并在时态公式的定义中增加如下子句：
 
 \begin{itemize}
-\item[] If $!A$ and $!B$ are !!{formula}s, then $(\Since  !A !B)$ and
-  $(\Until !A !B)$ are both !!{formula}s.
+\item[] 若 $!A$ 与 $!B$ 为公式，则 $(\Since  !A !B)$ 与
+  $(\Until !A !B)$ 均为公式。
 \end{itemize}
 
-The semantics for these operators are then given as follows:
+这些算子的语义给出如下：
 
 \begin{defn}\ollabel{defn:since-until}
-  \emph{Truth of !!a{formula}~$!A$ at~$t$} in a~$\mModel M$:
+  \emph{在~$\mModel M$ 中，公式~$!A$ 在时刻~$t$ 为真}：
   \begin{enumerate}
   \item\ollabel{defn:sub:mmodels-since} \indcase{!A}{\Since  !B
-    !C}{$\mSat{M}{\indfrm}[t]$ iff $\mSat{M}{!B}[t']$ for some $t' \in
-    T$ with $t' \prec t$, and for all $s$ with $t' \prec s \prec t$,
+    !C}{$\mSat{M}{\indfrm}[t]$ 当且仅当存在某个 $t' \in
+    T$ 满足 $t' \prec t$ 使得 $\mSat{M}{!B}[t']$，并且对所有满足 $t' \prec s \prec t$ 的 $s$，
     $\mSat{M}{!C}[s]$}
    \item\ollabel{defn:sub:mmodels-until} \indcase{!A}{\Until !B
-    !C}{$\mSat{M}{\indfrm}[t]$ iff $\mSat{M}{!B}[t']$ for some $t' \in
-    T$ with $t \prec t'$, and for all $s$ with $t \prec s \prec t'$,
+    !C}{$\mSat{M}{\indfrm}[t]$ 当且仅当存在某个 $t' \in
+    T$ 满足 $t \prec t'$ 使得 $\mSat{M}{!B}[t']$，并且对所有满足 $t \prec s \prec t'$ 的 $s$，
     $\mSat{M}{!C}[s]$}
   \end{enumerate} 
 \end{defn}
 
-The intuitive reading of $\Since  !B !C$ is ``Since $!B$ was the case,
-$!C$~has been the case.'' And the intuitive reading of $\Until !B !C$
-is ``Until $!B$ will be the case, $!C$~will be the case.''
+$\Since  !B !C$ 的直观读法为：“自从 $!B$ 成立，$!C$~就一直成立。”而 $\Until !B !C$ 的直观读法为：“$!C$~将一直成立，直到 $!B$ 成立。”
 
 \end{document}

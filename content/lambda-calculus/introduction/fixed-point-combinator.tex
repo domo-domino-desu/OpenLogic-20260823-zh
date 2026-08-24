@@ -7,34 +7,34 @@
 \begin{document}
 
 \olfileid{lam}{int}{fix}
-\olsection{Fixed-Point Combinators}
+\olsection{固定点组合子}
 
-Suppose you have a lambda term $g$, and you want another term $k$ with
-the property that $k$ is $\beta$-equivalent to $gk$. Define terms
+假设有一个λ-项 $g$，且希望找到另一个项 $k$，使得 $k$ 与 $gk$ β-等价。
+按我们的记法约定，定义项
 \[
 \fn{diag}(x) = xx
 \]
-and
+与
 \[
 l(x) = g(\fn{diag}(x))
 \]
-using our notational conventions; in other words, $l$ is the term
-$\lambd[x][g(xx)]$. Let $k$ be the term $ll$. Then we have
+；换言之，$l$ 即为项
+$\lambd[x][g(xx)]$。令 $k$ 为项 $ll$。则有
 \begin{align*}
 k & = (\lambd[x][g(xx)])(\lambd[x][g(xx)]) \\
 & \red  g((\lambd[x][g(xx)])(\lambd[x][g(xx)])) \\
 & = gk.
 \end{align*}
-If one takes
+若取
 \[
 Y = \lambd[g][((\lambd[x][g(xx)])(\lambd[x][g(xx)]))]
 \]
-then $Yg$ and $g(Yg)$ reduce to a common term; so $Yg \equiv_\beta
-g(Yg)$. This is known as ``Curry's combinator.'' If instead one takes
+，则 $Yg$ 和 $g(Yg)$ 归约至同一项；故 $Yg \equiv_\beta g(Yg)$。
+这被称为“Curry（柯里）组合子”。反之，若取
 \[
 Y = (\lambd[xg][g(xxg)])(\lambd[xg][g(xxg)])
 \]
-then in fact $Yg$ reduces to $g(Yg)$, which is a stronger statement.
-This latter version of $Y$ is known as ``Turing's combinator.''
+，则事实上 $Yg$ 归约至 $g(Yg)$，这是一个更强的断言。
+$Y$ 的后一种形式被称为“Turing 组合子”。
 
 \end{document}

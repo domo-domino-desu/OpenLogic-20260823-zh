@@ -11,101 +11,74 @@
 \olsection{\printtoken{P}{subformula}}
 
 \begin{explain}
-It is often useful to talk about the !!{formula}s that ``make up'' a
-given !!{formula}.  We call these its \emph{!!{subformula}s}.  Any
-!!{formula} counts as !!a{subformula} of itself; a subformula of $!A$
-other than $!A$ itself is a \emph{proper !!{subformula}}.
+讨论“组成”给定公式的那些公式往往很有用。
+我们称它们为该公式的\emph{子公式}。
+任何公式都算作它自身的子公式；$!A$ 的子公式中除 $!A$ 自身以外的称为\emph{真子公式}。
 \end{explain}
 
-\begin{defn}[Immediate !!^{subformula}]
-If $!A$ is !!a{formula}, the \emph{immediate !!{subformula}s}
-of $!A$ are defined inductively as follows:
+\begin{defn}[直接子公式]
+如果 $!A$ 是一个公式，则 $!A$ 的\emph{直接子公式}归纳定义如下：
 \begin{enumerate}
-\item Atomic !!{formula}s have no immediate !!{subformula}s.
+\item 原子公式没有直接子公式。
 
-\tagitem{prvNot}{\indcase{!A}{\lnot !B}{The only immediate
-    !!{subformula} of $\indfrm$ is~$!B$.}}{}
+\tagitem{prvNot}{\indcase{!A}{\lnot !B}{$\indfrm$ 的唯一直接子公式是~$!B$。}}{}
 
-\item \indcase{!A}{(!B \ast !C)}{The immediate !!{subformula}s of
-  $\indfrm$ are $!B$ and $!C$ ($\ast$ is any one of the two-place
-  connectives).}
+\item \indcase{!A}{(!B \ast !C)}{$\indfrm$ 的直接子公式是 $!B$ 和 $!C$（$\ast$ 是任一二元联结词）。}
 
-\tagitem{prvAll}{\indcase{!A}{\lforall[x][!B]}{The only immediate
-    !!{subformula} of $\indfrm$ is~$!B$.}}{}
+\tagitem{prvAll}{\indcase{!A}{\lforall[x][!B]}{$\indfrm$ 的唯一直接子公式是~$!B$。}}{}
 
-\tagitem{prvEx}{\indcase{!A}{\lexists[x][!B]}{The only immediate
-    !!{subformula} of $\indfrm$ is~$!B$.}}{}
+\tagitem{prvEx}{\indcase{!A}{\lexists[x][!B]}{$\indfrm$ 的唯一直接子公式是~$!B$。}}{}
 \end{enumerate}
 \end{defn}
 
-\begin{defn}[Proper !!^{subformula}]
-If $!A$ is !!a{formula}, the \emph{proper !!{subformula}s}
-of $!A$ are defined recursively as follows:
+\begin{defn}[真子公式]
+如果 $!A$ 是一个公式，则 $!A$ 的\emph{真子公式}递归定义如下：
 \begin{enumerate}
-\item Atomic !!{formula}s have no proper !!{subformula}s.
+\item 原子公式没有真子公式。
 
-\tagitem{prvNot}{\indcase{!A}{\lnot !B}{The proper !!{subformula}s of
-    $\indfrm$ are~$!B$ together with all proper !!{subformula}s
-    of~$!B$.}}{}
+\tagitem{prvNot}{\indcase{!A}{\lnot !B}{$\indfrm$ 的真子公式是 $!B$ 以及 $!B$ 的所有真子公式。}}{}
 
-\item \indcase{!A}{(!B \ast !C)}{The proper !!{subformula}s of
-  $\indfrm$ are $!B$, $!C$, together with all proper !!{subformula}s
-  of $!B$ and those of~$!C$.}
+\item \indcase{!A}{(!B \ast !C)}{$\indfrm$ 的真子公式是 $!B$、$!C$，以及 $!B$ 的所有真子公式和 $!C$ 的所有真子公式。}
 
-\tagitem{prvAll}{\indcase{!A}{\lforall[x][!B]}{The proper
-    !!{subformula}s of $\indfrm$ are~$!B$ together with all proper
-    !!{subformula}s of~$!B$.}}{}
+\tagitem{prvAll}{\indcase{!A}{\lforall[x][!B]}{$\indfrm$ 的真子公式是 $!B$ 以及 $!B$ 的所有真子公式。}}{}
 
-\tagitem{prvEx}{\indcase{!A}{\lexists[x][!B]}{The proper
-    !!{subformula}s of $\indfrm$ are~$!B$ together with all proper
-    !!{subformula}s of~$!B$.}}{}
+\tagitem{prvEx}{\indcase{!A}{\lexists[x][!B]}{$\indfrm$ 的真子公式是 $!B$ 以及 $!B$ 的所有真子公式。}}{}
 \end{enumerate}
 \end{defn}
 
-\begin{defn}[!!^{subformula}]
-The !!{subformula}s of $!A$ are $!A$ itself together with all its
-proper !!{subformula}s.
+\begin{defn}[子公式]
+$!A$ 的\emph{子公式}是 $!A$ 自身及其所有真子公式。
 \end{defn}
 
 \begin{explain}
-Note the subtle difference in how we have defined immediate
-!!{subformula}s and proper !!{subformula}s.  In the first case, we
-have directly defined the immediate !!{subformula}s of a formula~$!A$
-for each possible form of~$!A$.  It is an explicit definition by
-cases, and the cases mirror the inductive definition of the set of
-!!{formula}s.  In the second case, we have also mirrored the way the
-set of all !!{formula}s is defined, but in each case we have also
-included the proper !!{subformula}s of the smaller !!{formula}s $!B$,
-$!C$ in addition to these !!{formula}s themselves.  This makes the
-definition \emph{recursive}.  In general, a definition of a function
-on an inductively defined set (in our case, !!{formula}s) is recursive
-if the cases in the definition of the function make use of
-the function itself. To be well defined, we must make sure, however,
-that we only ever use the values of the function for arguments that
-come ``before'' the one we are defining---in our case, when defining
-``proper !!{subformula}'' for $(!B \ast !C)$ we only use the proper
-!!{subformula}s of the ``earlier'' !!{formula}s $!B$ and $!C$.
+请注意我们在定义直接子公式与真子公式时的微妙差别。
+对于第一种情况，我们直接针对公式~$!A$ 的每种可能形式，定义了它的直接子公式。
+这是一种分情况显式定义，其分情况的方式与公式集合的归纳定义相照应。
+对于第二种情况，我们也照应了所有公式集合的定义方式，
+但在每种情况中，除了较小的公式 $!B$、$!C$ 自身之外，我们还包含了它们的真子公式。
+这使得该定义成为\emph{递归的}。
+一般而言，在归纳定义的集合（此处为公式）上定义函数时，如果函数定义的各分支用到了函数本身，那么这个定义就是递归的。
+然而，为确保良定义性，我们必须保证，只使用函数在“先于”当前所定义的自变元上的值——在我们的例子中，当定义 $(!B \ast !C)$ 的“真子公式”时，我们只使用了“更早”公式 $!B$ 和 $!C$ 的真子公式。
 \end{explain}
 
 \begin{prop}
 \ollabel{prop:subfrm-trans}
-Suppose $!B$ is a subformula of $!A$ and $!C$ is a subformula of $!B$.
-Then $!C$ is a subformula of $!A$. In other words, the subformula
-relation is transitive.
+假设 $!B$ 是 $!A$ 的子公式且 $!C$ 是 $!B$ 的子公式，
+那么 $!C$ 也是 $!A$ 的子公式。换言之，子公式关系是传递的。
 \end{prop}
 
 \begin{prob}
-Prove \olref[fol][syn][sbf]{prop:subfrm-trans}.
+证明 \olref[fol][syn][sbf]{prop:subfrm-trans}。
 \end{prob}
 
 \begin{prop}
 \ollabel{prop:count-subfrms}
-Suppose $!A$ is a formula with $n$ connectives and quantifiers.
-Then $!A$ has at most $2n+1$ subformulas.
+假设公式 $!A$ 含有 $n$ 个联结词和量词，
+那么 $!A$ 至多有 $2n+1$ 个子公式。
 \end{prop}
 
 \begin{prob}
-Prove \olref[fol][syn][sbf]{prop:count-subfrms}.
+证明 \olref[fol][syn][sbf]{prop:count-subfrms}。
 \end{prob}
 
 \end{document}

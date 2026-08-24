@@ -8,59 +8,51 @@
 
 \olfileid{sfr}{siz}{nen}
 
-\olsection{\printtoken{S}{nonenumerable} Sets}
+\olsection{不可数集}
 
 \begin{editorial}
-  This section proves the non-enumerability of $\Bin^\omega$ and
-  $\Pow{\PosInt}$ using the definition in \olref[enm]{sec}. It is
-  designed to be a little more elementary and a little more detailed
-  than the version in \olref[enm-alt]{sec}
+  本节使用 \olref[enm]{sec} 中的定义来证明 $\Bin^\omega$ 和
+  $\Pow{\PosInt}$ 的不可数性。相比 \olref[enm-alt]{sec} 中的版本，
+  此版本设计得更为基础，也更为详细。
 \end{editorial}
 
-Some sets, such as the set $\PosInt$ of positive integers, are
-infinite. So far we've seen examples of infinite sets which were all
-!!{enumerable}. However, there are also infinite sets which do not
-have this property. Such sets are called \emph{!!{nonenumerable}}.
+有些集合，比如正整数集合 $\PosInt$，是无限的。
+到目前为止，我们见过的无限集合都是可数的。
+然而，也存在不具备这种性质的无限集合。
+这样的集合称为\emph{不可数的}。
 
-First of all, it is perhaps already surprising that there are
-!!{nonenumerable} sets.  For any !!{enumerable} set~$A$ there is
-!!a{surjective} function $f \colon \PosInt \to A$.  If a set is
-!!{nonenumerable} there is no such function.  That is, no function
-mapping the infinitely many !!{element}s of~$\PosInt$ to~$A$ can
-exhaust all of~$A$.  So there are ``more'' !!{element}s of~$A$ than
-the infinitely many positive integers.
+首先，不可数集合的存在或许已经令人惊讶。
+对于任何可数集合~$A$，都存在一个满射函数 $f \colon \PosInt \to A$。
+如果一个集合是不可数的，则不存在这样的函数。
+也就是说，任何将~$\PosInt$ 中无限多个元素映射到~$A$ 的函数都无法穷尽~$A$ 的所有元素。
+因此，~$A$ 的元素“多于”无限多的正整数。
 
-How would one prove that a set is !!{nonenumerable}? You have to show
-that no such surjective function can exist. Equivalently, you have to
-show that the elements of~$A$ cannot be enumerated in a one way
-infinite list.  The best way to do this is to show that every list of
-!!{element}s of~$A$ must leave at least one element out; or that no
-function $f\colon \PosInt \to A$ can be !!{surjective}.  We can do this
-using Cantor's \emph{diagonal method}.  Given a list of !!{element}s
-of~$A$, say, $x_1$, $x_2$, \dots, we construct another element of~$A$
-which, by its construction, cannot possibly be on that list.
+那么，如何证明一个集合是不可数的呢？
+你必须证明这样的满射函数不可能存在。
+等价地，你必须证明~$A$ 的元素不能被枚举为一个单向的无限列表。
+最好的办法是证明，~$A$ 的任何元素列表都必然至少漏掉一个元素；
+或者说，任何函数 $f\colon \PosInt \to A$ 都不可能是满射。
+我们可以使用 Cantor 的\emph{对角方法}来做到这一点。
+给定~$A$ 的一个元素列表，比如 $x_1$, $x_2$, \dots，
+我们构造出~$A$ 的另一个元素，根据其构造方式，它不可能出现在该列表中。
 
-Our first example is the set~$\Bin^\omega$ of all infinite, non-gappy
-sequences of $0$'s and $1$'s.
+我们的第一个例子是所有由 $0$ 和 $1$ 组成的无限且无间隔的序列的集合~$\Bin^\omega$。
 
 \begin{thm}
 \ollabel{thm:nonenum-bin-omega}
-$\Bin^\omega$~is !!{nonenumerable}.
+$\Bin^\omega$~是不可数的。
 \end{thm}
 
 \begin{proof}
-Suppose, by way of contradiction, that $\Bin^\omega$ is
-!!{enumerable}, i.e., suppose that there is a list $s_{1}$, $s_{2}$,
-$s_{3}$, $s_{4}$, \dots{} of all !!{element}s of~$\Bin^\omega$.  Each
-of these $s_i$ is itself an infinite sequence of $0$'s and~$1$'s.
-Let's call the $j$-th element of the $i$-th sequence in this list
-$s_i(j)$. Then the $i$-th sequence~$s_i$ is
+为导出矛盾，假设 $\Bin^\omega$ 是可数的，即假设存在一个列表 $s_{1}$, $s_{2}$, $s_{3}$, $s_{4}$, \dots{}，包含了~$\Bin^\omega$ 的所有元素。
+每个 $s_i$ 本身都是一个由 $0$ 和~$1$ 组成的无限序列。
+让我们称此列表中第 $i$ 个序列的第 $j$ 个元素为 $s_i(j)$。
+那么第 $i$ 个序列~$s_i$ 是
 \[
 s_i(1), s_i(2), s_i(3), \dots
 \]
 
-We may arrange this list, and the elements of each sequence $s_i$ in
-it, in an array:
+我们可以将这个列表，以及其中每个序列 $s_i$ 的元素，排列成一个阵列：
 \[
 \begin{array}{c|c|c|c|c|c}
 & 1 & 2 & 3 & 4 & \dots \\\hline
@@ -71,118 +63,78 @@ it, in an array:
 \vdots & \vdots & \vdots & \vdots & \vdots & \mathbf{\ddots}
 \end{array}
 \]
-The labels down the side give the number of the sequence in the list
-$s_1$, $s_2$, \dots; the numbers across the top label the !!{element}s
-of the individual sequences. For instance, $s_{1}(1)$ is a name for
-whatever number, a $0$ or a~$1$, is the first !!{element} in the
-sequence $s_{1}$, and so on.
+侧边的标签给出了列表中序列的编号 $s_1$, $s_2$, \dots；顶部的数字则标明了各个序列的元素序号。
+例如，$s_{1}(1)$ 表示序列 $s_{1}$ 的第一个元素是哪个数字（$0$ 或~$1$），依此类推。
 
-Now we construct an infinite sequence, $\overline{s}$, of $0$'s and
-$1$'s which cannot possibly be on this list.  The definition of
-$\overline{s}$ will depend on the list $s_1$, $s_2$, \dots.  Any
-infinite list of infinite sequences of $0$'s and $1$'s gives rise to
-an infinite sequence~$\overline{s}$ which is guaranteed to not appear
-on the list.
+现在我们来构造一个由 $0$ 和 $1$ 组成的无限序列 $\overline{s}$，它不可能出现在这个列表中。
+$\overline{s}$ 的定义将依赖于列表 $s_1$, $s_2$, \dots。
+任意一个由 0 和 1 的无限序列组成的无限列表，都会产生一个保证不在该列表中的无限序列~$\overline{s}$。
 
-To define $\overline{s}$, we specify what all its !!{element}s are,
-i.e., we specify $\overline{s}(n)$ for all $n \in \PosInt$.  We do this
-by reading down the diagonal of the array above (hence the name
-``diagonal method'') and then changing every $1$ to a $0$ and every
-$0$ to a~$1$. More abstractly, we define $\overline{s}(n)$ to be $0$
-or $1$ according to whether the $n$-th !!{element} of the diagonal,
-$s_n(n)$, is $1$ or $0$.
+为了定义 $\overline{s}$，我们指定其所有元素是什么，即对所有的 $n \in \PosInt$ 指定 $\overline{s}(n)$。
+我们通过沿上面阵列的对角线读取（因此得名“对角线方法”），并将每一个 $1$ 改为 $0$、每一个 $0$ 改为~$1$ 来完成这一点。
+更抽象地说，我们根据对角线上的第 $n$ 个元素 $s_n(n)$ 是 $1$ 还是 $0$，将 $\overline{s}(n)$ 定义为 $0$ 或 $1$。
 \[
 \overline{s}(n) =
 \begin{cases}
-1 & \text{if $s_{n}(n) = 0$}\\
-0 & \text{if $s_{n}(n) = 1$}.
+1 & \text{若 $s_{n}(n) = 0$}\\
+0 & \text{若 $s_{n}(n) = 1$}.
 \end{cases}
 \]
-If you like formulas better than definitions by cases, you could also
-define $\overline{s}(n) = 1 - s_n(n)$.
+如果你更喜欢公式而不是分情况定义，也可以定义 $\overline{s}(n) = 1 - s_n(n)$。
 
-Clearly $\overline{s}$ is an infinite sequence of $0$'s and
-$1$'s, since it is just the mirror sequence to the sequence of $0$'s
-and $1$'s that appear on the diagonal of our array.  So $\overline{s}$
-is !!a{element} of~$\Bin^\omega$.  But it cannot be on the list $s_1$,
-$s_2$, \dots{} Why not?
+显然 $\overline{s}$ 是一个由 $0$ 和 $1$ 组成的无限序列，因为它不过是阵列对角线上 $0$ 和 $1$ 序列的“镜像”序列。
+所以 $\overline{s}$ 是~$\Bin^\omega$ 的一个元素。
+但它不可能在列表 $s_1$, $s_2$, \dots{} 中。为什么呢？
 
-It can't be the first sequence in the list, $s_1$, because it differs from
-$s_1$ in the first !!{element}.  Whatever $s_1(1)$ is, we defined
-$\overline{s}(1)$ to be the opposite.  It can't be the second
-sequence in the list, because $\overline{s}$ differs from $s_2$ in the second
-element: if $s_2(2)$ is $0$, $\overline{s}(2)$ is $1$, and vice
-versa. And so on.
+它不可能是列表中的第一个序列 $s_1$，因为它的第一个元素与 $s_1$ 不同。
+无论 $s_1(1)$ 是什么，我们都将 $\overline{s}(1)$ 定义为取反后的值。
+它也不可能是列表中的第二个序列，因为 $\overline{s}$ 在第二个元素上与 $s_2$ 不同：如果 $s_2(2)$ 是 $0$，则 $\overline{s}(2)$ 是 $1$，反之亦然。
+依此类推。
 
-More precisely: if $\overline{s}$ were on the list, there would be
-some $k$ so that $\overline{s} = s_{k}$.  Two sequences are identical
-iff they agree at every place, i.e., for any~$n$, $\overline{s}(n) =
-s_{k}(n)$.  So in particular, taking $n = k$ as a special case,
-$\overline{s}(k) = s_{k}(k)$ would have to hold. $s_k(k)$ is either
-$0$ or~$1$. If it is $0$ then $\overline{s}(k)$ must be~$1$---that's
-how we defined $\overline{s}$. But if $s_k(k) = 1$ then, again because
-of the way we defined $\overline{s}$, $\overline{s}(k) = 0$. In either
-case $\overline{s}(k) \neq s_{k}(k)$.
+更精确地说：如果 $\overline{s}$ 在列表中，就会存在某个 $k$ 使得 $\overline{s} = s_{k}$。
+两个序列相同当且仅当它们在每个位置上都一致，即对任意~$n$，$\overline{s}(n) =
+s_{k}(n)$。
+因此特别地，取 $n = k$ 这一特殊情况，$\overline{s}(k) = s_{k}(k)$ 必须成立。
+$s_k(k)$ 要么是 $0$，要么是~$1$。
+如果它是 $0$，那么 $\overline{s}(k)$ 必须是~$1$——我们正是这样定义 $\overline{s}$ 的。
+但如果 $s_k(k) = 1$，那么同样根据 $\overline{s}$ 的定义，$\overline{s}(k) = 0$。
+无论哪种情况，$\overline{s}(k) \neq s_{k}(k)$。
 
-We started by assuming that there is a list of !!{element}s of
-$\Bin^\omega$, $s_1$, $s_2$, \dots{} From this list we constructed a
-sequence~$\overline{s}$ which we proved cannot be on the list.  But it
-definitely is a sequence of $0$'s and $1$'s if all the $s_i$ are
-sequences of $0$'s and $1$'s, i.e., $\overline{s} \in
-\Bin^\omega$. This shows in particular that there can be no list of
-\emph{all} !!{element}s of~$\Bin^\omega$, since for any such list we
-could also construct a sequence~$\overline{s}$ guaranteed to not be on
-the list, so the assumption that there is a list of all sequences
-in~$\Bin^\omega$ leads to a contradiction.
+我们一开始假设存在一个 $\Bin^\omega$ 的元素列表 $s_1$, $s_2$, \dots{}
+从这个列表我们构造了一个序列~$\overline{s}$，并证明了它不可能在该列表中。
+然而，如果所有的 $s_i$ 都是 $0$ 和 $1$ 的序列，那么 $\overline{s}$ 肯定也是一个 $0$ 和 $1$ 的序列，即 $\overline{s} \in \Bin^\omega$。
+这尤其表明，不可能存在一个包含~$\Bin^\omega$ \emph{所有}元素的列表，因为对于任何这样的列表，我们都能构造出一个保证不在其上的序列~$\overline{s}$，因此，假设存在一个包含~$\Bin^\omega$ 中所有序列的列表会导致矛盾。
 \end{proof}
 
 \begin{explain}
-This proof method is called ``diagonalization'' because it uses the
-diagonal of the array to define~$\overline{s}$. Diagonalization need
-not involve the presence of an array: we can show that sets are not
-!!{enumerable} by using a similar idea even when no array and no
-actual diagonal is involved.
+这种证明方法之所以称为“对角线法”，是因为它利用阵列的对角线来定义~$\overline{s}$。
+对角线法并不一定需要阵列的存在：即使没有实际的阵列和对角线，我们也可以使用类似的思想来证明集合是不可数的。
 \end{explain}
 
 \begin{thm}
 \ollabel{thm:nonenum-pownat}
-$\Pow{\PosInt}$ is not !!{enumerable}.
+$\Pow{\PosInt}$ 是不可数的。
 \end{thm}
 
 \begin{proof}
-We proceed in the same way, by showing that for every list of subsets
-of~$\PosInt$ there is a subset of $\PosInt$ which cannot be on the list.
-Suppose the following is a given list of subsets of~$\PosInt$:
+我们采用同样的方法，证明对于~$\PosInt$ 的任意子集列表，总存在一个不在该列表中的 $\PosInt$ 的子集。
+假设给定了~$\PosInt$ 的如下子集列表：
 \[
 Z_{1}, Z_{2}, Z_{3}, \dots
 \]
-We now define a set $\overline{Z}$ such that for any $n \in \PosInt$,
-$n \in \overline{Z}$ iff $n \notin Z_{n}$:
+现在定义一个集合 $\overline{Z}$，使得对任意 $n \in \PosInt$，$n \in \overline{Z}$ 当且仅当 $n \notin Z_{n}$：
 \[
 \overline{Z} = \Setabs{n \in \PosInt}{n \notin Z_n}
 \]
-$\overline{Z}$ is clearly a set of positive integers, since by
-assumption each~$Z_n$ is, and thus $\overline{Z} \in
-\Pow{\PosInt}$. But $\overline{Z}$ cannot be on the list.  To show
-this, we'll establish that for each $k \in \PosInt$, $\overline{Z} \neq
-Z_k$. 
+显然 $\overline{Z}$ 是一个正整数集合，因为根据假设每个~$Z_n$ 都是正整数集合，因此 $\overline{Z} \in \Pow{\PosInt}$。但 $\overline{Z}$ 不可能在该列表中。为此，我们将证明对于每个 $k \in \PosInt$，都有 $\overline{Z} \neq Z_k$。
 
-So let $k \in \PosInt$ be arbitrary. We've defined $\overline{Z}$ so
-that for any $n \in \PosInt$, $n \in \overline{Z}$ iff $n \notin Z_n$.
-In particular, taking $n=k$, $k \in \overline{Z}$ iff $k \notin Z_k$.
-But this shows that $\overline{Z} \neq Z_k$, since $k$ is !!a{element}
-of one but not the other, and so $\overline{Z}$ and $Z_k$ have
-different !!{element}s. Since $k$ was arbitrary, $\overline{Z}$ is not
-on the list $Z_1$, $Z_2$, \dots
+任取 $k \in \PosInt$。我们定义 $\overline{Z}$ 使得对任意 $n \in \PosInt$，$n \in \overline{Z}$ 当且仅当 $n \notin Z_n$。
+特别地，取 $n=k$，则有 $k \in \overline{Z}$ 当且仅当 $k \notin Z_k$。
+但这表明 $\overline{Z} \neq Z_k$，因为 $k$ 属于其中一个集合而不属于另一个，所以 $\overline{Z}$ 和 $Z_k$ 具有不同的元素。由于 $k$ 是任意的，故 $\overline{Z}$ 不在列表 $Z_1$, $Z_2$, \dots 中。
 \end{proof}
 
 \begin{explain}
-The preceding proof did not mention a diagonal, but you can think of
-it as involving a diagonal if you picture it this way: Imagine the
-sets $Z_1$, $Z_2$, \dots, written in an array, where each
-!!{element}~$j \in Z_i$ is listed in the~$j$-th column. Say the first
-four sets on that list are $\{1,2,3,\dots\}$, $\{2, 4, 6, \dots\}$,
-$\{1,2,5\}$, and $\{3,4,5,\dots\}$. Then the array would begin with
+前面的证明没有提到对角线，但你可以这样来理解它涉及一条对角线：想象将集合 $Z_1$, $Z_2$, \dots 写成一个数组，其中每个元素~$j \in Z_i$ 被列在第~$j$ 列。假设该列表的前四个集合是 $\{1,2,3,\dots\}$, $\{2, 4, 6, \dots\}$, $\{1,2,5\}$ 和 $\{3,4,5,\dots\}$。那么这个数组的开头将是
 \[
 \begin{array}{r@{}rrrrrrr}
   Z_1 = \{ & \mathbf{1}, & 2, & 3, & 4, & 5, & 6, & \dots\}\\
@@ -192,23 +144,15 @@ $\{1,2,5\}$, and $\{3,4,5,\dots\}$. Then the array would begin with
   \vdots & & & & & \ddots
 \end{array}
 \]
-Then $\overline{Z}$ is the set obtained by going down the diagonal,
-leaving out any numbers that appear along the diagonal and include
-those $j$ where the array has a gap in the $j$-th row/column. In the
-above case, we would leave out $1$ and $2$, include~$3$, leave
-out~$4$, etc.
+那么 $\overline{Z}$ 就是通过沿对角线向下走所得到的集合，排除对角线上出现的任何数字，并包含那些在数组的第 $j$ 行/列有空缺的 $j$。在上面的例子中，我们会排除 $1$ 和 $2$，包含~$3$，排除~$4$，等等。
 \end{explain}
 
 \begin{prob}
-Show that $\Pow{\Nat}$ is !!{nonenumerable} by a diagonal argument.
+用对角线论证证明 $\Pow{\Nat}$ 是不可数的。
 \end{prob}
 
 \begin{prob}\label{sfr:siz:nen:prob:f-posint}
-Show that the set of functions $f \colon \PosInt \to \PosInt$ is
-!!{nonenumerable} by an explicit diagonal argument. That is, show that
-if $f_1$, $f_2$, \dots, is a list of functions and each $f_i\colon
-\PosInt \to \PosInt$, then there is some $\overline{f}\colon \PosInt \to
-\PosInt$ not on this list.
+通过显式的对角线论证，证明由函数 $f \colon \PosInt \to \PosInt$ 构成的集合是不可数的。也就是说，证明如果 $f_1$, $f_2$, \dots 是一个函数列表且每个 $f_i\colon \PosInt \to \PosInt$，那么存在某个 $\overline{f}\colon \PosInt \to \PosInt$ 不在此列表中。
 \end{prob}
 
 \end{document}

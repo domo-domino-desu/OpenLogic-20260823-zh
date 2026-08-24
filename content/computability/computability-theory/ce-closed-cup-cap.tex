@@ -1,93 +1,69 @@
-% Part: computability
-% Chapter: computability-theory
-% Section: ce-closed-cup-cap
-
 \documentclass[../../../include/open-logic-section]{subfiles}
 
 \begin{document}
 
 \olfileid{cmp}{thy}{clo}
 
-\olsection[Union and Intersection of C.E. Sets]{Computably Enumerable
-  Sets are Closed under Union and Intersection}
+\olsection[可计算枚举集的并与交]{可计算枚举集在并与交运算下封闭}
+% Part: computability
+% Chapter: computability-theory
+% Section: ce-closed-cup-cap
 
-The following theorem gives some closure properties on the set of
-computably enumerable sets.
+下面的定理给出了可计算枚举集合的一些封闭性质。
 
 \begin{thm}
-Suppose $A$ and $B$ are computably enumerable. Then so are $A \cap B$
-and $A \cup B$.
+设 $A$ 和 $B$ 是可计算枚举的。那么 $A \cap B$ 和 $A \cup B$ 也是可计算枚举的。
 \end{thm}
 
 \begin{proof}
-\olref[eqc]{thm:ce-equiv} allows us to use various characterizations
-of the computably enumerable sets. By way of illustration, we will
-provide a few different proofs.
+根据 \olref[eqc]{thm:ce-equiv}，我们可以使用可计算枚举集合的各种等价刻画。作为示例，我们将提供几种不同的证明。
 
-For the first proof, suppose $A$ is enumerated by a computable
-function~$f$, and $B$ is enumerated by a computable function~$g$. Let
+第一种证明：假设 $A$ 由可计算函数~$f$ 枚举，$B$ 由可计算函数~$g$ 枚举。令
 \begin{align*}
-h(x) & = \umin{y}{(f(y) = x \lor g(y) = x)} \text{ and}\\
+h(x) & = \umin{y}{(f(y) = x \lor g(y) = x)} \text{且}\\
 j(x) & = \umin{y}{(f((y)_0) = x \land g((y)_1) = x)}.
 \end{align*}
-Then $A \cup B$ is the domain of $h$, and $A \cap B$ is the domain
-of~$j$.
+则 $A \cup B$ 是 $h$ 的定义域，$A \cap B$ 是~$j$ 的定义域。
 
 \begin{explain}
-Here is what is going on, in computational terms: given
-procedures that enumerate $A$ and $B$, we can semi-decide if an
-element $x$ is in $A \cup B$ by looking for $x$ in either enumeration;
-and we can semi-decide if an element $x$ is in $A \cap B$ for looking
-for $x$ in both enumerations at the same time.
+计算上的直观是这样的：给定枚举 $A$ 和 $B$ 的过程，我们可以通过在两个枚举中的任意一个里寻找 $x$，来半判定元素 $x$ 是否在 $A \cup B$ 中；而通过同时在两个枚举中寻找 $x$，我们可以半判定元素 $x$ 是否在 $A \cap B$ 中。
 \end{explain}
 
-For the second proof, suppose again that $A$ is enumerated by~$f$ and
-$B$ is enumerated by~$g$. Let
+第二种证明：再次假设 $A$ 由~$f$ 枚举，$B$ 由~$g$ 枚举。令
 \[
 k(x) = \begin{cases}
-f(x/2) & \text{if $x$ is even} \\
-g((x-1)/2) & \text{if $x$ is odd.}
+f(x/2) & \text{若 $x$ 是偶数} \\
+g((x-1)/2) & \text{若 $x$ 是奇数。}
 \end{cases}
 \]
-Then $k$ enumerates $A \cup B$; the idea is that $k$ just alternates
-between the enumerations offered by $f$ and~$g$. Enumerating $A \cap
-B$ is tricker. If $A \cap B$ is empty, it is trivially computably
-enumerable. Otherwise, let $c$ be any element of $A \cap B$, and
-define $l$ by
+则 $k$ 枚举了 $A \cup B$；其思路是 $k$ 只是在 $f$ 和~$g$ 提供的枚举之间交替进行。
+枚举 $A \cap B$ 则更棘手一些。如果 $A \cap B$ 是空集，那它显然是可计算枚举的。
+否则，令 $c$ 为 $A \cap B$ 的任意元素，并定义 $l$ 如下：
 \[
 l(x) = \begin{cases}
-f((x)_0) & \text{if $f((x)_0) = g((x)_1)$} \\
-c & \text{otherwise.}
+f((x)_0) & \text{若 $f((x)_0) = g((x)_1)$} \\
+c & \text{否则。}
 \end{cases}
 \]
-In computational terms, $l$ runs through pairs of elements in the
-enumerations of $f$ and $g$, and outputs every match it finds;
-otherwise, it just stalls by outputting $c$.
+从计算的角度看，$l$ 遍历 $f$ 和 $g$ 的枚举中的元素对，并输出找到的每一个匹配；若未找到匹配，它只是通过输出 $c$ 来“原地踏步”。
 
-For the last proof, suppose $A$ is the \emph{domain} of the partial
-function $m(x)$ and $B$ is the domain of the partial function
-$n(x)$. Then $A \cap B$ is the domain of the partial function $m(x) +
-n(x)$.
+最后一种证明：假设 $A$ 是偏函数 $m(x)$ 的\emph{定义域}，$B$ 是偏函数 $n(x)$ 的定义域。
+那么 $A \cap B$ 就是偏函数 $m(x) + n(x)$ 的定义域。
 
 \begin{explain}
-In computational terms, if $A$ is the set of values for which
-$m$ halts and $B$ is the set of values for which $n$ halts, $A \cap B$
-is the set of values for which both procedures halt.
+用计算术语来说，如果 $A$ 是使 $m$ 停机的值的集合，$B$ 是使 $n$ 停机的值的集合，
+那么 $A \cap B$ 就是使两个过程都停机的值的集合。
 \end{explain}
 
-Expressing $A \cup B$ as a set of halting values is more difficult,
-because one has to simulate $m$ and $n$ in parallel. Let $d$ be an
-index for $m$ and let $e$ be an index for $n$; in other words, $m =
-\cfind{d}$ and $n = \cfind{e}$. Then $A \cup B$ is the domain of the
-function
+将 $A \cup B$ 表示为停机值的集合则更为困难，因为必须并行模拟 $m$ 和 $n$。
+令 $d$ 是 $m$ 的一个指标，$e$ 是 $n$ 的一个指标；换言之，$m = \cfind{d}$ 且 $n = \cfind{e}$。
+那么 $A \cup B$ 就是如下函数的定义域：
 \[
 p(x) = \umin{y}{(T(d,x,y) \lor T(e,x,y))}.
 \]
 \begin{explain}
-In computational terms, on input $x$, $p$ searches for either a
-halting computation for $m$ or a halting computation for $n$, and
-halts if it finds either one.
+从计算的角度看，在输入 $x$ 下，$p$ 会搜索 $m$ 停机的计算或者 $n$ 停机的计算，
+并在找到任意一个时停机。
 \end{explain}
 \end{proof}
-
 \end{document}

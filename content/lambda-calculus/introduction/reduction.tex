@@ -7,69 +7,59 @@
 \begin{document}
 
 \olfileid{lam}{int}{red}
-\olsection{Reduction of Lambda Terms}
+\olsection{λ-项的归约}
 
-What can one do with lambda terms? Simplify them. If $M$ and $N$ are
-any lambda terms and $x$ is any variable, we can use $\Subst{M}{N}{x}$ to
-denote the result of substituting $N$ for~$x$ in~$M$, after renaming
-any bound variables of $M$ that would interfere with the free
-variables of~$N$ after the substitution. For example,
+我们能用λ-项做什么呢？简化它们。如果 $M$ 和 $N$ 是任意λ-项而 $x$ 是任意变元，
+我们可以用 $\Subst{M}{N}{x}$ 表示将 $N$ 代入 $M$ 中的~$x$ 后得到的结果，
+在此过程中，需先重命名 $M$ 中那些在代入后可能与~$N$ 的自由变元发生冲突的约束变元。
+例如，
 \[
 \Subst{(\lambd[w][xxw])}{yyz}{x} = \lambd[w][(yyz)(yyz)w].
 \]
 
 \begin{digress}
-Alternative notations for substitution are $[N/x]M$, $[x/N]M$, and
-also $M[x/N]$. Beware!
+替换的其他记法有 $[N/x]M$、$[x/N]M$ 以及 $M[x/N]$。当心！
 \end{digress}
 
-Intuitively, $(\lambd[x][M])N$ and $\Subst{M}{N}{x}$ have the same
-meaning; the act of replacing the first term by the second is called
-\emph{$\beta$-contraction}. $(\lambd[x][M])N$ is called a \emph{redex}
-and $\Subst{M}{N}{x}$ its \emph{contractum}. Generally, if it is
-possible to change a term $P$ to~$P'$ by $\beta$-contraction of some
-subterm, we say that $P$ \emph{$\beta$-reduces to $P'$ in one step},
-and write $P \redone P'$. If from $P$ we can obtain~$P'$ with some
-number of one-step reductions (possibly none), then $P$
-\emph{$\beta$-reduces} to~$P'$; in symbols, $P \red P'$. A term that
-cannot be $\beta$-reduced any further is called
-\emph{$\beta$-irreducible}, or \emph{$\beta$-normal}. We will say
-``reduces'' instead of ``$\beta$-reduces,'' etc., when the context is
-clear.
+直观上说，$(\lambd[x][M])N$ 和 $\Subst{M}{N}{x}$ 意义相同；
+将前一项替换为后一项的操作称为\emph{$\beta$-收缩}。
+$(\lambd[x][M])N$ 称为\emph{可约式}，而 $\Subst{M}{N}{x}$ 称为其\emph{合约项}。
+一般地，如果通过对项 $P$ 的某个子项进行 $\beta$-收缩，可以将 $P$ 变为~$P'$，
+我们就说 $P$ \emph{在一步内 $\beta$-归约}到 $P'$，并记作 $P \redone P'$。
+如果从 $P$ 出发，经过若干次（可能零次）一步归约能得到~$P'$，
+那么 $P$ \emph{$\beta$-归约}到~$P'$；记作 $P \red P'$。
+一个不能再进行任何 $\beta$-归约的项称为\emph{$\beta$-不可约的}，或\emph{$\beta$-正规的}。
+当上下文清楚时，我们就直接说“归约”而不说“$\beta$-归约”等。
 
-Let us consider some examples.
+让我们来看几个例子。
 \begin{enumerate}
-\item We have
+\item 我们有
 \begin{align*}
 (\lambd[x][xxy]) \lambd[z][z] & \redone (\lambd[z][z])(\lambd[z][z]) y \\
 & \redone (\lambd[z][z]) y \\
 & \redone y.
 \end{align*}
-\item ``Simplifying'' a term can make it more complex:
+\item “简化”一个项可能使其变得更复杂：
 \begin{align*}
 (\lambd[x][xxy])(\lambd[x][xxy]) & \redone (\lambd[x][xxy])(\lambd[x][xxy])y \\
 & \redone (\lambd[x][xxy])(\lambd[x][xxy])yy \\
 & \redone \dots
 \end{align*}
-\item It can also leave a term unchanged:
+\item 它也可能让项保持不变：
 \[
 (\lambd[x][xx])(\lambd[x][xx]) \redone (\lambd[x][xx])(\lambd[x][xx]).
 \]
-\item Also, some terms can be reduced in more than one way; for
-  example,
+\item 此外，有些项可以按不止一种方式归约；例如，
 \[
 (\lambd[x][(\lambd[y][yx]) z)] v \redone (\lambd[y][yv]) z
 \]
-by contracting the outermost application; and
+这是通过收缩最外层的应用得到的；而
 \[
 (\lambd[x][(\lambd[y][yx]) z)] v \redone (\lambd[x][zx]) v
 \]
-by contracting the innermost one. Note, in this case, however, that
-both terms further reduce to the same term, $zv$.
+则是通过收缩最内层的应用得到的。不过请注意，在这个例子中，两项进一步归约到了同一个项 $zv$。
 \end{enumerate}
 
-The final outcome in the last example is not a coincidence, but rather
-illustrates a deep and important property of the lambda calculus, known as the
-``Church--Rosser property.''
+上一个例子中的最终结果并非巧合，而是体现了λ-演算一个深刻而重要的性质，即所谓的“Church--Rosser性质”。
 
 \end{document}

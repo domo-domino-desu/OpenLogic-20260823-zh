@@ -8,63 +8,57 @@
 
 \olfileid{mvl}{syn}{con}
 
-\olsection{Languages and Connectives}
+\olsection{语言与联结词}
 
-Classical propositional logic, and many other logics, use a set supply
-of \emph{propositional constants} and \emph{connectives}. For
-instance, we use the following as primitives:
+经典命题逻辑以及许多其他逻辑都使用一套\emph{命题常项}和\emph{联结词}。
+例如，我们将以下符号作为原始符号：
+
 \begin{enumerate}
-\tagitem{prvFalse}{The propositional constant for !!{falsity}~$\lfalse$.}{}
-\tagitem{prvTrue}{The propositional constant for !!{truth}~$\ltrue$.}{}
-\item The logical connectives:
+\tagitem{prvFalse}{代表假的命题常项~$\lfalse$。}{}
+\tagitem{prvTrue}{代表真的命题常项~$\ltrue$。}{}
+\item 逻辑联结词：
   \startycommalist
-  \iftag{prvNot}{\ycomma $\lnot$ (negation)}{}%
-  \iftag{prvAnd}{\ycomma $\land$ (conjunction)}{}%
-  \iftag{prvOr}{\ycomma $\lor$ (disjunction)}{}%
-  \iftag{prvIf}{\ycomma $\lif$ (!!{conditional})}{}%
-  \iftag{prvIff}{\ycomma $\liff$ (!!{biconditional})}{}%
+  \iftag{prvNot}{\ycomma $\lnot$（否定）}{}%
+  \iftag{prvAnd}{\ycomma $\land$（合取）}{}%
+  \iftag{prvOr}{\ycomma $\lor$（析取）}{}%
+  \iftag{prvIf}{\ycomma $\lif$（条件句）}{}%
+  \iftag{prvIff}{\ycomma $\liff$（双条件句）}{}%
 \end{enumerate}
-\iftag{defNot,defOr,defAnd,defIf,defIff,defTrue,defFalse,defEx,defAll}{%
-In addition to the primitive connectives above, we also use symbols
-defined as abbreviations, such as
-\startycommalist
-  \iftag{defNot}{\ycomma $\lnot$ (negation)}{}%
-  \iftag{defAnd}{\ycomma $\land$ (conjunction)}{}%
-  \iftag{defOr}{\ycomma $\lor$ (disjunction)}{}%
-  \iftag{defIf}{\ycomma $\lif$ (!!{conditional})}{}%
-  \iftag{defIff}{\ycomma $\liff$ (!!{biconditional})}{}%
-  \iftag{defFalse}{\ycomma $\lfalse$ (!!{falsity})}{}%
-  \iftag{defTrue}{\ycomma $\ltrue$ (!!{truth})}.}{}
 
-The same connectives are used in many-valued logics as well. However,
-it is often useful to include different versions of, say, conjunction,
-in the same logic, and that would require different symbols to keep
-the versions separate. Some many-valued logics also include
-connectives that have no equivalent in classical logic. So, we'll be a
-bit more general than usual.
+
+\iftag{defNot,defOr,defAnd,defIf,defIff,defTrue,defFalse,defEx,defAll}{%
+除了上述原始符号，我们也使用定义为缩写的符号，例如
+\startycommalist
+  \iftag{defNot}{\ycomma $\lnot$（否定）}{}%
+  \iftag{defAnd}{\ycomma $\land$（合取）}{}%
+  \iftag{defOr}{\ycomma $\lor$（析取）}{}%
+  \iftag{defIf}{\ycomma $\lif$（条件句）}{}%
+  \iftag{defIff}{\ycomma $\liff$（双条件句）}{}%
+  \iftag{defFalse}{\ycomma $\lfalse$（假）}{}%
+  \iftag{defTrue}{\ycomma $\ltrue$（真）}.}{}
+
+多值逻辑同样使用这些联结词。然而，在同一逻辑中包含某个联结词的不同版本（例如合取）通常是很有用的，这就需要不同的符号来区分这些版本。
+有些多值逻辑还包含在经典逻辑中无等价物的联结词。
+因此，我们的处理将比通常更具一般性。
 
 \begin{defn}
-  A \emph{propositional language} consists of a set $\Lang L$ of
-  \emph{connectives}. Each connective $\star$ has an \emph{arity}; a
-  connective of arity~$n$ is said to be \emph{$n$-place.}
-  Connectives of arity~$0$ are also called \emph{constants};
-  connectives of arity~$1$ are called \emph{unary}, and connectives of
-  arity~$2$, \emph{binary}.
+  一个\emph{命题语言}由一个\emph{联结词}集合 $\Lang L$ 构成。
+  每个联结词 $\star$ 都有一个\emph{元数}；元数为~$n$ 的联结词被称为是\emph{$n$元的}。
+  元数为~$0$ 的联结词也称为\emph{常项}；
+  元数为~$1$ 的联结词称为\emph{一元的}，
+  元数为~$2$ 的则称为\emph{二元的}。
 \end{defn}
 
 \begin{ex}
-  The standard language of propositional logic $\Lang L_0$ consists of
-  the following connectives (with associated arities): 
-  $\lfalse$~($0$)
+  标准命题逻辑语言 $\Lang L_0$ 由以下联结词（及其对应元数）构成：
+  $\lfalse$~($0$),
   $\lnot$~($1$),
   $\land$~($2$),
   $\lor$~($2$),
-  $\lif$~($2$). Most logics we consider will use this language. Some
-  logics by tradition an convention use different symbols for some
-  connectives. For instance, in product logic, the conjunction symbol
-  is often $\odot$ instead of~$\land$. Sometimes it is convenient to
-  add a new operator, e.g., the determinateness operator $\triangle$
-  ($1$-place).
+  $\lif$~($2$)。我们考虑的大多数逻辑都使用这个语言。
+  基于传统与约定，有些逻辑会对某些联结词使用不同的符号。
+  例如，在乘积逻辑中，合取符号通常是 $\odot$ 而非~$\land$。
+  有时，添加新的算子会很方便，例如确定性算子 $\triangle$（$1$元）。
 \end{ex}
 
 \end{document}

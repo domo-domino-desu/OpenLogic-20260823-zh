@@ -7,168 +7,133 @@
 \begin{document}
 
 \olfileid{sfr}{set}{uni}
-\olsection{Unions and Intersections}
+\olsection{并集与交集}
 
 \begin{explain}
-In \olref[sfr][set][bas]{sec}, we introduced definitions of sets by
-abstraction, i.e., definitions of the form $\Setabs{x}{\phi(x)}$.
-Here, we invoke some property~$\phi$, and this property can mention
-sets we've already defined. So for instance, if $A$ and~$B$ are sets,
-the set $\Setabs{x}{x \in A \lor x \in B}$ consists of all those
-objects which are !!{element}s of either $A$ or~$B$, i.e., it's the
-set that combines the !!{element}s of $A$ and~$B$. We can visualize
-this as in \olref{fig:union}, where the highlighted area indicates the
-!!{element}s of the two sets $A$ and~$B$ together.
+在 \olref[sfr][set][bas]{sec} 中，我们引入了通过抽象给出的集合定义，即形如 $\Setabs{x}{\phi(x)}$ 的定义。这里，我们使用了某个性质~$\phi$，而这个性质可以提及我们已经定义过的集合。举例来说，如果 $A$ 和~$B$ 是集合，那么集合 $\Setabs{x}{x \in A \lor x \in B}$ 由所有属于 $A$ 或~$B$ 的对象组成，也就是说，它是合并了 $A$ 和~$B$ 的元素的集合。我们可以如 \olref{fig:union} 那样将其可视化，其中高亮区域表示两个集合 $A$ 和~$B$ 合在一起的元素。
 
 \begin{figure}
   \olasset{assets/diagrams/union.tikz}
-  \caption{The union $A \cup B$ of two sets is set of !!{element}s of
-   $A$ together with those of~$B$.}
-  \ollabel{fig:union} 
+  \caption{两个集合的并集 $A \cup B$ 是 $A$ 的元素与~$B$ 的元素共同组成的集合。}
+  \ollabel{fig:union}
 \end{figure}
 
-This operation on sets---combining them---is very useful and common,
-and so we give it a formal name and a symbol. 
+这种对集合的操作——将它们合并——非常有用且常见，因此我们给它一个正式的名称和符号。 
 \end{explain}
 
-\begin{defn}[Union]
-The \emph{union} of two sets $A$ and $B$, written $A \cup B$, is the
-set of all things which are !!{element}s of $A$, $B$, or both.
+\begin{defn}[并集]
+两个集合 $A$ 和 $B$ 的\emph{并集}，记作 $A \cup B$，是由所有属于 $A$、属于 $B$ 或同时属于二者的元素构成的集合。
 \[
 A \cup B = \Setabs{x}{x \in A \lor x \in B}
 \]
 \end{defn}
 
 \begin{ex}
-Since the multiplicity of !!{element}s doesn't matter, the union of two
-sets which have !!a{element} in common contains that !!{element} only once,
-e.g., $\{ a, b, c\} \cup \{ a, 0, 1\} = \{a, b, c, 0, 1\}$.
+由于元素的重数无关紧要，有共同元素的两个集合的并集中，该元素只出现一次，例如，$\{ a, b, c\} \cup \{ a, 0, 1\} = \{a, b, c, 0, 1\}$。
 
-The union of a set and one of its subsets is just the bigger set: $\{a,
-b, c \} \cup \{a \} = \{a, b, c\}$.
+一个集合与其某个子集的并集就是那个较大的集合：$\{a,
+b, c \} \cup \{a \} = \{a, b, c\}$。
 
-The union of a set with the empty set is identical to the set: $\{a,
-b, c \} \cup \emptyset = \{a, b, c \}$.
+一个集合与空集的并集等于该集合本身：$\{a,
+b, c \} \cup \emptyset = \{a, b, c \}$。
 \end{ex}
 
 \begin{prob}
-Prove that if $A \subseteq B$, then $A \cup B = B$.
+证明：若 $A \subseteq B$，则 $A \cup B = B$。
 \end{prob}
 
 \begin{explain}
-We can also consider a ``dual'' operation to union. This is the
-operation that forms the set of all !!{element}s that are !!{element}s
-of~$A$ and are also !!{element}s of~$B$. This operation is called 
-\emph{intersection}, and can be depicted as in \olref{fig:intersection}.
+我们也可以考虑一种与并集“对偶”的操作。这种操作生成由所有既属于~$A$ 又属于~$B$ 的元素构成的集合。这个操作称为\emph{交集}，可以像 \olref{fig:intersection} 中那样描绘。
 \begin{figure}
   \olasset{assets/diagrams/intersection.tikz}
-  \caption{The intersection $A \cap B$ of two sets is the set of
-    !!{element}s they have in common.}
+  \caption{两个集合的交集 $A \cap B$ 是它们共同拥有的元素组成的集合。}
   \ollabel{fig:intersection}
 \end{figure}
 \end{explain}
 
-\begin{defn}[Intersection]
-The \emph{intersection} of two sets $A$ and $B$, written $A \cap B$, is
-the set of all things which are !!{element}s of both $A$ and~$B$.
+\begin{defn}[交集]
+两个集合 $A$ 和 $B$ 的\emph{交集}，记作 $A \cap B$，是由所有同时属于 $A$ 和~$B$ 的元素构成的集合。
 \[
 A \cap B = \Setabs{x}{x \in A \land x \in B}
 \]
-Two sets are called \emph{disjoint} if their intersection is
-empty. This means they have no !!{element}s in common.
+若两个集合的交集为空，则称它们是\emph{不相交}的。这意味着它们没有共同的元素。
 \end{defn}
 
 \begin{ex}
-If two sets have no !!{element}s in common, their intersection is empty:
-$\{ a, b, c\} \cap \{ 0, 1\} = \emptyset$.
+如果两个集合没有共同的元素，它们的交集就是空集：$\{ a, b, c\} \cap \{ 0, 1\} = \emptyset$。
 
-If two sets do have !!{element}s in common, their intersection is the set of
-all those: $\{a, b, c \} \cap \{a, b, d \} = \{a, b\}$.
+如果两个集合确实有共同的元素，它们的交集就是所有这些元素的集合：$\{a, b, c \} \cap \{a, b, d \} = \{a, b\}$。
 
-The intersection of a set with one of its subsets is just the smaller
-set: $\{a, b, c\} \cap \{a, b\} = \{a, b\}$.
+一个集合与其某个子集的交集就是那个较小的集合：$\{a, b, c\} \cap \{a, b\} = \{a, b\}$。
 
-The intersection of any set with the empty set is empty: $\{a, b, c \}
-\cap \emptyset = \emptyset$.
+空集与任何集合的交集都是空集：$\{a, b, c \}
+\cap \emptyset = \emptyset$
 \end{ex}
 
 \begin{prob}
-Prove rigorously that if $A \subseteq B$, then $A \cap B = A$.
+严格证明：若 $A \subseteq B$，则 $A \cap B = A$。
 \end{prob}
 
 \begin{explain}
-We can also form the union or intersection of more than two
-sets. An elegant way of dealing with this in general is the
-following: suppose you collect all the sets you want to form the union
-(or intersection) of into a single set. Then we can define the union
-of all our original sets as the set of all objects which belong to at
-least one !!{element} of the set, and the intersection as the set of
-all objects which belong to every !!{element} of the set.
+我们也可以对多于两个的集合作并或交。一种一般且优雅的处理方式如下：假设你将所有想要取并集（或交集）的集合收集到一个单独的集合中。那么，我们可以将所有原始集合的并集定义为属于该集合至少一个元素的对象所组成的集合，而将交集定义为属于该集合每一个元素的对象所组成的集合。
 \end{explain}
 
 \begin{defn}
-If $A$ is a set of sets, then $\bigcup A$ is the set of !!{element}s of
-!!{element}s of~$A$:
+如果 $A$ 是一个由集合构成的集合，那么 $\bigcup A$ 是 $A$ 中元素的元素所组成的集合：
 \begin{align*}
-\bigcup A & = \Setabs{x}{x \text{ belongs to !!a{element} of } A},
-\text{ i.e.,}\\
-& = \Setabs{x}{\text{there is a } B \in A
-  \text{ so that } x \in B}
+\bigcup A & = \Setabs{x}{x \text{ 属于 } A},
+\text{ 的某个元素，即，}\\
+& = \Setabs{x}{\text{存在 } B \in A
+  \text{ 使得 } x \in B}
 \end{align*}
 \end{defn}
 
 \begin{defn}
-If $A$ is a set of sets, then $\bigcap A$ is the set of objects which
-all elements of~$A$ have in common:
+如果 $A$ 是一个由集合构成的集合，那么 $\bigcap A$ 是 $A$ 中所有元素共有的对象所组成的集合：
 \begin{align*}
-\bigcap A & = \Setabs{x}{x \text{ belongs to every !!{element} of } A},
-\text{ i.e.,}\\
- & = \Setabs{x}{\text{for all } B \in A, x \in B}
+\bigcap A & = \Setabs{x}{x \text{ 属于 } A},
+\text{ 的每一个元素，即，}\\
+ & = \Setabs{x}{\text{ 对所有 } B \in A, x \in B}
 \end{align*}
 \end{defn}
 
 \begin{ex}
-Suppose $A = \{ \{ a, b \}, \{ a, d, e \}, \{ a, d \} \}$.
-Then $\bigcup A = \{ a, b, d, e \}$ and $\bigcap A = \{ a \}$.
+假设 $A = \{ \{ a, b \}, \{ a, d, e \}, \{ a, d \} \}$。
+那么 $\bigcup A = \{ a, b, d, e \}$，且 $\bigcap A = \{ a \}$。
 \end{ex}
 \begin{prob}
-	Show that if $A$ is a set and $A \in B$, then $A \subseteq \bigcup B$.
+	证明：如果 $A$ 是一个集合且 $A \in B$，那么 $A \subseteq \bigcup B$。
 \end{prob}
 
-We could also do the same for a sequence of sets $A_1$, $A_2$, \dots
+我们也可以对集合序列 $A_1$, $A_2$, \dots 作同样的处理：
 \begin{align*}
-\bigcup_i A_i & = \Setabs{x}{x \text{ belongs to one of the } A_i}\\
-\bigcap_i A_i & = \Setabs{x}{x \text{ belongs to every } A_i}.
+\bigcup_i A_i & = \Setabs{x}{x \text{ 属于某个 } A_i}\\
+\bigcap_i A_i & = \Setabs{x}{x \text{ 属于每一个 } A_i}.
 \end{align*}
 
-When we have an \emph{index} of sets, i.e., some set $I$ such that we
-are considering $A_i$ for each $i \in I$, we may also use these
-abbreviations:
+当我们有集合的\emph{指标}时，即存在某个集合 $I$，使得我们对于每个 $i \in I$ 考虑 $A_i$，我们也可以使用这些缩写：
 \begin{align*}
 	\bigcup_{i \in I} A_i & = \bigcup \Setabs{A_i }{i \in I}\\
 	\bigcap_{i \in I} A_i & = \bigcap\Setabs{A_i}{i \in I}
 \end{align*}
 
-Finally, we may want to think about the set of all !!{element}s in~$A$
-which are not in~$B$. We can depict this as in \olref{difference}.
+最后，我们可能要考虑 $A$ 中那些不在 $B$ 里的所有元素组成的集合。我们可以如 \olref{difference} 那样描绘它。
 
 \begin{figure}
   \olasset{assets/diagrams/difference.tikz}
-  \caption{The difference $A \setminus B$ of two sets is the set of
-    those !!{element}s of~$A$ which are not also !!{element}s of~$B$.}
+  \caption{两个集合的差 $A \setminus B$ 是 $A$ 中那些不属于 $B$ 的元素组成的集合。}
   \ollabel{difference}
 \end{figure}
 
-\begin{defn}[Difference]
-The \emph{set difference}~$A \setminus B$ is the set of all !!{element}s of
-$A$ which are not also !!{element}s of~$B$, i.e.,
+\begin{defn}[差集]
+$A$ 与 $B$ 的\emph{集合差}~$A \setminus B$ 是 $A$ 中所有不属于 $B$ 的元素组成的集合，即
 \[
-A\setminus B = \Setabs{x}{x\in A \text{ and } x \notin B}.
+A\setminus B = \Setabs{x}{x\in A \text{ 且 } x \notin B}.
 \]
 \end{defn}
 
 \begin{prob}
-	Prove that if $A \subsetneq B$, then $B \setminus A \neq \emptyset$.
+证明：如果 $A \subsetneq B$，那么 $B \setminus A \neq \emptyset$。
 \end{prob}
 
 \end{document}

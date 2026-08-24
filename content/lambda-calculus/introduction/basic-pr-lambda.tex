@@ -7,26 +7,21 @@
 \begin{document}
 
 \olfileid{lam}{int}{bas}
-\olsection{The Basic Primitive Recursive Functions are \usetoken{S}{lambda definable}}
+\olsection{基本原始递归函数是\usetoken{S}{lambda definable}的}
 
 \begin{lem}
-The functions $\Zero$, $\Succ$, and $\Proj{n}{i}$ are !!{lambda definable}.
+函数 $\Zero$、$\Succ$ 和 $\Proj{n}{i}$ 都是 $\lambd$-可定义的。
 \end{lem}
 
 \begin{proof}
-$\Zero$ is just
-$\lambd[x][\lambd[y][y]]$.
+$\Zero$ 就是
+$\lambd[x][\lambd[y][y]]$。
 
-The successor function~$\Succ$, is
-defined by $\fn{Succ}(u) = \lambd[x][\lambd[y][x(uxy)]]$. You should
-think about why this works; for each numeral $\num{n}$, thought of as
-an iterator, and each function~$f$, $\fn{Succ}(\num{n},f)$ is a function that,
-on input~$y$, applies $f$ $n$ times starting with~$y$, and then
-applies it once more.
+后继函数~$\Succ$ 由
+$\fn{Succ}(u) = \lambd[x][\lambd[y][x(uxy)]]$ 定义。请思考为何该定义可行：对于每个被视为迭代器的数码 $\num{n}$ 和每个函数~$f$，$\fn{Succ}(\num{n},f)$ 是这样一个函数，它在以~$y$ 为输入时，先从~$y$ 起将 $f$ 应用 $n$ 次，然后再多应用一次。
 
-There is nothing to say about projections: $\fn{Proj}^n_i(x_0, \dots,
-x_{n-1}) = x_i$. In other words, by our conventions, $\fn{Proj}^n_i$ is
-the lambda term $\lambd[x_0][\dots \lambd[x_{n-1}][x_i]]$.
+至于投影函数则是不言自明的：$\fn{Proj}^n_i(x_0, \dots,
+x_{n-1}) = x_i$。换言之，根据我们的约定，$\fn{Proj}^n_i$ 就是 λ-项 $\lambd[x_0][\dots \lambd[x_{n-1}][x_i]]$。
 \end{proof}
 
 \end{document}

@@ -8,16 +8,12 @@
 
 \olfileid{pt}{nor}{seg}
 
-\olsection{Segments and Cuts}
+\olsection{段与切割}
 
-!!^a{introduction} rule followed by !!a{elimination} rule is a detour
-in !!a{proof}, and to normalize !!a{proof} is to eliminate such
-detours. However, the \Elim{\lor} and \Elim{\lexists} make even the
-definition of ``detour we want to eliminate'' a bit complicated. The
-problem is this. Because of these rules, it's not guaranteed that in a
-detour the !!{elimination} rule \emph{immediately} follows the
-!!{introduction} rule. There could be an \Elim{\lor} or
-\Elim{\lexists} in between, e.g.,
+在推导中，一个引入规则之后紧接一个消去规则就构成一个\emph{绕道}，而将推导\emph{规范化}就是要消除这类绕道。
+然而，\Elim{\lor} 和 \Elim{\lexists} 使得连“我们要消除的绕道”的定义也变得有些复杂。
+问题在于：由于这些规则的存在，我们无法保证在一个绕道中，消去规则总是\emph{紧随}引入规则之后。
+中间可能隔着一个 \Elim{\lor} 或 \Elim{\lexists}，例如：
 \[
 \AxiomC{}
 \DeduceC{$\lexists[x][!C(x)]$}
@@ -33,8 +29,7 @@ detour the !!{elimination} rule \emph{immediately} follows the
 \BinaryInfC{$!B$}
 \DisplayProof
 \]
-In fact, any number of \Elim{\lor} or
-\Elim{\lexists} can separate the \Intro{\lif} from the \Elim{\lif}, e.g.,
+事实上，可以有任意多个 \Elim{\lor} 或 \Elim{\lexists} 将 \Intro{\lif} 与 \Elim{\lif} 隔开，例如：
 \[
 \AxiomC{}
 \DeduceC{$\lexists[x][!C(x)]$}
@@ -58,50 +53,32 @@ In fact, any number of \Elim{\lor} or
 \BinaryInfC{$!B$}
 \DisplayProof
 \]
-This example shows that the same \Elim{\lif} might be involved in
-multiple detours, even, as it follows more than one~\Intro{\lif}. To
-account for all these possibilities, we define detours using certain
-kinds of sequences of !!{formula} occurrences in an \Log{N1i}-proof
-called \emph{segments}. In our example, it's a sequence of occurrences
-of~$!A \lif !B$, where a minor premise of $\Elim{\lor}$ or
-$\Elim{\lexists}$ follows its conclusion. In the example, there are
-two such segments, each containing three occurrences of~$!A \lif !B$.
-Here is the official definition.
+这个例子表明，同一个 \Elim{\lif} 可能参与多个绕道，甚至，因为它跟在不止一个~\Intro{\lif} 之后。
+为了涵盖所有这些可能性，我们使用 \Log{N1i} 证明中出现的某类公式出现序列（称为\emph{段}）来定义绕道。
+在我们的例子中，这就是一系列 $!A \lif !B$ 的出现，其中 \Elim{\lor} 或 \Elim{\lexists} 的小前提紧随其结论。
+在该例中有两个这样的段，每个包含三个 $!A \lif !B$ 的出现。
+以下是正式定义。
 
 \begin{defn}
-A \emph{segment} in a \Log{N1i} !!{proof}~$\delta$ is a sequence of
-occurrences $!A_1$, \dots, $!A_n$ of the same !!{formula}~$!A$ in $\delta$ where
+在 \Log{N1i} 推导~$\delta$ 中，一个\emph{段}是同一公式~$!A$ 在 $\delta$ 中的出现序列 $!A_1$, \dots, $!A_n$，满足以下条件：
 \begin{enumerate}
-  \item $!A_1$ is not the conclusion of \Elim{\lor} or \Elim{\lexists};
-  \item $!A_n$ is not a minor premise of \Elim{\lor} or \Elim{\lexists};
-  \item For $i = 1$, \dots,~$n-1$, $!A_i$ is a minor premise of
-  \Elim{\lor} or \Elim{\lexists} and $A_{i+1}$ is the conclusion of
-  that inference.
+  \item $!A_1$ 不是 \Elim{\lor} 或 \Elim{\lexists} 的结论；
+  \item $!A_n$ 不是 \Elim{\lor} 或 \Elim{\lexists} 的小前提；
+  \item 对 $i = 1$, \dots,~$n-1$，$!A_i$ 是 \Elim{\lor} 或 \Elim{\lexists} 的小前提，且 $!A_{i+1}$ 是该推理的结论。
 \end{enumerate}
-The \emph{length} of that segment is~$n$.
+该段的\emph{长度}为~$n$。
 \end{defn}
 
-Not every segment is a target for elimination (a detour). The ones that
-are are called \emph{cuts}.
+并非每个段都是要消除的目标（即绕道）。需要消除的段被称为\emph{切割}。
 
 \begin{defn}
-A \emph{cut} is a segment in which $!A_n$ is the major premise of
-!!a{elimination} inference, and either $n=1$ and $!A_1 = !A_n$ is the
-conclusion of !!a{introduction} inference or of~\FalseInt, or~$n>1$.
+一个\emph{切割}是一个段，其中 $!A_n$ 是某个消去推理的主前提，并且要么 $n=1$ 且 $!A_1 = !A_n$ 是某个引入推理或~\FalseInt 的结论，要么~$n>1$。
 \end{defn}
 
-Note that a cut segment need not begin with the conclusion of
-!!a{introduction} rule. All that's required is that it ends with the
-major premise of !!a{elimination} rule. However, a segment of
-length~$1$ does have to be the conclusions of !!{introduction} rules
-to count as a cut.
+需要注意的是，一个切割段不一定以某个引入规则的结论开始。唯一的要求是它以某个消去规则的主前提结束。然而，一个长度为~1 的段必须本身是引入规则的结论，才能算作切割。
 
 \begin{defn}
-The \emph{rank} of a cut is~$\depth{!A}$. The \emph{cut
-rank}~$\cutrank{\delta}$ of !!a{proof}~$\delta$ is the maximal rank of
-cuts in~$\delta$. A cut is \emph{maximal} in~$\delta$ if its rank
-is~$\cutrank{\delta}$, i.e., it has maximal rank. The \emph{cut length}
-of~$\delta$ is the sum of the lengths of all its maximal cuts.
+一个切割的\emph{秩}为~$\depth{!A}$。推导~$\delta$ 的\emph{切割秩}~$\cutrank{\delta}$ 是~$\delta$ 中所有切割的秩的最大值。一个切割在~$\delta$ 中是\emph{极大的}，如果其秩等于~$\cutrank{\delta}$，即其秩最大。$\delta$ 的\emph{切割长度}是其所有极大切割的长度之和。
 \end{defn}
 
 \end{document}

@@ -3,62 +3,34 @@
 \begin{document}
 
 \olfileid{sth}{choice}{justifications}
-\olsection{Intrinsic Considerations about Choice}
+\olsection{关于选择公理的内在考量}
 
-The broader question, then, is whether Well-Ordering, or Choice, or
-indeed the comparability of all sets as regards their size---it
-doesn't matter which---can be justified. 
+那么，更广泛的问题是：良序原理、选择公理，甚至所有集合在大小上的可比性——不管是哪一个——能否得到辩护。
 
-Here is an attempted \emph{intrinsic} justification. Back in
-\olref[z][story]{sec}, we introduced several principles
-about the hierarchy. One of these is worth restating:
+下面是一种\emph{内在}辩护的尝试。在 \olref[z][story]{sec} 中，我们引入了关于层级的若干原则。其中一条值得重申：
+
 \begin{enumerate}
-	\item[] \stagesacc. For any stage $S$, and for any sets which were
-	formed \emph{before} stage $S$: a set is formed at stage $S$ whose
-	members are exactly those sets. Nothing else is formed at
-	stage~$S$. 
+	\item[] \stagesacc{}。对于任意阶段 $S$，以及任意在阶段 $S$ \emph{之前}形成的集合：在阶段 $S$ 会形成一个集合，其成员恰好就是那些集合。在阶段~$S$ 不再形成其他任何东西。
 \end{enumerate}
-In fact, many authors have suggested that the Axiom of Choice can be
-justified via (something like) this principle. We will briefly provide
-a gloss on that approach.
 
-We will start with a simple little result, which offers \emph{yet
-another} equivalent for Choice:
+事实上，许多作者都曾提出，选择公理可以通过（类似于）这条原则来辩护。我们将简要说明这一思路。
 
-\begin{thm}[in $\ZF$]\ollabel{choiceset}
-Choice is equivalent to the following principle. If the !!{element}s
-of $A$ are disjoint and non-empty, then there is some $C$ such that $C
-\cap x$ is a singleton for every $x \in A$. (We call such a $C$ a
-{choice set} for $A$.)
+我们将从一个简单的结论开始，它提供了选择公理的\emph{又一个}等价形式：
+
+\begin{thm}[在 $\ZF$ 中]\ollabel{choiceset}
+选择公理等价于下述原则：如果 $A$ 的元素互不相交且非空，则存在某个 $C$，使得对每个 $x \in A$，$C \cap x$ 都是单元素集。（我们称这样的 $C$ 为 $A$ 的{选择集}。）
 \end{thm}
 
-The proof of this result is straightforward, and we leave it as an
-exercise for the reader. 
+该结论的证明是直截了当的，留作习题。
 
 \begin{prob}
-Prove \olref[sth][choice][justifications]{choiceset}. If you struggle,
-you can find a proof in \cite[pp.~242--3]{Potter2004}.
+证明 \olref[sth][choice][justifications]{choiceset}。如有困难，可在 \cite[pp.~242--3]{Potter2004} 中找到证明。
 \end{prob}
 
-The essential point is that a choice set for $A$ is just the range of
-a choice function for $A$. So, to justify Choice, we can simply try to
-justify its equivalent formulation, in terms of the existence of
-choice sets. And we will now try to do exactly that. 
+关键在于，$A$ 的一个选择集恰好就是 $A$ 的某个选择函数的值域。因此，要为选择公理辩护，我们只需为其等价形式（即选择集的存在性）进行辩护即可。现在我们就来尝试这样做。
 
-Let $A$'s !!{element}s be disjoint and non-empty. By \stageshier{}
-(see \olref[z][story]{sec}), $A$ is formed at some stage~$S$. Note
-that all the !!{element}s of $\bigcup A$ are available before stage
-$S$. Now, by \stagesacc{}, for \emph{any} sets which were formed
-before~$S$, a set is formed whose members are exactly those sets.
-Otherwise put: every \emph{possible} collections of earlier-available
-sets will exist at~$S$. But it is certainly \emph{possible} to select
-objects which could be formed into a choice set for~$A$; that is just
-some very specific subset of $\bigcup A$. So: some such choice set
-exists, as required.
+设 $A$ 的元素互不相交且非空。根据 \stageshier{}（参见 \olref[z][story]{sec}），$A$ 在某个阶段~$S$ 形成。注意，$\bigcup A$ 的所有元素在阶段 $S$ 之前就已经可用。现在，根据 \stagesacc{}，对于在~$S$ 之前形成的\emph{任何}集合，都会形成一个恰好以这些集合为成员的集合。换言之：每一个由先前可用集合构成的\emph{可能的}汇集，在~$S$ 都将存在。但是，选出能够构成~$A$ 的选择集的对象，这当然是\emph{可能的}；它只不过是 $\bigcup A$ 的某个非常特定的子集。因此：这样的选择集是存在的，满足要求。
 
-Well, that's a \emph{very} quick attempt to offer a justification of
-Choice on intrinsic grounds. But, to pursue this idea further, you
-should read Potter's (\citeyear[\S14.8]{Potter2004}) neat development
-of it.
+以上便是基于内在理由为选择公理辩护的一个\emph{非常}简短的尝试。若要进一步探究这一想法，你应该阅读 Potter (\citeyear[\S14.8]{Potter2004}) 对此的精巧推演。
 
 \end{document}

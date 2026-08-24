@@ -8,90 +8,28 @@
 
 \olfileid{nml}{syn}{int}
 
-\olsection{Introduction}
+\olsection{导言}
 
-Modal logic deals with \emph{modal propositions} and the entailment
-relations among them. Examples of modal propositions are the
-following:
+模态逻辑研究的是\emph{模态命题}以及它们之间的后承关系。模态命题的例子如下：
+
 \begin{enumerate}
-\item It is necessary that $2+2=4$.
-\item It is necessarily possible that it will rain tomorrow.
-\item If it is necessarily possible that~$!A$ then it is possible
-  that~$!A$.
+\item  $2+2=4$ 是必然的。
+\item  必然地，明天可能会下雨。
+\item  如果必然地可能 $!A$，那么可能 $!A$。
 \end{enumerate}
-Possibility and necessity are not the only modalities: other unary
-connectives are also classified as modalities, for instance, ``it
-ought to be the case that~$!A$,'' ``It will be the case that~$!A$,''
-``Dana knows that~$!A$,'' or ``Dana believes that~$!A$.''
 
-Modal logic makes its first appearance in Aristotle's \emph{De
-  Interpretatione}: he was the first to notice that necessity implies
-possibility, but not vice versa; that possibility and necessity are
-inter-definable; that If $!A \land !B$ is possibly true then
-$!A$ is possibly true and $!B$ is possibly true, but not
-conversely; and that if $!A \to !B$ is necessary, then if
-$!A$ is necessary, so is~$!B$.
+可能性和必然性并非仅有的模态：其他一元联结词也被归为模态，例如，“应当是 $!A$”、“将会是 $!A$”、“Dana 知道 $!A$”，或“Dana 相信 $!A$”。
 
-The first modern approach to modal logic was the work of C.~I. Lewis,
-culminating with Lewis and Langford, \emph{Symbolic Logic}
-(1932). Lewis \& Langford were unhappy with the representation of
-implication by means of the material conditional: $!A \lif !B$
-is a poor substitute for ``$!A$ implies $!B$.'' Instead, they
-proposed to characterize implication as ``Necessarily, if $!A$
-then $!B$,'' symbolized as $!A \strictif !B$. In trying to
-sort out the different properties, Lewis identified five different
-modal systems, \Log{S1}, \ldots, \Log{S4}, \Log{S5}, the last
-two of which are still in use.
+模态逻辑最早出现在亚里士多德的《解释篇》中：他最先注意到必然性蕴涵可能性，但反之不然；可能性与必然性可以相互定义；如果 $!A \land !B$ 可能为真，那么 $!A$ 可能为真且 $!B$ 可能为真，但反之不然；并且如果 $!A \to !B$ 是必然的，那么若 $!A$ 是必然的，$!B$ 也是必然的。
 
-The approach of Lewis and Langford was purely \emph{syntactical}: they
-identified reasonable axioms and rules and investigated what was
-provable with those means. A semantic approach remained elusive for a
-long time, until a first attempt was made by Rudolf Carnap in
-\emph{Meaning and Necessity} (1947) using the notion of a \emph{state
-  description}, i.e., a collection of atomic sentences (those that are
-``true'' in that state description). After lifting the truth
-definition to arbitrary sentences $!A$, Carnap defines $!A$
-to be \emph{necessarily true} if it is true in all state
-descriptions. Carnap's approach could not handle \emph{iterated}
-modalities, in that sentences of the form ``Possibly necessarily
-\ldots possibly $!A$'' always reduce to the innermost modality.
+对模态逻辑的第一种现代研究进路源于 C.~I. Lewis 的工作，最终汇集于 Lewis 和 Langford 的《符号逻辑》（1932）一书中。Lewis 和 Langford 不满意用实质条件句来表示蕴涵：$!A \lif !B$ 是“$!A$ 蕴涵 $!B$”的一个拙劣的替代。取而代之，他们提议将蕴涵刻画为“必然地，如果 $!A$ 则 $!B$”，记作 $!A \strictif !B$。在试图厘清不同性质的过程中，Lewis 区分了五个不同的模态系统，\Log{S1}, \ldots, \Log{S4}, \Log{S5}，其中最后两个至今仍被使用。
 
-The major breakthrough in modal semantics came with Saul Kripke's
-article ``A Completeness Theorem in Modal Logic'' (JSL 1959). Kripke
-based his work on Leibniz's idea that a statement is necessarily true
-if it is true ``at all possible worlds.'' This idea, though, suffers
-from the same drawbacks as Carnap's, in that the truth of statement at
-a world $w$ (or a state description $s$) does not depend on $w$ at
-all. So Kripke assumed that worlds are related by an
-\emph{accessibility relation} $R$, and that a statement of the form
-``Necessarily $!A$'' is true at a world $w$ if and only if
-$!A$ is true at all worlds $w'$ \emph{accessible from}
-$w$. Semantics that provide some version of this approach are called
-Kripke semantics and made possible the tumultuous development of modal
-logics (in the plural).
+Lewis 和 Langford 的进路是纯粹\emph{句法}的：他们提出了合理的公理和规则，并研究用这些手段能证明什么。语义进路在很长一段时间里都难以寻觅，直到 Rudolf Carnap（卡尔纳普）在《意义与必然性》（1947）中首次尝试，使用了\emph{状态描述}的概念，即原子语句的集合（即那些在该状态描述中“为真”的原子语句）。如果 $!A$ 在所有状态描述中均为真，Carnap 就定义 $!A$ 是\emph{必然为真}的。Carnap 的进路无法处理\emph{叠置}模态，因为形如“可能必然……可能 $!A$”的语句总是归约为最内层的模态。
 
-When interpreted by the Kripke semantics, modal logic shows us what
-\emph{relational structures} look like ``from the inside.'' A
-relational structure is just a set equipped with a binary relation
-(for instance, the set of students in the class ordered by their
-social security number is a relational structure). But in fact
-relational structures come in all sorts of domains: besides relative
-possibility of states of the world, we can have epistemic states of
-some agent related by epistemic possibility, or states of a dynamical
-system with their state transitions, etc. Modal logic can be used to
-model all of these: the first gives us ordinary, alethic, modal logic;
-the others give us epistemic logic, dynamic logic, etc.
+模态语义学的重大突破随着 Saul Kripke（克里普克）的文章《模态逻辑中的一个完备性定理》（JSL 1959）而来。Kripke 的工作基于 Leibniz（莱布尼茨）的观点，即如果一个陈述在“所有可能世界”中均为真，则它是必然为真的。然而，这个观点与 Carnap 的进路有着同样的缺陷，即一个陈述在世界 $w$（或状态描述 $s$）中的真值完全不依赖于 $w$。因此 Kripke 假设世界之间由一个\emph{可达关系} $R$ 相联系，并且形如“必然 $!A$”的陈述在世界 $w$ 中为真，当且仅当 $!A$ 在所有\emph{可从 $w$ 到达的}世界 $w'$ 中均为真。提供此类进路某一版本的语义被称为 Kripke 语义，它使得多种模态逻辑得以迅猛发展。
 
-We focus on one particular angle, known to modal logicians as
-``correspondence theory.'' One of the most significant early
-discoveries of Kripke's is that many properties of the accessibility
-relation~$R$ (whether it is transitive, symmetric, etc.)  can be
-characterized \emph{in the modal language} itself by means of
-appropriate ``modal schemas.'' Modal logicians say, for instance, that
-the reflexivity of $R$ ``corresponds'' to the schema ``If
-necessarily~$!A$, then~$!A$''. We explore mainly the correspondence
-theory of a number of classical systems of modal logic (e.g., \Log{S4}
-and \Log{S5}) obtained by a combination of the schemas \Ax{D}, \Ax{T},
-\Ax{B}, \Ax{4}, and~\Ax{5}.
+通过 Kripke 语义的解释，模态逻辑向我们展示了\emph{关系结构}“从内部看”是什么样子。关系结构就是一个配备了二元关系的集合（例如，按社会安全号排序的班级学生集合就是一个关系结构）。但实际上，关系结构存在于各种各样的领域中：除了世界状态之间的相对可能性，还可以有某主体的认知状态通过认知可能性相关联，或者带有状态转移的动态系统状态，等等。模态逻辑可被用来为所有这些建模：第一种情形给出普通的、真势的模态逻辑；其他情形则给出认知逻辑、动态逻辑等等。
+
+我们聚焦于一个特定的角度，模态逻辑学家称之为“对应理论”。Kripke 最重要的早期发现之一是：可达关系~$R$ 的许多性质（无论它是传递的、对称的，等等）可以通过恰当的“模态模式”\emph{在模态语言本身中得到刻画}。例如，模态逻辑学家说，$R$ 的自反性“对应”于模式“如果必然~$!A$，则~$!A$”。我们主要探讨通过组合模式 \Ax{D}、\Ax{T}、\Ax{B}、\Ax{4} 和~\Ax{5} 所得到的若干经典模态逻辑系统（例如 \Log{S4} 和 \Log{S5}）的对应理论。
 
 \end{document}

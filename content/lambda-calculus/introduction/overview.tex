@@ -7,67 +7,33 @@
 \begin{document}
 
 \olfileid{lam}{int}{ovr}
-\olsection{Overview}
+\olsection{概述}
 
-The lambda calculus was originally designed by Alonzo Church in the
-early 1930s as a basis for constructive logic, and \emph{not} as a
-model of the computable functions. But it was soon shown to be
-equivalent to other definitions of computability, such as the Turing
-computable functions and the partial recursive functions. The fact
-that this initially came as a small surprise makes the
-characterization all the more interesting.
+λ演算最初由 Alonzo Church 在20世纪30年代初设计，旨在作为构造性逻辑的基础，\emph{而非}作为可计算函数的模型。但人们很快发现它与其他可计算性定义（如图灵可计算函数和部分递归函数）是等价的。这个最初令人略感惊讶的事实，使得这种刻画更加有趣。
 
-Lambda notation is a convenient way of referring to a function
-directly by a symbolic expression which defines it, instead of
-defining a name for it. Instead of saying ``let $f$ be the function
-defined by $f(x) = x + 3$,'' one can say, ``let $f$ be the function
-$\lambd[x][(x + 3)]$.''  In other words, $\lambd[x][(x+3)]$ is just a
-\emph{name} for the function that adds three to its argument. In this
-expression, $x$ is a dummy variable, or a placeholder: the same
-function can just as well be denoted by $\lambd[y][(y + 3)]$. The
-notation works even with other parameters around. For example, suppose
-$g(x, y)$ is a function of two variables, and $k$ is a natural
-number. Then $\lambd[x][g(x,k)]$ is the function which maps any~$x$
-to~$g(x, k)$.
+λ记法是一种便捷的方式，能直接通过定义它的符号表达式来指称该函数，而无需为它命名。我们不必说“设$f$是由$f(x) = x + 3$定义的函数”，而可以说“设$f$是函数$\lambd[x][(x + 3)]$”。换句话说，$\lambd[x][(x+3)]$仅仅是给自变元加3的那个函数的\emph{名字}。在这个表达式中，$x$是哑变元，或者说占位符：同一个函数同样可以表示为$\lambd[y][(y + 3)]$。即使周围有其他参数，这种记法依然适用。例如，假设$g(x, y)$是一个二元函数，而$k$是一个自然数。那么$\lambd[x][g(x,k)]$就是将任意~$x$映射到~$g(x, k)$的函数。
 
-This way of defining a function from a symbolic expression is known as
-\emph{lambda abstraction}. The flip side of lambda abstraction is
-\emph{application}: assuming one has a function $f$ (say, defined on
-the natural numbers), one can \emph{apply} it to any value, like 2. In
-conventional notation, of course, we write~$f(2)$ for the result.
+这种从符号表达式定义函数的方式称为\emph{λ抽象}。λ抽象的另一面是\emph{应用}：假设有一个函数$f$（例如定义在自然数上），我们可以将它\emph{应用}到任意值，比如2。当然，在传统记法中，我们把结果写作~$f(2)$。
 
-What happens when you combine lambda abstraction with application?
-Then the resulting expression can be simplified, by ``plugging'' the
-applicand in for the abstracted variable. For example,
+将λ抽象与应用结合会产生什么结果？由此得到的表达式可以通过把被应用项“代入”所抽象的变元来进行简化。例如，
 \[
 (\lambd[x][(x + 3)])(2)
 \]
-can be simplified to~$2 + 3$.
+可简化为~$2 + 3$。
 
-Up to this point, we have done nothing but introduce new notations for
-conventional notions. The lambda calculus, however, represents a more
-radical departure from the set-theoretic viewpoint. In this framework:
+到目前为止，我们所做的不过是为传统概念引入了新的记号。然而，λ演算代表了对集合论观点更为彻底的背离。在这个框架下：
 \begin{enumerate}
-\item Everything denotes a function.
-\item Functions can be defined using lambda abstraction.
-\item Anything can be applied to anything else.
+\item 一切皆指称函数。
+\item 函数可以用λ抽象来定义。
+\item 任何事物都可以应用于任何事物。
 \end{enumerate}
-For example, if $F$ is a term in the lambda calculus, $F(F)$ is always
-assumed to be meaningful. This liberal framework is known as the
-\emph{untyped} lambda calculus, where ``untyped'' means ``no
-restriction on what can be applied to what.''
+
+例如，如果$F$是λ演算中的一个项，那么$F(F)$总是假定是有意义的。这个自由的框架被称为\emph{无类型}λ演算，其中“无类型”意味着“对什么能应用于什么没有限制”。
 
 \begin{digress}
-There is also a \emph{typed} lambda calculus, which is an important
-variation on the untyped version. Although in many ways the typed
-lambda calculus is similar to the untyped one, it is much easier to
-reconcile with a classical set-theoretic framework, and has some very
-different properties.
+还有一种\emph{有类型}λ演算，它是无类型版本的一个重要变体。尽管在许多方面有类型λ演算与无类型版本相似，但它更容易与经典的集合论框架协调，并且具有一些非常不同的性质。
 
-Research on the lambda calculus has proved to be central in
-theoretical computer science, and in the design of programming
-languages. LISP, designed by John McCarthy in the 1950s, is an early
-example of a language that was influenced by these ideas.
+λ演算的研究已被证明是理论计算机科学和编程语言设计中的核心部分。20世纪50年代由 John McCarthy 设计的 LISP，就是早期受这些思想影响的编程语言的一个例子。
 \end{digress}
 
 \end{document}

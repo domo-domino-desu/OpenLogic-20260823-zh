@@ -7,40 +7,19 @@
 \begin{document}
 
 \olfileid{cmp}{thy}{cod}
-\olsection{Coding Computations}
+\olsection{编码计算}
 
-In every model of computation, it is possible to do the following:
+在每一种计算模型中，都可以进行以下操作：
+
 \begin{enumerate}
-\item Describe the \emph{definitions} of computable functions in a
-  systematic way. For instance, you can think of Turing machine
-  specifications, recursive definitions, or programs in a programming
-  language as providing these definitions.
-\item Describe the complete record of the computation of a function
-  given by some definition for a given input. For instance, a Turing
-  machine computation can be described by the sequence of
-  configurations (state of the machine, contents of the tape) for each
-  step of computation.
-\item Test whether a putative record of a computation is in fact the
-  record of how a computable function with a given definition would be
-  computed for a given input (on which the function is
-  defined, i.e., the computation halts).
-\item Extract from such a description of the complete record of a
-  computation the value of the function for a given input. For
-  instance, the contents of the tape in the very last step of a
-  halting Turing machine computation is the value.
+\item 以系统化的方式描述可计算函数的\emph{定义}。例如，图灵机规格、递归定义或编程语言中的程序，都可以看作提供了这些定义。
+\item 描述由某个定义给出的函数在给定输入上的计算过程的完整记录。例如，一次图灵机计算可以通过每一步计算的格局（机器状态、纸带内容）序列来描述。
+\item 检验一个假定的计算记录，是否确实是具有给定定义的可计算函数在给定输入上的计算记录（函数在该输入上有定义，即计算停机）。
+\item 从对计算过程完整记录的这类描述中，提取函数在给定输入上的值。例如，一次停机的图灵机计算中，最后一步的纸带内容即为该值。
 \end{enumerate}
 
-Using coding, it is possible to assign to each description of a
-computable function a numerical \emph{index} in such a way that the
-instructions can be recovered from the index in a computable way.
-Similarly, the complete record of a computation can be coded by a
-single number as well. The resulting arithmetical relation ``$s$~codes
-the record of computation of the function with index~$e$ for
-input~$x$'' and the function ``output of computation sequence with
-code~$s$'' are then computable; in fact, they are primitive recursive.
+利用编码，可以为每个可计算函数的描述分配一个数值\emph{指标}，使得我们能够以可计算的方式从该指标恢复出相应的指令。类似地，一次计算过程的完整记录也能用单个数来编码。由此得到的算术关系“$s$~编码了指标为~$e$ 的函数在输入~$x$ 上的计算记录”以及函数“代码为~$s$ 的计算序列的输出”都是可计算的；事实上，它们是原始递归的。
 
-This fundamental fact is very powerful, and allows us to prove a
-number of striking and important results about computability,
-independently of the model of computation chosen.
+这一基本事实威力巨大，它使得我们能够独立于所选择的计算模型，证明一系列关于可计算性的深刻而重要的结果。
 
 \end{document}

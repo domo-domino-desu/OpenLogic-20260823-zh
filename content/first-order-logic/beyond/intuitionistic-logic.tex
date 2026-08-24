@@ -8,217 +8,103 @@
 
 \olfileid{fol}{byd}{il}
 
-\olsection{Intuitionistic Logic}
+\olsection{直觉主义逻辑}
 
-In contrast to second-order and higher-order logic, intuitionistic
-first-order logic represents a restriction of the classical version,
-intended to model a more ``constructive'' kind of reasoning. The
-following examples may serve to illustrate some of the underlying
-motivations.
+与二阶及高阶逻辑不同，直觉主义一阶逻辑是对经典版本的一种限制，旨在刻画一种更“构造性”的推理方式。下面的例子或许有助于说明一些基本的动机。
 
-Suppose someone came up to you one day and announced that they had
-determined a natural number~$x$, with the property that if $x$ is
-prime, the Riemann hypothesis is true, and if $x$ is composite, the
-Riemann hypothesis is false. Great news!{} Whether the Riemann
-hypothesis is true or not is one of the big open questions of
-mathematics, and here they seem to have reduced the problem to one of
-calculation, that is, to the determination of whether a specific
-number is prime or not.
+假设某天有人来找你，宣布他们确定了一个自然数~$x$，它具有这样的性质：如果 $x$ 是质数，则黎曼猜想成立；如果 $x$ 是合数，则黎曼猜想不成立。好消息！黎曼猜想是否成立是数学中悬而未决的大问题之一，而他们似乎已经将这个问题归结为一个计算问题，即确定某个特定的数是不是质数。
 
-What is the magic value of $x$? They describe it as follows: $x$ is
-the natural number that is equal to $7$ if the Riemann hypothesis is
-true, and $9$ otherwise.
+这个神奇的 $x$ 的值究竟是什么呢？他们是这样描述的：$x$ 是这样一个自然数，如果黎曼猜想成立，它就等于 $7$，否则就等于 $9$。
 
-Angrily, you demand your money back. From a classical point of view,
-the description above does in fact determine a unique value of $x$;
-but what you really want is a value of $x$ that is given
-\emph{explicitly}.
+你愤怒地要求退款。从经典的角度来看，上面的描述确实唯一地确定了一个 $x$ 的值；但你真正想要的，是一个\emph{显式}给出的 $x$ 的值。
 
-To take another, perhaps less contrived example, consider the
-following question. We know that it is possible to raise an irrational
-number to a rational power, and get a rational result. For example,
-$\sqrt{2}^2 = 2$. What is less clear is whether or not it is possible
-to raise an irrational number to an \emph{irrational} power, and get a
-rational result. The following theorem answers this in the
-affirmative:
+再举一个或许不那么生造的例子，考虑下面的问题。我们知道，将一个无理数取有理次幂，可能得到一个有理数。例如，$\sqrt{2}^2 = 2$。不那么清楚的是，是否可能将一个无理数取\emph{无理}次幂，并得到一个有理数。下面的定理给出了肯定的回答：
 
 \begin{thm}
-There are irrational numbers $a$ and $b$ such that $a^b$ is rational.
+存在无理数 $a$ 和 $b$，使得 $a^b$ 是有理数。
 \end{thm}
 
 \begin{proof}
-Consider $\sqrt{2}^{\sqrt{2}}$. If this is rational, we are done:
-we can let $a = b = \sqrt{2}$. Otherwise, it is irrational. Then we
-have
+考虑 $\sqrt{2}^{\sqrt{2}}$。如果它是有理数，那么证明就完成了：可以令 $a = b = \sqrt{2}$。否则，它是无理数。那么我们有
 \[
 (\sqrt{2}^{\sqrt{2}})^{\sqrt{2}} = \sqrt{2}^{\sqrt{2} \cdot
   \sqrt{2}} = \sqrt{2}^2 = 2,
 \]
-which is certainly rational. So, in this case, let $a$ be
-$\sqrt{2}^{\sqrt{2}}$, and let $b$ be~$\sqrt 2$.
+它当然是有理数。因此，在这种情况下，令 $a$ 为 $\sqrt{2}^{\sqrt{2}}$，并令 $b = \sqrt 2$。
 \end{proof}
 
-Does this constitute a valid proof? Most mathematicians feel that it
-does. But again, there is something a little bit unsatisfying here: we
-have proved the existence of a pair of real numbers with a certain
-property, without being able to say \emph{which} pair of numbers it
-is.  It is possible to prove the same result, but in such a way that
-the pair $a$, $b$ \emph{is} given in the proof: take $a = \sqrt{3}$
-and $b = \log_3 4$. Then
+这构成一个有效的证明吗？大多数数学家认为是的。但同样，这里有一点令人不满意：我们证明了存在一对具有某种性质的实数，却无法说出\emph{具体是哪一对}实数。可以用另一种方式证明相同的结果，使得 $a$、$b$ 这一对数在证明中是\emph{被明确给出的}：取 $a = \sqrt{3}$，$b = \log_3 4$。那么
 \[
 a^b = \sqrt{3}^{\log_3 4} = 3^{1/2 \cdot \log_3 4} = (3^{\log_3
   4})^{1/2} = 4^{1/2}= 2,
 \]
-since $3^{\log_3 x} = x$.
+因为 $3^{\log_3 x} = x$。
 
-Intuitionistic logic is designed to model a kind of reasoning where
-moves like the one in the first proof are disallowed. Proving the
-existence of an $x$ satisfying~$!A(x)$ means that you have to give a
-specific~$x$, and a proof that it satisfies $!A$, like in the second
-proof. Proving that $!A$ or $!B$ holds requires that you can prove one
-or the other.
+直觉主义逻辑旨在刻画一种禁止了第一个证明中那种推理步骤的推理方式。证明存在一个 $x$ 满足~$!A(x)$，意味着你必须给出一个具体的~$x$，以及一个它满足 $!A$ 的证明，就像第二个证明那样。要证明 $!A$ 或 $!B$ 成立，就要求你能证明二者之一。
 
-Formally speaking, intuitionistic first-order logic is what you get if
-you restrict !!a{derivation} system for first-order logic in a certain
-way. Similarly, there are intuitionistic versions of second-order or
-higher-order logic. From the mathematical point of view, these are
-just formal deductive systems, but, as already noted, they are
-intended to model a kind of mathematical reasoning. One can take this
-to be the kind of reasoning that is justified on a certain
-philosophical view of mathematics (such as Brouwer's intuitionism);
-one can take it to be a kind of mathematical reasoning which is more
-``concrete'' and satisfying (along the lines of Bishop's
-constructivism); and one can argue about whether or not the formal
-description captures the informal motivation. But whatever
-philosophical positions we may hold, we can study intuitionistic logic
-as a formally presented logic; and for whatever reasons, many
-mathematical logicians find it interesting to do so.
+形式上说，直觉主义一阶逻辑就是对一阶逻辑的某个推导系统施加某种限制后所得的系统。类似地，也有直觉主义版本的二阶或高阶逻辑。从数学的观点看，这些只是形式推导系统，但正如已经指出的，它们旨在刻画一种数学推理。我们可以将其视为在某种数学哲学观点（例如 Brouwer（布劳威尔）的直觉主义）下得到辩护的那种推理；也可以将其视为一种更“具体”且更令人满意的数学推理（沿着 Bishop（毕晓普）的构造主义路线）；我们还可以争论形式描述是否抓住了非形式的动机。但无论我们持何种哲学立场，我们都可以将直觉主义逻辑作为一个形式呈现的逻辑系统来研究；而且无论出于何种原因，许多数理逻辑学家都觉得这样做很有趣。
 
-There is an informal constructive interpretation of the intuitionist
-connectives, usually known as the BHK interpretation (named after
-Brouwer, Heyting, and Kolmogorov). It runs as follows: a proof of $!A
-\land !B$ consists of a proof of $!A$ paired with a proof of $!B$; a
-proof of $!A \lor !B$ consists of either a proof of $!A$, or a proof
-of $!B$, where we have explicit information as to which is the case; a
-proof of $!A \lif !B$ consists of a procedure, which transforms a
-proof of $!A$ to a proof of~$!B$; a proof of $\lforall[x][!A(x)]$
-consists of a procedure which returns a proof of $!A(x)$ for any value
-of~$x$; and a proof of $\lexists[x][!A(x)]$ consists of a value
-of~$x$, together with a proof that this value satisfies~$!A$. One can
-describe the interpretation in computational terms known as the
-``Curry--Howard isomorphism'' or the ``!!{formula}s-as-types
-paradigm'': think of !!a{formula} as specifying a certain kind of
-data type, and proofs as computational objects of these data types
-that enable us to see that the corresponding !!{formula} is true.
+对直觉主义联结词有一种非形式的构造性解释，通常称为 BHK 解释（以 Brouwer、Heyting（海丁）和 Kolmogorov（柯尔莫哥洛夫）的名字命名）。其内容如下：$!A \land !B$ 的一个证明由 $!A$ 的一个证明与 $!B$ 的一个证明配对而成；$!A \lor !B$ 的一个证明要么是 $!A$ 的一个证明，要么是 $!B$ 的一个证明，且我们能明确知道是哪一种情况；$!A \lif !B$ 的一个证明是一个程序，它能把 $!A$ 的证明转化为 $!B$ 的证明；$\lforall[x][!A(x)]$ 的证明是一个程序，该程序对任何值~$x$ 都返回 $!A(x)$ 的一个证明；而 $\lexists[x][!A(x)]$ 的证明则由一个值~$x$ 以及该值满足~$!A$ 的一个证明共同组成。我们可以用被称为“Curry（柯里）--Howard（霍华德）同构”或“公式即类型范式”的计算术语来描述这种解释：把公式看作是规定了某种数据类型，而证明则是这些数据类型的计算对象，它们使我们能够看出对应的公式为真。
 
-Intuitionistic logic is often thought of as being classical logic
-``minus'' the law of the excluded middle. This following theorem makes
-this more precise.
+直觉主义逻辑常被看作是经典逻辑“减去”排中律。下面的定理使这一点更加精确。
+
+
 \begin{thm}
-Intuitionistically, the following axiom schemata are equivalent:
+在直觉主义逻辑中，下列公理模式是等价的：
 \begin{enumerate}
-\item $(\lnot !A \lif \lfalse) \lif !A$.
+\item $(\lnot !A \lif \lfalse) \lif !A$。
 \item $!A \lor \lnot !A$
 \item $\lnot \lnot !A \lif !A$
 \end{enumerate}
 \end{thm}
-Obtaining instances of one schema from either of the others is a good
-exercise in intuitionistic logic.
 
-The first deductive systems for intuitionistic propositional
-logic, put forth as formalizations of Brouwer's intuitionism, are due,
-independently, to Kolmogorov, Glivenko, and Heyting. The first
-formalization of intuitionistic first-order logic (and parts of
-intuitionist mathematics) is due to Heyting. Though a number of
-classically valid schemata are not intuitionistically valid, many are.
+从其余两个模式之一得出某个模式的实例，是直觉主义逻辑中很好的练习。
 
-The \emph{double-negation translation} describes an important
-relationship between classical and intuitionist logic. It is defined
-inductively follows (think of $!A^N$ as the ``intuitionist''
-translation of the classical !!{formula}~$!A$):
+直觉主义命题逻辑的第一个推导系统（作为 Brouwer 直觉主义的形式化）由 Kolmogorov、Glivenko（格里文科）和 Heyting 各自独立提出。直觉主义一阶逻辑（以及部分直觉主义数学）的第一个形式化归于 Heyting。虽然许多经典有效的模式在直觉主义下无效，但也有很多是有效的。
+
+\emph{双重否定翻译}描述了经典逻辑与直觉主义逻辑之间的一个重要关系。它的归纳定义如下（可将 $!A^N$ 视为经典公式~$!A$ 的“直觉主义”翻译）：
 \begin{align*}
-!A^N & \ident \lnot\lnot !A \quad \text{for atomic !!{formula}s $!A$} \\
+!A^N & \ident \lnot\lnot !A \quad \text{对原子公式 $!A$} \\
 (!A \land !B)^N & \ident (!A^N \land !B^N) \\
 (!A \lor !B)^N & \ident  \lnot\lnot (!A^N \lor !B^N) \\
 (!A \lif !B)^N & \ident (!A^N \lif !B^N) \\
 (\lforall[x][!A])^N & \ident \lforall[x][!A^N] \\
 (\lexists[x][!A])^N & \ident \lnot\lnot\lexists[x][!A^N]
 \end{align*}
-Kolmogorov and Glivenko had versions of this translation for
-propositional logic; for predicate logic, it is due to G\"odel and
-Gentzen, independently. We have
+Kolmogorov 和 Glivenko 已为此翻译提出了命题逻辑的版本；对谓词逻辑，则归功于 G\"odel（哥德尔）和 Gentzen（根岑）的独立工作。我们有
 
 \begin{thm}
 \begin{enumerate}
-\item $!A \liff !A^N$ is provable classically
-\item If $!A$ is provable classically, then $!A^N$ is provable
-  intuitionistically.
+\item $!A \liff !A^N$ 在经典逻辑中可证。
+\item 如果 $!A$ 在经典逻辑中可证，则 $!A^N$ 在直觉主义逻辑中可证。
 \end{enumerate}
 \end{thm}
 
-We can now envision the following dialogue. Classical mathematician:
-``I've proved $!A$!'' Intuitionist mathematician: ``Your proof isn't
-valid. What you've really proved is $!A^N$.'' Classical mathematician:
-``Fine by me!'' As far as the classical mathematician is concerned, the
-intuitionist is just splitting hairs, since the two are
-equivalent. But the intuitionist insists there is a difference.
+现在我们可以设想以下对话。经典数学家：“我证明了 $!A$！”直觉主义数学家：“你的证明无效。你真正证明的是 $!A^N$。”经典数学家：“对我来说都一样！”在经典数学家看来，直觉主义者只是在吹毛求疵，因为两者是等价的。但直觉主义者坚持认为二者有区别。
 
-Note that the above translation concerns pure logic only; it does not
-address the question as to what the appropriate \emph{nonlogical}
-axioms are for classical and intuitionistic mathematics, or what the
-relationship is between them. But the following slight extension of
-the theorem above provides some useful information:
+注意，上述翻译仅涉及纯逻辑；它不涉及以下问题：经典数学与直觉主义数学各自合适的\emph{非逻辑}公理是什么，或者二者之间有什么关系。但将上一定理稍作扩展，便可提供一些有用的信息：
 
 \begin{thm}
-If $\Gamma$ proves $!A$ classically, $\Gamma^N$ proves $!A^N$
-intuitionistically.
+如果 $\Gamma$ 在经典逻辑中证明 $!A$，则 $\Gamma^N$ 在直觉主义逻辑中证明 $!A^N$。
 \end{thm}
 
-In other words, if $!A$ is provable from some hypotheses classically,
-then $!A^N$ is provable from their double-negation translations.
+换言之，如果 $!A$ 在经典逻辑中可从某些前提推出，那么 $!A^N$ 可从这些前提的双重否定翻译推出。
 
-To show that a sentence or propositional !!{formula} is intuitionistically
-valid, all you have to do is provide a proof. But how can you show
-that it is not valid? For that purpose, we need a semantics
-that is sound, and preferably complete. A semantics
-due to Kripke nicely fits the bill.
+要证明一个语句或命题公式是直觉主义有效的，你只需要提供一个证明。但如何证明它无效呢？为此，我们需要一个可靠的，最好是完备的语义学。Kripke（克里普克）提出的语义学正好符合要求。
 
-We can play the same game we did for classical logic: define the
-semantics, and prove soundness and completeness. It is worthwhile,
-however, to note the following distinction. In the case of classical
-logic, the semantics was the ``obvious'' one, in a sense implicit in
-the meaning of the connectives. Though one can provide some intuitive
-motivation for Kripke semantics, the latter does not offer the same
-feeling of inevitability. In addition, the notion of a classical
-!!{structure} is a natural mathematical one, so we can either take the
-notion of !!a{structure} to be a tool for studying classical first-order
-logic, or take classical first-order logic to be a tool for studying
-mathematical !!{structure}s. In contrast, Kripke !!{structure}s can only be
-viewed as a logical construct; they don't seem to have independent
-mathematical interest.
+我们可以像对待经典逻辑那样如法炮制：定义语义，然后证明可靠性和完备性。然而，值得注意以下区别。在经典逻辑的情形中，语义是“显然的”，在某种意义上内嵌于联结词的含义之中。尽管我们可以为 Kripke 语义提供一些直观动机，但后者并未给人同样不可避免的感觉。此外，经典结构的概念是一个自然的数学概念，因此我们既可以把结构的概念当作研究经典一阶逻辑的工具，也可以把经典一阶逻辑当作研究数学结构的工具。相比之下，Kripke 结构只能被视为一种逻辑构造；它们似乎并不具有独立的数学兴趣。
 
-A Kripke !!{structure}~$\mModel M = \tuple{W, R, V}$ for a propositional
-language consists of a set~$W$, partial order~$R$ on~$W$ with a least
-!!{element}, and an ``monotone'' assignment of propositional variables to
-the !!{element}s of~$W$. The intuition is that the !!{element}s of $W$
-represent ``worlds,'' or ``states of knowledge''; an element $v \geq
-u$ represents a ``possible future state'' of~$u$; and the
-propositional variables assigned to~$u$ are the propositions that are
-known to be true in state~$u$. The forcing relation $\mSat{M}{!A}[w]$
-then extends this relationship to arbitrary !!{formula}s in the
-language; read $\mSat{M}{!A}[w]$ as ``$!A$ is true in state~$w$.'' The
-relationship is defined inductively, as follows:
+一个命题语言的 Kripke 结构~$\mModel M = \tuple{W, R, V}$ 由一个集合~$W$、$W$ 上带有一个最小元的偏序~$R$，以及命题变元到~$W$ 的元素的一个“单调”指派组成。直观上，$W$ 中的元素代表“世界”或“知识状态”；元素 $v \geq u$ 代表~$u$ 的一个“可能未来状态”；而指派给~$u$ 的命题变元，就是在状态~$u$ 下已知为真的那些命题。力迫关系 $\mSat{M}{!A}[w]$ 继而将这一关系扩展到语言中的任意公式；我们可以把 $\mSat{M}{!A}[w]$ 读作“$!A$ 在状态~$w$ 下为真”。该关系归纳定义如下：
+
 \begin{enumerate}
-\item $\mSat{M}{\Obj p_i}[w]$ iff $\Obj p_i$ is one of the
-  propositional variables assigned to~$w$.
-\item $\mSat/{M}{\lfalse}[w]$.
-\item $\mSat{M}{(!A \land !B)}[w]$ iff $\mSat{M}{!A}[w]$ and $\mSat{M}{!B}[w]$.
-\item $\mSat{M}{(!A \lor !B)}[w]$ iff $\mSat{M}{!A}[w]$ or $\mSat{M}{!B}[w]$.
-\item $\mSat{M}{(!A \lif !B)}[w]$ iff, whenever $w' \geq w$ and
-  $\mSat{M}{!A}[w']$, then $\mSat{M}{!B}[w']$.
+\item $\mSat{M}{\Obj p_i}[w]$ 当且仅当 $\Obj p_i$ 是指派给~$w$ 的命题变元之一。
+\item $\mSat/{M}{\lfalse}[w]$。
+\item $\mSat{M}{(!A \land !B)}[w]$ 当且仅当 $\mSat{M}{!A}[w]$ 且 $\mSat{M}{!B}[w]$。
+\item $\mSat{M}{(!A \lor !B)}[w]$ 当且仅当 $\mSat{M}{!A}[w]$ 或 $\mSat{M}{!B}[w]$。
+\item $\mSat{M}{(!A \lif !B)}[w]$ 当且仅当，只要 $w' \geq w$ 且 $\mSat{M}{!A}[w']$，就有 $\mSat{M}{!B}[w']$。
 \end{enumerate}
-It is a good exercise to try to show that $\lnot (p \land q) \lif
-(\lnot p \lor \lnot q)$ is not intuitionistically valid, by cooking up a
-Kripke !!{structure} that provides a counterexample.
+
+尝试构造一个提供反例的 Kripke 结构，以此证明 $\lnot (p \land q) \lif
+(\lnot p \lor \lnot q)$ 在直觉主义下无效，这是一个很好的练习。
 
 \end{document}

@@ -3,61 +3,40 @@
 \begin{document}
 
 \olfileid{sth}{z}{arbintersections}
-\olsection{Appendix: Closure, Comprehension, and Intersection}
+\olsection{附录：闭包、概括与交集}
 
-In \olref[sth][z][milestone]{sec}, we suggested that you should look
-back through the na\"ive work of \olref[sfr][][]{part} and check that
-it can be carried out in~$\Zminus$. If you followed that advice,
-\emph{one} point might have tripped you up: the use of
-\emph{intersection} in Dedekind's treatment of \emph{closures}. 
+在 \olref[sth][z][milestone]{sec} 中，我们曾建议你回顾 \olref[sfr][][]{part} 中的朴素集合论工作，并检查它能否在~$\Zminus$ 中开展。如果你遵循了那条建议，\emph{有一处}可能会让你遇到麻烦：那就是 Dedekind（戴德金）处理\emph{闭包}时对\emph{交集}的使用。
 
-Recall from \olref[sfr][infinite][dedekind]{Closure} that
+回顾 \olref[sfr][infinite][dedekind]{Closure} 可知，
 \begin{align*}
-  \closureofunder{f}{o} & = \bigcap\Setabs{X}{o \in X \text{ and $X$ is
-$f$-closed}}.
-\intertext{The general shape of this is a definition of the form:}
+  \closureofunder{f}{o} & = \bigcap\Setabs{X}{o \in X \text{且 $X$ 是
+$f$-封闭的}}.
+\intertext{这类定义的一般形式如下：}
   C & = \bigcap\Setabs{X}{\phi(X)}.
 \end{align*}
-But this should ring alarm bells: since Na\"ive Comprehension fails,
-there is no guarantee that $\Setabs{X}{\phi(X)}$ exists. It looks
-dangerously, then, like such definitions are \emph{cheating}. 
+但这应该敲响警钟：既然朴素概括失效，就无法保证 $\Setabs{X}{\phi(X)}$ 一定存在。这样一来，这类定义极其像是在\emph{作弊}。
 
-Fortunately, they are not cheating; or rather, if they \emph{are}
-cheating as they stand, then we can engage in some honest toil to
-render them kosher. That honest toil was foreshadowed in
-\olref[sth][z][sep]{prop:intersectionsexist}, when we explained why
-$\bigcap A$ exists for any $A \neq \emptyset$. But we will spell it out
-explicitly.
+幸运的是，它们并非作弊；或者更确切地说，即使它们目前的形式\emph{是}作弊，我们也可以通过一些诚实的劳动使其变得合乎规矩。这种诚实的劳动在 \olref[sth][z][sep]{prop:intersectionsexist} 中已作铺垫，当时我们解释了为何对任意 $A \neq \emptyset$，$\bigcap A$ 都存在。不过，我们将在此详细展开。
 
-Given Extensionality, if we attempt to define $C$ as
-$\bigcap\Setabs{X}{\phi(X)}$, all we are really asking is for an
-object $C$ which obeys the following:
+根据外延公理，如果我们试图将 $C$ 定义为
+$\bigcap\Setabs{X}{\phi(X)}$，那么我们真正要求找到的只是一个满足以下条件的对象 $C$：
 \begin{equation}\ollabel{bicondelimarbintersection}
 	\forall x(x \in C \liff \forall X(\phi(X) \lif x \in X))\tag{*}
 \end{equation}
-Now, suppose there is \emph{some} set, $S$, such that $\phi(S)$. Then
-to deliver \olref{bicondelimarbintersection}, we can simply define $C$
-using \emph{Separation}, as follows:
+现在，假设存在\emph{某个}集合 $S$，使得 $\phi(S)$ 成立。那么，要实现 \olref{bicondelimarbintersection}，我们可以简单地利用\emph{分离公理}来定义 $C$，如下所示：
 \[
 	C = \Setabs{x \in S}{\forall X(\phi(X) \lif x \in X)}.
 \]
-We leave it as an exercise to check that this definition yields
-\olref{bicondelimarbintersection}, as desired. 
+我们将验证该定义确实能如我们所愿地给出 \olref{bicondelimarbintersection} 留作练习。
 %  fix $x$. First suppose that $x \in C$, as (re)defined; then both $x
 %  \in S$ and $\forall X(\phi(X) \lif x \in X)$; but since
 %  $\phi(S)$, this reduces to the condition that $\forall X(\phi(X)
 %  \lif x \in X)$. Conversely, suppose $\forall X(\phi(X) \lif
 %  x \in X)$; then, since $\phi(S)$, we also have that $x \in S$; so
 %  $x \in c$, as (re)defined. 
-And this general strategy will allow us to circumvent any apparent use
-of Na\"ive Comprehension in defining intersections. In the particular
-case which got us started on this line of thought, namely that of
-$\closureofunder{f}{o}$, here is how that would work. We began the
-proof of \olref[sfr][infinite][dedekind]{closureproperties} by noting
-that $o \in \ran{f}\cup\{o\}$ and that $\ran{f} \cup \{o\}$ is
-$f$-closed. So, we can define what we want thus:
+这一通用策略将使我们能够绕过在定义交集时对朴素概括的任何表面上的使用。在引发我们这条思路的那个特例，即 $\closureofunder{f}{o}$ 的情形中，具体做法如下。我们在开始证明 \olref[sfr][infinite][dedekind]{closureproperties} 时曾指出，$o \in \ran{f}\cup\{o\}$ 且 $\ran{f} \cup \{o\}$ 是 $f$-封闭的。这样，我们就可以如下定义我们所需的闭包：
 \[
-	\closureofunder{f}{o} = \Setabs{x \in \ran{f} \cup \{o\}}{(\forall X \ni o)(X \text{ is $f$-closed} \lif x \in X)}.
+	\closureofunder{f}{o} = \Setabs{x \in \ran{f} \cup \{o\}}{(\forall X \ni o)(X \text{ 是 $f$-封闭的} \lif x \in X)}.
 \]
 
 \end{document}

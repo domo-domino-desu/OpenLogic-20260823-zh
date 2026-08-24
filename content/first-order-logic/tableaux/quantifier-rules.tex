@@ -8,9 +8,9 @@
 
 \olfileid{fol}{tab}{qrl}
 
-\olsection{Quantifier Rules}
+\olsection{量词规则}
 
-\subsection{Rules for $\lforall$}
+\subsection{$\lforall$ 的规则}
 
 \begin{defish}
 \AxiomC{\sFmla{\True}{\lforall[x][!A(x)]}}
@@ -24,15 +24,9 @@
 \DisplayProof
 \end{defish}
 
-In \TRule{\True}{\lforall}, $t$ is a closed term (i.e., one without
-variables). In \TRule{\False}{\lforall}, $a$~is !!a{constant} which
-must not occur anywhere in the branch above \TRule{\False}{\lforall}
-rule. We call $a$ the \emph{eigenvariable} of the
-\TRule{\False}{\forall} inference.\footnote{We use the term
-``eigenvariable'' even though $a$ in the above rule is !!a{constant}.
-This has historical reasons.}
+在 \TRule{\True}{\lforall} 规则中，$t$ 是一个闭项（即不含变元的项）。在 \TRule{\False}{\lforall} 规则中，$a$~是一个常项符号，且它不得出现在 \TRule{\False}{\lforall} 规则上方的分支中的任何地方。我们称 $a$ 为 \TRule{\False}{\lforall} 推理的\emph{本征变元}。\footnote{尽管上述规则中的 $a$ 是常项符号，我们仍沿用“本征变元”这个术语。这是出于历史原因。}
 
-\subsection{Rules for $\lexists$}
+\subsection{$\lexists$ 的规则}
 
 \begin{defish}
 \AxiomC{\sFmla{\True}{\lexists[x][!A(x)]}}
@@ -46,45 +40,26 @@ This has historical reasons.}
 \DisplayProof
 \end{defish}
 
-Again, $t$~is a closed term, and $a$~is !!a{constant} which does not
-occur in the branch above the~\TRule{\True}{\lexists} rule. We call
-$a$ the \emph{eigenvariable} of the \TRule{\True}{\lexists} inference.
+同样地，$t$~是闭项，而 $a$~是一个常项符号，且不得出现在 \TRule{\True}{\lexists} 规则上方的分支中。我们称 $a$ 为 \TRule{\True}{\lexists} 推理的\emph{本征变元}。
 
-The condition that an eigenvariable not occur in the branch above the
-\TRule{\False}{\lforall} or \TRule{\True}{\lexists} inference is
-called the \emph{eigenvariable condition}.
+本征变元不得在 \TRule{\False}{\lforall} 或 \TRule{\True}{\lexists} 推理上方的分支中出现，这一条件被称为\emph{本征变元条件}。
 
 \begin{explain}
-Recall the convention that when $!A$ is !!a{formula} with the
-!!{variable}~$x$ free, we indicate this by writing~$!A(x)$. In the
-same context, $!A(t)$ then is short for~$\Subst{!A}{t}{x}$. So we
-could also write the \TRule{\False}{\lexists} rule as:
+回顾一下记法约定：当 $!A$ 是一个变元~$x$ 在其中自由出现的公式时，我们写作~$!A(x)$。在同一语境下，$!A(t)$ 则是~$\Subst{!A}{t}{x}$ 的简写。因此，我们也可以将 \TRule{\False}{\lexists} 规则写作：
 \begin{prooftree}
   \AxiomC{\sFmla{\False}{\lexists[x][!A]}}
   \RightLabel{\TRule{\False}{\lexists}}
   \UnaryInfC{\sFmla{\False}{\Subst{!A}{t}{x}}}
 \end{prooftree}
-Note that $t$ may already occur in~$!A$, e.g., $!A$~might
-be~$\Atom{\Obj P}{t,x}$. Thus, inferring $\sFmla{\False}{\Atom{\Obj
-P}{t,t}}$ from~$ \sFmla{\False}{\lexists[x][\Atom{\Obj P}{t,x}]}$ is
-a correct application of~\TRule{\False}{\lexists}. However, the
-eigenvariable conditions in \TRule{\False}{\lforall}
-and~\TRule{\True}{\lexists} require that the !!{constant}~$a$ does
-not occur in~$!A$. So, you cannot correctly infer
-$\sFmla{\False}{\Atom{\Obj P}{a,a}}$ from
+注意，$t$ 可能已经在~$!A$ 中出现，例如，$!A$~可能是~$\Atom{\Obj P}{t,x}$。因此，从~$ \sFmla{\False}{\lexists[x][\Atom{\Obj P}{t,x}]}$ 推出 $\sFmla{\False}{\Atom{\Obj
+P}{t,t}}$ 是~\TRule{\False}{\lexists} 的正确应用。但是，\TRule{\False}{\lforall} 和~\TRule{\True}{\lexists} 中的本征变元条件要求常项符号~$a$ 不得出现在~$!A$ 中。所以，你无法使用~$\TRule{\False}{\lforall}$ 从
 $\sFmla{\False}{\lforall[x][\Atom{\Obj P}{a,x}]}$
-using~$\TRule{\False}{\lforall}$.
+正确地推出
+$\sFmla{\False}{\Atom{\Obj P}{a,a}}$。
 \end{explain}
 
 \begin{explain}
-In \TRule{\True}{\lforall} and \TRule{\False}{\lexists} there are no
-restrictions on the term~$t$. On the other hand, in the
-\TRule{\True}{\lexists} and \TRule{\False}{\lforall} rules, the
-eigenvariable condition requires that the !!{constant}~$a$ does not
-occur anywhere in the branches above the respective inference. It is
-necessary to ensure that the system is sound. Without this condition,
-the following would be a closed !!{tableau} for
-$\lexists[x][\formula{A}(x)] \lif \lforall[x][\formula{A}(x)]$:
+在 \TRule{\True}{\lforall} 和 \TRule{\False}{\lexists} 中，对项~$t$ 没有限制。另一方面，在 \TRule{\True}{\lexists} 和 \TRule{\False}{\lforall} 规则中，本征变元条件要求常项符号~$a$ 不得出现在各自推理上方分支的任何地方。这一条件对于保证系统的可靠性是必要的。如果没有这个条件，下面就会是 $\lexists[x][\formula{A}(x)] \lif \lforall[x][\formula{A}(x)]$ 的一个封闭分析表：
 \begin{center}
 \begin{tableau}{}
   [\sFmla{\False}{\lexists[x][\formula{A}(x)] \lif \lforall[x][\formula{A}(x)]}, just=\TAss
@@ -102,8 +77,8 @@ $\lexists[x][\formula{A}(x)] \lif \lforall[x][\formula{A}(x)]$:
   ]
 \end{tableau}
 \end{center}
-However, $\lexists[x][\formula{A}(x)] \lif
-\lforall[x][\formula{A}(x)]$ is not valid.
+然而，$\lexists[x][\formula{A}(x)] \lif
+\lforall[x][\formula{A}(x)]$ 并非有效式。
 \end{explain}
 
 \end{document}

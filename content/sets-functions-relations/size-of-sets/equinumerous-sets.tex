@@ -8,104 +8,69 @@
 
 \olfileid{sfr}{siz}{equ}
 
-\olsection{Equinumerosity}
+\olsection{等势}
 
-We have an intuitive notion of ``size'' of sets, which works fine for
-finite sets. But what about infinite sets? If we want to come up with
-a formal way of comparing the sizes of two sets of \emph{any} size, it
-is a good idea to start by defining when sets are the same size. Here
-is Frege:
+我们对集合的“大小”有一个直观的概念，这对有限集来说是很适用的。
+但对于无穷集呢？如果我们想要形式化地比较\emph{任意}大小的两个集合，一个很好的出发点是定义何时两个集合大小相同。以下是 Frege（弗雷格）的论述：
+
 \begin{quote}
-  If a waiter wants to be sure that he has laid exactly as many knives
-  as plates on the table, he does not need to count either of them, if
-  he simply lays a knife to the right of each plate, so that every
-  knife on the table lies to the right of some plate. The plates and
-  knives are thus uniquely correlated to each other, and indeed
-  through that same spatial relationship. \citep[\S70]{Frege1884}
+  如果一名侍者想确认他在桌上摆放的餐刀恰好和餐盘一样多，
+  他并不需要清点任何一个，
+  只要他在每个盘子的右边放上一把刀，
+  使得桌上的每把刀都位于某个盘子的右边即可。这样，
+  餐盘与餐刀就通过这同样的空间关系而被一一对应起来了。
+  \citep[\S70]{Frege1884}
 \end{quote}
-The insight of this passage can be brought out through a formal
-definition:
+
+这段话的洞见可以通过以下形式定义来阐明：
 
 \begin{defn}\ollabel{comparisondef}
-  $A$ is \emph{equinumerous} with $B$, written $\cardeq{A}{B}$, iff
-  there is !!a{bijection} $f \colon A \to B$. 
+  $A$ 与 $B$ 是\emph{等势的}，记作 $\cardeq{A}{B}$，
+  当且仅当存在一个双射 $f \colon A \to B$。
 \end{defn}
 
 \begin{prop}\ollabel{equinumerosityisequi}
-Equinumerosity is an equivalence relation.
+等势是一个等价关系。
 \end{prop}
 
 \begin{proof} 
-We must show that equinumerosity is reflexive, symmetric, and
-transitive. Let $A, B$, and $C$ be sets.
+我们必须证明等势是自反的、对称的和传递的。设 $A$、$B$ 和 $C$ 为集合。
 
-\emph{Reflexivity.} The identity map $\Id{A} \colon A \to A$, where
-$\Id{A} (x) = x$ for all $x \in A$, is !!a{bijection}. So
-$\cardeq{A}{A}$.
+\emph{自反性。} 恒等映射 $\Id{A} \colon A \to A$，其中对所有 $x \in A$ 有 $\Id{A} (x) = x$，是一个双射。所以 $\cardeq{A}{A}$。
 
-\emph{Symmetry.} Suppose $\cardeq{A}{B}$, i.e., there is
-!!a{bijection} $f\colon A \to B$. Since $f$ is !!{bijective}, its
-inverse $f^{-1}$ exists and is also !!{bijective}. Hence,
-$f^{-1}\colon B \to A$ is !!a{bijection}, so $\cardeq{B}{A}$.
+\emph{对称性。} 假设 $\cardeq{A}{B}$，即存在一个双射 $f\colon A \to B$。由于 $f$ 是双射，其逆 $f^{-1}$ 存在且也是双射。因此，$f^{-1}\colon B \to A$ 是一个双射，故 $\cardeq{B}{A}$。
 
-\emph{Transitivity.} Suppose that $\cardeq{A}{B}$ and $\cardeq{B}{C}$,
-i.e., there are !!{bijection}s $f\colon A \to B$ and $g\colon B \to
-C$. Then the composition $\comp{f}{g}\colon A \to C$ is !!{bijective},
-so that $\cardeq{A}{C}$.
+\emph{传递性。} 假设 $\cardeq{A}{B}$ 且 $\cardeq{B}{C}$，即存在双射 $f\colon A \to B$ 和 $g\colon B \to C$。那么复合 $\comp{f}{g}\colon A \to C$ 是双射，因此 $\cardeq{A}{C}$。
 \end{proof}
 
 \begin{prop}
-If $\cardeq{A}{B}$, then $A$ is !!{enumerable} if
-and only if $B$ is.
+若 $\cardeq{A}{B}$，则 $A$ 是可数的当且仅当 $B$ 是可数的。
 \end{prop}
 
 \begin{editorial}
-The following proof uses \olref[enm]{defn:enumerable} if
-\olref[enm]{sec} is included and \olref[enm-alt]{defn:enumerable}
-otherwise.
+以下证明根据是否包含 \olref[enm]{sec} 节，分别使用 \olref[enm]{defn:enumerable} 或 \olref[enm-alt]{defn:enumerable}。
 \end{editorial}
 
 \begin{proof}
-Suppose $\cardeq{A}{B}$, so there is some !!{bijection} $f \colon A
-\to B$, and suppose that $A$ is !!{enumerable}.
+假设 $\cardeq{A}{B}$，即存在某个双射 $f \colon A \to B$，并假设 $A$ 是可数的。
 \oliflabeldef{sfr:siz:enm:defn:enumerable}{
-  Then either $A = \emptyset$ or there is !!a{surjective} function
-  $g\colon \PosInt \to A$. If $A = \emptyset$, then $B = \emptyset$
-  also (otherwise there would be !!a{element}~$y \in B$ but no $x \in
-  A$ with $g(x) = y$). If, on the other hand, $g\colon \PosInt \to A$
-  is !!{surjective}, then $\comp{g}{f} \colon \PosInt \to B$ is
-  !!{surjective}. To see this, let $y \in B$. Since $f$ is
-  !!{surjective}, there is an $x \in A$ such that $f(x) = y$. Since
-  $g$ is !!{surjective}, there is an $n \in \PosInt$ such that $g(n) =
-  x$. Hence,
+  那么要么 $A = \emptyset$，要么存在一个满射函数 $g\colon \PosInt \to A$。若 $A = \emptyset$，则也有 $B = \emptyset$（否则就会存在元素 $y \in B$ 但没有 $x \in A$ 使得 $g(x) = y$）。另一方面，若 $g\colon \PosInt \to A$ 是满射，则 $\comp{g}{f} \colon \PosInt \to B$ 是满射。为说明这一点，令 $y \in B$。由于 $f$ 是满射，存在 $x \in A$ 使得 $f(x) = y$。由于 $g$ 是满射，存在 $n \in \PosInt$ 使得 $g(n) = x$。于是，
 \[
 (\comp{g}{f})(n) = f(g(n)) = f(x) = y
 \]
-and thus $\comp{g}{f}$ is !!{surjective}. We have that $\comp{g}{f}$
-is an enumeration of~$B$, and so $B$~is !!{enumerable}.}
+因此 $\comp{g}{f}$ 是满射。我们得到 $\comp{g}{f}$ 是 $B$ 的一个枚举，故 $B$ 是可数的。}
 {
-  Then either $A  = \emptyset$ or there is !!a{bijection}~$g$ whose
-  range is $A$ and whose domain is either $\Nat$ or an initial
-  sequence of natural numbers. If $A = \emptyset$, then $B =
-  \emptyset$ also (otherwise there would be some~$y \in B$ with no $x
-  \in A$ such that $g(x) = y$). So suppose we have our
-  !!{bijection}~$g$. Then $\comp{g}{f}$ is !!a{bijection} with
-  range~$B$ and domain the same as that of~$g$ (i.e., either $\Nat$ or
-  an initial segment of it), so that $B$ is !!{enumerable}.}
+  那么要么 $A = \emptyset$，要么存在一个双射 $g$，其值域是 $A$ 而定义域是 $\Nat$ 或自然数的一个初始段。若 $A = \emptyset$，则也有 $B = \emptyset$（否则就会存在某个 $y \in B$ 而没有 $x \in A$ 使得 $g(x) = y$）。所以假设我们有双射 $g$。那么 $\comp{g}{f}$ 是一个双射，其值域为 $B$ 而定义域与 $g$ 的相同（即 $\Nat$ 或其初始段），因此 $B$ 是可数的。}
 
-If $B$ is !!{enumerable}, we obtain that $A$ is !!{enumerable} by
-repeating the argument with the !!{bijection} $f^{-1}\colon B \to A$
-instead of~$f$. 
+如果 $B$ 是可数的，我们只需在上述论证中以双射 $f^{-1}\colon B \to A$ 替代 $f$，便可得出 $A$ 也是可数的。
 \end{proof}
 
 \begin{prob}
-Show that if $\cardeq{A}{C}$ and $\cardeq{B}{D}$, and $A \cap B =
-C \cap D = \emptyset$, then $\cardeq{A \cup B}{C \cup D}$.
+证明：如果 $\cardeq{A}{C}$ 且 $\cardeq{B}{D}$，并且 $A \cap B = C \cap D = \emptyset$，那么 $\cardeq{A \cup B}{C \cup D}$。
 \end{prob}
 
 \begin{prob}
-Show that if $A$ is infinite and !!{enumerable}, then
-$\cardeq{A}{\Nat}$.
+证明：如果 $A$ 是无穷且可数的，那么 $\cardeq{A}{\Nat}$。
 \end{prob}
 
 \end{document}

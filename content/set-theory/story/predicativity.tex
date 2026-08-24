@@ -4,105 +4,45 @@
 
 \olfileid{sth}{story}{predicative}	
 
-\olsection{Predicative and Impredicative}
+\olsection{直谓与非直谓}
 
-The Russell set, $R$, was defined via $\Setabs{x}{x \notin
-x}$. Spelled out more fully, $R$ would be the set which contains all
-and only those sets which are not non-self-membered. So in defining
-$R$, we quantify over the domain which would contain $R$ (if it
-existed).
+罗素集合 $R$ 是通过 $\Setabs{x}{x \notin x}$ 来定义的。更完整地说，$R$ 将是包含且仅包含所有那些非自属集合的集合。因此，在定义 $R$ 时，我们对本应包含 $R$ 的论域（如果 $R$ 存在的话）进行了量化。
 
-This is an \emph{impredicative} definition. More generally, we might
-say that a definition is impredicative iff it quantifies over a domain
-which contains the object that is being defined.  
+这是一个\emph{非直谓}的定义。更一般地说，我们可以说，一个定义是非直谓的，当且仅当它对一个包含被定义对象自身的论域进行量化。
 	
-In the wake of the paradoxes, Whitehead, Russell, Poincar\'{e} and
-Weyl rejected such impredicative definitions as ``viciously
-circular'':
-\begin{quote}
-	An analysis of the paradoxes to be avoided shows that they all
-	result from a kind of vicious circle. The vicious circles in
-	question arise from supposing that a collection of objects may
-	contain members which can only be defined by means of the
-	collection as a whole[\ldots. \textparagraph]
+在悖论出现之后，Whitehead、Russell、Poincaré 和 Weyl 将此类非直谓定义斥为“恶性循环的”：
 
-	The principle which enables us to avoid illegitimate totalities
-	may be stated as follows: `Whatever involves \emph{all} of a
-	collection must not be one of the collection'; or, conversely:
-	`If, provided a certain collection had a total, it would have
-	members only definable in terms of that total, then the said
-	collection has no total.' We shall call this the `vicious-circle
-	principle,' because it enables us to avoid the vicious circles
-	involved in the assumption of illegitimate totalities.
+\begin{quote}
+	对所要避免的悖论进行分析表明，它们都源于某种恶性循环。这里所说的恶性循环之所以产生，是由于假定一个对象的汇集可能包含这样的成员：这些成员只有借助该汇集作为整体才能定义[\ldots \textparagraph]
+
+	使我们能够避免不合法全体的原则可以陈述如下：“凡涉及一个汇集的\emph{所有}成员者，其自身不得是该汇集的一员”；或者反过来说：“如果某个汇集一旦构成了一个整体，它就将包含只能借助该整体来定义的成员，那么该汇集就根本没有整体。”我们将称此为“恶性循环原则”，因为它使我们能够避免因假定不合法全体而涉及的恶性循环。
 	\citep[p.~37]{WhiteheadRussell1910}
 \end{quote}
-If we follow them in rejecting the \emph{vicious-circle principle},
-then we might attempt to replace the disastrous Na\"{i}ve
-Comprehension Scheme (of \olref[sth][story][rus]{sec}) with something like this: 
+
+如果我们追随他们，依据恶性循环原则进行拒斥，那么我们就可能尝试用类似下面的方案来取代（参见 \olref[sth][story][rus]{sec}）那灾难性的朴素概括模式：
 
 \begin{defish}
-\emph{Predicative Comprehension.} For every formula $\phi$ quantifying only over sets: the set$^\prime$ $\Setabs{x}{\phi(x)}$ exists.
+\emph{直谓概括。} 对于每一个仅对集合进行量化的公式 $\phi$：集合$^\prime$ $\Setabs{x}{\phi(x)}$ 存在。
 \end{defish}
 
-So long as sets$^{\prime}$ are not sets, no contradiction will ensue.  
+只要集合$^{\prime}$不是集合，就不会产生矛盾。
 
-Unfortunately, Predicative Comprehension is not very
-\emph{comprehensive}. After all, it introduces us to new entities,
-sets$^\prime$. So we will have to consider formulas which quantify
-over sets$^\prime$. If they always yield a set$^\prime$, then
-Russell's paradox will arise again, just by considering the
-set$^\prime$ of all non-self-membered sets$^\prime$. So, pursuing the
-same thought, we must say that a formula quantifying over
-sets$^\prime$ yields a corresponding set$^{\prime\prime}$. And then we
-will need sets$^{\prime\prime\prime}$,
-sets$^{\prime\prime\prime\prime}$, etc. To prevent a rash of primes,
-it will be easier to think of these as sets$_0$, sets$_1$, sets$_2$,
-sets$_3$, sets$_4$,\ldots. And this would give us a way into the
-(simple) theory of types. 
+不幸的是，直谓概括并不是那么\emph{包罗}。毕竟，它向我们引入了新的实体，即集合$^\prime$。因此我们将不得不考虑那些对集合$^\prime$进行量化的公式。如果它们总是生成一个集合$^\prime$，那么罗素悖论将再次出现，只需要考虑所有非自属的集合$^\prime$所构成的集合$^\prime$即可。所以，沿着同样的思路，我们必须说，一个对集合$^\prime$进行量化的公式生成的是相应的集合$^{\prime\prime}$。而后我们将需要集合$^{\prime\prime\prime}$、集合$^{\prime\prime\prime\prime}$，等等。为了避免撇号泛滥，更方便的做法是将它们视为集合$_0$、集合$_1$、集合$_2$、集合$_3$、集合$_4$……这就为我们通向（简单）类型论提供了一条路径。
 
-There are a few obvious objections against such a theory (though it is
-not obvious that they are \emph{overwhelming} objections). In brief:
-the resulting theory is cumbersome to use; it is profligate in
-postulating different kinds of objects; and it is not clear, in the
-end, that impredicative definitions are even  \emph{all that bad}. 
+对于这样一种理论，存在着一些显而易见的反对意见（尽管这些意见是否\emph{压倒性的}并不显然）。简言之：由此产生的理论使用起来很繁琐；它在设定不同种类的对象时过于铺张；并且最终来看，并不清楚非直谓定义到底有多\emph{糟}。
 	
-To bring out the last point, consider this remark from
-\citeauthor{Ramsey1925}:
+为了阐明最后一点，请看 \citeauthor{Ramsey1925} 的这一评论：
+
 \begin{quote}
-	we may refer to a man as the tallest in a group, thus identifying
-	him by means of a totality of which he is himself a member without
-	there being any vicious circle. \citep{Ramsey1925}
+	我们可以称一个人在某个群体中是最高的，从而借助一个他自身也是其成员的全体来识别他，而这并不包含任何恶性循环。 \citep{Ramsey1925}
 \end{quote}
-Ramsey's point is that ``the tallest man in the group'' \emph{is} an
-impredicative definition; but it is obviously perfectly kosher. 
 
-One might respond that, in this case, we could pick out the tallest
-person by \emph{predicative} means. For example, maybe we could just
-point at the man in question. The objection against impredicative
-definitions, then, would clearly need to be limited to entities which
-can \emph{only} be picked out impredicatively. But even then, we would
-need to hear more, about why such ``essential impredicativity'' would
-be so bad.\footnote{For more, see \citet{Linnebo2010}.}
+Ramsey 的观点是，“群体中最高的人”\emph{确实}是一个非直谓定义；但它显然是完全正当的。
 
-Admittedly, impredicative definitions are extremely bad news, if we
-want our definitions to provide us with something like a recipe for
-\emph{creating} an object. For, given an impredicative definition, one
-would genuinely be caught in a vicious circle: to create the
-impredicatively specified object, one would \emph{first} need to
-create all the objects (including the impredicatively specified
-object), since the impredicatively specified object is specified in
-terms of all the objects; so one would need to create the
-impredicatively specified object before one had created it itself. But
-again, this is only a serious objection against ``essentially
-impredicatively'' specified sets, if we think of sets as things that
-we \emph{create}. And we (probably) don't.
+有人可能会回应说，在这个案例中，我们可以通过\emph{直谓}的方式找出那个最高的人。例如，也许我们可以直接指出那个人。那么，对非直谓定义的反对显然就需要限定于那些“只能”非直谓地指称的实体。但即便如此，我们还需要更多的解释，来说明为什么这种“本质上的非直谓性”会如此糟糕。\footnote{更多讨论，参见 \citet{Linnebo2010}。}
 
-As such---for better or worse---the approach which became common does
-not involve taking a hard line concerning (im)\-pre\-di\-ca\-tiv\-ity.
-Rather, it involves what is now regarded as the cumulative-iterative
-approach. In the end, this will allow us to stratify our sets into
-``stages''---a \emph{bit} like the predicative approach stratifies
-entities into sets$_0$, sets$_1$, sets$_2$, \ldots---but we will not
-postulate any difference in kind between them. 
+诚然，如果我们希望自己的定义能为我们提供类似“创造”对象的配方，那么非直谓定义绝对是坏消息。因为，给定一个非直谓定义，人们将真正陷入恶性循环：要创造那个被非直谓地指定的对象，首先需要创造所有对象（包括那个被非直谓地指定的对象本身），因为该对象是依据所有对象来指定的；所以，在创造出该对象自身之前，就需要先把它创造出来。但这同样只构成针对本质上非直谓地指定的集合的严重反对意见，前提是我们认为集合是我们\emph{创造}的东西。而我们（很可能）并不这样认为。
+
+因此——无论好坏——后来变得常见的方法并不涉及对（非）直谓性采取强硬立场。相反，它采用的是如今被视为累积迭代的进路。最终，这将允许我们把集合分层为“阶段”——有点类似于直谓进路将实体分层为集合$_0$、集合$_1$、集合$_2$……——但我们不会假定它们之间存在种类的差异。
 
 \end{document}

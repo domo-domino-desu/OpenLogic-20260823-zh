@@ -8,43 +8,40 @@
 
 \olfileid{nml}{prf}{prp}
 
-\olsection{Properties of \usetoken{S}{derivability}}
+\olsection{\usetoken{S}{derivability}的性质}
 
 \begin{prop}\ollabel{prop:derivabilityfacts}
-  Let $\Sigma$ be a modal system and $\Gamma$ a set of modal
-  !!{formula}s. The following properties hold:
+  设 $\Sigma$ 为模态系统，$\Gamma$ 为模态公式集。下列性质成立：
   \begin{enumerate}
-  \item\ollabel{prop:derivabilityfacts-monotonicity} \emph{Monotonicity}: If
-    $\Gamma \Proves[\Sigma] !A$ and $\Gamma \subseteq \Delta$ then
-    $\Delta \Proves[\Sigma] !A$;
+  \item\ollabel{prop:derivabilityfacts-monotonicity} \emph{单调性}：若
+    $\Gamma \Proves[\Sigma] !A$ 且 $\Gamma \subseteq \Delta$，则
+    $\Delta \Proves[\Sigma] !A$；
   \item\ollabel{prop:derivabilityfacts-reflexivity}
-    \emph{Reflexivity}: If $!A \in \Gamma$ then $\Gamma
-    \Proves[\Sigma] !A$;
-  \item\ollabel{prop:derivabilityfacts-cut} \emph{Cut}: If $\Gamma
-    \Proves[\Sigma] !A$ and $\Delta \cup \{!A\} \Proves[\Sigma] !B$
-    then $\Gamma \cup \Delta \Proves[\Sigma] !B$;
-  \item\ollabel{prop:derivabilityfacts-deduction} \emph{Deduction theorem}: $\Gamma \cup \{!B\}
-    \Proves[\Sigma] !A$ if and only if $\Gamma \Proves[\Sigma] !B \lif
-      !A$;
+    \emph{自反性}：若 $!A \in \Gamma$，则 $\Gamma
+    \Proves[\Sigma] !A$；
+  \item\ollabel{prop:derivabilityfacts-cut} \emph{切割}：若 $\Gamma
+    \Proves[\Sigma] !A$ 且 $\Delta \cup \{!A\} \Proves[\Sigma] !B$，
+    则 $\Gamma \cup \Delta \Proves[\Sigma] !B$；
+  \item\ollabel{prop:derivabilityfacts-deduction} \emph{演绎定理}：$\Gamma \cup \{!B\}
+    \Proves[\Sigma] !A$ 当且仅当 $\Gamma \Proves[\Sigma] !B \lif
+      !A$；
   \item \ollabel{prop:derivabilityfacts-ruleT}% \emph{Rule T}: If
-    $\Gamma \Proves[\Sigma] !A_1$ and \dots and $\Gamma
-    \Proves[\Sigma] !A_n$ and $!A_1 \to (!A_2 \lif \cdots (!A_n \lif
-    !B)\cdots)$ is a tautological instance, then $\Gamma
-    \Proves[\Sigma] !B$.
+    若 $\Gamma \Proves[\Sigma] !A_1$，\dots，$\Gamma
+    \Proves[\Sigma] !A_n$，且 $!A_1 \to (!A_2 \lif \cdots (!A_n \lif
+    !B)\cdots)$ 为重言实例，则 $\Gamma
+    \Proves[\Sigma] !B$。
   \end{enumerate}
 \end{prop}
 
-The proof is an easy exercise. Part
-\olref{prop:derivabilityfacts-ruleT} of \olref{prop:derivabilityfacts}
-gives us that, for instance, if $\Gamma \Proves[\Sigma] !A \lor !B$
-and $\Gamma \Proves[\Sigma] \lnot !A$, then $\Gamma \Proves[\Sigma]
-!B$. Also, in what follows, we write $\Gamma, !A \Proves[\Sigma] !B$
-instead of $\Gamma \cup \{ !A\} \Proves[\Sigma] !B$.
+其证明是简单的练习。由 \olref{prop:derivabilityfacts} 的
+\olref{prop:derivabilityfacts-ruleT} 可知，例如，若 $\Gamma \Proves[\Sigma] !A \lor !B$
+且 $\Gamma \Proves[\Sigma] \lnot !A$，则 $\Gamma \Proves[\Sigma]
+!B$。此外，在下文中，我们用 $\Gamma, !A \Proves[\Sigma] !B$
+代替 $\Gamma \cup \{ !A\} \Proves[\Sigma] !B$。
 
 \begin{defn}
-  A set $\Gamma$ is \emph{deductively closed} relatively to a system
-  $\Sigma$ if and only if $\Gamma \Proves[\Sigma] !A$ implies
-  $!A \in \Gamma$.
+  集合 $\Gamma$ 相对于系统 $\Sigma$ 是\emph{演绎封闭的}，当且仅当：若 $\Gamma \Proves[\Sigma] !A$，则
+  $!A \in \Gamma$。
 \end{defn}
 
 \end{document}

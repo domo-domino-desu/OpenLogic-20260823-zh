@@ -7,71 +7,25 @@
 \begin{document}
 
 \olfileid{sfr}{rel}{ref}
-\olsection{Philosophical Reflections}
+\olsection{哲学反思}
 
-In \olref[set]{sec}, we defined relations as certain sets. We should
-pause and ask a quick philosophical question: what is such a
-definition \emph{doing}? It is extremely doubtful that we should want
-to say that we have \emph{discovered} some metaphysical identity
-facts; that, for example, the order relation on $\Nat$ \emph{turned
-out} to be the set $R=  \Setabs{\tuple{n,m}}{n, m \in \Nat\text{ and }
-n < m}$ that we defined in \olref[set]{sec}. Here are three
-reasons why. 
+在 \olref[set]{sec} 中，我们将关系定义为特定的集合。我们应当稍作停顿，简单问一个哲学问题：这样的定义究竟是在做什么？我们极不应当主张我们\emph{发现}了某种形而上学的同一性事实；例如，自然数上的序关系\emph{竟然是}我们在 \olref[set]{sec} 中定义的集合 $R=  \Setabs{\tuple{n,m}}{n, m \in \Nat\text{ and }
+n < m}$。理由有三。
 
-First: in \olref[set][pai]{wienerkuratowski}, we defined $\tuple{a, b} =
-\{\{a\}, \{a, b\}\}$. Consider instead the definition $\lVert a,
-b\rVert = \{\{b\}, \{a, b\}\} = \tuple{b,a}$. When $a \neq b$, we have
-that $\tuple{a, b} \neq \lVert a,b\rVert$. But we could equally have
-regarded $\lVert a,b\rVert$ as our definition of an ordered pair,
-rather than $\tuple{a,b}$. Both definitions would have worked equally
-well. So now we have two equally good candidates to ``be'' the order
-relation on the natural numbers, namely:
+首先：在 \olref[set][pai]{wienerkuratowski} 中，我们定义了 $\tuple{a, b} =
+\{\{a\}, \{a, b\}\}$。现在考虑定义 $\lVert a,
+b\rVert = \{\{b\}, \{a, b\}\} = \tuple{b,a}$。当 $a \neq b$ 时，我们有 $\tuple{a, b} \neq \lVert a,b\rVert$。但我们同样可以把 $\lVert a,b\rVert$ 而非 $\tuple{a,b}$ 视为对有序对的定义。两种定义同样有效。所以现在我们有两个同样有资格“作为”自然数上序关系的候选者，即：
 \begin{align*}
-		R &= \Setabs{\tuple{n,m}}{n, m \in \Nat \text{ and }n < m}\\
-		S &= \Setabs{\lVert n,m\rVert}{n, m \in \Nat \text{ and }n < m}.
+		R &= \Setabs{\tuple{n,m}}{n, m \in \Nat \text{ 与 }n < m}\\
+		S &= \Setabs{\lVert n,m\rVert}{n, m \in \Nat \text{ 与 }n < m}.
 \end{align*}
-Since $R \neq S$, by extensionality, it is clear that they cannot
-\emph{both} be identical to the order relation on~$\Nat$. But it would
-just be arbitrary, and hence a bit embarrassing, to claim that $R$
-rather than $S$ (or vice versa) \emph{is} the ordering relation, as a
-matter of fact. (This is a very simple instance of an argument against
-set-theoretic reductionism which Benacerraf made famous in
-\citeyear{Benacerraf1965}. We will revisit it several times.)
+既然 $R \neq S$，由外延性原理可知，它们不可能\emph{都}与~$\Nat$ 上的序关系同一。但若声称事实上是 $R$ 而非 $S$（或者反过来）\emph{就是}那个序关系，那将纯属任意，因而也有些令人难堪。（这是 Benacerraf（贝纳塞拉夫）在 \citeyear{Benacerraf1965} 中使之著名的一个反对集合论还原主义论证的极简例证。我们稍后会多次回到这个问题。）
 
-Second: if we think that \emph{every} relation should be identified
-with a set, then the relation of set-membership itself, $\in$, should
-be a particular set. Indeed, it would have to be the set
-$\Setabs{\tuple{x,y}}{x \in y}$. But does this set exist? Given
-Russell's Paradox, it is a non-trivial claim that such a set exists.
-In fact, \oliflabeldef{cumul:::part}{the theory of sets which we develop in
-\olref[cumul][][]{part} will \emph{deny} the existence of this
-set.\footnote{Skipping ahead, here is why. For reductio, suppose $I =
-\Setabs{\tuple{x,y}}{x \in y}$ exists. Then $\bigcup \bigcup I$ is the
-universal set, contradicting
-\olref[sfr][z][sep]{thm:NoUniversalSet}.}}{it is possible to
-develop set theory in a rigorous way as an axiomatic theory, and that 
-theory will indeed deny the existence of this set.}
-So, even if some relations can be treated as sets, the relation of
-set-membership will have to be a special case.
+其次：如果我们认为\emph{每一个}关系都应被等同于一个集合，那么集合属于关系本身，即 $\in$，也应该是一个特定的集合。事实上，它必须是集合 $\Setabs{\tuple{x,y}}{x \in y}$。但这个集合存在吗？考虑到罗素（Russell）悖论，声称这样一个集合存在绝非一个平凡的主张。事实上，\oliflabeldef{cumul:::part}{我们在 \olref[cumul][][]{part} 中将发展的集合论将\emph{否定}这个集合的存在。\footnote{提前说明一下原因。用归谬法，假设 $I =
+\Setabs{\tuple{x,y}}{x \in y}$ 存在。那么 $\bigcup \bigcup I$ 就是万有集，这与 \olref[sfr][z][sep]{thm:NoUniversalSet} 矛盾。}}{可以以公理化理论的方式严谨地发展集合论，而该理论确实会否定这个集合的存在。}因此，即使某些关系可以被当作集合来处理，集合属于关系也必须是一个特殊情况。
 
-Third: when we ``identify'' relations with sets, we said that we would
-allow ourselves to write $Rxy$ for $\tuple{x,y} \in R$. This is fine,
-provided that the membership relation, ``$\in$'', is treated \emph{as}
-a predicate. But if we think that ``$\in$'' stands for a certain kind
-of set, then the expression ``$\tuple{x,y} \in R$'' just consists of
-three singular terms which stand for sets: ``$\tuple{x,y}$'',
-``$\in$'', and ``$R$''. And such a list of names is no more capable of
-expressing a proposition than the nonsense string: ``the cup penholder
-the table''. Again, even if some relations can be treated as sets, the
-relation of set-membership must be a special case. (This rolls
-together a simple version of Frege's concept \emph{horse} paradox, and
-a famous objection that Wittgenstein once raised against Russell.)
+第三：当我们把关系“同一于”集合时，我们曾说可以用 $Rxy$ 来写 $\tuple{x,y} \in R$。只要属于关系“$\in$”被当作一个\emph{谓词}来处理，这就没问题。但如果我们认为“$\in$”代表某个特定的集合，那么表达式“$\tuple{x,y} \in R$”就仅仅由三个代表集合的单称词项组成：“$\tuple{x,y}$”、“$\in$”和“$R$”。而这样一个名字列表，并不比无意义的字符串“杯子 笔筒 桌子”更能表达一个命题。再次，即使某些关系可以作为集合处理，集合属于关系也必须是特殊情况。（这融合了弗雷格（Frege）的“概念\emph{马}”悖论的一个简化版本，以及维特根斯坦（Wittgenstein）曾经对罗素提出的一个著名反驳。）
 
-So where does this leave us? Well, there is nothing \emph{wrong} with
-our saying that the relations on the numbers are sets. We just have to
-understand the spirit in which that remark is made. We are not stating
-a metaphysical identity fact. We are simply noting that, in certain
-contexts, we can (and will) \emph{treat} (certain) relations as
-certain sets.
+那么，这对我们有何启示？其实，我们说数上的关系是集合，这本身没有任何\emph{错误}。我们只需理解这话的精神实质。我们并非在陈述一个形而上学的同一性事实。我们只是指出，在某些语境下，我们可以（并且将会）\emph{把}（某些）关系\emph{当作}某些集合来处理。
 
 \end{document}

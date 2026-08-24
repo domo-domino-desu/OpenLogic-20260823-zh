@@ -11,24 +11,19 @@
 
 \olfileid{fol}{ntd}{qpr}
 
-\olsection{\usetoken{S}{derivability} and the Quantifiers}
+\olsection{可推导性与量词}
 
 \begin{explain}
-  The completeness theorem also requires that the natural deduction
-  rules yield the facts about~$\Proves$ established in this section.
+完备性定理还要求自然演绎规则能给出本节所建立的关于~$\Proves$ 的结论。
 \end{explain}
 
 \begin{thm}
-\ollabel{thm:strong-generalization} If $c$ is a constant not occurring
-in $\Gamma$ or $!A(x)$ and $\Gamma \Proves !A(c)$, then $\Gamma
-\Proves \lforall[x][!A(x)]$.
+\ollabel{thm:strong-generalization} 若常项符号~$c$ 不在~$\Gamma$ 或~$!A(x)$ 中出现，且~$\Gamma \Proves !A(c)$，则 $\Gamma
+\Proves \lforall[x][!A(x)]$。
 \end{thm}
 
 \begin{proof}
-Let $\delta$ be !!a{derivation} of $!A(c)$ from $\Gamma$.  By adding a
-\Intro{\lforall} inference, we obtain !!a{derivation} of
-$\lforall[x][!A(x)]$. Since $c$ does not occur in $\Gamma$ or $!A(x)$,
-the eigenvariable condition is satisfied.
+设~$\delta$ 是从~$\Gamma$ 推出~$!A(c)$ 的一个推导。通过添加一个~$\Intro{\lforall}$ 推理步骤，我们得到从~$\Gamma$ 推出 $\lforall[x][!A(x)]$ 的一个推导。由于~$c$ 不在~$\Gamma$ 或~$!A(x)$ 中出现，故满足特征变元条件。
 \end{proof}
 
 \begin{prop}
@@ -42,19 +37,17 @@ the eigenvariable condition is satisfied.
 
 \begin{proof}
 \begin{tagenumerate}{prvEx,prvAll}
-\tagitem{prvEx}{The following is !!a{derivation}
-  of~$\lexists[x][!A(x)]$ from~$!A(t)$:
+\tagitem{prvEx}{以下是从~$!A(t)$ 推出~$\lexists[x][!A(x)]$ 的推导：
 \begin{prooftree}
 \AxiomC{$!A(t)$}
-\RightLabel{\Intro{\lexists}}
+\RightLabel{$\Intro{\lexists}$}
 \UnaryInfC{$\lexists[x][!A(x)]$}
 \end{prooftree}}{}
 
-\tagitem{prvAll}{The following is !!a{derivation} of~$!A(t)$
-  from~$\lforall[x][!A(x)]$:
+\tagitem{prvAll}{以下是从~$\lforall[x][!A(x)]$ 推出~$!A(t)$ 的推导：
 \begin{prooftree}
 \AxiomC{$\lforall[x][!A(x)]$}
-\RightLabel{\Elim{\lforall}}
+\RightLabel{$\Elim{\lforall}$}
 \UnaryInfC{$!A(t)$}
 \end{prooftree}}{}
 \end{tagenumerate}

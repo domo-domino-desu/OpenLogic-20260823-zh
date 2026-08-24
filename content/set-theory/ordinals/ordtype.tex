@@ -3,77 +3,74 @@
 \begin{document}
 
 \olfileid{sth}{ordinals}{ordtype}
-\olsection{Ordinals as Order-Types}
+\olsection{序数作为序型}
 
-Armed with Replacement, and so now working in $\ZFminus$, we can finally prove the result we have been aiming for:
+有了替换公理，我们现在在 $\ZFminus$ 中工作，终于可以证明我们一直想要得到的结果：
 
 \begin{thm}\ollabel{thmOrdinalRepresentation}
-Every well-ordering is isomorphic to a unique ordinal. 
+每个良序都同构于唯一的序数。 
 \end{thm}
 
 \begin{proof}
-Let $\tuple{A, <}$ be a well-order. By
-\olref[basic]{ordisoidentity}, it is isomorphic to at most one
-ordinal. So, for reductio, suppose $\tuple{A, <}$ is not isomorphic to
-\emph{any} ordinal. We will first ``make $\tuple{A, <}$ as small as
-possible''. In detail: if some proper initial segment $\tuple{A_a,
-<_a}$ is not isomorphic to any ordinal, there is a least $a \in A$
-with that property; then let $B = A_a$ and $\mathord{\lessdot} =
-\mathord{<_a}$. Otherwise, let $B = A$ and $\mathord{\lessdot} =
-\mathord{<}$. 
+设 $\tuple{A, <}$ 是一个良序。根据
+\olref[basic]{ordisoidentity}，它至多同构于一个
+序数。因此，采用归谬法，假设 $\tuple{A, <}$ 不与\emph{任何}序数同构。
+我们首先“使 $\tuple{A, <}$ 尽可能地小”。
+具体来说：如果某个真前段 $\tuple{A_a,
+<_a}$ 不与任何序数同构，那么就存在一个最小的 $a \in A$
+具有此性质；则令 $B = A_a$ 且 $\mathord{\lessdot} =
+\mathord{<_a}$。否则，令 $B = A$ 且 $\mathord{\lessdot} =
+\mathord{<}$。 
 
-By definition, every proper initial segment of $B$ is isomorphic to
-some ordinal, which is unique as above. So
-by Replacement, the following set exists, and is a function:
+根据定义，$B$ 的每个真前段都同构于某个序数，且如前所述该序数唯一。
+因此，由替换公理，下述集合存在并且是一个函数：
 \[
-	f = \Setabs{\tuple{\beta, b}}{b \in B\text{ and }\ordeq{\beta}{\tuple{B_b, \lessdot_b}}}
+	f = \Setabs{\tuple{\beta, b}}{b \in B\text{ 且 }\ordeq{\beta}{\tuple{B_b, \lessdot_b}}}
 \]
-To complete the reductio, we'll show that $f$ is an isomorphism
-$\alpha \to B$, for some ordinal $\alpha$. 
+为完成归谬，我们将证明存在某个序数 $\alpha$，使得 $f$ 是从 $\alpha$ 到 $B$ 的同构。
 
-It is obvious that $\ran{f}
-= B$. And by \olref[iso]{lemordsegments}, $f$ preserves ordering,
-i.e., $\gamma \in \beta$ iff $f(\gamma) \lessdot f(\beta)$. To show that $\dom{f}$ is an ordinal, by
-\olref[basic]{corordtransitiveord} it suffices to show that
-$\dom{f}$ is transitive. So fix $\beta \in \dom{f}$, i.e.,
-$\ordeq{\beta}{\tuple{B_b, \lessdot_b}}$ for some $b$. If $\gamma \in
-\beta$, then $\gamma \in \dom{f}$ by
-\olref[iso]{wellordinitialsegment}; generalising, $\beta \subseteq
-\dom{f}$.
+显然 $\ran{f}
+= B$。并且根据 \olref[iso]{lemordsegments}，$f$ 保持序关系，
+即 $\gamma \in \beta$ 当且仅当 $f(\gamma) \lessdot f(\beta)$。为证明 $\dom{f}$ 是一个序数，根据
+\olref[basic]{corordtransitiveord}，只需证
+$\dom{f}$ 是传递的即可。取定 $\beta \in \dom{f}$，即
+对某个 $b$，$\ordeq{\beta}{\tuple{B_b, \lessdot_b}}$ 成立。若 $\gamma \in
+\beta$，则由
+\olref[iso]{wellordinitialsegment} 有 $\gamma \in \dom{f}$；
+概括得 $\beta \subseteq
+\dom{f}$。
 \end{proof}
 
-This result licenses the following definition, which we have wanted to
-offer since \olref[vn]{sec}:
+该结果使得我们可以给出以下定义，这也是我们自 \olref[vn]{sec} 以来一直想要给出的：
 
 \begin{defn}
-If $\tuple{A, <}$ is a well-ordering, then its order type,
-$\ordtype{A, <}$, is the unique ordinal $\alpha$ such that
-$\ordeq{\tuple{A, < }}{\alpha}$.
+若 $\tuple{A, <}$ 是一个良序，则其序型
+$\ordtype{A, <}$ 是使得 $\ordeq{\tuple{A, < }}{\alpha}$ 成立的唯一序数 $\alpha$。
 \end{defn}
 
-Moreover, this definition licenses two nice principles:
+此外，这个定义还引出两条很好的原理：
 
 \begin{cor}\ollabel{ordtypesworklikeyouwant}
-Where $\tuple{A, <}$ and $\tuple{B, \lessdot}$ are well-orderings: 
+设 $\tuple{A, <}$ 和 $\tuple{B, \lessdot}$ 是良序： 
 \begin{align*}
-	\ordtype{A, <} = \ordtype{B, \lessdot}&\text{ iff }\ordeq{\tuple{A, <}}{\tuple{B, \lessdot}}\\
-	\ordtype{A, <} \in \ordtype{B, \lessdot}&\text{ iff }\ordeq{\tuple{A, <}}{\tuple{B_b, \lessdot_b}}\text{ for some }b \in B
+	\ordtype{A, <} = \ordtype{B, \lessdot}&\text{ 当且仅当 }\ordeq{\tuple{A, <}}{\tuple{B, \lessdot}}\\
+	\ordtype{A, <} \in \ordtype{B, \lessdot}&\text{ 当且仅当 }\ordeq{\tuple{A, <}}{\tuple{B_b, \lessdot_b}}\text{ 对某个 }b \in B
 \end{align*}
 \end{cor}
 
 \begin{proof}
-The identity holds by \olref[basic]{ordisoidentity}. To prove
-the second claim, let $\ordtype{A, <} = \alpha$ and $\ordtype{B,
-\lessdot} = \beta$, and let $f \colon \beta \to \tuple {B, \lessdot}$
-be our isomorphism. Then:
+等式成立依据的是 \olref[basic]{ordisoidentity}。
+为证第二个断言，令 $\ordtype{A, <} = \alpha$ 且 $\ordtype{B,
+\lessdot} = \beta$，并令 $f \colon \beta \to \tuple {B, \lessdot}$
+为同构映射。那么：
 \begin{align*}
-	\alpha \in \beta&\text{ iff }\funrestrictionto{f}{\alpha} \colon \alpha \to B_{f(\alpha)}\text{ is an isomorphism}\\
-	&\text{ iff }\ordeq{\tuple{A, <}}{\tuple{B_{f(\alpha)}, \lessdot_{f(\alpha)}}}\\
-	&\text{ iff }\ordeq{\tuple{A, <}}{\tuple{B_b, \lessdot_b}}\text{ for some $b \in B$}
+	\alpha \in \beta&\text{ 当且仅当 }\funrestrictionto{f}{\alpha} \colon \alpha \to B_{f(\alpha)}\text{ 是一个同构}\\
+	&\text{ 当且仅当 }\ordeq{\tuple{A, <}}{\tuple{B_{f(\alpha)}, \lessdot_{f(\alpha)}}}\\
+	&\text{ 当且仅当 }\ordeq{\tuple{A, <}}{\tuple{B_b, \lessdot_b}}\text{ 对某个 $b \in B$}
 \end{align*}
-by \olref[iso]{ordisounique},
-\olref[iso]{wellordinitialsegment}, and
-\olref[basic]{ordissetofsmallerord}.
+这里分别依据的是 \olref[iso]{ordisounique}、
+\olref[iso]{wellordinitialsegment} 和
+\olref[basic]{ordissetofsmallerord}。
 \end{proof}
 
 \end{document}

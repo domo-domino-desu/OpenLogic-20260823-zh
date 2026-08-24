@@ -7,109 +7,60 @@
 \begin{document}
 
 \olfileid{cmp}{thy}{rce}
-\olsection{Rice's Theorem}
+\olsection{莱斯定理}
 
-If you think about it, you will see that the specifics of $\fn{Tot}$
-do not play into the proof of \olref[tot]{prop:total}. We designed
-$h(x,y)$ to act like the constant function $j(y) = 0$ exactly when $x$
-is in $K$; but we could just as well have made it act like any other
-partial computable function under those circumstances. This
-observation lets us state a more general theorem, which says, roughly,
-that no nontrivial property of computable functions is decidable.
+仔细想想就会发现，$\fn{Tot}$ 的具体细节并未在 \olref[tot]{prop:total} 的证明中起作用。
+我们设计 $h(x,y)$，恰好在 $x \in K$ 时让它表现得像常函数 $j(y) = 0$；
+但在该情况下，我们同样可以让它表现得像任何其他部分可计算函数。
+这一观察使我们能够陈述一个更一般的定理，大致是说：可计算函数的任何非平凡性质都是不可判定的。
 
-Keep in mind that $\cfind{0}$, $\cfind{1}$, $\cfind{2}$,~\dots is our
-standard enumeration of the partial computable functions.
+请记住，$\cfind{0}$、$\cfind{1}$、$\cfind{2}$、…… 是部分可计算函数的标准枚举。
 
-\begin{thm}[Rice's Theorem]
-  Let $C$ be any set of partial computable functions, and let $A =
-  \Setabs{n}{\cfind{n} \in C}$. If $A$ is computable, then either $C$
-  is empty or $C$ is the set of all the partial computable
-  functions.
+\begin{thm}[莱斯定理]
+  设 $C$ 是任意部分可计算函数的集合，并令 $A =
+  \Setabs{n}{\cfind{n} \in C}$。如果 $A$ 是可判定的，那么 $C$ 要么是空集，要么是全体部分可计算函数的集合。
 \end{thm}
 
-An {\em index set} is a set $A$ with the property that if $n$ and $m$
-are indices which ``compute'' the same function, then either both $n$
-and $m$ are in $A$, or neither is. It is not hard to see that the
-set~$A$ in the theorem has this property. Conversely, if $A$~is an
-index set and $C$~is the set of functions computed by these indices,
-then $A = \Setabs{n}{\cfind{n} \in C}$.
+{\em 指标集}是指满足如下性质的集合 $A$：如果 $n$ 和 $m$ 是“计算”同一函数的两个指标，那么 $n$ 和 $m$ 要么都属于 $A$，要么都不属于。不难看出，定理中的集合~$A$ 具有这一性质。反过来，如果 $A$ 是一个指标集，而 $C$ 是由这些指标计算的函数集合，那么 $A = \Setabs{n}{\cfind{n} \in C}$。
 
 \begin{explain}
-With this terminology, Rice's theorem is equivalent to saying that no
-nontrivial index set is decidable. To understand what the theorem
-says, it is helpful to emphasize the distinction between
-\emph{programs} (say, in your favorite programming language) and the
-functions they compute. There are certainly questions about programs
-(indices), which are syntactic objects, that are computable: does this
-program have more than 150 symbols? Does it have more than 22 lines?
-Does it have a ``while'' statement? Does the string ``hello world''
-ever appear as the argument to a ``print'' statement? Rice's theorem
-says that no nontrivial question about the program's \emph{behavior}
-is computable. This includes questions like these: does the program
-halt on input $0$? Does it ever halt? Does it ever output an even
-number?
+使用这一术语，莱斯定理等价于断言：任何非平凡的指标集都是不可判定的。
+要理解该定理的含义，有必要强调一下\emph{程序}（比如你最喜欢的编程语言中的程序）与它们所计算的函数之间的区别。
+程序（指标）作为句法对象，当然存在关于它们的可判定问题：这个程序的符号数超过150个吗？它超过22行吗？它有“while”语句吗？字符串“hello world”是否曾作为“print”语句的参数出现？
+莱斯定理说的是，关于程序\emph{行为}的任何非平凡问题都是不可判定的。
+这包括如下问题：该程序在输入为 $0$ 时停机吗？它是否会停机？它是否会输出偶数？
 \end{explain}
 
-\begin{proof}[Proof of Rice's theorem]
-Suppose $C$ is neither empty nor the set of all the partial
-computable functions, and let $A$ be the set of indices of functions
-in~$C$. We will show that if $A$ were computable, we could solve the
-halting problem; so $A$~is not computable.
+\begin{proof}[莱斯定理的证明]
+假设 $C$ 既不是空集，也不是全体部分可计算函数的集合，并令 $A$ 为 $C$ 中函数的指标集。我们将证明，如果 $A$ 是可判定的，我们就能解决停机问题；因此 $A$~不是可判定的。
 
-Without loss of generality, we can assume that the function $f$ which
-is nowhere defined is not in $C$ (otherwise, switch $C$ and its
-complement in the argument below). Let $g$ be any function in~$C$. The
-idea is that if we could decide~$A$, we could tell the difference
-between indices computing~$f$, and indices computing~$g$; and then we
-could use that capability to solve the halting problem.
+不失一般性，我们可以假设处处无定义的函数 $f$ 不在 $C$ 中（否则，在下述论证中将 $C$ 替换为 $C$ 的补集）。设 $g$ 为 $C$ 中的任一函数。基本思路是，如果我们能判定~$A$，我们就能区分计算~$f$ 的指标与计算~$g$ 的指标；然后我们就可以利用这一点来解决停机问题。
 
-Here's how. Using the universal partial computable functions, we can
-define a function
+具体做法如下。利用通用部分可计算函数，我们可以定义一个函数
 \[
 h(x,y) \simeq
 \begin{cases}
-\text{undefined} & \text{if $\cfind{x}(x) \fundefined$} \\
-g(y) & \text{otherwise.}
+\text{无定义} & \text{若 $\cfind{x}(x) \fundefined$} \\
+g(y) & \text{否则。}
 \end{cases}
 \]
-To compute $h$, first we try to compute $\cfind{x}(x)$; if that
-computation halts, we go on to compute~$g(y)$; and if {\em that}
-computation halts, we return the output. More formally, we can write
+为了计算 $h$，首先尝试计算 $\cfind{x}(x)$；如果该计算停机，我们再计算~$g(y)$；如果{\em 该}计算也停机，我们就返回输出。更形式化地，我们可以写成
 \[
 h(x,y) \simeq \Proj{2}{0}(g(y),\fn{Un}(x,x)).
 \]
-where $\Proj{2}{0}(z_0, z_1) = z_0$ is the $2$-place projection
-function returning the $0$-th argument, which is computable.
+其中 $\Proj{2}{0}(z_0, z_1) = z_0$ 是返回第 $0$ 个参数的二元投影函数，它是可计算的。
 
-Then $h$ is a composition of partial computable functions, and the right
-side is defined and equal to~$g(y)$ just when $\fn{Un}(x,x)$ and
-$g(y)$ are both defined.
+于是 $h$ 是部分可计算函数的复合，并且右边有定义且等于~$g(y)$ 当且仅当 $\fn{Un}(x,x)$ 和 $g(y)$ 都有定义。
 
-Notice that for a fixed~$x$, if $\cfind{x}(x)$ is undefined, then
-$h(x,y)$ is undefined for every~$y$; and if $\cfind{x}(x)$ is defined,
-then $h(x,y) \simeq g(y)$. So, for any fixed value of~$x$, either
-$h(x,y)$ acts just like $f$ or it acts just like $g$, and deciding
-whether or not $\cfind{x}(x)$ is defined amounts to deciding which of
-these two cases holds. But this amounts to deciding whether or not
-$h_x(y) \simeq h(x,y)$ is in~$C$ or not, and if $A$ were computable,
-we could do just that.
+注意，对于固定的~$x$，如果 $\cfind{x}(x)$ 无定义，那么 $h(x,y)$ 对每个~$y$ 都无定义；而如果 $\cfind{x}(x)$ 有定义，那么 $h(x,y) \simeq g(y)$。所以，对于任何固定的~$x$，$h(x,y)$ 要么表现得完全像 $f$，要么表现得完全像 $g$，而判定 $\cfind{x}(x)$ 是否有定义，就等价于判定这两种情况哪一种成立。但这又等价于判定 $h_x(y) \simeq h(x,y)$ 是否属于~$C$，而如果 $A$ 是可判定的，我们恰好可以做到这一点。
 
-More formally, since $h$~is partial computable, it is equal to the
-function $\cfind{e}$ for some index~$e$. By the $s$-$m$-$n$ theorem
-there is a primitive recursive function~$s$ such that for each~$x$,
-$\cfind{s(e,x)}(y) = h_x(y)$. Now we have that for each $x$, if
-$\cfind{x}(x) \fdefined$, then $\cfind{s(e,x)}$ is the same function
-as~$g$, and so $s(e,x)$ is in $A$. On the other hand, if $\cfind{x}(x)
-\uparrow$, then $\cfind{s(e,x)}$ is the same function as~$f$, and so
-$s(e,x)$ is not in~$A$. In other words, we have that for every~$x$, $x
-\in K$ if and only if $s(e,x) \in A$. If $A$ were computable,
-$K$~would be also, which is a contradiction. So $A$ is not computable.
+更形式化地说，由于 $h$ 是部分可计算的，存在某个指标~$e$，使得 $h$ 等于函数 $\cfind{e}$。根据 $s$-$m$-$n$ 定理，存在一个原始递归函数~$s$，使得对每个~$x$，$\cfind{s(e,x)}(y) = h_x(y)$。由此可得，对每个 $x$，如果 $\cfind{x}(x) \fdefined$，那么 $\cfind{s(e,x)}$ 与~$g$ 是同一个函数，因此 $s(e,x)$ 在 $A$ 中。另一方面，如果 $\cfind{x}(x) \uparrow$，那么 $\cfind{s(e,x)}$ 与~$f$ 是同一个函数，因此 $s(e,x)$ 不在~$A$ 中。换言之，对每个~$x$，$x \in K$ 当且仅当 $s(e,x) \in A$。如果 $A$ 是可判定的，那么 $K$~也是可判定的，这就产生矛盾。所以 $A$ 不是可判定的。
 \end{proof}
 
-Rice's theorem is very powerful. The following immediate corollary
-shows some sample applications.
+莱斯定理非常强大。下面的直接推论展示了一些应用示例。
+
 \begin{cor}
-The following sets are undecidable.
+下列集合是不可判定的。
 \begin{enumerate}
 \item $\Setabs{x}{\text{$17$ is in the range of $\cfind{x}$}}$
 \item $\Setabs{x}{\text{$\cfind{x}$ is constant}}$
@@ -120,8 +71,7 @@ The following sets are undecidable.
 \end{cor}
 
 \begin{proof}
-  These are all nontrivial index sets.
+它们都是非平凡的指标集。
 \end{proof}
 
 \end{document}
-

@@ -8,98 +8,57 @@
 
 \olfileid{mth}{ind}{sti}
 
-\olsection{Structural Induction}
+\olsection{结构归纳}
 
-So far we have used induction to establish results about all natural
-numbers. But a corresponding principle can be used directly to prove
-results about all !!{element}s of an inductively defined set.  This
-often called \emph{structural} induction, because it depends on the
-structure of the inductively defined objects.
+到目前为止，我们已经使用归纳法证明了关于所有自然数的结论。但存在一个与之类似的原理，可直接用于证明关于归纳定义集合中所有元素的结论。这种方法通常被称为\emph{结构}归纳，因为它依赖于归纳定义对象的\emph{结构}。
 
-Generally, an inductive definition is given by (a)~a list of
-``initial'' !!{element}s of the set and (b)~a list of operations which
-produce new !!{element}s of the set from old ones. In the case of nice
-terms, for instance, the initial objects are the letters. We only have
-one operation: the operations are
-\begin{align*}
+一般地，归纳定义由两部分给出：(a)~该集合的“初始”元素列表，以及 (b)~一系列从旧元素生成集合新元素的运算。例如，在好项（nice terms）的情形下，初始对象就是字母。我们只有一种运算，即 \begin{align*}
   o(s_1, s_2) = & [s_1 \circ s_2]
 \end{align*}
-You can even think of the natural numbers~$\Nat$ themselves as being
-given by an inductive definition: the initial object is~$0$, and the
-operation is the successor function~$x + 1$.
+你甚至可以把自然数集~$\Nat$ 本身看作是由归纳定义给出的：初始对象是~$0$，运算是后继函数~$x + 1$。
 
-In order to prove something about all elements of an inductively
-defined set, i.e., that every !!{element} of the set has a
-property~$P$, we must:
+为了证明归纳定义集合中所有元素满足某条性质，即该集合中的每个元素都具有性质~$P$，我们必须：
+
 \begin{enumerate}
-\item Prove that the initial objects have~$P$
-\item Prove that for each operation~$o$, if the arguments have~$P$,
-  so does the result.
+\item 证明初始对象具有性质~$P$；
+\item 证明对于每个运算~$o$，如果其自变元具有性质~$P$，那么运算结果也具有性质~$P$。
 \end{enumerate}
-For instance, in order to prove something about all nice terms, we
-would prove that it is true about all letters, and that it is true
-about $[s_1 \circ s_2]$ provided it is true of $s_1$ and $s_2$
-individually.
+
+例如，为了证明关于所有好项的某条性质，我们会证明它对所有字母成立，并且只要它对 $s_1$ 和 $s_2$ 分别成立，那么它对 $[s_1 \circ s_2]$ 也成立。
 
 \begin{prop}
-  The number of $[$ equals the number of $]$ in any nice term~$t$.
+  在任何好项~$t$ 中，$[$ 的数量等于 $]$ 的数量。
 \end{prop}
 
 \begin{proof}
-We use structural induction.  Nice terms are inductively defined, with
-letters as initial objects and the operation $o$ for constructing new
-nice terms out of old ones.
+我们使用结构归纳法。好项是归纳定义的，其中字母是初始对象，运算 $o$ 用于从旧的好项构造新的好项。
 \begin{enumerate}
-\item The claim is true for every letter, since the number of $[$ in a
-  letter by itself is~$0$ and the number of $]$ in it is also~$0$.
-\item Suppose the number of $[$ in $s_1$ equals the number of $]$, and
-  the same is true for $s_2$. The number of $[$ in $o(s_1, s_2)$, i.e., in
-    $[s_1 \circ s_2]$, is the sum of the number of $[$ in $s_1$ and
-      $s_2$ plus one. The number of $]$ in $o(s_1, s_2)$ is the sum of the number
-    of $]$ in $s_1$ and $s_2$ plus one. Thus, the number of $[$ in $o(s_1, s_2)$
-    equals the number of $]$ in $o(s_1,s_2)$.
+\item 该断言对每个字母都成立，因为单个字母中 $[$ 的数量是~$0$，$]$ 的数量也是~$0$。
+\item 假设 $s_1$ 中 $[$ 的数量等于 $]$ 的数量，且 $s_2$ 也是如此。$o(s_1, s_2)$，即 $[s_1 \circ s_2]$ 中 $[$ 的数量，是 $s_1$ 和 $s_2$ 中 $[$ 的数量之和再加一。$o(s_1, s_2)$ 中 $]$ 的数量是 $s_1$ 和 $s_2$ 中 $]$ 的数量之和再加一。因此，$o(s_1, s_2)$ 中 $[$ 的数量等于 $o(s_1,s_2)$ 中 $]$ 的数量。
 \end{enumerate}
 \end{proof}
 
 \begin{prob}
-  Prove by structural induction that no nice term starts with~$]$.
+  用结构归纳法证明：没有好项以~$]$ 开头。
 \end{prob}
 
-Let's give another proof by structural induction: a proper initial
-segment of a string~$t$ of symbols is any string~$s$ that agrees with
-$t$ symbol by symbol, read from the left, but $t$ is longer. So,
-e.g., $[a \circ {}$ is a proper initial segment of $[a \circ b]$, but
-neither are $[b \circ {}$ (they disagree at the second symbol) nor $[a
-\circ b]$ (they are the same length).
+让我们再给出一个结构归纳法的证明：符号串~$t$ 的\emph{真初始段}是指任何从左向右逐符号与 $t$ 相同，但 $t$ 更长的符号串~$s$。例如，$[a \circ {}$ 是 $[a \circ b]$ 的一个真初始段，但 $[b \circ {}$（它们在第二个符号处不同）和 $[a \circ b]$（它们长度相同）都不是。
 
 \begin{prop}\ollabel{prop:initial}
-  Every proper initial segment of a nice term~$t$ has more $[$'s than
-    $]$'s.
+  好项~$t$ 的每个真初始段中，$[$ 的数量多于 $]$ 的数量。
 \end{prop}
 
 \begin{proof}
-  By induction on~$t$:
+  对~$t$ 进行归纳：
   \begin{enumerate}
-  \item $t$ is a letter by itself: Then $t$ has no proper initial segments.
-  \item $t = [s_1 \circ s_2]$ for some nice terms $s_1$ and~$s_2$. If $r$ is
-    a proper initial segment of $t$, there are a number of
-    possibilities:
+  \item $t$ 本身是一个字母：那么 $t$ 没有真初始段。
+  \item $t = [s_1 \circ s_2]$，其中 $s_1$ 和 $s_2$ 是某些好项。如果 $r$ 是 $t$ 的一个真初始段，则有几种可能情况：
     \begin{enumerate}
-    \item $r$ is just $[$: Then $r$ has one more $[$ than it does~$]$.
-    \item $r$ is $[r_1$ where $r_1$ is a proper initial segment
-      of~$s_1$: Since $s_1$ is a nice term, by induction hypothesis, $r_1$
-      has more $[$ than $]$ and the same is true for $[r_1$.
-    \item $r$ is $[s_1$ or $[s_1 \circ {}$: By the previous result, the
-      number of $[$ and $]$ in~$s_1$ are equal; so the number of $[$
-      in $[s_1$ or $[s_1 \circ {}$ is one more than the number of~$]$.
-    \item $r$ is $[s_1 \circ r_2$ where $r_2$ is a proper initial segment
-      of~$s_2$:  By induction hypothesis, $r_2$ contains more $[$ than
-      $]$. By the previous result, the number of $[$ and of
-      $]$ in~$s_1$ are equal. So the number of $[$ in $[s_1 \circ r_2$
-      is greater than the number of~$]$.
-    \item $r$ is $[s_1 \circ s_2$: By the previous result, the number of
-      $[$ and $]$ in $s_1$ are equal, and the same for~$s_2$. So there
-      is one more $[$ in $[s_1 \circ s_2$ than there are~$]$.
+    \item $r$ 就是 $[$：那么 $r$ 中 $[$ 的数量比 $]$ 多一个。
+    \item $r$ 是 $[r_1$，其中 $r_1$ 是~$s_1$ 的一个真初始段：由于 $s_1$ 是好项，根据归纳假设，$r_1$ 中 $[$ 多于 $]$，$[r_1$ 亦然。
+    \item $r$ 是 $[s_1$ 或 $[s_1 \circ {}$：根据前一个结果，$s_1$ 中 $[$ 和 $]$ 的数量相等；所以 $[s_1$ 或 $[s_1 \circ {}$ 中 $[$ 的数量比 $]$ 的数量多一个。
+    \item $r$ 是 $[s_1 \circ r_2$，其中 $r_2$ 是~$s_2$ 的一个真初始段：根据归纳假设，$r_2$ 包含的 $[$ 多于 $]$。根据前一个结果，$s_1$ 中 $[$ 和 $]$ 的数量相等。所以 $[s_1 \circ r_2$ 中 $[$ 的数量大于 $]$ 的数量。
+    \item $r$ 是 $[s_1 \circ s_2$：根据前一个结果，$s_1$ 中 $[$ 和 $]$ 的数量相等，$s_2$ 也是如此。所以 $[s_1 \circ s_2$ 中 $[$ 的数量比 $]$ 多一个。
     \end{enumerate}
   \end{enumerate}
 \end{proof}

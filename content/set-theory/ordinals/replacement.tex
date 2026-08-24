@@ -3,71 +3,50 @@
 \begin{document}
 
 \olfileid{sth}{ordinals}{replacement}
-\olsection{Replacement}
+\olsection{替换公理}
 
-In \olref[sth][ordinals][vn]{sec}, we motivated the introduction of ordinals by
-suggesting that we could treat them as order-types, i.e., canonical
-proxies for well-orderings. In order for that to work, we would need
-to prove that \emph{every well-ordering is isomorphic to some
-ordinal}. This would allow us to define $\ordtype{A, <}$ as the
-ordinal $\alpha$ such that $\tuple{A, <} \isomorphic \alpha$. 
+在 \olref[sth][ordinals][vn]{sec} 中，我们曾建议将序数视为序型，即良序的典范代表，以此作为引入序数的动机。为此，我们需要证明\emph{每个良序都同构于某个序数}。这就允许我们将 $\ordtype{A, <}$ 定义为满足 $\tuple{A, <} \isomorphic \alpha$ 的序数 $\alpha$。
 
-Unfortunately, we \emph{cannot} prove the desired result only the
-Axioms we provided introduced so far. (We will see why in
-\olref[replacement][strength]{sec}, but for now the point is: we can't.) We need a
-new thought, and here it is:
+不幸的是，仅凭目前引入的公理，我们\emph{无法}证明这一期望的结果。（我们将在 \olref[replacement][strength]{sec} 中看到原因，但目前的关键是：我们做不到。）我们需要一个新的想法，如下：
 
-\begin{axiom}[Scheme of Replacement]
-For any formula $\phi(x, y)$, the following is an axiom:
+\begin{axiom}[替换公理模式]
+对于任意公式 $\phi(x, y)$，以下是一条公理：
 \begin{quote}
-	for any $A$, if $(\forall x \in A)\lexists![y][\phi(x,y)]$, then
-	$\Setabs{y}{(\exists x \in A)\phi(x,y)}$ exists.
+	对于任意 $A$，如果 $(\forall x \in A)\lexists![y][\phi(x,y)]$，那么
+	$\Setabs{y}{(\exists x \in A)\phi(x,y)}$ 存在。
 \end{quote}
 \end{axiom}
+
 \noindent
-As with Separation, this is a scheme: it yields infinitely many
-axioms, for each of the infinitely many different $\phi$'s. And it can
-equally well be (and normally is) written down thus:
+与分离公理一样，这是一个模式：它产生无穷多条公理，对应于无穷多个不同的 $\phi$。它也可以（并且通常是）这样表述：
 
 \begin{defish}
-For any formula $\phi(x,y)$ which does not contain ``$B$'', the following is an axiom:
+对于任意不包含“$B$”的公式 $\phi(x,y)$，以下是一条公理：
 \[
 \forall A[(\forall x \in A)\lexists![y][\phi(x,y)] \lif \exists B\forall y (y \in B \liff (\exists x \in A)\phi(x,y))]
 \]
 \end{defish}
 
-On first encounter, however, this is quite a tangled formula. The
-following quick consequence of Replacement probably gives a
-\emph{clearer} expression to the intuitive idea we are working with:\footnote{A term is an expression which picks out exactly one object (on any completion of its free variables). For example, ``$\emptyset$'' is a term which picks out the empty set; ``$\{x\}$'' is a term which picks out $x$'s singleton (whatever $x$ might be); ``$x \cup y$'' is a term which picks out the union of $x$ and $y$ (whatever they might be).}
+然而，初看之下，这是一个相当复杂的公式。替换公理的以下直接推论，或许能更\emph{清晰}地表达我们所依据的直观想法：\footnote{项是在对其自由变元的任何代入下恰好指称一个对象的表达式。例如，“$\emptyset$”是指称空集的项；“$\{x\}$”是指称 $x$ 的单元素集的项（无论 $x$ 是什么）；“$x \cup y$”是指称 $x$ 和 $y$ 的并集的项（无论它们是什么）。}
 
 \begin{cor}
-For any term $\tau(x)$, and any set $A$, this set exists:
+对于任意项 $\tau(x)$ 和任意集合 $A$，以下集合存在：
 \[
 	\Setabs{\tau(x)}{x \in A} = \Setabs{y}{(\exists x \in A)y = \tau(x)}.
 \]
 \end{cor}
 
 \begin{proof}
-Since $\tau$ is a \emph{term}, $\forall x \lexists![y][\tau(x) = y]$.
-A fortiori, $(\forall x \in A)\lexists![y][\tau(x) = y]$. So
-$\Setabs{y}{(\exists x \in A)\tau(x) = y}$ exists by Replacement.
+由于 $\tau$ 是一个\emph{项}，$\forall x \lexists![y][\tau(x) = y]$。
+更显然地，$(\forall x \in A)\lexists![y][\tau(x) = y]$。因此，
+由替换公理可知 $\Setabs{y}{(\exists x \in A)\tau(x) = y}$ 存在。
 \end{proof}
+
 \noindent
-This suggests that ``Replacement'' is a good name for the Axiom: given
-a set $A$, you can form a new set, $\Setabs{\tau(x)}{x \in A}$, by
-replacing every member of $A$ with its image under~$\tau$. Indeed,
-following the notation for the image of a set under a function, we
-might write $\funimage{\tau}{A}$ for $\Setabs{\tau(x)}{x \in A}$.
+这表明“替换”是这个公理的一个好名字：给定集合 $A$，你可以用 $A$ 的每个成员在~$\tau$ 下的像替换该成员，从而形成新的集合 $\Setabs{\tau(x)}{x \in A}$。实际上，沿用函数下集合的像的记法，我们可以将 $\Setabs{\tau(x)}{x \in A}$ 写作 $\funimage{\tau}{A}$。
 
-Crucially, however, $\tau$ is a \emph{term}. It need not be (a name
-for) a \emph{function}, in the sense of \olref[sfr][fun][rel]{sec},
-i.e., a certain set of ordered pairs. After all, if $f$ is a function
-(in that sense), then the set $\funimage{f}{A} = \Setabs{f(x)}{x \in
-A}$ is just a particular subset of $\ran{f}$, and that is already
-guaranteed to exist, just using the axioms of~$\Zminus$.\footnote{Just
-consider $\Setabs{y \in \bigcup \bigcup f}{(\exists x \in A)y =
-f(x)}$.} Replacement, by contrast, is a \emph{powerful} addition to
-our axioms, as we will see in \olref[sth][replacement][]{chap}.
-
+然而，关键在于 $\tau$ 是一个\emph{项}。它不必是 \olref[sfr][fun][rel]{sec} 意义下的\emph{函数}（即某个有序对的集合）的名字。毕竟，如果 $f$ 是该意义下的函数，那么集合 $\funimage{f}{A} = \Setabs{f(x)}{x \in
+A}$ 仅仅是 $\ran{f}$ 的一个特定子集，而其存在性已由~$\Zminus$ 的公理所保证。\footnote{只需考虑 $\Setabs{y \in \bigcup \bigcup f}{(\exists x \in A)y =
+f(x)}$。} 相比之下，替换公理是对我们公理体系的一个\emph{强大}补充，正如我们将在 \olref[sth][replacement][]{chap} 中看到的那样。
 
 \end{document}

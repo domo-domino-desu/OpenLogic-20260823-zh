@@ -10,78 +10,33 @@
 
 \olsection{First-order Definability}
 
-We've seen that a number of properties of accessibility relations of
-frames can be defined by modal !!{formula}s. For instance, symmetry of
-frames can be defined by the !!{formula}~\Ax{B}, $p \lif \Box\Diamond
-p$. The conditions we've encountered so far can all be expressed by
-first-order !!{formula}s in !!a{language} involving a single two-place
-!!{predicate}. For instance, symmetry is defined by
-$\lforall[x][\lforall[y][(\Atom{Q}{x,y} \lif \Atom{Q}{y, x})]]$ in the
-sense that a first-order !!{structure}~$\Struct{M}$ with $\Domain{M} =
-W$ and $\Assign{Q}{M} = R$ satisfies the preceding formula iff $R$ is
-symmetric. This suggests the following definition:
+我们已经看到，框架可达关系的许多性质都可以用模态公式来定义。例如，框架的对称性可以用公式~\Ax{B}，即 $p \lif \Box\Diamond p$ 来定义。迄今为止我们遇到的条件，都可以在包含单个二元谓词符号的语言中用一阶公式表达。例如，对称性由
+$\lforall[x][\lforall[y][(\Atom{Q}{x,y} \lif \Atom{Q}{y, x})]]$ 定义，其含义是：一个论域为 $\Domain{M} = W$ 且 $\Assign{Q}{M} = R$ 的一阶结构~$\Struct{M}$ 满足上述公式，当且仅当 $R$ 是对称的。这提示了如下定义：
 
 \begin{defn}
-  A class~$\mClass{F}$ of frames is \emph{first-order definable} if there is
-  !!a{sentence}~$!A$ in the first-order language with a single
-  two-place !!{predicate}~$Q$ such that $\mModel{F} =
-  \tuple{W, R} \in \mClass{F}$ iff $\Sat{M}{!A}$ in the first-order
-  !!{structure}~$\Struct{M}$ with $\Domain{M} = W$ and $\Assign{Q}{M}
-  = R$.
+  一个框架类~$\mClass{F}$ 是\emph{一阶可定义的}，如果存在带有一个二元谓词符号~$Q$ 的一阶语言中的语句~$!A$，使得 $\mModel{F} =
+  \tuple{W, R} \in \mClass{F}$ 当且仅当在论域为 $\Domain{M} = W$ 且 $\Assign{Q}{M} = R$ 的一阶结构~$\Struct{M}$ 中，$\Sat{M}{!A}$ 成立。
 \end{defn}
 
-It turns out that the properties and modal !!{formula}s that define
-them considered so far are exceptional. Not every !!{formula} defines
-a first-order definable class of frames, and not every first-order
-definable class of frames is definable by a modal formula.
+事实上，迄今为止所讨论的性质及定义这些性质的模态公式都属于特例。并非每个公式都能定义一阶可定义的框架类，也并非每个一阶可定义的框架类都能由某个模态公式定义。
 
-A counterexample to the first is given by the L\"ob formula:
-\begin{equation}
+第一种主张的反例由 L\"ob 公式给出：\begin{equation}
 \Box(\Box p \lif p) \lif \Box p. \tag{\Ax{W}}
 \end{equation}
-\Ax{W} defines the class of transitive and converse well-founded
-frames. A relation is well-founded if there is no infinite sequence
-$w_1$, $w_2$, \dots{} such that $Rw_2w_1$, $Rw_3w_2$, \dots. For
-instance, the relation $<$ on~$\Nat$ is well-founded, whereas the
-relation $<$ on~$\Int$ is not. A relation is converse well-founded
-iff its converse is well-founded. So converse well-founded relations
-are those where there is no infinite sequence $w_1$, $w_2$, \dots{}
-such that $Rw_1w_2$, $Rw_2w_3$, \dots. 
+\Ax{W} 定义了传递且逆良基的框架类。一个关系是良基的，如果不存在无限序列 $w_1$, $w_2$, \dots{} 使得 $Rw_2w_1$, $Rw_3w_2$, \dots。例如，$\Nat$ 上的 $<$ 关系是良基的，而 $\Int$ 上的 $<$ 关系则不是。一个关系是逆良基的，当且仅当其逆关系是良基的。因此，逆良基关系是指不存在无限序列 $w_1$, $w_2$, \dots{} 使得 $Rw_1w_2$, $Rw_2w_3$, \dots 的关系。
 
-There is, however, no first-order !!{formula} defining transitive
-converse well-founded relations. For suppose~$\Sat{M}{!F}$ iff $R =
-\Assign{Q}{M}$ is transitive converse well-founded. Let $!A_n$ be the
-!!{formula}
+然而，不存在定义传递且逆良基关系的一阶公式。假设存在一阶公式~$!F$ 使得 $\Sat{M}{!F}$ 当且仅当 $R = \Assign{Q}{M}$ 是传递且逆良基的。令 $!A_n$ 为公式
 \[
 (\Atom{Q}{a_1,a_2} \land \dots \land
     \Atom{Q}{a_{n-1},a_{n}})
 \]
-Now consider the set of !!{formula}s
+现在考虑公式集
 \[
 \Gamma = \{!F, !A_1, !A_2, \dots\}.
 \]
-Every finite subset of $\Gamma$ is satisfiable: Let $k$ be largest
-such that $!A_k$ is in the subset, $\Domain{M_k} = \{1, \dots, k\}$,
-$\Assign{a_i}{M_k} = i$, and $\Assign{Q}{M_k} = <$. Since $<$ on $\{1,
-\dots, k\}$ is transitive and converse well-founded,
-$\Sat{M_k}{!F}$. $\Sat{M_k}{!A_i}$ by construction, for all $i \le k$.
-By the Compactness Theorem for first-order logic, $\Gamma$ is
-satisfiable in some !!{structure}~$\Struct{M}$. By hypothesis, since
-$\Sat{M}{!F}$, the relation $\Assign{Q}{M}$ is converse
-well-founded. But clearly, $\Assign{a_1}{M}$, $\Assign{a_2}{M}$,
-\dots{} would form an infinite sequence of the kind ruled out by
-converse well-foundedness.
+$\Gamma$ 的每个有限子集都是可满足的：设 $k$ 是使得 $!A_k$ 属于该子集的最大下标，构造 $\Domain{M_k} = \{1, \dots, k\}$，
+$\Assign{a_i}{M_k} = i$，以及 $\Assign{Q}{M_k} = <$。由于 $\{1, \dots, k\}$ 上的 $<$ 是传递且逆良基的，所以 $\Sat{M_k}{!F}$。根据构造，$\Sat{M_k}{!A_i}$ 对所有 $i \le k$ 成立。根据一阶逻辑的紧致性定理，$\Gamma$ 在某个结构~$\Struct{M}$ 中可满足。根据假设，既然 $\Sat{M}{!F}$，关系 $\Assign{Q}{M}$ 就是逆良基的。但显然，$\Assign{a_1}{M}$, $\Assign{a_2}{M}$, \dots{} 将构成一个逆良基性所禁止的那种无限序列。
 
-A counterexample to the second claim is given by the property of
-universality: for every $u$ and $v$, $Ruv$. Universal frames are
-first-order definable by the formula
-$\lforall[x][\lforall[y][\Atom{Q}{x,y}]]$.  However, no modal formula
-is valid in all and only the universal frames. This is a consequence
-of a result that is independently interesting: the formulas valid in
-universal frames are exactly the same as those valid in reflexive,
-symmetric, and transitive frames. There are reflexive, symmetric, and
-transitive frames that are not universal, hence every !!{formula}
-valid in all universal frames is also valid in some non-universal
-frames.
+第二种主张的反例是全域性（universality）性质：对所有 $u$ 和 $v$，都有 $Ruv$。全域框架可由公式 $\lforall[x][\lforall[y][\Atom{Q}{x,y}]]$ 一阶定义。然而，不存在在所有且仅在全域框架中有效的模态公式。这是一个本身也很有趣的结果的推论：在全域框架中有效的公式，与在自反、对称且传递的框架中有效的公式完全相同。存在非全域的自反、对称且传递的框架，因此，每个在所有全域框架中有效的公式，也在某些非全域框架中有效。
 
 \end{document}

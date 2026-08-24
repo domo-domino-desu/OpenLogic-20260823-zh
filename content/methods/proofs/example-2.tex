@@ -8,96 +8,59 @@
 
 \olfileid{mth}{prf}{ex2}
 
-\olsection{Another Example} 
+\olsection{另一个例子}
 
 \begin{prop}
-If $A \subseteq C$, then $A \cup (C \setminus A) = C$.
-\end{prop}  
+如果 $A \subseteq C$，那么 $A \cup (C \setminus A) = C$。
+\end{prop}
 
 \begin{proof}
-  Suppose that $A \subseteq C$.  We want to show that $A \cup (C
-  \setminus A) = C$.
+  假设 $A \subseteq C$。我们要证 $A \cup (C
+  \setminus A) = C$。
   \begin{quote}
-    We begin by observing that this is a conditional statement. It is
-    tacitly universally quantified: the proposition holds for all sets
-    $A$ and $C$. So $A$ and $C$ are variables for arbitrary sets. To
-    prove such a statement, we assume the antecedent and prove the
-    consequent.
+    我们首先注意到这是一个条件句。它隐含了全称量化：这个命题对所有集合
+    $A$ 和 $C$ 都成立。因此 $A$ 和 $C$ 是表示任意集合的变元。要证明这样的命题，我们假设前件并证明后件。
 
-    We continue by using the assumption that $A \subseteq C$. Let's
-    unpack the definition of~$\subseteq$: the assumption means that
-    all !!{element}s of~$A$ are also !!{element}s of~$C$. Let's write
-    this down---it's an important fact that we'll use throughout the
-    proof.
+    接着，我们利用 $A \subseteq C$ 这个假设。让我们展开~$\subseteq$ 的定义：这个假设意味着~$A$ 的所有元素也都是~$C$ 的元素。我们把这个事实写下来——它贯穿整个证明都会用到。
   \end{quote}
-  By the definition of~$\subseteq$, since $A \subseteq C$, for all
-  $z$, if $z \in A$, then $z \in C$.
+  根据~$\subseteq$ 的定义，由 $A \subseteq C$ 可知，对所有
+  $z$，如果 $z \in A$，那么 $z \in C$。
   \begin{quote}
-    We've unpacked all the definitions that are given to us in the
-    assumption. Now we can move onto the conclusion. We want to show
-    that $A \cup (C \setminus A) = C$, and so we set up a proof
-    similarly to the last example: we show that every !!{element} of
-    $A \cup (C \setminus A)$ is also !!a{element} of~$C$ and,
-    conversely, every !!{element} of $C$ is !!a{element} of $A \cup (C
-    \setminus A)$. We can shorten this to: $A \cup (C \setminus A)
-    \subseteq C$ and $C \subseteq A \cup (C \setminus A)$. (Here we're
-    doing the opposite of unpacking a definition, but it makes the
-    proof a bit easier to read.)  Since this is a conjunction, we have
-    to prove both parts. To show the first part, i.e., that every
-    !!{element} of $A \cup (C \setminus A)$ is also !!a{element}
-    of~$C$, we assume that $z \in A \cup (C \setminus A)$ for an
-    arbitrary~$z$ and show that $z \in C$. By the definition of
-    $\cup$, we can conclude that $z \in A$ or $z \in C \setminus A$
-    from $z \in A \cup (C \setminus A)$. You should now be getting the
-    hang of this.
+    我们已经把假设中给出的所有定义都展开了。现在我们可以转向结论。我们要证明 $A \cup (C \setminus A) = C$，于是我们像上一个例子那样来组织证明：我们证明 $A \cup (C \setminus A)$ 的每个元素也都是~$C$ 的元素，反之，$C$ 的每个元素也是 $A \cup (C
+    \setminus A)$ 的元素。我们可以将其简记为：$A \cup (C \setminus A)
+    \subseteq C$ 且 $C \subseteq A \cup (C \setminus A)$。（这与展开定义恰好相反，但能使证明更易读一些。）由于这是一个合取式，我们必须证明两部分。要证明第一部分，即 $A \cup (C \setminus A)$ 的每个元素也都是~$C$ 的元素，我们假设对任意~$z$ 有 $z \in A \cup (C \setminus A)$，然后证明 $z \in C$。根据 $\cup$ 的定义，从 $z \in A \cup (C \setminus A)$ 可以得出 $z \in A$ 或 $z \in C \setminus A$。至此你应该开始熟悉这个过程了。
     \end{quote}
-  $A \cup (C \setminus A) = C$ iff $A \cup (C \setminus A) \subseteq
-  C$ and $C \subseteq (A \cup (C \setminus A)$.  First we prove that
-  $A \cup (C \setminus A) \subseteq C$.  Let $z \in A \cup (C
-  \setminus A)$. So, either $z \in A$ or $z \in (C \setminus A)$.
+  $A \cup (C \setminus A) = C$ 当且仅当 $A \cup (C \setminus A) \subseteq
+  C$ 且 $C \subseteq A \cup (C \setminus A)$。首先我们证明
+  $A \cup (C \setminus A) \subseteq C$。令 $z \in A \cup (C
+  \setminus A)$。那么，或者 $z \in A$，或者 $z \in (C \setminus A)$。
   \begin{quote}
-    We've arrived at a disjunction, and from it we want to prove that
-    $z \in C$. We do this using proof by cases.
+    我们面临一个析取式，并且想从它证明 $z \in C$。我们通过分情形证明来做到这一点。
   \end{quote}
-  Case 1: $z \in A$. Since for all $z$, if $z \in A$, $z \in C$, we
-  have that $z \in C$.
+  情形 1：$z \in A$。由于对所有 $z$，若 $z \in A$ 则 $z \in C$，可得 $z \in C$。
   \begin{quote}
-    Here we've used the fact recorded earlier which followed from the
-    hypothesis of the proposition that $A \subseteq C$.  The first
-    case is complete, and we turn to the second case, $z \in (C
-    \setminus A)$.  Recall that $C \setminus A$ denotes the
-    \emph{difference} of the two sets, i.e., the set of all
-    !!{element}s of~$C$ which are not !!{element}s of~$A$.  But any
-    !!{element} of $C$ not in~$A$ is in particular !!a{element} of~$C$.
+    这里我们用到了早先记录下来的事实，它源自命题的假设 $A \subseteq C$。第一种情形证毕，我们转向第二种情形，$z \in (C
+    \setminus A)$。回想一下，$C \setminus A$ 表示两个集合的\emph{差集}，即所有属于~$C$ 但不属于~$A$ 的元素的集合。但是，任何在~$C$ 中却不在~$A$ 中的元素，当然也是~$C$ 的元素。
   \end{quote}
-  Case 2: $z \in (C \setminus A)$.  This means that $z \in C$ and $z
-  \notin A$. So, in particular, $z \in C$.
+  情形 2：$z \in (C \setminus A)$。这意味着 $z \in C$ 且 $z
+  \notin A$。所以，特别地，$z \in C$。
   \begin{quote}
-    Great, we've proved the first direction. Now for the second
-    direction. Here we prove that $C \subseteq A \cup (C \setminus
-    A)$.  So we assume that $z \in C$ and prove that $z \in A \cup (C
-    \setminus A)$.
+    很好，我们已经证明了第一个方向。现在转向第二个方向。这里我们证明 $C \subseteq A \cup (C \setminus
+    A)$。因此我们假设 $z \in C$ 并证明 $z \in A \cup (C
+    \setminus A)$。
   \end{quote}
-  Now let $z \in C$. We want to show that $z \in A$ or $z \in C
-  \setminus A$.
+  现在令 $z \in C$。我们要证明 $z \in A$ 或 $z \in C
+  \setminus A$。
   \begin{quote}
-    Since all !!{element}s of $A$ are also !!{element}s of $C$, and $C
-    \setminus A$ is the set of all things that are !!{element}s of $C$
-    but not $A$, it follows that $z$ is either in $A$ or in $C
-    \setminus A$.  This may be a bit unclear if you don't already know
-    why the result is true.  It would be better to prove it
-    step-by-step.  It will help to use a simple fact which we can
-    state without proof: $z \in A$ or $z \notin A$. This is called the
-    ``principle of excluded middle:'' for any statement~$p$, either
-    $p$ is true or its negation is true. (Here, $p$ is the statement
-    that $z \in A$.)  Since this is a disjunction, we can again use
-    proof-by-cases.
+    由于 $A$ 的所有元素也都是 $C$ 的元素，而 $C
+    \setminus A$ 是所有属于 $C$ 但不属于 $A$ 的元素的集合，那么 $z$ 要么在 $A$ 中，要么在 $C
+    \setminus A$ 中。如果你还不清楚为什么结论成立，这可能有点让人困惑。最好是逐步证明它。利用一个简单的事实会对证明有所帮助，对此我们可以不加证明地陈述如下：$z \in A$ 或 $z \notin A$。这被称为“排中律”：对于任何命题~$p$，要么 $p$ 为真，要么其否定为真。（这里，$p$ 是命题 $z \in A$。）由于这是一个析取式，我们可以再次使用分情形证明。
   \end{quote}
-  Either $z \in A$ or $z \notin A$. In the former case, $z \in A \cup
-  (C \setminus A)$. In the latter case, $z \in C$ and $z \notin A$, so
-  $z \in C \setminus A$.  But then $z \in A \cup (C \setminus A)$.
+  或者 $z \in A$，或者 $z \notin A$。在前一种情况下，$z \in A \cup
+  (C \setminus A)$。在后一种情况下，$z \in C$ 且 $z \notin A$，所以
+  $z \in C \setminus A$。那么 $z \in A \cup (C \setminus A)$。
   \begin{quote}
-    Our proof is complete: we have shown that $A \cup (C \setminus A) = C$.
+    我们的证明完成了：我们已经证明了 $A \cup (C \setminus A) = C$。
   \end{quote}
 \end{proof}
 

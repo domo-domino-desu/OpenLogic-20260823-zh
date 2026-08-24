@@ -8,150 +8,125 @@
 
 \olfileid{mvl}{thr}{skl}
 
-\olsection{Kleene logics}
+\olsection{Kleene 逻辑}
 
-Stephen Kleene introduced two three-valued logics motivated by a logic
-in which truth values are thought of the outcomes of computational
-procedures: a procedure may yield $\True$ or $\False$, but it may also
-fail to terminate.  In that case the corresponding truth value is
-undefined, represented by the truth value~$\Undef$.
+Stephen Kleene（斯蒂芬·克林）引入了两种三值逻辑，其动机源于这样一种逻辑：其中真值被视为计算过程的结果。一个过程可能输出 $\True$ 或 $\False$，但也可能无法终止。在后一种情况下，对应的真值是未定义的，用真值~$\Undef$ 表示。
 
-To compute the negation of a proposition~$!A$, you would first compute
-the value of~$!A$, and then return the opposite of the result.  If the
-computation of $!A$ does not terminate, then the entire procedure does
-not either: so the negation of $\Undef$ is $\Undef$.
+要计算命题~$!A$ 的否定，首先计算 $!A$ 的值，然后返回其相反的值。如果 $!A$ 的计算不终止，那么整个计算过程也不会终止：因此 $\Undef$ 的否定仍是 $\Undef$。
 
-To compute a conjunction $!A \land !B$, there are two options: one can
-first compute~$!A$, then $!B$, and then the result would be $\True$ if
-the outcome of both is~$\True$, and $\False$ otherwise.  If either
-computation fails to halt, the entire procedure does as well. So in
-this case, the if one conjunct is undefined, the conjunction is as
-well.  The same goes for disjunction.
+要计算合取式 $!A \land !B$，有两种做法：可以先计算~$!A$，再计算~$!B$，若两者结果均为~$\True$ 则合取式为 $\True$，否则为 $\False$。如果其中任何一个计算未能停机，整个过程亦然。因此在这种情况下，只要有一个合取支未定义，合取式也就未定义。析取式的情况与此类似。
 
-However, if we can evaluate $!A$ and $!B$ in parallel, we can do better.
-Then, if one of the two procedures halts and returns $\False$, we can
-stop, as the answer must be false.  So in that case a conjunction with
-one false conjunct is false, even if the other conjunct is undefined.
-Similarly, when computing a disjunction in parallel, we can stop once
-the procedure for one of the two disjuncts has returned true: then the
-disjunction must be true. So in this case we can know what the outcome
-of a compound claim is, even if one of the components is undefined. On
-this interpretation, we might read $\Undef$ as ``unknown'' rather than
-``undefined.''
+然而，如果我们能并行地求值 $!A$ 和 $!B$，结果会更好。此时，如果两个过程中有一个停机并返回 $\False$，我们就可以停止计算，因为该合取式的值必定为假。所以在这种情况下，只要有一个合取支为假，即使另一个合取支未定义，合取式也为假。类似地，当并行计算一个析取式时，一旦两个析取支中有一个的计算返回真，我们就可以停止：此时析取式必定为真。因此在这种情况下，即使其中一个支命题未定义，我们也能够知道复合命题的结果。在这种解释下，我们可以把 $\Undef$ 理解为“未知”而非“未定义”。
 
-The two interpretations give rise to Kleene's strong and weak logic.
-The conditional is defined as equivalent to $\lnot !A \lor !B$.
+这两种解释分别导出了 Kleene 的强逻辑与弱逻辑。条件句被定义为与 $\lnot !A \lor !B$ 等价。
 
 \begin{defn}
-\emph{Strong Kleene logic}~$\LogKs$ is defined using the matrix:
+\emph{强 Kleene 逻辑}~$\LogKs$ 由以下矩阵定义：
 \begin{enumerate}
-  \item The standard propositional language $\Lang L_0$ with
-  $\lnot$, $\land$, $\lor$, $\lif$.
-  \item The set of truth values $V = \{\True, \Undef, \False\}$.
-  \item $\True$ is the only designated value, i.e., $V^+ = \{\True\}$.
-  \item Truth functions are given by the following tables:
+  \item 标准的命题语言 $\Lang L_0$，包含
+  $\lnot$、$\land$、$\lor$、$\lif$。
+  \item 真值集合为 $V = \{\True, \Undef, \False\}$。
+  \item $\True$ 是唯一的指定值，即 $V^+ = \{\True\}$。
+  \item 真值函数由以下表格给出：
   \begin{center}
-    \begin{tabular}{c|c} 
-      $\tf{\lnot}$ & \\ 
-      \hline  
-      $\True$ & $\False$ \\ 
+    \begin{tabular}{c|c}
+      $\tf{\lnot}$ & \\
+      \hline
+      $\True$ & $\False$ \\
       $\Undef$ & $\Undef$ \\
-      $\False$ & $\True$ 
+      $\False$ & $\True$
     \end{tabular}
     \quad
-    \begin{tabular}{c|ccc} 
-      $\tf{\land}[\LogKs]$ & $\True$ & $\Undef$ & $\False$ \\ 
-      \hline 
-      $\True$ & $\True$ & $\Undef$ & $\False$ \\ 
-      $\Undef$ & $\Undef$ & $\Undef$ & $\False$\\ 
-      $\False$ & $\False$ & $\False$ & $\False$ 
+    \begin{tabular}{c|ccc}
+      $\tf{\land}[\LogKs]$ & $\True$ & $\Undef$ & $\False$ \\
+      \hline
+      $\True$ & $\True$ & $\Undef$ & $\False$ \\
+      $\Undef$ & $\Undef$ & $\Undef$ & $\False$\\
+      $\False$ & $\False$ & $\False$ & $\False$
     \end{tabular}
     \\[2ex]
-    \begin{tabular}{c|ccc} 
-      $\tf{\lor}[\LogKs]$ & $\True$ & $\Undef$ & $\False$ \\ 
-      \hline 
-      $\True$ & $\True$ & $\True$ & $\True$ \\ 
+    \begin{tabular}{c|ccc}
+      $\tf{\lor}[\LogKs]$ & $\True$ & $\Undef$ & $\False$ \\
+      \hline
+      $\True$ & $\True$ & $\True$ & $\True$ \\
       $\Undef$ & $\True$ & $\Undef$ & $\Undef$ \\
-      $\False$ & $\True$ & $\Undef$ & $\False$ 
+      $\False$ & $\True$ & $\Undef$ & $\False$
     \end{tabular}
     \quad
-    \begin{tabular}{c|ccc} 
-      $\tf{\lif}[\LogKs]$ & $\True$ & $\Undef$ & $\False$ \\ 
-      \hline 
-      $\True$ & $\True$ & $\Undef$ & $\False$ \\ 
-      $\Undef$ & $\True$ & $\Undef$ & $\Undef$  \\ 
-      $\False$ & $\True$ & $\True$ & $\True$ 
+    \begin{tabular}{c|ccc}
+      $\tf{\lif}[\LogKs]$ & $\True$ & $\Undef$ & $\False$ \\
+      \hline
+      $\True$ & $\True$ & $\Undef$ & $\False$ \\
+      $\Undef$ & $\True$ & $\Undef$ & $\Undef$  \\
+      $\False$ & $\True$ & $\True$ & $\True$
     \end{tabular}
-  \end{center} 
+  \end{center}
 \end{enumerate}
 \end{defn}
 
 \begin{defn}
-\emph{Weak Kleene logic}~$\LogKw$ is defined using the matrix:
+\emph{弱 Kleene 逻辑}~$\LogKw$ 由以下矩阵定义：
 \begin{enumerate}
-  \item The standard propositional language $\Lang L_0$ with
-  $\lnot$, $\land$, $\lor$, $\lif$.
-  \item The set of truth values $V = \{\True, \Undef, \False\}$.
-  \item $\True$ is the only designated value, i.e., $V^+ = \{\True\}$.
-  \item Truth functions are given by the following tables:
+  \item 标准的命题语言 $\Lang L_0$，包含
+  $\lnot$、$\land$、$\lor$、$\lif$。
+  \item 真值集合为 $V = \{\True, \Undef, \False\}$。
+  \item $\True$ 是唯一的指定值，即 $V^+ = \{\True\}$。
+  \item 真值函数由以下表格给出：
   \begin{center}
-    \begin{tabular}{c|c} 
-      $\tf{\lnot}$ & \\ 
-      \hline  
-      $\True$ & $\False$ \\ 
+    \begin{tabular}{c|c}
+      $\tf{\lnot}$ & \\
+      \hline
+      $\True$ & $\False$ \\
       $\Undef$ & $\Undef$ \\
-      $\False$ & $\True$ 
+      $\False$ & $\True$
     \end{tabular}
     \quad
-    \begin{tabular}{c|ccc} 
-      $\tf{\land}[\LogKw]$ & $\True$ & $\Undef$ & $\False$ \\ 
-      \hline 
-      $\True$ & $\True$ & $\Undef$ & $\False$ \\ 
-      $\Undef$ & $\Undef$ & $\Undef$ & $\Undef$\\ 
-      $\False$ & $\False$ & $\Undef$ & $\False$ 
+    \begin{tabular}{c|ccc}
+      $\tf{\land}[\LogKw]$ & $\True$ & $\Undef$ & $\False$ \\
+      \hline
+      $\True$ & $\True$ & $\Undef$ & $\False$ \\
+      $\Undef$ & $\Undef$ & $\Undef$ & $\Undef$\\
+      $\False$ & $\False$ & $\Undef$ & $\False$
     \end{tabular}
     \\[2ex]
-    \begin{tabular}{c|ccc} 
-      $\tf{\lor}[\LogKw]$ & $\True$ & $\Undef$ & $\False$ \\ 
-      \hline 
-      $\True$ & $\True$ & $\Undef$ & $\True$ \\ 
+    \begin{tabular}{c|ccc}
+      $\tf{\lor}[\LogKw]$ & $\True$ & $\Undef$ & $\False$ \\
+      \hline
+      $\True$ & $\True$ & $\Undef$ & $\True$ \\
       $\Undef$ & $\Undef$ & $\Undef$ & $\Undef$ \\
-      $\False$ & $\True$ & $\Undef$ & $\False$ 
+      $\False$ & $\True$ & $\Undef$ & $\False$
     \end{tabular}
     \quad
-    \begin{tabular}{c|ccc} 
-      $\tf{\lif}[\LogKw]$ & $\True$ & $\Undef$ & $\False$ \\ 
-      \hline 
-      $\True$ & $\True$ & $\Undef$ & $\False$ \\ 
-      $\Undef$ & $\Undef$ & $\Undef$ & $\Undef$  \\ 
-      $\False$ & $\True$ & $\Undef$ & $\True$ 
+    \begin{tabular}{c|ccc}
+      $\tf{\lif}[\LogKw]$ & $\True$ & $\Undef$ & $\False$ \\
+      \hline
+      $\True$ & $\True$ & $\Undef$ & $\False$ \\
+      $\Undef$ & $\Undef$ & $\Undef$ & $\Undef$  \\
+      $\False$ & $\True$ & $\Undef$ & $\True$
     \end{tabular}
-  \end{center} 
+  \end{center}
 \end{enumerate}
 \end{defn}
 
 \begin{prop}
-  $\LogKs$ and $\LogKw$ have no tautologies.
+  $\LogKs$ 和 $\LogKw$ 没有重言式。
 \end{prop}
 
 \begin{proof}
-  If $\pAssign v(p) = \Undef$ for all !!{propositional variable}s~$p$,
-  then any formula~$!A$ will have truth value~$\pValue v(!A) =
-  \Undef$, since
-  \[
+  如果对所有命题变元~$p$，都有 $\pAssign v(p) = \Undef$，
+  那么任何公式~$!A$ 的真值将是 $\pValue v(!A) =
+  \Undef$，因为在两种逻辑中 \[
     \tf{\lnot}(\Undef) = \tf{\lor}(\Undef, \Undef) = \tf{\land}(\Undef,
   \Undef) = \tf{\lif}(\Undef, \Undef) = \Undef
-  \]
-  in both logics. As $\Undef \notin V^+$ for either $\LogKs$ or
-  $\LogKw$, on this !!{valuation}, $!A$ will not be designated.
+  \] 均成立。由于在 $\LogKs$ 或
+  $\LogKw$ 中 $\Undef \notin V^+$，
+  因此在该赋值下，$!A$ 的值不是指定值。
 \end{proof}
 
-Although both weak and strong Kleene logic have no tautologies, they
-have non-trivial consequence relations. 
+虽然弱和强 Kleene 逻辑都没有重言式，但它们具有非平凡的后承关系。
 
 \begin{prob}
-  Which of the following relations hold in (a) strong and
-  (b) weak Kleene logic? Give a truth table for each.
+  下列后承关系在（a）强和（b）弱 Kleene 逻辑中哪些成立？对每个关系给出真值表。
   \begin{enumerate}
     \item $p, p \lif q \Entails q$
     \item $p \lor q, \lnot p \Entails q$
@@ -161,12 +136,7 @@ have non-trivial consequence relations.
   \end{enumerate}
 \end{prob}
 
-Dmitry Bochvar interpreted $\Undef$ as ``meaningless'' and attempted
-to use it to solve paradoxes such as the Liar paradox by stipulating
-that paradoxical sentences take the value~$\Undef$. He introduced a
-logic which is essentially weak Kleene logic extended by additional
-connectives, two of which are ``external negation'' and the ``is
-undefined'' operator:
+Dmitry Bochvar（德米特里·博赫瓦尔）将 $\Undef$ 解释为“无意义”，并试图通过规定悖论性语句（如说谎者悖论）取真值~$\Undef$ 来解决此类悖论。他引入了一种逻辑，其本质上是弱 Kleene 逻辑增加了额外联结词的扩展，其中两个是“外部否定”和“是未定义的”算子：
 \begin{center}
   \begin{tabular}{c|c} 
     $\tf{\sim}$ & \\ 
@@ -186,11 +156,9 @@ undefined'' operator:
 \end{center}
 
 \begin{prob}
-  Can you define $\sim$ in Bochvar's logic in terms of $\lnot$
-  and~$+$, i.e., find !!a{formula} with only the !!{propositional
-  variable}~$p$ and not involving $\sim$ which always takes the same
-  truth value as~$\mathord{\sim}p$?  Give a truth table to show you're
-  right.
+  你能否用 $\lnot$ 和~$+$ 在 Bochvar 逻辑中定义 $\sim$？
+  即，找出一个只含命题变元~$p$ 且不涉及 $\sim$ 的公式，使其总是取与~$\mathord{\sim}p$ 相同的真值。
+  用真值表证明你是正确的。
 \end{prob}
 
 

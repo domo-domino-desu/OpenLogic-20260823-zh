@@ -3,33 +3,30 @@
 \begin{document}
 
 \olfileid{sth}{z}{pairs}
-\olsection{Pairs}
+\olsection{配对}
 
-The next axiom to consider is the following:
+接下来要考虑的公理如下：
 
-\begin{axiom}[Pairs]
-For any sets $a, b$, the set $\{a, b\}$ exists.
-\[
+\begin{axiom}[配对公理]
+对任意集合 $a, b$，集合 $\{a, b\}$ 存在。\[
 	\forall a \forall b \exists P \forall x (x \in P \liff (x = a \lor x = b))
 \]
 \end{axiom}
 
-Here is how to justify this axiom, using the iterative conception. Suppose $a$ is available at stage $S$, and $b$ is available at stage $T$. Let $M$ be whichever of stages $S$ and $T$ comes later. Then since $a$ and $b$ are both available at stage $M$, the set $\{a,b\}$ is a possible collection available at any stage after $M$ (whichever is the greater).
+下面说明如何用迭代概念来证成这条公理。假设 $a$ 在阶段 $S$ 可用，$b$ 在阶段 $T$ 可用。令 $M$ 为阶段 $S$ 和 $T$ 中较晚的那一个。那么由于 $a$ 和 $b$ 在阶段 $M$ 都可用，集合 $\{a,b\}$ 就是一个可能的汇集，在 $M$ 之后的任何阶段（即更大的那一个阶段之后）都是可用的。
 
-But hold on!{} Why assume that there \emph{are} any stages after $M$? If there are none, then our justification will fail. So, to justify Pairs, we will have to add another principle to the story we told in \olref[sth][z][story]{sec}, namely:
+但是且慢！为何要假定 $M$ \emph{之后}还有阶段呢？如果没有，那么我们的证成就会失败。所以，为了证成配对公理，我们必须在 \olref[sth][z][story]{sec} 中所讲的故事里补充另一条原则，即：
+
 \begin{enumerate}
-	\item[] \stagessucc. There is no last stage.
+	\item[] \stagessucc. 没有最后一个阶段。
 \end{enumerate}
-Is this principle justified? Nothing in Shoenfield's story stated
-\emph{explicitly} that there is no last stage. Still, even if it is
-(strictly speaking) an extra addition to our story, it fits well with
-the basic idea that sets are formed in stages. We will simply accept
-it in what follows. And so, we will accept the Axiom of Pairs too.
 
-Armed with this new Axiom, we can prove the existence of plenty more sets. For example:
+这条原则本身合理吗？Shoenfield 的故事中并没有\emph{明确}说明没有最后一个阶段。不过，即使它（严格来说）是我们故事的一个额外补充，它与“集合是分阶段形成的”这一基本思想也是吻合的。在接下来的讨论中，我们将直接接受它。因此，我们也将接受配对公理。
+
+凭借这条新公理，我们可以证明更多集合的存在性。例如：
 
 \begin{prop}\ollabel{prop:pairsconsequences}
-For any sets $a$ and $b$, the following sets exist:
+对任意集合 $a$ 和 $b$，下列集合存在：
 	\begin{enumerate}
 		\item\ollabel{singleton} $\{a\}$
 		\item\ollabel{binunion} $a \cup b$
@@ -38,24 +35,22 @@ For any sets $a$ and $b$, the following sets exist:
 \end{prop}
 
 \begin{proof}
-\olref{singleton}. By Pairs, $\{a, a\}$ exists, which is $\{a\}$ by
-Extensionality.
+\olref{singleton}. 由配对公理，$\{a, a\}$ 存在，根据外延性公理，它就是 $\{a\}$。
 
-\olref{binunion}. By Pairs, $\{a, b\}$ exists. Now $a \cup b = \bigcup
-\{a, b\}$ exists by Union.
+\olref{binunion}. 由配对公理，$\{a, b\}$ 存在。进而由并集公理，$a \cup b = \bigcup
+\{a, b\}$ 存在。
 
-\olref{tuples}. By \olref{singleton}, $\{a\}$ exists. By Pairs, $\{a,
-b\}$ exists. Now $\{\{a\}, \{a, b\}\} = \tuple{a, b}$ exists, by Pairs
-again.
+\olref{tuples}. 由 \olref{singleton}，$\{a\}$ 存在。由配对公理，$\{a,
+b\}$ 存在。再由配对公理，$\{\{a\}, \{a, b\}\} = \tuple{a, b}$ 存在。
 \end{proof}
 
 \begin{prob}
-Show that, for any sets $a, b, c$, the set $\{a, b, c\}$ exists.
+证明：对任意集合 $a, b, c$，集合 $\{a, b, c\}$ 存在。
 \end{prob}
 
 \begin{prob}
-Show that, for any sets $a_1, \ldots, a_n$, the set $\{a_1, \ldots,
-a_n\}$ exists.
+证明：对任意集合 $a_1, \ldots, a_n$，集合 $\{a_1, \ldots,
+a_n\}$ 存在。
 \end{prob}
 
 %\begin{proof} By two applications of Pairs, $\{\{a_1, a_2\}, \{a_1,

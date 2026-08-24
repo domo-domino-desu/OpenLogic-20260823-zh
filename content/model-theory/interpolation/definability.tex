@@ -8,34 +8,18 @@
 
 \olfileid{mod}{int}{def}
 
-\olsection{The Definability Theorem}
+\olsection{可定义性定理}
 
-One important application of the interpolation theorem is Beth's
-definability theorem.  To define an $n$-place relation~$R$ we can give
-!!a{formula}~$!C$ with $n$ free !!{variable}s which does not
-involve~$R$. This would be an \emph{explicit} definition of~$R$ in
-terms of~$!C$.  We can then say also that a theory~$\Sigma(P)$ in a
-!!{language} containing the $n$-place !!{predicate}~$P$ explicitly
-defines~$P$ if it contains (or at least entails) a formalized explicit
-definition, i.e.,
+插值定理的一个重要应用是 Beth（贝特）可定义性定理。要定义一个 $n$ 元关系~$R$，我们可以给出一个带有 $n$ 个自由变元且不涉及~$R$ 的公式~$!C$。这就是利用~$!C$ 对~$R$ 的\emph{显式}定义。同样可以说，若语言包含 $n$ 元谓词符号~$P$ 的理论~$\Sigma(P)$ 包含（或至少语义地后承）一个形式化的显式定义，即
 \[
 \Sigma(P) \Entails \lforall[x_1][\dots
   \lforall[x_n][(\Atom{P}{x_1,\dots, x_n} \liff !C(x_1, \dots,
     x_n))]].
 \]
-But an explicit definition is only one way of defining---in the sense
-of determining completely---a relation.  A theory may also be such
-that the interpretation of~$P$ is fixed by the interpretation of the
-rest of the !!{language} in any model.  The definability theorem
-states that whenever a theory fixes the interpretation of~$P$ in this
-way---whenever it \emph{implicitly defines}~$P$---then it also
-explicitly defines it.
+则它\emph{显式定义}了~$P$。但是，显式定义仅仅是定义（即完全确定）关系的一种方式。一个理论也可能使得：在任何模型中，~$P$ 的解释都由语言其余部分的解释所确定。可定义性定理断言，每当一个理论以这种方式确定了~$P$ 的解释——即每当它\emph{隐式定义}了~$P$——它也就显式地定义了~$P$。
 
 \begin{defn}
-Suppose $\Lang{L}$ is !!a{language} not containing the
-!!{predicate}~$P$.  A set $\Sigma(P)$ of !!{sentence}s of $\Lang{L}
-\cup \{P\}$ \emph{explicitly defines}~$P$ if and only if there is
-!!a{formula}~$!C(x_1, \dots, x_n)$ of $\Lang{L}$ such that
+设 $\Lang{L}$ 为不包含谓词符号~$P$ 的语言。$\Lang{L} \cup \{P\}$ 的语句集合 $\Sigma(P)$ \emph{显式定义}了~$P$，当且仅当存在 $\Lang{L}$ 的公式~$!C(x_1, \dots, x_n)$ 使得
 \[
 \Sigma(P) \Entails \lforall[x_1][\dots
   \lforall[x_n][(\Atom{P}{x_1,\dots, x_n} \liff !C(x_1, \dots,
@@ -44,80 +28,58 @@ Suppose $\Lang{L}$ is !!a{language} not containing the
 \end{defn}
 
 \begin{defn}
-Suppose $\Lang{L}$ is !!a{language} not containing the
-!!{predicate}s~$P$ and~$P'$.  A set $\Sigma(P)$ of !!{sentence}s of
-$\Lang{L} \cup \{P\}$ \emph{implicitly defines} $P$ if and only if
+设 $\Lang{L}$ 为不包含谓词符号~$P$ 和~$P'$ 的语言。$\Lang{L} \cup \{P\}$ 的语句集合 $\Sigma(P)$ \emph{隐式定义}了 $P$，当且仅当
 \[
 \Sigma(P) \cup \Sigma(P') \Entails \lforall[x_1][\dots
   \lforall[x_n][(\Atom{P}{x_1,\dots, x_n} \liff \Atom{P'}{x_1,\dots,
       x_n})]],
 \]
-where $\Sigma(P')$ is the result of uniformly replacing $P$ with $P'$
-in $\Sigma(P)$.
+其中 $\Sigma(P')$ 是将 $\Sigma(P)$ 中的 $P$ 一致地替换为 $P'$ 得到的结果。
 \end{defn}
 
-In other words, for any model $\Struct{M}$ and $R, R' \subseteq
-\Domain{M}^n$, if both $\Expan{M}{R} \Entails \Sigma(P)$ and
-$\Expan{M}{R'} \Entails \Sigma(P')$, then $R=R'$; where
-$\Expan{M}{R}$ is the !!{structure}~$\Struct{M'}$ for the
-expansion of $\Lang{L}$ to $\Lang{L} \cup \{P\}$ such that
-$\Assign{P}{M'} = R$, and similarly for $\Expan{M}{R'}$.
+换言之，对于任意结构 $\Struct{M}$ 和 $R, R' \subseteq
+\Domain{M}^n$，若既有 $\Expan{M}{R} \Entails \Sigma(P)$ 又有 $\Expan{M}{R'} \Entails \Sigma(P')$，则 $R=R'$；其中 $\Expan{M}{R}$ 是将 $\Lang{L}$ 扩张到 $\Lang{L} \cup \{P\}$ 后所得且满足 $\Assign{P}{M'} = R$ 的结构~$\Struct{M'}$，$\Expan{M}{R'}$ 类似定义。
 
-\begin{thm}[Beth Definability Theorem] A set $\Sigma(P)$ of $\Lang{L}
-  \cup\{P\}$-!!{formula}s implicitly defines $P$ if and only $\Sigma(P)$
-  explicitly defines $P$.
+\begin{thm}[Beth 可定义性定理]
+$\Lang{L} \cup\{P\}$-公式的集合 $\Sigma(P)$ 隐式定义 $P$，当且仅当 $\Sigma(P)$ 显式定义 $P$。
 \end{thm}
 
 \begin{proof}
-If $\Sigma(P)$ explicitly defines $P$ then both
-\begin{align*}
+若 $\Sigma(P)$ 显式定义了 $P$，则既有 \begin{align*}
   \Sigma(P) & \Entails & \lforall[x_1][\dots \lforall[x_n]
     [(\Atom{P}{x_1,\dots, x_n} \liff !C(x_1,\dots,x_n))]]\\
   \Sigma(P') & \Entails & \lforall[x_1][\dots \lforall[x_n]
     [(\Atom{P'}{x_1,\dots, x_n} \liff !C(x_1,\dots,x_n))]]
-\end{align*}
-and the conclusion follows. For the converse: assume that $\Sigma(P)$
-implicitly defines $P$. First, we add !!{constant}s $c_1$, \dots,~$c_n$ to
-$\Lang{L}$. Then
+\end{align*}，结论随之成立。反之：假设 $\Sigma(P)$ 隐式定义了 $P$。首先，向 $\Lang{L}$ 中添加常项符号 $c_1$, \dots,~$c_n$。则有
 \[
 \Sigma(P) \cup \Sigma(P') \Entails
 \Atom{P}{c_1, \dots, c_n} \to  \Atom{P'}{c_1, \dots, c_n}.
 \]
-By compactness, there are finite sets $\Delta_0 \subseteq \Sigma(P)$
-and $\Delta_1 \subseteq \Sigma(P')$ such that
+根据紧致性定理，存在有限子集 $\Delta_0 \subseteq \Sigma(P)$ 和 $\Delta_1 \subseteq \Sigma(P')$ 使得
 \[
 \Delta_0 \cup \Delta_1 \Entails
 \Atom{P}{c_1, \dots, c_n} \to \Atom{P'}{c_1, \dots, c_n}.
 \]
-Let $!D(P)$ be the conjunction of all !!{sentence}s $!A(P)$ such that
-either $!A(P) \in \Delta_0$ or $!A(P') \in \Delta_1$ and let $!D(P')$
-be the conjunction of all !!{sentence}s $!A(P')$ such that either
-$!A(P) \in \Delta_0$ or $!A(P') \in \Delta_1$. Then $!D(P) \land
-!D(P') \Entails \Atom{P}{c_1, \dots, c_n} \to P'c_1\dots c_n$. We can
-re-arrange this so that each !!{predicate} occurs on one side of
-$\Entails$:
+令 $!D(P)$ 为所有满足 $!A(P) \in \Delta_0$ 或 $!A(P') \in \Delta_1$ 的语句 $!A(P)$ 的合取；令 $!D(P')$ 为所有满足 $!A(P) \in \Delta_0$ 或 $!A(P') \in \Delta_1$ 的语句 $!A(P')$ 的合取。于是有 $!D(P) \land
+!D(P') \Entails \Atom{P}{c_1, \dots, c_n} \to P'c_1\dots c_n$。可以将该式重新整理，使得每个谓词符号仅出现在 $\Entails$ 的一侧：
 \[
 !D(P) \land \Atom{P}{c_1, \dots, c_n} \Entails
 !D(P') \to \Atom{P'}{c_1, \dots, c_n}.
 \]
-By Craig's Interpolation Theorem there is !!a{sentence} $!C(c_1,\dots, c_n)$
-not containing $P$ or $P'$ such that:
+根据 Craig（克雷格）插值定理，存在一个不包含 $P$ 或 $P'$ 的语句 $!C(c_1,\dots, c_n)$ 使得：
 \begin{align*}
   !D(P) \land \Atom{P}{c_1, \dots, c_n} & \Entails !C(c_1,\dots, c_n); \\
   !C(c_1,\dots, c_n) & \Entails !D(P') \to \Atom{P'}{c_1, \dots, c_n}.
 \end{align*}
-From the former of these two entailments we have: $!D(P) \Entails
-\Atom{P}{c_1,\dots, c_n} \lif !C(c_1,\dots, c_n)$. And from the
-latter, since an $\Lang{L} \cup \{P\}$-model $\Expan{M}{R}
-\Entails !A(P)$ if and only if the corresponding $\Lang{L} \cup
-\{P'\}$-model $\Expan{M}{R} \models !A(P')$, we have
-$!C(c_1,\dots, c_n) \Entails !D(P) \lif \Atom{P}{c_1,\dots, c_n}$,
-from which:
+由这两个语义后承中的前者可得：$!D(P) \Entails
+\Atom{P}{c_1,\dots, c_n} \lif !C(c_1,\dots, c_n)$。由后者，由于 $\Lang{L} \cup \{P\}$-模型 $\Expan{M}{R}
+\Entails !A(P)$ 当且仅当对应的 $\Lang{L} \cup
+\{P'\}$-模型 $\Expan{M}{R} \models !A(P')$，故可得 $!C(c_1,\dots, c_n) \Entails !D(P) \lif \Atom{P}{c_1,\dots, c_n}$，进而有：
 \[
 !D(P) \Entails !C(c_1,\dots,c_n) \to \Atom{P}{c_1,\dots, c_n}.
 \]
-Putting the two together, $!D(P) \Entails \Atom{P}{c_1,\dots, c_n}
-\liff !C(c_1, \dots, c_n)$, and by monotonicity and generalization also
+将两者合并，得 $!D(P) \Entails \Atom{P}{c_1,\dots, c_n}
+\liff !C(c_1, \dots, c_n)$，再根据语义后承的单调性与概括规则，亦有
 \[
 \Sigma(P) \Entails
 \lforall[x_1][\dots\lforall[x_n][(\Atom{P}{x_1,\dots, x_n} \liff
@@ -126,4 +88,3 @@ Putting the two together, $!D(P) \Entails \Atom{P}{c_1,\dots, c_n}
 \end{proof}
 
 \end{document}
-

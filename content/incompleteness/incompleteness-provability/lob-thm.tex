@@ -1,153 +1,128 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
 % Part: incompleteness
 % Chapter: incompleteness-provability
 % Section: lob-thm
-
-\documentclass[../../../include/open-logic-section]{subfiles}
 
 \begin{document}
 
 \olfileid{inc}{inp}{lob}
 
-\olsection{L\"ob's Theorem}
+\olsection{L\"ob定理}
 
-The G\"odel sentence for a theory~$\Th{T}$ is a fixed point of $\lnot
-\OProv[\Th{T}](y)$, i.e., !!a{sentence}~$!G$ such that
-\[
+理论~$\Th{T}$ 的哥德尔语句是 $\lnot
+\OProv[\Th{T}](y)$ 的一个不动点，即满足 \[
 \Th{T} \Proves \lnot \OProv[\Th{T}](\gn{!G}) \liff !G.
-\]
-It is not !!{derivable}, because if $\Th{T} \Proves !G$, (a) by !!{derivability}
-condition~(1), $\Th{T} \Proves \OProv[\Th{T}](\gn{!G})$, and (b) $\Th{T}
-\Proves !G$ together with $\Th{T} \Proves \lnot \OProv[\Th{T}](\gn{!G})
-\liff !G$ gives $\Th{T} \Proves \lnot \OProv[\Th{T}](\gn{!G})$, and so
-$\Th{T}$ would be inconsistent.  Now it is natural to ask about the
-status of a fixed point of $\OProv[\Th{T}](y)$, i.e., !!a{sentence}~$!H$
-such that
-\[
+\] 的语句~$!G$。
+它是不可推导的，因为如果 $\Th{T} \Proves !G$，那么 (a) 由可证性条件~(1) 可得 $\Th{T} \Proves \OProv[\Th{T}](\gn{!G})$，
+并且 (b) 将 $\Th{T} \Proves !G$ 与 $\Th{T} \Proves \lnot \OProv[\Th{T}](\gn{!G})
+\liff !G$ 结合可得 $\Th{T} \Proves \lnot \OProv[\Th{T}](\gn{!G})$，
+于是 $\Th{T}$ 就会是不一致的。
+现在，很自然地会问：$\OProv[\Th{T}](y)$ 的不动点，即满足 \[
 \Th{T} \Proves \OProv[\Th{T}](\gn{!H}) \liff !H.
-\]
-If it were !!{derivable}, $\Th{T} \Proves \OProv[\Th{T}](\gn{!H})$ by
-condition~(1), but the same conclusion follows if we apply modus
-ponens to the equivalence above. Hence, we don't get that $\Th{T}$ is
-inconsistent, at least not by the same argument as in the case of the
-G\"odel sentence. This of course does not show that $\Th{T}$
-\emph{does} !!{derive}~$!H$.
+\] 的语句~$!H$，地位又如何？
+如果它是可推导的，那么由条件~(1) 可得 $\Th{T} \Proves \OProv[\Th{T}](\gn{!H})$，但对该等价式应用肯定前件律也能得出同样的结论。
+因此，我们并不能得出 $\Th{T}$ 不一致，至少不能通过哥德尔语句情形下的同样论证得出。
+这当然并不表明 $\Th{T}$ \emph{确实}能推导出~$!H$。
 
-We can make headway on this question if we generalize it a bit. The
-left-to-right direction of the fixed point equivalence,
-$\OProv[\Th{T}](\gn{!H}) \lif !H$, is an instance of a general schema
-called a \emph{reflection principle}: $\OProv[\Th{T}](\gn{!A}) \lif !A$.
-It is called that because it expresses, in a sense, that $\Th{T}$ can
-``reflect'' about what it can !!{derive}; basically it says, ``If $\Th{T}$
-can !!{derive}~$!A$, then~$!A$ is true,'' for any~$!A$.  This is true for
-sound theories only, of course, and this suggests that theories will
-in general not !!{derive} every instance of it.  So which instances can a
-theory (strong enough, and satisfying the !!{derivability} conditions)
-!!{derive}?  Certainly all those where $!A$ itself is !!{derivable}. And that's
-it, as the next result shows.
+对这个问题稍作推广，我们便能取得进展。
+不动点等价式从左到右的方向，即 $\OProv[\Th{T}](\gn{!H}) \lif !H$，是被称为\emph{反射原理}的一般图式 $\OProv[\Th{T}](\gn{!A}) \lif !A$ 的一个实例。
+它之所以这么叫，是因为它在某种意义上表达了 $\Th{T}$ 能够“反思”它所能推导的东西；大致来说，它断言：对任意~$!A$，“如果 $\Th{T}$ 能推导~$!A$，那么~$!A$ 就是真的。”
+当然，这仅对可靠的理论成立，由此可知，理论通常不会推导出反射原理的每一个实例。
+那么，一个（足够强且满足可证性条件的）理论能推导哪些实例呢？当然是所有那些 $!A$ 本身可推导的实例。仅此而已，正如下一个结果所示。
 
 \begin{thm}\ollabel{thm:lob}
-Let $\Th{T}$ be !!a{axiomatizable} theory extending $\Th{Q}$, and
-suppose $\OProv[\Th{T}](y)$ is a formula satisfying conditions P1--P3 from
-\olref[2in]{sec}. If $\Th{T}$ !!{derive}s $\OProv[\Th{T}](\gn{!A}) \lif !A$,
-then in fact $\Th{T}$ !!{derive}s $!A$.
+设 $\Th{T}$ 为扩张 $\Th{Q}$ 的可公理化理论，
+并设 $\OProv[\Th{T}](y)$ 为满足
+\olref[2in]{sec} 中条件 P1--P3 的公式。若 $\Th{T}$ 可推导 $\OProv[\Th{T}](\gn{!A}) \lif !A$，
+则 $\Th{T}$ 事实上可推导 $!A$。
 \end{thm}
 
-Put differently, if $\Th{T} \Proves/ !A$, then $\Th{T} \Proves/
-\OProv[\Th{T}](\gn{!A}) \lif !A$. This result is known as L\"ob's
-theorem.
+换言之，如果 $\Th{T} \Proves/ !A$，那么 $\Th{T} \Proves/
+\OProv[\Th{T}](\gn{!A}) \lif !A$。这一结果被称为 L\"ob 定理。
 
 \begin{explain}
-The heuristic for the proof of L\"ob's theorem is a clever proof that
-Santa Claus exists. (If you don't like that conclusion, you are free
-to substitute any other conclusion you would like.) Here it is:
+L\"ob 定理证明的启发式思路，在于一个关于圣诞老人存在的巧妙证明。
+（如果你不喜欢这个结论，可以随意替换成任何你想要的结论。）证明如下：
 \begin{enumerate}
-\item Let $X$ be the sentence, ``If $X$ is true, then Santa Claus
-  exists.''
-\item Suppose $X$ is true.
-\item Then what it says holds; i.e., we have: if $X$ is true, then
-  Santa Claus exists.
-\item Since we are assuming $X$ is true, we can conclude that
-  Santa Claus exists, by modus ponens from (2) and~(3).
-\item We have succeeded in deriving (4), ``Santa Claus exists,'' from
-  the assumption~(2), ``$X$ is true.'' By conditional proof, we have
-  shown: ``If $X$ is true, then Santa Claus exists.''
-\item But this is just the sentence~$X$. So we have shown that $X$ is
-  true.
-\item But then, by the argument (2)--(4) above, Santa Claus exists.
+\item 令 $X$ 为语句：“若 $X$ 为真，则圣诞老人存在。”
+\item 假设 $X$ 为真。
+\item 那么它所说的成立；即我们有：若 $X$ 为真，则圣诞老人存在。
+\item 由于已假设 $X$ 为真，由 (2) 和 (3) 经肯定前件律可得：圣诞老人存在。
+\item 我们成功从假设 (2) “$X$ 为真”导出了 (4) “圣诞老人存在”。由条件证明可知：“若 $X$ 为真，则圣诞老人存在。”
+\item 但这恰是语句 $X$。因此，我们已表明 $X$ 为真。
+\item 于是，由上述 (2)--(4) 的论证，圣诞老人存在。
 \end{enumerate}
-A formalization of this idea, replacing ``is true'' with ``is
-!!{derivable},'' and ``Santa Claus exists'' with~$!A$, yields the proof of
-L\"ob's theorem. The trick is to apply the fixed-point lemma to the
-!!{formula}~$\OProv[\Th{T}](y) \lif !A$. The fixed point of that
-corresponds to the sentence~$X$ in the preceding sketch.
+将这一想法形式化，把“为真”替换为“可推导”，把“圣诞老人存在”替换为 $!A$，
+就得到了 L\"ob 定理的证明。技巧在于将不动点引理应用于公式~$\OProv[\Th{T}](y) \lif !A$。
+该公式的不动点对应于前述梗概中的语句 $X$。
 \end{explain}
 
-\begin{proof}[Proof of \olref{thm:lob}]
-Suppose $!A$ is !!a{sentence} such that $\Th{T}$ !!{derive}s
-$\OProv[\Th{T}](\gn{!A}) \lif !A$. Let $!B(y)$ be the !!{formula}~$\OProv[\Th{T}](y)
-\lif !A$, and use the fixed-point lemma to find !!a{sentence}~$!D$
-such that $\Th{T}$ !!{derive}s $!D \liff !B(\gn{!D})$. Then each of the
-following is !!{derivable} in $\Th{T}$:
+\begin{proof}[证明 \olref{thm:lob}]
+设 $!A$ 为使得 $\Th{T}$ 可推导 $\OProv[\Th{T}](\gn{!A}) \lif !A$ 的语句。
+令 $!B(y)$ 为公式~$\OProv[\Th{T}](y)
+\lif !A$，利用不动点引理可得语句 $!D$，使得 $\Th{T}$ 可推导 $!D \liff !B(\gn{!D})$。
+那么下列每一项在 $\Th{T}$ 中都是可推导的：
 \begin{align}
   & !D \liff (\OProv[\Th{T}](\gn{!D}) \lif !A) \ollabel{L-1}\\
-  & \qquad \text{$!D$ is a fixed point of~$!B(y)$}\notag \\
+  & \qquad \text{$!D$ 是~$!B(y)$ 的一个不动点}\notag \\
   & !D \lif (\OProv[\Th{T}](\gn{!D}) \lif !A) \ollabel{L-2}\\
-  & \qquad\text{from \olref{L-1}}\notag\\
+  & \qquad\text{由 \olref{L-1}}\notag\\
   & \OProv[\Th{T}](\gn{!D \lif (\OProv[\Th{T}](\gn{!D}) \lif !A)}) \ollabel{L-3}\\
-  & \qquad \text{from \olref{L-2} by condition P1}\notag \\
+  & \qquad \text{由 \olref{L-2} 及条件 P1}\notag \\
   & \OProv[\Th{T}](\gn{!D}) \lif \OProv[\Th{T}](\gn{\OProv[\Th{T}](\gn{!D}) \lif !A})
   \ollabel{L-4}\\
-  &\qquad \text{from \olref{L-3} using condition P2}\notag \\
+  &\qquad \text{由 \olref{L-3} 使用条件 P2}\notag \\
   & \OProv[\Th{T}](\gn{!D}) \lif (\OProv[\Th{T}](\gn{\OProv[\Th{T}](\gn{!D})}) \lif \OProv[\Th{T}](\gn{!A})) \ollabel{L-5}\\
-  &\qquad \text{from \olref{L-4} using P2 again} \notag\\
+  &\qquad \text{由 \olref{L-4} 再次使用 P2} \notag\\
 & \OProv[\Th{T}](\gn{!D}) \lif \OProv[\Th{T}](\gn{\OProv[\Th{T}](\gn{!D})}) \ollabel{L-6}\\
-  & \qquad\text{by !!{derivability} condition P3} \notag\\
+  & \qquad\text{由可证性条件 P3} \notag\\
   & \OProv[\Th{T}](\gn{!D}) \lif \OProv[\Th{T}](\gn{!A}) \ollabel{L-7} \\
-  &\qquad\text{from \olref{L-5} and \olref{L-6}}\notag\\
+  &\qquad\text{由 \olref{L-5} 与 \olref{L-6}}\notag\\
   & \OProv[\Th{T}](\gn{!A}) \lif !A \ollabel{L-8}\\
-  &\qquad\text{by assumption of the theorem} \notag\\
+  &\qquad\text{由定理的假设} \notag\\
   & \OProv[\Th{T}](\gn{!D}) \lif !A \ollabel{L-9}\\
-  &\qquad\text{from \olref{L-7} and \olref{L-8}}\notag\\
+  &\qquad\text{由 \olref{L-7} 与 \olref{L-8}}\notag\\
   & (\OProv[\Th{T}](\gn{!D}) \lif !A) \lif !D \ollabel{L-10}\\
-  & \qquad \text{from \olref{L-1}}\notag \\
+  & \qquad \text{由 \olref{L-1}}\notag \\
   & !D \ollabel{L-11}\\
-  & \qquad\text{from \olref{L-9} and \olref{L-10}}\notag \\
+  & \qquad\text{由 \olref{L-9} 与 \olref{L-10}}\notag \\
   & \OProv[\Th{T}](\gn{!D}) \ollabel{L-12}\\
-  & \qquad\text{from \olref{L-11} by condition~P1}\notag \\
-  & !A \qquad\qquad\text{from \olref{L-8} and \olref{L-12}}\notag
+  & \qquad\text{由 \olref{L-11} 及条件~P1}\notag \\
+  & !A \qquad\qquad\text{由 \olref{L-8} 与 \olref{L-12}}\notag
 \end{align}
 \end{proof}
 
-With L\"ob's theorem in hand, there is a short proof of the second
-incompleteness theorem (for theories having !!a{derivability} predicate
-satisfying conditions P1--P3): if $\Th{T} \Proves
-\OProv[\Th{T}](\gn{\lfalse}) \lif \lfalse$, then $\Th{T} \Proves \lfalse$.
-If $\Th{T}$ is consistent, $\Th{T} \Proves/ \lfalse$. So, $\Th{T}
-\Proves/ \OProv[\Th{T}](\gn{\lfalse}) \lif \lfalse$, i.e., $\Th{T} \Proves/
-\OCon[\Th{T}]$.  We can also apply it to show that~$!H$, the fixed
-point of $\OProv[\Th{T}](x)$, is !!{derivable}. For since
+利用 L\"ob 定理，可以简短地证明第二不完全性定理（针对拥有满足条件 P1--P3 的可证性谓词的理论）：
+如果 $\Th{T} \Proves
+\OProv[\Th{T}](\gn{\lfalse}) \lif \lfalse$，那么 $\Th{T} \Proves \lfalse$。
+如果 $\Th{T}$ 是一致的，则 $\Th{T} \Proves/ \lfalse$。
+因此，$\Th{T}
+\Proves/ \OProv[\Th{T}](\gn{\lfalse}) \lif \lfalse$，即 $\Th{T} \Proves/
+\OCon[\Th{T}]$。
+我们也可以应用该定理来证明 $\OProv[\Th{T}](x)$ 的不动点 $!H$ 是可推导的。
+因为
 \begin{align*}
   \Th{T} & \Proves \OProv[\Th{T}](\gn{!H}) \liff !H\\
-  \intertext{in particular}
+  \intertext{特别地，有}
     \Th{T} & \Proves \OProv[\Th{T}](\gn{!H}) \lif !H
 \end{align*}
-and so by L\"ob's theorem, $\Th{T} \Proves !H$.
+于是由 L\"ob 定理，$\Th{T} \Proves !H$。
 
 % Going in the other direction, for homework I
 % may ask you to work through a short proof of L\"ob's theorem, using
 % the second incompleteness theorem instead of the fixed-point lemma.
 
 \begin{prob}
-Let $\Th{T}$ be a computably axiomatized theory, and
-let $\OProv[\Th{T}]$ be !!a{derivability} predicate for $\Th{T}$. Consider the
-following four statements:
+设 $\Th{T}$ 为可计算公理化的理论，
+并令 $\OProv[\Th{T}]$ 为 $\Th{T}$ 的可证性谓词。
+考虑以下四个陈述：
 \begin{enumerate}
-\item If $T \Proves !A$, then $T \Proves \OProv[\Th{T}](\gn{!A})$.
-\item $T \Proves !A \lif \OProv[\Th{T}](\gn{!A})$.
-\item If $T \Proves \OProv[\Th{T}](\gn{!A})$, then $T \Proves !A$.
+\item 若 $T \Proves !A$，则 $T \Proves \OProv[\Th{T}](\gn{!A})$。
+\item $T \Proves !A \lif \OProv[\Th{T}](\gn{!A})$。
+\item 若 $T \Proves \OProv[\Th{T}](\gn{!A})$，则 $T \Proves !A$。
 \item $T \Proves \OProv[\Th{T}](\gn{!A}) \lif !A$
 \end{enumerate}
-Under what conditions are each of these statements true?
+每个陈述分别在什么条件下为真？
 \end{prob}
 
 \end{document}

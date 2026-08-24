@@ -7,46 +7,27 @@
 \begin{document}
 
 \olfileid{cmp}{rec}{npr}
-\olsection{Non-Primitive Recursive Functions}
+\olsection{非原始递归函数}
 
-The primitive recursive functions do not exhaust the intuitively
-computable functions. It should be intuitively clear that we can make
-a list of all the unary primitive recursive functions,
-$f_0$, $f_1$, $f_2$,~\dots such that we can effectively compute the value of
-$f_x$ on input $y$; in other words, the function $g(x,y)$, defined by
+原始递归函数并未穷尽直观上可计算的函数。直观上应该清楚，我们可以列出所有一元原始递归函数 $f_0$, $f_1$, $f_2$, \dots，使得我们可以能行地计算 $f_x$ 在输入 $y$ 上的值；换句话说，由
 \[
 g(x,y) = f_x(y)
 \]
-is computable. But then so is the function
+定义的函数 $g(x,y)$ 是可计算的。进而函数
 \begin{eqnarray*}
 h(x) & = & g(x,x) + 1 \\
 & = & f_x(x) +1.
 \end{eqnarray*}
-For each primitive recursive function $f_i$, the value of $h$ and
-$f_i$ differ at $i$. So $h$ is computable, but not primitive
-recursive; and one can say the same about $g$. This is an
-``effective'' version of Cantor's diagonalization argument.
+也是可计算的。对于每个原始递归函数 $f_i$，$h$ 与 $f_i$ 在 $i$ 处的值不同。所以 $h$ 是可计算的，但不是原始递归的；对 $g$ 亦然。这是 Cantor（康托尔）对角线论证的一个“能行”版本。
 
-One can provide more explicit examples of computable functions that
-are not primitive recursive. For example, let the notation $g^n(x)$
-denote $g(g(\dots g(x)))$, with $n$ $g$'s in all; and define a
-sequence $g_0,g_1,\dots$ of functions by
+我们可以给出更为明确的非原始递归可计算函数的例子。例如，令记法 $g^n(x)$ 表示将 $g$ 迭代 $n$ 次作用于 $x$，即$g(g(\dots g(x)))$；并通过
 \begin{eqnarray*}
 g_0(x) & = & x+1 \\
 g_{n + 1}(x) & = & g_n^x(x)
 \end{eqnarray*}
-You can confirm that each function $g_n$ is primitive recursive. Each
-successive function grows much faster than the one before; $g_1(x)$ is
-equal to $2x$, $g_2(x)$ is equal to $2^x \cdot x$, and $g_3(x)$ grows
-roughly like an exponential stack of $x$ $2$'s. The Ackermann--P\'eter
-function is essentially the function $G(x) = g_x(x)$, and one can show
-that this grows faster than any primitive recursive function.
+定义一个函数序列 $g_0, g_1, \dots$。可以验证每个函数 $g_n$ 都是原始递归的。序列中相继的每个函数都比前一个增长得快得多；$g_1(x)$ 等于 $2x$，$g_2(x)$ 等于 $2^x \cdot x$，而 $g_3(x)$ 的增长大致相当于 $x$ 个 $2$ 组成的指数塔。Ackermann--P\'eter 函数本质上就是函数$G(x) = g_x(x)$，并且可以证明它的增长速度超过任何原始递归函数。
 
-Let us return to the issue of enumerating the primitive recursive
-functions. Remember that we have assigned symbolic notations to each
-primitive recursive function; so it suffices to enumerate
-notations. We can assign a natural number $\#(F)$ to each notation $F$,
-recursively, as follows:
+让我们回到枚举原始递归函数的问题。请记住，我们已经为每个原始递归函数分配了符号记法；因此，枚举这些记法就足够了。我们可以如下递归地为每个记法 $F$ 分配一个自然数 $\#(F)$：
 \begin{eqnarray*}
 \#(0) & = & \langle 0 \rangle \\
 \#(S) & = & \langle 1 \rangle \\
@@ -55,43 +36,17 @@ recursively, as follows:
 3,k,l,\#(H),\#(G_0),\dots,\#(G_{k-1}) \rangle \\
 \#(\fn{Rec}_l[G,H]) & = & \langle 4, l, \#(G), \#(H) \rangle
 \end{eqnarray*}
-Here we are using the fact that every sequence of numbers can be viewed
-as a natural number, using the codes from the last section. The upshot
-is that every code is assigned a natural number. Of course, some
-sequences (and hence some numbers) do not correspond to notations; but
-we can let $f_i$ be the unary primitive recursive function with
-notation coded as $i$, if $i$ codes such a notation; and the constant
-$0$ function otherwise. The net result is that we have an explicit way of
-enumerating the unary primitive recursive functions.
+这里我们利用了上一节的编码，使得每个数字序列都可以被视为一个自然数。由此可知，每个记法都被赋予了一个自然数编码。当然，有些序列（因此有些数）并不对应任何记法；但我们可以定义 $f_i$ 为：如果 $i$ 是某个记法的编码，则 $f_i$ 就是以该记法表示的一元原始递归函数，否则 $f_i$ 就是常值 $0$ 函数。最终结果是，我们有了一个显式枚举一元原始递归函数的方法。
 
-(In fact, some functions, like the constant zero function, will appear
-more than once on the list. This is not just an artifact of our
-coding, but also a result of the fact that the constant zero function has
-more than one notation. We will later see that one can not computably
-avoid these repetitions; for example, there is no computable function
-that decides whether or not a given notation represents the constant
-zero function.)
+（事实上，有些函数，比如常值 $0$ 函数，会在列表中出现不止一次。这不仅是我们编码方式造成的，也源于常值 $0$ 函数本身就有不止一种记法这一事实。稍后我们会看到，无法可计算地避免这些重复；例如，不存在可计算函数来判定一个给定的记法是否表示常值 $0$ 函数。）
 
-We can now take the function $g(x,y)$ to be given by $f_x(y)$, where
-$f_x$ refers to the enumeration we have just described. How do we know
-that $g(x,y)$ is computable? Intuitively, this is clear: to compute
-$g(x,y)$, first ``unpack'' $x$, and see if it is a notation for a unary
-function. If it is, compute the value of that function on input~$y$.
+现在我们可以令函数 $g(x,y)$ 由 $f_x(y)$ 给出，这里 $f_x$ 指代我们刚刚描述的枚举中的函数。我们如何知道 $g(x,y)$ 是可计算的呢？直观上很清楚：要计算 $g(x,y)$，首先“解包” $x$，看看它是否是一个一元函数的记法。如果是，就计算该函数在输入 $y$ 上的值。
 
 \begin{tagblock}{TMs}
 \begin{digress}
-You may already be convinced that (with some work!) one can write a
-program (say, in Java or C++) that does this; and now we can appeal to
-the Church--Turing thesis, which says that anything that, intuitively,
-is computable can be computed by a Turing machine.
+你可能已经相信，（下点功夫！）可以写一个程序（例如用 Java 或 C++）来完成这件事；现在我们可以诉诸 Church--Turing（邱奇--图灵）论题，该论题认为任何直观上可计算的事物都能被图灵机计算。
 
-Of course, a more direct way to show that $g(x,y)$ is computable is to
-describe a Turing machine that computes it, explicitly. This would,
-in particular, avoid the Church--Turing thesis and appeals to
-intuition. Soon we will have built up enough machinery to show
-that $g(x,y)$ is computable, appealing to a model of computation that
-can be \emph{simulated} on a Turing machine: namely, the recursive
-functions.
+当然，证明 $g(x,y)$ 可计算更直接的方法是，显式地描述一个计算它的图灵机。这尤其能够避免诉诸 Church--Turing 论题和直觉。很快，我们将建立起足够的工具，通过一个能被图灵机\emph{模拟}的计算模型来证明 $g(x,y)$ 的可计算性：即递归函数。
 \end{digress}
 \end{tagblock}
 

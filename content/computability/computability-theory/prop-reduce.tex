@@ -7,96 +7,56 @@
 \begin{document}
 
 \olfileid{cmp}{thy}{ppr}
-\olsection{Properties of Reducibility}
+\olsection{归约的性质}
 
-We write $A \leq_m B$ if $A$ reduces to~$B$, and this notation
-suggests that if $A \leq_m B$, then $A$ is ``no harder than''~$B$ and
-that $B$ is ``as hard or harder than''~$A$, and that $\le_m$, like the
-usual $\le$ on numbers, orders sets (or decision problems) by their
-complexity. The following two propositions support this intuition. The
-first one say taht $\le_m$ is transitive.
+如果 $A$ 可归约到~$B$，我们就记作 $A \leq_m B$。这个记号暗示着，如果 $A \leq_m B$，那么 $A$ “不比 $B$ 难”，而 $B$ “至少和 $A$ 一样难”；并且 $\le_m$ 就像数之间通常的 $\le$ 一样，按复杂度对集合（或判定问题）排序。下面两个命题支持这一直观理解。第一个命题表明 $\le_m$ 具有传递性。
 
 \begin{prop}
 \ollabel{prop:trans-red}
-If $A \leq_m B$ and $B \leq_m C$, then $A \leq_m C$.
+如果 $A \leq_m B$ 且 $B \leq_m C$，那么 $A \leq_m C$。
 \end{prop}
 
 \begin{proof}
-Composing a reduction of $A$ to~$B$ with a reduction of $B$ to
-$C$ yields a reduction of $A$ to~$C$.
+将 $A$ 到~$B$ 的归约与 $B$ 到 $C$ 的归约复合，就得到了 $A$ 到~$C$ 的归约。
 \end{proof}
 
 \begin{prob}
-Prove \olref{prop:trans-red} by showing that if $f$ and~$g$ are
-many-one reductions of $A$ to~$B$ and $B$ to~$C$, respectively, then
-$\comp{f}{g}$ is a many-one reduction of $A$ to~$C$.
+通过证明以下事实来证明 \olref{prop:trans-red}：如果 $f$ 和~$g$ 分别是 $A$ 到~$B$ 和 $B$ 到~$C$ 的多一归约，那么 $\comp{f}{g}$ 就是 $A$ 到~$C$ 的多一归约。
 \end{prob}
 
 \begin{prop}
 \ollabel{prop:reduce}
-Let $A$ and $B$ be any sets, and suppose $A \leq_m B$.
+设 $A$ 和 $B$ 是任意集合，并假设 $A \leq_m B$。
 \begin{enumerate}
-\item If $B$ is computably enumerable, so is~$A$.
-\item If $B$ is computable, so is~$A$.
+\item 如果 $B$ 是可计算枚举的，那么 $A$ 也是。
+\item 如果 $B$ 是可计算的，那么 $A$ 也是。
 \end{enumerate}
 \end{prop}
 
 \begin{proof}
-Let $f$ be a many-one reduction from $A$ to~$B$. For the first
-claim, just check that if $B$ is the domain of a partial function~$g$,
-then $A$ is the domain of~$\comp{f}{g}$:
+设 $f$ 是从 $A$ 到~$B$ 的多一归约。对于第一个论断，只需验证：如果 $B$ 是某个偏函数~$g$ 的定义域，那么 $A$ 就是 $\comp{f}{g}$ 的定义域：
 \begin{align*}
-x \in A & \text{ iff } f(x) \in B \\
-& \text{ iff }  g(f(x)) \fdefined.
+x \in A & \text{ 当且仅当 } f(x) \in B \\
+& \text{ 当且仅当 }  g(f(x)) \fdefined.
 \end{align*}
 
-For the second claim, remember that if $B$~is computable then $B$
-and~$\Complement{B}$ are computably enumerable
-(\olref[cmp]{thm:ce-comp}). It is not hard to check that $f$~is also a
-many-one reduction of $\Complement{A}$ to $\Complement{B}$, so, by the
-first part of this proof, $A$ and~$\Complement{A}$ are !!{computably
-enumerable}. So $A$ is computable as well by \olref[cmp]{thm:ce-comp}.
-(Alternatively, you can check that $\Char{A} = \comp{f}{\Char{B}}$; so
-if $\Char{B}$ is computable, then so is~$\Char{A}$.)
+对于第二个论断，回忆如果 $B$~是可计算的，那么 $B$ 和~$\Complement{B}$ 都是可计算枚举的（\olref[cmp]{thm:ce-comp}）。不难验证 $f$~同样也是 $\Complement{A}$ 到 $\Complement{B}$ 的多一归约，因此，根据本证明的第一部分，$A$ 和~$\Complement{A}$ 都是可计算枚举的。所以由 \olref[cmp]{thm:ce-comp} 可知 $A$ 也是可计算的。
+（或者，你可以验证 $\Char{A} = \comp{f}{\Char{B}}$；所以如果 $\Char{B}$ 是可计算的，那么 $\Char{A}$ 也是。）
 \end{proof}
 
 \begin{prob}
-Suppose $f$ is a many-one reduction of $A$ to~$B$. Show that $f$ is
-also a many-one reduction of $\Complement{A}$ to $\Complement{B}$.
+假设 $f$ 是 $A$ 到~$B$ 的多一归约。证明 $f$ 也是 $\Complement{A}$ 到 $\Complement{B}$ 的多一归约。
 \end{prob}
 
 \begin{prob}
-Show that if $f\colon A \to B$ is a many-one reduction, then $\Char{A}
-= \comp{f}{\Char{B}}$.
+证明：如果 $f\colon A \to B$ 是一个多一归约，那么 $\Char{A}
+= \comp{f}{\Char{B}}$。
 \end{prob}
 
 \begin{digress}
-A more general notion of reducibility called \emph{Turing
-reducibility} is useful in other contexts, especially for proving
-undecidability results. Note that by \olref[cmp]{cor:comp-k}, the
-complement of~$K_0$ is not reducible to~$K_0$, since it is not
-computably enumerable. But, intuitively, if you knew the answers to
-questions about $K_0$, you would know the answer to questions about
-its complement as well. A set $A$ is said to be Turing reducible
-to~$B$ if one can determine answers to questions in~$A$ using a
-computable procedure that can ask questions about~$B$. This is more
-liberal than many-one reducibility, in which (1)~you are only allowed
-to ask one question about $B$, and (2)~a ``yes'' answer has to
-translate to a ``yes'' answer to the question about $A$, and similarly
-for ``no.'' It is still the case that if $A$~is Turing reducible
-to~$B$ and $B$~is computable then $A$~is computable as well (though,
-as we have seen, the analogous statement does not hold for computable
-enumerability).
+一种更一般的归约概念，称为\emph{图灵归约}，在其他语境中很有用，特别是用于证明不可判定性结果。注意，根据\olref[cmp]{cor:comp-k}，$K_0$ 的补集不能归约到~$K_0$，因为它不是可计算枚举的。但是，直观上，如果你知道关于 $K_0$ 的问题的答案，你也就知道了关于其补集的问题的答案。如果可以使用一个能询问关于~$B$ 的问题的可计算程序来确定~$A$ 中问题的答案，则称集合 $A$ 可\emph{图灵归约}到~$B$。这比多一归约更为宽松，因为在多一归约中，(1)~只允许询问一个关于 $B$ 的问题，并且 (2)~关于 $B$ 的“是”答案必须转化为关于 $A$ 的问题的“是”答案，对“否”亦然。仍然成立的是，如果 $A$~可图灵归约到~$B$ 并且 $B$~是可计算的，那么 $A$~也是可计算的（不过，正如我们所见，对于可计算枚举性，类似的结论并不成立）。
 
-You should think about the various notions of reducibility we have
-discussed, and understand the distinctions between them. We will,
-however, only deal with many-one reducibility in this chapter.
-Incidentally, both types of reducibility discussed in the last
-paragraph have analogues in computational complexity, with the added
-requirement that the Turing machines run in polynomial time: the
-complexity version of many-one reducibility is known as \emph{Karp
-reducibility}, while the complexity version of Turing reducibility is
-known as \emph{Cook reducibility}.
+你应该思考我们讨论过的各种归约概念，并理解它们之间的区别。然而，在本章中，我们只处理多一归约。顺便提一下，上一段讨论的这两种归约在计算复杂性中都有对应物，只是附加了图灵机必须在多项式时间内运行的要求：多一归约的复杂性版本称为\emph{Karp（卡普）归约}，而图灵归约的复杂性版本称为\emph{Cook（库克）归约}。
 \end{digress}
 
 \end{document}

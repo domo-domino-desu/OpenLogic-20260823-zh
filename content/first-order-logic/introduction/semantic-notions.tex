@@ -8,41 +8,12 @@
 
 \olfileid{fol}{int}{sem}
 
-\olsection{Semantic Notions}
+\olsection{语义概念}
 
-We mentioned above that when we consider whether $\Sat{M}{!A}[s]$
-holds, we (for convenience) let $s$ assign values to all !!{variable}s,
-but only the values it assigns to !!{variable}s in~$!A$ are used.  In
-fact, it's only the values of \emph{free} variables in~$!A$ that
-matter. Of course, because we're careful, we are going to prove this
-fact. Since !!{sentence}s have no free variables, $s$~doesn't matter
-at all when it comes to whether or not they are satisfied in
-!!a{structure}.  So, when $!A$ is !!a{sentence} we can define
-$\Sat{M}{!A}$ to mean ``$\Sat{M}{!A}[s]$ for all~$s$,'' which as it
-happens is true iff $\Sat{M}{!A}[s]$ for at least one~$s$. We need to
-introduce !!{variable} assignments to get a working definition of
-satisfaction for !!{formula}s, but for !!{sentence}s, satisfaction is
-independent of the !!{variable} assignments.
+我们之前提到，当考虑$\Sat{M}{!A}[s]$是否成立时，我们（为了方便）让 $s$ 为所有变元指派值，但实际用到的只是它指派给 $!A$ 中变元的值。事实上，只有 $!A$ 中\emph{自由}变元的值才真正起作用。当然，出于严谨，我们接下来将证明这一事实。由于语句没有自由变元，在考虑它们是否在一个结构中被满足时，$s$ 就完全无关紧要了。因此，当 $!A$ 是语句时，我们可以定义 $\Sat{M}{!A}$ 意指“$\Sat{M}{!A}[s]$对所有 $s$ 成立”，而这实际上当且仅当存在至少一个 $s$ 使得 $\Sat{M}{!A}[s]$ 成立。我们需要引入变元指派以得到适用于公式的满足关系的定义，但对语句而言，满足关系独立于变元指派。
 
-Once we have a definition of ``$\Sat{M}{!A}$,'' we know what ``case''
-and ``true in'' mean as far as !!{sentence}s of first-order logic are
-concerned. On the basis of the definition of $\Sat{M}{!A}$ for
-!!{sentence}s we can then define the basic semantic notions of
-validity, entailment, and satisfiability.  A sentence is valid,
-$\Entails !A$, if every !!{structure} satisfies it. It is entailed by
-a set of !!{sentence}s, $\Gamma \Entails !A$, if every !!{structure}
-that satisfies all the !!{sentence}s in~$\Gamma$ also satisfies~$!A$.
-And a set of !!{sentence}s is satisfiable if some !!{structure}
-satisfies all !!{sentence}s in it at the same time.
+一旦我们有了“$\Sat{M}{!A}$”的定义，就一阶逻辑的语句而言，我们就知道了“情形”和“在……中为真”是什么意思。基于对语句 $\Sat{M}{!A}$ 的定义，我们可以进而定义有效性、语义后承和可满足性这些基本的语义概念。如果一个语句被所有结构满足，则称该语句是有效的，记作 $\Entails !A$。如果每个满足 $\Gamma$ 中所有语句的结构也都满足 $!A$，则称一组语句 $\Gamma$ 语义后承 $!A$，记作 $\Gamma \Entails !A$。如果存在某个结构同时满足其中的所有语句，则称一组语句是可满足的。
 
-Because !!{formula}s are inductively defined, and satisfaction is in
-turn defined by induction on the structure of !!{formula}s, we can use
-induction to prove properties of our semantics and to relate the
-semantic notions defined.  We'll collect and prove some of these
-properties, partly because they are individually interesting, but
-mainly because many of them will come in handy when we go on to
-investigate the relation between semantics and !!{derivation} systems. In order
-to do so, we'll also have to define (precisely, i.e., by induction)
-some syntactic notions and operations we haven't mentioned yet.
+因为公式是归纳定义的，而满足关系又是基于公式的结构归纳定义的，所以我们可以使用归纳法来证明我们语义的性质，并建立所定义的这些语义概念之间的联系。我们将收集并证明其中一些性质，部分原因是它们本身具有理论趣味，但主要是因为在我们后续研究语义与推导系统的关系时，其中许多性质将发挥重要作用。为此，我们还必须（精确地，即通过归纳法）定义一些尚未提及的句法概念和操作。
 
 \end{document}

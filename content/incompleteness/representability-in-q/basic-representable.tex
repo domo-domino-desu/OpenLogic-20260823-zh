@@ -7,144 +7,128 @@
 \begin{document}
 
 \olfileid{inc}{req}{bre}
-\olsection{Basic Functions are Representable in~$\Th{Q}$}
+\olsection{基础函数在~$\Th{Q}$ 中可表示}
 
-First we have to show that all the basic functions are representable
-in~$\Th{Q}$. In the end, we need to show how to assign to each $k$-ary
-basic function $f(x_0,\dots,x_{k-1})$ !!a{formula}
-$!A_f(x_0,\dots,x_{k-1},y)$ that represents it.
+首先我们需要证明所有基础函数在~$\Th{Q}$ 中都是可表示的。
+归根结底，我们需要说明如何为每个 $k$ 元基础函数 $f(x_0,\dots,x_{k-1})$ 指派一个表示它的公式
+$!A_f(x_0,\dots,x_{k-1},y)$。
 
-We will be able to represent zero, successor, plus, times, the
-characteristic function for equality, and projections. In each case,
-the appropriate representing function is entirely straightforward; for
-example, zero is represented by the formula $y = \Obj 0$, successor is
-represented by the !!{formula} $x_0' = y$, and addition is represented
-by the !!{formula} $(x_0 + x_1) = y$. The work involves showing that
-$\Th{Q}$ can prove the relevant !!{sentence}s; for example, saying
-that addition is represented by the !!{formula} above involves showing
-that for every pair of natural numbers $m$ and $n$, $\Th{Q}$ proves
+我们将能表示零函数、后继函数、加法、乘法、等词的特征函数以及投影函数。在每种情况下，恰当的表示公式都十分直接；例如，零函数用公式 $y = \Obj 0$ 表示，后继函数用公式 $x_0' = y$ 表示，加法用公式 $(x_0 + x_1) = y$ 表示。具体工作在于证明 $\Th{Q}$ 能够证明相关的语句；例如，要说明加法由上述公式表示，就需要证明对于任意一对自然数 $m$ 和 $n$，$\Th{Q}$ 都能证明
 \begin{align*}
-& \eq[\num n + \num m][\num {n+m}] \text{ and}\\
+& \eq[\num n + \num m][\num {n+m}] \text{ 且}\\
 & \lforall[y][(\eq[(\num n + \num m)][y] \lif \eq[y][\num{n+m}])].
 \end{align*}
 
 \begin{prop}
 \ollabel{prop:rep-zero}
-The zero function $\Zero(x) = 0$ is represented in~$\Th{Q}$ by
-$!A_{\Zero}(x,y) \ident \eq[y][\Obj 0]$.
+零函数 $\Zero(x) = 0$ 在~$\Th{Q}$ 中由
+$!A_{\Zero}(x,y) \ident \eq[y][\Obj 0]$ 表示。
 \end{prop}
 
 \begin{prop}
 \ollabel{prop:rep-succ}
-The successor function $\Succ(x) = x+1$ is represented in~$\Th{Q}$ by
-$!A_{\Succ}(x,y) \ident \eq[y][x']$.  
+后继函数 $\Succ(x) = x+1$ 在~$\Th{Q}$ 中由
+$!A_{\Succ}(x,y) \ident \eq[y][x']$ 表示。  
 \end{prop}
 
 \begin{prop}
 \ollabel{prop:rep-proj}
-The projection function $\Proj{n}{i}(x_0, \dots, x_{n-1}) = x_i$ is
-represented in~$\Th{Q}$ by \[!A_{\Proj{n}{i}}(x_0, \dots, x_{n-1}, y) \ident \eq[y][x_i].\]
+投影函数 $\Proj{n}{i}(x_0, \dots, x_{n-1}) = x_i$ 在~$\Th{Q}$ 中由 \[!A_{\Proj{n}{i}}(x_0, \dots, x_{n-1}, y) \ident \eq[y][x_i].\] 表示。
 \end{prop}
 
 \begin{prob}
-Prove that $\eq[y][\Obj 0]$, $\eq[y][x']$, and $\eq[y][x_i]$ represent
-$\Zero$, $\Succ$, and $\Proj{n}{i}$, respectively.
+证明 $\eq[y][\Obj 0]$、$\eq[y][x']$ 和 $\eq[y][x_i]$ 分别表示
+$\Zero$、$\Succ$ 和 $\Proj{n}{i}$。
 \end{prob}
 
 \begin{prop}
 \ollabel{prop:rep-id}
-The characteristic function of~$=$,
+等词的特征函数，
 \[
 \Char{=}(x_0, x_1) =
 \begin{cases}
-  1 & \text{if } x_0 =x_1\\
+  1 & \text{ 若 } x_0 =x_1\\
   0 & otherwise
 \end{cases}
-\]
-is represented in~$\Th{Q}$ by
+\]，
+在~$\Th{Q}$ 中由
 \[
   !A_{\Char{=}}(x_0, x_1, y) \ident (\eq[x_0][x_1] \land \eq[y][\num{1}]) \lor (\eq/[x_0][x_1] \land
 \eq[y][\num{0}]).
-\]
+\] 表示。
 \end{prop}
 
-The proof requires the following lemma.
+该证明需要以下引理。
 
 \begin{lem}
-\ollabel{lem:q-proves-neq} Given natural numbers $n$ and $m$, if $n
-\neq m$, then $\Th{Q} \Proves \eq/[\num n][\num m]$.
+\ollabel{lem:q-proves-neq} 给定自然数 $n$ 和 $m$，若 $n
+\neq m$，则 $\Th{Q} \Proves \eq/[\num n][\num m]$。
 \end{lem}
 
 \begin{proof}
-Use induction on $n$ to show that for every $m$, if $n \neq m$, then
-$Q \Proves \eq/[\num n][\num m]$.
+我们对 $n$ 进行归纳来证明：对于每个 $m$，若 $n \neq m$，则
+$Q \Proves \eq/[\num n][\num m]$。
 
-In the base case, $n = 0$. If $m$ is not equal to $0$, then $m = k +
-1$ for some natural number $k$. We have an axiom that says
-$\lforall[x][\eq/[0][x']]$. By a quantifier axiom, replacing $x$ by
-  $\num k$, we can conclude $\eq/[0][\num k']$. But $\num k'$ is just
-  $\num m$.
+在基础情形中，$n = 0$。若 $m$ 不等于 $0$，则存在某个自然数 $k$ 使得 $m = k + 1$。
+我们有一条公理表明
+$\lforall[x][\eq/[0][x']]$。根据量词公理，将 $x$ 替换为
+$\num k$，可以得出 $\eq/[0][\num k']$。而 $\num k'$ 就是
+$\num m$。
 
-In the induction step, we can assume the claim is true for $n$, and
-consider $n+1$. Let $m$ be any natural number. There are two
-possibilities: either $m = 0$ or for some $k$ we have $m = k+1$. The
-first case is handled as above. In the second case, suppose $n+1 \neq
-k+1$. Then $n \neq k$. By the induction hypothesis for $n$ we have
-$\Th{Q} \Proves \eq/[\num n][\num k]$. We have an axiom that says
-$\lforall[x][\lforall[y][\eq[x'][y'] \lif \eq[x][y]]]$. Using a
-quantifier axiom, we have $\eq[\num n'][\num k'] \lif \eq[\num n][\num
-  k]$. Using propositional logic, we can conclude, in $\Th{Q}$,
-$\eq/[\num n][\num k] \lif \eq/[\num n'][\num k']$. Using modus
-ponens, we can conclude $\eq/[\num n'][\num k']$, which is what we want,
-since $\num k'$ is $\num m$.
+在归纳步骤中，我们可以假设命题对 $n$ 成立，并考虑 $n+1$。
+令 $m$ 为任意自然数。有两种可能：要么 $m = 0$，要么存在某个 $k$ 使得 $m = k+1$。
+第一种情况的处理同上。在第二种情况下，假设 $n+1 \neq k+1$。
+那么 $n \neq k$。根据关于 $n$ 的归纳假设，我们有
+$\Th{Q} \Proves \eq/[\num n][\num k]$。我们有一条公理表明
+$\lforall[x][\lforall[y][\eq[x'][y'] \lif \eq[x][y]]]$。根据量词公理，我们有
+$\eq[\num n'][\num k'] \lif \eq[\num n][\num
+  k]$。根据命题逻辑，我们在 $\Th{Q}$ 中可推出
+$\eq/[\num n][\num k] \lif \eq/[\num n'][\num k']$。根据肯定前件律，我们可以推出
+$\eq/[\num n'][\num k']$，这正是我们想要的结果，因为 $\num k'$ 就是 $\num m$。
 \end{proof}
 
 \begin{explain}
-Note that the lemma does not say much: in essence it says that $\Th{Q}$ can
-prove that different numerals denote different objects. For example,
-$\Th{Q}$ proves $0'' \neq 0'''$. But showing that this holds in general
-requires some care. Note also that although we are using induction, it
-is induction \emph{outside} of $\Th{Q}$.
+注意该引理并没有说出太多东西：本质上它说的是 $\Th{Q}$ 能证明不同的数字项指称不同的对象。例如，
+$\Th{Q}$ 能证明 $0'' \neq 0'''$。然而，要证明这在一般情况下也成立，则需要格外小心。另外还要注意，虽然我们使用了归纳法，但这是 $\Th{Q}$ \emph{之外}的归纳法。
 \end{explain}
 
-\begin{proof}[Proof of \olref{prop:rep-id}]
-If $n = m$, then $\num{n}$ and $\num{m}$ are the same term, and
-$\Char{=}(n, m) = 1$. But $\Th{Q} \Proves (\eq[\num{n}][\num{m}] \land
-\eq[\num{1}][\num{1}])$, so it proves $!A_=(\num{n}, \num{m},
-\num{1})$.  If $n \neq m$, then $\Char=(n, m) = 0$. By
-\olref{lem:q-proves-neq}, $\Th{Q} \Proves \eq/[\num{n}][\num{m}]$ and
-so also $(\eq/[\num{n}][\num{m}] \land \Obj 0 = \Obj 0)$. Thus $\Th{Q}
-\Proves !A_=(\num{n}, \num{m}, \num{0})$.
+\begin{proof}[证明 \olref{prop:rep-id}]
+若 $n = m$，则 $\num{n}$ 和 $\num{m}$ 是同一个项，且
+$\Char{=}(n, m) = 1$。而 $\Th{Q} \Proves (\eq[\num{n}][\num{m}] \land
+\eq[\num{1}][\num{1}])$，因此可推出 $!A_=(\num{n}, \num{m},
+\num{1})$。若 $n \neq m$，则 $\Char=(n, m) = 0$。根据
+\olref{lem:q-proves-neq}，$\Th{Q} \Proves \eq/[\num{n}][\num{m}]$，因而也有
+$(\eq/[\num{n}][\num{m}] \land \Obj 0 = \Obj 0)$。于是 $\Th{Q}
+\Proves !A_=(\num{n}, \num{m}, \num{0})$。
 
-For the second part, we also have two cases. If $n = m$, we have to
-show that $\Th{Q} \Proves \lforall[y][(!A_=(\num{n}, \num{m}, y)
-  \lif \eq[y][\num{1}])]$.  Arguing informally, suppose $!A_=(\num{n},
-\num{m}, y)$, i.e.,
+对于第二部分，我们同样分两种情况。若 $n = m$，我们需要
+证明 $\Th{Q} \Proves \lforall[y][(!A_=(\num{n}, \num{m}, y)
+  \lif \eq[y][\num{1}])]$。非形式地论证如下：假设
+$!A_=(\num{n},
+\num{m}, y)$，即
 \[
 (\eq[\num{n}][\num{n}] \land \eq[y][\num{1}]) \lor
 (\eq/[\num{n}][\num{n}] \land \eq[y][\num{0}])
 \]
-The left disjunct implies $\eq[y][\num{1}]$ by logic; the right
-contradicts $\eq[\num{n}][\num{n}]$ which is provable by logic.
+由左析取支根据逻辑可推出 $\eq[y][\num{1}]$；右析取支与
+$\eq[\num{n}][\num{n}]$ 矛盾，而后者是逻辑可证的。
 
-Suppose, on the other hand, that $n \neq m$. Then $!A_=(\num{n},
-\num{m}, y)$ is
+另一方面，假设 $n \neq m$。那么 $!A_=(\num{n},
+\num{m}, y)$ 为
 \[
 (\eq[\num{n}][\num{m}] \land \eq[y][\num{1}]) \lor
 (\eq/[\num{n}][\num{m}] \land \eq[y][\num{0}])
 \]
-Here, the left disjunct contradicts $\eq/[\num{n}][\num{m}]$, which is
-provable in $\Th{Q}$ by \olref{lem:q-proves-neq}; the right disjunct
-entails $\eq[y][\num{0}]$.
+这里，左析取支与 $\eq/[\num{n}][\num{m}]$ 矛盾，而根据
+\olref{lem:q-proves-neq}，该式在 $\Th{Q}$ 中可证；右析取支蕴涵 $\eq[y][\num{0}]$。
 \end{proof}
 
 \begin{prop}
 \ollabel{prop:rep-add}
-The addition function $\Add(x_0, x_1) = x_0+x_1$ is represented
-in~$\Th{Q}$ by
+加法函数 $\Add(x_0, x_1) = x_0+x_1$ 在~$\Th{Q}$ 中由
 \[
   !A_{\Add}(x_0, x_1, y) \ident \eq[y][(x_0 + x_1)].
-\]
+\] 表示。
 \end{prop}
 
 \begin{lem}
@@ -153,79 +137,68 @@ $\Th{Q} \Proves \eq[(\num{n} + \num{m})][\num{n+m}]$
 \end{lem}
 
 \begin{proof}
-We prove this by induction on~$m$. If $m = 0$, the claim is that
-$\Th{Q} \Proves \eq[(\num{n} + \Obj 0)][\num{n}]$. This follows by
-axiom~$!Q_4$.  Now suppose the claim for $m$; let's prove the claim
-for $m+1$, i.e., prove that $\Th{Q} \Proves \eq[(\num{n} +
-  \num{m+1})][\num{n+m+1}]$. Note that $\num{m+1}$ is just $\num{m}'$,
-and $\num{n+m+1}$ is just $\num{n+m}'$.  By axiom $!Q_5$, $\Th{Q}
-\Proves \eq[(\num{n} + \num{m}')][(\num{n}+\num{m})']$. By induction
-hypothesis, $\Th{Q} \Proves \eq[(\num{n} + \num{m})][\num{n+m}]$. So
-$\Th{Q} \Proves \eq[(\num{n} + \num{m}')][\num{n+m}']$.
+我们通过对 $m$ 进行归纳来证明此结论。若 $m = 0$，结论是
+$\Th{Q} \Proves \eq[(\num{n} + \Obj 0)][\num{n}]$。这由
+公理 $!Q_4$ 即得。现在假设对 $m$ 的结论成立；我们来证明对 $m+1$ 的结论，
+即证明 $\Th{Q} \Proves \eq[(\num{n} +
+  \num{m+1})][\num{n+m+1}]$。注意 $\num{m+1}$ 就是 $\num{m}'$，
+而 $\num{n+m+1}$ 就是 $\num{n+m}'$。根据公理 $!Q_5$，$\Th{Q}
+\Proves \eq[(\num{n} + \num{m}')][(\num{n}+\num{m})']$。根据归纳
+假设，$\Th{Q} \Proves \eq[(\num{n} + \num{m})][\num{n+m}]$。所以
+$\Th{Q} \Proves \eq[(\num{n} + \num{m}')][\num{n+m}']$。
 \end{proof}
 
-\begin{proof}[Proof of \olref{prop:rep-add}]
-The !!{formula}~$!A_\Add(x_0, x_1, y)$ representing $\Add$ is
-$\eq[y][(x_0 + x_1)]$. First we show that if $\Add(n, m) = k$, then
-$\Th{Q} \Proves !A_\Add(\num{n}, \num{m}, \num{k})$, i.e., $\Th{Q}
-\Proves \eq[\num{k}][(\num{n} + \num{m})]$. But since $k = n + m$,
-$\num{k}$ just is $\num{n+m}$, and we've shown in
-\olref{lem:q-proves-add} that $\Th{Q} \Proves \eq[(\num{n} +
-  \num{m})][\num{n+m}]$.
+\begin{proof}[\olref{prop:rep-add} 的证明]
+表示 $\Add$ 的公式~$!A_\Add(x_0, x_1, y)$ 是
+$\eq[y][(x_0 + x_1)]$。首先我们证明，如果 $\Add(n, m) = k$，那么
+$\Th{Q} \Proves !A_\Add(\num{n}, \num{m}, \num{k})$，即 $\Th{Q}
+\Proves \eq[\num{k}][(\num{n} + \num{m})]$。但由于 $k = n + m$，
+$\num{k}$ 就是 $\num{n+m}$，而且我们已经在
+\olref{lem:q-proves-add} 中证明了 $\Th{Q} \Proves \eq[(\num{n} +
+  \num{m})][\num{n+m}]$。
 
-We also have to show that if $\Add(n, m) = k$, then
+我们还须证明，如果 $\Add(n, m) = k$，则
 \[
 \Th{Q} \Proves \lforall[y][(!A_\Add(\num{n}, \num{m}, y) \lif
   \eq[y][\num{k}])].
 \]
-Suppose we have $\eq[(\num{n} + \num{m})][y]$. Since
+假设我们有 $\eq[(\num{n} + \num{m})][y]$。由于
 \[
 \Th{Q} \Proves \eq[(\num{n}+\num{m})][\num{n+m}],
-\]
-we can replace the left side with $\num{n+m}$ and get
-$\eq[\num{n+m}][y]$, for arbitrary~$y$.
+\]，
+我们可以将左边替换为 $\num{n+m}$，从而对任意~$y$ 得到
+$\eq[\num{n+m}][y]$。
 \end{proof}
 
 \begin{prop}
 \ollabel{prop:rep-mult}
-The multiplication function $\Mult(x_0, x_1) = x_0 \cdot x_1$ is represented
-in~$\Th{Q}$ by
+乘法函数 $\Mult(x_0, x_1) = x_0 \cdot x_1$ 在~$\Th{Q}$ 中由
 \[
   !A_{\Mult}(x_0, x_1, y) \ident y = (x_0 \times x_1).
-\]
+\] 表示。
 \end{prop}
 
-\begin{proof} Exercise. \end{proof}
+\begin{proof} 练习。\end{proof}
 
 \begin{lem}
 \ollabel{lem:q-proves-mult}
 $\Th{Q} \Proves \eq[(\num{n} \times \num{m})][\num{n \cdot m}]$
 \end{lem}
 
-\begin{proof} Exercise. \end{proof}
+\begin{proof} 练习。\end{proof}
 
 \begin{prob}
-Prove \olref[inc][req][bre]{lem:q-proves-mult}.
+证明 \olref[inc][req][bre]{lem:q-proves-mult}。
 \end{prob}
 
 \begin{prob}
-Use \olref[inc][req][bre]{lem:q-proves-mult} to prove
-\olref[inc][req][bre]{prop:rep-mult}.
+利用 \olref[inc][req][bre]{lem:q-proves-mult} 来证明
+\olref[inc][req][bre]{prop:rep-mult}。
 \end{prob}
 
 \begin{explain}
-  Recall that we use $\times$ for the function symbol of the language
-  of arithmetic, and $\cdot$ for the ordinary multiplication operation
-  on numbers. So $\cdot$ can appear between expressions for numbers
-  (such as in $m \cdot n$) while $\times$ appears only between terms
-  of the language of arithmetic (such as in $(\num{m} \times
-  \num{n})$).  Even more confusingly, $+$ is used for both the
-  !!{function} and the addition operation. When it appears between
-  terms---e.g., in $(\num{n} + \num{m})$---it is the $2$-place
-  !!{function} of the language of arithmetic, and when it appears
-  between numbers---e.g., in $n+m$---it is the addition operation.
-  This includes the case $\num{n+m}$: this is the standard numeral
-  corresponding to the number~$n+m$.
+  回想一下，我们用 $\times$ 表示算术语言的函数符号，而用 $\cdot$ 表示数上普通的乘法运算。因此 $\cdot$ 可以出现在表示数的表达式之间（例如在 $m \cdot n$ 中），而 $\times$ 仅出现在算术语言的项之间（例如在 $(\num{m} \times
+  \num{n})$ 中）。更容易混淆的是，$+$ 既用作函数符号，也用作加法运算。当它出现在项之间时（例如在 $(\num{n} + \num{m})$ 中），它是算术语言的二元函数符号；当它出现在数之间时（例如在 $n+m$ 中），它是加法运算。这也包括 $\num{n+m}$ 这种情况：这是对应于数~$n+m$ 的标准数字项。
 \end{explain}
 
 \end{document}

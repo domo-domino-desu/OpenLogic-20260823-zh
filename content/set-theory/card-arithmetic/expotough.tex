@@ -3,102 +3,74 @@
 \begin{document}
 \olfileid{sth}{card-arithmetic}{expotough}
 
-\olsection[Some Simplifications]{Some Simplification with Cardinal Exponentiation}
+\olsection[一些简化]{基数指数运算的一些简化}
 
-Whilst defining $\canonord$ was a little involved, the upshot is a
-useful result concerning cardinal addition and multiplication,
-\olref[simp]{cardplustimesmax}. Transfinite exponentiation, however,
-cannot be simplified so straightforwardly. To explain why, we start
-with a result which extends a familiar pattern from the finitary case
-(though its proof is at a high level of abstraction):
+虽然定义 $\canonord$ 略显复杂，但由此得到了一个关于基数加法与乘法的有用结论，即 \olref[simp]{cardplustimesmax}。然而，超限指数运算却无法如此直接地加以简化。为了说明原因，我们首先给出一条将有限情形下常见模式加以推广的命题（尽管其证明的抽象程度较高）：
 
 \begin{prop}\ollabel{simplecardexpo}
-$\cardexpo{\cardfont{a}}{\cardfont{b} \cardplus \cardfont{c}} =
+对于任意基数 $\cardfont{a}, \cardfont{b}, \cardfont{c}$，有 $\cardexpo{\cardfont{a}}{\cardfont{b} \cardplus \cardfont{c}} =
 \cardexpo{\cardfont{a}}{\cardfont{b}} \cardtimes
-\cardexpo{\cardfont{a}}{\cardfont{c}}$ and
+\cardexpo{\cardfont{a}}{\cardfont{c}}$ 以及
 $\cardexpo{(\cardexpo{\cardfont{a}}{\cardfont{b}})}{\cardfont{c}} =
-\cardexpo{\cardfont{a}}{\cardfont{b} \cardtimes \cardfont{c}}$, for
-any cardinals $\cardfont{a}, \cardfont{b}, \cardfont{c}$.
+\cardexpo{\cardfont{a}}{\cardfont{b} \cardtimes \cardfont{c}}$。
 \end{prop}
 
 \begin{proof}
-For the first claim, consider a function $f \colon
-(\cardfont{b}\disjointsum\cardfont{c}) \to \cardfont{a}$. Now ``split
-this'', by defining $f_\cardfont{b}(\beta) = f(\beta, 0)$ for each
-$\beta \in \cardfont{b}$, and $f_\cardfont{c}(\gamma) = f(\gamma, 1)$
-for each $\gamma \in \cardfont{c}$. The map $f \mapsto
-(f_{\cardfont{b}} \times f_\cardfont{c})$ is !!a{bijection}
-$\funfromto{\cardfont{b} \disjointsum \cardfont{c}}{\cardfont{a}} \to
+对于第一个论断，考虑一个函数 $f \colon
+(\cardfont{b}\disjointsum\cardfont{c}) \to \cardfont{a}$。现在将其“拆分”：对每个 $\beta \in \cardfont{b}$ 定义 $f_\cardfont{b}(\beta) = f(\beta, 0)$，对每个 $\gamma \in \cardfont{c}$ 定义 $f_\cardfont{c}(\gamma) = f(\gamma, 1)$。映射 $f \mapsto
+(f_{\cardfont{b}} \times f_\cardfont{c})$ 是一个双射 $\funfromto{\cardfont{b} \disjointsum \cardfont{c}}{\cardfont{a}} \to
 (\funfromto{\cardfont{b}}{\cardfont{a}} \times
-\funfromto{\cardfont{c}}{\cardfont{a}})$. 
+\funfromto{\cardfont{c}}{\cardfont{a}})$。 
 
-For the second claim, consider a function $f \colon \cardfont{c} \to
-(\funfromto{\cardfont{b}}{\cardfont{a}})$; so for each $\gamma \in
-\cardfont{c}$ we have some function $f(\gamma) \colon \cardfont{b} \to
-\cardfont{a}$. Now define $f^*(\beta, \gamma) = (f(\gamma))(\beta)$
-for each $\tuple{\beta, \gamma} \in \cardfont{b} \times \cardfont{c}$.
-The map $f \mapsto f^*$ is !!a{bijection}
-$\funfromto{\cardfont{c}}{(\funfromto{\cardfont{b}}{\cardfont{a}})}
-\to \funfromto{\cardfont{b} \cardtimes \cardfont{c}}{\cardfont{a}}$. 
+对于第二个论断，考虑一个函数 $f \colon \cardfont{c} \to
+(\funfromto{\cardfont{b}}{\cardfont{a}})$；因此对每个 $\gamma \in \cardfont{c}$，便得到某个函数 $f(\gamma) \colon \cardfont{b} \to
+\cardfont{a}$。现在对每个 $\tuple{\beta, \gamma} \in \cardfont{b} \times \cardfont{c}$ 定义 $f^*(\beta, \gamma) = (f(\gamma))(\beta)$。
+映射 $f \mapsto f^*$ 是一个双射 $\funfromto{\cardfont{c}}{(\funfromto{\cardfont{b}}{\cardfont{a}})}
+\to \funfromto{\cardfont{b} \cardtimes \cardfont{c}}{\cardfont{a}}$。 
 \end{proof}
 
-Now, what we would \emph{like} is an easy way to compute
-$\cardexpo{\cardfont{a}}{\cardfont{b}}$ when we are dealing with
-infinite cardinals. Here is a nice step in this direction:
+现在，我们\emph{希望}的是，在处理无穷基数时，能有一种简便的方法来计算 $\cardexpo{\cardfont{a}}{\cardfont{b}}$。这是朝此方向迈出的很好的一步：
 
 \begin{prop}\ollabel{cardexpo2reduct}
-If $2 \leq \cardfont{a} \leq \cardfont{b}$ and $\cardfont{b}$ is
-infinite, then $\cardexpo{\cardfont{a}}{\cardfont{b}} =
+如果 $2 \leq \cardfont{a} \leq \cardfont{b}$ 且 $\cardfont{b}$ 是无穷的，那么 $\cardexpo{\cardfont{a}}{\cardfont{b}} =
 \cardexpo{2}{\cardfont{b}}$
 \end{prop}
 
 \begin{proof}
 \begin{align*}
-	\cardexpo{2}{\cardfont{b}} &\leq 
-	\cardexpo{\cardfont{a}}{\cardfont{b}}\text{, as $2 \leq \cardfont{a}$}\\
+	\cardexpo{2}{\cardfont{b}} &\leq
+	\cardexpo{\cardfont{a}}{\cardfont{b}}\text{，因为 $2 \leq \cardfont{a}$}\\
 	&\leq \cardexpo{(2^\cardfont{a})}{\cardfont{b}}
-	\text{, by \olref[opps]{lem:SizePowerset2Exp}}\\
+	\text{，由 \olref[opps]{lem:SizePowerset2Exp}}\\
 	&= \cardexpo{2}{\cardfont{a} \cardtimes \cardfont{b}}
-	\text{, by \olref{simplecardexpo}} \\
+	\text{，由 \olref{simplecardexpo}} \\
 	&= \cardexpo{2}{\cardfont{b}}
-	\text{, by \olref[simp]{cardplustimesmax}}
+	\text{，由 \olref[simp]{cardplustimesmax}}
 \end{align*}
 \end{proof}
 
-We should not really expect to be able to simplify this any further,
-since $\cardfont{b} < \cardexpo{2}{\cardfont{b}}$ by
-\olref[card-arithmetic][opps]{lem:SizePowerset2Exp}.
-However, this does not tell us what to say about
-$\cardexpo{\cardfont{a}}{\cardfont{b}}$ when $\cardfont{b} <
-\cardfont{a}$. Of course, if $\cardfont{b}$ is \emph{finite}, we know
-what to do.
+我们确实不应指望能对此作进一步简化，因为由 \olref[card-arithmetic][opps]{lem:SizePowerset2Exp} 可知 $\cardfont{b} < \cardexpo{2}{\cardfont{b}}$。然而，这并未告诉我们当 $\cardfont{b} < \cardfont{a}$ 时，对 $\cardexpo{\cardfont{a}}{\cardfont{b}}$ 该作何论断。当然，如果 $\cardfont{b}$ 是\emph{有限的}，我们便知道该如何处理。
 
 \begin{prop}
-If $\cardfont{a}$ is infinite and $n \in \omega$ then
-$\cardexpo{\cardfont{a}}{n} = \cardfont{a}$
+如果 $\cardfont{a}$ 是无穷的且 $n \in \omega$，则 $\cardexpo{\cardfont{a}}{n} = \cardfont{a}$
 \end{prop}
 
 \begin{proof}
 $\cardexpo{\cardfont{a}}{n} = \cardfont{a} \cardtimes \cardfont{a}
-\cardtimes \ldots \cardtimes \cardfont{a} = \cardfont{a}$, by \olref[simp]{cardplustimesmax}.
+\cardtimes \ldots \cardtimes \cardfont{a} = \cardfont{a}$，由 \olref[simp]{cardplustimesmax}。
 \end{proof}
 \noindent 
-Additionally, in some other cases, we can control the size of
-$\cardexpo{\cardfont{a}}{\cardfont{b}}$:
+此外，在其他一些情形下，我们可以控制 $\cardexpo{\cardfont{a}}{\cardfont{b}}$ 的大小：
 
 \begin{prop}
-If $2 \leq \cardfont{b} < \cardfont{a} \leq
-\cardexpo{2}{\cardfont{b}}$ and $\cardfont{b}$ is infinite, then
-$\cardexpo{\cardfont{a}}{\cardfont{b}} = \cardexpo{2}{\cardfont{b}}$
+如果 $2 \leq \cardfont{b} < \cardfont{a} \leq
+\cardexpo{2}{\cardfont{b}}$ 且 $\cardfont{b}$ 是无穷的，则 $\cardexpo{\cardfont{a}}{\cardfont{b}} = \cardexpo{2}{\cardfont{b}}$
 \end{prop}
 
 \begin{proof}
-$\cardexpo{2}{\cardfont{b}}\leq \cardexpo{\cardfont{a}}{\cardfont{b}}
-\leq \cardexpo{(\cardexpo{2}{\cardfont{b}})}{\cardfont{b}} =
-\cardexpo{2}{\cardfont{b}\cardtimes\cardfont{b}} =
-\cardexpo{2}{\cardfont{b}}$, reasoning as in \olref{cardexpo2reduct}.
+$\cardexpo{2}{\cardfont{b}}\leq \cardexpo{\cardfont{a}}{\cardfont{b}} \leq \cardexpo{(\cardexpo{2}{\cardfont{b}})}{\cardfont{b}} = \cardexpo{2}{\cardfont{b}\cardtimes\cardfont{b}} = \cardexpo{2}{\cardfont{b}}$，推理过程同 \olref{cardexpo2reduct}。
 \end{proof}
 \noindent 
-But, beyond this point, things become rather more subtle.
+但是，超过这一点，情况就变得颇为微妙了。
 
 \end{document}

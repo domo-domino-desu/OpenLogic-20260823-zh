@@ -8,16 +8,15 @@
 
 \olfileid{int}{tab}{rul}
 
-\olsection{Rules for Intuitionistic Logic}
+\olsection{直觉主义逻辑的规则}
 
-The rules for the connectives $\land$ and $\lor$ are the same as for
-regular propositional signed !!{tableau}s, just with prefixes added.
-In each case, the rule applied to a signed !!{formula}
-$\sFmla{S}{!A}[\sigma]$ produces new !!{formula}s that are also
-prefixed by~$\sigma$. This should be intuitively clear: e.g., if $!A
-\land !B$ is true at (a world named by)~$\sigma$, then $!A$ and $!B$
-are true at~$\sigma$ (and not at any other world). We collect the
-rules for $\land$ and $\lor$ in \olref{tab:prop-rules}.
+联结词 $\land$ 和 $\lor$ 的规则与标准的带号命题分析表规则相同，只是加上了前缀。
+在每种情况下，对带号公式
+$\sFmla{S}{!A}[\sigma]$ 应用规则所产生的新公式也都带有前缀~$\sigma$。
+这在直观上应该很清楚：例如，如果 $!A
+\land !B$ 在（由~$\sigma$ 命名的世界中）为真，那么 $!A$ 和 $!B$
+在~$\sigma$ 处为真（而不是在任何其他世界为真）。我们将
+$\land$ 和 $\lor$ 的规则汇总于\olref{tab:prop-rules}。
 
 \begin{table}
   \[\def\arraystretch{3}\begin{array}{|c|c|}
@@ -51,61 +50,54 @@ rules for $\land$ and $\lor$ in \olref{tab:prop-rules}.
     \\[2ex]
     \hline
   \end{array}\]
-  \caption{Prefixed !!{tableau} rules for $\land$ and $\lor$}
+  \caption{$\land$ 和 $\lor$ 的带前缀分析表规则}
   \ollabel{tab:prop-rules}
 \end{table}
 
-The closure condition is similar to that for ordinary !!{tableau}s,
-although we require that not just the !!{formula}s, but also that the
-prefixes must match. In fact, we can be somewhat more liberal: Since
-in intuitionistic models, !!{formula}s, once true, remain true, it is
-impossible that $!A$ is true at~$\sigma$ but false at any accessible
-prefix~$\sigma.{*}$. So a branch is closed if it contains both
+闭包条件与普通分析表类似，不过我们要求不仅公式必须匹配，前缀也必须匹配。
+实际上，我们可以放宽一些：由于在直觉主义模型中，公式一旦为真，则保持为真，
+因此 $!A$ 不可能在~$\sigma$ 处为真，却在某个可达的前缀~$\sigma.{*}$ 处为假。
+所以，如果某个分支对于某个前缀 $\sigma$ 和公式~$!A$，同时包含
 \[
-\sFmla{\True}{!A}[\sigma] \quad\text{and}\quad \sFmla{\False}{!A}[\sigma.{*}]
+\sFmla{\True}{!A}[\sigma] \quad\text{和}\quad \sFmla{\False}{!A}[\sigma.{*}]
 \]
-for some prefix $\sigma$ and !!{formula}~$!A$. Note that if the signs
-are reversed, i.e., if it contains
+则该分支闭合。注意，如果符号相反，即如果该分支包含
 \[
-\sFmla{\False}{!A}[\sigma] \quad\text{and}\quad \sFmla{\True}{!A}[\sigma.{*}]
+\sFmla{\False}{!A}[\sigma] \quad\text{和}\quad \sFmla{\True}{!A}[\sigma.{*}]
 \]
-the branch is closed only if $*$ is the empty sequence.
+则仅当 $*$ 是空序列时该分支才闭合。
 
-In addition, a branch is closed if it contains~$\sFmla{\True}{\bot}[\sigma]$.
+此外，如果一个分支包含~$\sFmla{\True}{\bot}[\sigma]$，则该分支闭合。
 
-The rules for setting up assumptions is also as for ordinary
-!!{tableau}s, except that for assumptions we always use the
-prefix~$1$. (It does not matter which prefix we use, as long as it's
-the same for all assumptions.) So, e.g., we say that
+建立假设的规则也与普通分析表一样，只不过假设总是使用
+前缀~$1$。（具体使用哪个前缀并不重要，只要所有假设使用相同的前缀即可。）
+因此，例如，我们说
 \[
 !B_1, \dots, !B_n \Proves !A
 \]
-iff there is a closed tableau for the assumptions
+当且仅当存在一个从假设
 \[
 \sFmla{\True}{!B_1}[1], \dots, \sFmla{\True}{!B_n}[1],
 \sFmla{\False}{!A}[1].
 \]
+出发的闭合分析表。
 
-For the conditional~$\lif$, the rules differ from the classical and
-modal cases. The $\TRule{\lif}{\True}$ rule extends a branch
-containing $\sFmla{\True}{!A \lif !B}[\sigma]$ by
-$\sFmla{\True}{!A}[\sigma.{*}]$ and $\sFmla{\False}{!B}[\sigma.{*}]$ on two
-different branches. It can only be applied for a prefix~$\sigma.{*}$
-which \emph{already} occurs on the branch in which it is applied.
-Let's call such a prefix ``used'' (on the branch). (Since $\sigma.{*}$
-includes $\sigma$ itself, the rule can always be applied by adding the
-prefixed signed formulas $\sFmla{\True}{!A}[\sigma]$ and
-$\sFmla{\False}{!B}[\sigma]$ on separate branches.)
+对于条件句~$\lif$，其规则不同于经典情况和模态情况。
+$\TRule{\lif}{\True}$ 规则通过在两个不同的分支上分别添加 $\sFmla{\True}{!A}[\sigma.{*}]$ 和 $\sFmla{\False}{!B}[\sigma.{*}]$，
+来扩展包含 $\sFmla{\True}{!A \lif !B}[\sigma]$ 的分支。
+它只能针对在应用该规则的分支上\emph{已经}出现的前缀~$\sigma.{*}$ 来应用。
+我们称这样的前缀（在该分支上）“已使用的”。（由于 $\sigma.{*}$
+包含 $\sigma$ 本身，该规则总可以通过在各自独立的分支上添加带前缀的带号公式
+$\sFmla{\True}{!A}[\sigma]$ 和
+$\sFmla{\False}{!B}[\sigma]$ 来应用。）
 
-The $\TRule{\lif}{\False}$ rule extends a branch containing
-$\sFmla{\False}{!A \lif !B}[\sigma]$ by both
-$\sFmla{\True}{!A}[\sigma.n]$ and $\sFmla{\False}{!B}[\sigma.n]$ on
-the same branch, with $\sigma.n$ a prefix new to the branch. 
+$\TRule{\lif}{\False}$ 规则通过在同一分支上同时添加 $\sFmla{\True}{!A}[\sigma.n]$ 和 $\sFmla{\False}{!B}[\sigma.n]$，
+来扩展包含 $\sFmla{\False}{!A \lif !B}[\sigma]$ 的分支，
+其中 $\sigma.n$ 是该分支上一个新的前缀。
 
-The rules for $\lnot$ are defined analogously (using the definition of
-$\lnot !A$ as $!A \lif \lfalse$).
+$\lnot$ 的规则可类似地定义（利用 $\lnot !A$ 定义为 $!A \lif \lfalse$）。
 
-The rules are given in \olref{tab:rules-lif-lnot}.
+这些规则如\olref{tab:rules-lif-lnot}所示。
 
 \begin{table}
   \[\def\arraystretch{3}\begin{array}{|c|c|}
@@ -120,7 +112,7 @@ The rules are given in \olref{tab:rules-lif-lnot}.
     \UnaryInfC{\sFmla{\True}{!A}[\sigma.n]}
     \DisplayProof
     \\[1ex]
-    \text{$\sigma.{*}$ is used} & \text{$\sigma.n$ is new}\\
+    \text{（$\sigma.{*}$已使用）} & \text{（$\sigma.n$是新的）}\\
     \hline
     \AxiomC{\sFmla{\True}{!A \lif !B}[\sigma]}
     \RightLabel{\TRule{\True}{\lif}}
@@ -135,10 +127,10 @@ The rules are given in \olref{tab:rules-lif-lnot}.
     \UnaryInfC{\sFmla{\False}{!B}[\sigma.n]}
     \DisplayProof
     \\[1ex]
-    \text{$\sigma.{*}$ is used} & \text{$\sigma.n$ is new}\\
+    \text{（$\sigma.{*}$已使用）} & \text{（$\sigma.n$是新的）}\\
     \hline
   \end{array}\]
-  \caption{Prefixed !!{tableau} rules for $\lnot$ and $\lif$}
+  \caption{$\lnot$ 和 $\lif$ 的带前缀分析表规则}
   \ollabel{tab:rules-lif-lnot}
 \end{table}
 

@@ -8,12 +8,10 @@
 
 \olfileid{nml}{prf}{dua}
 
-\olsection{Dual \usetoken{P}{formula}}
+\olsection{对偶\usetoken{P}{formula}}
 
 \begin{defn}\ollabel{def:duals}
-  Each of the !!{formula}s \Ax{T}, \Ax{B}, \Ax{4}, and
-  \Ax{5} has a \emph{dual}, denoted by a subscripted diamond, as
-  follows:
+  公式 \Ax{T}、\Ax{B}、\Ax{4} 和 \Ax{5} 各有一个\emph{对偶}，用带下标的菱形符号表示如下：
   \begin{align}
     \tag{\Ax{T_\Diamond}} p & \lif \Diamond p\\
     \tag{\Ax{B_\Diamond}} \Diamond\Box p & \lif p\\
@@ -22,21 +20,16 @@
     \end{align}
 \end{defn}
 
-Each of the above dual !!{formula}s is obtained from the corresponding
-!!{formula} by substituting $\lnot p$ for $p$, contraposing, replacing
-$\lnot\Box\lnot$ by $\Diamond$, and replacing $\lnot\Diamond\lnot$
-by~$\Box$. \Ax{D}, i.e., $\Box!A \lif \Diamond!A$ is its own dual in
-that sense.
+以上每个对偶公式都是从相应的原公式，通过将 $p$ 替换为 $\lnot p$、取逆否、将 $\lnot\Box\lnot$ 替换为 $\Diamond$，并将 $\lnot\Diamond\lnot$ 替换为~$\Box$ 得到的。\Ax{D}，即 $\Box!A \lif \Diamond!A$，在这个意义下是它自身的对偶。
 
 \begin{prop}\ollabel{prop:dualsys}
-  For each !!{formula}~$!A$ in \olref[nml][prf][dua]{def:duals}:
-  $\Log{K}!A = \Log{K}!A_{\Diamond}$.
+  对于\olref[nml][prf][dua]{def:duals}中的每个公式~$!A$：$\Log{K}!A = \Log{K}!A_{\Diamond}$。
 \end{prop}
 \begin{proof}
-  Exercise.
+  练习。
 \end{proof}
 \begin{prob}
-  Prove \olref[nml][prf][dua]{prop:dualsys}.
+  证明\olref[nml][prf][dua]{prop:dualsys}。
 \end{prob}
 
 \end{document}

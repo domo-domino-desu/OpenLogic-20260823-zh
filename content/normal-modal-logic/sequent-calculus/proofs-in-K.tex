@@ -8,13 +8,13 @@
 
 \olfileid{nml}{seq}{prk}
 
-\olsection{Sequent \usetoken{P}{derivation} for \Log{K}}
+\olsection{逻辑 K 的相继式推导}
 
 \iftag{prvBox}{
 
 \begin{ex}
-  We give a sequent calculus !!{derivation} that shows $\Proves (\Box!A \land \Box!B)
-  \lif \Box (!A \land !B)$.
+  我们给出一个相继式推导来证明 $\Proves (\Box!A \land \Box!B)
+  \lif \Box (!A \land !B)$。
   \begin{prooftree}
     \Axiom$!A \fCenter !A$
     \doubleLine
@@ -46,8 +46,8 @@
 
 \iftag{prvDiamond}{
   \begin{ex}
-    We give a sequent calculus !!{derivation} that shows $\Proves \Diamond(!A
-    \lor !B) \lif (\Diamond !A \lor \Diamond!B)$.
+    我们给出一个相继式推导来证明 $\Proves \Diamond(!A
+    \lor !B) \lif (\Diamond !A \lor \Diamond!B)$。
     \begin{prooftree}
       \Axiom$!A \fCenter !A$
       \doubleLine
@@ -79,7 +79,7 @@
 }{}
 
 \iftag{notprvBox,notprvDiamond}{}{
-  Here is !!a{derivation} of~\Dual.
+  以下是~\Dual 的一个推导。
   \begin{prooftree}
     \Axiom$!A \fCenter !A$
     \RightLabel{\RightR{\lnot}}
@@ -115,8 +115,7 @@
 }
 
 \begin{prob}
-  Find sequent calculus proofs in~$\Log{K}$ for the following
-  !!{formula}s:
+  请在~$\Log{K}$ 中求出下列公式的相继式演算证明：
   \begin{enumerate}
     \item $\Box \lnot p \lif \Box(p \lif q)$
     \item $(\Box p \lor \Box q) \lif \Box(p \lor q)$

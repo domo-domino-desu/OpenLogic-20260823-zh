@@ -7,51 +7,28 @@
 \begin{document}
 
 \olfileid{mod}{bas}{iso}
-\olsection{Isomorphic Structures}
+\olsection{同构结构}
 
-First-order !!{structure}s can be alike in one of two ways. One way in
-which they can be alike is that they make the same !!{sentence}s
-true. We call such !!{structure}s \emph{elementarily equivalent}. But
-structures can be very different and still make the same !!{sentence}s
-true---for instance, one can be !!{enumerable} and the other not.
-This is because there are lots of features of !!a{structure} that
-cannot be expressed in first-order languages, either because the
-language is not rich enough, or because of fundamental limitations of
-first-order logic such as the L\"owenheim--Skolem theorem. So another,
-stricter, aspect in which !!{structure}s can be alike is if they are
-fundamentally the same, in the sense that they only differ in the
-objects that make them up, but not in their structural features. A way
-of making this precise is by the notion of an \emph{isomorphism}.
+一阶结构有两种彼此相似的方式。一种相似性在于它们满足相同的语句。我们称这样的结构是\emph{初等等价的}。但结构可以差异巨大，却仍然满足相同的语句——例如，一个结构可数而另一个不可数。这是因为结构的许多特征无法在一阶语言中表达，原因要么在于语言不够丰富，要么在于一阶逻辑的根本局限性（如 L\"owenheim--Skolem 定理）。因此，结构之间另一种更严格的相似性在于它们本质上是相同的，即它们仅在构成元素上不同，而在结构特征上完全一致。将其精确化的方法是借助\emph{同构}的概念。
 
 \begin{defn}
-\ollabel{defn:elem-equiv} 
-Given two !!{structure}s $\Struct{M}$ and $\Struct M'$ for the same
-!!{language}~$\Lang{L}$, we say that $\Struct{M}$ is \emph{elementarily
-  equivalent to} $\Struct M'$, written $\Struct{M} \equiv \Struct M'$,
-if and only if for every !!{sentence}~$!A$ of~$\Lang{L}$,
-$\Sat{M}{!A}$ iff $\Sat{M'}{!A}$.
+\ollabel{defn:elem-equiv}
+给定同一语言~$\Lang{L}$ 的两个结构 $\Struct{M}$ 和 $\Struct M'$，我们称 $\Struct{M}$ \emph{初等等价于} $\Struct M'$，记作 $\Struct{M} \equiv \Struct M'$，当且仅当对于 $\Lang{L}$ 的每个语句~$!A$，$\Sat{M}{!A}$ 当且仅当 $\Sat{M'}{!A}$。
 \end{defn}
 
 \begin{defn}
-\ollabel{defn:isomorphism} Given two !!{structure}s $\Struct{M}$ and
-$\Struct M'$ for the same !!{language}~$\Lang L$, we say that
-$\Struct{M}$ is \emph{isomorphic to}~$\Struct M'$, written $\Struct{M}
-\simeq \Struct M'$, if and only if there is a function $h \colon
-\Domain{M} \to \Domain{M'}$ such that:
+\ollabel{defn:isomorphism}
+给定同一语言~$\Lang L$ 的两个结构 $\Struct{M}$ 和 $\Struct M'$，我们称 $\Struct{M}$ \emph{同构于} $\Struct M'$，记作 $\Struct{M} \simeq \Struct M'$，当且仅当存在一个函数 $h \colon
+\Domain{M} \to \Domain{M'}$ 满足：
 \begin{enumerate}
-\item $h$ is !!{injective}: if $h(x) =
-  h(y)$ then $x = y$; 
-\item $h$ is !!{surjective}: for every $y \in \Domain{M'}$ there
-  is $x \in \Domain{M}$ such that $h(x) = y$;
-\item \ollabel{defn:iso-const}for every !!{constant} $c$:
-  $h(\Assign{c}{M}) = \Assign{c}{M'}$;
-\item \ollabel{defn:iso-pred}for every $n$-place !!{predicate}~$P$:
-  \[
-  \tuple{a_1, \dots, a_n}\in \Assign{P}{M} \quad\text{iff}\quad
+\item $h$ 是单射的：如果 $h(x) = h(y)$，那么 $x = y$； 
+\item $h$ 是满射的：对于每个 $y \in \Domain{M'}$，都存在 $x \in \Domain{M}$ 使得 $h(x) = y$；
+\item \ollabel{defn:iso-const}对于每个常项符号 $c$：$h(\Assign{c}{M}) = \Assign{c}{M'}$；
+\item \ollabel{defn:iso-pred}对于每个 $n$ 元谓词符号~$P$：\[
+  \tuple{a_1, \dots, a_n}\in \Assign{P}{M} \quad\text{当且仅当}\quad
   \tuple{h(a_1), \dots, h(a_n)} \in \Assign{P}{M'};
   \]
-\item \ollabel{defn:iso-func}for every $n$-place !!{function} $f$:
-  \[
+\item \ollabel{defn:iso-func}对于每个 $n$ 元函数符号 $f$：\[
   h(\Assign{f}{M}(a_1, \dots, a_n)) =
   \Assign{f}{M'}(h(a_1), \dots, h(a_n)).
   \]
@@ -60,38 +37,28 @@ $\Struct{M}$ is \emph{isomorphic to}~$\Struct M'$, written $\Struct{M}
 
 \begin{thm}
 \ollabel{thm:isom}
-If $\Struct{M} \iso \Struct M'$ then $\Struct{M} \elemequiv
-\Struct{M'}$.
+如果 $\Struct{M} \iso \Struct M'$，那么 $\Struct{M} \elemequiv \Struct{M'}$。
 \end{thm}
 
 \begin{proof}
-Let $h$ be an isomorphism of $\Struct{M}$ onto $\Struct M'$. For any
-assignment~$s$, $h \circ s$ is the composition of $h$ and $s$, i.e.,
-the assignment in $\Struct{M'}$ such that $(h \circ s)(x) = h(s(x))$.
-By induction on $t$ and $!A$ one can prove the stronger claims:
+设 $h$ 是 $\Struct{M}$ 到 $\Struct M'$ 的一个同构。对于任意指派~$s$，$h \circ s$ 是 $h$ 和 $s$ 的复合，即 $\Struct{M'}$ 中满足 $(h \circ s)(x) = h(s(x))$ 的指派。通过对 $t$ 和 $!A$ 归纳，可以证明以下更强的断言：
 \begin{enumerate}
-  \item[a.] $h(\Value{t}{M}[s]) = \Value{t}{M'}[h\circ s]$.
-  \item[b.] $\Sat{M}{!A}[s]$ iff $\Sat{M'}{!A}[h \circ s]$.
+  \item[a.] $h(\Value{t}{M}[s]) = \Value{t}{M'}[h\circ s]$。
+  \item[b.] $\Sat{M}{!A}[s]$ 当且仅当 $\Sat{M'}{!A}[h \circ s]$。
 \end{enumerate}
-The first is proved by induction on the complexity of~$t$.
+第一条通过对 $t$ 的复杂度进行归纳来证明。
 \begin{enumerate}
-\item If $t \ident c$, then $\Value{c}{M}[s] = \Assign{c}{M}$ and
-  $\Value{c}{M'}[h \circ s] = \Assign{c}{M'}$. Thus,
-  $h(\Value{t}{M}[s]) = h(\Assign{c}{M}) = \Assign{c}{M'}$ (by
-  \olref{defn:iso-const} of \olref{defn:isomorphism}) $=
-  \Value{t}{M'}[h \circ s]$.
-\item If $t \ident x$, then $\Value{x}{M}[s] = s(x)$ and
-  $\Value{x}{M'}[h \circ s] = h(s(x))$. Thus, $h(\Value{x}{M}[s]) =
-  h(s(x)) = \Value{x}{M'}[h \circ s]$.
-\item If $t \ident f(t_1, \dots, t_n)$, then
-  \begin{align*}
-    \Value{t}{M}[s] & = \Assign{f}{M}(\Value{t_1}{M}[s], \dots, \Value{t_n}{M}[s]) \quad\text{and}\\
+\item 如果 $t \ident c$，那么 $\Value{c}{M}[s] = \Assign{c}{M}$ 且 $\Value{c}{M'}[h \circ s] = \Assign{c}{M'}$。因此，$h(\Value{t}{M}[s]) = h(\Assign{c}{M}) = \Assign{c}{M'}$（据 \olref{defn:isomorphism} 的 \olref{defn:iso-const}）$=
+  \Value{t}{M'}[h \circ s]$。
+\item 如果 $t \ident x$，那么 $\Value{x}{M}[s] = s(x)$ 且 $\Value{x}{M'}[h \circ s] = h(s(x))$。因此，$h(\Value{x}{M}[s]) =
+  h(s(x)) = \Value{x}{M'}[h \circ s]$。
+\item 如果 $t \ident f(t_1, \dots, t_n)$，那么 \begin{align*}
+    \Value{t}{M}[s] & = \Assign{f}{M}(\Value{t_1}{M}[s], \dots, \Value{t_n}{M}[s]) \quad\text{且}\\
   \Value{t}{M'}[h \circ s] & = \Assign{f}{M'}(\Value{t_1}{M'}[h \circ
     s], \dots, \Value{t_n}{M'}[h \circ s]).
   \end{align*}
-  The induction hypothesis is that for each $i$, $h(\Value{t_i}{M}[s])
-  = \Value{t_i}{M'}[h\circ s]$. So,
-  \begin{align}
+  归纳假设是对于每个 $i$，$h(\Value{t_i}{M}[s])
+  = \Value{t_i}{M'}[h\circ s]$。所以，\begin{align}
     h(\Value{t}{M}[s]) 
     & = h(\Assign{f}{M}(\Value{t_1}{M}[s], \dots, \Value{t_n}{M}[s]))\notag\\
     & = \Assign{f}{M'}(h(\Value{t_1}{M}[s]), \dots,
@@ -100,31 +67,24 @@ The first is proved by induction on the complexity of~$t$.
     \Value{t_n}{M'}[h \circ s]) \ollabel{iso-2}\\
     & = \Value{t}{M'}[h\circ s] \notag
   \end{align}
-  Here, \olref{iso-1} follows by \olref{defn:iso-func} of
-  \olref{defn:isomorphism} and \olref{iso-2} by induction hypothesis.
+  这里，\olref{iso-1} 由 \olref{defn:isomorphism} 的 \olref{defn:iso-func} 得出，而 \olref{iso-2} 由归纳假设得出。
 \end{enumerate}
-Part (b) is left as an exercise.
+(b) 部分的证明留作练习。
 
-If $!A$ is a sentence, the assignments~$s$ and $h \circ s$ are
-irrelevant, and we have $\Sat{M}{!A}$ iff $\Sat{M'}{!A}$.
+如果 $!A$ 是一个语句，那么指派~$s$ 和 $h \circ s$ 就不再重要，从而 $\Sat{M}{!A}$ 当且仅当 $\Sat{M'}{!A}$。
 \end{proof}
 
 \begin{prob}
-Carry out the proof of (b) of \olref[mod][bas][iso]{thm:isom} in
-detail. Make sure to note where each of the five properties
-characterizing isomorphisms of \olref[mod][bas][iso]{defn:isomorphism}
-is used.
+详细完成 \olref[mod][bas][iso]{thm:isom} 中 (b) 部分的证明。请务必指出 \olref[mod][bas][iso]{defn:isomorphism} 中刻画同构的五条性质分别在何处被用到。
 \end{prob}
 
 \begin{defn}
-An \emph{automorphism} of a structure $\Struct{M}$ is an isomorphism
-of $\Struct{M}$ onto itself.
+结构 $\Struct{M}$ 的一个\emph{自同构}是 $\Struct{M}$ 到其自身的一个同构。
 \end{defn}
 
 \begin{prob}
-Show that for any structure $\Struct{M}$, if $X$ is a definable subset
-of $\Struct{M}$, and $h$ is an automorphism of $\Struct{M}$, then $X
-= \Setabs{h(x)}{x \in X}$ (i.e., $X$ is fixed under $h$).
+证明对于任意结构 $\Struct{M}$，如果 $X$ 是 $\Struct{M}$ 的一个可定义子集，且 $h$ 是 $\Struct{M}$ 的一个自同构，那么 $X
+= \Setabs{h(x)}{x \in X}$（即 $X$ 在 $h$ 下保持不变）。
 \end{prob}
 
 

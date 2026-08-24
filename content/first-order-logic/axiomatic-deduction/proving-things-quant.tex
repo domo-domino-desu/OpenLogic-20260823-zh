@@ -1,5 +1,5 @@
-% Part: first-order-logic 
-% Chapter: axiomatic-deduction 
+% Part: first-order-logic
+% Chapter: axiomatic-deduction
 % Section: proving-things-quant
 
 \documentclass[../../../include/open-logic-section]{subfiles}
@@ -8,27 +8,27 @@
 
 \olfileid{fol}{axd}{prq}
 
-\olsection{\usetoken{P}{derivation} with Quantifiers}
+\olsection{带量词的推导}
 
 \begin{ex}
-Let us give !!a{derivation} of $(\lforall[x][!A(x)] \land
-\lforall[y][!B(y)]) \lif \lforall[x][(!A(x) \land !B(x))]$.
+我们来给出 $(\lforall[x][!A(x)] \land
+\lforall[y][!B(y)]) \lif \lforall[x][(!A(x) \land !B(x))]$ 的一个推导。
 
-First, note that
+首先，注意
 \begin{align*}
   (\lforall[x][!A(x)] \land \lforall[y][!B(y)]) & \lif \lforall[x][!A(x)]\\
-  \intertext{is an instance of \olref[prp]{ax:land1}, and}
+  \intertext{是 \olref[prp]{ax:land1} 的一个实例，而}
   \lforall[x][!A(x)] & \lif !A(a) \\
-  \intertext{of \olref[qua]{ax:q1}. So, by \olref[pro]{prop:chain}, we know that}
+  \intertext{是 \olref[qua]{ax:q1} 的一个实例。因此，根据 \olref[pro]{prop:chain}，我们知道}
   (\lforall[x][!A(x)] \land \lforall[y][!B(y)]) & \lif !A(a) \\
-  \intertext{is !!{derivable}. Likewise, since}
-  (\lforall[x][!A(x)] \land \lforall[y][!B(y)]) & \lif \lforall[y][!B(y)] \qquad\text{and}\\
+  \intertext{是可推导的。类似地，由于}
+  (\lforall[x][!A(x)] \land \lforall[y][!B(y)]) & \lif \lforall[y][!B(y)] \qquad\text{和}\\
     \lforall[y][!B(y)] & \lif !B(a)\\
-    \intertext{are instances of \olref[prp]{ax:land2} and \olref[qua]{ax:q1}, respectively,}
+    \intertext{分别是 \olref[prp]{ax:land2} 和 \olref[qua]{ax:q1} 的实例，}
     (\lforall[x][!A(x)] \land \lforall[y][!B(y)]) & \lif !B(a)\\
-    \intertext{is derivable by \olref[pro]{prop:chain}. Using an appropriate instance of \olref[prp]{ax:land3} and two applications of~\MP, we see that}
+    \intertext{根据 \olref[pro]{prop:chain} 也是可推导的。使用 \olref[prp]{ax:land3} 的一个适当实例，并应用两次~\MP，可知}
     (\lforall[x][!A(x)] \land \lforall[y][!B(y)]) & \lif (!A(a) \land !B(a))\\
-    \intertext{is derivable. We can now apply \QR{} to obtain}
+    \intertext{是可推导的。我们现在可以应用量词规则 \QR{} 来得到}
 (\lforall[x][!A(x)] \land \lforall[y][!B(y)]) & \lif \lforall[x][(!A(x) \land !B(x))].
 \end{align*}
 \end{ex}

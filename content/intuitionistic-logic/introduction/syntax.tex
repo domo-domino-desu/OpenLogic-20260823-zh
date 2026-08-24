@@ -8,69 +8,52 @@
 
 \olfileid{int}{int}{syn}
 
-\olsection{Syntax of Intuitionistic Logic}
+\olsection{直觉主义逻辑的语法}
 
-The syntax of intuitionistic logic is the same as that for
-propositional logic. In classical propositional logic it is possible
-to define connectives by others, e.g., one can define $!A \lif !B$ by
-$\lnot !A \lor !B$, or $!A \lor !B$ by $\lnot(\lnot !A \land \lnot
-!B)$. Thus, presentations of classical logic often introduce some
-connectives as abbreviations for these definitions. This is not so in
-intuitionistic logic, with two exceptions: $\lnot !A$ can be---and
-often is---defined as an abbreviation for $!A \lif \lfalse$. Then, of
-course, $\lfalse$ must not itself be defined!{} Also, $!A \liff !B$
-can be defined, as in classical logic, as $(!A \lif !B) \land (!B \lif
-!A)$.
+直觉主义逻辑的语法与命题逻辑的语法相同。
+在经典命题逻辑中，可以用其他联结词来定义某些联结词，
+例如，可以用 $\lnot !A \lor !B$ 来定义 $!A \lif !B$，
+或者用 $\lnot(\lnot !A \land \lnot !B)$ 来定义 $!A \lor !B$。
+因此，经典逻辑的表述常常将某些联结词作为上述定义的缩写引入。
+直觉主义逻辑则不然，但有两个例外：
+$\lnot !A$ 可以——而且经常是——被定义为 $!A \lif \lfalse$ 的缩写。
+当然，这样一来 $\lfalse$ 本身就不能再被定义了！
+此外，$!A \liff !B$ 可以像在经典逻辑中一样，定义为 $(!A \lif !B) \land (!B \lif
+!A)$。
 
-!!^{formula}s of propositional intuitionistic logic are built up from
-\emph{!!{propositional variable}s} and the propositional
-constant~$\lfalse$ using \emph{logical connectives}. We have:
+命题直觉主义逻辑的公式借助\emph{逻辑联结词}由\emph{命题变元}和命题常项~$\lfalse$
+构建而成。具体包括：
 
 \begin{enumerate}
-\item !!^a{denumerable} set~$\PVar$ of !!{propositional variable}s $\Obj p_0$,
-  $\Obj p_1$, \dots
-  \item The propositional constant for !!{falsity}~$\lfalse$.
-\item The logical connectives: $\land$
-  (conjunction), $\lor$ (disjunction), $\lif$ (conditional)
-\item Punctuation marks: (, ), and the comma.
+\item 一个可数无穷的命题变元集~$\PVar$：$\Obj p_0$, $\Obj p_1$, \dots
+\item 表示假的命题常项~$\lfalse$。
+\item 逻辑联结词：$\land$（合取）、$\lor$（析取）、$\lif$（条件句）。
+\item 标点符号：(, ) 以及逗号。
 \end{enumerate}
 
-\begin{defn}[Formula]
-\ollabel{defn:formulas} The set~$\Frm[L_0]$ of \emph{!!{formula}s} of
-propositional intuitionistic logic is defined inductively as follows:
+\begin{defn}[公式]
+\ollabel{defn:formulas}
+命题直觉主义逻辑的\emph{公式}的集合~$\Frm[L_0]$ 归纳定义如下：
 \begin{enumerate}
-\item $\lfalse$ is an atomic !!{formula}.
-
-\item Every !!{propositional variable}~$\Obj p_i$ is an atomic
-  !!{formula}.
-
-\item If $!A$ and $!B$ are !!{formula}s, then $(!A \land
-  !B)$ is !!a{formula}.
-
-\item If $!A$ and $!B$ are !!{formula}s, then $(!A \lor !B)$
-  is !!a{formula}.
-
-\item If $!A$ and $!B$ are !!{formula}s, then $(!A \lif !B)$
-  is !!a{formula}.
-
-\tagitem{limitClause}{Nothing else is !!a{formula}.}{}
+\item $\lfalse$ 是原子公式。
+\item 每个命题变元~$\Obj p_i$ 都是原子公式。
+\item 若 $!A$ 和 $!B$ 是公式，则 $(!A \land !B)$ 是公式。
+\item 若 $!A$ 和 $!B$ 是公式，则 $(!A \lor !B)$ 是公式。
+\item 若 $!A$ 和 $!B$ 是公式，则 $(!A \lif !B)$ 是公式。
+\tagitem{limitClause}{除此之外均非公式。}{}
 \end{enumerate}
 \end{defn}
 
-In addition to the primitive connectives introduced above, we also use
-the following \emph{defined} symbols: $\lnot$ (negation) and $\liff$
-(!!{biconditional}).  Formulas constructed using the defined operators
-are to be understood as follows:
-\begin{enumerate}
-\item $\lnot !A$ abbreviates $!A \lif \lfalse$.
+除了上面引入的原始联结词，我们还使用以下\emph{被定义的}符号：
+$\lnot$（否定）和 $\liff$（双条件句）。
+使用这些被定义的算子构造的公式应按以下方式理解：
 
-\item $!A \liff !B$ abbreviates $(!A \lif !B) \land (!B
-  \lif !A)$.
+\begin{enumerate}
+\item $\lnot !A$ 是 $!A \lif \lfalse$ 的缩写。
+\item $!A \liff !B$ 是 $(!A \lif !B) \land (!B
+  \lif !A)$ 的缩写。
 \end{enumerate}
 
-Although $\lnot$ is officially treated as an abbreviation, we will
-sometimes give explicit rules and clauses in definitions for~$\lnot$
-as if it were primitive. This is mostly so we can state practice
-problems.
+尽管 $\lnot$ 在正式处理中被视为缩写，我们有时仍会像对待原始符号一样，为~$\lnot$ 给出显式的规则和定义条款。这主要是为了方便陈述练习题。
 
 \end{document}

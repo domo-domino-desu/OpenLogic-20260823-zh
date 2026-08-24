@@ -8,42 +8,24 @@
 
 \olfileid{nml}{frd}{fra}
 
-\olsection{Frames}
+\olsection{框架}
 
 \begin{defn}
-  A \emph{frame} is a pair $\mModel{F} = \tuple{W,R}$ where $W$ is a
-  non-empty set of worlds and $R$ a binary relation on~$W$. A model
-  $\mModel{M}$ is \emph{based on} a frame $\mModel{F} = \tuple{W,R}$
-  if and only if $\mModel{M} = \tuple{W, R, V}$ for some valuation $V$.
+  \emph{框架}是一个有序对 $\mModel{F} = \tuple{W,R}$，其中 $W$ 是一个非空世界集合，而 $R$ 是 $W$ 上的一个二元关系。模型 $\mModel{M}$ \emph{基于}框架 $\mModel{F} = \tuple{W,R}$，当且仅当存在某个赋值 $V$ 使得 $\mModel{M} = \tuple{W, R, V}$。
 \end{defn}
 
 \begin{defn}
-  If $\mModel{F}$ is a frame, we say that $!A$ is \emph{valid in
-    $\mModel{F}$,} $\mModel{F} \Entails !A$, if $\mSat{M}{!A}$ for
-  every model~$\mModel{M}$ based on~$\mModel{F}$.
+  若 $\mModel{F}$ 是框架，如果每一个基于 $\mModel{F}$ 的模型 $\mModel{M}$ 都满足 $\mSat{M}{!A}$，则称 $!A$ \emph{在 $\mModel{F}$ 中有效}，记作 $\mModel{F} \Entails !A$。
   
-  If $\mClass{F}$ is a class of frames, we say $!A$ is \emph{valid in
-    $\mClass{F}$,} $\mClass{F} \Entails !A$, iff $\mModel{F} \Entails
-  !A$ for every frame~$\mModel{F} \in \mClass{F}$.
+  若 $\mClass{F}$ 是一个框架类，当且仅当对每个框架 $\mModel{F} \in \mClass{F}$ 都有 $\mModel{F} \Entails !A$ 时，我们称 $!A$ \emph{在 $\mClass{F}$ 中有效}，记作 $\mClass{F} \Entails !A$。
 \end{defn}
 
-The reason frames are interesting is that correspondence between
-schemas and properties of the accessibility relation~$R$ is at the
-level of frames, \emph{not of models}. For instance, although \Ax{T}
-is true in all reflexive models, not every model in which \Ax{T} is
-true is reflexive. However, it \emph{is} true that not only is \Ax{T}
-\emph{valid} on all reflexive \emph{frames}, also every frame in
-which \Ax{T} is valid is reflexive.
+框架之所以有趣，是因为模式与可达关系~$R$ 的性质之间的对应关系是在框架层面而非\emph{模型层面}成立的。例如，尽管公理 \Ax{T} 在所有自反模型中为真，但并非 \Ax{T} 在其中为真的每个模型都是自反的。然而，\emph{确实}不仅 \Ax{T} 在所有自反\emph{框架}上都是\emph{有效的}，而且 \Ax{T} 在其上有效的每个框架也都是自反的。
 
 \begin{rem}
-Validity in a class of frames is a special case of the notion of
-validity in a class of models: $\mClass{F} \Entails !A$ iff
-$\mClass{C} \Entails !A$ where $\mClass{C}$ is the class of all models
-based on a frame in~$\mClass{F}$.
+框架类中的有效性是模型类中有效性概念的一个特例：$\mClass{F} \Entails !A$ 当且仅当 $\mClass{C} \Entails !A$，其中 $\mClass{C}$ 是由所有基于 $\mClass{F}$ 中某个框架的模型构成的类。
 
-Obviously, if !!a{formula} or a schema is valid, i.e., valid with
-respect to the class of \emph{all} models, it is also valid with
-respect to any class~$\mClass{F}$ of frames.
+显然，如果一个公式或模式是有效的，即相对于\emph{所有}模型类有效，那么它相对于任何框架类 $\mClass{F}$ 也是有效的。
 \end{rem}
 
 \end{document}

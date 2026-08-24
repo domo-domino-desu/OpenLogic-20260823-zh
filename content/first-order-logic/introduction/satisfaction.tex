@@ -8,107 +8,84 @@
 
 \olfileid{fol}{int}{sat}
 
-\olsection{Satisfaction}
+\olsection{满足}
 
-We can already skip ahead to the semantics of first-order logic once
-we know what !!{formula}s are: here, the basic definition is that of 
-!!a{structure}. For our simple language, !!a{structure}~$\Struct M$ has
-just three components: a non-empty set $\Domain{M}$ called the
-\emph{!!{domain}}, what $\Obj a$ picks out in~$\Struct M$, and what
-$\Obj P$ is true of in~$\Struct M$.  The object picked out by~$\Obj a$
-is denoted~$\Assign{\Obj a}{M}$ and the set of things $\Obj P$ is true
-of by~$\Assign{\Obj P}{M}$. !!^a{structure}~$\Struct{M}$ consists of
-just these three things: $\Domain{M}$, $\Assign{\Obj a}{M} \in
-\Domain{M}$ and $\Assign{\Obj P}{M} \subseteq \Domain{M}$. The general
-case will be more complicated, since there will be many !!{predicate}s
-and !!{constant}s, the !!{constant}s can have more than one place, and
-there will also be !!{function}s.
+一旦知道了公式是什么，我们就可以直接进入一阶逻辑的语义学：
+这里，基本的定义是\emph{结构}的定义。对于我们这里的简单语言，
+一个结构~$\Struct{M}$ 只有三个组成部分：
+一个称为\emph{论域}的非空集合 $\Domain{M}$，$\Obj a$ 在~$\Struct{M}$ 中所指派的对象，
+以及 $\Obj P$ 在~$\Struct{M}$ 中对其为真的那些对象。
+由~$\Obj a$ 所指派的对象记作~$\Assign{\Obj a}{M}$，而 $\Obj P$ 对其为真的那些对象组成的集合记作~$\Assign{\Obj P}{M}$。
+一个结构~$\Struct{M}$ 就由这三者组成：$\Domain{M}$、$\Assign{\Obj a}{M} \in
+\Domain{M}$ 和 $\Assign{\Obj P}{M} \subseteq \Domain{M}$。
+一般情况会更复杂，因为会有许多谓词符号和常项符号，常项符号可以不止一位，并且还会有函数符号。
 
-This is enough to give a definition of satisfaction for !!{formula}s
-that don't contain !!{variable}s.  The idea is to give an inductive
-definition that mirrors the way we have defined !!{formula}s. We
-specify when an atomic formula is satisfied in~$\Struct{M}$, and then
-when, e.g., $\lnot !A$ is satisfied in~$\Struct{M}$ on the basis of
-whether or not $!A$ is satisfied in~$\Struct{M}$. E.g., we could
-define:
+这已足够为不包含变元的公式给出满足的定义了。
+其思路是给出一个与我们定义公式的方式相对应的归纳定义。
+我们首先规定原子公式何时在~$\Struct{M}$ 中被满足，然后在此基础上规定，例如，
+$\lnot !A$ 何时在~$\Struct{M}$ 中被满足（取决于 $!A$ 是否在~$\Struct{M}$ 中被满足）。
+例如，我们可以定义：
+
 \begin{enumerate}
-  \item $\Atom{\Obj P}{\Obj a}$ is satisfied in~$\Struct{M}$ iff
-  $\Assign{\Obj a}{M} \in \Assign{\Obj P}{M}$.
-  \item $\lnot !A$ is satisfied in~$\Struct{M}$ iff $!A$ is not
-  satisfied in~$\Struct{M}$.
-  \item $(!A \land !B)$ is satisfied in~$\Struct{M}$ iff $!A$ is
-  satisfied in~$\Struct{M}$, and $!B$ is satisfied in~$\Struct{M}$ as
-  well.
+  \item $\Atom{\Obj P}{\Obj a}$ 在~$\Struct{M}$ 中被满足，当且仅当
+  $\Assign{\Obj a}{M} \in \Assign{\Obj P}{M}$。
+  \item $\lnot !A$ 在~$\Struct{M}$ 中被满足，当且仅当 $!A$ 不在~$\Struct{M}$ 中被满足。
+  \item $(!A \land !B)$ 在~$\Struct{M}$ 中被满足，当且仅当 $!A$ 在~$\Struct{M}$ 中被满足，并且 $!B$ 同样在~$\Struct{M}$ 中被满足。
 \end{enumerate}
-Let's say that $\Domain{M} = \{0, 1, 2\}$, $\Assign{\Obj a}{M} = 1$,
-and $\Assign{\Obj P}{M} = \{1, 2\}$. This definition would tell us
-that $\Atom{\Obj P}{\Obj a}$ is satisfied in~$\Struct{M}$ (since
-$\Assign{\Obj a}{M} =  1 \in \{1,2\} = \Assign{\Obj P}{M}$). It tells
-us further that $\lnot \Atom{\Obj P}{\Obj a}$ is not satisfied
-in~$\Struct{M}$, and that in turn $\lnot\lnot \Atom{\Obj P}{\Obj
-a}$ is and $(\lnot \Atom{\Obj P}{\Obj a} \land \Atom{\Obj P}{\Obj a})$
-is not satisfied, and so on.
 
-The trouble comes when we want to give a definition for the
-quantifiers: we'd like to say something like, ``$\lexists[\Obj
-v_0][\Atom{\Obj P}{\Obj v_0}]$ is satisfied iff $\Atom{\Obj P}{\Obj
-v_0}$ is satisfied.'' But the !!{structure}~$\Struct{M}$ doesn't tell
-us what to do about !!{variable}s. What we actually want to say is
-that $\Atom{\Obj P}{\Obj v_0}$ is satisfied \emph{for some value
-of~$\Obj v_0$}.  To make this precise we need a way to assign
-!!{element}s of~$\Domain{M}$ not just to $\Obj a$ but also to~$\Obj
-v_0$. To this end, we introduce !!{variable} \emph{assignments}.
-!!^a{variable} assignment is simply a function~$s$ that maps
-!!{variable}s to !!{element}s of~$\Domain{M}$ (in our example, to one
-of $1$, $2$, or~$3$).  Since we don't know beforehand which
-!!{variable}s might appear in !!a{formula} we can't limit which
-!!{variable}s $s$ assigns values to. The simple solution is to
-require that $s$ assigns values to \emph{all} !!{variable}s~$\Obj
-v_0$, $\Obj v_1$, \dots\@ We'll just use only the ones we need.
+假设$\Domain{M} = \{0, 1, 2\}$，$\Assign{\Obj a}{M} = 1$，
+且$\Assign{\Obj P}{M} = \{1, 2\}$。这个定义将告诉我们
+$\Atom{\Obj P}{\Obj a}$ 在~$\Struct{M}$ 中被满足（因为 $\Assign{\Obj a}{M} =  1 \in \{1,2\} = \Assign{\Obj P}{M}$）。它进一步告诉我们 $\lnot \Atom{\Obj P}{\Obj a}$ 不在~$\Struct{M}$ 中被满足，进而 $\lnot\lnot \Atom{\Obj P}{\Obj
+a}$ 被满足而 $(\lnot \Atom{\Obj P}{\Obj a} \land \Atom{\Obj P}{\Obj a})$ 不被满足，依此类推。
 
-Instead of defining satisfaction of !!{formula}s just relative to
-!!a{structure}, we'll define it relative to
-!!a{structure}~$\Struct{M}$ \emph{and} !!a{variable} assignment~$s$,
-and write $\Sat{M}{!A}[s]$ for short. Our definition will now include
-an additional clause to deal with atomic !!{formula}s containing
-!!{variable}s:
+在为量词下定义时，麻烦出现了：
+我们想说“$\lexists[\Obj
+v_0][\Atom{\Obj P}{\Obj v_0}]$ 被满足当且仅当 $\Atom{\Obj P}{\Obj
+v_0}$ 被满足。”但结构~$\Struct{M}$ 并没有告诉我们如何处理变元。
+我们实际想说的是，\emph{对于~$\Obj v_0$ 的某个值而言}，$\Atom{\Obj P}{\Obj v_0}$ 被满足。
+为了精确表达这一点，我们需要一种方法，将~$\Domain{M}$ 的元素不仅指派给 $\Obj a$，也指派给~$\Obj v_0$。
+为此，我们引入变元\emph{指派}。
+变元指派就是一个函数~$s$，它将变元映射到~$\Domain{M}$ 的元素（在我们的例子中，映射到 $1$、$2$ 或~$3$ 之一）。
+由于我们无法预先知道哪些变元可能出现在公式中，所以不能限制 $s$ 仅给哪些变元赋值。
+简单的解决办法是要求 $s$ 为\emph{所有}变元~$\Obj v_0$, $\Obj v_1$, \dots 赋值。我们只需用到其中所需的那部分。
+
+我们将不再仅相对于一个结构来定义公式的满足，而是相对于
+一个结构~$\Struct{M}$ \emph{以及}一个变元指派~$s$ 来定义它，
+并简记为$\Sat{M}{!A}[s]$。现在我们的定义将包含一条额外的条款来处理含有变元的原子公式：
+
 \begin{enumerate}
-  \item $\Sat{M}{\Atom{\Obj P}{\Obj a}}[s]$ iff
-  $\Assign{\Obj a}{M} \in \Assign{\Obj P}{M}$.
-  \item $\Sat{M}{\Atom{\Obj P}{\Obj v_i}}[s]$ iff
-  $s(\Obj v_i) \in \Assign{\Obj P}{M}$.
-  \item $\Sat{M}{\lnot !A}[s]$ iff not $\Sat{M}{!A}[s]$.
-  \item $\Sat{M}{(!A \land !B)}[s]$ iff $\Sat{M}{!A}[s]$ and $\Sat{M}{!B}[s]$.
+  \item $\Sat{M}{\Atom{\Obj P}{\Obj a}}[s]$ 当且仅当
+  $\Assign{\Obj a}{M} \in \Assign{\Obj P}{M}$。
+  \item $\Sat{M}{\Atom{\Obj P}{\Obj v_i}}[s]$ 当且仅当
+  $s(\Obj v_i) \in \Assign{\Obj P}{M}$。
+  \item $\Sat{M}{\lnot !A}[s]$ 当且仅当 非$\Sat{M}{!A}[s]$。
+  \item $\Sat{M}{(!A \land !B)}[s]$ 当且仅当 $\Sat{M}{!A}[s]$ 且 $\Sat{M}{!B}[s]$。
 \end{enumerate}
-Ok, this solves one problem: we can now say when $\Struct{M}$
-satisfies $\Atom{\Obj P}{\Obj v_0}$ for the value~$s(\Obj v_0)$. To
-get the definition right for $\lexists[\Obj v_0][\Atom{\Obj P}{\Obj
-v_0}]$ we have to do one more thing:  We want to have that
-$\Sat{M}{\lexists[\Obj v_0][\Atom{\Obj P}{\Obj v_0}]}[s]$ iff
-$\Sat{M}{\Atom{\Obj P}{\Obj v_0}}[s']$ for \emph{some} way $s'$ of
-assigning a value to~$\Obj v_0$. But the value assigned to~$\Obj v_0$
-does not necessarily have to be the value that $s(\Obj v_0)$ picks
-out.  We'll introduce a notation for that: if $m \in \Domain{M}$, then
-we let $\Subst{s}{m}{\Obj v_0}$ be the assignment that is just
-like~$s$ (for all !!{variable}s other than~$\Obj v_0$), except to
-$\Obj v_0$ it assigns~$m$. Now our definition can be:
+
+好，这解决了一个问题：我们现在可以说出 $\Struct{M}$ 何时对值~$s(\Obj v_0)$ 满足 $\Atom{\Obj P}{\Obj v_0}$。
+为了正确定义 $\lexists[\Obj v_0][\Atom{\Obj P}{\Obj
+v_0}]$，我们还需要做一件事：
+我们希望：$\Sat{M}{\lexists[\Obj v_0][\Atom{\Obj P}{\Obj v_0}]}[s]$ 当且仅当
+对于\emph{某种}给~$\Obj v_0$ 赋值的方式 $s'$，$\Sat{M}{\Atom{\Obj P}{\Obj v_0}}[s']$。
+但指派给~$\Obj v_0$ 的值不一定非得是 $s(\Obj v_0)$ 所指派的那个值。
+为此我们引入一个记号：如果 $m \in \Domain{M}$，那么我们令 $\Subst{s}{m}{\Obj v_0}$ 表示这样一个指派：它除了给 $\Obj v_0$ 指派~$m$ 之外，对其他所有变元的指派都与~$s$ 相同。现在我们的定义可以是：
+
 \begin{enumerate}\setcounter{enumi}{4}
-  \item $\Sat{M}{\lexists[\Obj v_i][!A]}[s]$ iff
-  $\Sat{M}{!A}[\Subst{s}{m}{\Obj v_i}]$ for some~$m \in \Domain{M}$.
+  \item $\Sat{M}{\lexists[\Obj v_i][!A]}[s]$ 当且仅当
+  对某个~$m \in \Domain{M}$，$\Sat{M}{!A}[\Subst{s}{m}{\Obj v_i}]$。
 \end{enumerate}
-Does it work out? Let's say we let $s(\Obj v_i) = 0$ for all~$i \in
-\Nat$. $\Sat{M}{\lexists[\Obj v_0][\Atom{\Obj P}{\Obj v_0}]}[s]$ iff
-there is an $m \in \Domain{M}$ so that $\Sat{M}{\Atom{\Obj P}{\Obj
-v_0}}[\Subst{s}{m}{\Obj v_0}]$. And there is: we can choose $m = 1$ or
-$m = 2$. Note that this is true even if the value~$s(\Obj v_0)$
-assigned to~$\Obj v_0$ by $s$ itself---in this case, $0$---doesn't do
-the job. We have $\Sat{M}{\Atom{\Obj P}{\Obj v_0}}[\Subst{s}{1}{\Obj
-v_0}]$ but not $\Sat{M}{\Atom{\Obj P}{\Obj v_0}}[s]$.
 
-If this looks confusing and cumbersome: it is. But the added
-complexity is required to give a precise, inductive definition of
-satisfaction for all !!{formula}s, and we need something like it to
-precisely define the semantic notions.  There are other ways of doing
-it, but they are all equally (in)elegant.
+这样行得通吗？假设对于所有~$i \in \Nat$，我们令 $s(\Obj v_i) = 0$。
+$\Sat{M}{\lexists[\Obj v_0][\Atom{\Obj P}{\Obj v_0}]}[s]$ 当且仅当
+存在 $m \in \Domain{M}$ 使得 $\Sat{M}{\Atom{\Obj P}{\Obj
+v_0}}[\Subst{s}{m}{\Obj v_0}]$。而这样的 $m$ 确实存在：我们可以选择 $m = 1$ 或 $m = 2$。
+注意，即使由 $s$ 本身指派给~$\Obj v_0$ 的值——在此例中是 $0$——无法使其成立，上式依然成立。
+我们有 $\Sat{M}{\Atom{\Obj P}{\Obj v_0}}[\Subst{s}{1}{\Obj
+v_0}]$ 但没有 $\Sat{M}{\Atom{\Obj P}{\Obj v_0}}[s]$。
+
+如果这看起来混乱且繁琐：确实如此。
+但为了对所有公式的满足关系给出精确的归纳定义，这种额外的复杂性是必需的。
+并且，为了精确定义语义概念，我们也需要类似的机制。
+当然，还有其他方式可以做到这一点，但它们同样（不）优雅。
 
 \end{document}

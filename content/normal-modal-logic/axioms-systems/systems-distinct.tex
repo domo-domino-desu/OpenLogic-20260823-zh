@@ -8,44 +8,24 @@
 
 \olfileid{nml}{prf}{dis}
 
-\olsection{Showing Systems are Distinct}
+\olsection{证明系统不同}
 
-In \olref[prs]{sec} we saw how to prove that two systems of modal
-logic are in fact the same system. \olref[snd]{thm:soundness} allows
-us to show that two modal systems $\Sigma$ and $\Sigma'$ are distinct,
-by finding !!a{formula}~$!A$ such that $\Sigma' \Proves !A$ that fails in
-a model of~$\Sigma$.
+在 \olref[prs]{sec} 中，我们了解了如何证明两个模态逻辑系统实为同一系统。而 \olref[snd]{thm:soundness}（可靠性定理）则允许我们通过寻找公式~$!A$ 来证明两个模态系统 $\Sigma$ 和 $\Sigma'$ 是不同的：只要 $\Sigma' \Proves !A$ 且该公式在 $\Sigma$ 的某个模型中不成立，即可证明这一点。
 
 \begin{prop}
   $\Log{KD} \subsetneq \Log{KT}$
 \end{prop}
 
-\begin{proof} This is the syntactic counterpart to the semantic fact
-  that all reflexive relations are serial. To show $\Log{KD} \subseteq
-  \Log{KT}$ we need to see that $\Log{KD} \Proves !B$ implies
-  $\Log{KT} \Proves !B$, which follows from $\Log{KT} \Proves
-  \Log{D}$, as shown in
-  \olref[prs]{prop:S5facts}\olref[prs]{prop:S5facts-KT-D}.  To show
-  that the inclusion is proper, by Soundness
-  (\olref[snd]{thm:soundness}), it suffices to exhibit a model of
-  \Log{KD} where \Ax{T}, i.e., $\Box p \lif p$, fails (an
-  easy task left as an exercise), for then by Soundness $\Log{KD}
-  \Proves/ \Box p \lif p$.
+\begin{proof}
+  这是“所有自反关系都是持续关系”这一语义事实在句法层面的对应。为证明 $\Log{KD} \subseteq \Log{KT}$，我们需要证明 $\Log{KD} \Proves !B$ 蕴含 $\Log{KT} \Proves !B$，而这可由 $\Log{KT} \Proves \Log{D}$（如 \olref[prs]{prop:S5facts}\olref[prs]{prop:S5facts-KT-D} 所示）得出。为证明该包含为真包含，根据可靠性定理 (\olref[snd]{thm:soundness})，只需构造一个 \Log{KD} 的模型，使得公理 \Ax{T}（即 $\Box p \lif p$）在其中不成立（这是一个简单的练习），因为由可靠性定理可知 $\Log{KD} \Proves/ \Box p \lif p$。
 \end{proof}
 
 \begin{prop}
-  $\Log{KB} \neq \Log{K4}$. 
+  $\Log{KB} \neq \Log{K4}$
 \end{prop}
 
 \begin{proof}
-  We construct a symmetric model where some instance of \Ax{4} fails;
-  since obviously the instance is !!{derivable} for \Log{K4} but not
-  in \Log{KB}, it will follow $\Log{K4} \nsubseteq \Log{KB}$.
-  Consider the symmetric model $\mModel{M}$ of \olref{fig:Bnot4}. Since
-  the model is symmetric, \Ax{K} and~\Ax{B} are true in~$\mModel{M}$
-  (by \olref[syn][sch]{prop:Kvalid} and
-  \olref[frd][acc]{thm:soundschemas}, respectively). However,
-  $\mSat/{M}{\Box p \lif \Box\Box p}[w_1]$.
+  我们构造一个对称模型，使得 \Ax{4} 的某个实例在其中为假；由于该实例显然在 \Log{K4} 中可推导，而在 \Log{KB} 中不可推导，由此即可得出 $\Log{K4} \nsubseteq \Log{KB}$。考虑 \olref{fig:Bnot4} 中的对称模型 $\mModel{M}$。因为该模型是对称的，所以 \Ax{K} 和 \Ax{B} 在 $\mModel{M}$ 中为真（分别据 \olref[syn][sch]{prop:Kvalid} 和 \olref[frd][acc]{thm:soundschemas}）。然而，$\mSat/{M}{\Box p \lif \Box\Box p}[w_1]$。
 \end{proof}
 
 \begin{figure}[htpb]
@@ -58,25 +38,18 @@ a model of~$\Sigma$.
     \draw[->, bend left] (w1) to (w2); 
     \draw[->, bend left] (w2) to (w1); 
   \end{tikzpicture}
-  \caption{A symmetric model falsifying an instance of \Ax{4}.}
+  \caption{一个使 \Ax{4} 的某实例为假的对称模型。}
   \ollabel{fig:Bnot4}
 \end{figure}
  
 \begin{thm}\ollabel{thm:KTBnot45}
-  $\Log{KTB} \Proves/ \Log{4}$ and $\Log{KTB} \Proves/ \Log{5}$.
+  $\Log{KTB} \Proves/ \Log{4}$ 且 $\Log{KTB} \Proves/ \Log{5}$。
 \end{thm}
 
 \begin{proof}
-  By \olref[frd][acc]{thm:soundschemas} we know that all instances of
-  \Ax{T} and \Ax{B} are true in every reflexive symmetric model
-  (respectively). So by soundness, it suffices to find a reflexive
-  symmetric model containing a world at which some instance of~\Ax{4}
-  fails, and similarly for~\Ax{5}.  We use the same model for both
-  claims. Consider the symmetric, reflexive model in
-  \olref{fig:KTBnot45}.  Then $\mSat/{M}{\Box p \to \Box \Box
-    p}[w_1]$, so \Ax{4} fails at $w_1$. Similarly, $\mSat/{M}{\Diamond
-    \lnot p \lif \Box \Diamond \lnot p}[w_2]$, so the instance
-  of~\Ax{5} with $!A = \lnot p$ fails at~$w_2$.
+  根据 \olref[frd][acc]{thm:soundschemas}，我们知道所有 \Ax{T} 的实例在每个自反模型中为真，所有 \Ax{B} 的实例在每个对称模型中为真。因此，由可靠性定理，只需找到一个自反对称模型，其中存在某个世界使得~\Ax{4} 的某个实例不成立，对于~\Ax{5} 同理。我们使用同一个模型来证明这两个断言。考虑 \olref{fig:KTBnot45} 中的自反对称模型。那么 $\mSat/{M}{\Box p \to \Box \Box
+    p}[w_1]$，因此 \Ax{4} 在 $w_1$ 处不成立。类似地，$\mSat/{M}{\Diamond
+    \lnot p \lif \Box \Diamond \lnot p}[w_2]$，因此将 $!A = \lnot p$ 代入~\Ax{5} 所得的实例在~$w_2$ 处不成立。
 \end{proof}
 
 \begin{figure}[htpb]
@@ -98,21 +71,18 @@ a model of~$\Sigma$.
     \draw[->, bend left] (w3) to (w2);  
     \draw[->, bend left] (w2) to (w1);  
   \end{tikzpicture}
-  \caption{The model for \olref{thm:KTBnot45}.}
+  \caption{\olref{thm:KTBnot45} 所用模型。}
   \ollabel{fig:KTBnot45}
 \end{figure}
 
 \begin{thm}\ollabel{thm:KD5not4}
-  $\Log{KD5} \neq \Log{KT4} = \Log{S4}$.
+  $\Log{KD5} \neq \Log{KT4} = \Log{S4}$。
 \end{thm}
 
 \begin{proof}
-  By \olref[frd][acc]{thm:soundschemas} we know that all instances of
-  \Ax{D} and~\Ax{5} are true in all serial euclidean models.
-  So  it suffices to find a serial euclidean model containing a world
-  at which some instance of~\Ax{4} fails.  Consider the model of
-  \olref{fig:KD5not4}, and notice that $\mSat/{M}{\Box p
-  \lif \Box\Box p}[w_1]$. 
+  根据 \olref[frd][acc]{thm:soundschemas}，我们知道所有 \Ax{D} 和~\Ax{5} 的实例在所有持续的欧几里得模型中为真。
+  因此，只需找到一个持续的欧几里得模型，其中存在某个世界使得~\Ax{4} 的某个实例不成立。考虑 \olref{fig:KD5not4} 中的模型，并注意 $\mSat/{M}{\Box p
+  \lif \Box\Box p}[w_1]$。 
 \end{proof}
 
 \begin{figure}[t]
@@ -136,18 +106,16 @@ a model of~$\Sigma$.
     \draw[->, bend left=15] (w3) to (w4);
     \draw[->, bend left=15] (w4) to (w3);  
   \end{tikzpicture}
-  \caption{The model for \olref{thm:KD5not4}.}
+  \caption{\olref{thm:KD5not4} 所用模型。}
   \ollabel{fig:KD5not4}
 \end{figure}
 
 \begin{prob}
-  Give an alternative proof of \olref[nml][prf][dis]{thm:KD5not4} using a model
-  with $3$ worlds.
+  使用一个包含 $3$ 个世界的模型，为 \olref[nml][prf][dis]{thm:KD5not4} 给出另一种证明。
 \end{prob}
 
 \begin{prob}
-  Provide a single reflexive transitive model showing that both
-  $\Log{KT4} \Proves/ \Ax{B}$ and $\Log{KT4} \Proves/ \Ax{5}$.
+  给出一个自反且传递的模型，用以证明 $\Log{KT4} \Proves/ \Ax{B}$ 且 $\Log{KT4} \Proves/ \Ax{5}$。
 \end{prob}
 
 \end{document}

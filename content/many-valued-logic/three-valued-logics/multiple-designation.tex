@@ -8,144 +8,117 @@
 
 \olfileid{mvl}{thr}{mul}
 
-\olsection{Designating not just $\True$}
+\olsection{指定值不止是 $\True$}
 
-So far the logics we've seen all had the set of designated truth
-values $V^+ = \{\True\}$, i.e., something counts as true iff its truth
-value is~$\True$.  But one might also count something as true if it's
-just not~$\False$. Then one would get a logic by stipulating in the
-matrix, e.g., that $V^+ = \{\True, \Undef\}$.
+目前为止我们见过的逻辑，其指定真值集合都是 $V^+ = \{\True\}$，
+也就是说，某公式算作真，当且仅当其真值为~$\True$。
+但我们也可以认为，只要某公式不是~$\False$，它就算作真。
+于是，例如通过在矩阵中规定 $V^+ = \{\True, \Undef\}$，就可以得到一种逻辑。
 
 \begin{defn}
-The \emph{logic of paradox}~$\LogLP$ is defined using the matrix:
+\emph{悖论逻辑}~$\LogLP$ 由以下矩阵定义：
 \begin{enumerate}
-  \item The standard propositional language $\Lang L_0$ with
-  $\lnot$, $\land$, $\lor$, $\lif$.
-  \item The set of truth values $V = \{\True, \Undef, \False\}$.
-  \item $\True$ and $\Undef$ are designated, i.e., $V^+ = \{\True, \Undef\}$.
-  \item Truth functions are the same as in strong Kleene logic.
+  \item 标准命题语言 $\Lang L_0$，包含联结词
+  $\lnot$、$\land$、$\lor$、$\lif$。
+  \item 真值集合为 $V = \{\True, \Undef, \False\}$。
+  \item $\True$ 与 $\Undef$ 是指定值，即 $V^+ = \{\True, \Undef\}$。
+  \item 真值函数与强 Kleene 逻辑相同。
 \end{enumerate}
 \end{defn}
 
 \begin{defn}
-Halld\'en's \emph{logic of nonsense}~$\LogHal$ is defined using the matrix:
+Halldén 的\emph{无意义逻辑}~$\LogHal$ 通过如下矩阵定义：
 \begin{enumerate}
-  \item The standard propositional language $\Lang L_0$ with
-  $\lnot$, $\land$, $\lor$, $\lif$ and a $1$-place connective~$+$.
-  \item The set of truth values $V = \{\True, \Undef, \False\}$.
-  \item $\True$ and $\Undef$ are designated, i.e., $V^+ = \{\True, \Undef\}$.
-  \item Truth functions are the same as weak Kleene logic, plus the
-  ``is meaningless'' operator:
+  \item 标准命题语言 $\Lang L_0$，包含联结词
+  $\lnot$、$\land$、$\lor$、$\lif$ 以及一个一元联结词~$+$。
+  \item 真值集合为 $V = \{\True, \Undef, \False\}$。
+  \item $\True$ 与 $\Undef$ 是指定值，即 $V^+ = \{\True, \Undef\}$。
+  \item 真值函数与弱 Kleene 逻辑相同，但额外增加一个“无意义”算子：
   \begin{center}
-    \begin{tabular}{c|c} 
-    $\tf{+}$ & \\ 
-    \hline  
-    $\True$ & $\False$ \\ 
+    \begin{tabular}{c|c}
+    $\tf{+}$ & \\
+    \hline
+    $\True$ & $\False$ \\
     $\Undef$ & $\True$ \\
-    $\False$ & $\False$ 
+    $\False$ & $\False$
     \end{tabular}
   \end{center}
 \end{enumerate}
 \end{defn}
 
-By contrast to the Kleene logics with which they share truth tables,
-these \emph{do} have tautologies. 
+与它们共用相同真值表的 Kleene 逻辑不同，这些逻辑\emph{确实}有重言式。
 
-\begin{prop}\ollabel{prop:LP-taut-CL} The tautologies of $\LogLP$  are
-  the same as the tautologies of classical propositional logic.
+\begin{prop}\ollabel{prop:LP-taut-CL}
+ $\LogLP$ 的重言式与经典命题逻辑的重言式相同。
 \end{prop}
 
 \begin{proof}
-  By \olref[syn][sub]{prop:mvl-cl}, if $\Entails[\LogLP] !A$ then
-  $\Entails[\LogCL] !A$. To show the reverse, we show that if there is
-  !!a{valuation}~$\pAssign v\colon \PVar \to \{\False, \True,
-  \Undef\}$ such that $\pValue v(!A)[\LogKs] = \False$ then there is
-  !!a{valuation}~$\pAssign {v'}\colon \PVar \to \{\False, \True\}$
-  such that $\pValue {v'}(!A)[\LogCL] = \False$. This establishes the
-  result for $\LogLP$, since $\LogKs$ and $\LogLP$ have the same
-  characteristic truth functions, and $\False$ is the only truth value
-  of $\LogLP$ that is not designated (that is the only difference
-  between $\LogLP$ and~$\LogKs$). Thus, if $\Entails/[\LogLP] !A$, for
-  some !!{valuation}~$\pAssign v$, $\pValue v(!A)[\LogLP] = \pValue
-  v[\LogKs](!A) = \False$. By the claim we're proving,
-  $\pValue{v'}[\LogCL](!A) = \False$, i.e., $\Entails/[\LogCL] !A$.
-  
-  To establish the claim, we first define $\pAssign {v'}$ as
+  根据 \olref[syn][sub]{prop:mvl-cl}，若 $\Entails[\LogLP] !A$ 则
+  $\Entails[\LogCL] !A$。为证其逆，我们证明：若存在赋值~$\pAssign v\colon \PVar \to \{\False, \True,
+  \Undef\}$ 使得 $\pValue v(!A)[\LogKs] = \False$，则存在赋值~$\pAssign {v'}\colon \PVar \to \{\False, \True\}$ 使得 $\pValue {v'}(!A)[\LogCL] = \False$。由于 $\LogKs$ 和 $\LogLP$ 具有相同的特征真值函数，而 $\False$ 是 $\LogLP$ 中唯一非指定真值（这是 $\LogLP$ 与~$\LogKs$ 的唯一区别），这就为 $\LogLP$ 确立了结论。
+  因此，如果 $\Entails/[\LogLP] !A$，则对某个赋值~$\pAssign v$，有 $\pValue v(!A)[\LogLP] = \pValue
+  v[\LogKs](!A) = \False$。根据我们要证明的断言，$\pValue{v'}[\LogCL](!A) = \False$，即 $\Entails/[\LogCL] !A$。
+
+  为证明此断言，我们首先如下定义 $\pAssign {v'}$：
   \[
     \pAssign {v'}(p) = 
     \begin{cases}
-    \True & \text{if } \pAssign {v}(p) \in \{\True, \Undef\}\\
-    \False & \text{otherwise}
+    \True & \text{若 } \pAssign {v}(p) \in \{\True, \Undef\}\\
+    \False & \text{否则}
   \end{cases}
   \]
-  We now show by induction on $!A$ that (a)~if $\pValue v(!A)[\LogKs]
-  = \False$ then $\pValue {v'}(!A)[\LogCL] = \False$, and (b)~if
-  $\pValue v(!A)[\LogKs] = \True$ then $\pValue {v'}(!A)[\LogCL] =
-  \True$
+  现在我们对 $!A$ 进行归纳，以证明 (a)~若 $\pValue v(!A)[\LogKs]
+  = \False$ 则 $\pValue {v'}(!A)[\LogCL] = \False$，以及 (b)~若
+  $\pValue v(!A)[\LogKs] = \True$ 则 $\pValue {v'}(!A)[\LogCL] =
+  \True$。
   \begin{enumerate}
-    \item Induction basis: $!A \ident p$. By
-    \olref[syn][val]{defn:pValue}, $\pValue v(!A)[\LogKs]
-    = \pAssign v(p) = \pValue {v'}(!A)[\LogCL]$, which implies both (a)
-    and~(b).
-    
-    For the induction step, consider the cases:
-    \item $!A \ident \lnot !B$. 
+    \item 归纳基始：$!A \ident p$。根据
+    \olref[syn][val]{defn:pValue}，$\pValue v(!A)[\LogKs]
+    = \pAssign v(p) = \pValue {v'}(!A)[\LogCL]$，这蕴涵 (a) 和~(b)。
+
+    对于归纳步骤，考虑以下情形：
+    \item $!A \ident \lnot !B$。
     \begin{enumerate}
-      \item Suppose $\pValue v(\lnot!B)[\LogKs] = \False$. By the
-      definition of $\tf{\lnot}[\LogKs]$, $\pValue v(!B)[\LogKs]  =
-      \True$. By inductive hypothesis, case~(b), we get $\pValue
-      {v'}(!B)[\LogCL]  = \True$, so $\pValue {v'}(\lnot !B)[\LogCL] = \False$.
-      \item Suppose $\pValue v(\lnot!B)[\LogKs] = \True$. By the
-      definition of $\tf{\lnot}[\LogKs]$, $\pValue v(!B)[\LogKs]  =
-      \False$. By inductive hypothesis, case~(a), we get $\pValue
-      {v'}(!B)[\LogCL]  = \False$, so $\pValue {v'}(\lnot !B)[\LogCL] = \True$.
+      \item 假设 $\pValue v(\lnot!B)[\LogKs] = \False$。根据
+      $\tf{\lnot}[\LogKs]$ 的定义，$\pValue v(!B)[\LogKs]  =
+      \True$。由归纳假设情况，得到 $\pValue
+      {v'}(!B)[\LogCL]  = \True$，于是 $\pValue {v'}(\lnot !B)[\LogCL] = \False$。
+      \item 假设 $\pValue v(\lnot!B)[\LogKs] = \True$。根据
+      $\tf{\lnot}[\LogKs]$ 的定义，$\pValue v(!B)[\LogKs]  =
+      \False$。由归纳假设情况，得到 $\pValue
+      {v'}(!B)[\LogCL]  = \False$，于是 $\pValue {v'}(\lnot !B)[\LogCL] = \True$。
     \end{enumerate}
 
-    \item $!A \ident (!B \land !C)$.
+    \item $!A \ident (!B \land !C)$。
     \begin{enumerate}
-      \item Suppose $\pValue v(!B \land !C)[\LogKs] = \False$. By the
-      definition of $\tf{\land}[\LogKs]$, $\pValue v(!B)[\LogKs]  =
-      \False$ or $\pValue v(!B)[\LogKs]  = \False$. By inductive
-      hypothesis, case~(a), we get $\pValue {v'}(!B)[\LogCL]  = \False$
-      or $\pValue {v'}(!C)[\LogCL]  = \False$, so $\pValue {v'}(!B \land
-      !C)[\LogCL] = \False$.
-      \item Suppose $\pValue v(!B \land !C)[\LogKs] = \True$. By the
-      definition of $\tf{\land}[\LogKs]$, $\pValue v(!B)[\LogKs]  =
-      \True$ and $\pValue v(!B)[\LogKs]  = \True$. By inductive
-      hypothesis, case~(b), we get $\pValue {v'}(!B)[\LogCL]  = \True$
-      and $\pValue {v'}(!C)[\LogCL]  = \True$, so $\pValue {v'}(!B \land
-      !C)[\LogCL] = \True$.
+      \item 假设 $\pValue v(!B \land !C)[\LogKs] = \False$。根据
+      $\tf{\land}[\LogKs]$ 的定义，$\pValue v(!B)[\LogKs]  =
+      \False$ 或 $\pValue v(!B)[\LogKs]  = \False$。由归纳假设情况，得到 $\pValue {v'}(!B)[\LogCL]  = \False$ 或 $\pValue {v'}(!C)[\LogCL]  = \False$，于是 $\pValue {v'}(!B \land
+      !C)[\LogCL] = \False$。
+      \item 假设 $\pValue v(!B \land !C)[\LogKs] = \True$。根据
+      $\tf{\land}[\LogKs]$ 的定义，$\pValue v(!B)[\LogKs]  =
+      \True$ 且 $\pValue v(!B)[\LogKs]  = \True$。由归纳假设情况，得到 $\pValue {v'}(!B)[\LogCL]  = \True$ 且 $\pValue {v'}(!C)[\LogCL]  = \True$，于是 $\pValue {v'}(!B \land
+      !C)[\LogCL] = \True$。
     \end{enumerate}
   \end{enumerate}
 
-  The other two cases are similar, and left as exercises. Alternatively,
-  the proof above establishes the result for all !!{formula}s only
-  containing $\lnot$ and~$\land$. One may now appeal to the facts that in
-  both $\LogKs$ and $\LogCL$, for any $\pAssign v$, $\pValue v(!B \lor
-  !C) = \pValue v(\lnot(\lnot!B \land \lnot !C))$ and $\pValue v(!B \lif
-  !C) = \pValue v(\lnot(!B \land \lnot !C))$.
+  其余两种情况是类似的，留作练习。另一种方法是，上面的证明已对所有仅包含 $\lnot$ 和~$\land$ 的公式确立了结论。接下来可以利用以下事实：在 $\LogKs$ 和 $\LogCL$ 中，对任意 $\pAssign v$，$\pValue v(!B \lor
+  !C) = \pValue v(\lnot(\lnot!B \land \lnot !C))$ 且 $\pValue v(!B \lif
+  !C) = \pValue v(\lnot(!B \land \lnot !C))$。
 \end{proof}
 
 \begin{prob}
-  Complete the proof \olref[mvl][thr][mul]{prop:LP-taut-CL}, i.e.,
-  establish (a) and~(b) for the cases where $!A \ident (!B \lor !C)$
-  and $!A \ident (!B \lif !C)$.
+  完成 \olref[mvl][thr][mul]{prop:LP-taut-CL} 的证明，即对 $!A \ident (!B \lor !C)$ 和 $!A \ident (!B \lif !C)$ 的情形，证明 和~(b)。
 \end{prob}
 
 \begin{prob}
-Prove that every classical tautology is a tautology in~$\LogHal$.
+  证明每个经典重言式都是~$\LogHal$ 中的重言式。
 \end{prob}
 
-Although they have the same tautologies as classical logic, their
-consequence relations are different.  $\LogLP$, for instance, is
-\emph{paraconsistent} in that $\lnot p, p \Entails/ q$, and so the
-principle of explosion $\lnot !A, !A \Entails !B$ does not hold in
-general. (It holds for some cases of $!A$ and $!B$, e.g., if $!B$~is a
-tautology.)
+尽管它们与经典逻辑具有相同的重言式，其后承关系却不同。例如，$\LogLP$ 是\emph{次协调的}，因为 $\lnot p, p \Entails/ q$，所以爆炸原理 $\lnot !A, !A \Entails !B$ 并非普遍成立。（它对某些 $!A$ 和 $!B$ 是成立的，例如当 $!B$ 是重言式时。）
 
 \begin{prob}
-  Which of the following relations hold in (a)~$\LogLP$
-  and in (b)~$\LogHal$? Give a truth table for each.
+  下列后承关系在 (a)~$\LogLP$ 和 (b)~$\LogHal$ 中哪些成立？请为每一项构造真值表。
   \begin{enumerate}
     \item $p, p \lif q \Entails q$
     \item $\lnot q, p \lif q \Entails \lnot p$
@@ -156,21 +129,21 @@ tautology.)
   \end{enumerate}
 \end{prob}
 
-What if you make $\Undef$ designated in $\LogLuk[3]$?
+如果在 $\LogLuk[3]$ 中把 $\Undef$ 也指定为指定值，会怎样？
 
 \begin{defn}
-  The logic \emph{3-valued R-Mingle}~$\LogRM[3]$ is defined using the matrix:
+  \emph{三值 R-Mingle 逻辑}~$\LogRM[3]$ 由以下矩阵定义：
   \begin{enumerate}
-    \item The standard propositional language $\Lang L_0$ with
-    $\lfalse$, $\lnot$, $\land$, $\lor$, $\lif$.
-    \item The set of truth values $V = \{\True, \Undef, \False\}$.
-    \item $\True$ and $\Undef$ are designated, i.e., $V^+ = \{\True, \Undef\}$.
-    \item Truth functions are the same as \L ukasiewicz logic~$\LogLuk[3]$.
+    \item 标准命题语言 $\Lang L_0$，包含联结词
+    $\lfalse$、$\lnot$、$\land$、$\lor$、$\lif$。
+    \item 真值集合为 $V = \{\True, \Undef, \False\}$。
+    \item $\True$ 和 $\Undef$ 是指定值，即 $V^+ = \{\True, \Undef\}$。
+    \item 真值函数与 Łukasiewicz 逻辑~$\LogLuk[3]$ 中的相同。
   \end{enumerate}
 \end{defn}
 
 \begin{prob}
-  Which of the following relations hold in $\LogRM[3]$?
+  下列后承关系在 $\LogRM[3]$ 中哪些成立？
   \begin{enumerate}
     \item $p, p \lif q \Entails q$
     \item $p \lor q, \lnot p \Entails q$
@@ -179,31 +152,24 @@ What if you make $\Undef$ designated in $\LogLuk[3]$?
   \end{enumerate}
 \end{prob}
 
-Different truth tables can sometimes generate the same logic
-(entailment relation) just by changing the designated values.
-E.g., this happens if in G\"odel logic we take $V^+ = \{\True,
-\Undef\}$ instead of~$\{\True\}$.
+有时，仅仅通过改变指定值，不同的真值表就能生成相同的逻辑（语义后承关系）。
+例如，如果在 Gödel 逻辑中取 $V^+ = \{\True,
+\Undef\}$ 而不是~$\{\True\}$ 作为指定值集合，就会出现这种情况。
 
 \begin{prop}\ollabel{prop:gl-udes}
-  The matrix with $V = \{\False, \Undef,\True\}$, $V^+=\{\True,
-  \Undef\}$, and the truth functions of $3$-valued G\"odel logic
-  defines classical logic.
+  由 $V = \{\False, \Undef,\True\}$、$V^+=\{\True,
+  \Undef\}$ 及三值 Gödel 逻辑的真值函数构成的矩阵，定义的是经典逻辑。
 \end{prop}
 
 \begin{proof}
-  Exercise. 
+  练习。
 \end{proof}
 
 \begin{prob}
-  Prove \olref[mvl][thr][mul]{prop:gl-udes} by showing that for the
-  logic~$\Log L$ defined just like G\"odel logic but with
-  $V^+=\{\True,\Undef\}$, if $\Gamma \Entails/[\Log L] !B$ then
-  $\Gamma \Entails/[\LogCL] !B$. Use the ideas of
-  \olref[mvl][thr][mul]{prop:LP-taut-CL}, except instead of proving
-  properties (a) and~(b), show that $\pValue v(!A)[\LogGod] = \False$
-  iff $\pValue {v'}(!A)[\LogCL] = \False$ (and hence that $\pValue
-  v(!A)[\LogGod] \in \{\True,\Undef\}$ iff $\pValue {v'}(!A)[\LogCL] =
-  \True$). Explain why this establishes the proposition.
+  通过证明以下结论来证明 \olref[mvl][thr][mul]{prop:gl-udes}：对于按 Gödel 逻辑方式定义但指定值为 $V^+=\{\True,\Undef\}$ 的逻辑~$\Log L$，若 $\Gamma \Entails/[\Log L] !B$ 则 $\Gamma \Entails/[\LogCL] !B$。
+  请运用 \olref[mvl][thr][mul]{prop:LP-taut-CL} 中的思路，但无需证明性质 和~(b)，而是证明 $\pValue v(!A)[\LogGod] = \False$ 当且仅当 $\pValue {v'}(!A)[\LogCL] = \False$（从而 $\pValue
+  v(!A)[\LogGod] \in \{\True,\Undef\}$ 当且仅当 $\pValue {v'}(!A)[\LogCL] =
+  \True$），并解释为何这能确立该命题。
 \end{prob}
 
 \end{document}

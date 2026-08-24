@@ -8,63 +8,16 @@
 
 \olfileid{mth}{prf}{int}
 
-\olsection{Introduction}
+\olsection{引言}
 
-Based on your experiences in introductory logic, you might be
-comfortable with !!a{derivation} system---probably a natural deduction or
-Fitch style !!{derivation} system, or perhaps a proof-tree system. You probably
-remember doing proofs in these systems, either proving !!a{formula}
-or show that a given argument is valid. In order to do this, you
-applied the rules of the system until you got the desired end
-result. In reasoning \emph{about} logic, we also prove things, but in
-most cases we are not using !!a{derivation} system. In fact, most of the
-proofs we consider are done in English (perhaps, with some symbolic
-language thrown in) rather than entirely in the language of
-first-order logic.  When constructing such proofs, you might at first
-be at a loss---how do I prove something without !!a{derivation} system?  How
-do I start? How do I know if my proof is correct?
+根据你在入门逻辑课程中的经验，你可能已经熟悉某种推演系统——也许是自然演绎或 Fitch 风格的推演系统，或者是证明树系统。你可能还记得在这些系统中做证明，要么证明一个公式，要么证明一个给定的论证是有效的。为此，你应用系统的规则，直到得到想要的结果。在对逻辑本身进行推理时，我们同样要证明一些事情，但在大多数情况下，我们并不使用推演系统。事实上，我们考虑的大多数证明都是用英语写成的（或许会夹杂一些符号语言），而非完全用一阶逻辑的语言。在构造此类证明时，起初你可能会感到无从下手——没有推演系统，我该如何证明某个命题？如何开始？如何知道我的证明是否正确？
 
-Before attempting a proof, it's important to know what a proof is and
-how to construct one.  As implied by the name, a \emph{proof} is meant
-to show that something is true. You might think of this in terms of a
-dialogue---someone asks you if something is true, say, if every prime
-other than two is an odd number. To answer ``yes'' is not enough; they
-might want to know \emph{why}. In this case, you'd give them a proof.
+在尝试证明之前，重要的是先知道证明是什么以及如何构造证明。顾名思义，一个\emph{证明}旨在表明某件事为真。你可以把它想象成一场对话——有人问你某件事是否为真，例如，除二以外的所有素数是否都是奇数。仅仅回答“是”是不够的；他们可能想知道\emph{为什么}。此时，你就会给他们一个证明。
 
-In everyday discourse, it might be enough to gesture at an answer, or
-give an incomplete answer. In logic and mathematics, however, we want
-rigorous proof---we want to show that something is true beyond \emph{any}
-doubt. This means that every step in our proof must be justified, and
-the justification must be cogent (i.e., the assumption you're using is
-actually assumed in the statement of the theorem you're proving, the
-definitions you apply must be correctly applied, the justifications
-appealed to must be correct inferences, etc.).
+在日常话语中，或许含糊地给出一个答案或不完整的答案就足够了。然而，在逻辑和数学中，我们需要严格的证明——我们想要排除\emph{任何}怀疑地表明某件事为真。这意味着我们证明中的每一步都必须有依据，而且该依据必须具有说服力（即，你所使用的假设确实是你所证定理陈述中假定的，你所应用的定义必须被正确地应用，你所援引的依据必须是正确的推理，等等）。
 
-Usually, we're proving some statement. We call the statements we're
-proving by various names: propositions, theorems, lemmas, or
-corollaries.  A proposition is a basic proof-worthy statement:
-important enough to record, but perhaps not particularly deep nor
-applied often. A theorem is a significant, important proposition. Its
-proof often is broken into several steps, and sometimes it is named
-after the person who first proved it (e.g., Cantor's Theorem, the
-L\"owenheim--Skolem theorem) or after the fact it concerns (e.g., the
-completeness theorem).  A lemma is a proposition or theorem that is
-used in the proof of a more important result. Confusingly,
-sometimes lemmas are important results in themselves, and also named
-after the person who introduced them (e.g., Zorn's Lemma). A corollary
-is a result that easily follows from another one.
+通常，我们证明的是某个陈述。我们用不同的名称来称呼我们要证明的陈述：命题、定理、引理或推论。命题是一个基本的、值得证明的陈述：重要到值得记录，但或许并非特别深刻或应用广泛。定理是一个重要的、意义重大的命题。其证明常分为若干步骤，有时以首次证明它的人命名（例如，Cantor（康托尔）定理、Löwenheim–Skolem（勒文海姆–斯科伦）定理）或以相关事实命名（例如，完备性定理）。引理是用于证明更重要结果的命题或定理。有些令人困惑的是，有时引理本身也是重要的结果，并且也以引入它们的人命名（例如，Zorn（佐恩）引理）。推论是容易从另一结果推出的结果。
 
-A statement to be proved often contains assumptions that clarify
-which kinds of things we're proving something about. It might begin
-with ``Let $!A$ be !!a{formula} of the form $!B \lif !C$'' or
-``Suppose $\Gamma \Proves !A$'' or something of the sort.  These are
-\emph{hypotheses} of the proposition, theorem, or lemma, and you may
-assume these to be true in your proof. They restrict what we're
-proving, and also introduce some names for the objects we're
-talking about. For instance, if your proposition begins with ``Let
-$!A$ be !!a{formula} of the form $!B \lif !C$,'' you're proving
-something about all formulas of a certain sort only (namely,
-conditionals), and it's understood that $!B \lif !C$ is an arbitrary
-conditional that your proof will talk about.
+待证的陈述通常包含一些假设，用以明确我们正在对哪类事物进行证明。它可能以“设 $!A$ 是一个形如 $!B \lif !C$ 的公式”或“假设 $\Gamma \Proves !A$”之类的形式开始。这些是命题、定理或引理的\emph{假设}，在你的证明中，你可以假定这些为真。它们限定了我们正在证明的内容，同时也为我们讨论的对象引入了一些名称。例如，如果你的命题以“设 $!A$ 是一个形如 $!B \lif !C$ 的公式”开头，那么你证明的仅仅是关于某类公式（即条件句）的某个性质，并且 $!B \lif !C$ 被理解为一个任意的条件句，你的证明将围绕它展开。
 
 \end{document}

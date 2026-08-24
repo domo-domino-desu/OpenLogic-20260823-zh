@@ -7,36 +7,28 @@
 \begin{document}
 
 \olfileid{cmp}{thy}{cps}
-\olsection{Computable Sets}
+\olsection{可计算集合}
 
-We can extend the notion of computability from computable functions to
-computable sets:
+我们可以将可计算性的概念从可计算函数推广到可计算集合：
 
 \begin{defn}
-  Let $S$ be a set of natural numbers. Then $S$ is \emph{computable}
-  iff its characteristic function~$\Char{S}$ is. In other words,
-  $S$~is computable iff the function
+  设 $S$ 为自然数集合。则 $S$ 是\emph{可计算的}，
+  当且仅当其特征函数~$\Char{S}$ 可计算。换言之，
+  $S$~可计算，当且仅当函数
 \[
 \Char{S}(x) =
 \begin{cases}
-1 & \text{if $x \in S$} \\
-0 & \text{otherwise}
+1 & 若 $x \in S$ \\
+0 & 否则
 \end{cases}
 \]
-is computable. Similarly, a relation $R(x_0, \dots, x_{k-1})$ is
-computable if and only if its characteristic function is.
+可计算。类似地，关系 $R(x_0, \dots, x_{k-1})$ 可计算，当且仅当其特征函数可计算。
 
-Computable sets and relations are also called \emph{decidable}.
+可计算的集合和关系也称为\emph{可判定的}。
 \end{defn}
 
 \begin{explain}
-Notice that we now have a number of notions of computability: for
-partial functions, for functions, and for sets. Do not get them
-confused!{} \iftag{TMs}{The Turing machine computing a partial function
-  returns the output of the function, for input values at which the
-  function is defined; the Turing machine computing a set returns
-  either $1$ or~$0$, after deciding whether or not the input value is in
-  the set or not.}{}
+注意，我们现在有多种可计算性概念：偏函数的、（全）函数的以及集合的。不要把它们混淆！{} \iftag{TMs}{计算偏函数的图灵机，在函数有定义的输入值上，会返回函数的输出值；而计算集合的图灵机，则会在判定输入值是否属于该集合后，返回 $1$ 或~$0$。}{}
 \end{explain}
 
 \end{document}

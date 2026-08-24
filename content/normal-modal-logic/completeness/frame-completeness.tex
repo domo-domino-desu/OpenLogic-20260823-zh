@@ -8,226 +8,185 @@
 
 \olfileid{nml}{com}{fra}
 
-\olsection{Frame Completeness}
+\olsection{框架完备性}
 
-The completeness theorem for \Log{K} can be extended to other modal
-systems, once we show that the canonical model for a given logic has
-the corresponding frame property.
+只要证明给定逻辑的典范模型具有相应的框架性质，\Log{K} 的完备性定理便可推广到其他模态系统。
 
 \begin{thm}\ollabel{thm:completeframeprops}
-  If a normal modal logic $\Sigma$ contains one of the !!{formula}s on the
-  left-hand side of \olref{tab:correspondencetable},
-  then the canonical model for~$\Sigma$ has the corresponding property
-  on the right-hand side.
+  若正规模态逻辑 $\Sigma$ 包含 \olref{tab:correspondencetable} 左侧列出的公式之一，
+  则 $\Sigma$ 的典范模型具有右侧对应的性质。
 \end{thm}
 
 \begin{table}[htp]
   \centering
     \begin{tabular}{| l || l |}
       \hline
-      \emph{If $\Sigma$ contains \dots} & \emph{\dots the canonical
-        model for $\Sigma$ is:} \\
+      \emph{若 $\Sigma$ 包含……} & \emph{……则 $\Sigma$ 的典范模型是：} \\
       \hline \hline
-      \Ax{D}:\;\; $\Box!A \lif \Diamond !A$ & \quad serial; \\
+      \Ax{D}:\;\; $\Box!A \lif \Diamond !A$ & \quad 持续的； \\
       \hline
-      \Ax{T}:\;\; $\Box!A \lif !A$ &\quad  reflexive;\\
+      \Ax{T}:\;\; $\Box!A \lif !A$ &\quad  自反的；\\
       \hline
-      \Ax{B}: \;\;$!A \lif \Box\Diamond!A$ &\quad  symmetric; \\
+      \Ax{B}: \;\;$!A \lif \Box\Diamond!A$ &\quad  对称的； \\
       \hline
-      \Ax{4}: \;\; $\Box!A \lif \Box\Box!A$ & \quad transitive; \\
+      \Ax{4}: \;\; $\Box!A \lif \Box\Box!A$ & \quad  传递的； \\
       \hline 
-      \Ax{5}: \;\; $\Diamond !A \lif \Box\Diamond!A$& \quad euclidean.\\
+      \Ax{5}: \;\; $\Diamond !A \lif \Box\Diamond!A$& \quad  欧几里得的。\\
       \hline
     \end{tabular}
-    \caption{Basic correspondence facts.}
+    \caption{基本对应事实。}
     \ollabel{tab:correspondencetable}
 \end{table}
 
 \begin{proof}
-  We take each of these up in turn.
+  我们依次处理每一种情况。
 
-  Suppose $\Sigma$ contains \Ax{D}, and let $\Delta \in W^\Sigma$; we
-  need to show that there is a $\Delta'$ such that $R^\Sigma
-  \Delta\Delta'$. It suffices to show that $\Box^{-1}\Delta$ is
-  $\Sigma$-consistent, for then by Lindenbaum's Lemma, there is a
-  complete $\Sigma$-consistent set $\Delta' \supseteq
-  \Box^{-1}\Delta$, and by definition of $R^\Sigma$
-  \iftag{prvBox}{}{and \olref[mod]{lem:box-iff-diamond} }we have
-  $R^\Sigma \Delta\Delta'$. So, suppose for contradiction that
-  $\Box^{-1}\Delta$ is \emph{not} $\Sigma$-consistent, i.e.,
-  $\Box^{-1}\Delta \Proves[\Sigma] \lfalse$. By \olref[mod]{lem:box2},
-  $\Delta \Proves[\Sigma] \Box\lfalse$, and since $\Sigma$ contains
-  \Ax{D}, also $\Delta \Proves[\Sigma] \Diamond\lfalse$. But $\Sigma$
-  is normal, so $\Sigma \Proves \lnot\Diamond \lfalse$
-  (\olref[prf][nor]{prop:notDiamondBot}), whence also $\Delta
-  \Proves[\Sigma] \lnot\Diamond \lfalse$, against the consistency
-  of~$\Delta$.
+  假设 $\Sigma$ 包含 \Ax{D}，并设 $\Delta \in W^\Sigma$；需证存在 $\Delta'$ 使得 $R^\Sigma
+  \Delta\Delta'$。只需证 $\Box^{-1}\Delta$ 是 $\Sigma$-一致的，因为由此根据 Lindenbaum 引理，存在完全的 $\Sigma$-一致集 $\Delta' \supseteq
+  \Box^{-1}\Delta$，而根据 $R^\Sigma$ 的定义\iftag{prvBox}{}{及 \olref[mod]{lem:box-iff-diamond} }可得
+  $R^\Sigma \Delta\Delta'$。反设 $\Box^{-1}\Delta$ 是 $\Sigma$-\emph{不一致}的，即
+  $\Box^{-1}\Delta \Proves[\Sigma] \lfalse$。根据 \olref[mod]{lem:box2}，
+  $\Delta \Proves[\Sigma] \Box\lfalse$；又因 $\Sigma$ 包含
+  \Ax{D}，亦有 $\Delta \Proves[\Sigma] \Diamond\lfalse$。但 $\Sigma$
+  是正规的，故 $\Sigma \Proves \lnot\Diamond \lfalse$
+  (\olref[prf][nor]{prop:notDiamondBot})，从而 $\Delta
+  \Proves[\Sigma] \lnot\Diamond \lfalse$，与 $\Delta$ 的一致性矛盾。
 
-  Now suppose $\Sigma$ contains \Ax{T}, and let $\Delta \in
-  W^\Sigma$. We want to show $R^\Sigma \Delta\Delta$,
-  i.e.,\iftag{prvBox}{}{ by \olref[mod]{lem:box-iff-diamond},}
-  $\Box^{-1}\Delta \subseteq \Delta$. But if $\Box!A \in \Delta$ then
-  by \Ax{T} also $!A \in \Delta$, as desired.
+  假设 $\Sigma$ 包含 \Ax{T}，并设 $\Delta \in
+  W^\Sigma$。欲证 $R^\Sigma \Delta\Delta$，
+  即\iftag{prvBox}{}{根据 \olref[mod]{lem:box-iff-diamond}，}
+  $\Box^{-1}\Delta \subseteq \Delta$。但若 $\Box!A \in \Delta$，则由 \Ax{T} 亦有 $!A \in \Delta$，如所求。
 
-  Now suppose $\Sigma$ contains \Ax{B}, and suppose $R^\Sigma
-  \Delta\Delta'$ for $\Delta$, $\Delta' \in W^\Sigma$. We need to show
-  that $R^\Sigma \Delta'\Delta$, i.e.,\iftag{prvBox}{
-    $\Box^{-1}\Delta' \subseteq \Delta$. By
-    \olref[mod]{lem:box-iff-diamond}, this is equivalent to}{}
-  $\Diamond\Delta \subseteq \Delta'$. So suppose $!A \in \Delta$. By
-  \Ax{B}, also $\Box\Diamond!A \in \Delta$. By the hypothesis that
-  $R^\Sigma \Delta\Delta'$\iftag{prvBox}{}{ and
-    \olref[mod]{lem:box-iff-diamond}}, we have that $\Box^{-1}\Delta
-  \subseteq \Delta'$, and hence $\Diamond!A \in \Delta'$, as required.
+  假设 $\Sigma$ 包含 \Ax{B}，并设 $R^\Sigma
+  \Delta\Delta'$，其中 $\Delta$, $\Delta' \in W^\Sigma$。需证
+  $R^\Sigma \Delta'\Delta$，即\iftag{prvBox}{
+    $\Box^{-1}\Delta' \subseteq \Delta$。根据
+    \olref[mod]{lem:box-iff-diamond}，这等价于}{}
+  $\Diamond\Delta \subseteq \Delta'$。故设 $!A \in \Delta$。由
+  \Ax{B}，亦有 $\Box\Diamond!A \in \Delta$。由 $R^\Sigma \Delta\Delta'$ 的假设\iftag{prvBox}{}{及
+    \olref[mod]{lem:box-iff-diamond}}，可得 $\Box^{-1}\Delta
+  \subseteq \Delta'$，从而 $\Diamond!A \in \Delta'$，如所求。
 
-  Now suppose $\Sigma$ contains \Ax{4}, and suppose $R^\Sigma
-  \Delta_1\Delta_2$ and $R^\Sigma \Delta_2\Delta_3$. We need to show
-  $R^\Sigma \Delta_1\Delta_3$. From the hypothesis\iftag{prvBox}{}{ and
-    \olref[mod]{lem:box-iff-diamond}} we have both $\Box^{-1}\Delta_1
-  \subseteq \Delta_2$ and $\Box^{-1}\Delta_2 \subseteq \Delta_3$. In
-  order to show $R^\Sigma \Delta_1\Delta_3$ it suffices to show
-  $\Box^{-1}\Delta_1 \subseteq \Delta_3$. So let $!B \in
-  \Box^{-1}\Delta_1$, i.e., $\Box!B \in \Delta_1$. By \Ax{4}, also
-  $\Box\Box!B \in \Delta_1$ and by hypothesis we get, first, that
-  $\Box!B \in \Delta_2$ and, second, that $!B \in \Delta_3$, as
-  desired.
+  假设 $\Sigma$ 包含 \Ax{4}，并设 $R^\Sigma
+  \Delta_1\Delta_2$ 且 $R^\Sigma \Delta_2\Delta_3$。需证
+  $R^\Sigma \Delta_1\Delta_3$。由假设\iftag{prvBox}{}{及
+    \olref[mod]{lem:box-iff-diamond}}可得 $\Box^{-1}\Delta_1
+  \subseteq \Delta_2$ 与 $\Box^{-1}\Delta_2 \subseteq \Delta_3$。为证 $R^\Sigma \Delta_1\Delta_3$，只需证
+  $\Box^{-1}\Delta_1 \subseteq \Delta_3$。故设 $!B \in
+  \Box^{-1}\Delta_1$，即 $\Box!B \in \Delta_1$。由 \Ax{4}，亦有
+  $\Box\Box!B \in \Delta_1$，由假设首先可得 $\Box!B \in \Delta_2$，进而得 $!B \in \Delta_3$，如所求。
 
-  Now suppose $\Sigma$ contains \Ax{5}, suppose $R^\Sigma
-  \Delta_1\Delta_2$ and $R^\Sigma \Delta_1\Delta_3$. We need to show
-  $R^\Sigma \Delta_2\Delta_3$. The first hypothesis gives
-  $\Box^{-1}\Delta_1 \subseteq \Delta_2$\iftag{prvBox}{}{ by
-    \olref[mod]{lem:box-iff-diamond}}, and the second hypothesis is
-  equivalent to $\Diamond\Delta_3 \subseteq \Delta_1$\iftag{prvBox}{,
-    by \olref[mod]{lem:box-iff-diamond}}{}.  To show $R^\Sigma
-  \Delta_2\Delta_3$\iftag{prvBox}{, by
-    \olref[mod]{lem:box-iff-diamond}, it suffices to}{ we have to}
-  show $\Diamond\Delta_3 \subseteq \Delta_2$. So let $\Diamond!A \in
-  \Diamond\Delta_3$, i.e., $!A \in \Delta_3$. By the second hypothesis
-  $\Diamond!A \in \Delta_1$ and by \Ax{5}, $\Box\Diamond!A \in
-  \Delta_1$ as well. But now the first hypothesis gives $\Diamond!A \in
-  \Delta_2$, as desired.
+  假设 $\Sigma$ 包含 \Ax{5}，并设 $R^\Sigma
+  \Delta_1\Delta_2$ 且 $R^\Sigma \Delta_1\Delta_3$。需证
+  $R^\Sigma \Delta_2\Delta_3$。由第一个假设可得 $\Box^{-1}\Delta_1 \subseteq \Delta_2$\iftag{prvBox}{}{（根据
+    \olref[mod]{lem:box-iff-diamond}）}，且第二个假设等价于 $\Diamond\Delta_3 \subseteq \Delta_1$\iftag{prvBox}{（根据 \olref[mod]{lem:box-iff-diamond}）}{}。要证 $R^\Sigma
+  \Delta_2\Delta_3$\iftag{prvBox}{，根据
+    \olref[mod]{lem:box-iff-diamond}，只需}{，需}证 $\Diamond\Delta_3 \subseteq \Delta_2$。设 $\Diamond!A \in
+  \Diamond\Delta_3$，即 $!A \in \Delta_3$。由第二个假设，$\Diamond!A \in \Delta_1$，再由 \Ax{5}，$\Box\Diamond!A \in
+  \Delta_1$。而由第一个假设可得 $\Diamond!A \in \Delta_2$，如所求。
   \end{proof}
 
-As a corollary we obtain completeness results for a number of
-systems. For instance, we know that $\Log{S5} = \Log{KT5} =
-\Log{KTB4}$ is complete with respect to the class of all reflexive
-euclidean models, which is the same as the class of all reflexive,
-symmetric and transitive models.
+作为推论，我们得出若干系统的完备性结果。例如，可知 $\Log{S5} = \Log{KT5} =
+\Log{KTB4}$ 相对于所有自反且欧几里得的模型类是完备的，而该类即所有自反、对称且传递的模型类。
 
 \begin{thm}\ollabel{thm:generaldet}
-  Let $\mClass{C}_\Ax{D}$, $\mClass{C}_\Ax{T}$,
-  $\mClass{C}_\Ax{B}$, $\mClass{C}_\Ax{4}$, and
-  $\mClass{C}_\Ax{5}$ be the class of all serial, reflexive,
-  symmetric, transitive, and euclidean models (respectively). Then for
-  any schemas $!A_1$, \dots, $!A_n$ among \Ax{D},
-  \Ax{T}, \Ax{B}, \Ax{4}, and \Ax{5}, the system
-  $\Log{K}!A_1 \dots !A_n$ is determined by the
-  class of models $\mClass{C} = \mClass{C}_{!A_1} \cap \dots
-  \cap \mClass{C}_{!A_n}$. 
+  令 $\mClass{C}_\Ax{D}$、$\mClass{C}_\Ax{T}$、
+  $\mClass{C}_\Ax{B}$、$\mClass{C}_\Ax{4}$ 和
+  $\mClass{C}_\Ax{5}$ 分别为所有持续的、自反的、
+  对称的、传递的和欧几里得的模型类。那么，对于
+  公理 \Ax{D}、\Ax{T}、\Ax{B}、\Ax{4} 和 \Ax{5} 中的任意
+  模式 $!A_1$, \dots, $!A_n$，系统
+  $\Log{K}!A_1 \dots !A_n$ 都由模型类
+  $\mClass{C} = \mClass{C}_{!A_1} \cap \dots
+  \cap \mClass{C}_{!A_n}$ 所决定。
 \end{thm}
 
 \begin{prop}
-  Let $\Sigma$ be a normal modal logic; then:
+  设 $\Sigma$ 为正规模态逻辑，则：
   \begin{enumerate}
   \item\ollabel{prop:anotherfive-a}%
-    If $\Sigma$ contains the schema $\Diamond!A \lif \Box 
-    !A$ then the canonical model for $\Sigma$ is partially functional. 
-  \item If $\Sigma$ contains the schema $\Diamond!A \liff \Box 
-    !A$ then the canonical model for $\Sigma$ is functional. 
-  \item If $\Sigma$ contains the schema $\Box\Box!A \lif \Box 
-    !A$ then the canonical model for $\Sigma$ is weakly dense. 
+    若 $\Sigma$ 包含模式 $\Diamond!A \lif \Box 
+    !A$，则 $\Sigma$ 的典范模型是部分函数的。 
+  \item 若 $\Sigma$ 包含模式 $\Diamond!A \liff \Box 
+    !A$，则 $\Sigma$ 的典范模型是函数的。 
+  \item 若 $\Sigma$ 包含模式 $\Box\Box!A \lif \Box 
+    !A$，则 $\Sigma$ 的典范模型是弱稠密的。 
   \end{enumerate}
-(see \olref[frd][acc]{tab:anotherfive} for definitions of these frame
-  properties).
+（这些框架性质的定义参见 \olref[frd][acc]{tab:anotherfive}）。
 \end{prop}
 
 \begin{proof}
   \begin{enumerate}
-  \item Suppose that $\Sigma$ contains the schema $\Diamond !A \lif
-    \Box !A$, to show that $R^\Sigma$ is partially functional we need
-    to prove that for any $\Delta_1$, $\Delta_2$, $\Delta_3 \in
-    W^\Sigma$, if $R^\Sigma \Delta_1\Delta_2$ and $R^\Sigma
-    \Delta_1\Delta_3$ then $\Delta_2=\Delta_3$. Since $R^\Sigma
-    \Delta_1\Delta_2$ we have $\Box^{-1}\Delta_1 \subseteq \Delta_2$
-    and since $R^\Sigma \Delta_1\Delta_3$ also $\Box^{-1}\Delta_1
-    \subseteq \Delta_3$\iftag{prvBox}{}{, both by
-      \olref[mod]{lem:box-iff-diamond}}. The identity
-    $\Delta_2=\Delta_3$ will follow if we can establish the two
-    inclusions $\Delta_2 \subseteq \Delta_3$ and $\Delta_3 \subseteq
-    \Delta_2$. For the first inclusion, let $!A \in \Delta_2$; then
-    $\Diamond!A \in \Delta_1$, and by the schema and deductive closure
-    of $\Delta_1$ also $\Box!A \in \Delta_1$, whence by the hypothesis
-    that $R^\Sigma \Delta_1\Delta_3$, $!A \in \Delta_3$. The second
-    inclusion is similar.
+  \item 假设 $\Sigma$ 包含模式 $\Diamond !A \lif
+    \Box !A$，欲证 $R^\Sigma$ 是部分函数的，需证对于任意 $\Delta_1$, $\Delta_2$, $\Delta_3 \in
+    W^\Sigma$，若 $R^\Sigma \Delta_1\Delta_2$ 且 $R^\Sigma
+    \Delta_1\Delta_3$，则 $\Delta_2=\Delta_3$。由 $R^\Sigma
+    \Delta_1\Delta_2$ 可得 $\Box^{-1}\Delta_1 \subseteq \Delta_2$，
+    由 $R^\Sigma \Delta_1\Delta_3$ 亦得 $\Box^{-1}\Delta_1
+    \subseteq \Delta_3$\iftag{prvBox}{}{（两者均依据
+      \olref[mod]{lem:box-iff-diamond}）}。若能证得 $\Delta_2 \subseteq \Delta_3$ 与 $\Delta_3 \subseteq
+    \Delta_2$ 两个包含关系，则等式 $\Delta_2=\Delta_3$ 成立。为证第一个包含关系，设 $!A \in \Delta_2$；则
+    $\Diamond!A \in \Delta_1$，由该模式及 $\Delta_1$ 的演绎封闭性，可得 $\Box!A \in \Delta_1$，再由假设 $R^\Sigma \Delta_1\Delta_3$ 可得 $!A \in \Delta_3$。第二个包含关系的证明类似。
 
-  \item This follows immediately from part~\olref{prop:anotherfive-a}
-    and the seriality proof in \olref{thm:completeframeprops}.
+  \item 这直接由 \olref{prop:anotherfive-a} 及 \olref{thm:completeframeprops} 中的持续性证明得出。
 
-  \item Suppose $\Sigma$ contains the schema $\Box\Box!A \lif \Box!A$
-    and to show that $R^\Sigma$ is weakly dense, let $R^\Sigma
-    \Delta_1\Delta_2$. We need to show that there is a complete
-    $\Sigma$-consistent set $\Delta_3$ such that $R^\Sigma
-    \Delta_1\Delta_3$ and $R^\Sigma \Delta_3\Delta_2$. Let:
+  \item 假设 $\Sigma$ 包含模式 $\Box\Box!A \lif \Box!A$，欲证 $R^\Sigma$ 是弱稠密的。设 $R^\Sigma
+    \Delta_1\Delta_2$。需证存在完全的 $\Sigma$-一致集 $\Delta_3$，使得 $R^\Sigma
+    \Delta_1\Delta_3$ 且 $R^\Sigma \Delta_3\Delta_2$。令：
     \[
     \Gamma = \Box^{-1}\Delta_1 \cup \Diamond\Delta_2.
     \]
-    It suffices to show that $\Gamma$ is $\Sigma$-consistent, for then
-    by Lindenbaum's Lemma it can be extended to a complete
-    $\Sigma$-consistent set~$\Delta_3$ such that $\Box^{-1}\Delta_1
-    \subseteq \Delta_3$ and $\Diamond\Delta_2 \subseteq \Delta_3$,
-    i.e., $R^\Sigma \Delta_1\Delta_3$\iftag{prvBox}{}{ (by
-      \olref[mod]{lem:box-iff-diamond})} and $R^\Sigma
-    \Delta_3\Delta_2$\iftag{prvBox}{ (by
-      \olref[mod]{lem:box-iff-diamond})}{}.
+    只需证 $\Gamma$ 是 $\Sigma$-一致的，因为由此根据 Lindenbaum 引理，它可扩充为完全的
+    $\Sigma$-一致集~$\Delta_3$，满足 $\Box^{-1}\Delta_1
+    \subseteq \Delta_3$ 且 $\Diamond\Delta_2 \subseteq \Delta_3$，
+    即 $R^\Sigma \Delta_1\Delta_3$\iftag{prvBox}{}{（依据
+      \olref[mod]{lem:box-iff-diamond}）}且 $R^\Sigma
+    \Delta_3\Delta_2$\iftag{prvBox}{（依据
+      \olref[mod]{lem:box-iff-diamond}）}{}。
 
-    Suppose for contradiction that $\Gamma$ is not consistent. Then
-    there are !!{formula}s $\Box!A_1$, \dots, $\Box!A_n \in \Delta_1$
-    and $!B_1$, \dots,~$!B_m \in \Delta_2$ such that \[!A_1, \dots,
+    反设 $\Gamma$ 不是一致的。则
+    存在公式 $\Box!A_1$, \dots, $\Box!A_n \in \Delta_1$
+    及 $!B_1$, \dots,~$!B_m \in \Delta_2$，使得 \[!A_1, \dots,
     !A_n, \Diamond!B_1, \dots, \Diamond!B_m \Proves[\Sigma]
-    \lfalse.\] Since $\Diamond (!B_1 \land \dots \land !B_m) \to
-    (\Diamond!B_1 \land \dots \land \Diamond!B_m)$ is !!{derivable} in
-    every normal modal logic, we argue as follows, contradicting the
-    consistency of~$\Delta_2$:
+    \lfalse.\] 由于 $\Diamond (!B_1 \land \dots \land !B_m) \to
+    (\Diamond!B_1 \land \dots \land \Diamond!B_m)$ 在
+    任何正规模态逻辑中皆可推导，我们作如下推演，从而与 $\Delta_2$ 的一致性矛盾：
     \begin{align*}
       !A_1, \dots, !A_n, & \Diamond!B_1, \dots,
       \Diamond!B_m \Proves[\Sigma] \lfalse \\
       !A_1, \dots,!A_n & \Proves[\Sigma] (\Diamond!B_1 \land
       \dots \land \Diamond!B_m) \lif \lfalse\\
-      & \qquad\text{by the deduction theorem}\\
-      & \qquad\text{\olref[prf][prp]{prop:derivabilityfacts}\olref[prf][prp]{prop:derivabilityfacts-deduction}, and \Taut} \\
+      & \qquad\text{由演绎定理}\\
+      & \qquad\text{\olref[prf][prp]{prop:derivabilityfacts}\olref[prf][prp]{prop:derivabilityfacts-deduction}，以及 \Taut} \\
       !A_1, \dots,!A_n & \Proves[\Sigma]
       \Diamond(!B_1 \land
       \dots \land !B_m) \lif \lfalse\\
-      & \qquad \text{since $\Sigma$ is normal} \\
+      & \qquad \text{因为 $\Sigma$ 是正规的} \\
       !A_1, \dots,!A_n & \Proves[\Sigma]
       \lnot\Diamond (!B_1 \land \dots \land !B_m)\\
-      & \qquad\text{by \PL} \\
+      & \qquad\text{由 \PL} \\
       !A_1, \dots,!A_n & \Proves[\Sigma]
       \Box\lnot (!B_1 \land \dots \land !B_m)\\
-      & \qquad\text{$\Box\lnot$ for $\lnot\Diamond$} \\
+      & \qquad\text{对 $\lnot\Diamond$ 使用 $\Box\lnot$} \\
       \Box!A_1, \dots,\Box!A_n
       & \Proves[\Sigma] \Box\Box \lnot (!B_1 \land \dots \land !B_m)\\
-      & \qquad\text{by \olref[mod]{lem:box1}} \\
+      & \qquad\text{由 \olref[mod]{lem:box1}} \\
       \Box!A_1, \dots,\Box!A_n
       & \Proves[\Sigma]
       \Box\lnot (!B_1 \land \dots \land !B_m)\\
-      &\qquad\text{by schema $\Box\Box!A \lif \Box!A$} \\
+      &\qquad\text{由模式 $\Box\Box!A \lif \Box!A$} \\
       \Delta_1 & \Proves[\Sigma]
       \Box\lnot (!B_1 \land \dots \land !B_m)\\
-      &\qquad\text{by monotonicity, \olref[prf][prp]{prop:derivabilityfacts}\olref[prf][prp]{prop:derivabilityfacts-monotonicity}} \\
+      &\qquad\text{由单调性，\olref[prf][prp]{prop:derivabilityfacts}\olref[prf][prp]{prop:derivabilityfacts-monotonicity}} \\
       & \Box\lnot (!B_1 \land \dots \land !B_m) \in \Delta_1\\
-      &\qquad\text{by deductive closure}; \\
+      &\qquad\text{由演绎封闭性}; \\
       & \lnot (!B_1 \land \dots \land !B_m) \in \Delta_2\\
-      &\qquad \text{since }
-      R^\Sigma \Delta_1\Delta_2. 
+      &\qquad \text{因为 }
+      R^\Sigma \Delta_1\Delta_2.
     \end{align*}
   \end{enumerate}
 \end{proof}
 
-On the strength of these examples, one might think that every
-system~$\Sigma$ of modal logic is \emph{complete}, in the sense that
-it proves every formula which is valid in every frame in which every
-theorem of $\Sigma$ is valid. Unfortunately, there are many systems
-that are not complete in this sense.
+基于这些例子，人们或许会认为每个模态逻辑系统~$\Sigma$ 都是\emph{完备的}，即：若一个公式在每个使得 $\Sigma$ 的所有定理皆有效的框架中都有效，则 $\Sigma$ 能证明该公式。遗憾的是，有许多系统在这种意义上并不完备。
 
 \end{document}

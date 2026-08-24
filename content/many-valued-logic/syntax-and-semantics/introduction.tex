@@ -8,56 +8,36 @@
 
 \olfileid{mvl}{syn}{int}
 
-\olsection{Introduction}
+\olsection{引言}
 
-In classical logic, we deal  with !!{formula}s that are built from
-!!{propositional variable}s using the propositional connectives
-$\lnot$, $\land$, $\lor$, $\lif$, and $\liff$.  When we define a
-semantics for classical logic, we do so using the two truth values
-$\True$ and $\False$.  We interpret !!{propositional variable}s in
-!!a{valuation}~$\pAssign{v}$, which assigns these truth values
-$\True$, $\False$ to the !!{propositional variable}s. Any
-!!{valuation} then determines a truth value $\pValue{v}(!A)$ for any
-!!{formula}~$!A$, and !!^a{formula} is satisfied in
-!!a{valuation}~$\pAssign{v}$, $\pSat{v}{!A}$, iff $\pValue{v}(!A) =
-\True$.
+在经典逻辑中，我们处理由命题变元通过命题联结词
+$\lnot$、$\land$、$\lor$、$\lif$ 和 $\liff$ 构建而成的公式。
+当我们为经典逻辑定义语义时，我们使用两个真值 $\True$ 和 $\False$。
+我们通过赋值~$\pAssign{v}$ 来解释命题变元，该赋值将真值 $\True$ 和 $\False$ 指派给命题变元。
+任何赋值都为任意公式~$!A$ 确定一个真值 $\pValue{v}(!A)$，
+并且一个公式在赋值~$\pAssign{v}$ 中被满足，记作 $\pSat{v}{!A}$，当且仅当 $\pValue{v}(!A) = \True$。
 
-Many-valued logics are generalizations of classical two-valued logic
-by allowing more truth values than just $\True$ and $\False$. So in
-many-valued logic, !!a{valuation}~$\pAssign{v}$ is a function
-assigning to every !!{propositional variable}~$p$ one of a range of
-possible truth values.  We'll generally call the set of allowed truth
-values~$V$.  Classical logic is a many-valued logic where $V =
-\{\True, \False\}$, and the truth value~$\pValue{v}(!A)$ is computed
-using the familiar characteristic truth tables for the connectives.
+多值逻辑是经典二值逻辑的推广，它允许使用多于 $\True$ 和 $\False$ 的真值。
+因此，在多值逻辑中，赋值~$\pAssign{v}$ 是一个函数，它从一系列可能的真值中为每个命题变元~$p$ 指派一个真值。
+我们通常将允许的真值集合记作~$V$。
+经典逻辑是 $V = \{\True, \False\}$ 的多值逻辑，
+并且真值~$\pValue{v}(!A)$ 是使用我们所熟知的、联结词的特征真值表来计算的。
 
-Once we add additional truth values, we have more than one natural
-option for how to compute~$\pValue{v}(!A)$ for the connectives we read
-as ``and,'' ``or,'' ``not,'' and ``if---then.''  So a many-valued
-logic is determined not just by the set of truth values, but also by
-the \emph{truth functions} we decide to use for each connective.  Once
-these are selected for a many-valued logic~$\Log L$, however, the
-truth value $\pValue{v}(!A)[\Log L]$ is uniquely determined by the
-valuation, just like in classical logic. Many-valued logics, like
-classical logic, are \emph{truth functional}.
+一旦增加了额外的真值，如何计算我们读作“与”、“或”、“非”和“如果——那么”的联结词的~$\pValue{v}(!A)$，就有了不止一种自然的选择。
+因此，一个多值逻辑不仅由真值集合决定，还由我们为每个联结词选定使用的\emph{真值函数}决定。
+然而，一旦为某个多值逻辑~$\Log L$ 选定了这些要素，真值 $\pValue{v}(!A)[\Log L]$ 便像经典逻辑中一样，由赋值唯一确定。
+与经典逻辑一样，多值逻辑也是\emph{真值函数的}。
 
-With this semantic building blocks in hand, we can go on to define the
-analogs of the semantic concepts of tautology, entailment, and
-satisfiability.  In classical logic, !!a{formula} is a tautology if
-its truth value $\pValue{v}(!A) = \True$ for any~$\pAssign{v}$.  In
-many-valued logic, we have to generalize this a bit as well. First of
-all, there is no requirement that the set of truth values~$V$
-contains~$\True$. For instance, some many-valued logics use numbers,
-such as all rational numbers between $0$ and~$1$ as their set of truth
-values.  In such a case, $1$~usually plays the rule of~$\True$. In
-other logics, not just one but several truth values do.  So, we
-require that every many-valued logic have a set~$V^+$ of
-\emph{designated values}.  We can then say that !!a{formula} is
-satisfied in !!a{valuation}~$\pAssign{v}$, $\pSat{v}{!A}[\Log L]$, iff
-$\pValue{v}(!A)[\Log L] \in V^+$. !!^a{formula}~$!A$ is a tautology of the
-logic, $\Entails[\Log L] !A$, iff $\pValue{v}(!A) \in V^+$ for
-any~$\pAssign{v}$. And, finally, we say that $!A$ is entailed by a set
-of !!{formula}s, $\Gamma \Entails[\Log L] !A$, if every !!{valuation} that
-satisfies all the !!{formula}s in~$\Gamma$ also satisfies~$!A$.
+有了这些语义构件，我们就可以进一步定义重言式、语义后承和可满足性等语义概念的类似概念。
+在经典逻辑中，如果对任何~$\pAssign{v}$，公式的真值 $\pValue{v}(!A) = \True$，则该公式是重言式。
+在多值逻辑中，我们也需要对此作一点推广。
+首先，真值集合~$V$ 并不要求包含~$\True$。
+例如，一些多值逻辑使用数字作为真值集合，比如所有介于 $0$ 和~$1$ 之间的有理数。
+在这种情况下，$1$~通常扮演~$\True$ 的角色。
+在其他逻辑中，扮演这一角色的可能不止一个真值，而是多个真值。
+因此，我们要求每个多值逻辑都有一个\emph{指定值}的集合~$V^+$。
+据此，我们可以说一个公式在赋值~$\pAssign{v}$ 中被满足，记作 $\pSat{v}{!A}[\Log L]$，当且仅当 $\pValue{v}(!A)[\Log L] \in V^+$。
+一个公式~$!A$ 是逻辑~$\Log L$ 的重言式，记作 $\Entails[\Log L] !A$，当且仅当对任何~$\pAssign{v}$，$\pValue{v}(!A) \in V^+$。
+最后，如果每个满足~$\Gamma$ 中所有公式的赋值也都满足~$!A$，我们就说 $!A$ 是公式集合~$\Gamma$ 的语义后承，记作 $\Gamma \Entails[\Log L] !A$。
 
 \end{document}

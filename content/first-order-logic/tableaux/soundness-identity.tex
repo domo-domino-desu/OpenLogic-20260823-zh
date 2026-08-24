@@ -1,45 +1,33 @@
-% Part: first-order-logic
-% Chapter: tableaux
-% Section: soundness-identity
-
 \documentclass[../../../include/open-logic-section]{subfiles}
 
 \begin{document}
 
 \olfileid{fol}{tab}{sid}
 
-\olsection{Soundness with \usetoken{S}{identity}}
+\olsection{带等词的可靠性}
 
 \begin{prop}
-!!^{tableau}s with rules for identity are sound: no closed !!{tableau}
-  is satisfiable.
+带有等词规则的分析表是可靠的：不存在可满足的封闭分析表。
 \end{prop}
 
 \begin{proof}
-We just have to show as before that if !!a{tableau} has a satisfiable
-branch, the branch resulting from applying one of the rules for~$\eq$
-to it is also satisfiable. Let $\Gamma$ be the set of signed
-!!{formula}s on the branch, and let $\Struct{M}$ be !!a{structure}
-satisfying~$\Gamma$.
+我们只需像之前一样证明，如果一个分析表有一个可满足的分支，那么对它应用某条关于~$\eq$ 的规则后，得到的分支也是可满足的。令 $\Gamma$ 为该分支上的带号公式的集合，并令 $\Struct{M}$ 为满足~$\Gamma$ 的结构。
 
-Suppose the branch is expanded using~$\eq$, i.e., by adding the signed
-!!{formula}~$\sFmla{\True}{\eq[t][t]}$. Trivially,
-$\Sat{M}{\eq[t][t]}$, so $\Struct{M}$ also satisfies $\Gamma \cup
-\{\sFmla{\True}{\eq[t][t]}\}$.
+假设该分支是通过~$\eq$ 规则扩展的，即添加了带号公式~$\sFmla{\True}{\eq[t][t]}$。显然，
+$\Sat{M}{\eq[t][t]}$，所以 $\Struct{M}$ 也满足 $\Gamma \cup
+\{\sFmla{\True}{\eq[t][t]}\}$。
 
-If the branch is expanded using $\TRule{\True}{\eq}$, we add a signed
-!!{formula}~$\sFmla{S}{!A(t_2)}$, but $\Gamma$ contains
-both~$\sFmla{\True}{\eq[t_1][t_2]}$ and $\sFmla{\True}{!A(t_1)}$. Thus
-we have $\Sat{M}{\eq[t_1][t_2]}$ and $\Sat{M}{!A(t_1)}$. Let $s$ be a
-variable assignment with $s(x) = \Value{t_1}{M}$.  By
-\olref[syn][ass]{prop:sentence-sat-true}, $\Sat{M}{!A(t_1)}[s]$. Since
-$\varAssign{s}{s}{x}$, by \olref[syn][ext]{prop:ext-formulas},
-$\Sat{M}{!A(x)}[s]$. since $\Sat{M}{\eq[t_1][t_2]}$, we have
-$\Value{t_1}{M} = \Value{t_2}{M}$, and hence $s(x) = \Value{t_2}{M}$.
-By applying \olref[syn][ext]{prop:ext-formulas} again, we also have
-$\Sat{M}{!A(t_2)}[s]$.  By \olref[syn][ass]{prop:sentence-sat-true},
-$\Sat{M}{!A(t_2)}$. The case of $\TRule{\False}{\eq}$ is treated
-similarly.
+如果该分支是通过 $\TRule{\True}{\eq}$ 规则扩展的，我们添加了一个带号公式~$\sFmla{S}{!A(t_2)}$，而 $\Gamma$ 包含
+~$\sFmla{\True}{\eq[t_1][t_2]}$ 和 $\sFmla{\True}{!A(t_1)}$。因此
+我们有 $\Sat{M}{\eq[t_1][t_2]}$ 和 $\Sat{M}{!A(t_1)}$。令 $s$ 为一个
+满足 $s(x) = \Value{t_1}{M}$ 的变元指派。
+由 \olref[syn][ass]{prop:sentence-sat-true}，$\Sat{M}{!A(t_1)}[s]$。由于
+$\varAssign{s}{s}{x}$，根据 \olref[syn][ext]{prop:ext-formulas}，
+$\Sat{M}{!A(x)}[s]$。既然 $\Sat{M}{\eq[t_1][t_2]}$，我们有
+$\Value{t_1}{M} = \Value{t_2}{M}$，因此 $s(x) = \Value{t_2}{M}$。
+再次应用 \olref[syn][ext]{prop:ext-formulas}，我们也有
+$\Sat{M}{!A(t_2)}[s]$。 由 \olref[syn][ass]{prop:sentence-sat-true}，
+$\Sat{M}{!A(t_2)}$。 $\TRule{\False}{\eq}$ 规则的情形可类似处理。
 \end{proof}
 
 \end{document}

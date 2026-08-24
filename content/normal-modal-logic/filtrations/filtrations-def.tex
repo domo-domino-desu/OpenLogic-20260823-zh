@@ -8,167 +8,140 @@
 
 \olfileid{nml}{fil}{fil}
 
-\olsection{Filtrations}
+\olsection{过滤}
 
-Rather than define ``the'' filtration of $\mModel{M}$ through
-$\Gamma$, we define when a model~$\mModel{M^*}$ counts as a filtration
-of~$\mModel{M}$. All filtrations have the same set of worlds~$W^*$ and
-the same valuation~$V^*$. But different filtrations may have different
-accessibility relations~$R^*$. To count as a filtration, $R^*$ has to
-satisfy a number of conditions, however. These conditions are exactly
-what we'll require to prove the main result, namely that
-$\mSat{M}{!A}[w]$ iff $\mSat{M^*}{!A}[{[w]}]$, provided $!A \in
-\Gamma$.
+我们不去定义 $\mModel{M}$ 通过 $\Gamma$ 的“那个”过滤，而是定义模型~$\mModel{M^*}$ 何时算作~$\mModel{M}$ 的一个过滤。
+所有过滤都具有相同的世界集~$W^*$ 和赋值~$V^*$。
+但不同的过滤可能有不同的可达关系~$R^*$。
+然而，要算作过滤，$R^*$ 必须满足若干条件。
+这些条件正是我们证明主要结果所需要的，即：如果 $!A \in \Gamma$，则 $\mSat{M}{!A}[w]$ 当且仅当 $\mSat{M^*}{!A}[{[w]}]$。
 
 \begin{defn}\ollabel{defn:filtration}
-  Let $\Gamma$ be closed under subformulas and $\mModel{M} = \tuple{W,
-    R, V}$. A \emph{filtration of $\mModel{M}$ through $\Gamma$} is
-  any model $\mModel{M^*} = \tuple{W^*,R^*,V^*}$, where:
+  设 $\Gamma$ 对子公式封闭且包含 $\mModel{M} = \tuple{W,
+    R, V}$。
+  $\mModel{M}$ 通过 $\Gamma$ 的一个\emph{过滤}是任意满足以下条件的模型 $\mModel{M^*} = \tuple{W^*,R^*,V^*}$：
   \begin{enumerate}
-  \item $W^* = \Setabs{[w]}{w \in W}$;
+  \item $W^* = \Setabs{[w]}{w \in W}$；
   \item \ollabel{defn:filtration-R}%
-    For any $u,v \in W$:
+    对任意 $u,v \in W$：
     \begin{enumerate}
     \item \ollabel{defn:filtration-R1}%
-      If $Ruv$ then $R^*[u][v]$;
+      若 $Ruv$，则 $R^*[u][v]$；
     \tagitem{prvBox}{\ollabel{defn:filtration-R2}%
-      If $R^*[u][v]$ then for any $\Box !A \in \Gamma$, if
-      $\mSat{M}{\Box!A}[u]$ then $\mSat{M}{!A}[v]$}{};
+      若 $R^*[u][v]$，则对任意 $\Box !A \in \Gamma$，
+      若 $\mSat{M}{\Box!A}[u]$，则 $\mSat{M}{!A}[v]$；}{}
     \tagitem{prvDiamond}{\ollabel{defn:filtration-R3}%
-      If $R^*[u][v]$ then for any $\Diamond !A \in \Gamma$, if
-      $\mSat{M}{!A}[v]$ then $\mSat{M}{\Diamond!A}[u]$.}{}
+      若 $R^*[u][v]$，则对任意 $\Diamond !A \in \Gamma$，
+      若 $\mSat{M}{!A}[v]$，则 $\mSat{M}{\Diamond!A}[u]$。}{}
     \end{enumerate}
-  \item $V^*(p) = \Setabs{[u]}{u \in V(p)}$.
+  \item $V^*(p) = \Setabs{[u]}{u \in V(p)}$。
   \end{enumerate}
 \end{defn}
 
-It's worthwhile thinking about what $V^*(p)$ is: the set consisting of
-the equivalence classes~$[w]$ of all worlds~$w$ where $p$ is true
-in~$\mModel{M}$. On the one hand, if $w \in V(p)$, then $[w] \in
-V^*(p)$ by that definition. However, it is not necessarily the case
-that if $[w] \in V^*(p)$, then $w \in V(p)$. If $[w] \in V^*(p)$ we
-are only guaranteed that $[w] = [u]$ for \emph{some}~$u \in V(p)$. Of
-course, $[w] = [u]$ means that $w \equiv u$.  So, when $[w] \in
-V^*(p)$ we can (only) conclude that $w \equiv u$ for some $u \in
-V(p)$.
+思考一下 $V^*(p)$ 是什么是有益的：它是由所有在~$\mModel{M}$ 中 $p$ 为真的世界~$w$ 的等价类~$[w]$ 构成的集合。
+如果 $w \in V(p)$，则根据定义有 $[w] \in V^*(p)$。
+然而，若 $[w] \in V^*(p)$，未必有 $w \in V(p)$。
+若 $[w] \in V^*(p)$，我们只能保证存在\emph{某个} $u \in V(p)$ 使得 $[w] = [u]$。
+当然，$[w] = [u]$ 意味着 $w \equiv u$。
+所以，当 $[w] \in V^*(p)$ 时，我们（仅）能断定存在某个 $u \in V(p)$ 使得 $w \equiv u$。
 
 \begin{thm}\ollabel{thm:filtrations}
-  If $\mModel{M^*}$ is a filtration of $\mModel{M}$ through $\Gamma$,
-  then for every $!A \in \Gamma$ and $w \in W$, we have
-  $\mSat{M}{!A}[w]$ if and only if $\mSat{M^*}{!A}[{[w]}]$.
+  若 $\mModel{M^*}$ 是 $\mModel{M}$ 通过 $\Gamma$ 的一个过滤，
+  则对每个 $!A \in \Gamma$ 和 $w \in W$，有
+  $\mSat{M}{!A}[w]$ 当且仅当 $\mSat{M^*}{!A}[{[w]}]$。
 \end{thm}
 
 \begin{proof}
-  By induction on $!A$, using the fact that $\Gamma$ is closed under
-  subformulas. Since $!A \in \Gamma$ and $\Gamma$ is closed under
-  sub-!!{formula}s, all sub-!!{formula}s of~$!A$ are also $\in
-  \Gamma$. Hence in each inductive step, the induction hypothesis
-  applies to the sub-!!{formula}s of~$!A$.
+  对 $!A$ 施加归纳，利用 $\Gamma$ 对子公式封闭这一事实。因为 $!A \in \Gamma$ 且 $\Gamma$ 对子公式封闭，$!A$ 的所有子公式也属于 $\Gamma$。因此在每个归纳步骤中，归纳假设均适用于 $!A$ 的子公式。
   \begin{enumerate}
-    \tagitem{prvFalse}{\indcase{!A}{\lfalse}{Neither
-        $\mSat{M}{\indfrm}[w]$ nor $\mSat{M^*}{\indfrm}[{[w]}]$.}}{}
-    \tagitem{prvTrue}{\indcase{!A}{\ltrue}{Both
-        $\mSat{M}{\indfrm}[w]$ and $\mSat{M^*}{\indfrm}[{[w]}]$.}}{}
-    \item \indcase{!A}{p}{The left-to-right direction is immediate, as
-      $\mSat{M}{\indfrm}[w]$ only if $w \in V(p)$, which implies $[w]
-      \in V^*(p)$, i.e., $\mSat{M^*}{\indfrm}[{[w]}]$. Conversely,
-      suppose $\mSat{M^*}{\indfrm}[{[w]}]$, i.e., $[w] \in
-      V^*(p)$. Then for some $v \in V(p)$, $w \equiv v$. Of course
-      then also $\mSat{M}{p}[v]$. Since $w \equiv v$, $w$ and $v$ make
-      the same !!{formula}s from~$\Gamma$ true. Since by assumption $p
-      \in \Gamma$ and $\mSat{M}{p}[v]$, $\mSat{M}{\indfrm}[w]$.}
+    \tagitem{prvFalse}{\indcase{!A}{\lfalse}{$\mSat{M}{\indfrm}[w]$ 和 $\mSat{M^*}{\indfrm}[{[w]}]$ 均不成立。}}{}
+    \tagitem{prvTrue}{\indcase{!A}{\ltrue}{$\mSat{M}{\indfrm}[w]$ 和 $\mSat{M^*}{\indfrm}[{[w]}]$ 均成立。}}{}
+    \item \indcase{!A}{p}{从左到右的方向是直接的，因为
+      $\mSat{M}{\indfrm}[w]$ 仅当 $w \in V(p)$，而这蕴含 $[w]
+      \in V^*(p)$，即 $\mSat{M^*}{\indfrm}[{[w]}]$。反之，
+      假设 $\mSat{M^*}{\indfrm}[{[w]}]$，即 $[w] \in
+      V^*(p)$。则存在某个 $v \in V(p)$ 使得 $w \equiv v$。显然此时也有 $\mSat{M}{p}[v]$。由于 $w \equiv v$，$w$ 和 $v$ 使得 $\Gamma$ 中相同的公式为真。因为根据假设 $p
+      \in \Gamma$ 且 $\mSat{M}{p}[v]$，故有 $\mSat{M}{\indfrm}[w]$。}
 
-    \tagitem{prvNot}{\iftag{probNot}{Exercise.}{\indcase{!A}{\lnot
-          !B}{$\mSat{M}{\indfrm}[w]$ iff $\mSat/{M}{!B}[w]$. By
-          induction hypothesis, $\mSat/{M}{!B}[w]$ iff
-          $\mSat/{M^*}{!B}[{[w]}]$.  Finally, $\mSat/{M^*}{!B}[{[w]}]$
-          iff $\mSat{M^*}{\indfrm}[{[w]}]$.}}}{}
+    \tagitem{prvNot}{\iftag{probNot}{练习。}{\indcase{!A}{\lnot
+          !B}{$\mSat{M}{\indfrm}[w]$ 当且仅当 $\mSat/{M}{!B}[w]$。由
+          归纳假设，$\mSat/{M}{!B}[w]$ 当且仅当
+          $\mSat/{M^*}{!B}[{[w]}]$。 最后，$\mSat/{M^*}{!B}[{[w]}]$
+          当且仅当 $\mSat{M^*}{\indfrm}[{[w]}]$。}}}{}
         
-    \tagitem{prvAnd}{\iftag{probAnd}{Exercise.}{\indcase{!A}{(!B \land
-          !C)}{$\mSat{M}{\indfrm}[w]$ iff $\mSat{M}{!B}[w]$ and
-          $\mSat{M}{!C}[w]$. By induction hypothesis, $\mSat{M}{!B}[w]$
-          iff $\mSat{M^*}{!B}[{[w]}]$, and $\mSat{M}{!C}[w]$ iff
-          $\mSat{M^*}{!C}[{[w]}]$. And $\mSat{M^*}{\indfrm}[{[w]}]$
-          iff $\mSat{M^*}{!B}[{[w]}]$ and
-          $\mSat{M^*}{!C}[{[w]}]$.}}}{}
+    \tagitem{prvAnd}{\iftag{probAnd}{练习。}{\indcase{!A}{(!B \land
+          !C)}{$\mSat{M}{\indfrm}[w]$ 当且仅当 $\mSat{M}{!B}[w]$ 且
+          $\mSat{M}{!C}[w]$。由归纳假设，$\mSat{M}{!B}[w]$
+          当且仅当 $\mSat{M^*}{!B}[{[w]}]$，且 $\mSat{M}{!C}[w]$ 当且仅当
+          $\mSat{M^*}{!C}[{[w]}]$。而 $\mSat{M^*}{\indfrm}[{[w]}]$
+          当且仅当 $\mSat{M^*}{!B}[{[w]}]$ 且
+          $\mSat{M^*}{!C}[{[w]}]$。}}}{}
 
-    \tagitem{prvOr}{\iftag{probOr}{Exercise.}{\indcase{!A}{(!B \lor
-          !C)}{$\mSat{M}{\indfrm}[w]$ iff $\mSat{M}{!B}[w]$ or
-          $\mSat{M}{!C}[w]$. By induction hypothesis, $\mSat{M}{!B}[w]$
-          iff $\mSat{M^*}{!B}[{[w]}]$, and $\mSat{M}{!C}[w]$ iff
-          $\mSat{M^*}{!C}[{[w]}]$. And $\mSat{M^*}{\indfrm}[{[w]}]$
-          iff $\mSat{M^*}{!B}[{[w]}]$ or
-          $\mSat{M^*}{!C}[{[w]}]$.}}}{}
+    \tagitem{prvOr}{\iftag{probOr}{练习。}{\indcase{!A}{(!B \lor
+          !C)}{$\mSat{M}{\indfrm}[w]$ 当且仅当 $\mSat{M}{!B}[w]$ 或
+          $\mSat{M}{!C}[w]$。由归纳假设，$\mSat{M}{!B}[w]$
+          当且仅当 $\mSat{M^*}{!B}[{[w]}]$，且 $\mSat{M}{!C}[w]$ 当且仅当
+          $\mSat{M^*}{!C}[{[w]}]$。而 $\mSat{M^*}{\indfrm}[{[w]}]$
+          当且仅当 $\mSat{M^*}{!B}[{[w]}]$ 或
+          $\mSat{M^*}{!C}[{[w]}]$。}}}{}
 
-    \tagitem{prvIf}{\iftag{probIf}{Exercise.}{\indcase{!A}{(!B \lif
-          !C)}{$\mSat{M}{\indfrm}[w]$ iff $\mSat/{M}{!B}[w]$ or
-          $\mSat{M}{!C}[w]$. By induction hypothesis, $\mSat{M}{!B}[w]$
-          iff $\mSat{M^*}{!B}[{[w]}]$, and $\mSat{M}{!C}[w]$ iff
-          $\mSat{M^*}{!C}[{[w]}]$. And $\mSat{M^*}{\indfrm}[{[w]}]$
-          iff $\mSat/{M^*}{!B}[{[w]}]$ or
-          $\mSat{M^*}{!C}[{[w]}]$.}}}{}
+    \tagitem{prvIf}{\iftag{probIf}{练习。}{\indcase{!A}{(!B \lif
+          !C)}{$\mSat{M}{\indfrm}[w]$ 当且仅当 $\mSat/{M}{!B}[w]$ 或
+          $\mSat{M}{!C}[w]$。由归纳假设，$\mSat{M}{!B}[w]$
+          当且仅当 $\mSat{M^*}{!B}[{[w]}]$，且 $\mSat{M}{!C}[w]$ 当且仅当
+          $\mSat{M^*}{!C}[{[w]}]$。而 $\mSat{M^*}{\indfrm}[{[w]}]$
+          当且仅当 $\mSat/{M^*}{!B}[{[w]}]$ 或
+          $\mSat{M^*}{!C}[{[w]}]$。}}}{}
 
-    \tagitem{prvIff}{\iftag{probIff}{Exercise.}{\indcase{!A}{(!B \liff
-          !C)}{$\mSat{M}{\indfrm}[w]$ iff $\mSat{M}{!B}[w]$ and
-          $\mSat{M}{!C}[w]$, or $\mSat/{M}{!B}[w]$ and
-          $\mSat/{M}{!C}[w]$. By induction hypothesis, $\mSat{M}{!B}[w]$
-          iff $\mSat{M^*}{!B}[{[w]}]$, and $\mSat{M}{!C}[w]$ iff
-          $\mSat{M^*}{!C}[{[w]}]$. And $\mSat{M^*}{\indfrm}[{[w]}]$
-          iff $\mSat{M^*}{!B}[{[w]}]$ and
-          $\mSat{M^*}{!C}[{[w]}]$, or $\mSat/{M^*}{!B}[{[w]}]$ and
-          $\mSat/{M^*}{!C}[{[w]}]$.}}}{}
+    \tagitem{prvIff}{\iftag{probIff}{练习。}{\indcase{!A}{(!B \liff
+          !C)}{$\mSat{M}{\indfrm}[w]$ 当且仅当 $\mSat{M}{!B}[w]$ 且
+          $\mSat{M}{!C}[w]$，或 $\mSat/{M}{!B}[w]$ 且
+          $\mSat/{M}{!C}[w]$。由归纳假设，$\mSat{M}{!B}[w]$
+          当且仅当 $\mSat{M^*}{!B}[{[w]}]$，且 $\mSat{M}{!C}[w]$ 当且仅当
+          $\mSat{M^*}{!C}[{[w]}]$。而 $\mSat{M^*}{\indfrm}[{[w]}]$
+          当且仅当 $\mSat{M^*}{!B}[{[w]}]$ 且
+          $\mSat{M^*}{!C}[{[w]}]$，或 $\mSat/{M^*}{!B}[{[w]}]$ 且
+          $\mSat/{M^*}{!C}[{[w]}]$。}}}{}
 
-    \tagitem{prvBox}{\iftag{probBox}{Exercise.}{\indcase{!A}{\Box
-          !B}{Suppose $\mSat{M}{\indfrm}[w]$; to show that
-          $\mSat{M^*}{\indfrm}[{[w]}]$, let $v$ be such that
-          $R^*[w][v]$. From
-          \olref{defn:filtration}\olref{defn:filtration-R2}, we have
-          that $\mSat{M}{!B}[v]$, and by inductive hypothesis
-          $\mSat{M^*}{!B}[{[v]}]$. Since $v$ was arbitrary,
-          $\mSat{M^*}{\indfrm}[{[w]}]$ follows.
+    \tagitem{prvBox}{\iftag{probBox}{练习。}{\indcase{!A}{\Box
+          !B}{假设 $\mSat{M}{\indfrm}[w]$；为证 $\mSat{M^*}{\indfrm}[{[w]}]$，令 $v$ 满足
+          $R^*[w][v]$。根据
+          \olref{defn:filtration}\olref{defn:filtration-R2}，我们有
+          $\mSat{M}{!B}[v]$，且由归纳假设 $\mSat{M^*}{!B}[{[v]}]$。由于 $v$ 是任意的，
+          可得 $\mSat{M^*}{\indfrm}[{[w]}]$。
 
-          Conversely, suppose $\mSat{M^*}{\indfrm}[{[w]}]$ and let $v$
-          be arbitrary such that $Rwv$. From
-          \olref{defn:filtration}\olref{defn:filtration-R1}, we have
-          $R^*[w][v]$, so that $\mSat{M^*}{!B}[{[v]}]$; by inductive
-          hypothesis $\mSat{M}{!B}[v]$, and since $v$ was arbitrary,
-          $\mSat{M}{\indfrm}[w]$.}}}{}
+          反之，假设 $\mSat{M^*}{\indfrm}[{[w]}]$ 并令 $v$
+          是任意满足 $Rwv$ 的世界。根据
+          \olref{defn:filtration}\olref{defn:filtration-R1}，我们有
+          $R^*[w][v]$，因此 $\mSat{M^*}{!B}[{[v]}]$；由归纳假设 $\mSat{M}{!B}[v]$，又因 $v$ 是任意的，故有
+          $\mSat{M}{\indfrm}[w]$。}}}{}
     
-    \tagitem{prvDiamond}{\iftag{probDiamond}{Exercise.}{\indcase{!A}{\Diamond
-          !B}{Suppose $\mSat{M}{\indfrm}[w]$. Then for some $v \in W$,
-          $Rwv$ and $\mSat{M}{!B}[v]$.  By inductive hypothesis
-          $\mSat{M^*}{!B}[{[v]}]$, and by
-          \olref{defn:filtration}\olref{defn:filtration-R1}, we have
-          $R^*[w][v]$. Thus, $\mSat{M^*}{\indfrm}[{[w]}]$.
+    \tagitem{prvDiamond}{\iftag{probDiamond}{练习。}{\indcase{!A}{\Diamond
+          !B}{假设 $\mSat{M}{\indfrm}[w]$。则存在 $v \in W$ 使得
+          $Rwv$ 且 $\mSat{M}{!B}[v]$。 由归纳假设 $\mSat{M^*}{!B}[{[v]}]$，再根据
+          \olref{defn:filtration}\olref{defn:filtration-R1}，我们有
+          $R^*[w][v]$。因此，$\mSat{M^*}{\indfrm}[{[w]}]$。
 
-          Now suppose $\mSat{M^*}{\indfrm}[{[w]}]$. Then for some $[v]
-          \in W^*$ with $R^*[w][v]$, $\mSat{M^*}{!B}[{[v]}]$.  By
-          inductive hypothesis $\mSat{M}{!B}[v]$.  By
-          \olref{defn:filtration}\olref{defn:filtration-R3}, we have
-          that $\mSat{M}{\indfrm}[w]$.}}}{}
+          现在假设 $\mSat{M^*}{\indfrm}[{[w]}]$。则存在满足 $R^*[w][v]$ 的 $[v]
+          \in W^*$ 使得 $\mSat{M^*}{!B}[{[v]}]$。 由
+          归纳假设 $\mSat{M}{!B}[v]$。 根据
+          \olref{defn:filtration}\olref{defn:filtration-R3}，我们有
+          $\mSat{M}{\indfrm}[w]$。}}}{}
   \end{enumerate}
 \end{proof}
 
 \begin{prob}
-  Complete the proof of \olref[nml][fil][fil]{thm:filtrations}
+  完成 \olref[nml][fil][fil]{thm:filtrations} 的证明。
 \end{prob}
 
-What holds for truth at worlds in a model also holds for truth in a
-model and validity in a class of models.
+在模型中诸世界处为真的结论，对模型中的真值以及模型类中的有效性同样成立。
 
 \begin{cor}
-  Let $\Gamma$ be closed under subformulas. Then:
+  设 $\Gamma$ 对子公式封闭。则：
   \begin{enumerate}
-  \item If $\mModel{M^*}$ is a filtration of $\mModel{M}$ through
-    $\Gamma$ then for any $!A \in \Gamma$: $\mSat{M}{!A}$ if and only
-    if $\mSat{M^*}{!A}$.
-  \item If $\mClass{C}$ is a class of models and $\Gamma(\mClass{C})$
-    is the class of $\Gamma$-filtrations of models in $\mClass{C}$,
-    then any !!{formula}~$!A \in \Gamma$ is valid in $\mClass{C}$ if
-    and only if it is valid in $\Gamma(\mClass{C})$.
+  \item 若 $\mModel{M^*}$ 是 $\mModel{M}$ 通过 $\Gamma$ 的过滤，则对任意 $!A \in \Gamma$：$\mSat{M}{!A}$ 当且仅当 $\mSat{M^*}{!A}$。
+  \item 若 $\mClass{C}$ 是一个模型类，$\Gamma(\mClass{C})$ 是 $\mClass{C}$ 中模型的 $\Gamma$-过滤构成的类，则任何公式~$!A \in \Gamma$ 在 $\mClass{C}$ 中有效当且仅当它在 $\Gamma(\mClass{C})$ 中有效。
   \end{enumerate}
 \end{cor}
-
-
 
 \end{document}

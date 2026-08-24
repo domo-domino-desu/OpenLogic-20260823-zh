@@ -7,55 +7,45 @@
 \begin{document}
 
 \olfileid{lam}{syn}{tr}
-\olsection{Terms as $\alpha$-Equivalence Classes}
+\olsection{项作为 $\alpha$-等价类}
 
-From now on, we will consider terms up to $\alpha$-equivalence.  That
-means when we write a term, we mean its $\alpha$-equivalance class it
-is in. For example, we write $\lambd[a][\lambd[b][a c]]$ for the set
-of all terms $\alpha$-equivalent to it, such as $\lambd[a][\lambd[b][a
-    c]]$, $\lambd[b][\lambd[a][b c]]$, etc.
+从现在起，我们将在$\alpha$-等价的意义下考虑项。
+这意味着当我们写出一个项时，我们指的是它所在的$\alpha$-等价类。
+例如，我们写$\lambd[a][\lambd[b][a c]]$表示所有与之$\alpha$-等价的项的集合，如$\lambd[a][\lambd[b][a
+    c]]$、$\lambd[b][\lambd[a][b c]]$等等。
 
-Also, while in previous sections letters such as $N, Q$ are used to
-denote a term, from now on we use them to denote a class, and it is
-these classes instead of terms that will be our subjects of study in
-what follows. Letters such as $x, y$ continues to denote a variable.
+此外，虽然在前面的章节中，诸如 $N, Q$ 的字母用来表示项，但从现在开始，我们用它们来表示类，接下来的研究对象将是这些类而非项。
+诸如 $x, y$ 的字母则继续表示变元。
 
-We also adopt the notation $\rep{M}$ to denote an arbitrary
-!!{element} of the class~$M$, and $\rep{M}[0], \rep{M}[1], etc. $ if
-we need more than one.
+我们还用记号 $\rep{M}$ 表示类~$M$ 中的任意元素，
+若需多个则用$\rep{M}[0], \rep{M}[1], etc. $。
 
-We reuse the notations from terms to simplify our wording. We
-have following definition on classes:
+我们沿用项的记号以简化表述。对类作如下定义：
 \begin{defn}
   \begin{enumerate}
-  \item $\lambd[x][N]$ is defined as the class containing
-    $\lambd[x][\rep{N}]$.
-  \item $PQ$ is defined to be the class containing $\rep{P}\rep{Q}$.
+  \item $\lambd[x][N]$ 定义为包含 $\lambd[x][\rep{N}]$ 的类。
+  \item $PQ$ 定义为包含 $\rep{P}\rep{Q}$ 的类。
   \end{enumerate}
 \end{defn}
 
-It is not hard to see that they are well defined, because
-$\alpha$-conversion is compatible.
+不难看出它们是良定义的，因为$\alpha$-转换是相容的。
 
 \begin{defn} \ollabel{def:fv}
-  The \emph{free variables} of an $\alpha$-equivalence class~$M$, or
-  $FV(M)$, is defined to be $FV(\rep{M})$.
+  一个$\alpha$-等价类~$M$ 的\emph{自由变元}，记作 $FV(M)$，定义为 $FV(\rep{M})$。
 \end{defn}
 
-This is well defined since $FV(\rep{M}[0]) =
-FV(\rep{M}[1])$, as shown in \olref[alp]{thm:fv}.
+正如\olref[alp]{thm:fv}所示，由于$FV(\rep{M}[0]) =
+FV(\rep{M}[1])$，这是良定义的。
 
-We also reuse the notation for substition into classes:
+我们也为类上的代入沿用相应记号：
 \begin{defn} \ollabel{def:sub}
-  The \emph{substitution} of $R$ for $y$ in $M$, or $\Subst{M}{R}{y}$, is
-  defined to be $\Subst{\rep{M}}{\rep{R}}{y}$, for any $\rep{M}$ and
-  $\rep{R}$ making the substition defined.
+  $M$ 中对 $y$ 的 $R$ \emph{代入}，记作 $\Subst{M}{R}{y}$，定义为$\Subst{\rep{M}}{\rep{R}}{y}$，
+  其中 $\rep{M}$ 和 $\rep{R}$ 是使得该代入有定义的任意代表元。
 \end{defn}
 
-This is also well defined as shown in \olref[alp]{cor:sub}.
+根据\olref[alp]{cor:sub}，这也是良定义的。
 
-Note how this definition significantly simplifies our reasoning. For
-example:
+请注意，这一定义极大地简化了推理。例如：
 \begin{align}
   \Subst{\lambd[x][x]}{y}{x} & =\ollabel{eq:1}\\
   &= \Subst{\lambd[z][z]}{y}{x} \ollabel{eq:2}\\
@@ -63,30 +53,19 @@ example:
   &= \lambd[z][z]
 \end{align}
 
-\olref{eq:1} is undefined if we still regard it as substitution on
-terms; but as mentioned earlier, we now consider it a substitution on
-classes, which is why \olref{eq:2} can happen: we can replace
-$\lambd[x][x]$ with $\lambd[z][z]$ because they belong to the same
-class.
+如果我们仍将其视为项上的代入，\olref{eq:1}是无定义的；但如前所述，我们现在将其视为类上的代入，因此\olref{eq:2}能够成立：我们可以将 $\lambd[x][x]$ 替换为 $\lambd[z][z]$，因为它们属于同一个类。
 
-For the same reason, from now on we will assume that the
-representatives we choose always satisfy the conditions needed for
-substitution. For example, when we see $\Subst{\lambd[x][N]}{R}{y}$,
-we will assume the representative $\lambd[x][N]$ is chosen so that
-$x \neq y$ and $x \notin FV(R)$.
+出于同样的原因，从现在起我们将假定所选的代表元总是满足代入所需的条件。
+例如，当我们遇到$\Subst{\lambd[x][N]}{R}{y}$时，我们将假定所选的代表元 $\lambd[x][N]$ 选取得满足 $x \neq y$ 且 $x \notin FV(R)$。
 
-Since it is a bit strange to call $\lambd[x][x]$ a ``class'', let's
-call them $\Lambda$-terms (or simply ``terms'' in the rest of the
-part) from now on, to distinguish them from $\lambda$-terms that we
-are familiar with.
+把 $\lambd[x][x]$ 称为``类''略显别扭，我们今后将它们称为$\Lambda$-\emph{项}（或在本部分下文简称为``项''），以区别于我们熟悉的$\lambda$-项。
 
 \begin{editorial}
-  We cannot say goodbye to terms yet: the whole definition of
-  $\Lambda$-terms is based on $\lambda$-terms, and we haven't provided
-  a method to define functions on $\Lambda$-terms, which means all
-  such functions have to be first defined  on $\lambda$-terms, and
-  then ``projected'' to $\Lambda$-terms, as we did for substitutions.
-  However we assume the reader can intuitively understand how we can
-  define functions on $\Lambda$-terms.
+  我们还不能完全告别项：$\Lambda$-项的定义是基于$\lambda$-项的，
+  且我们尚未给出在$\Lambda$-项上定义函数的方法，
+  这意味着所有此类函数都必须先在$\lambda$-项上定义，
+  然后再``投射''到$\Lambda$-项上，正如我们对代入所做的那样。
+  不过，我们假定读者能直观理解如何在$\Lambda$-项上定义函数。
 \end{editorial}
+
 \end{document}

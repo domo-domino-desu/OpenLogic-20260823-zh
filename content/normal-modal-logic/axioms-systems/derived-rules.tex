@@ -8,55 +8,39 @@
 
 \olfileid{nml}{prf}{der}
 
-\olsection{Derived Rules}
+\olsection{导出规则}
 
-Finding and writing !!{derivation}s is obviously difficult,
-cumbersome, and repetitive. For instance, very often we want to pass
-from $!A \lif !B$ to $\Box !A \lif \Box !B$, i.e., apply
-rule~\RK. That requires an application of \Nec, then recording the
-proper instance of~\Ax{K}, then applying~\MP. Passing from $!A \lif
-!B$ and $!B \lif !C$ to $!A \lif !C$ requires recording the (long)
-tautological instance
+找出并写出推导过程显然是困难、繁琐且重复的。例如，我们常常想从 $!A \lif !B$ 推出 $\Box !A \lif \Box !B$，即应用规则~\RK。这需要先应用 \Nec，然后写出~\Ax{K} 的适当实例，再应用~\MP。从 $!A \lif !B$ 和 $!B \lif !C$ 推出 $!A \lif !C$，则需要写出（冗长的）重言式实例
 \[
 (!A \lif !B) \lif ((!B \lif !C) \lif (!A \lif !C))
 \]
-and applying \MP{} twice. Often we want to replace a sub-!!{formula}
-by a formula we know to be equivalent, e.g., \iftag{prvDiamond}{$\Diamond
-  !A$ by $\lnot\Box\lnot !A$}{$\Box !A$ by $\lnot\Diamond\lnot !A$}, or
-$\lnot\lnot !A$ by $!A$. So rather than write out the actual
-!!{derivation}, it is more convenient to simply record why the
-intermediate steps are !!{derivable}. For this purpose, let us collect
-some facts about !!{derivability}.
+并应用两次 \MP。我们常常想用一个已知与之等值的公式替换某个子公式，例如，\iftag{prvDiamond}{用 $\lnot\Box\lnot !A$ 替换 $\Diamond !A$}{用 $\lnot\Diamond\lnot !A$ 替换 $\Box !A$}，或者用 $!A$ 替换 $\lnot\lnot !A$。因此，与其写出实际的推导，不如只注明这些中间步骤为何是可推导的更为方便。为此，让我们总结一些关于可推导性的事实。
 
 \begin{prop}
-  If $\Log{K} \Proves !A_1$, \dots, $\Log{K} \Proves !A_n$, and $!B$
-  follows from $!A_1$, \dots, $!A_n$ by propositional logic, then
-  $\Log{K} \Proves !B$.
+  如果 $\Log{K} \Proves !A_1$, \dots, $\Log{K} \Proves !A_n$，并且 $!B$ 依命题逻辑从 $!A_1$, \dots, $!A_n$ 推出，那么 $\Log{K} \Proves !B$。
 \end{prop}
 
 \begin{proof}
-  If $!B$ follows from $!A_1$, \dots,~$!A_n$ by propositional logic, then
+  如果 $!B$ 依命题逻辑从 $!A_1$, \dots,~$!A_n$ 推出，那么
   \[
   !A_1 \lif (!A_2 \lif \cdots (!A_n \lif !B)\dots)
   \]
-  is a tautological instance. Applying \MP{} $n$ times gives a
-  !!{derivation} of~$!B$.
+  是一个重言式实例。应用 $n$ 次 \MP 便得到~$!B$ 的一个推导。
 \end{proof}
 
-We will indicate use of this proposition by~\PL.
+我们将用~\PL 标明此处使用了该命题。
 
 \begin{prop}
-  If $\Log{K} \Proves !A_1 \lif (!A_2 \lif \cdots (!A_{n-1} \lif
-  !A_n)\dots)$ then $\Log{K} \Proves \Box !A_1 \lif (\Box !A_2 \lif
-  \cdots (\Box !A_{n-1} \lif \Box !A_n)\dots)$.
+  如果 $\Log{K} \Proves !A_1 \lif (!A_2 \lif \cdots (!A_{n-1} \lif
+  !A_n)\dots)$ 那么 $\Log{K} \Proves \Box !A_1 \lif (\Box !A_2 \lif
+  \cdots (\Box !A_{n-1} \lif \Box !A_n)\dots)$。
 \end{prop}
 
 \begin{proof}
-  By induction on $n$, just as in the proof of \olref[nor]{prop:rk}.
+  与 \olref[nor]{prop:rk} 的证明类似，通过对 $n$ 进行归纳。
 \end{proof}
 
-We will indicate use of this proposition by~\RK. Let's illustrate how
-these results help establishing !!{derivability} results more easily.
+我们将用~\RK 标明此处使用了该命题。下面举例说明这些结论如何帮助我们更轻松地建立可推导性结论。
 
 \begin{prop}
   $\Log{K} \Proves (\Box!A \land \Box!B) \lif \Box (!A \land !B)$
@@ -71,32 +55,27 @@ these results help establishing !!{derivability} results more easily.
 \end{proof}
 
 \begin{prop}\ollabel{prop:rewriting}
-  If $\Log{K} \Proves !A \liff !B$ and $\Log{K} \Proves
-  \Subst{!C}{!A}{q}$ then $\Log{K} \Proves \Subst{!C}{B}{q}$
+  如果 $\Log{K} \Proves !A \liff !B$ 并且 $\Log{K} \Proves
+  \Subst{!C}{!A}{q}$ 那么 $\Log{K} \Proves \Subst{!C}{B}{q}$
 \end{prop}
 
 \begin{proof}
-  Exercise.
+  习题。
 \end{proof}
 
 \begin{prob}
-  Prove \olref[nml][prf][der]{prop:rewriting} by proving, by induction
-  on the complexity of~$!C$, that if $\Log{K} \Proves !A \liff !B$
-  then $\Log{K} \Proves \Subst{!C}{!A}{q} \liff \Subst{!C}{!B}{q}$.
+  通过对~$!C$ 的复杂度进行归纳来证明 \olref[nml][prf][der]{prop:rewriting}，即证明：如果 $\Log{K} \Proves !A \liff !B$ 那么 $\Log{K} \Proves \Subst{!C}{!A}{q} \liff \Subst{!C}{!B}{q}$。
 \end{prob}
 
-This proposition comes in handy especially when we want to convert
-$\Diamond$ into $\Box$ (or vice versa), or remove double negations
-inside !!a{formula}.  In what follows, we will mark applications of
-\olref{prop:rewriting} by ``$!A$ for $!B$'' whenever we re-write
-!!a{formula}~$!C(!B)$ for~$!C(!A)$. In other words, ``$!A$ for $!B$''
-abbreviates:
-  \begin{derivation}
+当我们想把 $\Diamond$ 转换为 $\Box$（或反之），或者消去公式内部的双重否定时，这个命题特别有用。接下来，每当我们把公式~$!C(!A)$ 替换为~$!C(!B)$ 时，将用``$!A$ for $!B$''标明此处使用了 \olref{prop:rewriting}。换言之，``$!A$ for $!B$'' 是以下推导的缩写：
+  
+\begin{derivation}
     & $\Proves !C(!A)$ \\
     & $\Proves !A \liff !B$\\
-    & $\Proves !C(!B)$ & by \olref{prop:rewriting}
+    & $\Proves !C(!B)$ & 依据 \olref{prop:rewriting}
   \end{derivation}
-For instance:
+
+例如：
 
 \begin{prop}
   $\Log{K} \Proves \lnot\Box p \lif \Diamond \lnot p$
@@ -115,53 +94,32 @@ For instance:
     1. & $\Log{K} \Proves \lnot \Box \lnot\lnot p \lif \Diamond \lnot p$ & \Taut\\
     2. & $\Log{K} \Proves \lnot\Box p \lif \Diamond \lnot p$ & $p$ for $\lnot\lnot p$\\
   \end{derivation}
-  The formula on line~$1$ is an instance of $\lnot q \lif \lnot q$,
-  substituting $\Box\lnot\lnot p$ for~$q$. $\Diamond\lnot p$ and
-  $\lnot\Box\lnot\lnot p$ are identical, since $\Diamond$ is defined
-  as~$\lnot\Box\lnot$.}
+  第~$1$ 行的公式是 $\lnot q \lif \lnot q$ 的一个实例，其中将 $q$ 代以 $\Box\lnot\lnot p$。$\Diamond\lnot p$ 与 $\lnot\Box\lnot\lnot p$ 是同一公式，因为 $\Diamond$ 定义为~$\lnot\Box\lnot$。}
 \end{proof}
 
-In the above !!{derivation}, the final step ``$p$ for $\lnot\lnot p$''
-is short for
-  \begin{derivation}
+在上面的推导中，最后一步``$p$ for $\lnot\lnot p$'' 是以下推导的缩写：
+  
+\begin{derivation}
     & $\Log{K} \Proves \lnot \Box \lnot\lnot p \lif \Diamond \lnot
     p$\\
     & $\Log{K} \Proves \lnot\lnot p \liff p$ & \Taut\\
-    & $\Log{K} \Proves \lnot\Box p \lif \Diamond \lnot p$ & by \olref{prop:rewriting}
+    & $\Log{K} \Proves \lnot\Box p \lif \Diamond \lnot p$ & 依据 \olref{prop:rewriting}
   \end{derivation}
-The roles of $!C(q)$, $!A$, and $!B$ in \olref{prop:rewriting} are
-played here, respectively, by $\lnot \Box q \lif \Diamond \lnot p$,
-$\lnot\lnot p$, and~$p$.
 
-When !!a{formula} contains a sub-!!{formula} $\lnot\Diamond !A$,
-we can replace it by $\Box\lnot !A$ using \olref{prop:rewriting}, since
-$\Log{K} \Proves \lnot\Diamond !A \liff \Box\lnot !A$. We'll indicate
-this and similar replacements simply by ``$\Box\lnot$ for
-$\lnot\Diamond$.''
+在这里，\olref{prop:rewriting} 中的 $!C(q)$、$!A$ 和 $!B$ 分别对应 $\lnot \Box q \lif \Diamond \lnot p$、$\lnot\lnot p$ 和~$p$。
 
-The following proposition justifies that we can establish
-!!{derivability} results schematically. E.g., the previous proposition
-does not just establish that $\Log{K} \Proves \lnot\Box p \lif
-\Diamond \lnot p$, but $\Log{K} \Proves \lnot\Box !A \lif \Diamond
-\lnot !A$ for arbitrary~$!A$.
+当一个公式包含子公式 $\lnot\Diamond !A$ 时，我们可以利用 \olref{prop:rewriting} 将其替换为 $\Box\lnot !A$，因为 $\Log{K} \Proves \lnot\Diamond !A \liff \Box\lnot !A$。我们将直接用``$\Box\lnot$ for $\lnot\Diamond$''标示这类及类似的替换。
+
+下述命题表明，我们可以以图式的方式建立可推导性结论。例如，前一个命题不仅确立了 $\Log{K} \Proves \lnot\Box p \lif
+\Diamond \lnot p$，而且对任意的~$!A$ 确立了 $\Log{K} \Proves \lnot\Box !A \lif \Diamond
+\lnot !A$。
 
 \begin{prop}
-  If $!A$ is a substitution instance of $!B$ and $\Log{K} \Proves !B$,
-  then $\Log{K} \Proves !A$.
+  如果 $!A$ 是 $!B$ 的一个代入实例并且 $\Log{K} \Proves !B$，那么 $\Log{K} \Proves !A$。
 \end{prop}
 
 \begin{proof}
-  It is tedious but routine to verify (by induction on the length of
-  the !!{derivation} of~$!B$) that applying a substitution to an
-  entire !!{derivation} also results in a correct
-  !!{derivation}. Specifically, substitution instances of tautological
-  instances are themselves tautological instances, substitution
-  instances of instances of~\iftag{prvDiamond}{\Dual{} and~}{}\Ax{K}
-  are themselves instances of~\iftag{prvDiamond}{\Dual{}
-    and~}{}\Ax{K}, and applications of \MP{} and~\Nec{} remain correct
-  when substituting !!{formula}s for !!{propositional variable}s in
-  both premise(s) and conclusion.
+  验证对整个推导应用代入后仍能得到正确的推导，这个过程虽然繁琐但属于常规操作（可通过对~$!B$ 的推导长度进行归纳来完成）。具体来说，重言式实例的代入实例仍是重言式实例；\iftag{prvDiamond}{\Dual{} 和~}{}公理~\Ax{K} 实例的代入实例仍是\iftag{prvDiamond}{\Dual{} 和~}{}\Ax{K} 的实例；并且当在前提和结论中将命题变元代以公式时，\MP{} 和~\Nec{} 规则的应用仍然正确。
 \end{proof}
-
 
 \end{document}

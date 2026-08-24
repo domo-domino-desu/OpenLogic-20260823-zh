@@ -8,42 +8,25 @@
 
 \olfileid{int}{sc}{dec}
 
-\olsection{Decidability}
-Observe that the proof of the completeness theorem gives us for every
-$\Gamma \Proves/ !A$ a model with an infinite number of worlds
-witnessing the fact that $\Gamma \Entails/ !A$. The following
-proposition shows that to prove $\Entails !A$ it is enough to prove
-that $\mSat{M}{!A}$ for all finite models (i.e., models with a finite
-set of worlds).
+\olsection{可判定性}
+注意，完备性定理的证明为每个 $\Gamma \Proves/ !A$ 都提供了一个具有无穷多个世界的模型，以见证 $\Gamma \Entails/ !A$ 的事实。下面的命题表明，要证明 $\Entails !A$，只需证明在所有有限模型（即世界集有限的模型）中 $\mSat{M}{!A}$ 即可。
 
 \begin{thm}\ollabel{thm:decidability}
-  If $\Entails/ !A$ then there is a finite model $\mSat/{M'}{!A}$.
+  如果 $\Entails/ !A$，则存在一个有限模型 $\mSat/{M'}{!A}$。
 \end{thm}
 
 \begin{proof}
-  Assume $\mModel{M}=\tuple{W, R, V}$ is such that $\mSat/{M}{!A}$ and $P$ 
-  is the set of !!{propositional variable}s occurring in~$!A$. Define
-  $\mModel{M'}=\tuple{W', R', V'}$ by letting $W' = \Setabs{[w]}{w \in W}$ 
-  where $[w] = \Setabs{p \in P}{w \in V(p)}$, $R'$ be the subset relation, 
-  and $V'(p)=\Setabs{[w]}{p \in [w]}$. It should be clear that $W'$ is a 
-  finite set and that $\mModel{M'}$ is !!a{relational model}.
+  假设 $\mModel{M}=\tuple{W, R, V}$ 使得 $\mSat/{M}{!A}$，并设 $P$ 为出现在 $!A$ 中的命题变元的集合。定义 $\mModel{M'}=\tuple{W', R', V'}$：令 $W' = \Setabs{[w]}{w \in W}$，其中 $[w] = \Setabs{p \in P}{w \in V(p)}$，$R'$ 为子集关系，$V'(p)=\Setabs{[w]}{p \in [w]}$。不难看出，$W'$ 是有限集，且 $\mModel{M'}$ 是关系模型。
 
-  It can be shown, by induction on~$!A$, that 
-  \[
-    \mSat{M}{!A}[w] \text{ iff } \mSat{M'}{!A}[{[w]}]
-  \]
-  for all !!{formula}s $!A$ with only !!{propositional variable}s
-  from~$P$. This is left as an exercise for the reader.
+  通过对 $!A$ 进行归纳可以证明，对于所有仅含 $P$ 中命题变元的公式 $!A$，\[
+    \mSat{M}{!A}[w] \quad \text{当且仅当} \quad \mSat{M'}{!A}[{[w]}]
+  \]。此结论留作练习。
 \end{proof}
 
 \begin{prob}
-Finish the proof of \olref[int][sc][dec]{thm:decidability} by showing
-that $\mSat{M,w}{!A}$ iff $\mSat{M',[w]}{!A}$ for all !!{formula}s~$!A$
-with only propositional variables from~$P$. 
+请证明对于所有仅含 $P$ 中命题变元的公式 $!A$，$\mSat{M,w}{!A}$ 当且仅当 $\mSat{M',[w]}{!A}$，以此完成 \olref[int][sc][dec]{thm:decidability} 的证明。
 \end{prob}
 
-From \olref{thm:decidability} it follows that there is an algorithm to
-decide whether~$\Entails !A$.
-
+由 \olref{thm:decidability} 可知，存在一种算法可判定 $\Entails !A$ 是否成立。
 
 \end{document}

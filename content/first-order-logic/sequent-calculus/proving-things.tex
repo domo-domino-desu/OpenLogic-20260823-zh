@@ -10,72 +10,48 @@
       {\olfileid{fol}{seq}{pro}}
       {\olfileid{pl}{seq}{pro}}
 
-\olsection{Examples of \usetoken{P}{derivation}}
+\olsection{\usetoken{P}{derivation}示例}
 
 \begin{ex}
-Give an $\Log{LK}$-!!{derivation} for the sequent $!A \land !B \Sequent !A$.
+为矢列 $!A \land !B \Sequent !A$ 构造一个 $\Log{LK}$-推导。
 
-We begin by writing the desired end-sequent at the bottom of the
-!!{derivation}.
+我们先把这个想要得到的末端矢列写在推导的底部。
 \begin{prooftree}
 \AxiomC{}
 \UnaryInf$!A\land !B \fCenter !A$
 \end{prooftree}
-Next, we need to figure out what kind of inference could have a lower
-sequent of this form. This could be a structural rule, but it is a
-good idea to start by looking for a logical rule. The only logical
-connective occurring in the lower sequent is $\land$,
-so we're looking for an $\land$ rule, and since the $\land$ symbol
-occurs in the antecedent, we're looking at the \LeftR{\land}
-rule.
+接下来，我们需要弄清楚哪种推理能得到这种形式的下端矢列。它可能是结构规则，但一个好的思路是从寻找逻辑规则开始。末端矢列中出现的唯一逻辑算子是 $\land$，所以我们找的是 $\land$ 规则；又因为 $\land$ 符号出现在前件中，我们考虑的是 \LeftR{\land} 规则。
 \begin{prooftree}
 \AxiomC{}
 \RightLabel{\LeftR{\land}}
 \UnaryInf$!A\land !B \fCenter !A$
 \end{prooftree}
-There are two options for what could have been the upper sequent of
-the \LeftR{\land} inference: we could have an upper sequent of $!A
-\Sequent !A$, or of $!B \Sequent !A$. Clearly, $!A \Sequent !A$ is an
-initial sequent (which is a good thing), while $!B \Sequent !A$ is not
-derivable in general. We fill in the upper sequent:
+对于这个 \LeftR{\land} 推理的上矢列，有两种可能的选择：上矢列可以是 $!A \Sequent !A$，也可以是 $!B \Sequent !A$。显然，$!A \Sequent !A$ 是一个初始矢列（这是好事），而 $!B \Sequent !A$ 通常不可推导。我们填入上矢列：
 \begin{prooftree}
 \Axiom$!A \fCenter !A$
 \RightLabel{\LeftR{\land}}
 \UnaryInf$!A\land !B \fCenter !A$
 \end{prooftree}
-We now have a correct $\Log{LK}$-!!{derivation} of the sequent $!A
-\land !B \Sequent !A$.
+现在我们得到了矢列 $!A \land !B \Sequent !A$ 的一个正确的 $\Log{LK}$-推导。
 \end{ex}
 
 \begin{ex}
-Give an $\Log{LK}$-!!{derivation} for the sequent $\lnot !A \lor !B
-\Sequent !A \lif !B$.
+为矢列 $\lnot !A \lor !B
+\Sequent !A \lif !B$ 构造一个 $\Log{LK}$-推导。
 
-Begin by writing the desired end-sequent at the bottom of the !!{derivation}.
+首先将想要的末端矢列写在推导的底部。
 \begin{prooftree}
 \AxiomC{}
 \UnaryInf$\lnot !A \lor !B \fCenter !A \lif !B$
 \end{prooftree}
-To find a logical rule that could give us this end-sequent, we look at
-the logical connectives in the end-sequent: $\lnot$, $\lor$, and
-$\lif$. We only care at the moment about $\lor$ and $\lif$ because
-they are !!{main operator}s of !!{sentence}s in the end-sequent,
-while $\lnot$ is inside the scope of another connective, so we will
-take care of it later. Our options for logical rules for the final
-inference are therefore the \LeftR{\lor} rule and the \RightR{\lif}
-rule. We could pick either rule, really, but let's pick the \RightR{\lif}
-rule (if for no reason other than it allows us to put off
-splitting into two branches). According to the form of \RightR{\lif}
-inferences which can yield the lower sequent, this must look like:
+为了找到能得到该末端矢列的逻辑规则，我们先看末端矢列中的逻辑联结词：$\lnot$、$\lor$ 和 $\lif$。我们此刻只关心 $\lor$ 和 $\lif$，因为它们是末端矢列中语句的主联结词，而 $\lnot$ 在另一个联结词的辖域内，所以我们稍后再处理它。因此，最后一步推理可用的逻辑规则是 \LeftR{\lor} 规则和 \RightR{\lif} 规则。实际上我们可以选其中任何一个，但我们选择 \RightR{\lif} 规则（如果非要找个理由的话，那就是它允许我们推迟拆分成两个分支）。根据能得到下端矢列的 \RightR{\lif} 推理形式，它必须形如：
 \begin{prooftree}
 \AxiomC{}
 \UnaryInf$ !A, \lnot !A \lor !B \fCenter !B $
 \RightLabel{\RightR{\lif}} \UnaryInf$ \lnot !A \lor !B \fCenter !A \lif !B $
 \end{prooftree}
 
-If we move $\lnot !A \lor !B$ to the outside of the antecedent, we can
-apply the \LeftR{\lor} rule. According to the schema, this must split
-into two upper sequents as follows:
+如果我们将 $\lnot !A \lor !B$ 移到前件的最前面，就可以应用 \LeftR{\lor} 规则。根据该规则的图式，这里必须拆分成如下两个上端矢列：
 \begin{prooftree}
 \AxiomC{}
 \UnaryInf$\lnot !A, !A \fCenter !B$
@@ -88,9 +64,7 @@ into two upper sequents as follows:
 \RightLabel{\RightR{\lif}}
 \UnaryInf$ \lnot !A \lor !B \fCenter !A \lif !B $
 \end{prooftree}
-Remember that we are trying to wind our way up to initial sequents; we
-seem to be pretty close!{} The right branch is just one weakening and
-one exchange away from an initial sequent and then it is done:
+记住，我们的目标是向上回溯到初始矢列；我们似乎已经非常接近了！右分支只需一次弱化和一次交换就能变成初始矢列，然后该分支就完成了：
 \begin{prooftree}
 \AxiomC{}
 \UnaryInf$\lnot !A, !A \fCenter !B$
@@ -107,9 +81,7 @@ one exchange away from an initial sequent and then it is done:
 \UnaryInf$ \lnot !A \lor !B \fCenter !A \lif !B $
 \end{prooftree}
 
-Now looking at the left branch, the only logical connective in any
-!!{sentence} is the $\lnot$ symbol in the antecedent !!{sentence}s, so
-we're looking at an instance of the \LeftR{\lnot} rule.
+现在来看左分支。其中各语句唯一的逻辑联结词是前件中的 $\lnot$ 符号，因此我们需要应用 \LeftR{\lnot} 规则的一个实例。
 \begin{prooftree}
 \AxiomC{}
 \UnaryInf$ !A \fCenter !B, !A$
@@ -127,8 +99,7 @@ we're looking at an instance of the \LeftR{\lnot} rule.
 \RightLabel{\RightR{\lif}}
 \UnaryInf$ \lnot !A \lor !B \fCenter !A \lif !B $
 \end{prooftree}
-Similarly to how we finished off the right branch, we are just one
-weakening and one exchange away from finishing off this left branch as well.
+类似于完成右分支的方式，左分支也只需一次弱化和一次交换即可完成。
 \begin{prooftree}
 \Axiom$!A \fCenter !A$
 \RightLabel{\RightR{\Weakening}}
@@ -152,32 +123,24 @@ weakening and one exchange away from finishing off this left branch as well.
 \end{ex}
 
 \begin{ex}
-Give an $\Log{LK}$-!!{derivation} of the sequent $\lnot !A \lor \lnot !B
-\Sequent \lnot (!A \land !B)$
+为矢列 $\lnot !A \lor \lnot !B
+\Sequent \lnot (!A \land !B)$ 构造一个 $\Log{LK}$-推导。
 
-Using the techniques from above, we start by writing the desired
-end-sequent at the bottom.
+运用上面的技巧，我们首先将想要的末端矢列写在底部。
 \begin{prooftree}
 \AxiomC{}
 \UnaryInf$ \lnot !A \lor \lnot !B \fCenter \lnot (!A \land !B) $
 \end{prooftree}
-The available main connectives of !!{sentence}s in the end-sequent are
-the $\lor$ symbol and the $\lnot$ symbol. It would work to apply
-either the \LeftR{\lor} or the \RightR{\lnot} rule here, but we start
-with the \RightR{\lnot} rule because it avoids splitting up into two
-branches for a moment:
+末端矢列中各语句可用的主联结词是 $\lor$ 符号和 $\lnot$ 符号。此时应用 \LeftR{\lor} 规则或 \RightR{\lnot} 规则都可以，但我们从 \RightR{\lnot} 规则开始，因为它能暂时避免分裂成两个分支：
 \begin{prooftree}
 \AxiomC{}
 \UnaryInf$!A \land !B, \lnot !A \lor \lnot !B \fCenter $
 \RightLabel{\RightR{\lnot}}
 \UnaryInf$\lnot !A \lor \lnot !B \fCenter \lnot (!A \land !B)$
 \end{prooftree}
-Now we have a choice of whether to look at the \LeftR{\land} or the
-\LeftR{\lor} rule. Let's see what happens when we apply the \LeftR{\land}
-rule: we have a choice to start with either the sequent $!A,
-\lnot !A \lor !B \Sequent \quad$ or the sequent $!B, \lnot !A
-\lor !B \Sequent \quad$. Since the !!{derivation} is symmetric with
-regards to $!A$ and $!B$, let's go with the former:
+现在我们面临一个选择：考虑 \LeftR{\land} 规则还是 \LeftR{\lor} 规则。让我们看看如果应用 \LeftR{\land} 规则会发生什么：我们可以选择从矢列 $!A,
+\lnot !A \lor !B \Sequent \quad$ 或矢列 $!B, \lnot !A
+\lor !B \Sequent \quad$ 开始。由于推导关于 $!A$ 和 $!B$ 是对称的，我们就选前者：
 \begin{prooftree}
 \AxiomC{}
 \UnaryInf$!A, \lnot !A \lor \lnot !B \fCenter $
@@ -186,7 +149,7 @@ regards to $!A$ and $!B$, let's go with the former:
 \RightLabel{\RightR{\lnot}}
 \UnaryInf$\lnot !A \lor \lnot !B \fCenter \lnot (!A \land !B)$
 \end{prooftree}
-Continuing to fill in the !!{derivation}, we see that we run into a problem:
+继续填入推导过程，我们发现遇到了问题：
 \begin{prooftree}
 \Axiom$!A \fCenter !A$
 \RightLabel{\LeftR{\lnot}}
@@ -205,11 +168,7 @@ Continuing to fill in the !!{derivation}, we see that we run into a problem:
 \RightLabel{\RightR{\lnot}}
 \UnaryInf$\lnot !A \lor \lnot !B \fCenter \lnot (!A \land !B)$
 \end{prooftree}
-The top of the right branch cannot be reduced any further, and it
-cannot be brought by way of structural inferences to an initial
-sequent, so this is not the right path to take. So clearly, it was a
-mistake to apply the \LeftR{\land} rule above. Going back to what we
-had before and carrying out the \LeftR{\lor} rule instead, we get
+右分支的顶端无法再进一步归约，也无法通过结构推理变成初始矢列，所以这条路径是不对的。因此很明显，刚才应用 \LeftR{\land} 规则是个错误。回到之前的状态，转而执行 \LeftR{\lor} 规则，我们得到：
 \begin{prooftree}
 \AxiomC{}
 \UnaryInf$\lnot !A, !A \land !B \fCenter $
@@ -224,7 +183,7 @@ had before and carrying out the \LeftR{\lor} rule instead, we get
 \RightLabel{\RightR{\lnot}}
 \UnaryInf$\lnot !A \lor \lnot !B \fCenter \lnot (!A \land !B)$
 \end{prooftree}
-Completing each branch as we've done before, we get
+像之前那样完成每个分支，我们得到：
 \begin{prooftree}
 \Axiom$ !A \fCenter!A$
 \RightLabel{\LeftR{\land}}
@@ -245,15 +204,11 @@ Completing each branch as we've done before, we get
 \RightLabel{\RightR{\lnot}}
 \UnaryInf$\lnot !A \lor \lnot !B \fCenter \lnot (!A \land !B)$
 \end{prooftree}
-(We could have carried out the $\land$ rules lower than the $\lnot$
-rules in these steps and still obtained a correct !!{derivation}).
+（在这些步骤中，我们本可以将 $\land$ 规则排在 $\lnot$ 规则的下面执行，同样能得到正确的推导）。
 \end{ex}
 
 \begin{ex}
-So far we haven't used the contraction rule, but it is sometimes
-required. Here's an example where that happens.  Suppose we want to
-prove $\quad \Sequent !A \lor \lnot !A$. Applying $\RightR{\lor}$
-backwards would give us one of these two !!{derivation}s:
+到目前为止我们还没有使用过收缩规则，但它有时是必需的。这里就有一个例子。假设我们想证明 $\quad \Sequent !A \lor \lnot !A$。逆向应用 $\RightR{\lor}$ 规则会得到以下两种推导之一：
 \begin{prooftree}
 \AxiomC{}
 \UnaryInf$ \fCenter !A$
@@ -267,11 +222,7 @@ backwards would give us one of these two !!{derivation}s:
 \RightLabel{\RightR{\lor}}
 \UnaryInf$ \fCenter !A \lor \lnot !A$
 \end{prooftree}
-Neither of these of course ends in an initial sequent.  The trick is
-to realize that the contraction rule allows us to combine two copies
-of !!a{sentence} into one---and when we're searching for a proof,
-i.e., going from bottom to top, we can keep a copy of $!A \lor \lnot
-!A$ in the premise, e.g.,
+当然，这两个推导的顶端都不是初始矢列。这里的技巧在于认识到收缩规则允许我们将一个语句的两份副本合并为一份——当我们在搜索证明（即从下往上进行）时，可以在前提中保留一份 $!A \lor \lnot !A$ 的副本，例如：
 \begin{prooftree}
 \AxiomC{}
 \UnaryInf$ \fCenter !A \lor \lnot !A, !A$
@@ -280,8 +231,7 @@ i.e., going from bottom to top, we can keep a copy of $!A \lor \lnot
 \RightLabel{\RightR{\Contraction}}
 \UnaryInf$ \fCenter !A \lor \lnot !A$
 \end{prooftree}
-Now we can apply $\RightR{\lor}$ a second time, and also get~$\lnot
-!A$, which leads to a complete !!{derivation}.
+现在我们可以第二次应用 $\RightR{\lor}$ 规则，同时得到~$\lnot !A$，这就引向了一个完整的推导。
 \begin{prooftree}
 \Axiom$!A \fCenter !A$
 \RightLabel{\RightR{\lnot}}
@@ -298,17 +248,17 @@ Now we can apply $\RightR{\lor}$ a second time, and also get~$\lnot
 \end{ex}
 
 \begin{prob}
-Give !!{derivation}s of the following sequents:
+给出以下矢列的推导：
 \begin{enumerate}
-\item $!A \land (!B \land !C) \Sequent (!A \land !B) \land !C$.
-\item $!A \lor (!B \lor !C) \Sequent (!A \lor !B) \lor !C$.
-\item $!A \lif (!B \lif !C) \Sequent !B \lif (!A \lif !C)$.
-\item $!A \Sequent \lnot\lnot !A$.
+\item $!A \land (!B \land !C) \Sequent (!A \land !B) \land !C$。
+\item $!A \lor (!B \lor !C) \Sequent (!A \lor !B) \lor !C$。
+\item $!A \lif (!B \lif !C) \Sequent !B \lif (!A \lif !C)$。
+\item $!A \Sequent \lnot\lnot !A$。
 \end{enumerate}
 \end{prob}
 
 \begin{prob}
-Give !!{derivation}s of the following sequents:
+给出下列矢列的推导：
 \begin{enumerate}
 \item $(!A \lor !B) \lif !C \Sequent !A \lif !C$.
 \item $(!A \lif !C) \land (!B \lif !C) \Sequent (!A \lor !B) \lif !C$.
@@ -326,7 +276,7 @@ Give !!{derivation}s of the following sequents:
 \end{prob}
 
 \begin{prob}
-Give !!{derivation}s of the following sequents:
+给出下列矢列的推导：
 \begin{enumerate}
 \item $\lnot(!A \lif !B) \Sequent !A$.
 \item $\lnot(!A \land !B) \Sequent \lnot !A \lor \lnot !B$.
@@ -337,6 +287,8 @@ Give !!{derivation}s of the following sequents:
 \item $(!A \lif !B) \lif !A \Sequent !A$.
 \item $\Sequent (!A \lif !B) \lor (!B \lif !C)$.
 \end{enumerate}
-(These all require the $\RightR{\Contraction}$~rule.)
+（这些推导都需要用到 $\RightR{\Contraction}$~规则。）
 \end{prob}
+
+
 \end{document}

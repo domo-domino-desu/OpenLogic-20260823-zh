@@ -7,85 +7,41 @@
 \begin{document}
 
 \olfileid{tur}{und}{uns} 
-\olsection{The Decision Problem is Unsolvable}
+\olsection{判定问题的不可解性}
 
 \begin{thm}
 \ollabel{thm:decision-prob}
-The decision problem is unsolvable: There is no Turing machine~$D$,
-which when started on a tape that contains !!a{sentence}~$!B$ of
-first-order logic as input, $D$~eventually halts, and outputs~$1$ iff
-$!B$ is valid and $0$ otherwise.
+判定问题是不可解的：不存在这样的图灵机~$D$，使得当它以包含一阶逻辑语句~$!B$ 的磁带作为输入启动时，$D$~最终停机，并且当且仅当 $!B$ 有效时输出~$1$，否则输出~$0$。
 \end{thm}
 
 \begin{proof}
-Suppose the decision problem were solvable, i.e., suppose there were a
-Turing machine~$D$. Then we could solve the halting problem as
-follows. We construct a Turing machine~$E$ that, given as input the
-number~$e$ of Turing machine~$M_e$ and input~$w$, computes the
-corresponding !!{sentence}~$!T(M_e, w) \lif !E(M_e, w)$ and halts,
-scanning the leftmost square on the tape.  The machine $E \concat D$
-would then, given input $e$ and $w$, first compute~$!T(M_e, w) \lif
-!E(M_e, w)$ and then run the decision problem machine~$D$ on that
-input.  $D$ halts with output~$1$ iff $!T(M_e, w) \lif !E(M_e, w)$ is
-valid and outputs~$0$ otherwise. By \olref[ver]{lem:halt-if-valid} and
-\olref[ver]{lem:valid-if-halt}, $!T(M_e, w) \lif !E(M_e, w)$ is valid
-iff $M_e$ halts on input~$w$. Thus, $E\concat D$, given input $e$ and
-$w$ halts with output~$1$ iff $M_e$ halts on input~$w$ and halts with
-output~$0$ otherwise. In other words, $E \concat D$ would solve the
-halting problem.  But we know, by \olref[hal]{thm:halting-problem},
-that no such Turing machine can exist.
+假设判定问题是可解的，即假设存在一个图灵机~$D$。那么我们就能如下解决停机问题。我们构造一个图灵机~$E$，当给定图灵机~$M_e$ 的编号~$e$ 和输入~$w$ 作为输入时，它计算对应的语句~$!T(M_e, w) \lif !E(M_e, w)$ 并停机，此时扫描磁带最左边的方格。那么，给定输入 $e$ 和 $w$，机器 $E \concat D$ 会先计算~$!T(M_e, w) \lif
+!E(M_e, w)$，然后对该输入运行判定问题机器~$D$。当且仅当 $!T(M_e, w) \lif !E(M_e, w)$ 有效时，$D$ 停机并输出~$1$；否则输出~$0$。根据 \olref[ver]{lem:halt-if-valid} 和 \olref[ver]{lem:valid-if-halt}，$!T(M_e, w) \lif !E(M_e, w)$ 有效当且仅当 $M_e$ 在输入~$w$ 上停机。因此，给定输入 $e$ 和 $w$，当且仅当 $M_e$ 在输入~$w$ 上停机时，$E\concat D$ 停机并输出~$1$；否则停机并输出~$0$。换言之，$E \concat D$ 将能解决停机问题。但根据 \olref[hal]{thm:halting-problem}，这样的图灵机不可能存在。
 \end{proof}
 
 \begin{cor}\ollabel{cor:undecidable-sat}%
-It is undecidable if an arbitrary !!{sentence} of first-order logic is satisfiable.
+判定任一一阶逻辑语句是否可满足，是不可判定的。
 \end{cor}
 
 \begin{proof}
-  Suppose satisfiability were decidable by a Turing machine~$S$. Then
-  we could solve the decision problem as follows: Given
-  !!a{sentence}~$B$ as input, move $!B$ to the right one square.
-  Return to square~$1$ and write the symbol~$\lnot$.
+  假设存在一台图灵机~$S$ 能判定可满足性。那么我们就能如下解决（有效性）判定问题：给定输入语句~$!B$，将 $!B$ 右移一个方格。返回到第~1 个方格并写下符号~$\lnot$。
 
-  Now run the Turing machine~$S$. It eventually halts with output
-  either $1$ (if $\lnot !B$ is satisfiable) or~$0$ (if $\lnot !B$ is
-  unsatisfiable) on the tape. If there is a~$\TMstroke$ on square~$1$,
-  erase it; if square~$1$ is empty, write a~$\TMstroke$, then halt.
+  现在运行图灵机~$S$。它最终会停机，并在磁带上输出~$1$（若 $\lnot !B$ 可满足）或~$0$（若 $\lnot !B$ 不可满足）。如果第~1 个方格上有~$\TMstroke$，就将其擦除；如果第~1 个方格是空白，就写下一个~$\TMstroke$，然后停机。
 
-  This Turing machine always halts, and its output is~$1$ iff $\lnot
-  !B$ is unsatisfiable and $0$~otherwise. Since $!B$ is valid iff
-  $\lnot !B$~is unsatisfiable, the machine outputs~$1$ iff $!B$ is
-  valid, and $0$~otherwise, i.e., it would solve the decision problem.
+  这台图灵机总是会停机，并且当且仅当 $\lnot !B$ 不可满足时输出~$1$，否则输出~$0$。由于 $!B$ 有效当且仅当 $\lnot !B$ 不可满足，所以当且仅当 $!B$ 有效时该机器输出~$1$，否则输出~$0$，也就是说，它能解决（有效性）判定问题。
 \end{proof}
 
 \begin{explain}
-So there is no Turing machine which always gives a
-correct ``yes'' or ``no'' answer to the question ``Is $!B$ a valid
-!!{sentence} of first-order logic?'' However, there \emph{is} a Turing
-machine that always gives a correct ``yes'' answer---but simply does
-not halt if the answer is ``no.'' This follows from the soundness and
-completeness theorem of first-order logic, and the fact that
-!!{derivation}s can be effectively enumerated.
+因此，不存在一台图灵机能对“$!B$ 是否是一阶逻辑的有效语句？”这个问题总是给出正确的“是”或“否”答案。然而，\emph{确实存在}一台图灵机总能给出正确的“是”答案——只不过当答案是“否”时它只是不停机。这一结论源于一阶逻辑的可靠性与完备性定理，以及推导可以被能行枚举这一事实。
 \end{explain}
 
 \begin{thm}
   \ollabel{thm:valid-ce}%
-  Validity of first-order !!{sentence}s is semi-decidable: There is a
-  Turing machine~$E$, which when started on a tape that contains
-  !!a{sentence}~$!B$ of first-order logic as input, $E$~eventually
-  halts and outputs~$1$ iff $!B$ is valid, but does not halt
-  otherwise.
+  一阶逻辑语句的有效性是半可判定的：存在一台图灵机~$E$，当它以包含一阶逻辑语句~$!B$ 的磁带作为输入启动时，当且仅当 $!B$ 有效时，$E$~最终停机并输出~$1$；否则永不停机。
 \end{thm}
 
 \begin{proof}
-  All possible !!{derivation}s of first-order logic can be generated,
-  one after another, by an effective algorithm.  The machine~$E$ does
-  this, and when it finds !!a{derivation} that shows that $\Proves
-  !B$, it halts with output~$1$. By the soundness theorem, if $E$
-  halts with output~$1$, it's because~$\Entails !B$. By the
-  completeness theorem, if $\Entails !B$ there is !!a{derivation} that
-  shows that~$\Proves !B$. Since $E$ systematically generates all
-  possible !!{derivation}s, it will eventually find one that
-  shows~$\Proves !B$, so will eventually halt with output~$1$.
+  一阶逻辑所有可能的推导都可以被一个能行算法依次生成。机器~$E$ 逐一生成这些推导，当它找到一个能证明 $\Proves !B$ 的推导时，就停机并输出~$1$。根据可靠性定理，如果 $E$ 停机并输出~$1$，则必有~$\Entails !B$。根据完备性定理，如果 $\Entails !B$，则存在一个推导能证明~$\Proves !B$。由于 $E$ 系统地生成所有可能的推导，它终将找到一个证明~$\Proves !B$ 的推导，因此终将停机并输出~$1$。
 \end{proof}
 
 \end{document}

@@ -3,63 +3,53 @@
 \begin{document}
 
 \olfileid{sth}{choice}{countablechoice}
-\olsection{Countable Choice}
+\olsection{可数选择公理}
 
-It is easy to prove, without any use of Choice/Well-Ordering, that:
+在不使用任何形式的选择公理/良序原理的情况下，很容易证明：
 
-\begin{lem}[in $\Zminus$]
-Every finite set has a choice function. 
+\begin{lem}[在 $\Zminus$ 中]
+每个有限集都有一个选择函数。 
 \end{lem}
 
 \begin{proof}
-Let $a = \{b_1, \ldots, b_n\}$. Suppose for simplicity that each $b_i
-\neq \emptyset$. So there are objects $c_1, \ldots, c_n$ such that
-$c_1 \in b_1, \ldots, c_n \in b_n$. Now by
-\olref[z][pairs]{prop:pairsconsequences}, the set $\{\langle b_1,
-c_1\rangle , \ldots, \langle b_n, c_n\rangle\}$ exists; and this is a
-choice function for~$a$.
+设 $a = \{b_1, \ldots, b_n\}$。为简化起见，假设每个 $b_i
+\neq \emptyset$。因此存在对象 $c_1, \ldots, c_n$ 使得
+$c_1 \in b_1, \ldots, c_n \in b_n$。现在根据
+\olref[z][pairs]{prop:pairsconsequences}，集合 $\{\langle b_1,
+c_1\rangle , \ldots, \langle b_n, c_n\rangle\}$ 存在；这就是~$a$ 的一个
+选择函数。
 \end{proof}
 
-But matters get murkier as soon as we consider infinite sets. For
-example, consider this ``minimal'' extension to the above:
+但一旦我们考虑无限集，情况就更不明朗了。例如，考虑对上述内容的以下“最小”扩展：
 
 \begin{defish}
-\emph{Countable Choice.} Every \emph{countable} set has a choice function. 
+\emph{可数选择公理。}每个\emph{可数}集都有一个选择函数。 
 \end{defish}
 
-This is a special case of Choice. And it transpires that this
-principle was invoked fairly frequently, without  an obvious awareness
-of its use. Here are two nice examples.\footnote{Due to
-\citet[\S9.4]{Potter2004} and Luca Incurvati.}
+这是选择公理的一个特例。事实表明，这一原理过去曾被相当频繁地使用，但使用者往往并未明确意识到自己使用了它。这里有两个很好的例子。\footnote{分别源于
+\citet[\S9.4]{Potter2004} 和 Luca Incurvati。}
 
 \begin{ex}
-Here is a natural thought: for any set $A$, either
-$\cardle{\omega}{A}$, or $\cardeq{A}{n}$ for some $n \in \omega$. This
-is one way to state the intuitive idea, that every set is either
-finite or infinite. Cantor, and many other mathematicians, made this
-claim without proving it. Cautious as we are, we proved this in
-\olref[cardinals][classing]{generalinfinitycharacter}. But
-in that proof we were working in $\ZFC$, since we were assuming that
-any set $A$ can be well-ordered, and hence that $\card{A}$ is
-guaranteed to exist. That is: we explicitly assumed Choice.
+这里有一个自然的想法：对任意集合 $A$，要么
+$\cardle{\omega}{A}$，要么对某个 $n \in \omega$ 有 $\cardeq{A}{n}$。这是
+表达“每个集合要么有限要么无限”这一直观想法的一种方式。Cantor（康托尔）和许多其他数学家都曾断言这一点而未加证明。尽管我们很谨慎，在
+\olref[cardinals][classing]{generalinfinitycharacter} 中已经证明了它。
+但在那个证明中，我们在 $\ZFC$ 中进行工作，因为我们假定任何集合 $A$ 都可以良序，从而保证了 $\card{A}$ 存在。也就是说：我们明确地假定了选择公理。
 
-In fact, \citet{Dedekind1888} offered his own proof of
-this claim, as follows:
+事实上，\citet{Dedekind1888} 为这一断言提供了他自己的证明，如下：
 
-\begin{thm}[in $\Zminus + \text{Countable Choice}$]
-For any $A$, either $\cardle{\omega}{A}$ or $\cardeq{A}{n}$ for some
-$n \in \omega$.
+\begin{thm}[在 $\Zminus + \text{可数选择公理}$ 中]
+对任意 $A$，要么 $\cardle{\omega}{A}$，要么对某个 $n \in \omega$ 有 $\cardeq{A}{n}$。
 \end{thm}
 
 \begin{proof}
-Suppose $\cardneq{A}{n}$ for all $n \in \omega$. Then in particular
-for each $n < \omega$ there is subset $A_n \subseteq A$ with exactly
-$\cardexpo{2}{n}$ elements. Using this sequence $A_0, A_1, A_2,
-\ldots$, we define for each $n$:
+假设对所有 $n \in \omega$ 都有 $\cardneq{A}{n}$。那么特别地，对每个
+$n < \omega$ 存在子集 $A_n \subseteq A$，恰好有 $\cardexpo{2}{n}$ 个元素。利用这个序列 $A_0, A_1, A_2,
+\ldots$，我们对每个 $n$ 定义：
 \[
 	B_n = A_n \setminus \bigcup_{i < n} A_i.
 \]
-Now note the following
+现在注意到
 \begin{align*}
 	\card{\bigcup_{i < n}A_n} 
 	&\leq \card{A_0} + \card{A_1} + \ldots + \card{A_{n-1}}\\
@@ -67,96 +57,49 @@ Now note the following
 	& = 2^n - 1\\
 	& < 2^n = \card{A_n}
 \end{align*}
-Hence each $B_n$ has at least one member, $c_n$. Moreover, the $B_n$s
-are pairwise disjoint; so if $c_n = c_m$ then $n = m$. But every $c_n
-\in A$. So the function  $f(n) = c_n$ is an injection $\omega \to A$.
+因此每个 $B_n$ 都至少有一个成员 $c_n$。此外，这些 $B_n$ 两两不交；所以如果 $c_n = c_m$ 则 $n = m$。且每个 $c_n
+\in A$。所以函数  $f(n) = c_n$ 是一个从 $\omega$ 到 $A$ 的单射。
 \end{proof}
 \noindent 
-Dedekind did not flag that he had used Countable Choice. But, did
-\emph{you} spot its use? Look again. (Really: \emph{look again}.)
+Dedekind 没有明确指出他使用了可数选择公理。但是，\emph{你}发现它的使用了吗？再看一遍。（真的：\emph{再看一遍}。）
 
-The proof used Countable Choice twice. We used it once, to obtain
-our sequence of sets $A_0$, $A_1$, $A_2$, \dots\@ We then used it
-again to select our elements $c_n$ from each~$B_n$. Moreover, this use
-of Choice is ineliminable. \citet[p.~138]{Cohen1966} proved that the
-result fails if we have no version of Choice. That is: it is
-consistent with $\ZF$ that there are sets which are
-\emph{incomparable} with~$\omega$.
+这个证明两次使用了可数选择公理。我们第一次使用它，是为了得到集合序列 $A_0$, $A_1$, $A_2$, \dots\@ 我们第二次使用它，是为了从每个~$B_n$ 中选出元素 $c_n$。而且，这里对选择公理的使用是必不可少的。\citet[p.~138]{Cohen1966} 证明了，如果我们没有任何形式的选择公理，这个结论就不成立。也就是说：存在与 $\ZF$ 一致的模型，其中包含与~$\omega$ 不可比较的集合。
 \end{ex}
 
 \begin{ex} 
-In \citeyear{Cantor1878}, Cantor stated that a countable union of
-countable sets is countable. He did not present a proof, perhaps
-indicating that he took the proof to be obvious. Now, cautious as we
-are, we proved a more general version of this result in
-\olref[card-arithmetic][simp]{kappaunionkappasize}.  But our proof
-explicitly assumed Choice. And even the proof of the less general
-result requires Countable Choice.
+在 \citeyear{Cantor1878}，Cantor 声称可数多个可数集合的并是可数的。他并未给出证明，或许是因为他认为这个证明是显然的。尽管我们很谨慎，在
+\olref[card-arithmetic][simp]{kappaunionkappasize} 中证明了这个结果的一个更一般的形式。但我们的证明明确使用了选择公理。甚至这个较弱结果的证明也需要可数选择公理。
 
-\begin{thm}[in $\Zminus + \text{Countable Choice}$]
-If $A_n$ is countable for each $n \in \omega$, then $\bigcup_{n <
-\omega} A_n$ is countable.
+\begin{thm}[在 $\Zminus + \text{可数选择公理}$ 中]
+如果对每个 $n \in \omega$，$A_n$ 都是可数的，那么 $\bigcup_{n <
+\omega} A_n$ 是可数的。
 \end{thm}
 
 \begin{proof}
-Without loss of generality, suppose that each $A_n \neq \emptyset$. So
-for each $n \in \omega$ there is !!a{surjection} $f_n \colon \omega
-\to A_n$. Define $f \colon \omega \times \omega \to \bigcup_{n <
-\omega} A_n$ by $f(m, n) = f_n(m)$. The result follows because $\omega
-\times \omega$ is countable
-(\olref[sfr][siz][zigzag]{natsquaredenumerable}) and $f$ is
-!!a{surjection}.
+不失一般性，假设每个 $A_n \neq \emptyset$。因此对每个 $n \in \omega$ 存在一个满射 $f_n \colon \omega
+\to A_n$。定义 $f \colon \omega \times \omega \to \bigcup_{n <
+\omega} A_n$ 为 $f(m, n) = f_n(m)$。因为 $\omega
+\times \omega$ 是可数的
+（\olref[sfr][siz][zigzag]{natsquaredenumerable}）且 $f$ 是满射，结论成立。
 \end{proof}
 \noindent 
-Did you spot the use of the Countable Choice? It is used to choose our
-sequence of functions $f_0$, $f_1$, $f_2$, \dots\footnote{A similar
-use of Choice occurred in
-\olref[card-arithmetic][simp]{kappaunionkappasize}, when we gave the
-instruction ``For each $\beta \in \cardfont{a}$, fix !!a{injection}
-$f_\beta$''.} And again, the result fails in the absence of any Choice
-principle. Specifically, \citet{FefermanLevy1963} proved that it is
-consistent with $\ZF$ that a countable union of countable sets has
-cardinality~$\beth_1$. But here is a much funnier statement of the
-point, from Russell:
+你发现可数选择公理的使用了吗？它被用来选择函数序列 $f_0$, $f_1$, $f_2$, \dots\footnote{类似地使用选择公理的情况出现在
+\olref[card-arithmetic][simp]{kappaunionkappasize}，当时我们指示“对每个 $\beta \in \cardfont{a}$，固定一个单射
+$f_\beta$”。} 而且在没有任何选择公理的情况下，此结论不成立。具体而言，\citet{FefermanLevy1963} 证明了在 $\ZF$ 中，可数多个可数集合的并具有势~$\beth_1$ 是相容的。但关于这一点，有一个有趣得多的说法，来自 Russell（罗素）：
 \begin{quote}
-  This is illustrated by the millionaire who bought a pair of socks
-  whenever he bought a pair of boots, and never at any other time, and
-  who had such a passion for buying both that at last he had
-  $\aleph_0$ pairs of boots and $\aleph_0$ pairs of socks\dots\@ Among
-  boots we can distinguish right and left, and therefore we can make a
-  selection of one out of each pair, namely, we can choose all the
-  right boots or all the left boots; but with socks no such principle
-  of selection suggests itself, and we cannot be sure, unless we
-  assume the multiplicative axiom [i.e., in effect Choice], that there
-  is any class consisting of one sock out of each pair.
+  这可以用一个百万富翁的例子来说明：他每次买一双靴子时都会买一双袜子，而且只在那个时候买，他对购买两者如此热衷，以至于最后他有
+  $\aleph_0$ 双靴子和 $\aleph_0$ 双袜子\dots\@ 在靴子中，我们可以区分左和右，因此我们可以从每双中选出一只，即我们可以选择所有右靴或所有左靴；但对于袜子，没有这样的选择原则会自然呈现，而且除非我们假设乘法公理 [即，实际上就是选择公理]，否则我们不能确定是否存在一个类，它由每双袜子中的一只组成。
   \citep[p.~126]{Russell1919}
 \end{quote}
-In short, some form of Choice is needed to prove the following: If you
-have countably many pairs of socks, then you have (only) countably
-many socks. And in fact, without Countable Choice (or something
-equivalent), a countable union of countable sets can fail to be
-countable. 
+简而言之，需要某种形式的选择公理来证明以下结论：如果你有可数多双袜子，那么你（只）有可数多只袜子。事实上，没有可数选择公理（或等价命题），可数多个可数集合的并可能不是可数的。 
 \end{ex}
 
-The moral is that Countable Choice was used repeatedly, without much
-awareness of its users. The philosophical question is: How could we
-\emph{justify} Countable Choice? 
+结论是，可数选择公理被反复使用，但其使用者大多没有意识到。哲学问题是：我们如何能\emph{为}可数选择公理\emph{提供辩护}？
 
-An attempt at an intuitive justification might invoke an appeal to a
-supertask. Suppose we make the first choice in $\nicefrac{1}{2}$ a
-minute, our second choice in $\nicefrac{1}{4}$ a minute, \dots, our
-$n$-th choice in $\nicefrac{1}{2^n}$ a minute, \dots\@ Then within $1$~minute, we will have made an $\omega$-sequence of choices, and defined
-a choice function. 
+一种直觉上的辩护尝试可能会诉诸于超任务。假设我们在 $\nicefrac{1}{2}$ 分钟内做出第一个选择，在 $\nicefrac{1}{4}$ 分钟内做出第二个选择，\dots，在第 $n$ 次选择时花费 $\nicefrac{1}{2^n}$ 分钟，\dots\@ 那么在 $1$~分钟内，我们将完成一个 $\omega$ 序列的选择，并定义出一个选择函数。
 
-But what, really, could such a thought-experiment tell us? For a
-start, it relies upon taking this idea of ``choosing'' rather
-literally. For another, it seems to bind up mathematics in
-metaphysical possibility. 
+但是，这样的思想实验究竟能告诉我们什么？首先，它依赖于过于字面地理解“选择”这一概念。其次，它似乎将数学与形而上学的可能性绑定在一起。
 
-More important: it is not going to give us any justification for
-Choice \emph{tout court}, rather than \emph{mere} Countable Choice.
-For if we need \emph{every} set to have a choice function, then we'll
-need to be able to perform a ``supertask of arbitrary ordinal
-length.'' Bluntly, that idea is laughable.
+更重要的是：它并不能为我们提供选择公理本身（而\emph{不仅仅}是可数选择公理）的辩护。因为如果我们需要\emph{每个}集合都有选择函数，那么我们将需要能够执行“任意序数长度的超任务”。坦率地说，这个想法是荒谬的。
 
 \end{document}

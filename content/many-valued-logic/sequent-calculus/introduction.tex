@@ -8,31 +8,27 @@
 
 \olfileid{mvl}{seq}{int}
 
-\olsection{Introduction}
+\olsection{引言}
 
-The sequent calculus for classical logic is an efficient and simple
-!!{derivation} system. If a many-valued logic is defined by a matrix with
-finitely many truth values, i.e., $V$ is finite, it is possible to
-provide a sequent calculus for it.  The idea for how to do this comes
-from considering the meanings of sequents and the form of inference
-rules in the classical case. 
+经典逻辑的相继式演算是一种高效且简单的推导系统。
+如果一个多值逻辑由有限多个真值的矩阵定义，即 $V$ 是有限的，
+则可以为它提供一种相继式演算。
+其思路来源于对经典情况下相继式的含义及推理规则形式的考察。
 
-Now recall that a sequent 
+回想一下，一个相继式
 \begin{align*}
     !A_1, \dots, !A_n & \Sequent !B_1, \dots, !B_n
-\intertext{can be interpreted as the !!{formula}}
+\intertext{可以解释为公式}
     (!A_1 \land \cdots \land !A_m) & \lif (!B_1 \lor \cdots \lor
 !B_n)
 \end{align*}
-In other words, !!^a{valuation}~$\pAssign{v}$ \emph{satisfies} a
-sequent $\Gamma \Sequent \Delta$ iff either $\pValue{v}(!A) = \False$
-for some $!A \in \Gamma$ or $\pValue{v}(!A) = \True$ for some $!A \in
-\Delta$. On this interpretation, initial sequents $!A \Sequent !A$ are
-always satisfied, because either $\pValue v(!A) = \True$ or $\pValue(!A) =
-\False$.
+换言之，赋值~$\pAssign{v}$ \emph{满足}相继式 $\Gamma \Sequent \Delta$，
+当且仅当存在 $!A \in \Gamma$ 使得 $\pValue{v}(!A) = \False$，
+或者存在 $!A \in \Delta$ 使得 $\pValue{v}(!A) = \True$。
+根据这一解释，初始相继式 $!A \Sequent !A$ 总是被满足，因为或者 $\pValue v(!A) = \True$，
+或者 $\pValue(!A) = \False$。
 
-Here are the inference rules for the conditional in~$\Log{LK}$, with
-side formulas $\Gamma$, $\Delta$ left out:
+以下是 $\Log{LK}$ 中条件句的推理规则，其中省略了侧公式 $\Gamma$、$\Delta$：
 
 \begin{defish}
     \Axiom$ \fCenter !A$
@@ -47,16 +43,14 @@ side formulas $\Gamma$, $\Delta$ left out:
     \DisplayProof
 \end{defish}
 
-If we apply the above semantic interpretation of a sequent, we can
-read the $\LeftR{\lif}$ rule as saying that if $\pValue v(!A) = \True$
-and $\pValue v(!B) = \False$, then $\pValue v(!A \lif !B) = \False$.
-Similarly, the $\RightR{\lif}$ rule says that if either $\pValue v(!A)
-= \False$ or $\pValue v(!B) = \True$, then $\pValue v(!A \lif !B) =
-\True$. And in fact, these conditionals are actually biconditionals.
-In the case of the $\LeftR{\land}$ and $\RightR{\lor}$ rules in their
-standard formulation, the corresponding conditionals would not be
-biconditionals. But there are alternative versions of these rules
-where they are:
+如果我们运用上述相继式的语义解释，就可以将 $\LeftR{\lif}$ 规则读作：
+如果 $\pValue v(!A) = \True$ 且 $\pValue v(!B) = \False$，那么 $\pValue v(!A \lif !B) = \False$。
+类似地，$\RightR{\lif}$ 规则说的是：如果 $\pValue v(!A) = \False$
+或者 $\pValue v(!B) = \True$，那么 $\pValue v(!A \lif !B) =
+\True$。
+事实上，这些条件句其实是双条件句。
+在标准形式下，$\LeftR{\land}$ 和 $\RightR{\lor}$ 规则对应的条件句不会是双条件句。
+但存在这些规则的替代版本，在其中它们是双条件句：
 
 \begin{defish}
     \Axiom$!A, !B, \Gamma \fCenter \Delta$
@@ -70,14 +64,12 @@ where they are:
     \DisplayProof
 \end{defish}
 
-This basic idea, applied to an $n$-valued logic, then results in a
-sequent calculus with $n$ instead of two places, one for each truth
-value. For a three-valued logic with $V = \{\False, \Undef, \True\}$,
-a sequent is an expression $\Gamma \mid \Pi \mid \Delta$. It is
-satisfied in !!a{valuation}~$\pAssign v$ iff either $\pValue{v}(!A) =
-\False$ for some $!A \in \Gamma$ or $\pValue{v}(!A) = \True$ for some
-$!A \in \Delta$ or $\pValue{v}(!A) = \Undef$ for some $!A \in \Pi$.
-Consequently, initial sequents $!A \mid !A \mid !A$ are always
-satisfied.
+将这一基本思想应用于 $n$ 值逻辑，便会得到一个具有 $n$ 个（而非两个）位置的相继式演算，
+每个位置对应一个真值。对于具有 $V = \{\False, \Undef, \True\}$ 的三值逻辑，
+相继式是表达式 $\Gamma \mid \Pi \mid \Delta$。
+它在赋值~$\pAssign v$ 下被满足，当且仅当存在 $!A \in \Gamma$ 使得 $\pValue{v}(!A) = \False$，
+或者存在 $!A \in \Delta$ 使得 $\pValue{v}(!A) = \True$，
+或者存在 $!A \in \Pi$ 使得 $\pValue{v}(!A) = \Undef$。
+因此，初始相继式 $!A \mid !A \mid !A$ 总是被满足。
 
 \end{document}

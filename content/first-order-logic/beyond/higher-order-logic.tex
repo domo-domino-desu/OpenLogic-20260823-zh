@@ -8,118 +8,68 @@
 
 \olfileid{fol}{byd}{hol}
 
-\olsection{Higher-Order logic}
+\olsection{高阶逻辑}
 
-Passing from first-order logic to second-order logic enabled us to
-talk about sets of objects in the first-order !!{domain}, within the
-formal language. Why stop there? For example, third-order logic should
-enable us to deal with sets of sets of objects, or perhaps even sets
-which contain both objects and sets of objects. And fourth-order logic
-will let us talk about sets of objects of that kind. As you may have
-guessed, one can iterate this idea arbitrarily.
+从一阶逻辑过渡到二阶逻辑，使我们能够在形式语言中谈论一阶论域中对象组成的集合。为何要止步于此呢？例如，三阶逻辑应当能让我们处理对象集合的集合，甚至既包含对象又包含对象集合的集合。而四阶逻辑则允许我们谈论此类对象的集合。你可能已经猜到了，我们可以任意迭代这一想法。
 
-In practice, higher-order logic is often !!{formula}ted in terms of
-functions instead of relations. (Modulo the natural identifications,
-this difference is inessential.) Given some basic ``sorts'' $A$, $B$,
-$C$,~\dots (which we will now call ``types''), we can create new ones
-by stipulating
+在实践中，高阶逻辑常常用函数而非关系来形式化。（若在函数与关系之间自然的等同意义下看，这种差异是非本质性的。）给定一些基本的“类”$A$、$B$、$C$、……（我们现在称之为“类型”），我们可以通过规定来生成新的类型：
+
 \begin{quote}
-If $\sigma$ and $\tau$ are finite types then so is $\sigma \to \tau$.
+如果 $\sigma$ 和 $\tau$ 是有限类型，那么 $\sigma \to \tau$ 也是。
 \end{quote}
-Think of types as syntactic ``labels,'' which classify the objects we
-want in our !!{domain}; $\sigma \to \tau$ describes those objects that
-are functions which take objects of type~$\sigma$ to objects of
-type~$\tau$. For example, we might want to have a type $\Omega$ of
-truth values, ``true'' and ``false,'' and a type $\Nat$ of natural
-numbers. In that case, you can think of objects of type $\Nat \to
-\Omega$ as unary relations, or subsets of $\Nat$; objects of type
-$\Nat \to \Nat$ are functions from natural numbers to natural numbers;
-and objects of type $(\Nat \to \Nat) \to \Nat$ are ``functionals,''
-that is, higher-type functions that take functions to numbers.
 
-As in the case of second-order logic, one can think of higher-order
-logic as a kind of many-sorted logic, where there is a sort for each
-type of object we want to consider. But it is usually clearer just to
-define the syntax of higher-type logic from the ground up. For
-example, we can define a set of finite types inductively, as follows:
+可以把类型想象成句法“标签”，用来对我们想要纳入论域的对象进行分类；$\sigma \to \tau$ 描述的是这样一类对象，它们是以 $\sigma$ 类型的对象为输入、以 $\tau$ 类型的对象为输出的函数。
+例如，我们可能想要有一个真值类型 $\Omega$（“真”和“假”）以及一个自然数类型 $\Nat$。
+在这种情况下，你可以把 $\Nat \to \Omega$ 类型的对象看作一元关系，或者说 $\Nat$ 的子集；$\Nat \to \Nat$ 类型的对象是从自然数到自然数的函数；而 $(\Nat \to \Nat) \to \Nat$ 类型的对象则是“泛函”，即以函数为输入、以数为输出的高类型函数。
+
+与二阶逻辑的情况类似，我们可以把高阶逻辑看作一种多类逻辑，其中为我们想要考虑的每种对象都设置一个类。
+但通常更清晰的做法是从头开始定义高类型逻辑的语法。
+例如，我们可以归纳地定义有限类型的集合，如下所示：
+
 \begin{enumerate}
-\item $\Nat$ is a finite type.
-\item If $\sigma$ and $\tau$ are finite types, then so is $\sigma
-  \to \tau$.
-\item If $\sigma$ and $\tau$ are finite types, so is $\sigma \times
-  \tau$.
+\item $\Nat$ 是有限类型。
+\item 如果 $\sigma$ 和 $\tau$ 是有限类型，那么 $\sigma \to \tau$ 也是有限类型。
+\item 如果 $\sigma$ 和 $\tau$ 是有限类型，那么 $\sigma \times \tau$ 也是有限类型。
 \end{enumerate}
-Intuitively, $\Nat$ denotes the type of the natural numbers,
-$\sigma \to \tau$ denotes the type of functions from $\sigma$ to
-$\tau$, and $\sigma \times \tau$ denotes the type of pairs of objects,
-one from $\sigma$ and one from $\tau$. We can then define a set of
-terms inductively, as follows:
+
+直观上，$\Nat$ 表示自然数的类型，$\sigma \to \tau$ 表示从 $\sigma$ 到 $\tau$ 的函数的类型，而 $\sigma \times \tau$ 表示由两个对象（一个来自 $\sigma$，一个来自 $\tau$）构成的有序对的类型。
+然后我们可以归纳地定义一个项的集合，如下所示：
+
 \begin{enumerate}
-\item For each type $\sigma$, there is a stock of variables $x$, $y$,
-  $z$, \dots of type $\sigma$
-\item $\Obj 0$ is a term of type $\Nat$
-\item $\Obj S$ (successor) is a term of type $\Nat \to \Nat$
-\item If $s$ is a term of type $\sigma$, and $t$ is a term of type
-  $\Nat \to (\sigma \to \sigma)$, then $\Obj{R}_{st}$ is a term of type
-  $\Nat \to \sigma$
-\item If $s$ is a term of type $\tau \to \sigma$ and $t$ is a
-  term of type~$\tau$, then $s(t)$ is a term of type $\sigma$
-\item If $s$ is a term of type~$\sigma$ and $x$ is a variable of
-  type~$\tau$, then $\lambd[x][s]$ is a term of type $\tau \to \sigma$.
-\item If $s$ is a term of type~$\sigma$ and $t$ is a term of
-  type~$\tau$, then $\tuple{s, t}$ is a term of type $\sigma \times
-  \tau$.
-\item If $s$ is a term of type~$\sigma \times \tau$ then $p_1(s)$ is a
-  term of type~$\sigma$ and $p_2(s)$ is a term of type~$\tau$.
+\item 对每个类型 $\sigma$，都有一组类型为 $\sigma$ 的变元 $x$, $y$, $z$, \dots。
+\item $\Obj 0$ 是类型为 $\Nat$ 的项。
+\item $\Obj S$（后继）是类型为 $\Nat \to \Nat$ 的项。
+\item 如果 $s$ 是类型为 $\sigma$ 的项，且 $t$ 是类型为 $\Nat \to (\sigma \to \sigma)$ 的项，则 $\Obj{R}_{st}$ 是类型为 $\Nat \to \sigma$ 的项。
+\item 如果 $s$ 是类型为 $\tau \to \sigma$ 的项且 $t$ 是类型为 $\tau$ 的项，则 $s(t)$ 是类型为 $\sigma$ 的项。
+\item 如果 $s$ 是类型为 $\sigma$ 的项且 $x$ 是类型为 $\tau$ 的变元，那么 $\lambd[x][s]$ 是类型为 $\tau \to \sigma$ 的项。
+\item 如果 $s$ 是类型为 $\sigma$ 的项且 $t$ 是类型为 $\tau$ 的项，那么 $\tuple{s, t}$ 是类型为 $\sigma \times \tau$ 的项。
+\item 如果 $s$ 是类型为 $\sigma \times \tau$ 的项，那么 $p_1(s)$ 是类型为 $\sigma$ 的项而 $p_2(s)$ 是类型为 $\tau$ 的项。
 \end{enumerate}
-Intuitively, $\Obj{R}_{st}$ denotes the function defined recursively by
-\begin{align*}
+
+直观上说，$\Obj{R}_{st}$ 表示递归定义的函数 \begin{align*}
 \Obj{R}_{st}(0) & = s \\
 \Obj{R}_{st}(x+1) & = t(x, R_{st}(x)),
 \end{align*}
-$\tuple{s, t}$ denotes the pair whose first component is~$s$ and whose
-second component is~$t$, and $p_1(s)$ and~$p_2(s)$ denote the first
-and second elements (``projections'') of~$s$. Finally, $\lambd[x][s]$
-denotes the function~$f$ defined by
-\[
+$\tuple{s, t}$ 表示第一分量为~$s$、第二分量为~$t$ 的有序对，而 $p_1(s)$ 和 $p_2(s)$ 表示~$s$ 的第一和第二分量（“投影”）。
+最后，$\lambd[x][s]$ 表示由 \[
 f(x) = s
-\]
-for any~$x$ of type~$\sigma$; so item (6) gives us a form of
-comprehension, enabling us to define functions using
-terms. !!^{formula}s are built up from !!{identity} statements $\eq[s][t]$
-between terms of the same type, the usual propositional connectives,
-and higher-type quantification. One can then take the axioms of the
-system to be the basic equations governing the terms defined above,
-together with the usual rules of logic with quantifiers and !!{identity}.
+\] 定义的函数~$f$；
+因此条款 (6) 赋予了我们一种概括原则，使得我们可以利用项来定义函数。
+公式则由相同类型项之间的等词陈述 $\eq[s][t]$、通常的命题联结词以及高类型量词构造而成。
+然后，我们可以取系统的公理为支配上述所定义项的基本等式，再加上带量词和等词的通常逻辑规则。
 
-If one augments the finite type system with a type $\Omega$ of truth
-values, one has to include axioms which govern its use as well. In
-fact, if one is clever, one can get rid of complex !!{formula}s
-entirely, replacing them with terms of type $\Omega$!{} The proof
-system can then be modified accordingly. The result is essentially the
-\emph{simple theory of types} set forth by Alonzo Church in the 1930s.
+如果在有限类型系统中增加一个真值类型 $\Omega$，就必须同时包括支配其使用的公理。
+事实上，只要足够巧妙，我们完全可以消除复杂的公式，用类型为 $\Omega$ 的项来替代它们！证明系统也可以随之修改。
+这样得到的结果本质上就是 Alonzo Church（阿隆佐·丘奇）在 20 世纪 30 年代提出的\emph{简单类型论}。
 
-As in the case of second-order logic, there are different versions of
-higher-type semantics that one might want to use. In the full version,
-variables of type $\sigma \to \tau$ range over the set of \emph{all}
-functions from the objects of type~$\sigma$ to objects of type~$\tau$.
-As you might expect, this semantics is too strong to admit a complete,
-effective !!{derivation} system. But one can consider a weaker semantics, in
-which !!a{structure} consists of sets of elements $T_\tau$ for each
-type $\tau$, together with appropriate operations for application,
-projection, etc. If the details are carried out correctly, one can
-obtain completeness theorems for the kinds of !!{derivation} systems described
-above.
+与二阶逻辑的情况类似，高类型逻辑也有多种可供选择的语义版本。
+在完整的版本中，类型 $\sigma \to \tau$ 的变元遍历从类型~$\sigma$ 的对象到类型~$\tau$ 的对象的\emph{所有}函数构成的集合。
+正如你可能预料的那样，这种语义太强了，以至于无法容许一个完备且能行的推导系统。
+但是，我们可以考虑一种更弱的语义，在这种语义中，一个结构由每个类型 $\tau$ 的元素集合 $T_\tau$ 构成，并配备适当的应用、投影等操作。
+如果细节处理得当，就可以为上文描述的那类推导系统获得完备性定理。
 
-Higher-type logic is attractive because it provides a framework in
-which we can embed a good deal of mathematics in a natural way:
-starting with $\Nat$, one can define real numbers, continuous
-functions, and so on. It is also particularly attractive in the
-context of intuitionistic logic, since the types have clear
-``constructive'' interpretations. In fact, one can develop constructive
-versions of higher-type semantics (based on intuitionistic, rather
-than classical logic) that clarify these constructive interpretations
-quite nicely, and are, in many ways, more interesting than the
-classical counterparts.
+高阶逻辑很有吸引力，因为它提供了一个框架，使得我们能够以一种自然的方式嵌入大量数学：从 $\Nat$ 出发，可以定义实数、连续函数等等。
+在直觉主义逻辑的背景下，它也特别有吸引力，因为类型有清晰的“构造性”解释。
+事实上，人们可以发展构造性的高类型语义（基于直觉主义而非经典逻辑），它能很好地澄清这些构造性解释，并且在许多方面比经典语义的对应物更有趣。
 
 \end{document}

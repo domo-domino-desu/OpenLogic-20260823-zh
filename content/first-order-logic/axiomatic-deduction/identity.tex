@@ -1,56 +1,63 @@
-% Part: first-order-logic
-% Chapter: axiomatic-proofs
-% Section: identity
-
 \documentclass[../../../include/open-logic-section]{subfiles}
 
 \begin{document}
 
 \olfileid{fol}{axd}{ide}
 
-\olsection{\usetoken{P}{derivation} with \usetoken{S}{identity}}
+若要将其扩展以包含 % Part: first-order-logic，则必须添加关于 % Chapter: axiomatic-proofs 的公理。
+这些公理是自返性公理以及 % Chapter: axiomatic-proofs 的可替换性公理模式。
 
-In order to accommodate $\eq$ in !!{derivation}s, we simply add new
-axiom schemas. The definition of !!{derivation} and $\Proves$ remains
-the same, we just also allow the new axioms.
+自返性公理模式对每个项~$t$ 给出语句 $t = t$。
+可替换性公理模式则对每个公式~$!A$、变元~$x$ 和变元~$y$ 给出如下公理：
+\[
+\lforall[x][\lforall[y][((x = y \land !A) \lif \Subst{!A}{y}{x})]]。
+\]
+例如，
+\[
+\lforall[x][\lforall[y][((x = y \land P(x)) \lif P(y))]]
+\]
+就是一条这样的公理。% Section: identity
 
-\begin{defn}[Axioms for !!{identity}]
+\olsection{带等词的推导}
+
+为了在推导中容纳 $\eq$，我们只需增加新的公理模式。
+推导及 $\Proves$ 的定义保持不变，只是额外允许使用这些新公理。
+
+\begin{defn}[等词公理]
 \begin{align}
 \ollabel{ax:id1} & \eq[t][t], \\
 \ollabel{ax:id2} & \eq[t_1][t_2] \lif (!B(t_1) \lif
   !B(t_2)),
-\end{align}
-for any closed terms $t$, $t_1$, $t_2$.
+\end{align}，其中 $t$, $t_1$, $t_2$ 为任意闭项。
 \end{defn}
 
 \begin{prop}\ollabel{prop:sound}
-  The axioms \olref{ax:id1} and \olref{ax:id2} are valid.
+  公理 \olref{ax:id1} 和 \olref{ax:id2} 是有效的。
 \end{prop}
 
 \begin{proof}
-  Exercise.
+练习。
 \end{proof}
 
 \begin{prob}
-Prove \olref[fol][axd][ide]{prop:sound}.
+证明 \olref[fol][axd][ide]{prop:sound}。
 \end{prob}
 
 \begin{prop}\ollabel{prop:iden1}
- $\Gamma \Proves \eq[t][t]$, for any term $t$ and set~$\Gamma$.
+ 对任意项 $t$ 和集合~$\Gamma$，$\Gamma \Proves \eq[t][t]$。
 \end{prop}
 
 \begin{prop}\ollabel{prop:iden2}
-  If $\Gamma \Proves !A(t_1)$ and $\Gamma \Proves
-  \eq[t_1][t_2]$, then $\Gamma \Proves !A(t_2)$.
+  若 $\Gamma \Proves !A(t_1)$ 且 $\Gamma \Proves
+  \eq[t_1][t_2]$，则 $\Gamma \Proves !A(t_2)$。
 \end{prop}
 
 \begin{proof}
-The !!{formula}
+公式
 \[
 (\eq[t_1][t_2] \lif (!A(t_1) \lif !A(t_2)))
 \]
-is an instance of~\olref{ax:id2}. The conclusion follows by two applications
-of~\MP.
+是公理~\olref{ax:id2} 的一个实例。结论由两次应用~\MP 推出。
 \end{proof}
 
 \end{document}

@@ -8,185 +8,107 @@
 
 \olfileid{mod}{int}{prf}
 
-\olsection{Craig's Interpolation Theorem}
+\olsection{Craig 内插定理}
 
-\begin{thm}[Craig's Interpolation Theorem]
-\ollabel{thm:interpol} 
-If $\Entails !A \lif !B$, then there is !!a{sentence} $!C$ such that
-$\Entails !A \lif !C$ and $\Entails !C \lif !B$, and every
-!!{constant}, !!{function}, and !!{predicate} (other than $\eq$) in
-$!C$ occurs both in $!A$ and~$!B$. The !!{sentence} $!C$ is called an
-\emph{interpolant} of $!A$ and~$!B$.
+\begin{thm}[Craig 内插定理]
+\ollabel{thm:interpol}
+如果 $\Entails !A \lif !B$，则存在一个语句 $!C$ 使得
+$\Entails !A \lif !C$ 且 $\Entails !C \lif !B$，并且
+$!C$ 中出现的每个常项符号、函数符号和谓词符号（$\eq$ 除外）
+都同时出现在 $!A$ 与 $!B$ 中。语句 $!C$ 称为 $!A$ 与 $!B$ 的一个
+\emph{内插项}。
 \end{thm}
 
+证明思路使用了``模型交错''技巧：给定 $\Entails !A \lif !B$
+的一个反例模型，我们可以将其拆解并重新组合，以分别构造出
+$\Entails !A \lif !C$ 和 $\Entails !C \lif !B$ 的反例，除非满足特定条件，
+而该条件正好能给出所求的内插项 $!C$。
+
+Craig 内插定理之所以有趣，部分原因在于它允许我们在理论之间进行``转译''。
+例如，若语言 $L_1$ 中的 $!A$ 语义地后承语言 $L_2$ 中的 $!B$，
+那么我们可以找到一个作为``桥梁''的 $!C$，它仅使用 $L_1$ 和 $L_2$ 共有的符号，
+并且 $!A$ 语义地后承 $!C$，$!C$ 又语义地后承 $!B$。这样，
+关于 $!A$ 和 $!B$ 的后承关系，就可以通过这个共同语言中的 $!C$ 来``解释''。
+
+\begin{defn}[内插项]
+\ollabel{defn:interpolant}
+若语句 $!C$ 满足 \olref{thm:interpol} 的结论，则称 $!C$ 是
+$!A$ 与 $!B$ 的一个\emph{内插项}。
+\end{defn}
+
+该定理的证明将在下一节中给出。
+
 \begin{proof}
-Suppose $\Lang{L}_1$ is the language of $!A$ and $\Lang{L}_2$ is the
-language of $!B$. Let $\Lang{L}_0 = \Lang{L}_1 \cap \Lang{L}_2$. For
-each $i \in \{0, 1, 2 \}$, let $\Lang{L}'_i$ be obtained from
-$\Lang{L}_i$ by adding the infinitely many new !!{constant}s $\Obj c_0,
-\Obj c_1, \Obj c_2, \dots$. 
+设 $\Lang{L}_1$ 是 $!A$ 的语言，$\Lang{L}_2$ 是 $!B$ 的语言。令 $\Lang{L}_0 = \Lang{L}_1 \cap \Lang{L}_2$。对每个 $i \in \{0, 1, 2 \}$，令 $\Lang{L}'_i$ 是通过向 $\Lang{L}_i$ 添加无穷多新的常项符号 $\Obj c_0,
+\Obj c_1, \Obj c_2, \dots$ 而得到的语言。
 
-If $!A$ is unsatisfiable, $\lexists[x][\eq/[x][x]]$ is an
-interpolant. If $\lnot !B$ is unsatisfiable (and hence $!B$ is valid),
-$\lexists[x][\eq[x][x]]$ is an interpolant. So we may assume also that
-both $!A$ and $\lnot !B$ are satisfiable.
+如果 $!A$ 不可满足，则 $\lexists[x][\eq/[x][x]]$ 是一个内插项。如果 $\lnot !B$ 不可满足（因而 $!B$ 有效），则 $\lexists[x][\eq[x][x]]$ 是一个内插项。因此我们可假设 $!A$ 和 $\lnot !B$ 都是可满足的。
 
-In order to prove the contrapositive of the Interpolation Theorem,
-assume that there is no interpolant for $!A$ and $!B$. In other words,
-assume that $\{!A\}$ and $\{\lnot !B\}$ are inseparable in
-$\Lang{L}_0$.
+为证明内插定理的逆否命题，假设不存在 $!A$ 与 $!B$ 的内插项。换言之，假设 $\{!A\}$ 与 $\{\lnot !B\}$ 在 $\Lang{L}_0$ 中不可分。
 
-Our goal is to extend the pair $(\{ !A \}, \{\lnot!B\})$ to a
-maximally inseparable pair $(\Gamma^*, \Delta^*)$.  Let $!A_0$,
-$!A_1$, $!A_2$, \dots enumerate the !!{sentence}s of $\Lang{L}_1$, and
-$!B_0$, $!B_1$, $!B_2$, \dots enumerate the !!{sentence}s
-of~$\Lang{L}_2$. We define two increasing sequences of sets of
-!!{sentence}s $(\Gamma_n, \Delta_n)$, for $n \ge 0$, as follows. Put
-$\Gamma_0 = \{ !A\}$ and $\Delta_0 = \{\lnot !B \}$. Assuming
-$(\Gamma_n, \Delta_n)$ are already defined, define $\Gamma_{n+1}$ and
-$\Delta_{n+1}$ by:
+我们的目标是将序对 $(\{ !A \}, \{\lnot!B\})$ 扩张为极大不可分序对 $(\Gamma^*, \Delta^*)$。令 $!A_0$, $!A_1$, $!A_2$, \dots 枚举 $\Lang{L}_1$ 的语句，$!B_0$, $!B_1$, $!B_2$, \dots 枚举 $\Lang{L}_2$ 的语句。我们如下定义两个递增的语句集序列 $(\Gamma_n, \Delta_n)$（$n \ge 0$）。令 $\Gamma_0 = \{ !A\}$ 且 $\Delta_0 = \{\lnot !B \}$。假设 $(\Gamma_n, \Delta_n)$ 已定义，按下述方式定义 $\Gamma_{n+1}$ 与 $\Delta_{n+1}$：
 \begin{enumerate}
-\item If $\Gamma_n \cup \{!A_n \}$ and $\Delta_n$ are inseparable in
-  $\Lang{L}'_0$, put $!A_n$ in $\Gamma_{n+1}$. Moreover, if $!A_n$ is
-  an existential !!{formula} $\lexists[x][!S]$ then pick a new
-  !!{constant} $c$ not occurring in $\Gamma_n$, $\Delta_n$, $!A_n$ or
-  $!B_n$, and put $\Subst{!S}{c}{x}$ in $\Gamma_{n+1}$.
-\item If $\Gamma_{n+1}$ and $\Delta_n \cup \{!B_n \}$ are inseparable
-  in $\Lang{L}'_0$, put $!B_n$ in $\Delta_{n+1}$. Moreover, if $!B_n$
-  is an existential !!{formula} $\lexists[x][!S]$, then pick a new
-  !!{constant} $c$ not occurring in $\Gamma_{n+1}$, $\Delta_n$, $!A_n$
-  or $!B_n$, and put $\Subst{!S}{c}{x}$ in $\Delta_{n+1}$.
+\item 如果 $\Gamma_n \cup \{!A_n \}$ 与 $\Delta_n$ 在 $\Lang{L}'_0$ 中不可分，则将 $!A_n$ 加入 $\Gamma_{n+1}$。此外，若 $!A_n$ 是存在公式 $\lexists[x][!S]$，则选取一个不在 $\Gamma_n$、$\Delta_n$、$!A_n$ 或 $!B_n$ 中出现的新常项符号 $c$，并将 $\Subst{!S}{c}{x}$ 加入 $\Gamma_{n+1}$。
+\item 如果 $\Gamma_{n+1}$ 与 $\Delta_n \cup \{!B_n \}$ 在 $\Lang{L}'_0$ 中不可分，则将 $!B_n$ 加入 $\Delta_{n+1}$。此外，若 $!B_n$ 是存在公式 $\lexists[x][!S]$，则选取一个不在 $\Gamma_{n+1}$、$\Delta_n$、$!A_n$ 或 $!B_n$ 中出现的新常项符号 $c$，并将 $\Subst{!S}{c}{x}$ 加入 $\Delta_{n+1}$。
 \end{enumerate}
-Finally, define:
+最后，定义：
 \begin{align*}
   \Gamma^* & = \bigcup_{n\ge 0} \Gamma_n, & 
   \Delta^* & = \bigcup_{n\ge 0} \Delta_n.
 \end{align*}
-By simultaneous induction on $n$ we can now prove:
+现在我们可以通过对 $n$ 进行同时归纳来证明：
 \begin{enumerate}
-\item\ollabel{part-a} $\Gamma_n$ and $\Delta_n$ are inseparable in
-  $\Lang{L}'_0$;
-\item\ollabel{part-b} $\Gamma_{n+1}$ and $\Delta_n$ are inseparable in
-    $\Lang{L}'_0$.
+\item\ollabel{part-a} $\Gamma_n$ 与 $\Delta_n$ 在 $\Lang{L}'_0$ 中不可分；
+\item\ollabel{part-b} $\Gamma_{n+1}$ 与 $\Delta_n$ 在 $\Lang{L}'_0$ 中不可分。
 \end{enumerate}
-The basis for \olref{part-a} is given by \olref[sep]{lem:sep1}. For
-part \olref{part-b}, we need to distinguish three cases:
+\olref{part-a} 的归纳基础由 \olref[sep]{lem:sep1} 给出。对于 \olref{part-b}，我们需要区分三种情况：
 \begin{enumerate}
-\item If $\Gamma_0 \cup \{!A_0 \}$ and $\Delta_0$ are separable, then
-  $\Gamma_1 = \Gamma_0$ and \olref{part-b} is just \olref{part-a};
-\item If $\Gamma_1 = \Gamma_0 \cup\{ !A_0\}$, then $\Gamma_1$ and
-  $\Delta_0$ are inseparable by construction.
-\item It remains to consider the case where $!A_0$ is existential, so
-  that $\Gamma_1 = \Gamma_0 \cup \{ \lexists[x][!S], \Subst{!S}{c}{x}
-  \}$. By construction, $\Gamma_0 \cup \{ \lexists[x][!S]\}$ and
-  $\Delta_0$ are inseparable, so that by \olref[sep]{lem:sep2} also
-  $\Gamma_0 \cup \{ \lexists[x][!S], \Subst{!S}{c}{x} \}$ and
-  $\Delta_0$ are inseparable.
+\item 如果 $\Gamma_0 \cup \{!A_0 \}$ 与 $\Delta_0$ 可分，则 $\Gamma_1 = \Gamma_0$ 且 \olref{part-b} 就是 \olref{part-a}；
+\item 如果 $\Gamma_1 = \Gamma_0 \cup\{ !A_0\}$，则根据构造，$\Gamma_1$ 与 $\Delta_0$ 不可分。
+\item 剩下考虑 $!A_0$ 是存在公式的情形，即 $\Gamma_1 = \Gamma_0 \cup \{ \lexists[x][!S], \Subst{!S}{c}{x}
+  \}$。根据构造，$\Gamma_0 \cup \{ \lexists[x][!S]\}$ 与 $\Delta_0$ 不可分，因此由 \olref[sep]{lem:sep2}，$\Gamma_0 \cup \{ \lexists[x][!S], \Subst{!S}{c}{x} \}$ 与 $\Delta_0$ 也不可分。
 \end{enumerate}
-This completes the basis of the induction for \olref{part-a} and
-\olref{part-b} above. Now for the inductive step. For \olref{part-a}, if
-$\Delta_{n+1} = \Delta_n \cup \{ !B_n \}$ then $\Gamma_{n+1}$ and
-$\Delta_{n+1}$ are inseparable by construction (even when $!B_n$ is
-existential, by \olref[sep]{lem:sep2}); if $\Delta_{n+1} = \Delta_n$
-(because $\Gamma_{n+1}$ and $\Delta_n \cup \{!B_n\}$ are separable),
-then we use the induction hypothesis on \olref{part-b}. For the
-inductive step for \olref{part-b}, if $\Gamma_{n+2} = \Gamma_{n+1} \cup
-\{!A_{n+1} \}$ then $\Gamma_{n+2}$ and $\Delta_{n+1}$ are
-inseparable by construction (even when $!A_{n+1}$ is existential,
-by \olref[sep]{lem:sep2}); and if  $\Gamma_{n+2} = \Gamma_{n+1}$ then
-we use the inductive case for \olref{part-a} just proved. This
-concludes the induction on \olref{part-a} and \olref{part-b}. 
+这就完成了上述 \olref{part-a} 和 \olref{part-b} 的归纳基础。接下来考虑归纳步骤。对于 \olref{part-a}，如果 $\Delta_{n+1} = \Delta_n \cup \{ !B_n \}$，则根据构造（即使 $!B_n$ 是存在公式，由 \olref[sep]{lem:sep2} 亦保证），$\Gamma_{n+1}$ 与 $\Delta_{n+1}$ 不可分；如果 $\Delta_{n+1} = \Delta_n$（因为 $\Gamma_{n+1}$ 与 $\Delta_n \cup \{!B_n\}$ 可分），则我们运用对 \olref{part-b} 的归纳假设。对于 \olref{part-b} 的归纳步骤，如果 $\Gamma_{n+2} = \Gamma_{n+1} \cup
+\{!A_{n+1} \}$，则根据构造（即使 $!A_{n+1}$ 是存在公式，由 \olref[sep]{lem:sep2} 亦保证），$\Gamma_{n+2}$ 与 $\Delta_{n+1}$ 不可分；如果 $\Gamma_{n+2} = \Gamma_{n+1}$，则我们运用刚刚证明的关于 \olref{part-a} 的归纳情形。这就完成了关于 \olref{part-a} 和 \olref{part-b} 的归纳。
 
-It follows that $\Gamma^*$ and $\Delta^*$ are inseparable; if not, by
-compactness, there is $n \ge 0$ that separates $\Gamma_n$ and
-$\Delta_n$, against \olref{part-a}. In particular, $\Gamma^*$ and
-$\Delta^*$ are consistent: for if the former or the latter is
-inconsistent, then they are separated by $\lexists[x][\eq/[x][x]]$ or
-  $\lforall[x][\eq[x][x]]$, respectively.
+由此可得 $\Gamma^*$ 与 $\Delta^*$ 是不可分的；若非如此，由紧致性，存在 $n \ge 0$ 使得 $\Gamma_n$ 与 $\Delta_n$ 可分，这与 \olref{part-a} 矛盾。特别地，$\Gamma^*$ 和 $\Delta^*$ 是一致的：因为如果前者或后者不一致，则它们将分别被 $\lexists[x][\eq/[x][x]]$ 或 $\lforall[x][\eq[x][x]]$ 所分离。
 
-We now show that $\Gamma^*$ is maximally consistent in
-$\Lang{L}'_1$ and likewise $\Delta^*$ in $\Lang{L}'_2$. For the
-former, suppose that $!A_n \notin \Gamma^*$ and $\lnot !A_n
-\notin \Gamma^*$, for some $n \ge 0$. If $!A_n \notin \Gamma^*$
-then $\Gamma_n \cup \{!A_n \}$ is separable from $\Delta_n$, and
-so there is $!C \in \Lang{L}'_0$ such that both:
+我们现在证明 $\Gamma^*$ 在 $\Lang{L}'_1$ 中是极大一致的，且类似地 $\Delta^*$ 在 $\Lang{L}'_2$ 中是极大一致的。对前者，假设对某个 $n \ge 0$，$!A_n \notin \Gamma^*$ 且 $\lnot !A_n \notin \Gamma^*$。若 $!A_n \notin \Gamma^*$，则 $\Gamma_n \cup \{!A_n \}$ 与 $\Delta_n$ 可分，于是存在 $!C \in \Lang{L}'_0$ 使得：
 \begin{align*}
   \Gamma^* & \Entails !A_n \lif !C, & 
   \Delta^* & \Entails \lnot !C.
 \end{align*}
-Likewise, if $\lnot !A_n \notin \Gamma^*$, there is $!C' \in
-\Lang{L}'_0$ such that both:
+类似地，若 $\lnot !A_n \notin \Gamma^*$，则存在 $!C' \in
+\Lang{L}'_0$ 使得：
 \begin{align*}
   \Gamma^* & \Entails \lnot !A_n \lif !C', & 
   \Delta^* & \Entails \lnot !C'.
 \end{align*}
-By propositional logic, $\Gamma^* \Entails !C \lor !C'$ and
-$\Delta^* \Entails \lnot (!C \lor !C')$, so $!C \lor
-!C'$ separates $\Gamma^*$and $\Delta^*$. A similar argument
-establishes that $\Delta^*$ is maximal. 
+根据命题逻辑，$\Gamma^* \Entails !C \lor !C'$ 且 $\Delta^* \Entails \lnot (!C \lor !C')$，因此 $!C \lor !C'$ 分离了 $\Gamma^*$ 与 $\Delta^*$。类似的论证可确立 $\Delta^*$ 的极大性。
 
-Finally, we show that $\Gamma^* \cap \Delta^*$ is maximally consistent
-in $\Lang{L}'_0$. It is obviously consistent, since it is the
-intersection of consistent sets. To show maximality, let $!S \in
-\Lang{L}'_0$. Now, $\Gamma^*$ is maximal in $\Lang{L'_1}
-\supseteq \Lang{L'_0}$, and similarly $\Delta^*$ is maximal in
-$\Lang{L'_2} \supseteq \Lang{L'_0}$. It follows that either
-$!S \in \Gamma^*$ or $\lnot !S \in \Gamma^*$, and either
-$!S \in \Delta^*$ or $\lnot !S \in \Delta^*$. If $!S \in
-\Gamma^*$ and $\lnot !S \in \Delta^*$ then $!S$ would
-separate $\Gamma^*$ and $\Delta^*$; and if $\lnot !S \in
-\Gamma^*$ and $!S \in \Delta^*$ then $\Gamma^*$ and $\Delta^*$
-would be separated by $\lnot !S$. Hence, either $!S \in
-\Gamma^* \cap \Delta^*$ or $\lnot !S \in \Gamma^* \cap \Delta^*$,
-and $\Gamma^* \cap \Delta^*$ is maximal. 
+最后，我们证明 $\Gamma^* \cap \Delta^*$ 在 $\Lang{L}'_0$ 中是极大一致的。它显然是一致的，因为它是一致集合的交集。为证极大性，设 $!S \in \Lang{L}'_0$。现在，$\Gamma^*$ 在 $\Lang{L'_1}
+\supseteq \Lang{L'_0}$ 中极大，类似地 $\Delta^*$ 在 $\Lang{L'_2} \supseteq \Lang{L'_0}$ 中极大。于是，要么 $!S \in \Gamma^*$ 要么 $\lnot !S \in \Gamma^*$，并且要么 $!S \in \Delta^*$ 要么 $\lnot !S \in \Delta^*$。若 $!S \in \Gamma^*$ 且 $\lnot !S \in \Delta^*$，则 $!S$ 将分离 $\Gamma^*$ 与 $\Delta^*$；若 $\lnot !S \in \Gamma^*$ 且 $!S \in \Delta^*$，则 $\Gamma^*$ 与 $\Delta^*$ 将被 $\lnot !S$ 分离。因此，要么 $!S \in \Gamma^* \cap \Delta^*$，要么 $\lnot !S \in \Gamma^* \cap \Delta^*$，故 $\Gamma^* \cap \Delta^*$ 是极大的。
 
-Since $\Gamma^*$ is maximally consistent, it has a model
-$\Struct{M}'_1$ whose !!{domain} $\Domain{M'_1}$ comprises all and
-only the elements $\Assign{c}{M'_1}$ interpreting the
-!!{constant}s---just like in the proof of the completeness theorem
-(\olref[fol][com][cth]{thm:completeness}). Similarly, $\Delta^*$ has a
-model $\Struct{M}'_2$ whose !!{domain} $\Domain{M'_2}$ is given by the
-interpretations $\Assign{c}{M'_2}$ of the !!{constant}s.
+由于 $\Gamma^*$ 极大一致，它有一个模型 $\Struct{M}'_1$，其论域 $\Domain{M'_1}$ 恰好由解释常项符号的元素 $\Assign{c}{M'_1}$ 组成——正如完备性定理（\olref[fol][com][cth]{thm:completeness}）的证明中那样。类似地，$\Delta^*$ 有一个模型 $\Struct{M}'_2$，其论域 $\Domain{M'_2}$ 由常项符号的解释 $\Assign{c}{M'_2}$ 给出。
 
-Let $\Struct{M_1}$ be obtained from $\Struct{M'_1}$ by dropping
-interpretations for !!{constant}s, !!{function}s, and !!{predicate}s in
-$\Lang{L'_1} \setminus \Lang{L'_0}$, and similarly for
-$\Struct{M_2}$. Then the map $h \colon M_1 \to M_2$ defined by
-$h(\Assign{c}{M'_1}) = \Assign{c}{M'_2}$ is an
-isomorphism in $\Lang{L}'_0$, because $\Gamma^* \cap \Delta^*$ is
-maximally consistent in $\Lang{L}'_0$, as shown. This follows
-because any $\Lang{L}'_0$-!!{sentence} either belongs to both
-$\Gamma^*$ and $\Delta^*$, or to neither: so $\Assign{c}{M'_1} \in
-\Assign{P}{M'_1}$ if and only if $\Atom{P}{c} \in \Gamma^*$ if and only if
-$\Atom{P}{c} \in \Delta^*$ if and only if $\Assign{c}{M'_2} \in
-\Assign{P}{M'_2}$. The other conditions satisfied by isomorphisms
-can be established similarly.
+令 $\Struct{M_1}$ 是通过从 $\Struct{M'_1}$ 中丢弃 $\Lang{L'_1} \setminus \Lang{L'_0}$ 中的常项符号、函数符号和谓词符号的解释而得到的，$\Struct{M_2}$ 类似地得到。那么由 $h(\Assign{c}{M'_1}) = \Assign{c}{M'_2}$ 定义的映射 $h \colon M_1 \to M_2$ 是 $\Lang{L}'_0$ 上的一个同构，因为如前所示，$\Gamma^* \cap \Delta^*$ 在 $\Lang{L}'_0$ 中极大一致。这之所以成立，是因为任何 $\Lang{L}'_0$-语句要么同时属于 $\Gamma^*$ 和 $\Delta^*$，要么都不属于：所以 $\Assign{c}{M'_1} \in
+\Assign{P}{M'_1}$ 当且仅当 $\Atom{P}{c} \in \Gamma^*$ 当且仅当 $\Atom{P}{c} \in \Delta^*$ 当且仅当 $\Assign{c}{M'_2} \in
+\Assign{P}{M'_2}$。同构满足的其他条件可以类似地确立。
 
-Let us now define a model $\Struct{M}$ for the !!{language}
-$\Lang{L_1} \cup \Lang{L_2}$ as follows:
+现在为语言 $\Lang{L_1} \cup \Lang{L_2}$ 定义模型 $\Struct{M}$ 如下：
 \begin{enumerate}
-\item The !!{domain} $\Domain{M}$ is just $\Domain{M_2}$, i.e., the
-  set of all elements $\Assign{c}{M'_2}$; 
-\item If !!a{predicate}~$P$ is in $\Lang{L_2} \setminus
-  \Lang{L_1}$ then $\Assign{P}{M} = \Assign{P}{M'_2}$;
-\item If a predicate $P$ is in $\Lang{L}_1\setminus \Lang{L}_2$ then
-  $\Assign{P}{M} = h(\Assign{P}{M'_2})$, i.e.,
-  $\tuple{\Assign{c_1}{M'_2}, \dots, \Assign{c_n}{M'_2}} \in
-  \Assign{P}{M}$ if and only if $\tuple{\Assign{c_1}{M'_1}, \dots,
-  \Assign{c_n}{M'_1}} \in \Assign{P}{M'_1}$.
-\item If !!a{predicate} $P$ is in $\Lang{L}_0$ then $\Assign{P}{M} =
-  \Assign{P}{M'_2} = h(\Assign{P}{M'_1})$. 
-\item !!^{function}s of $\Lang{L}_1 \cup \Lang{L}_2$, including
-  !!{constant}s, are handled similarly.
+\item 论域 $\Domain{M}$ 就是 $\Domain{M_2}$，即所有 $\Assign{c}{M'_2}$ 的集合；
+\item 若谓词符号 $P$ 在 $\Lang{L_2} \setminus
+  \Lang{L_1}$ 中，则 $\Assign{P}{M} = \Assign{P}{M'_2}$；
+\item 若谓词 $P$ 在 $\Lang{L}_1\setminus \Lang{L}_2$ 中，则 $\Assign{P}{M} = h(\Assign{P}{M'_2})$，即 $\tuple{\Assign{c_1}{M'_2}, \dots, \Assign{c_n}{M'_2}} \in
+  \Assign{P}{M}$ 当且仅当 $\tuple{\Assign{c_1}{M'_1}, \dots,
+  \Assign{c_n}{M'_1}} \in \Assign{P}{M'_1}$。
+\item 若谓词符号 $P$ 在 $\Lang{L}_0$ 中，则 $\Assign{P}{M} =
+  \Assign{P}{M'_2} = h(\Assign{P}{M'_1})$。
+\item $\Lang{L}_1 \cup \Lang{L}_2$ 中的函数符号（包括常项符号）类似处理。
 \end{enumerate}
 
-Finally, one shows by induction on !!{formula}s that $\Struct{M}$ agrees
-with $\Struct{M'_1}$ on all !!{formula}s of $\Lang{L'_1}$ and with
-$\Struct{M'_2}$ on all !!{formula}s of $\Lang{L'_2}$. In particular,
-$\Struct{M} \Entails \Gamma^* \cup \Delta^*$, whence $\Struct{M}
-\Entails !A$ and $\Struct{M} \Entails \lnot!B$, and
-$\not\Entails !A \lif !B$. This concludes the proof of
-Craig's Interpolation Theorem.
+最后，通过对公式归纳可以证明，$\Struct{M}$ 在所有 $\Lang{L'_1}$ 的公式上与 $\Struct{M'_1}$ 相符，在所有 $\Lang{L'_2}$ 的公式上与 $\Struct{M'_2}$ 相符。特别地，$\Struct{M} \Entails \Gamma^* \cup \Delta^*$，因此 $\Struct{M} \Entails !A$ 且 $\Struct{M} \Entails \lnot!B$，从而 $\not\Entails !A \lif !B$。这就完成了 Craig 内插定理的证明。
 \end{proof}
 
 \end{document}

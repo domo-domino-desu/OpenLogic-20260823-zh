@@ -8,130 +8,111 @@
 
 \olfileid{inc}{int}{dec}
 
-\olsection{Undecidability and Incompleteness}
+\olsection{不可判定性与不完全性}
 
-G\"odel's proof of the incompleteness theorems require arithmetization
-of syntax. But even without that we can obtain some nice results just
-on the assumption that a theory !!{represents} all !!{decidable}
-relations.  The proof is a diagonal argument similar to the proof of
-the undecidability of the halting problem.
+G\"odel 对不完全性定理的证明需要对语法进行算术化。
+但即使没有这一点，仅基于一个理论能表示所有可判定关系这一假设，我们也能得到一些很好的结果。
+其证明是一个类似于停机问题不可判定性证明的对角线论证。
 
 \begin{thm}
-If $\Gamma$ is a consistent theory that !!{represents} every
-!!{decidable} relation, then $\Gamma$ is not !!{decidable}.
+若 $\Gamma$ 是一个表示所有可判定关系的一致理论，则 $\Gamma$ 不可判定。
 \end{thm}
 
 \begin{proof}
-Suppose $\Gamma$ were !!{decidable}. We show that if $\Gamma$
-!!{represents} every !!{decidable} relation, it must be inconsistent.
+假设 $\Gamma$ 是可判定的。我们证明，若 $\Gamma$
+表示所有可判定关系，则它必然不一致。
 
-!!^{decidable} properties (one-place relations) are represented by
-!!{formula}s with one free variable. Let $!A_0(x)$, $!A_1(x)$, \dots,
-be a computable enumeration of all such !!{formula}s.  Now consider
-the following set $D \subseteq \Nat$:
+可判定的性质（一元关系）由含一个自由变元的公式表示。
+令 $!A_0(x)$, $!A_1(x)$, \dots,
+为所有这些公式的一个可计算枚举。现在考虑以下集合 $D \subseteq \Nat$：
 \[
 D = \Setabs{n}{\Gamma \Proves \lnot !A_n(\num{n})}
 \]
-The set $D$ is !!{decidable}, since we can test if $n \in D$ by first
-computing $!A_n(x)$, and from this $\lnot !A_n(\num{n})$. Obviously,
-substituting the term $\num{n}$ for every free occurrence of $x$ in
-$!A_n(x)$ and prefixing $!A(\num{n})$ by $\lnot$ is a mechanical
-matter.  By assumption, $\Gamma$ is !!{decidable}, so we can test if
-$\lnot !A(\num{n}) \in \Gamma$. If it is, $n \in D$, and if it isn't,
-$n \notin D$. So $D$ is likewise !!{decidable}.
+集合 $D$ 是可判定的，因为我们可以先计算 $!A_n(x)$，再由其 $\lnot !A_n(\num{n})$，从而检验是否有 $n \in D$。显然，
+将项 $\num{n}$ 代入 $!A_n(x)$ 中 $x$ 的所有自由出现，
+并在 $!A(\num{n})$ 前加上 $\lnot$，这些都是机械操作。
+根据假设，$\Gamma$ 是可判定的，因此我们可以检验是否
+$\lnot !A(\num{n}) \in \Gamma$。若是，则 $n \in D$；若不是，则
+$n \notin D$。所以 $D$ 同样是可判定的。
 
-Since $\Gamma$ !!{represents} all !!{decidable} properties, it
-!!{represents}~$D$.  And the !!{formula}s which !!{represents}s $D$
-in~$\Gamma$ are all among $!A_0(x)$, $!A_1(x)$, \dots. So let $d$ be a
-number such that $!A_d(x)$ !!{represents} $D$ in~$\Gamma$.  If $d
-\notin D$, then, since $!A_d(x)$ !!{represents}~$D$, $\Gamma \Proves
-\lnot !A_d(\num{d})$. But that means that $d$ meets the defining
-condition of~$D$, and so $d \in D$. This contradicts $d \notin D$. So
-by indirect proof, $d \in D$.
+由于 $\Gamma$ 表示所有可判定性质，它
+也表示~$D$。而在~$\Gamma$ 中表示 $D$
+的公式都在 $!A_0(x)$, $!A_1(x)$, \dots 之中。
+令 $d$ 是满足 $!A_d(x)$ 在~$\Gamma$ 中表示 $D$ 的数。
+若 $d \notin D$，那么由于 $!A_d(x)$ 表示~$D$，$\Gamma \Proves
+\lnot !A_d(\num{d})$。但这意味着 $d$ 满足~$D$ 的定义，
+因此 $d \in D$。这与 $d \notin D$ 矛盾。
+故由反证法，$d \in D$。
 
-Since $d \in D$, by the definition of~$D$, $\Gamma \Proves \lnot
-!A_d(\num{d})$. On the other hand, since $!A_d(x)$ !!{represents}~$D$
-in $\Gamma$, $\Gamma \Proves !A_d(\num{d})$. Hence, $\Gamma$ is
-inconsistent.
+既然 $d \in D$，由~$D$ 的定义，$\Gamma \Proves \lnot
+!A_d(\num{d})$。另一方面，由于 $!A_d(x)$ 在 $\Gamma$ 中表示~$D$，
+$\Gamma \Proves !A_d(\num{d})$。因此，$\Gamma$ 是不一致的。
 \end{proof}
 
 \begin{explain}
-The preceding theorem shows that no consistent theory that
-!!{represents} all !!{decidable} relations can be !!{decidable}. We
-will show that $\Th{Q}$ does !!{represents}s all !!{decidable}
-relations; this means that all theories that include $\Th{Q}$, such as
-$\Th{PA}$ and $\Th{TA}$, also do, and hence also are not
-!!{decidable}. (Since all these theories are true in the standard
-model, they are all consistent.)
+前述定理表明，任何表示所有可判定关系的一致理论都不可能是可判定的。
+我们将证明 $\Th{Q}$ 确实表示了所有可判定
+关系；这意味着所有包含 $\Th{Q}$ 的理论，例如
+$\Th{PA}$ 和 $\Th{TA}$，也都表示所有可判定关系，因而也都不可判定。
+（由于这些理论在标准模型中为真，
+它们都是一致的。）
 
-We can also use this result to obtain a weak version of the first
-incompleteness theorem.  Any theory that is !!{axiomatizable} and
-!!{complete} is !!{decidable}.  Consistent theories that are
-!!{axiomatizable} and !!{represents}s all !!{decidable} properties
-then cannot be !!{complete}.
+我们也可以利用这个结果来得到第一不完全性定理的一个弱形式。
+任何可公理化且完全的理论都是可判定的。
+因此，一致、可公理化且表示所有可判定性质的理论
+就不可能是完全的。
 \end{explain}
 
 \begin{thm}
-If $\Gamma$ is !!{axiomatizable} and !!{complete} it is !!{decidable}.
+若 $\Gamma$ 可公理化且完全，则它是可判定的。
 \end{thm}
 
 \begin{proof}
-Any inconsistent theory is !!{decidable}, since inconsistent theories
-contain all !!{sentence}s, so the answer to the question ``is $!A \in
-\Gamma$'' is always ``yes,'' i.e., can be decided.
+任何不一致的理论都是可判定的，因为不一致的理论
+包含所有语句，所以对“$!A \in
+\Gamma$ 吗？”这一问题的回答总是“是”，即可判定。
 
-So suppose $\Gamma$ is consistent, and furthermore is
-!!{axiomatizable}, and !!{complete}. Since $\Gamma$ is
-!!{axiomatizable}, it is !!{computably enumerable}. For we can
-enumerate all the correct !!{derivation}s from the axioms of~$\Gamma$
-by a computable function. From a correct !!{derivation} we can compute
-the !!{sentence} it !!{derive}s, and so together there is a computable
-function that enumerates all theorems of~$\Gamma$.  A !!{sentence} is
-a theorem of~$\Gamma$ iff $\lnot !A$ is not a theorem, since $\Gamma$
-is consistent and !!{complete}.  We can therefore decide if $!A \in
-\Gamma$ as follows. Enumerate all theorems of $\Gamma$. When $!A$
-appears on this list, we know that $\Gamma \Proves !A$. When $\lnot
-!A$ appears on this list, we know that $\Gamma \Proves/ !A$.  Since
-$\Gamma$ is !!{complete}, one of these cases eventually obtains, so
-the procedure eventually produces an answer.
+所以假设 $\Gamma$ 是一致的，并且是
+可公理化和完全的。由于 $\Gamma$ 可公理化，
+它是可计算枚举的。因为我们可以用一个可计算函数
+枚举从 $\Gamma$ 的公理出发的所有正确推导。
+由一个正确推导可以计算出它所推导的语句，
+因此综合起来，存在一个可计算函数能枚举 $\Gamma$ 的所有定理。
+由于 $\Gamma$ 是一致且完全的，语句 $!A$ 是 $\Gamma$ 的定理，当且仅当 $\lnot !A$ 不是定理。
+因此，我们可以如下判定是否 $!A \in
+\Gamma$：枚举 $\Gamma$ 的所有定理。当 $!A$
+出现在此列表中时，可知 $\Gamma \Proves !A$。当 $\lnot
+!A$ 出现在此列表中时，可知 $\Gamma \Proves/ !A$。由于
+$\Gamma$ 是完全的，这两种情况最终必居其一，因此
+该程序最终必能给出答案。
 \end{proof}
 
 \begin{cor}
 \ollabel{cor:incompleteness}
-If $\Gamma$ is consistent, !!{axiomatizable}, and !!{represents} every
-!!{decidable} property, it is not !!{complete}.
+若 $\Gamma$ 是一致的、可公理化的，并且表示所有
+可判定性质，则它不是完全的。
 \end{cor}
 
 \begin{proof}
-If $\Gamma$ were !!{complete}, it would be !!{decidable} by the
-previous theorem (since it is !!{axiomatizable} and consistent). But
-since $\Gamma$ !!{represents} every !!{decidable} property, it is not
-!!{decidable}, by the first theorem.
+若 $\Gamma$ 是完全的，则根据前一定理（因为 $\Gamma$ 可公理化且一致），
+它是可判定的。但既然 $\Gamma$ 表示所有可判定性质，由前一定理，
+它是不可判定的。
 \end{proof}
 
 \begin{prob}
-Show that $\Th{TA} = \Setabs{!A}{\Sat{N}{!A}}$ is not
-!!{axiomatizable}. You may assume that $\Th{TA}$ represents all
-decidable properties.
+证明 $\Th{TA} = \Setabs{!A}{\Sat{N}{!A}}$ 不可公理化。可假设 $\Th{TA}$ 表示所有可判定性质。
 \end{prob}
 
-Once we have established that, e.g., $\Th{Q}$, !!{represents} all
-!!{decidable} properties, the corollary tells us that $\Th{Q}$ must be
-incomplete. However, its proof does not provide an example of an
-independent !!{sentence}; it merely shows that such !!a{sentence}
-must exist. For this, we have to arithmetize syntax and follow
-G\"odel's original proof idea.  And of course, we still have to show
-the first claim, namely that $\Th{Q}$ does, in fact, !!{represents}s
-all !!{decidable} properties.
+一旦确立了例如 $\Th{Q}$ 表示所有可判定性质，
+该推论便告诉我们 $\Th{Q}$ 必定是不完全的。
+然而，该推论的证明并未给出独立语句的实例；
+它仅仅表明这样的语句必然存在。
+为此，我们必须对语法进行算术化，并遵循 G\"odel 的原始证明思路。
+当然，我们还得证明第一个断言，即 $\Th{Q}$ 确实表示了所有可判定性质。
 
-It should be noted that not every \emph{interesting} theory is
-incomplete or undecidable. There are many theories that are
-sufficiently strong to describe interesting mathematical facts that do
-not satisify the conditions of G\"odel's result. For instance,
-$\Th{Pres} = \Setabs{!A \in \Lang{L_{A^+}}}{\Sat{N}{!A}}$, the set of
-!!{sentence}s of the language of arithmetic without~$\times$ true in
-the standard model, is both complete and decidable. This theory is
-called Presburger arithmetic, and proves all the truths about natural
-numbers that can be formulated just with $\Obj{0}$, $\prime$, and~$+$.
+应当注意的是，并非每个\emph{有趣的}理论都是不完全的或不可判定的。
+有许多理论足以描述有趣的数学事实，却并不满足 G\"odel 结果的条件。
+例如，$\Th{Pres} = \Setabs{!A \in \Lang{L_{A^+}}}{\Sat{N}{!A}}$（即在标准模型中为真、不含~$\times$ 的算术语言语句的集合）既是完全的，又是可判定的。
+这个理论称为 Presburger 算术，它证明了所有仅用 $\Obj{0}$、$\prime$ 和~$+$ 就能表述的关于自然数的真命题。
 
 \end{document}

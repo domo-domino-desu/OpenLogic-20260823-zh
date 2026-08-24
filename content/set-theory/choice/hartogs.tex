@@ -3,84 +3,53 @@
 \begin{document}
 
 \olfileid{sth}{choice}{hartogs}
-\olsection{Comparability and Hartogs' Lemma}
+\olsection{可比性与Hartogs（哈托格斯）引理}
 
-That's the plus side. Here's the minus side. Without Choice, things
-get \emph{messy}. To see why, here is a nice result due to
-\cite{Hartogs1915}:
+好的一面就说这些。坏的一面则是，没有选择公理，情况会变得\emph{混乱}。为了看清这一点，这里给出一个由\cite{Hartogs1915}得到的优美结果：
 
-\begin{lem}[\emph{in $\ZF$}]\ollabel{HartogsLemma}
-For any set $A$, there is an ordinal $\alpha$ such that $\cardnless{\alpha}{A}$
+\begin{lem}[\emph{在 $\ZF$ 中}]\ollabel{HartogsLemma}
+对于任意集合 $A$，存在序数 $\alpha$ 使得 $\cardnless{\alpha}{A}$。
 \end{lem}
 
 \begin{proof}
-If $B \subseteq A$ and $R \subseteq B^2$, then $\tuple{B, R} \subseteq
-V_{\setrank{A}+4}$ by
-\olref[ord-arithmetic][using-addition]{rankcomputation}. So, using
-Separation, consider:
+如果 $B \subseteq A$ 且 $R \subseteq B^2$，那么根据\olref[ord-arithmetic][using-addition]{rankcomputation}，有$\tuple{B, R} \subseteq
+V_{\setrank{A}+4}$。因此，运用分离公理，考虑集合：
 \[
-	C = \Setabs{\tuple{B, R} \in V_{\setrank{A}+5}}{B\subseteq A 
-	\text{ and $\tuple{B, R}$ is a well-ordering}}
+	C = \Setabs{\tuple{B, R} \in V_{\setrank{A}+5}}{B\subseteq A
+	\text{ 且 $\tuple{B, R}$ 是良序}}
 \]
-Using Replacement and
-\olref[ordinals][ordtype]{thmOrdinalRepresentation}, form the set: 
+运用替换公理和\olref[ordinals][ordtype]{thmOrdinalRepresentation}，构成集合：
 \[
 	\alpha = \Setabs{\ordtype{B, R}}{\tuple{B, R} \in C}.
 \]
-By \olref[ordinals][basic]{corordtransitiveord}, $\alpha$ is an
-ordinal, since it is a transitive set of ordinals. After all, if
-$\gamma \in \beta \in \alpha$, then $\beta = \ordtype{B, R}$ for some
-$B \subseteq R$, whereupon $\gamma = \ordtype{B_b, R_b}$ for some $b
-\in B$ by \olref[ordinals][iso]{wellordinitialsegment}, so that
-$\gamma \in \alpha$. 
+根据\olref[ordinals][basic]{corordtransitiveord}，$\alpha$ 是一个序数，因为它是一个由序数构成的传递集。事实上，若 $\gamma \in \beta \in \alpha$，则存在 $B \subseteq R$ 使得 $\beta = \ordtype{B, R}$，于是由\olref[ordinals][iso]{wellordinitialsegment}，存在 $b \in B$ 使得$\gamma = \ordtype{B_b, R_b}$，从而 $\gamma \in \alpha$。
 
-For reductio, suppose there is !!a{injection} $f \colon \alpha \to A$.
-Then, where:
+用反证法，假设存在单射 $f \colon \alpha \to A$。令：
 \begin{align*}
 	B &= \ran{f}\\
 	R &= \Setabs{\tuple{f(\alpha), f(\beta)} \in A \times A}{\alpha \in \beta}.
 \end{align*}
-Clearly $\alpha = \ordtype{B, R}$ and $\tuple{B, R} \in C$. So $\alpha
-\in \alpha$, which is a contradiction.
+显然 $\alpha = \ordtype{B, R}$ 且 $\tuple{B, R} \in C$。所以 $\alpha \in \alpha$，矛盾。
 \end{proof}
 
-This entails a deep result:
+这蕴涵了一个深刻的结果：
 
-\begin{thm}[\emph{in $\ZF$}]
-The following claims are equivalent:
+\begin{thm}[\emph{在 $\ZF$ 中}]
+下列命题等价：
 \begin{enumerate}
-	\item\ollabel{equivwo} The Axiom of Well-Ordering
-	\item\ollabel{equivcompare} Either $\cardle{A}{B}$ or
-	$\cardle{B}{A}$, for any sets $A$ and $B$
+	\item\ollabel{equivwo} 良序公理
+	\item\ollabel{equivcompare} 对任意集合 $A$ 和 $B$，要么 $\cardle{A}{B}$ 要么 $\cardle{B}{A}$
 \end{enumerate}
 \end{thm}
 
 \begin{proof}
-\emph{\olref{equivwo} $\Rightarrow$ \olref{equivcompare}.} Fix $A$ and
-$B$. Invoking \olref{equivwo}, there are well-orderings $\tuple{A, R}$
-and $\tuple{B, S}$. Invoking
-\olref[ordinals][ordtype]{thmOrdinalRepresentation}, let $f \colon
-\alpha \to \tuple{A, R}$ and $g \colon \beta \to \tuple{B, S}$ be
-isomorphisms. By \olref[sth][ordinals][basic]{ordinalsaresubsets}, either $\alpha \subseteq \beta$ or $\beta \subseteq \alpha$. If $\alpha \subseteq \beta$, then $\comp{f^{-1}}{g} \colon A \to B$ is !!a{injection}, and hence
-$\cardle{A}{B}$; similarly, if $\beta \subseteq \alpha$ then $\cardle{B}{A}$.
+\emph{\olref{equivwo} $\Rightarrow$ \olref{equivcompare}。}固定 $A$ 和 $B$。由\olref{equivwo}，存在良序 $\tuple{A, R}$ 和 $\tuple{B, S}$。根据\olref[ordinals][ordtype]{thmOrdinalRepresentation}，令 $f \colon \alpha \to \tuple{A, R}$ 和 $g \colon \beta \to \tuple{B, S}$ 为同构映射。由\olref[sth][ordinals][basic]{ordinalsaresubsets}，要么 $\alpha \subseteq \beta$ 要么 $\beta \subseteq \alpha$。若 $\alpha \subseteq \beta$，则$\comp{f^{-1}}{g} \colon A \to B$是单射，因而 $\cardle{A}{B}$；类似地，若 $\beta \subseteq \alpha$ 则 $\cardle{B}{A}$。
 
-\emph{\olref{equivcompare} $\Rightarrow$ \olref{equivwo}.} Fix $A$; by
-\olref{HartogsLemma} there is some ordinal $\beta$ such that
-$\cardnless{\beta}{A}$. Invoking \olref{equivcompare}, we have
-$\cardle{A}{\beta}$. So there is some !!{injection} $f \colon A \to
-\beta$, and we can use this injection to well-order the elements of
-$A$, by defining an order $\Setabs{\tuple{a, b} \in A \times A}{f(a)
-\in f(b)}$.
+\emph{\olref{equivcompare} $\Rightarrow$ \olref{equivwo}。}固定 $A$；由\olref{HartogsLemma}，存在某个序数 $\beta$ 使得 $\cardnless{\beta}{A}$。根据\olref{equivcompare}，我们有 $\cardle{A}{\beta}$。所以存在某个单射 $f \colon A \to \beta$，利用此单射，我们可以通过定义序关系$\Setabs{\tuple{a, b} \in A \times A}{f(a)
+\in f(b)}$来对 $A$ 的元素进行良序化。
 \end{proof}
 \noindent
-As an immediate consequence: if Well-Ordering fails, then some sets
-are \emph{literally incomparable} with regard to their size. So, if
-Well-Ordering fails, then transfinite cardinal arithmetic will be
-messy. For example, we will have to abandon the idea that if $A$ and
-$B$ are infinite then $\cardeq{\cardeq{A \disjointsum B}{A \times
-B}}{M}$, where $M$ is the larger of $A$ and $B$ (see
-\olref[card-arithmetic][simp]{cardplustimesmax}). The problem is
-simple: if we cannot \emph{compare} the size of  $A$ and $B$, then it
-is nonsensical to ask which is larger.
+一个直接的推论是：如果良序公理不成立，那么有些集合在大小上是\emph{真正不可比的}。因此，如果良序公理不成立，超限基数运算将会混乱。例如，我们将不得不放弃这样的想法：若 $A$ 和 $B$ 都是无限的，则$\cardeq{\cardeq{A \disjointsum B}{A \times
+B}}{M}$，其中 $M$ 是 $A$ 和 $B$ 中较大者（参见\olref[card-arithmetic][simp]{cardplustimesmax}）。问题很简单：如果我们无法\emph{比较} $A$ 和 $B$ 的大小，那么讨论哪个更大便毫无意义。
 
 \end{document}

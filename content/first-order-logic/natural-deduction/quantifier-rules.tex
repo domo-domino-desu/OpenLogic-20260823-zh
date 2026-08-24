@@ -8,9 +8,9 @@
 
 \olfileid{fol}{ntd}{qrl}
 
-\olsection{Quantifier Rules}
+\olsection{量词规则}
 
-\subsection{Rules for $\lforall$}
+\subsection{$\lforall$ 的规则}
 
 \begin{defish}
 \AxiomC{$!A(a)$}
@@ -24,16 +24,9 @@
 \DisplayProof
 \end{defish}
 
-In the rules for~$\lforall$, $t$ is a closed term (a term that does
-not contain any variables), and $a$~is !!a{constant} which does not
-occur in the conclusion~$\lforall[x][!A(x)]$, or in any assumption
-which is !!{undischarged} in the !!{derivation} ending with the
-premise~$!A(a)$. We call $a$ the \emph{eigenvariable} of the
-\Intro{\lforall} inference.\footnote{We use the term ``eigenvariable''
-even though $a$ in the above rule is a constant. This has historical
-reasons.}
+在 $\lforall$ 的规则中，$t$ 是闭项（不含任何变元的项），而 $a$ 是常项符号，它不出现在结论~$\lforall[x][!A(x)]$ 中，也不出现在以 $!A(a)$ 为前提的推导中任何未解除的假设里。我们称 $a$ 为 \Intro{\lforall} 推理的\emph{特征变元}。\footnote{尽管上面规则中的 $a$ 是常项，我们仍使用“特征变元”这个术语。这是历史原因。}
 
-\subsection{Rules for $\lexists$}
+\subsection{$\lexists$ 的规则}
 
 \begin{defish}
 \AxiomC{$\Atom{!A}{t}$}
@@ -49,49 +42,23 @@ reasons.}
 \DisplayProof
 \end{defish}
 
-Again, $t$ is a closed term, and $a$ is !!a{constant} which does not
-occur in the premise $\lexists[x][!A(x)]$, in the conclusion~$!C$, or
-any assumption which is !!{undischarged} in the !!{derivation}s ending
-with the two premises (other than the assumptions $!A(a)$). We call
-$a$ the \emph{eigenvariable} of the \Elim{\lexists} inference.
+同样，$t$ 是闭项，$a$ 是常项符号，它不出现在前提~$\lexists[x][!A(x)]$ 或结论~$!C$ 中，也不出现在以这两个前提结尾的推导中任何未解除的假设里（假设 $!A(a)$ 本身除外）。我们称 $a$ 为 \Elim{\lexists} 推理的\emph{特征变元}。
 
-The condition that an eigenvariable neither occur in the premises nor
-in any assumption that is !!{undischarged} in the !!{derivation}s
-leading to the premises for the \Intro{\lforall} or \Elim{\lexists}
-inference is called the \emph{eigenvariable condition}.
+特征变元既不出现在前提中，也不出现在通往 \Intro{\lforall} 或 \Elim{\lexists} 推理之前提的推导中任何未解除的假设里，这一条件被称为\emph{特征变元条件}。
 
 \begin{explain}
-Recall the convention that when $!A$ is !!a{formula} with the
-!!{variable}~$x$ free, we indicate this by writing~$!A(x)$. In the
-same context, $!A(t)$ then is short for~$\Subst{!A}{t}{x}$. So we
-could also write the $\Intro\lexists$ rule as:
+回想一下我们的约定：当 $!A$ 是变元~$x$ 在其中自由的公式时，我们将其记为~$!A(x)$。在同一语境下，$!A(t)$ 则是~$\Subst{!A}{t}{x}$ 的简写。因此，我们也可以将 $\Intro\lexists$ 规则写为：
 \begin{prooftree}
 \AxiomC{$\Subst{!A}{t}{x}$}
 \RightLabel{\Intro{\lexists}}
 \UnaryInfC{$\lexists[x][!A]$}
 \end{prooftree}
-Note that $t$ may already occur in~$!A$, e.g., $!A$~might
-be~$\Atom{\Obj P}{t,x}$.  Thus, inferring $\lexists[x][\Atom{\Obj
-P}{t,x}]$ from~$\Atom{\Obj P}{t,t}$ is a correct application
-of~$\Intro\lexists$---you may ``replace'' one or more, and not
-necessarily all, occurrences of~$t$ in the premise by the bound
-!!{variable}~$x$. However, the eigenvariable conditions in
-$\Intro\lforall$ and~$\Elim\lexists$ require that the !!{constant}~$a$
-does not occur in~$!A$. So, you cannot correctly infer
-$\lforall[x][\Atom{\Obj P}{a,x}]$ from $\Atom{\Obj P}{a,a}$
-using~$\Intro\lforall$.
+注意，$t$ 可能已经在~$!A$ 中出现，例如 $!A$ 可能是~$\Atom{\Obj P}{t,x}$。因此，从~$\Atom{\Obj P}{t,t}$ 推出 $\lexists[x][\Atom{\Obj
+P}{t,x}]$ 是~$\Intro\lexists$ 的一个正确应用——你可以用约束变元~$x$“替换”前提中~$t$ 的一次或多次（且不必是全部）出现。然而，$\Intro\lforall$ 和~$\Elim\lexists$ 中的特征变元条件要求常项符号~$a$ 不出现在~$!A$ 中。所以，你不能使用~$\Intro\lforall$ 从 $\Atom{\Obj P}{a,a}$ 正确地推出 $\lforall[x][\Atom{\Obj P}{a,x}]$。
 \end{explain}
 
 \begin{explain}
-In \Intro{\lexists} and \Elim{\lforall} there are no restrictions, and
-the term~$t$ can be anything, so we do not have to worry about any
-conditions. On the other hand, in the \Elim{\lexists} and
-\Intro{\lforall} rules, the eigenvariable condition requires that the
-!!{constant}~$a$ does not occur anywhere in the conclusion or in an
-!!{undischarged} assumption. The condition is necessary to ensure that
-the system is sound, i.e., only !!{derive}s !!{sentence}s from
-!!{undischarged} assumptions from which they follow. Without this
-condition, the following would be allowed:
+在 \Intro{\lexists} 和 \Elim{\lforall} 中没有任何限制，项~$t$ 可以是任意项，因此我们无需考虑任何条件。另一方面，在 \Elim{\lexists} 和 \Intro{\lforall} 规则中，特征变元条件要求常项符号~$a$ 不出现在结论或任何未解除的假设中。该条件对于确保系统的可靠性是必要的，即系统只能从未解除的假设中推导出作为其逻辑后承的语句。如果没有这个条件，以下推导就会被允许：
 \begin{prooftree}
   \AxiomC{$\lexists[x][!A(x)]$}
   \AxiomC{$\Discharge{!A(a)}{1}$}
@@ -100,12 +67,9 @@ condition, the following would be allowed:
   \RightLabel{\Elim{\lexists}}
   \BinaryInfC{$\lforall[x][!A(x)]$}
 \end{prooftree}
-However, $\lexists[x][!A(x)] \Entails/ \lforall[x][!A(x)]$.
+然而，$\lexists[x][!A(x)] \Entails/ \lforall[x][!A(x)]$。
 
-As the elimination rules for quantifiers only allow substituting
-closed terms for !!{variable}s, it follows that any !!{formula} that
-can be derived from a set of !!{sentence}s is itself !!a{sentence}.
+由于量词的消去规则只允许将闭项代入变元，因此，任何能从一个语句集合中推导出的公式本身也是语句。
 \end{explain}
-
 
 \end{document}

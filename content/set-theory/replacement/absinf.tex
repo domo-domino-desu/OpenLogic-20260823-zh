@@ -3,107 +3,42 @@
 \begin{document}
 
 \olfileid{sth}{replacement}{absinf}
-\olsection{Replacement and ``Absolute Infinity''}
+\olsection{替换与“绝对无穷”}
 
-We will now put \limofsize{} behind us, and explore a different
-family of (intrinsic) attempts to justify Replacement, which do take
-seriously the idea of the sets as formed in stages.
+现在我们将 \limofsize{} 暂且搁置，去探索为替换公理提供辩护的另一类（内在）尝试，这些尝试确实认真对待了集合是分阶段形成的观念。
 
-When we first outlined the iterative process, we offered some
-principles which explained what happens at each stage. These were
-\stageshier, \stagesord, and \stagesacc. Later, we added some
-principles which told us something about the number of stages:
-\stagessucc{} told us that the process of set-formation never ends,
-and \stagesinf{} told us that the process goes through an infinite-th
-stage. 
+当我们最初概述迭代过程时，提出了一些解释各个阶段发生何事的原则，即 \stageshier、\stagesord 和 \stagesacc。后来，我们又补充了一些说明阶段数量的原则：\stagessucc{} 表明集合形成的过程永无止境，而 \stagesinf{} 表明该过程会经历一个无限阶段。
 
-It is reasonable to suggest that these two latter principles fall out
-of some a broader principle, like:
+我们有理由认为，后两个原则源自某个更宽泛的原则，例如：
+
 \begin{enumerate}
-	\item[] \stagesinex. There are absolutely infinitely many stages;
-	the hierarchy is as tall as it could possibly be.
+	\item[] \stagesinex. 存在绝对无穷多的阶段；层级的高度达到了其可能达到的极限。
 \end{enumerate}
-Obviously this is an informal principle. But even if it is not
-immediately \emph{entailed} by the cumulative-iterative conception of
-set, it certainly seems \emph{consonant} with it. At the very least,
-and unlike \limofsize, it retains the idea that sets are formed
-stage-by-stage. 
 
-The hope, now, is to leverage \stagesinex{} into a justification of
-Replacement. So let us see how this might be done. 
+显然，这是一条非形式的原则。但即便它并非由集合的累积迭代观念直接\emph{推出}，它也肯定与之\emph{相协调}。至少，与 \limofsize{} 不同，它保留了集合是逐步形成的想法。
 
-In \olref[ordinals][idea]{sec}, we saw that it is easy to
-construct a well-ordering which (morally) should be isomorphic to
-$\omega+\omega$. Otherwise put, we can easily imagine a stage-by-stage
-iterative process, whose order-type (morally) is $\omega+\omega$. As
-such, if we have accepted \stagesinex, then we should surely accept
-that there is at least an $\omega+\omega$-th stage of the hierarchy,
-i.e., $V_{\omega+\omega}$, for the hierarchy surely \emph{could}
-continue thus far. 
+现在，我们希望能借助 \stagesinex{} 为替换公理提供辩护。那么，让我们来看看这是如何做到的。
 
-This thought generalizes as follows: for any well-ordering, the
-process of building the iterative hierarchy should run at least as far
-as that well-ordering. And we could guarantee this, just by treating
-\olref[ordinals][ordtype]{thmOrdinalRepresentation} as an
-\emph{axiom}. This would tell us that any well-ordering is isomorphic
-to a von Neumann ordinal. Since each von Neumann ordinal will be equal
-to its own rank, \olref[ordinals][ordtype]{thmOrdinalRepresentation}
-will then tell us that, whenever we can describe a well-ordering in
-our set theory, the iterative process of set building must outrun that
-well-ordering. 
+在 \olref[ordinals][idea]{sec} 中，我们看到很容易构造一个（实质上）理应与 $\omega+\omega$ 同构的良序。换言之，我们很容易想象一个逐步迭代的进程，其序型（实质上）是 $\omega+\omega$。既然如此，如果我们已经接受了 \stagesinex，那么我们当然应该接受层级中至少存在第 $\omega+\omega$ 个阶段，即 $V_{\omega+\omega}$，因为层级显然\emph{可以}延伸得那么远。
 
-This idea certainly seems like a corollary of \stagesinex.
-Unfortunately, if our aim is to extract Replacement from this idea,
-then we face a simple, technical, barrier: Replacement is strictly stronger than
-\olref[ordinals][ordtype]{thmOrdinalRepresentation}. (This observation is made by 
-\citet[\S13.2]{Potter2004}; we will prove it in \olref[sth][replacement][finiteaxiomatizability]{sec}.)
+这一想法可以推广如下：对于任何良序，构建迭代层级的进程都应至少推进到与该良序同样远。而我们只需将 \olref[ordinals][ordtype]{thmOrdinalRepresentation} 视为一条\emph{公理}，就能保证这一点。它告诉我们，任何良序都同构于某个 von Neumann（冯·诺伊曼）序数。由于每个 von Neumann 序数都等于它自身的秩，\olref[ordinals][ordtype]{thmOrdinalRepresentation} 便告诉我们：每当我们在集合论中能描述一个良序时，集合构建的迭代过程就必定超越该良序。
 
-The upshot is that, if we are going to understand \stagesinex{} in
-such a way as to yield Replacement, then it cannot \emph{merely} say
-that the hierarchy outruns any well-ordering. It must make a stronger
-claim than that. To this end, \cite{Shoenfield:AST} proposed a very
-natural strengthening of the idea, as follows: the hierarchy is not
-\emph{cofinal} with any set.\footnote{G\"odel seems to have proposed a
-similar thought; see \citet[p.~223]{Potter2004}. For discussion of G\"odel and \citeauthor{Shoenfield:AST}, see \citet[90--5]{Incurvati2020}.} In slightly more detail:
-if $\tau$ is a mapping which sends sets to stages of the hierarchy,
-the image of any set $A$ under $\tau$ does not exhaust the hierarchy.
-Otherwise put (schematically): 
+这显然像是 \stagesinex{} 的一个推论。不幸的是，如果我们的目标是从这个想法中导出替换公理，那么我们就会面临一个简单的技术障碍：替换公理严格强于 \olref[ordinals][ordtype]{thmOrdinalRepresentation}。（这一观察见于 \citet[\S13.2]{Potter2004}；我们将在 \olref[sth][replacement][finiteaxiomatizability]{sec} 中给出证明。）
+
+由此可见，如果我们打算以一种能得出替换公理的方式来理解 \stagesinex{}，那么它就不能\emph{仅仅}断言层级超越了任何良序，而必须做出更强的断言。为此，\cite{Shoenfield:AST} 对该想法提出了一个极其自然的强化，即：层级不与任何集合\emph{共尾}。\footnote{G\"odel 似乎提出过类似的想法；参见 \citet[p.~223]{Potter2004}。关于 G\"odel 和 \citeauthor{Shoenfield:AST} 的讨论，参见 \citet[90--5]{Incurvati2020}。} 更具体地说：如果 $\tau$ 是一个将集合映射到层级阶段的函数，那么任何集合 $A$ 在 $\tau$ 下的像都不能穷尽整个层级。换言之（以模式形式表述）：
+
 \begin{enumerate}
-	\item[] \stagescofin. If $A$ is a set and $\tau(x)$ is a stage for
-	every $x \in A$, then there is a stage which comes after each
-	$\tau(x)$ for $x \in A$.
+	\item[] \stagescofin. 如果 $A$ 是一个集合，且对每个 $x \in A$，$\tau(x)$ 都是一个阶段，那么存在一个晚于所有 $x \in A$ 对应的 $\tau(x)$ 的阶段。
 \end{enumerate}
-It is obvious that $\ZF$ proves a suitably formalised version of
-\stagescofin. Conversely, we can informally argue that \stagescofin{}
-justifies Replacement.\footnote{It would be harder to prove
-Replacement using some formalisation of \stagescofin, since $\Z$ on
-its own is not strong enough to define the stages, so it is not clear
-how one would formalise \stagescofin. One option, though, is to
-work in some extension of $\LT$, as discussed in \olref[sth][replacement][extrinsic]{sec}.} For suppose $(\forall x \in A)\lexists![y][\phi(x,y)]$. Then for each $x \in A$, let $\sigma(x)$ be the $y$ such
-that $\phi(x,y)$, and let $\tau(x)$ be the stage at which $\sigma(x)$
-is first formed. By \stagescofin, there is a stage $V$ such that
-$(\forall x \in A)\tau(x)\in V$. Now since each $\tau(x) \in V$ and
-$\sigma(x) \subseteq \tau(x)$, by Separation we can obtain $\Setabs{y
-\in V}{(\exists x \in A)\sigma(x) = y} = \Setabs{y}{(\exists x \in
-A)\phi(x,y)}$.
+
+显然，$\ZF$ 能够证明 \stagescofin{} 经过适当形式化后的版本。反过来，我们可以非形式地论证，\stagescofin{} 为替换公理提供了辩护。\footnote{要用 \stagescofin{} 的某个形式化版本来证明替换公理会更困难，因为单靠 $\Z$ 本身不足以定义阶段，所以不清楚该如何形式化 \stagescofin。不过，一种选择是在 $\LT$ 的某个扩充中展开，正如 \olref[sth][replacement][extrinsic]{sec} 节所述。} 假设 $(\forall x \in A)\lexists![y][\phi(x,y)]$。那么对于每个 $x \in A$，令 $\sigma(x)$ 为使得 $\phi(x,y)$ 成立的那个 $y$，并令 $\tau(x)$ 为 $\sigma(x)$ 首次形成的阶段。根据 \stagescofin，存在一个阶段 $V$，使得 $(\forall x \in A)\tau(x)\in V$。现在，由于每个 $\tau(x) \in V$ 且 $\sigma(x) \subseteq \tau(x)$，由分离公理可得 $\Setabs{y \in V}{(\exists x \in A)\sigma(x) = y} = \Setabs{y}{(\exists x \in A)\phi(x,y)}$。
 
 \begin{prob}
-	Formalize \stagescofin{} within $\ZF$.
+	在 $\ZF$ 内形式化 \stagescofin{}。
 \end{prob}
 
-So \stagescofin{} vindicates Replacement. And it is at least plausible
-that \stagesinex{} vindicates \stagescofin. For suppose \stagescofin{}
-fails. So the hierarchy is cofinal with some set~$A$, i.e., we have a
-map $\tau$ such that for any stage~$S$ there is some $x \in A$ such
-that $S \in \tau(x)$. In that case, we do have a way to get a handle
-on the supposed ``absolute infinity'' of the hierarchy: it is
-\emph{exhausted} by the range of $\tau$ applied to $A$. And that
-compromises the thought that the hierarchy is ``absolutely infinite''.
-Contraposing: \stagesinex{} entails \stagescofin, which in turn
-justifies Replacement.
+所以，\stagescofin{} 为替换公理提供了辩护。并且，至少有理由认为 \stagesinex{} 也为 \stagescofin{} 提供了辩护。假设 \stagescofin{} 不成立，那么该层级相对于某个集合~$A$ 是共尾的，即我们有一个映射 $\tau$，使得对任意阶段~$S$，都存在某个 $x \in A$ 使得 $S \in \tau(x)$。在这种情况下，我们确实有办法把握该层级所谓的“绝对无限性”：它被 $\tau$ 作用于 $A$ 的\emph{值域}所穷尽。这就削弱了“该层级是绝对无限的”这一想法。换质位之：\stagesinex{} 语义地后承 \stagescofin，而后者又为替换公理提供了辩护。
 
-This represents a genuinely promising attempt to provide an
-intrinsic justification for Replacement. But whether it ultimately
-works, or not, we will have to leave to you to decide.
+这确实是一次真正有希望的尝试，旨在为替换公理提供内在辩护。但它最终是否成立，只能留待你来判断。
 
 \end{document}

@@ -8,64 +8,39 @@
 
 \olfileid{cnt}{int}{mat}
 
-\olsection{The Material Conditional}
+\olsection{实质条件句}
 
-In its simplest form in English, a conditional is a sentence of the
-form ``If \dots then \dots,'' where the \dots{} are themselves
-sentences, such as ``If the butler did it, then the gardener is
-innocent.'' In introductory logic courses, we earn to symbolize
-conditionals using the $\lif$ connective: symbolize the parts
-indicated by \dots, e.g., by !!{formula}s $!A$ and~$!B$,
-and the entire conditional is symbolized by $!A \lif !B$.
+英语中最简单的条件句形式是“如果……那么……”这样的语句，其中“……”本身也是语句，例如“如果管家是凶手，那么园丁就是无辜的”。在入门逻辑课程中，我们学会用 $\lif$ 联结词来符号化条件句：将“……”所指示的部分（例如，用公式 $!A$ 和 $!B$）符号化，整个条件句就被符号化为 $!A \lif !B$。
 
-The connective $\lif$ is \emph{truth-functional}, i.e., the truth
-value---$\True$ or $\False$---of $!A \lif !B$ is determined by the truth
-values of $!A$ and~$!B$: $!A \lif !B$ is true iff $!A$~is false or
-$!B$~is true, and false otherwise. Relative to a truth value
-assignment~$\pAssign v$, we define $\pSat{v}{!A \lif !B}$ iff
-$\pSat/{v}{!A}$ or $\pSat{v}{!B}$. The connective $\lif$ with this
-semantics is called the \emph{material conditional}.
+联结词 $\lif$ 是\emph{真值函数性的}，即 $!A \lif !B$ 的真值——$\True$ 或 $\False$——由 $!A$ 和 $!B$ 的真值决定：$!A \lif !B$ 为真，当且仅当 $!A$ 为假或 $!B$ 为真，否则为假。相对于一个真值赋值 $\pAssign v$，我们定义 $\pSat{v}{!A \lif !B}$ 当且仅当 $\pSat/{v}{!A}$ 或 $\pSat{v}{!B}$。具有这种语义的联结词 $\lif$ 被称为\emph{实质条件句}。
 
-This definition results in a number of elementary logical facts. First
-of all, the deduction theorem holds for the material conditional:
+根据这一定义，可以得出许多基本的逻辑事实。首先，对于实质条件句，演绎定理成立：
 \begin{align}
-  \text{If } \Gamma, !A \Entails !B \text{ then } \Gamma \Entails !A \lif !B
+  \text{若 } \Gamma, !A \Entails !B \text{ 则 } \Gamma \Entails !A \lif !B
 \end{align}
-It is truth-functional: $!A \lif !B$ and $\lnot !A \lor !B$ are equivalent:
+它是真值函数性的：$!A \lif !B$ 与 $\lnot !A \lor !B$ 等值：
 \begin{align}
   !A \lif !B & \Entails \lnot !A \lor !B\\
   \lnot !A \lor !B & \Entails !A \lif !B
-  \intertext{A material conditional is entailed by its consequent and
-    by the negation of its antecedent:}
+  \intertext{一个实质条件句是其后件及其前件否定的语义后承：}
   !B & \Entails !A \lif !B\\
   \lnot !A & \Entails !A \lif !B
-  \intertext{A false material conditional is equivalent to the
-    conjunction of its antecedent and the negation of its consequent:
-    if $!A \lif !B$ is false, $!A \land \lnot !B$ is true, and vice versa:}
+  \intertext{一个假的实质条件句等值于其前件与其后件否定的合取：如果 $!A \lif !B$ 为假，则 $!A \land \lnot !B$ 为真，反之亦然：}
   \lnot(!A \lif !B) & \Entails !A \land \lnot !B\\
   !A \land \lnot !B & \Entails \lnot(!A \lif !B)
-  \intertext{The material conditional supports modus ponens:}
+  \intertext{实质条件句支持肯定前件式：}
   !A, !A \lif !B & \Entails !B
-  \intertext{The material conditional agglomerates:}
+  \intertext{实质条件句可聚合：}
   !A \lif !B,  !A \lif !C & \Entails !A \lif (!B \land !C)
-  \intertext{We can always strengthen the antecedent, i.e., the
-    conditional is \emph{monotonic}:}
+  \intertext{我们总是可以强化前件，即条件句是\emph{单调的}：}
   !A \lif !B & \Entails (!A \land !C) \lif !B
-  \intertext{The material conditional is transitive, i.e., the chain
-    rule is valid:}
+  \intertext{实质条件句是可传递的，即连锁推理有效：}
   !A \lif !B, !B \lif !C & \Entails !A \lif !C
-  \intertext{The material conditional is equivalent to its
-    contrapositive:}
+  \intertext{实质条件句与其逆否命题等值：}
   !A \lif !B & \Entails \lnot !B \lif \lnot !A\\
   \lnot !B \lif \lnot !A & \Entails !A \lif !B
 \end{align}
 
-These are all useful and unproblematic inferences in mathematical
-reasoning. However, the philosophical and linguistic literature is
-replete with purported counterexamples to the equivalent inferences in
-non-mathematical contexts. These suggest that the material
-conditional~$\lif$ is not---or at least not always---the appropriate
-connective to use when symbolizing English ``if \dots then \dots''
-statements.
+这些在数学推理中都是有用且无疑问的推理。然而，哲学和语言学文献中充斥着针对非数学语境中等价推理的所谓反例。这些反例表明，在符号化英语“如果……那么……”陈述时，实质条件句 $\lif$ 并不是——或至少不总是——合适的联结词。
 
 \end{document}

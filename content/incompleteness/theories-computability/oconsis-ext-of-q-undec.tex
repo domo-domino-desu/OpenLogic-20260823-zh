@@ -8,43 +8,28 @@
 
 \olfileid{inc}{tcp}{oqn}
 
-\olsection{$\omega$-Consistent Extensions of $\Th{Q}$ are Undecidable}
+\olsection{$\Th{Q}$ 的 $\omega$-一致扩张是不可判定的}
 
 \begin{explain}
-The proof that $\Th{Q}$ is c.e.-complete relied on the fact that any
-sentence provable in $\Th{Q}$ is ``true'' of the natural numbers. The
-next definition and theorem strengthen this theorem, by pinpointing
-just those aspects of ``truth'' that were needed in the proof
-above. Don't dwell on this theorem too long, though, because we will
-soon strengthen it even further. We include it mainly for
-historical purposes: G\"odel's original paper used the notion of
-$\omega$-consistency, but his result was strengthened by replacing
-$\omega$-consistency with ordinary consistency soon after.
+证明 $\Th{Q}$ 是 c.e.-完备的，依赖于这样一个事实：任何在 $\Th{Q}$ 中可证的语句，对自然数而言都是“真”的。
+接下来的定义和定理强化了这一结果，精确指出了上述证明所需的那些关于“真”的方面。
+不过，不必在这个定理上停留太久，因为我们很快就会得到更强的结果。
+我们将它收录于此，主要是出于历史原因：G\"odel（哥德尔）最初的论文使用了 $\omega$-一致性的概念，但很快他的结果就被加强，用普通的一致性替代了 $\omega$-一致性。
 \end{explain}
 
 \begin{defn}
 \ollabel{thm:oconsis-q}
-A theory $\Th{T}$ is $\omega$-consistent if the following holds: if
-$\lexists[x][!A(x)]$ is any sentence and $\Th{T}$ proves $\lnot
-!A(\num 0)$, $\lnot !A(\num 1)$, $\lnot !A(\num 2)$, \dots then $\Th{T}$
-does not prove $\lexists[x][!A(x)]$.
+一个理论 $\Th{T}$ 是 $\omega$-一致的，如果满足以下条件：若 $\lexists[x][!A(x)]$ 是任意语句，且 $\Th{T}$ 证明了 $\lnot !A(\num 0)$, $\lnot !A(\num 1)$, $\lnot !A(\num 2)$, \dots，则 $\Th{T}$ 不能证明 $\lexists[x][!A(x)]$。
 \end{defn}
 
 \begin{thm}
-  Let $\Th{T}$ be any $\omega$-consistent theory that includes $\Th{Q}$. Then
-  $\Th{T}$ is not decidable.
+  设 $\Th{T}$ 是任意包含 $\Th{Q}$ 的 $\omega$-一致理论，则 $\Th{T}$ 是不可判定的。
 \end{thm}
 
 \begin{proof}
-If $\Th{T}$ includes $\Th{Q}$, then $\Th{T}$ represents the computable
-functions and relations. We need only modify the previous proof. As
-above, if $x \in K$, then $\Th{T}$ proves $\lexists[s][!A_T(\num
-  x,\num x, s)]$. Conversely, suppose $\Th{T}$ proves
-$\lexists[s][!A_T(\num x, \num x, s)]$. Then $x$ must be in $K$:
-otherwise, there is no halting computation of machine $x$ on input
-$x$; since $!A_T$ represents Kleene's $T$ relation, $\Th{T}$
-proves $\lnot !A_T(\num x, \num x, \num 0)$, $\lnot !A_T(\num x, \num
-x, \num 1)$, \dots, making $\Th{T}$ $\omega$-inconsistent. 
+如果 $\Th{T}$ 包含 $\Th{Q}$，那么 $\Th{T}$ 能表示可计算函数和关系。我们只需修改之前的证明。与之前一样，如果 $x \in K$，那么 $\Th{T}$ 能证明 $\lexists[s][!A_T(\num
+  x,\num x, s)]$。反之，假设 $\Th{T}$ 证明了 $\lexists[s][!A_T(\num x, \num x, s)]$。那么 $x$ 一定在 $K$ 中：否则，机器 $x$ 在输入 $x$ 上不存在停机计算；由于 $!A_T$ 表示 Kleene（克林）的 $T$ 关系，$\Th{T}$ 就能证明 $\lnot !A_T(\num x, \num x, \num 0)$, $\lnot !A_T(\num x, \num
+x, \num 1)$, \dots，这将导致 $\Th{T}$ $\omega$-不一致。
 \end{proof}
 
 \end{document}

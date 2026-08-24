@@ -1,0 +1,45 @@
+% open-logic-cjk.sty
+% 中译本正文含大量中文字符，pdfTeX 默认字体（Latin Modern 等）没有中文字形，
+% 必须用 lualatex 或 xelatex 编译。字体走 fontspec，用系统里已安装的 CJK
+% 字族。优先 lualatex：Makefile 里 latexmk 的默认 PDF 引擎已经改成
+% -pdflatex=lualatex，这份配置只是给"有人直接手动跑 xelatex"这种情况留一条
+% 后路，两个引擎都能编译。
+%
+% 陷阱：一开始直接整体加载 ctex 包，会在 ntheorem（open-logic.sty 后面加载，
+% 用来定义 \begin{proof}/\begin{thm} 这些定理环境）初始化时报
+% "Command \proofname already defined" 报错——ctex 默认会自带一整套中文本地化
+% 的定理/证明环境命名（对标 babel 的 \deftranslation 机制），跟 ntheorem 自己
+% 定义 \proofname 的时机撞车。本书的定理/证明环境标题从来不是由 babel/ctex
+% 的自动翻译机制生成的（是 \begin{thm}/\begin{proof} 这些环境名本身，标题文字
+% 在 open-logic-locale.sty 的 \setlocalecaption 里单独定义），完全不需要
+% ctex 顺带带来的这层"自动中文化文档结构"，只需要字体和断行/标点规则。所以
+% 这里不用整个 ctex 包，只按引擎分别加载底层的 luatexja-fontspec / xeCJK，
+% 拿字体渲染能力，不去动 \proofname 这类文档结构相关的命令。
+\RequirePackage{iftex}
+
+% 陷阱二：不少发行版打包的 Noto CJK 字族（Serif/Sans/Sans Mono）是单个可变
+% 字体（VF）.ttc 文件，没有按字重拆分的静态实例；luaotfload 在写 PDF 做字体
+% 嵌入/子集化时，要到全书排完、最后一次性写文件那一步才触发
+% "loca table not found"，报错发生在编译的最后阶段而不是逐页出现，非常容易
+% 误判成"只是某个字重的问题"，其实三个字族全中招。为兼顾"本机装的是 VF 版
+% Noto CJK"和"CI 容器里通过发行版包管理器装的是按字重拆分的静态版 Noto CJK"
+% 两种情况，这里用 \IfFontExistsTF 做优先级探测：先试本机已验证可用的静态
+% 中易宋体/雅黑，找不到时才退回 Noto CJK（GitHub Actions 里通过
+% extra_system_packages: fonts-noto-cjk 安装的就是这一路静态版本）。
+\ifluatex
+  \RequirePackage{luatexja-fontspec}
+  \IfFontExistsTF{STSong}{\setmainjfont{STSong}}{\setmainjfont{Noto Serif CJK SC}}
+  \IfFontExistsTF{Microsoft YaHei}{\setsansjfont{Microsoft YaHei}}{\setsansjfont{Noto Sans CJK SC}}
+  \IfFontExistsTF{Microsoft YaHei}{\setmonojfont{Microsoft YaHei}}{\setmonojfont{Noto Sans Mono CJK SC}}
+\else
+  \ifxetex
+    \RequirePackage{xeCJK}
+    \IfFontExistsTF{STSong}{\setCJKmainfont{STSong}}{\setCJKmainfont{Noto Serif CJK SC}}
+    \IfFontExistsTF{Microsoft YaHei}{\setCJKsansfont{Microsoft YaHei}}{\setCJKsansfont{Noto Sans CJK SC}}
+    \IfFontExistsTF{Microsoft YaHei}{\setCJKmonofont{Microsoft YaHei}}{\setCJKmonofont{Noto Sans Mono CJK SC}}
+  \else
+    \PackageError{open-logic-cjk}%
+      {This translated book contains Chinese text and requires lualatex (preferred) or xelatex; pdflatex cannot render CJK characters}%
+      {Run `latexmk -pdf -pdflatex=lualatex ...` or `lualatex ...` instead of pdflatex.}
+  \fi
+\fi

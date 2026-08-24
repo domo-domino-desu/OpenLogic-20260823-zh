@@ -8,13 +8,11 @@
 
 \olfileid{pt}{seq}{rp}
 
-\olsection{Rules and \usetoken{P}{proof}}
+\olsection{规则与\usetoken{P}{proof}}
 
-We begin by giving some definitions and fixing some terminology.
+我们首先给出一些定义并规定一些术语。
 
-Consider, for example, the two rules in \Log{G3c} that allow !!{proving}
-sequents containing $!A \land !B$ from sequents containing $!A$
-and~$!B$:
+例如，考虑 \Log{G3c} 中允许从包含 $!A$ 和~$!B$ 的相继式推出包含 $!A \land !B$ 的相继式的两条规则：
 \[
 \Axiom$ !A, !B, \Gamma \fCenter \Delta$
 \RightLabel{\LeftR{\land}}
@@ -27,16 +25,9 @@ and~$!B$:
 \BinaryInf$ \Gamma \fCenter \Delta, !A \land !B $
 \DisplayProof
 \]
-The sequents on top of the line are called the \emph{premises} and the
-sequent below the line the \emph{conclusion}. The !!{formula}s in
-$\Gamma$ and $\Delta$ in each rule are called the \emph{context} or
-the \emph{side !!{formula}s}. The !!{formula} in the conclusion that
-isn't part of the context is called the \emph{principal} !!{formula},
-and the !!{formula}s in the premises not in the context the
-\emph{active} (or \emph{auxiliary}) !!{formula}s.
+横线上方的相继式称为\emph{前提}，横线下方的相继式称为\emph{结论}。每条规则中 $\Gamma$ 和 $\Delta$ 里的公式称为\emph{上下文}或\emph{边公式}。结论中不属于上下文的那一个公式称为\emph{主公式}，前提中不属于上下文的公式称为\emph{活动}（或\emph{辅助}）公式。
 
-The quantifier rules are slightly more complicated. E.g., the rules in
-\Log{G1c} for $\lforall$ are:
+量词规则稍复杂一些。例如，\Log{G1c} 中关于 $\lforall$ 的规则是：
 \[\Axiom$ !A(t), \Gamma \fCenter \Delta$
 \RightLabel{\LeftR{\lforall}}
 \UnaryInf$ \lforall[x][!A(x)],\Gamma \fCenter \Delta$
@@ -47,38 +38,15 @@ The quantifier rules are slightly more complicated. E.g., the rules in
 \UnaryInf$ \Gamma \fCenter \Delta, \lforall[x][!A(x)]$
 \DisplayProof
 \]
-In the \LeftR{\lforall} rule, the active !!{formula} is~$!A(t)$ where
-$t$~is a closed term, i.e., a term without variables. Such an
-inference is correct---that is, it matches the schematic rule
-\LeftR{\lforall}---if there is some !!{formula}~$!A$, some
-variable~$x$, and some closed term~$t$ such that the principal
-!!{formula} in the conclusion is $\lforall[x][!A]$ and the active
-!!{formula} in the premise is~$\Subst{!A}{t}{x}$. The
-\RightR{\lforall} rule works the same, except that instead of any
-term~$t$ the active !!{formula} in the premise must
-be~$\Subst{!A}{a}{x}$, where $a$ is !!a{constant}. This constant is
-called the \emph{eigenvariable} of the \RightR{\lforall} inference.
-The inference is only correct if the lower sequent does not contain~$a$,
-that is, if $a$ does not occur in $\Gamma$, $\Delta$, or~$!A$. This is
-called the \emph{eigenvariable condition}.
+在 \LeftR{\lforall} 规则中，活动公式是~$!A(t)$，其中 $t$~是闭项，即不含变元的项。这种推理是正确的——也就是说，它符合模式规则 \LeftR{\lforall}——如果存在某个公式~$!A$、某个变元~$x$ 和某个闭项~$t$，使得结论中的主公式是 $\lforall[x][!A]$，而前提中的活动公式是~$\Subst{!A}{t}{x}$。\RightR{\lforall} 规则与此类似，区别在于前提中的活动公式不能是任意项~$t$，而必须是~$\Subst{!A}{a}{x}$，其中 $a$ 是一个常项符号。这个常项符号称为该 \RightR{\lforall} 推理的\emph{特征变元}。只有当下方的相继式不包含~$a$ 时——也就是说，$a$ 不在 $\Gamma$、$\Delta$ 或~$!A$ 中出现——该推理才是正确的。这个条件称为\emph{特征变元条件}。
 
-Sequent systems like \Log{G1c} and \Log{G3c} consists of a collection
-of such schematically specified rules together with some (also
-schematically specified) sequents that count as axioms.
-!!^{proof}s in such a system are finite trees of sequents that
-are inductively generated from axioms using the rules of inference.
-Each leaf is an axiom, and every other sequent follows from the
-sequents immediately above it by one of the inference rules of the
-system.
+像 \Log{G1c} 和 \Log{G3c} 这样的相继式系统，由一组按模式规定的规则，连同一些（同样按模式规定的）作为公理的相继式构成。这类系统中的推导是从公理出发，使用推理规则归纳生成的相继式的有限树。每个叶节点是一个公理，而所有其他相继式都是通过系统的某条推理规则从其紧上方的相继式推出的。
 
 \begin{defn}\ollabel{defn:proof}
-\emph{!!^{proof}s} in a sequent system are finite trees of
-sequents inductively as follows:
+相继式系统中的\emph{推导}是按如下方式归纳定义的相继式的有限树：
 \begin{enumerate}
-  \item\ollabel{defn:prf:axiom} Every axiom is !!a{proof}.
-  \item\ollabel{defn:prf:one-prem} If $\pi_1$ is !!a{proof} ending in
-  a sequent~$S_1$, and $S$ is a sequent that follows from~$S_1$ by a
-  one-premise rule~$R$, then
+  \item\ollabel{defn:prf:axiom} 每个公理都是一个推导。
+  \item\ollabel{defn:prf:one-prem} 如果 $\pi_1$ 是一个以相继式~$S_1$ 结尾的推导，而 $S$ 是由~$S_1$ 通过某条单前提规则~$R$ 推出的相继式，那么
   \[
   \AxiomC{}
   \RightLabel{$\pi_1$}
@@ -87,9 +55,8 @@ sequents inductively as follows:
   \UnaryInfC{$S$}
   \DisplayProof
   \]
-  is !!a{proof}.
-  \item\ollabel{defn:prf:two-prem} If $\pi_1$ and $\pi_2$ are !!{proof}s ending in sequents~$S_1$ and~$S_2$, and $S$ is a
-  sequent that follows from~$S_1$ and$S_2$ by a two-premise rule~$R$, then
+  是一个推导。
+  \item\ollabel{defn:prf:two-prem} 如果 $\pi_1$ 和 $\pi_2$ 分别是以相继式~$S_1$ 和~$S_2$ 结尾的推导，并且 $S$ 是由~$S_1$ 和$S_2$ 通过某条双前提规则~$R$ 推出的相继式，那么
   \[
   \AxiomC{}
   \RightLabel{$\pi_1$}
@@ -101,67 +68,37 @@ sequents inductively as follows:
   \BinaryInfC{$S$}
   \DisplayProof
   \]
-  is !!a{proof}.
+  是一个推导。
 \end{enumerate}
 \end{defn}
 
-\Olref{defn:proof} defines !!{proof}s as trees of sequents. We think
-of these trees as growing ``upwards.'' The topmost (leaf) nodes of
-this tree are axioms and called \emph{initial sequents}. The
-bottom-most sequent is called the \emph{end-sequent}. If $\pi$ is
-!!a{proof} with end-sequent~$S$ we also write $\pi \Proves S$. If
-there is !!a{proof} of a sequent~$S$ we write $\Proves S$, possibly
-indicating the system in which the proof exists on the left of the
-$\Proves$~symbol, e.g., $\Log{G1c} \Proves !A, !B \Sequent !A \land
-!B$. Every sequent in !!a{proof}, with the exception of initial
-sequents, is the \emph{conclusion} of an inference by some rule~$R$.
-The one or two sequents standing immediately above a sequent in
-!!a{proof} (i.e., the parents of the node) are called the
-\emph{premises} of the inference.
+\Olref{defn:proof} 将推导定义为相继式的树。我们设想这些树是“向上”生长的。这棵树最顶端的（叶）节点是公理，称为\emph{初始相继式}。最底部的相继式称为\emph{末端相继式}。如果 $\pi$ 是一个以相继式~$S$ 为末端相继式的推导，我们也写作 $\pi \Proves S$。如果存在相继式~$S$ 的一个推导，我们写作 $\Proves S$，也可以在 $\Proves$~符号左边标明证明所在的系统，例如 $\Log{G1c} \Proves !A, !B \Sequent !A \land
+!B$。推导中除初始相继式外的每一个相继式，都是通过某条规则~$R$ 所做推理的\emph{结论}。在推导中紧挨着一个相继式上方的一个或两个相继式（即该节点的父节点）称为该推理的\emph{前提}。
 
-The !!{proof}s used in the inductive construction of
-!!a{proof} are called its \emph{sub-!!{proof}s}. The
-sub-!!{proof}s ending in the premises of an inference are called
-the \emph{immediate sub-!!{proof}s} of the inference.
+在归纳构造一个推导时所用到的推导称为该推导的\emph{子推导}。那些以某推理的前提为末端相继式的子推导，称为该推理的\emph{直接子推导}。
 
-It is often necessary to measure the complexity of !!{proof}s as
-a natural number. We could simply count the number of sequents in
-!!a{proof}, but often a more useful measure is the !!{height} of
-!!a{proof}: it is the maximal number of sequents between the
-end-sequent and an initial sequent. We can also give an inductive
-definition.
+常常需要用一个自然数来度量推导的复杂度。我们可以简单地计算推导中相继式的个数，但通常更有用的度量是推导的\emph{高度}：它是末端相继式与某个初始相继式之间的相继式的最大数目。我们也可以给出一个归纳定义。
 
 \begin{defn}
-The \emph{!!{height}}~$\pheight{\pi}$ of !!a{proof}~$\pi$ is
-inductively defined as follows.
+推导~$\pi$ 的\emph{高度}~$\pheight{\pi}$ 按如下方式归纳定义。
 \begin{enumerate}
-  \item If $\pi$ consists of a single axiom, $\pheight{\pi} = 0$.
-  \item If $\pi$ ends in an inference with one premise with immediate
-  sub-!!{proof}~$\pi_1$, then $\pheight{\pi} = \pheight{\pi_1} + 1$.
-  \item If $\pi$ ends in an inference with two premises with immediate
-  sub-!!{proof}s~$\pi_1$ and~$\pi_2$, then $\pheight{\pi} =
-  \max(\pheight{\pi_1}, \pheight{\pi_2}) + 1$.
+  \item 如果 $\pi$ 仅由一个公理组成，则 $\pheight{\pi} = 0$。
+  \item 如果 $\pi$ 以一个单前提的推理结束，其直接子推导为~$\pi_1$，则 $\pheight{\pi} = \pheight{\pi_1} + 1$。
+  \item 如果 $\pi$ 以一个双前提的推理结束，其直接子推导为~$\pi_1$ 和~$\pi_2$，则 $\pheight{\pi} =
+  \max(\pheight{\pi_1}, \pheight{\pi_2}) + 1$。
 \end{enumerate}
-If a sequent~$S$ has !!a{proof} of height $\le n$, we write $\Proves[n] S$.
+如果相继式~$S$ 有一个高度 $\le n$ 的推导，我们记作 $\Proves[n] S$。
 \end{defn}
 
 \begin{ex}
-In \Log{G3c}, any sequent of the form $!C, \Gamma \Sequent \Delta, !C$
-is an axiom, where $!C$ must be atomic. Suppose $!D$ and $!E$ are
-atomic sentences. Then $!D, !E \Sequent !D$ and $!D, !E \Sequent !E$
-are instances of the axiom $!C, \Gamma \Sequent \Delta, !C$. E.g., if
-we take $!C \ident !E$, $\Gamma = \{!D\}$ and $\Delta = \emptyset$ in
-$!C, \Gamma \Sequent \Delta, !C$ we get exactly the sequent $!D, !E
-\Sequent !E$. (Remember that we are dealing with multi\emph{sets} and
-so $!D, !E \Sequent !E$ and $!E, !D \Sequent !D$ are the same
-sequent.)
+在 \Log{G3c} 中，任何形如 $!C, \Gamma \Sequent \Delta, !C$ 的相继式都是一条公理，其中 $!C$ 必须是原子的。
+假设 $!D$ 和 $!E$ 是原子语句。
+那么 $!D, !E \Sequent !D$ 和 $!D, !E \Sequent !E$ 就是公理 $!C, \Gamma \Sequent \Delta, !C$ 的实例。
+例如，若我们在 $!C, \Gamma \Sequent \Delta, !C$ 中取 $!C \ident !E$、$\Gamma = \{!D\}$ 且 $\Delta = \emptyset$，得到的正是相继式 $!D, !E \Sequent !E$。（请记住我们处理的是多重集，因此 $!D, !E \Sequent !E$ 和 $!E, !D \Sequent !D$ 是同一个相继式。）
 
-Since $!D, !E \Sequent !D$ is an instance of an axiom of~\Log{G3c}, it
-(by itself) counts as !!a{proof} in~\Log{G3c}, and so does $!D, !E
-\Sequent !E$ by \olref{defn:proof}\olref{defn:prf:axiom}. Let's
-call them $\pi_1$ and~$\pi_2$. By \olref{defn:prf:two-prem}, we can
-take these two !!{proof}s and generate a new one ($\pi_3$) using the
-two-premise rule~$\RightR{\land}$:
+由于 $!D, !E \Sequent !D$ 是 \Log{G3c} 的一条公理的实例，它（本身）就算作 \Log{G3c} 中的一个推导；根据 \olref{defn:proof}\olref{defn:prf:axiom}，$!D, !E \Sequent !E$ 也同样是一个推导。
+让我们称它们为 $\pi_1$ 和~$\pi_2$。
+根据 \olref{defn:prf:two-prem}，我们可以利用双前提规则~$\RightR{\land}$，从这两个推导生成一个新的推导（$\pi_3$）：
 \[
 \Axiom$!D, !E \fCenter !D$
 \Axiom$!D, !E \fCenter !E$
@@ -169,7 +106,7 @@ two-premise rule~$\RightR{\land}$:
 \BinaryInf$!D, !E  \fCenter !D \land !E $
 \DisplayProof
 \]
-From $\pi_3$ in turn we obtain the !!{proof}~$\pi_4$
+接着，我们从 $\pi_3$ 出发，利用单前提规则~$\LeftR{\land}$（使用 \olref{defn:proof}\olref{defn:prf:one-prem}）得到推导~$\pi_4$：
 \[
 \Axiom$!D, !E \fCenter !D$
 \Axiom$!D, !E \fCenter !E$
@@ -182,15 +119,13 @@ From $\pi_3$ in turn we obtain the !!{proof}~$\pi_4$
 \RightSubproofLabel{$\pi_4$}
 \DisplayProof
 \]
-using the one-premise rule~$\LeftR{\land}$ (using
-\olref{defn:proof}\olref{defn:prf:one-prem}). The immediate
-sub-!!{proof} of the last inference in~$\pi_4$ is~$\pi_3$. The
-immediate sub-!!{proof}s of the $\RightR{\land}$ inference are $\pi_1$
-and~$\pi_2$. The sub-!!{proof}s of $\pi_4$ are all of $\pi_1$,
-$\pi_2$, $\pi_3$, and $\pi_4$ itself. We have $\pheight{\pi_1} =
-\pheight{\pi_2} = 0$, $\pheight{\pi_3} = 1$ and $\pheight{\pi_4} = 2$.
-We have shown that $\Log{G3c} \Proves[4] !D \land !E  \fCenter !D
-\land !E$ for any atomic $!D$ and~$!E$.
+$\pi_4$ 中最后一个推理的直接子推导是~$\pi_3$。
+$\RightR{\land}$ 推理的直接子推导是 $\pi_1$ 和~$\pi_2$。
+$\pi_4$ 的所有子推导包括 $\pi_1$、$\pi_2$、$\pi_3$ 和 $\pi_4$ 自身。
+我们有 $\pheight{\pi_1} =
+\pheight{\pi_2} = 0$，$\pheight{\pi_3} = 1$ 且 $\pheight{\pi_4} = 2$。
+我们已表明，对于任意的原子语句 $!D$ 和~$!E$，$\Log{G3c} \Proves[4] !D \land !E  \fCenter !D
+\land !E$。
 \end{ex}
 
 \end{document}

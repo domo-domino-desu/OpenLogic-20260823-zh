@@ -7,37 +7,28 @@
 \begin{document}
 
 \olfileid{lam}{ldf}{par}
-\olsection{Partial Recursive Functions are \usetoken{S}{lambda definable}}
+\olsection{部分递归函数是\usetoken{S}{lambda definable}}
 
-Partial recursive functions are those obtained from the basic
-functions by composition, primitive recursion, and unbounded
-minimization. They differ from general recursive function in that the
-functions used in unbounded search are not required to be regular.
-Not requiring regularity means that functions defined by minimization
-may sometimes not be defined. 
+部分递归函数是指从基本函数出发，通过复合、原始递归和无界极小化得到的函数。
+它们与一般递归函数的区别在于，无界搜索中使用的函数不要求是正则的。
+不要求正则性意味着由极小化定义的函数可能无定义。
 
-At first glance it might seem that the same methods used to show that
-the (total) general recursive functions are all !!{lambda definable} can
-be used to prove that all partial recursive functions are
-!!{lambda definable}.  For instance, the composition of $f$ with $g$ is
-!!{lambda define}d by $\lambd[x][F (G x)]$ if $f$ and $g$ are
-!!{lambda define}d by terms $F$ and~$G$, respectively. However, when the
-functions are partial, this is problematic. When $g(x)$ is undefined,
-meaning $G x$ has no normal form. In most cases this means that $F (G
-x)$ has no normal forms either, which is what we want.  But consider
-when $F$ is $\lambd[x][\lambd[y][y]]$, in which case $F (G x)$ does
-have a normal form ($\lambd[y][y]$). 
+乍看之下，似乎可以用证明（全的）一般递归函数都是 $\lambd$-可定义的同样方法，
+来证明所有部分递归函数都是 $\lambd$-可定义的。
+例如，若 $f$ 和 $g$ 分别由项 $F$ 和~$G$ $\lambd$-定义，则 $f$ 与 $g$ 的复合
+可由 $\lambd[x][F (G x)]$ $\lambd$-定义。
+然而，当函数为部分函数时，便成了问题。
+当 $g(x)$ 无定义时，即 $G x$ 没有范式；
+在大多数情况下，这意味着 $F (G x)$ 也没有范式，而这正是我们所期望的。
+但考虑 $F$ 为 $\lambd[x][\lambd[y][y]]$ 的情形，此时 $F (G x)$ 却有范式（$\lambd[y][y]$）。
 
-This problem is not insurmountable, and there are ways to
-!!{lambda define} all partial recursive functions in such a way that
-undefined values are represented by terms without a normal form.
-These ways are, however, somewhat more complicated and less intuitive
-than the approach we have taken for general recursive functions. We
-record the theorem here without proof:
+这个问题并非无法克服，存在一些方法可以 $\lambd$-定义所有部分递归函数，
+使得无定义的值由无范式的项来表示。
+不过，这些方法比我们处理一般递归函数所采用的方法更为复杂，也不那么直观。
+我们在此不加证明地陈述以下定理：
 
 \begin{thm}
-  All partial recursive functions are !!{lambda definable}.
+  所有部分递归函数都是 $\lambd$-可定义的。
 \end{thm}
 
 \end{document}
-

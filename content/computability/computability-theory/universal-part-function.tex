@@ -7,36 +7,23 @@
 \begin{document}
 
 \olfileid{cmp}{thy}{uni}
-\olsection{The Universal Partial Computable Function}
+\olsection{通用部分可计算函数}
 
 \begin{thm}
 \ollabel{thm:univ-comp}
-There is a universal partial computable function~$\fn{Un}(e,x)$. In other
-words, there is a function $\fn{Un}(e,x)$ such that:
+存在通用部分可计算函数~$\fn{Un}(e,x)$。换言之，存在函数 $\fn{Un}(e,x)$ 满足：
 \begin{enumerate}
-\item $\fn{Un}(e,x)$ is partial computable.
-\item If $f(x)$ is any partial computable function, then there is a
-natural number $e$ such that $f(x) \simeq \fn{Un}(e,x)$ for every~$x$.
+\item $\fn{Un}(e,x)$ 是部分可计算的。
+\item 若 $f(x)$ 是任意部分可计算函数，则存在自然数 $e$，使得对每个~$x$ 都有 $f(x) \simeq \fn{Un}(e,x)$。
 \end{enumerate}
 \end{thm}
 
 \begin{proof}
-Let $\fn{Un}(e,x) \simeq U(\umin{s}{T(e,x,s)})$, where $U$ and $T$ are
-as in Kleene's normal form theorem (\olref[nfm]{thm:normal-form}).
+令 $\fn{Un}(e,x) \simeq U(\umin{s}{T(e,x,s)})$，其中 $U$ 和 $T$ 如 Kleene（克林）的范式定理（\olref[nfm]{thm:normal-form}）所述。
 \end{proof}
 
 \begin{explain}
-This is just a precise way of saying that we have an effective
-enumeration of the partial computable functions; the idea is that if
-we write $f_e$ for the function defined by $f_e(x) = \fn{Un}(e,x)$,
-then the sequence $f_0$, $f_1$, $f_2$, \dots includes all the partial
-computable functions, with the property that $f_e(x)$ can be computed
-``uniformly'' in $e$ and~$x$. For simplicity, we are using a binary
-function that is universal for unary functions, but by coding
-sequences of numbers we can easily generalize this to more arguments.
-For example, note that if $f(x,y,z)$ is a $3$-place partial recursive
-function, then the function $g(x) \simeq f((x)_0, (x)_1, (x)_2)$ is a
-unary recursive function.
+这只是对“部分可计算函数存在有效枚举”的精确表述；基本想法是，若用 $f_e(x) = \fn{Un}(e,x)$ 定义函数 $f_e$，则序列 $f_0$, $f_1$, $f_2$, \dots 包含了所有部分可计算函数，并且 $f_e(x)$ 关于 $e$ 和~$x$ 是“一致地”可计算的。为简单起见，我们使用了一个通用于一元函数的二元函数，但通过对数列编码，很容易将其推广到更多自变元的情形。例如，注意到若 $f(x,y,z)$ 是三元部分递归函数，则函数 $g(x) \simeq f((x)_0, (x)_1, (x)_2)$ 是一元递归函数。
 \end{explain}
 
 \end{document}

@@ -1,25 +1,22 @@
-% Part: first-order-logic
-% Chapter: models-theories
-% Section: size-of-structures
-
 \documentclass[../../../include/open-logic-section]{subfiles}
 
 \begin{document}
 
+% Part: first-order-logic
+% Chapter: models-theories
+% Section: size-of-structures
+
 \olfileid{fol}{mat}{siz}
 
-\olsection{Expressing the Size of \printtoken{P}{structure}}
+\olsection{表达 \printtoken{P}{structure} 的大小}
 
 \begin{explain}
-There are some properties of structures we can express even without
-using the non-logical symbols of a language.  For instance, there are
-!!{sentence}s which are true in !!a{structure} iff the !!{domain} of
-the !!{structure} has at least, at most, or exactly a certain
-number~$n$ of !!{element}s.
+有些结构属性，我们甚至无需使用语言的非逻辑符号就能表达。
+例如，存在这样一些语句：它们在一个结构中为真，当且仅当该结构的论域至少、至多或恰好包含 $n$ 个元素。
 \end{explain}
 
 \begin{prop}
-The !!{sentence}
+语句
 \begin{multline*}
   !A_{\ge n} \ident \lexists[x_1][\lexists[x_2][\dots\lexists[x_n][{}]]]\\
   \begin{aligned}
@@ -30,14 +27,11 @@ The !!{sentence}
 \eq/[x_{n-1}][x_n])
 \end{aligned}
 \end{multline*}
-is true in !!a{structure}~$\Struct M$ iff $\Domain M$ contains at
-least $n$ !!{element}s. Consequently, $\Sat{M}{\lnot !A_{\ge n+1}}$ iff
-$\Domain M$ contains at most~$n$ !!{element}s.
-
+在结构~$\Struct M$ 中为真，当且仅当 $\Domain M$ 至少包含 $n$ 个元素。因此，$\Sat{M}{\lnot !A_{\ge n+1}}$ 为真当且仅当 $\Domain M$ 至多包含~$n$ 个元素。
 \end{prop}
 
 \begin{prop}
-The !!{sentence}
+语句
 \begin{multline*}
 !A_{= n} \ident \lexists[x_1][\lexists[x_2][\dots\lexists[x_n][{}]]] \\
 \begin{aligned}
@@ -49,24 +43,19 @@ The !!{sentence}
 \lforall[y][(\eq[y][x_1] \lor \dots \lor \eq[y][x_n]]))
 \end{aligned}
 \end{multline*}
-is true in !!a{structure}~$\Struct M$ iff $\Domain M$ contains
-exactly $n$ !!{element}s.
+在结构~$\Struct M$ 中为真，当且仅当 $\Domain M$ 恰好包含 $n$ 个元素。
 \end{prop}
 
 \begin{prop}
-A !!{structure} is infinite iff it is a model of
+一个结构是无穷的，当且仅当它是
 \[
 \{!A_{\ge 1}, !A_{\ge 2}, !A_{\ge 3}, \dots \}.
 \]
+的模型。
 \end{prop}
 
-There is no single purely logical sentence which is true in~$\Struct
-M$ iff $\Domain M$ is infinite.  However, one can give !!{sentence}s with
-non-logical !!{predicate}s which only have infinite models (although
-not every infinite !!{structure} is a model of them).  The property of
-being a finite structure, and the property of being
-!!a{nonenumerable} structure cannot even be expressed with an infinite
-set of !!{sentence}s.  These facts follow from the compactness and
-L\"owenheim--Skolem theorems.
-
+不存在单一的纯粹逻辑语句，使得它在~$\Struct M$ 中为真当且仅当 $\Domain M$ 是无穷的。
+然而，我们可以给出一些含有非逻辑谓词符号的语句，它们只有无穷模型（尽管并非每个无穷结构都是它们的模型）。
+“是有穷结构”这一性质，以及“是不可数结构”这一性质，甚至无法用无穷的语句集合来表达。
+这些事实都是紧致性定理和 L\"owenheim--Skolem 定理的推论。
 \end{document}

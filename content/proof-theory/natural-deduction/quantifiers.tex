@@ -1,54 +1,35 @@
-% Part: proof-theory
-% Chapter: natural-deduction
-% Section: quantifiers
-
 \documentclass[../../../include/open-logic-section]{subfiles}
 
 \begin{document}
 
 \olfileid{pt}{nat}{qua}
 
-\olsection{Regular \usetoken{P}{proof} and Substitution}
+\olsection{正则推导与代入}
 
-The rules for the quantifiers introduce some complications owing to
-the ``eigenvariable conditions'' that apply to the \Elim{\lexists}
-and~\Intro{\lforall} rules. Most of these complications can be dealt
-with by ensuring that the !!{constant}~$c$ in these inferences is
-never reused. Let's introduce the following definition.
+% Part: proof-theory
+% Chapter: natural-deduction
+% Section: quantifiers
+
+量词规则由于适用于 \Elim{\lexists} 和~\Intro{\lforall} 规则的“本征变元条件”而带来了一些复杂性。
+这些复杂性大多可以通过确保这些推理中的常项符号~$c$ 不被重复使用来处理。我们引入以下定义。
 
 \begin{defn}
-A natural deduction !!{proof}~$\delta$ is \emph{regular} if
+一个自然演绎推导~$\delta$ 是\emph{正则的}，如果
 \begin{enumerate}
-  \item no eigenvariable~$a$ is used as the eigenvariable of more than
-  one \Elim{\lexists} or~\Intro{\lforall} inference, and
-  \item if $a$ is the eigenvariable of an \Elim{\lexists}
-  or~\Intro{\lforall} inference, it only occurs in the immediate
-  sub-!!{proof} leading to the minor premise, or the premise, respectively.
+  \item 没有本征变元~$a$ 被用作多于一个 \Elim{\lexists} 或~\Intro{\lforall} 推理的本征变元，并且
+  \item 如果 $a$ 是某个 \Elim{\lexists} 或~\Intro{\lforall} 推理的本征变元，那么它仅分别出现在导出该推理的次前提或前提的直接子推导中。
 \end{enumerate}
 \end{defn}
 
-\begin{lem}\ollabel{lem:subst-regular} If $\delta$ is regular, ends
-in~$!C$, $c$ is !!a{constant} not used as an eigenvariable
-in~$\delta$, and $t$~is a term not containing any eigenvariables
-of~$\delta$, then $\Subst{\delta}{t}{c}$ resulting from~$\delta$ by
-replacing every occurrence of~$c$ by~$t$ is a regular !!{proof}. The
-end-!!{formula} of $\Subst{\delta}{t}{c}$ is $\Subst{!C}{t}{c}$. If
-$!A^x$ is an open assumption of~$\delta$ then $\Subst{!A}{t}{c}^x$ is
-an open assumption of~$\Subst{\delta}{t}{c}$.
+\begin{lem}\ollabel{lem:subst-regular} 如果 $\delta$ 是正则的且以~$!C$ 结束，$c$ 是一个在~$\delta$ 中不作为本征变元使用的常项符号，且 $t$~是一个不包含~$\delta$ 的任何本征变元的项，那么将~$\delta$ 中每次出现的~$c$ 替换为~$t$ 所得到的 $\Subst{\delta}{t}{c}$ 是一个正则推导。$\Subst{\delta}{t}{c}$ 的末端公式是 $\Subst{!C}{t}{c}$。如果 $!A^x$ 是~$\delta$ 的一个开放假设，那么 $\Subst{!A}{t}{c}^x$ 是 $\Subst{\delta}{t}{c}$ 的一个开放假设。
 \end{lem}
 
 \begin{proof}
-  By induction on $\pheight{\delta}$. If $\pheight{\delta} = 0$, it
-  consists simply of an assumption~$!A^x$. Then $\Subst{\delta}{t}{c}$
-  is~$\Subst{!A}{t}{c}^x$.
+  对 $\pheight{\delta}$ 施归纳。如果 $\pheight{\delta} = 0$，则它仅由一个假设~$!A^x$ 构成。此时 $\Subst{\delta}{t}{c}$ 就是~$\Subst{!A}{t}{c}^x$。
 
-  If $\pheight{\delta} > 0$ we distinguish cases according to the last
-  inference in~$\delta$. The cases for rules for propositional
-  connectives are easy and left as exercises. We consider the cases
-  where $\delta$ ends in a quantifier inference.
+  如果 $\pheight{\delta} > 0$，我们根据~$\delta$ 的最后一个推理分情况讨论。命题联结词规则的情况较为简单，留作练习。我们考虑 $\delta$ 以量词推理结束的情况。
   \begin{enumerate}
-    \item If the last inference is $\Intro{\lforall}$, $\delta$ is of
-    the form
+    \item 如果最后一个推理是 $\Intro{\lforall}$，则 $\delta$ 形如
     \[
     \AxiomC{}
     \RightLabel{$\delta'$}
@@ -57,10 +38,7 @@ an open assumption of~$\Subst{\delta}{t}{c}$.
     \UnaryInfC{$\lforall[x][!A(x,c)]$}
     \DisplayProof
     \]
-    By induction hypothesis, $\Subst{\delta'}{t}{c}$ is a regular
-    !!{proof} of $!A(a,t)$. Since $a$ is an eigenvariable of~$\delta$,
-    $a$~does not occur in~$t$. Therefore, the last inference in
-    $\Subst{\delta}{t}{c}$,
+    根据归纳假设，$\Subst{\delta'}{t}{c}$ 是 $!A(a,t)$ 的一个正则推导。由于 $a$ 是~$\delta$ 的一个本征变元，$a$~不在~$t$ 中出现。因此，$\Subst{\delta}{t}{c}$ 中的最后一个推理，
     \[
     \AxiomC{}
     \RightLabel{$\Subst{\delta'}{t}{c}$}
@@ -69,10 +47,8 @@ an open assumption of~$\Subst{\delta}{t}{c}$.
     \UnaryInfC{$\lforall[x][!A(x,t)]$}
     \DisplayProof
     \]
-    is correct: since $t$ does not contain~$a$, neither the conclusion
-    nor any open assumption contains~$a$.
-    \item If the last inference is $\Elim{\lforall}$,
-    $\delta$ is of the form
+    是合法的：因为 $t$ 不包含~$a$，所以结论与任何开放假设均不包含~$a$。
+    \item 如果最后一个推理是 $\Elim{\lforall}$，则 $\delta$ 形如
     \[
     \AxiomC{}
     \RightLabel{$\delta'$}
@@ -81,10 +57,7 @@ an open assumption of~$\Subst{\delta}{t}{c}$.
     \UnaryInfC{$!A(s(c),c)$}
     \DisplayProof
     \]
-    By induction hypothesis, $\Subst{\delta'}{t}{c}$ is a regular
-    !!{proof} of $\lforall[x][!A(x,t)]$. (The term~$s(c)$ in the
-    conclusion may, but need not, contain~$c$.) The last inference in
-    $\Subst{\delta}{t}{c}$,
+    根据归纳假设，$\Subst{\delta'}{t}{c}$ 是 $\lforall[x][!A(x,t)]$ 的一个正则推导。（结论中的项~$s(c)$ 可能包含~$c$，但未必包含。）$\Subst{\delta}{t}{c}$ 中的最后一个推理，
     \[
     \AxiomC{}
     \RightLabel{$\Subst{\delta'}{t}{c}$}
@@ -93,10 +66,8 @@ an open assumption of~$\Subst{\delta}{t}{c}$.
     \UnaryInfC{$!A(s(t),t)$}
     \DisplayProof
     \]
-    is correct, and $!A(s(t),t) \ident \Subst{!A(s(c),c)}{t}{c}$. The
-    case for \Intro{\lexists} is similar.
-  \item If the last inference is $\Elim{\lexists}$, $\delta$ is of
-    the form
+    是合法的，且 $!A(s(t),t) \ident \Subst{!A(s(c),c)}{t}{c}$。 \Intro{\lexists} 的情况类似。
+  \item 如果最后一个推理是 $\Elim{\lexists}$，则 $\delta$ 形如
     \[
     \AxiomC{}
     \RightLabel{$\delta_1'$}
@@ -108,12 +79,8 @@ an open assumption of~$\Subst{\delta}{t}{c}$.
     \BinaryInfC{$!C$}
     \DisplayProof
     \]
-    By induction hypothesis, $\Subst{\delta_1'}{t}{c}$ and
-    $\Subst{\delta_2'}{t}{c}$ are regular !!{proof}s of
-    $\lexists[x][!A(x,c)]$ and of $!C$ from the open
-    assumption~$!A(a,t)$. Since $a$ is an eigenvariable of~$\delta$,
-    $a$~does not occur in~$t$. Therefore, the last inference in
-    $\Subst{\delta}{t}{c}$,
+    根据归纳假设，$\Subst{\delta_1'}{t}{c}$ 和
+    $\Subst{\delta_2'}{t}{c}$ 分别是 $\lexists[x][!A(x,c)]$ 的正则推导与从开放假设~$!A(a,t)$ 到 $!C$ 的正则推导。由于 $a$ 是~$\delta$ 的一个本征变元，$a$~不在~$t$ 中出现。因此，$\Subst{\delta}{t}{c}$ 中的最后一个推理，
     \[
     \AxiomC{}
     \RightLabel{$\Subst{\delta'}{t}{c}$}
@@ -122,29 +89,21 @@ an open assumption of~$\Subst{\delta}{t}{c}$.
     \UnaryInfC{$\lforall[x][!A(x,t)]$}
     \DisplayProof
     \]
-    is correct: $\Subst{!A(x,t)}{a}{x} \ident \Subst{!A(a,c)}{t}{c}$, neither the conclusion~$!C$ nor any open assumption contains~$a$. 
+    是合法的：$\Subst{!A(x,t)}{a}{x} \ident \Subst{!A(a,c)}{t}{c}$，结论~$!C$ 与所有开放假设均不包含~$a$。 
   \end{enumerate}
 \end{proof}
 
 \begin{prop}\ollabel{prop:regular}
-If $\delta$ is !!a{proof} in \Log{N1c} or \Log{N1i}, then there is a
-regular !!{proof}~$\delta'$ with the same structure (in particular, the
-same !!{height}) which differs from $\delta$ only by replacing
-eigenvariables.
+如果 $\delta$ 是 \Log{N1c} 或 \Log{N1i} 中的一个推导，那么存在一个正则推导~$\delta'$，它具有相同的结构（特别是相同的高度），且与 $\delta$ 的区别仅在于替换了本征变元。
 \end{prop}
 
 \begin{proof}
-For the purpose of the proof only, call an eigenvariable inference
-of~$\delta$ \emph{clean} if its eigenvariable is not the eigenvariable of
-another inference nor does it occur anywhere in~$\delta$ except the
-immediate sub-!!{proof} of the inference, and \emph{dirty} otherwise.
-Let $n$ be the number of dirty eigenvariable inferences in~$\delta$. We
-show, by induction on~$n$, that $\delta$~can be transformed into the
-required regular !!{proof}~$\delta'$. If $n=0$, all eigenvariable
-inferences in~$\delta$ are clean, and so $\delta$ is regular, and there is
-nothing to prove. Otherwise, pick a highest eigenvariable inference,
-say \Intro{\lforall}. The sub-!!{proof}~$\delta_1$ of~$\delta$ ending in it
-is of the form
+仅就本证明而言，如果~$\delta$ 中的一个本征变元推理的本征变元不是其他推理的本征变元，并且除了在该推理的直接子推导中之外，不在~$\delta$ 的任何其他地方出现，则称该推理是\emph{干净的}；否则称其为\emph{脏的}。
+令 $n$ 为~$\delta$ 中脏的本征变元推理的个数。
+我们将通过对~$n$ 施归纳来证明，$\delta$ 可以转化为所要求的正则推导~$\delta'$。
+如果 $n=0$，则 $\delta$ 中的所有本征变元推理都是干净的，因此 $\delta$ 是正则的，无需再证。
+否则，选取一个最顶端的本征变元推理，设为一个 $\Intro{\lforall}$ 推理。
+$\delta$ 中以它结尾的子推导~$\delta_1$ 形如
     \[
     \AxiomC{}
     \RightLabel{$\delta_2$}
@@ -153,16 +112,14 @@ is of the form
     \UnaryInfC{$\lforall[x][!A(x)]$}
     \DisplayProof
     \]
-Note that as $c$ is an eigenvariable, it does not occur
-in~$\lforall[x][!A(x)]$ or an open assumption. The proof $\delta_2$ is
-regular, since it contains no eigenvariable inferences at all. Let $a$
-be !!a{constant} not occuring in~$\delta$. By
-\olref{lem:subst-regular}, $\Subst{\delta_2}{a}{c}$ is a regular proof
-of $!A(a)$. By the eigenvariable condition, no open assumption
-of~$\delta_2$ contains~$c$, hence no open assumption
-of~$\Subst{\delta_2}{a}{c}$ contains~$a$. Thuse we can
-apply~$\Intro{\lforall}$. If we replace $\delta_1$ in~$\delta$ by the
-proof $\delta_1'$,
+注意，由于 $c$ 是本征变元，它不出现在~$\lforall[x][!A(x)]$ 或任何开放假设中。
+推导 $\delta_2$ 是正则的，因为它根本不包含本征变元推理。
+令 $a$ 为一个不在~$\delta$ 中出现的常项符号。
+根据 \olref{lem:subst-regular}，$\Subst{\delta_2}{a}{c}$ 是 $!A(a)$ 的一个正则推导。
+根据本征变元条件，$\delta_2$ 的开放假设不包含~$c$，
+因此~$\Subst{\delta_2}{a}{c}$ 的开放假设也不包含~$a$。
+于是我们可以应用~$\Intro{\lforall}$。
+如果将 $\delta$ 中的 $\delta_1$ 替换为推导 $\delta_1'$：
     \[
     \AxiomC{}
     \RightLabel{$\Subst{\delta_2}{a}{c}$}
@@ -171,22 +128,19 @@ proof $\delta_1'$,
     \UnaryInfC{$\lforall[x][!A(x)]$}
     \DisplayProof
     \]
-we have replaced a dirty eigenvariable inference by a clean one, and
-the only difference is the replacement of the eigenvariable $c$
-by~$a$. The resulting proof has $n-1$ dirty eigenvariable inferences,
-and the result follows from the inductive hypothesis.
+我们就将一个脏的本征变元推理替换成了一个干净的，唯一的区别是将本征变元 $c$ 换成了~$a$。
+所得的推导含有 $n-1$ 个脏的本征变元推理，
+从而由归纳假设即得结论。
 \end{proof}
 
 \begin{prob}
-Describe the case in the proof of \olref{prop:regular} where the
-topmost eigenvariable inference is~\Elim{\lexists}.
+描述 \olref{prop:regular} 的证明中，最顶端的本征变元推理是~\Elim{\lexists} 的情形。
 \end{prob}
 
-We will not appeal to the proposition just proved explicitly, but we
-will assume that all !!{proof}s considered are regular---if they are
-not, we can always replace eigenvariables to make them regular.
+我们不会显式地引用刚刚证明的这个命题，但我们将假设所考虑的所有推导都是正则的——如果它们不是，
+我们总可以通过替换本征变元使其成为正则的。
 
-\Olref{lem:subst-regular} and \olref{prop:regular} also hold for
-\Log{N2c} and~\Log{N2i}. We leave the proofs as exercises.
+\Olref{lem:subst-regular} 和 \olref{prop:regular} 对于 \Log{N2c} 和~\Log{N2i} 也成立。
+我们将证明留作练习。
 
 \end{document}

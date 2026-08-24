@@ -8,81 +8,46 @@
 
 \olfileid{sol}{syn}{frm}
 
-\olsection{Terms and \printtoken{P}{formula}}
+\olsection{项与\printtoken{P}{formula}}
 
-Like in first-order logic, expressions of second-order logic are built
-up from a basic vocabulary containing \emph{!!{variable}s},
-\emph{!!{constant}s}, \emph{!!{predicate}s} and sometimes
-\emph{!!{function}s}.  From them, together with logical connectives,
-quantifiers, and punctuation symbols such as parentheses and commas,
-\emph{terms} and \emph{!!{formula}s} are formed.  The difference is
-that in addition to variables for objects, second-order logic also
-contains variables for relations and functions, and allows
-quantification over them. So the logical symbols of second-order logic
-are those of first-order logic, plus:
+与一阶逻辑类似，二阶逻辑的表达式也是由包含\emph{变元}、\emph{常项符号}、\emph{谓词符号}（有时还有\emph{函数符号}）的基本词汇表构造而成的。由它们，连同逻辑联结词、量词以及括号、逗号等标点符号，即可构成\emph{项}和\emph{公式}。区别在于，除了个体变元外，二阶逻辑还包含关系变元和函数变元，并允许对它们进行量化。因此，二阶逻辑的逻辑符号即一阶逻辑的逻辑符号，再加上：
 
 \begin{enumerate}
-\item A !!{denumerable}s set of second-order relation !!{variable}s of
-  every arity~$n$: $\Obj V_0^n$, $\Obj V_1^n$, $\Obj V_2^n$, \dots
-\item A !!{denumerable}s set of second-order function !!{variable}s:
-  $\Obj u_0^n$, $\Obj u_1^n$, $\Obj u_2^n$, \dots
+\item 对每个元数~$n$，都有一个可数无穷的二阶关系变元集合：$\Obj V_0^n$，$\Obj V_1^n$，$\Obj V_2^n$，\dots
+\item 对每个元数~$n$，都有一个可数无穷的二阶函数变元集合：$\Obj u_0^n$，$\Obj u_1^n$，$\Obj u_2^n$，\dots
 \end{enumerate}
 
-Just as we use $x$, $y$, $z$ as meta-variables for first-order
-variables $\Obj v_i$, we'll use $X$, $Y$, $Z$, etc., as metavariables
-for $\Obj V_i^n$ and $u$, $v$, etc., as meta-variables for~$\Obj u_i^n$.
+正如我们用 $x$、$y$、$z$ 作为一阶变元 $\Obj v_i$ 的元变元，我们将用 $X$、$Y$、$Z$ 等作为 $\Obj V_i^n$ 的元变元，用 $u$、$v$ 等作为~$\Obj u_i^n$ 的元变元。
 
 \begin{explain}
-The non-logical symbols of a second-order language are specified the
-same way a first-order language is: by listing its !!{constant}s,
-!!{function}s, and !!{predicate}s.
+二阶语言的\emph{非逻辑符号}的指定方式与一阶语言相同：通过列出其常项符号、函数符号和谓词符号。
 
-In first-order logic, the !!{identity}~$\eq$ is usually included. In
-first-order logic, the non-logical symbols of a language~$\Lang{L}$
-are crucial to allow us to express anything interesting. There are of
-course !!{sentence}s that use no non-logical symbols, but with
-only~$\eq$ it is hard to say anything interesting.  In second-order
-logic, since we have an unlimited supply of relation and function
-variables, we can say anything we can say in a first-order language
-even without a special supply of non-logical symbols.
+在一阶逻辑中，通常包含等词~$\eq$。语言~$\Lang{L}$ 的非逻辑符号对于表达任何有趣的内容至关重要。当然，也存在不使用任何非逻辑符号的语句，但仅仅用~$\eq$ 很难表达任何有趣的内容。在二阶逻辑中，由于我们拥有无穷多的关系变元和函数变元，即使没有专门提供非逻辑符号，我们也能表达一阶语言所能表达的任何内容。
 \end{explain}
 
-\begin{defn}[Second-order Terms]
-The set of \emph{second-order terms} of~$\Lang L$, $\TrmSOL[L]$, is
-defined by adding to \olref[fol][syn][frm]{defn:terms} the clause
+\begin{defn}[二阶项]
+语言~$\Lang L$ 的\emph{二阶项}集合 $\TrmSOL[L]$ 通过在 \olref[fol][syn][frm]{defn:terms} 的基础上添加以下条款定义：
 \begin{enumerate}
-\item If $u$ is an $n$-place function variable and $t_1$, \dots, $t_n$
-  are terms, then $\Atom{u}{t_1, \ldots, t_n}$ is a term.
+\item 如果 $u$ 是 $n$ 元函数变元，且 $t_1$、……、$t_n$ 是项，则 $\Atom{u}{t_1, \ldots, t_n}$ 是项。
 \end{enumerate}
 \end{defn}
 
 \begin{explain}
-So, a second-order term looks just like a first-order term, except
-that where a first-order term contains !!a{function}~$\Obj{f^n_i}$, a
-second-order term may contain a function variable~$\Obj{u^n_i}$ in its
-place.
+因此，二阶项与一阶项看起来完全相同，只不过在一阶项包含函数符号~$\Obj{f^n_i}$ 之处，二阶项可代之以函数变元~$\Obj{u^n_i}$。
 \end{explain}
 
-\begin{defn}[Second-order \usetoken{s}{formula}]
-The set of \emph{second-order !!{formula}s}~$\FrmSOL[L]$ of the
-language~$\Lang L$ is defined by adding to
-\olref[fol][syn][frm]{defn:formulas} the clauses
+\begin{defn}[二阶\usetoken{s}{formula}]
+语言~$\Lang L$ 的\emph{二阶公式}集合~$\FrmSOL[L]$ 通过在 \olref[fol][syn][frm]{defn:formulas} 的基础上添加以下条款定义：
 \begin{enumerate}
-\item If $X$ is an $n$-place predicate variable and $t_1$, \dots,
-  $t_n$ are second-order terms of~$\Lang L$, then
-  $\Atom{X}{t_1,\ldots, t_n}$ is an atomic !!{formula}.
+\item 如果 $X$ 是 $n$ 元谓词变元，且 $t_1$、……、$t_n$ 是~$\Lang L$ 的二阶项，则 $\Atom{X}{t_1,\ldots, t_n}$ 是原子公式。
 
-\tagitem{prvAll}{If $!A$ is !!a{formula} and $u$ is a function variable,
-  then $\lforall[u][!A]$ is !!a{formula}.}{}
+\tagitem{prvAll}{如果 $!A$ 是公式且 $u$ 是函数变元，则 $\lforall[u][!A]$ 是公式。}{}
 
-\tagitem{prvAll}{If $!A$ is !!a{formula} and $X$ is a predicate variable,
-  then $\lforall[X][!A]$ is !!a{formula}.}{}
+\tagitem{prvAll}{如果 $!A$ 是公式且 $X$ 是谓词变元，则 $\lforall[X][!A]$ 是公式。}{}
 
-\tagitem{prvEx}{If $!A$ is !!a{formula} and $u$ is a function variable,
-  then $\lexists[u][!A]$ is !!a{formula}.}{}
+\tagitem{prvEx}{如果 $!A$ 是公式且 $u$ 是函数变元，则 $\lexists[u][!A]$ 是公式。}{}
 
-\tagitem{prvEx}{If $!A$ is !!a{formula} and $X$ is a predicate variable,
-  then $\lexists[X][!A]$ is !!a{formula}.}{}
+\tagitem{prvEx}{如果 $!A$ 是公式且 $X$ 是谓词变元，则 $\lexists[X][!A]$ 是公式。}{}
 \end{enumerate}
 \end{defn}
 

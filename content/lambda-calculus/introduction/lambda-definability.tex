@@ -7,48 +7,32 @@
 \begin{document}
 
 \olfileid{lam}{int}{rep}
-\olsection{\usetoken{S}{lambda definable} Arithmetical Functions}
+\olsection{λ-可定义的算术函数}
 
-How can the lambda calculus serve as a model of computation? At first,
-it is not even clear how to make sense of this statement. To talk
-about computability on the natural numbers, we need to find a suitable
-representation for such numbers. Here is one that works surprisingly
-well.
+λ-演算如何能充当计算模型？起初，甚至不清楚该如何理解这一说法。要讨论自然数上的可计算性，我们需要为这些数找到一种合适的表示。下面是一种出奇地有效的表示。
 
 \begin{defn}
-For each natural number~$n$, define the \emph{Church numeral}
-$\num{n}$ to be the lambda term $\lambd[x][\lambd[y][(x(x(x(\dots
-x(y)))))]]$, where there are $n$ $x$'s in all.
+对每个自然数~$n$，定义\emph{丘奇数} $\num{n}$ 为 λ-项 $\lambd[x][\lambd[y][(x(x(x(\dots
+x(y)))))]]$，其中共有 $n$ 个~$x$。
 \end{defn}
 
-The terms $\num{n}$ are ``iterators'': on input $f$, $\num{n}$ returns
-the function mapping $y$ to $f^n(y)$. Note that each numeral is
-normal. We can now say what it means for a lambda term to ``compute''
-a function on the natural numbers.
+项 $\num{n}$ 是“迭代器”：以 $f$ 为输入时，$\num{n}$ 返回将 $y$ 映射为 $f^n(y)$ 的函数。注意每个丘奇数都是范式。现在我们可以界定一个 λ-项“计算”自然数上的函数意味着什么。
 
 \begin{defn}
-Let $f(x_0, \dots, x_{k-1})$ be an $n$-ary partial function from $\Nat$
-to $\Nat$. We say a $\lambd$-term~$F$ \emph{!!{lambda define}s}~$f$ iff for every
-sequence of natural numbers $n_0$, \dots,~$n_{k-1}$,
-\[
+令 $f(x_0, \dots, x_{k-1})$ 为从 $\Nat$ 到 $\Nat$ 的 $n$ 元偏函数。我们称 λ-项~$F$ \emph{λ-定义}~$f$，当且仅当对每个自然数序列 $n_0$, \dots,~$n_{k-1}$，若 $f(n_0, \dots, n_{k-1})$ 有定义则 \[
 F\, \num{n_0}\, \num{n_1} \dots \num{n_{k-1}} \red \num{f(n_0, n_1, \dots,
   n_{k-1})}
-\]
-if $f(n_0, \dots, n_{k-1})$ is defined, and $F, \num{n_0}\, \num{n_1}
-\dots \num{n_{k-1}}$ has no normal form otherwise.
+\]，否则 $F, \num{n_0}\, \num{n_1}
+\dots \num{n_{k-1}}$ 没有范式。
 \end{defn}
 
 \begin{thm}
 \ollabel{thm:lambda-def}
-A function $f$ is a partial computable function if and only if it is
-!!{lambda defined} by a lambda term.
+函数 $f$ 是部分可计算函数，当且仅当它被某个 λ-项所 λ-定义。
 \end{thm}
 
 \begin{explain}
-This theorem is somewhat striking. As a model of computation, the
-lambda calculus is a rather simple calculus; the only operations are
-lambda abstraction and application!{} From these meager resources,
-however, it is possible to implement any computational procedure.
+这一定理颇令人惊讶。作为一种计算模型，λ-演算是相当简单的演算；仅有的操作就是 λ-抽象与应用！然而，从如此贫乏的资源出发，却能实现任何计算过程。
 \end{explain}
 
 \end{document}

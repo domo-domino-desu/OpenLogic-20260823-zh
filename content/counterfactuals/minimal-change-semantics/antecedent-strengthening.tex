@@ -8,38 +8,26 @@
 
 \olfileid{cnt}{min}{agg}
 
-\olsection{Antecedent Strengthening}
+\olsection{前件强化}
 
-``Strengthening the antecedent'' refers to the
-inference $!A \lif !C \Entails (!A \land !B) \lif !C$.  It is valid
-for the material conditional, but invalid for counterfactuals. Suppose
-it is true that if I were to strike this match, it would light. (That
-means, there is nothing wrong with the match or the matchbook surface,
-I will not break the match, etc.) But it is not true that if I were to
-light this match in outer space, it would light. So the following
-inference is invalid:
+“强化前件”指的是推理 $!A \lif !C \Entails (!A \land !B) \lif !C$。它对实质条件句有效，但对反事实条件句无效。假设“如果我要划这根火柴，它就会点燃”是真的。（这意味着，火柴和火柴盒表面都没问题，我不会弄断火柴，等等。）但是，“如果我要在外太空划这根火柴，它就会点燃”则不是真的。因此，以下推理是无效的：
+
 \begin{quote}
-  If the match were struck, it would light.
+  如果划了这根火柴，它就会点燃。
 
-  Therefore, if the match were struck in outer space, it would light.
+  所以，如果在外太空划了这根火柴，它就会点燃。
 \end{quote}
 
-The Lewis--Stalnaker account of conditionals explains this: the closest
-world where I light the match and I do so in outer space is much
-further removed from the actual world than the closest world where I
-light the match is. So although it's true that the match lights in the
-latter, it is not in the former. And that is as it should be.
+Lewis（刘易斯）--Stalnaker（斯塔尔纳克）的条件句解释对此作出了说明：我划火柴且是在外太空划的最近可能世界，离现实世界要比仅仅我划火柴的最近可能世界远得多。因此，尽管火柴在后一个世界中确实点燃了，但在前一个世界中却没有。而这正是应有的情况。
 
 \begin{ex}
-  The sphere semantics invalidates the inference, i.e., we have $p
-  \cif r \Entails/ (p \land q) \cif r$. Consider the model $\mModel{M}
-  = \tuple{W, O, V}$ where $W = \{w, w_1, w_2\}$, $O_w = \{\{w\}, \{w,
-  w_1\}, \{w, w_1, w_2\}\}$, $V(p) = \{w_1, w_2\}$, $V(q) = \{w_2\}$,
-  and $V(r) = \{w_1\}$. There is a $p$-admitting sphere $S = \{w,
-  w_1\}$ and $p \lif r$ is true at all worlds in it, so $\mSat{M}{p
-    \cif r}[w]$. There is also a $(p \land q)$-admitting sphere $S' =
-  \{w, w_1, w_2\}$ but $\mSat/{M}{(p \land q) \lif r}[w_2]$, so
-  $\mSat/{M}{(p \land q) \cif r}[w]$ (see \olref{fig:antecedent-strengthening}).
+  球系语义表明该推理无效，也就是说，我们有 $p
+  \cif r \Entails/ (p \land q) \cif r$。考虑模型 $\mModel{M}
+  = \tuple{W, O, V}$，其中 $W = \{w, w_1, w_2\}$、$O_w = \{\{w\}, \{w,
+  w_1\}, \{w, w_1, w_2\}\}$、$V(p) = \{w_1, w_2\}$、$V(q) = \{w_2\}$ 以及 $V(r) = \{w_1\}$。存在一个 $p$-允许球 $S = \{w,
+  w_1\}$，并且 $p \lif r$ 在其中的所有世界上为真，因此 $\mSat{M}{p
+    \cif r}[w]$。也存在一个 $(p \land q)$-允许球 $S' =
+  \{w, w_1, w_2\}$，但 $\mSat/{M}{(p \land q) \lif r}[w_2]$，因此 $\mSat/{M}{(p \land q) \cif r}[w]$（参见\olref{fig:antecedent-strengthening}）。
 
 \begin{figure}
 \begin{center}
@@ -61,7 +49,7 @@ latter, it is not in the former. And that is as it should be.
   \spherepos{30}{4}{node {$r$}}
   \draw (1,4.5) node[below] {$p$};
 \end{tikzpicture}
-\caption{Counterexample to antecedent strengthening}
+\caption{前件强化的反例}
 \ollabel{fig:antecedent-strengthening}
 \end{center}
 \end{figure}

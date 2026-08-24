@@ -8,82 +8,58 @@
 
 \olfileid{nml}{fil}{fmp}
 
-\olsection{\Log{K} and \Log{S5} have the Finite Model Property}
+\olsection{\Log{K} 与 \Log{S5} 具有有限模型性}
 
 \begin{defn}
-  A system $\Sigma$ of modal logic is said to have the \emph{finite
-    model property} if whenever !!a{formula}~$!A$ is true at a world
-  in a model of $\Sigma$ then $!A$ is true at a world in a
-  \emph{finite} model of~$\Sigma$.
+  一个模态逻辑系统 $\Sigma$ 具有\emph{有限模型性}，如果每当公式~$!A$ 在 $\Sigma$ 的某个模型的某个世界上为真时，$!A$ 在 $\Sigma$ 的某个\emph{有限}模型的某个世界上也为真。
 \end{defn}
 
 \begin{prop}\ollabel{prop:K-fmp}
-  \Log{K} has the finite model property.
+  \Log{K} 具有有限模型性。
 \end{prop}
 
 \begin{proof}
-  \Log{K} is the set of valid !!{formula}s, i.e., any model is a model
-  of~\Log{K}.  By \olref[fil]{thm:filtrations}, if
-  $\mSat{M}{!A}[w]$, then $\mSat{M^*}{!A}[w]$ for any filtration
-  of~$\mModel{M}$ through the set $\Gamma$ of sub-!!{formula}s
-  of~$!A$. Any !!{formula} only has finitely many sub-!!{formula}s, so
-  $\Gamma$ is finite. By \olref[fin]{prop:filt-are-finite},
-  $\card{W^*} \le 2^n$, where $n$ is the number of !!{formula}s
-  in~$\Gamma$. And since \Log{K} imposes no restriction on models,
-  $\mModel{M^*}$ is a \Log{K}-model.
+  \Log{K} 是全体有效公式的集合，亦即任何模型都是~\Log{K} 的模型。
+  根据 \olref[fil]{thm:filtrations}，如果
+  $\mSat{M}{!A}[w]$，那么 $\mSat{M^*}{!A}[w]$ 对 $\mModel{M}$ 经由 $!A$ 的子公式集 $\Gamma$ 所作的任何过滤成立。
+  任何公式都只有有限多个子公式，故 $\Gamma$ 是有限的。
+  由 \olref[fin]{prop:filt-are-finite} 可知，$\card{W^*} \le 2^n$，其中 $n$ 是~$\Gamma$ 中公式的个数。
+  又因为 \Log{K} 对模型没有限制，所以 $\mModel{M^*}$ 是一个 \Log{K}-模型。
 \end{proof}
 
-To show that a logic~\Log{L} has the finite model property via
-filtrations it is essential that the filtration of an \Log{L}-model is
-itself a \Log{L}-model. Often this requires a fair bit of work, and
-not any filtration yields a \Log{L}-model. However, for universal
-models, this still holds.
+为了通过过滤证明一个逻辑~\Log{L} 具有有限模型性，本质在于确保一个 \Log{L}-模型的过滤本身也是 \Log{L}-模型。
+这通常需要相当多的工作，且并非任何过滤都能产生 \Log{L}-模型。然而，对于全通模型，这一点仍然成立。
 
 \begin{prop}\ollabel{prop:univ-fin}
-  Let $\mClass{U}$ be the class of universal models (see
-  \olref[frd][es5]{prop:S5=univ}) and $\mClass{U}_\mathrm{Fin}$ the
-  class of all finite universal models. Then any !!{formula}~$!A$ is
-  valid in $\mClass{U}$ if and only if it is valid in
-  $\mClass{U}_\mathrm{Fin}$.
+  令 $\mClass{U}$ 为全通模型的类（参见 \olref[frd][es5]{prop:S5=univ}），$\mClass{U}_\mathrm{Fin}$ 为所有有限全通模型的类。
+  那么，公式~$!A$ 在 $\mClass{U}$ 中有效，当且仅当它在 $\mClass{U}_\mathrm{Fin}$ 中有效。
 \end{prop}
 
 \begin{proof}
-  Finite universal models are universal models, so the left-to-right
-  direction is trivial. For the right-to left direction, suppose
-  that~$!A$ is false at some world $w$ in a universal model
-  $\mModel{M}$. Let $\Gamma$ contain $!A$ as well as all of its
-  subformulas; clearly $\Gamma$ is finite. Take a filtration
-  $\mModel{M^*}$ of $\mModel{M}$; then $\mModel{M^*}$ is finite by
-  \olref[fin]{prop:filt-are-finite}, and by
-  \olref[fil]{thm:filtrations}, $!A$ is false at $[w]$ in
-  $\mModel{M^*}$. It remains to observe that $\mModel{M^*}$ is also
-  universal: given $u$ and $v$, by hypothesis $Ruv$ and by
-  \olref[fil]{defn:filtration}\olref[fil]{defn:filtration-R},
-  also $R^*[u][v]$.
+  有限全通模型是全通模型，因此从左到右的方向是平凡的。
+  对于从右到左的方向，假设~$!A$ 在某个全通模型 $\mModel{M}$ 的某个世界 $w$ 处为假。
+  令 $\Gamma$ 包含 $!A$ 及其所有子公式；显然 $\Gamma$ 是有限的。
+  取 $\mModel{M}$ 的一个过滤 $\mModel{M^*}$；由 \olref[fin]{prop:filt-are-finite}，$\mModel{M^*}$ 是有限的，
+  且由 \olref[fil]{thm:filtrations}，$!A$ 在 $\mModel{M^*}$ 中的 $[w]$ 处为假。
+  只需注意到 $\mModel{M^*}$ 也是全通的：给定 $u$ 和 $v$，根据假设有 $Ruv$，再由 \olref[fil]{defn:filtration}\olref[fil]{defn:filtration-R}，亦有 $R^*[u][v]$。
 \end{proof}
 
 \begin{cor}\ollabel{cor:S5fmp}
-  \Log{S5} has the finite model property.
+  \Log{S5} 具有有限模型性。
 \end{cor}
 
 \begin{proof}
-  By \olref[frd][es5]{prop:S5=univ}, if $!A$ is true at a world in
-  some reflexive and euclidean model then it is true at a world in a
-  universal model. By \olref{prop:univ-fin}, it is true at a world in
-  a finite universal model (namely the filtration of the model through
-  the set of sub-!!{formula}s of~$!A$). Every universal model is also
-  reflexive and euclidean; so $!A$ is true at a world in a finite
-  reflexive euclidean model.
+  由 \olref[frd][es5]{prop:S5=univ}，如果 $!A$ 在某个自反且欧几里得的模型的某个世界上为真，那么它在某个全通模型的某个世界上也为真。
+  由 \olref{prop:univ-fin}，它在某个有限全通模型（即对该模型经由 $!A$ 的子公式集进行过滤所得的模型）的某个世界上为真。
+  每个全通模型也都自反且欧几里得；因此 $!A$ 在某个有限的自反且欧几里得的模型的某个世界上为真。
 \end{proof}
 
 \begin{prob}
-  Show that any filtration of a serial or reflexive model is also
-  serial or reflexive (respectively).
+  证明：持续（或自反）模型的任何过滤也分别是持续（或自反）的。
 \end{prob}
 
 \begin{prob}
-  Find a non-symmetric (non-transitive, non-euclidean) filtration of a
-  symmetric (transitive, euclidean) model.
+  找出一个对称（或传递，或欧几里得）模型的非对称（或非传递，或非欧几里得）过滤。
 \end{prob}
 
 \end{document}

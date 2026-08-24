@@ -8,51 +8,43 @@
 
 \olfileid{int}{sc}{sax}
 
-\olsection{Soundness of Axiomatic \usetoken{P}{derivation}}
+\olsection{公理系统 \usetoken{P}{derivation} 的可靠性}
 
 \begin{editorial}
-  The soundness proof relies on the fact that all axioms are
-  intuitionistically valid; this still needs to be proved, e.g., in
-  the Semantics chapter.
+  可靠性证明依赖于所有公理均直觉主义有效这一事实；这一点仍有待证明，例如在语义学章节中。
 \end{editorial}
 
-\begin{thm}[Soundness]
+\begin{thm}[可靠性]
   \ollabel{thm:soundness}
-  If $\Gamma \Proves !A$, then $ \Gamma \Entails !A$.
+  如果 $\Gamma \Proves !A$，则 $ \Gamma \Entails !A$。
 \end{thm}
 
 \begin{proof}
-  We prove that if $\Gamma \Proves !A$, then $\Gamma \Entails !A$.
-  The proof is by induction on the number~$n$ of !!{formula}s in the
-  !!{derivation} of~$!A$ from~$\Gamma$.  We show that if $!A_1$,
-  \dots, $!A_n = !A$ is !!a{derivation} from~$\Gamma$, then $\Gamma
-  \Entails !A_n$. Note that if $!A_1$, \dots, $!A_n$ is
-  !!a{derivation}, so is $!A_1$, \dots, $!A_k$ for any $k<n$.
+  我们证明如果 $\Gamma \Proves !A$，则 $\Gamma \Entails !A$。
+  我们对从~$\Gamma$ 到~$!A$ 的推导中所含公式的数量~$n$ 进行归纳。
+  我们证明，如果 $!A_1$, \dots, $!A_n = !A$ 是从~$\Gamma$ 出发的一个推导，那么 $\Gamma
+  \Entails !A_n$。注意，如果 $!A_1$, \dots, $!A_n$ 是一个推导，那么对任意 $k<n$，$!A_1$, \dots, $!A_k$ 也是一个推导。
 
-  There are no !!{derivation}s of length~$0$, so for $n=0$ the claim
-  holds vacuously. So the claim holds for all !!{derivation}s of
-  length~$<n$. We distinguish cases according to the justification
-  of~$!A_n$.
+  不存在长度为~$0$ 的推导，所以当 $n=0$ 时，该论断空真成立。因此，该论断对所有长度~$<n$ 的推导都成立。我们根据~$!A_n$ 的得出依据来区分情况。
   
   \begin{enumerate}
-  \item $!A_n$ is an axiom. All axioms are valid, so $\Gamma \Entails
-    !A_n$ for any~$\Gamma$.
-  \item $!A_n \in \Gamma$. Then for any $\mModel{M}$ and $w$, if
-    $\mSat{M}{\Gamma}[w]$, obviously $\mSat{M}{\Gamma}{!A_n}[w]$,
-    i.e., $\Gamma \Entails !A$.
-  \item $!A_n$ follows by \MP{} from $!A_i$ and $!A_j \ident !A_i \lif
-    !A_n$. $!A_1$, \dots, $!A_i$ and $!A_1$, \dots, $!A_j$ are
-    !!{derivation}s from~$\Gamma$, so by inductive hypothesis, $\Gamma
-    \Entails !A_i$ and $\Gamma \Entails !A_i \lif !A_n$.
+  \item $!A_n$ 是一条公理。所有公理都是有效的，所以对任意~$\Gamma$，$\Gamma \Entails
+    !A_n$。
+  \item $!A_n \in \Gamma$。那么对任意 $\mModel{M}$ 和 $w$，如果
+    $\mSat{M}{\Gamma}[w]$，显然 $\mSat{M}{\Gamma}{!A_n}[w]$，
+    即 $\Gamma \Entails !A$。
+  \item $!A_n$ 是由 $!A_i$ 和 $!A_j \ident !A_i \lif
+    !A_n$ 经 \MP{} 得出的。$!A_1$, \dots, $!A_i$ 和 $!A_1$, \dots, $!A_j$ 是
+    从~$\Gamma$ 出发的推导，所以由归纳假设，$\Gamma
+    \Entails !A_i$ 且 $\Gamma \Entails !A_i \lif !A_n$。
     
-    Suppose $\mSat{M}{\Gamma}[w]$. Since $\mSat{M}{\Gamma}[w]$ and
-    $\Gamma \Entails !A_i \lif !A_n$, $\mSat{M}{!A_i \lif
-      !A_n}[w]$. By definition, this means that for all $w'$ such that
-    $Rww'$, if $\mSat{M}{!A_i}[w']$ then $\mSat{M}{!A_n}[w']$. Since
-    $R$ is reflexive, $w$ is among the $w'$ such that $Rww'$, i.e., we
-    have that if $\mSat{M}{!A_i}[w]$ then $\mSat{M}{!A_n}[w]$. Since
-    $\Gamma \Entails !A_i$, $\mSat{M}{!A_i}[w]$. So,
-    $\mSat{M}{!A_n}[w]$, as we wanted to show.
+    假设 $\mSat{M}{\Gamma}[w]$。由于 $\mSat{M}{\Gamma}[w]$ 且
+    $\Gamma \Entails !A_i \lif !A_n$，$\mSat{M}{!A_i \lif
+      !A_n}[w]$。根据定义，这意味着对所有满足
+    $Rww'$ 的 $w'$，如果 $\mSat{M}{!A_i}[w']$ 那么 $\mSat{M}{!A_n}[w']$。由于
+    $R$ 是自反的，$w$ 就在那些满足 $Rww'$ 的 $w'$ 之中，也就是说我们有：如果 $\mSat{M}{!A_i}[w]$ 那么 $\mSat{M}{!A_n}[w]$。由于
+    $\Gamma \Entails !A_i$，$\mSat{M}{!A_i}[w]$。因此，
+    $\mSat{M}{!A_n}[w]$，这正是我们所要证明的。
   \end{enumerate}
 \end{proof}
 

@@ -7,277 +7,213 @@
 \begin{document}
 
 \olfileid{lam}{syn}{alp}
-\olsection{$\alpha$-Conversion}
+\olsection{$\alpha$-转换}
 
-What is the relation between $\lambd[x][x]$ and $\lambd[y][y]$? They
-both represent the identity function. They are, of course,
-syntactically different terms. They differ only in the name of the
-bound variable, and one is the result of ``renaming'' the bound
-variable in the other. This is called \emph{$\alpha$-conversion}.
+$\lambd[x][x]$ 和 $\lambd[y][y]$ 之间有什么关系？它们都表示恒等函数。当然，它们是句法上不同的项。它们的区别仅在于约束变元的名称，而且其中一个可以视作对另一个进行约束变元“重命名”的结果。这被称为\emph{$\alpha$-转换}。
 
-\begin{defn}[Change of bound variable, $\aconvone$]
-  If a term $M$ contains an occurrence of $\lambd[x][N]$, $y \notin
-  \FV{N}$, and $\Subst{N}{y}{x}$ is defined, then replacing this occurrence
-  by 
+\begin{defn}[约束变元的更改，$\aconvone$]
+  如果一个项 $M$ 中包含 $\lambd[x][N]$ 的一次出现，$y \notin \FV{N}$，且 $\Subst{N}{y}{x}$ 有定义，那么将此次出现替换为
   \begin{equation*}
     \lambd[y][\Subst{N}{y}{x}]
   \end{equation*}
-  resulting in $M'$ is called a \emph{change of bound variable}, written
-  as $M \redone[\alpha] M'$.
+  得到 $M'$，这一操作就称为\emph{约束变元的更改}，记作 $M \redone[\alpha] M'$。
 \end{defn}
 
-\begin{defn}[Compatibility of relation]
-  A relation $R$ on terms is said to be \emph{compatible}
-  if it satisfies following conditions:
+\begin{defn}[关系的兼容性]
+  项上的一个关系 $R$ 被称为是\emph{兼容的}，如果它满足以下条件：
   \begin{enumerate}
-  \item If $R N N'$ then $R \lambd[x][N] \lambd[x][N']$
-  \item If $R P P'$ then $R (PQ) (P'Q)$
-  \item If $R Q Q'$ then $R (PQ) (PQ')$
+  \item 如果 $R N N'$，那么 $R \lambd[x][N] \lambd[x][N']$
+  \item 如果 $R P P'$，那么 $R (PQ) (P'Q)$
+  \item 如果 $R Q Q'$，那么 $R (PQ) (PQ')$
   \end{enumerate}
 \end{defn}
 
-Thus let's rephrase the definition:
-\begin{defn}[Change of bound variable, $\aconvone$]
-  \emph{Change of bound variable} ($\redone[\alpha]$) is 
-  the smallest compatible relation on terms satisfying following
-  condition:
+因此，让我们重新表述定义：
+
+\begin{defn}[约束变元的更改，$\aconvone$]
+  \emph{约束变元的更改}（$\redone[\alpha]$）是项上满足以下条件的最小兼容关系：
   \begin{align*}
-    &\lambd[x][N] \redone[\alpha] \lambd[y][\Subst{N}{y}{x}] && \text{if
-      $x \neq y$, $y \notin \FV{N}$} \\
-    & &&\text{and $\Subst{N}{y}{x}$ is defined}
+    &\lambd[x][N] \redone[\alpha] \lambd[y][\Subst{N}{y}{x}] && \text{若
+      $x \neq y$，$y \notin \FV{N}$} \\
+    & &&\text{且 $\Subst{N}{y}{x}$ 有定义}
   \end{align*}
 \end{defn}
 
-``Smallest'' here means the relation contains only pairs that are required by
-compatibility and the additional condition, and nothing else. Thus
-this relation can also be defined as follows:
+这里的“最小”是指，该关系只包含由兼容性以及上述附加条件所要求的配对，而不包含任何其他配对。因此，这个关系也可以如下定义：
 
-\begin{defn}[Change of bound variable, $\aconvone$] \ollabel{defn:aconvone}
-  \emph{Change of bound variable} ($\aconvone$) is inductively
-  defined as follows:
+\begin{defn}[约束变元的更改，$\aconvone$] \ollabel{defn:aconvone}
+  \emph{约束变元的更改}（$\aconvone$）归纳定义如下：
   \begin{enumerate}
-  \item If $N \aconvone N'$ then $\lambd[x][N] \aconvone
+  \item 如果 $N \aconvone N'$，那么 $\lambd[x][N] \aconvone
     \lambd[x][N']$ \ollabel{defn:aconvone1}
-  \item If $P \aconvone P'$ then $(PQ) \aconvone (P'Q)$ \ollabel{defn:aconvone2}
-  \item If $Q \aconvone Q'$ then $(PQ) \aconvone (PQ')$ \ollabel{defn:aconvone3}
-  \item If $x \neq y$, $y \notin \FV{N}$ and $\Subst{N}{y}{x}$ is defined, then
-    $\lambd[x][N] \redone[\alpha] \lambd[y][\Subst{N}{y}{x}]$.
+  \item 如果 $P \aconvone P'$，那么 $(PQ) \aconvone (P'Q)$ \ollabel{defn:aconvone2}
+  \item 如果 $Q \aconvone Q'$，那么 $(PQ) \aconvone (PQ')$ \ollabel{defn:aconvone3}
+  \item 如果 $x \neq y$，$y \notin \FV{N}$ 且 $\Subst{N}{y}{x}$ 有定义，那么
+    $\lambd[x][N] \redone[\alpha] \lambd[y][\Subst{N}{y}{x}]$。
     \ollabel{defn:aconvone4}
   \end{enumerate}
 \end{defn}
 
-The definitions are equivalent, but we leave the proof as an
-exercise. From now on we will use the inductive definition.
+这些定义是等价的，但我们把证明留作练习。从现在开始，我们将使用归纳定义。
 
-\begin{defn}[$\alpha$-conversion, $\aconv$]
-  \emph{$\alpha$-conversion} ($\aconv$) is the smallest reflexitive
-  and transitive relation on terms containing $\aconvone$.
+\begin{defn}[$\alpha$-转换，$\aconv$]
+  \emph{$\alpha$-转换}（$\aconv$）是项上包含 $\aconvone$ 的最小自反且传递的关系。
 \end{defn}
 
-As above, ``smallest'' means the relation only contains pairs required
-by transitivity, and $\aconvone$, which leads to the following
-equivalent definition:
+如上所述，“最小”意味着该关系只包含由传递性和 $\aconvone$ 所要求的配对，由此得到以下等价定义：
 
-\begin{defn}[$\alpha$-conversion, $\aconv$] \ollabel{defn:aconv}
-  \emph{$\alpha$-conversion} ($\aconv$) is inductively defined as follows:
+\begin{defn}[$\alpha$-转换，$\aconv$] \ollabel{defn:aconv}
+  \emph{$\alpha$-转换}（$\aconv$）归纳定义如下：
   \begin{enumerate}
-  \item If $P \aconv Q$ and $Q \aconv R$, then $P \aconv R$.
+  \item 如果 $P \aconv Q$ 且 $Q \aconv R$，那么 $P \aconv R$。
     \ollabel{defn:aconv1}
-  \item If $P \aconvone Q$, then $P \aconv Q$. \ollabel{defn:aconv2}
-  \item $P \aconv P$. \ollabel{defn:aconv3}
+  \item 如果 $P \aconvone Q$，那么 $P \aconv Q$。 \ollabel{defn:aconv2}
+  \item $P \aconv P$。 \ollabel{defn:aconv3}
   \end{enumerate}
 \end{defn}
 
 \begin{ex}
-  $\lambd[x][f x]$ $\alpha$-converts to $\lambd[y][f
-  y]$, and conversely. Informally
-  speaking, they are both functions that accept an argument and
-  return $f$ of that argument, refering to the environment variable~$f$.
+  $\lambd[x][f x]$ 可以 $\alpha$-转换为 $\lambd[y][f y]$，反之亦然。
+  非正式地说，它们都是接受一个参数并返回 $f$ 作用于该参数的函数，这里引用了环境变元~$f$。
 
-  $\lambd[x][f x]$ does not $\alpha$-convert to $\lambd[x][g
-    x]$. Informally speaking, they refer to the environment variables
-  $f$ and~$g$ respectively, and this makes them different functions: they
-  behave differently in environments where $f$ and $g$ are different.
+  $\lambd[x][f x]$ 不能 $\alpha$-转换为 $\lambd[x][g x]$。
+  非正式地说，它们分别引用环境变元 $f$ 和~$g$，这使它们成为不同的函数：在 $f$ 和 $g$ 取值不同的环境中，它们的行为不同。
 \end{ex}
 
 \begin{prob}
-  Are the following pairs of terms $\alpha$-convertible?
+  下列各对项是 $\alpha$-可转换的吗？
   \begin{enumerate}
-  \item $\lambd[x][\lambd[y][x]]$ and $\lambd[y][\lambd[x][y]]$
-  \item $\lambd[x][\lambd[y][x]]$ and $\lambd[c][\lambd[b][a]]$
-  \item $\lambd[x][\lambd[y][x]]$ and $\lambd[c][\lambd[b][a]]$
+  \item $\lambd[x][\lambd[y][x]]$ 和 $\lambd[y][\lambd[x][y]]$
+  \item $\lambd[x][\lambd[y][x]]$ 和 $\lambd[c][\lambd[b][a]]$
+  \item $\lambd[x][\lambd[y][x]]$ 和 $\lambd[c][\lambd[b][a]]$
   \end{enumerate}
 \end{prob}
 
 \begin{lem}\ollabel{lem:fv-one}
-  If $P \aconvone Q$ then $\FV{P} = \FV{Q}$.
+  如果 $P \aconvone Q$，那么 $\FV{P} = \FV{Q}$。
 \end{lem}
 
 \begin{proof}
-  By induction on the !!{derivation} of $P \aconvone Q$.
+  对 $P \aconvone Q$ 的推导作归纳。
   \begin{enumerate}
-  \item If the last rule is \olref{defn:aconvone4}, then $P$ is of the
-    form $\lambd[x][N]$ and $Q$ of the form
-    $\lambd[y][\Subst{N}{y}{x}]$, with $x \neq y$, $y \notin \FV{N}$
-    and $\Subst{N}{y}{x}$ defined. We distinguish cases according to
-    whether $x \in \FV{N}$:
+  \item 如果最后应用的规则是 \olref{defn:aconvone4}，那么 $P$ 具有形式 $\lambd[x][N]$ 而 $Q$ 具有形式
+    $\lambd[y][\Subst{N}{y}{x}]$，其中 $x \neq y$，$y \notin \FV{N}$ 且 $\Subst{N}{y}{x}$ 有定义。我们根据 $x \in \FV{N}$ 是否成立分情况讨论：
     \begin{enumerate}
-    \item If $x \in FV(N)$, then:
+    \item 若 $x \in FV(N)$，则：
       \begin{align*}
         \FV{\lambd[y][\Subst{N}{y}{x}]} &=
         \FV{\Subst{N}{y}{x}} \setminus \{y\} \\
         & = ((\FV{N} \setminus \{x\}) \cup \{y\}) \setminus \{y\}
-         && \text{ by \olref[sub]{thm:infv}} \\
+         && \text{ 根据 \olref[sub]{thm:infv}} \\
         & = \FV{N} \setminus \{x\} \\
         & = \FV{\lambd[x][N]}
       \end{align*}
-    \item If $x \notin FV(N)$, then:
+    \item 若 $x \notin FV(N)$，则：
       \begin{align*}
         \FV{\lambd[y][\Subst{N}{y}{x}]}
         & = FV{\Subst{N}{y}{x}} \setminus \{y\} \\
         & = \FV{N} \setminus \{x\}
-         && \text{by \olref[sub]{thm:notinfv}} \\
+         && \text{根据 \olref[sub]{thm:notinfv}} \\
         & = \FV{\lambd[x][N]}.
       \end{align*}
     \end{enumerate}
-  \item The other three cases are left as exercises. 
+  \item 其他三种情况留作练习。
   \end{enumerate}
 \end{proof}
 
 \begin{prob}
-  Complete the proof of \olref[lam][syn][alp]{lem:fv-one}.
+  完成 \olref[lam][syn][alp]{lem:fv-one} 的证明。
 \end{prob}
 
 \begin{lem}\ollabel{lem:inv}
-  If $P \aconvone Q$ then $Q \aconvone P$.
+  如果 $P \aconvone Q$，那么 $Q \aconvone P$。
 \end{lem}
 
 \begin{proof}
-  Induction on the !!{derivation} of $P \aconvone Q$.
+  对 $P \aconvone Q$ 的推导作归纳。
   \begin{enumerate}
-  \item If the last rule is \olref{defn:aconvone4}, then $P$ is of the
-    form $\lambd[x][N]$ and $Q$ of the form
-    $\lambd[y][\Subst{N}{y}{x}]$, where $x \neq y$, $y \notin \FV{N}$
-    and $\Subst{N}{y}{x}$ defined. First, we have $y \notin
-    \FV{\Subst{N}{y}{x}}$ by \olref[sub]{thm:clr}. By
-    \olref[sub]{thm:inv} we have that $\Subst{\Subst{N}{y}{x}}{x}{y}$ is
-    not only defined, but also equal to~$N$. Then by
-    \olref{defn:aconvone4}, we have $\lambd[y][\Subst{N}{y}{x}]
-    \aconvone \lambd[x][\Subst{\Subst{N}{y}{x}}{x}{y}] =
-    \lambd[x][N]$.
+  \item 如果最后一条规则是 \olref{defn:aconvone4}，那么 $P$ 具有形式 $\lambd[x][N]$ 而 $Q$ 具有形式 $\lambd[y][\Subst{N}{y}{x}]$，其中 $x \neq y$，$y \notin \FV{N}$ 且 $\Subst{N}{y}{x}$ 有定义。首先，由 \olref[sub]{thm:clr} 我们有 $y \notin
+    \FV{\Subst{N}{y}{x}}$。由 \olref[sub]{thm:inv} 可知，$\Subst{\Subst{N}{y}{x}}{x}{y}$ 不仅有定义，而且等于~$N$。那么由 \olref{defn:aconvone4}，我们有 $\lambd[y][\Subst{N}{y}{x}] \aconvone \lambd[x][\Subst{\Subst{N}{y}{x}}{x}{y}] = \lambd[x][N]$。
   \end{enumerate}
 \end{proof}
 
 \begin{prob}
-  Complete the proof of \olref[lam][syn][alp]{lem:inv}
+  补全 \olref[lam][syn][alp]{lem:inv} 的证明。
 \end{prob}
 
 \begin{thm}
-  $\alpha$-Conversion is an equivalence relation on terms, i.e., it is
-  reflexive, symmetric, and transitive.
+  α-转换是项上的一个等价关系，即它是自反的、对称的和传递的。
 \end{thm}
 
 \begin{proof}
   \begin{enumerate}
-  \item For each term $M$, $M$ can be changed to $M$ by
-    \emph{zero} changes of bound variables.
-  \item If $P$ is $\alpha$-converts to $Q$ by a series of changes
-    of bound variables, then from $Q$ we can just inverse these
-    changes (by \olref{lem:inv}) in
-    opposite order to obtain~$P$.
-  \item If $P$ $\alpha$-converts to $Q$ by a series of changes of
-    bound variables, and $Q$ to $R$ by another series, then we can
-    change $P$ to $R$ by first applying the first series and then the
-    second series.
+  \item 对每个项 $M$，通过\emph{零次}约束变元改名，$M$ 可变为 $M$。
+  \item 如果 $P$ 通过一系列约束变元改名 α-转换为 $Q$，那么从 $Q$ 出发，只需（根据 \olref{lem:inv}）以相反顺序逆转这些改名即可得到~$P$。
+  \item 如果 $P$ 通过一系列约束变元改名 α-转换为 $Q$，并且 $Q$ 通过另一系列改名转换为 $R$，那么我们可以先应用第一个系列再应用第二个系列，从而将 $P$ 变为 $R$。
   \end{enumerate}
 \end{proof}
 
-From now on we say that $M$ and $N$ are \emph{$\alpha$-equivalent}, $M
-\aeq N$, iff $M$ $\alpha$-converts to $N$ (which, as we've just shown,
-is the case iff $N$ $\alpha$-converts to~$M$).
+从现在起，我们说 $M$ 和 $N$ 是\emph{α-等价的}，记作 $M \aeq N$，当且仅当 $M$ α-转换为 $N$（正如我们刚刚证明的，这当且仅当 $N$ α-转换为~$M$）。
 
 \begin{thm}\ollabel{thm:fv}
-  If $M \aeq N$, then $\FV{M} = \FV{N}$.
+  如果 $M \aeq N$，那么 $\FV{M} = \FV{N}$。
 \end{thm}
 
 \begin{proof}
-  Immediate from \olref{lem:fv-one}.
+  由 \olref{lem:fv-one} 立刻可得。
 \end{proof}
 
 \begin{lem}\ollabel{lem:sub:R}
-  If $R \aeq R'$ and $\Subst{M}{R}{y}$ is defined, then $\Subst{M}{R'}{y}$ is
-  defined and $\alpha$-equivalent to $\Subst{M}{R}{y}$.
+  如果 $R \aeq R'$ 且 $\Subst{M}{R}{y}$ 有定义，那么 $\Subst{M}{R'}{y}$ 有定义并且 α-等价于 $\Subst{M}{R}{y}$。
 \end{lem}
 
 \begin{proof}
-  Exercise.
+  练习。
 \end{proof}
 
 \begin{prob}
-  Prove \olref[lam][syn][alp]{lem:sub:R}.
+  证明 \olref[lam][syn][alp]{lem:sub:R}。
 \end{prob}
 
-Recall that in \olref[sub]{sec}, substitution is undefined in some
-cases; however, using $\alpha$-conversion on terms, we can make
-substitution always defined by renaming bound variables. The result
-preserves $\alpha$-equivalence, as shown in this theorem:
+回顾在 \olref[sub]{sec} 中，代入在某些情况下是未定义的；然而，通过对项进行 α-转换，我们可以通过重命名约束变元来使得代入始终有定义。如下定理所示，结果保持 α-等价：
 
 \begin{thm}\ollabel{thm:sub}
-  For any $M$, $R$, and~$y$, there exists $M'$ such that $M \aeq M'$
-  and $\Subst{M'}{R}{y}$ is defined. Moreover, if there is another
-  pair $M'' \aeq M$ and $R''$ where $\Subst{M''}{R''}{y}$ is defined
-  and $R'' \aeq R$, then $\Subst{M'}{R}{y} \aeq \Subst{M''}{R''}{y}$.
+  对于任意 $M$、$R$ 和~$y$，存在 $M'$ 使得 $M \aeq M'$ 且 $\Subst{M'}{R}{y}$ 有定义。此外，如果存在另一对 $M'' \aeq M$ 和 $R''$，其中 $\Subst{M''}{R''}{y}$ 有定义且 $R'' \aeq R$，那么 $\Subst{M'}{R}{y} \aeq \Subst{M''}{R''}{y}$。
 \end{thm}
 
 \begin{proof}
-  By induction on the formation of $M$:
+  对 $M$ 的结构作归纳：
   \begin{enumerate}
-  \item $M$ is a variable~$z$: Exercise.
-  \item Suppose $M$ is of the form $\lambd[x][N]$.  Select a variable
-    $z$ other than $x$ and $y$ and such that $z \notin \FV{N}$ and $z
-    \notin \FV{R}$.  By inductive hypothesis, we there is $N'$ such
-    that $N' \aeq N$ and $\Subst{N'}{z}{x}$ is defined. Then
-    $\lambd[x][N] \aeq \lambd[x][N']$ too, by
-    \olref{defn:aconvone}\olref{defn:aconvone1}.  Now $\lambd[x][N']
-    \aeq \lambd[z][\Subst{N'}{z}{x}]$ by
-    \olref{defn:aconvone}\olref{defn:aconvone4}.  We can do this
-    because $z \ne x$, $z \notin FV(N')$ and $\Subst{N'}{z}{x}$ is
-    defined. Finally, $\Subst{\lambd[z][\Subst{N'}{z}{x}]}{R}{y}$ is
-    defined, because $z \neq y$ and $z \notin FV(R)$.
+  \item $M$ 是变元~$z$：练习。
+  \item 假设 $M$ 具有形式 $\lambd[x][N]$。选取一个变元 $z$，它不同于 $x$ 和 $y$，并且满足 $z \notin \FV{N}$ 和 $z \notin \FV{R}$。由归纳假设，存在 $N'$ 使得 $N' \aeq N$ 且 $\Subst{N'}{z}{x}$ 有定义。那么根据 \olref{defn:aconvone}\olref{defn:aconvone1}，$\lambd[x][N] \aeq \lambd[x][N']$ 也成立。现在由 \olref{defn:aconvone}\olref{defn:aconvone4}，$\lambd[x][N']
+    \aeq \lambd[z][\Subst{N'}{z}{x}]$。这是因为 $z \ne x$，$z \notin FV(N')$ 且 $\Subst{N'}{z}{x}$ 有定义。最后，因为 $z \neq y$ 且 $z \notin FV(R)$，所以 $\Subst{\lambd[z][\Subst{N'}{z}{x}]}{R}{y}$ 有定义。
 
-    Moreover, if there is another $N''$ and $R''$ satisfying the same
-    conditions,
+    此外，如果存在另一对满足相同条件的 $N''$ 和 $R''$，
     \begin{multline*}
       \Subst{(\lambd[z][\Subst{N''}{z}{x}])}{R''}{y} =\\
     \begin{aligned}
       &= \lambd[z][\Subst{\Subst{N''}{z}{x}}{R''}{y}] \\
-      &= \lambd[z][\Subst{\Subst{N''}{z}{x}}{R}{y}] && \text{by
-        \olref{lem:sub:R}}\\
+      &= \lambd[z][\Subst{\Subst{N''}{z}{x}}{R}{y}] && 由 \olref{lem:sub:R}\\
       &=\lambd[z][\Subst{\Subst{N'}{z}{x}}{R}{y}]
-      && \text{by inductive
-        hypothesis}\\
+      && 由归纳假设\\
       &=\Subst{(\lambd[z][\Subst{N'}{z}{x}])}{R}{y}
     \end{aligned}
     \end{multline*}
-    \item $M$ is of the form $(PQ)$: Exercise.
+  \item $M$ 具有形式 $(PQ)$：练习。
   \end{enumerate}
 \end{proof}
 
 \begin{prob}
-  Complete the proof of \olref[lam][syn][alp]{thm:sub}.
+  补全 \olref[lam][syn][alp]{thm:sub} 的证明。
 \end{prob}
 
 \begin{cor}\ollabel{cor:sub}
-  For any $M$, $R$, and~$y$, there exists a pair of $M'$ and $R'$
-  such that $M' \aeq M$, $R \aeq R'$ and $\Subst{M'}{R'}{y}$ is
-  defined. Moreover, if there is another pair $M'' \aeq M$ and $R''$
-  with $\Subst{M'}{R'}{y}$ defined, then $\Subst{M'}{R'}{y} \aeq
-  \Subst{M''}{R''}{y}$.
+  对于任意 $M$、$R$ 和~$y$，存在 $M'$ 和 $R'$ 使得 $M' \aeq M$，$R \aeq R'$ 且 $\Subst{M'}{R'}{y}$ 有定义。此外，如果存在另一对 $M'' \aeq M$ 和 $R''$ 使得 $\Subst{M'}{R'}{y}$ 有定义，那么 $\Subst{M'}{R'}{y} \aeq
+  \Subst{M''}{R''}{y}$。
 \end{cor}
 
 \begin{proof}
-  Immediate from \olref{thm:sub}.
+  由 \olref{thm:sub} 立刻可得。
 \end{proof}
 
 \end{document}
-

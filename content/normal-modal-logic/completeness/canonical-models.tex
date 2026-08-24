@@ -8,28 +8,21 @@
 
 \olfileid{nml}{com}{cmd}
 
-\olsection{Canonical Models}
+\olsection{典范模型}
 
-The \emph{canonical model} for a modal system~$\Sigma$ is a specific
-model~$\mModel{M^\Sigma}$ in which the worlds are all complete
-$\Sigma$-consistent sets. Its accessibility relation~$R^\Sigma$ and
-valuation $V^\Sigma$ are defined so as to guarantee that the
-!!{formula}s true at a world~$\Delta$ are exactly the !!{formula}s
-making up~$\Delta$.
+一个模态系统~$\Sigma$ 的\emph{典范模型}是一个特定的模型~$\mModel{M^\Sigma}$，其中的世界是所有完全 $\Sigma$ 一致集。其可达关系~$R^\Sigma$ 和赋值 $V^\Sigma$ 的定义保证了在世界~$\Delta$ 中为真的公式恰好是构成~$\Delta$ 的公式。
 
 \begin{defn}
-  Let $\Sigma$ be a normal modal logic. The \emph{canonical model} for
-  $\Sigma$ is $\mModel{M}^\Sigma = \tuple{W^\Sigma, R^\Sigma,
-    V^\Sigma}$, where:
+  设 $\Sigma$ 是一个正规模态逻辑。$\Sigma$ 的\emph{典范模型}是 $\mModel{M}^\Sigma = \tuple{W^\Sigma, R^\Sigma,
+    V^\Sigma}$，其中：
   \begin{enumerate}
   \item $W^\Sigma = \Setabs{ \Delta }{\Delta \text{
-      is complete $\Sigma$-consistent} }$.
-  \item $R^\Sigma \Delta\Delta'$ holds if and only if
+      is complete $\Sigma$-consistent} }$。
+  \item $R^\Sigma \Delta\Delta'$ 成立当且仅当
     \iftag{prvBox}{$\Box^{-1}\Delta \subseteq
-      \Delta'$}{$\Diamond\Delta' \subseteq \Delta$}.
-  \item $V^\Sigma(p) = \Setabs{\Delta}{p \in \Delta}$.
+      \Delta'$}{$\Diamond\Delta' \subseteq \Delta$}。
+  \item $V^\Sigma(p) = \Setabs{\Delta}{p \in \Delta}$。
   \end{enumerate}
 \end{defn}
-
 
 \end{document}

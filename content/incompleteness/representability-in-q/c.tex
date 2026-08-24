@@ -7,32 +7,30 @@
 \begin{document}
 
 \olfileid{inc}{req}{cee}
-\olsection{The Functions $C$}
+\olsection{函数集 $C$}
 
-Let $C$ be the smallest set of functions containing
-\begin{enumerate}
-\item $0$,
-\item successor,
-\item addition,
-\item multiplication,
-\item projections, and
-\item the characteristic function for equality, $\Char{=}$;
-\end{enumerate}
-and closed under
-\begin{enumerate}
-\item composition, and
-\item unbounded search, applied to regular
-functions.
-\end{enumerate}
-Remember this last restriction means simply that you can only use the
-$\mu$ operation when the result is total. Compare this to the
-definition of the \emph{general recursive} functions: here we have
-added plus, times, and $\Char{=}$, but we have dropped primitive
-recursion.
+令 $C$ 为包含下列函数的最小函数集合：
 
-Clearly everything in $C$ is recursive, since plus, times,
-and $\Char{=}$ are. We will show that the converse is also true; this
-amounts to saying that with the other stuff in $C$ we can carry out
-primitive recursion.
+\begin{enumerate}
+\item $0$，
+\item 后继函数，
+\item 加法，
+\item 乘法，
+\item 投影函数，以及
+\item 等词的特征函数 $\Char{=}$；
+\end{enumerate}
+
+并且在下列运算下封闭：
+
+\begin{enumerate}
+\item 复合运算，以及
+\item 对正则函数应用的无界搜索运算。
+\end{enumerate}
+
+注意，这最后一条限制仅仅意味着：只有当结果为全函数时，才能使用 $\mu$ 运算。
+将此定义与\emph{一般递归函数}的定义相比较：这里我们加入了加法、乘法和 $\Char{=}$，但舍弃了原始递归。
+
+显然，$C$ 中的所有函数都是递归的，因为加法、乘法和 $\Char{=}$ 也是递归的。
+我们将证明其逆命题亦成立；这相当于说，利用 $C$ 中的其他组成部分可以执行原始递归。
 
 \end{document}

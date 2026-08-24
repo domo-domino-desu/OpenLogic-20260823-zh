@@ -8,107 +8,68 @@
 
 \olfileid{pt}{cut}{itp}
 
-\olsection{Maehara's Lemma and Craig's Interpolation Theorem}
+\olsection{Maehara（前田）引理与 Craig（克雷格）插值定理}
 
-The interpolation theorem, due to William Craig, states that if $!A
-\Entails !B$ then there is !!a{sentence}~$!C$ (the \emph{interpolant})
-such that $!A \Entails !C$ and $!C \Entails !B$. Importantly, the
-interpolant~$!C$ can be chosen so that the !!{constant}s and
-!!{predicate}s occurring in~$!C$ all occur in both~$!A$ and~$!B$. (We
-assume that no !!{function}s are involved.) Without this restriction,
-$!A$~and $!B$ could trivially serve as interpolants.
+插值定理由 William Craig（克雷格）提出，它表明：如果 $!A \Entails !B$，那么存在一个语句~$!C$（称为\emph{插值式}），使得 $!A \Entails !C$ 且 $!C \Entails !B$。重要的是，可以选取插值式~$!C$，使得出现在~$!C$ 中的所有常项符号和谓词符号均同时出现在~$!A$ 和~$!B$ 中。（我们假设这里不涉及函数符号。）若无此限制，$!A$ 和~$!B$ 本身就能平凡地作为插值式。
 
-The interpolation theorem holds for classical first-order logic and
-has been called the ``last important property of first-order logic''
-to be discovered. It has important applications in model theory, and
-automated reasoning. Its original motivation and application was in
-the philosophy of science, since it can be used to study the
-primitives by which a theory can or cannot be axiomatized. It also
-implies Beth's definability theorem, which states that if a theory can
-implicitly define a concept, it can define it explicitly.
+插值定理对经典一阶逻辑成立，并被称为一阶逻辑“最后被发现的重要性质”。
+它在模型论和自动推理中具有重要应用。
+其最初的动机与应用在于科学哲学，因为它可用于研究一个理论能否或如何借由某些初始概念来公理化。
+它还蕴涵 Beth 可定义性定理，该定理指出，若一个理论能隐定义一个概念，则它也能显定义该概念。
 
-Like many results in mathematical logic, the interpolation theorem can
-be proved both using the methods of model theory and those of proof
-theory. The advantage of proof theoretic methods is that not only do
-they show the existence of an interpolant, but provide an algorithm
-that computes the interpolant from !!a{proof} that $!A \Entails !B$,
-e.g., !!a{proof} in~\Log{G3c} of $!A \Sequent !B$.
+与数理逻辑中的许多结果一样，插值定理既可以用模型论的方法证明，也可以用证明论的方法证明。
+证明论方法的优势在于，不仅能证明插值式的存在，还能提供一个算法，从 $!A \Entails !B$ 的推导（例如，~\Log{G3c} 中 $!A \Sequent !B$ 的推导）计算出该插值式。
 
-Let $\Lang L(!A)$ be the set of !!{constant}s and !!{predicate}s
-in~$!A$ and $\Lang L(\Gamma) = \bigcup \Setabs{\Lang L(!A)}{!A \in
-\Gamma}$. Throughout this section, we assume we are dealing with
-!!{formula}s without !!{function}s.
+设 $\Lang L(!A)$ 为 $!A$ 中的常项符号与谓词符号的集合，并设 $\Lang L(\Gamma) = \bigcup \Setabs{\Lang L(!A)}{!A \in
+\Gamma}$。
+本节始终假设所处理的公式不含函数符号。
 
-\begin{thm}[Craig's Interpolation Theorem]\ollabel{thm:interpolation}
-Let the !!{language} of~$!A$ be $\Lang L(!A)$ and that of $!B$ be
-$\Lang L(!B)$. If $\Log{G3c} \Proves !A \Sequent !B$ then there is
-!!a{formula}~$!C$ in the !!{language}~$\Lang L(!C) \subseteq \Lang
-L(!A) \cap \Lang L(!B)$ such that $\Log{G3c} \Proves !A \Sequent !C$
-and $\Log{G3c} \Proves !C \Sequent !B$.
+\begin{thm}[Craig 插值定理]\ollabel{thm:interpolation}
+设 $!A$ 的语言为 $\Lang L(!A)$，$!B$ 的语言为 $\Lang L(!B)$。
+如果 $\Log{G3c} \Proves !A \Sequent !B$，则存在公式~$!C$，其语言为 $\Lang L(!C) \subseteq \Lang
+L(!A) \cap \Lang L(!B)$，使得 $\Log{G3c} \Proves !A \Sequent !C$ 且 $\Log{G3c} \Proves !C \Sequent !B$。
 \end{thm}
 
-We prove a generalization of the interpolation theorem to make use of
-the structure of !!{proof}s in~\Log{G3c}. To this end, imagine the
-antecendent and succedents of sequents to be separated into two parts
-each. We write $\maeh{\Gamma_1}{\Gamma_2} \Sequent
-\maeh{\Delta_1}{\Delta_2}$ to indicate that $\Gamma_1$ and $\Delta_1$
-belong to the first part and $\Gamma_2$ and $\Delta_2$ to the second
-part. The interpolation theorem then follows immediately from the
-following lemma.
+我们证明插值定理的一个推广，以便利用~\Log{G3c} 中推导的结构。
+为此，设想将相继式的前件和后件各分为两部分。
+我们记作 $\maeh{\Gamma_1}{\Gamma_2} \Sequent
+\maeh{\Delta_1}{\Delta_2}$，表示 $\Gamma_1$ 和 $\Delta_1$ 属于第一部分，而 $\Gamma_2$ 和 $\Delta_2$ 属于第二部分。
+于是，插值定理便是下述引理的直接推论。
 
-\begin{lem}[Maehara's Lemma]\ollabel{lem:maehara} If $\Log{G3c}
-\Proves \maeh{\Gamma_1}{\Gamma_2} \Sequent \maeh{\Delta_1}{\Delta_2}$
-then there is !!a{formula}~$!C$ in the !!{language}~$\Lang L(!C)
+\begin{lem}[Maehara 引理]\ollabel{lem:maehara}
+如果 $\Log{G3c}
+\Proves \maeh{\Gamma_1}{\Gamma_2} \Sequent \maeh{\Delta_1}{\Delta_2}$，则存在公式~$!C$，其语言满足 $\Lang L(!C)
 \subseteq \Lang L(\Gamma_1,
-\Delta_1) \cap \Lang L(\Gamma_2, \Delta_2)$ such that $\Log{G3c}
-\Proves \Gamma_1 \Sequent \Delta_1, !C$ and $\Log{G3c} \Proves !C,
-\Gamma_2 \Sequent \Delta_2$.
+\Delta_1) \cap \Lang L(\Gamma_2, \Delta_2)$，使得 $\Log{G3c}
+\Proves \Gamma_1 \Sequent \Delta_1, !C$ 且 $\Log{G3c} \Proves !C,
+\Gamma_2 \Sequent \Delta_2$。
 \end{lem}
 
 \begin{proof}
-  Assume that $\pi \Proves \maeh{\Gamma_1}{\Gamma_2} \Sequent
-  \maeh{\Delta_1}{\Delta_2}$. We prove the claim by induction on
-  $n=\pheight{\pi}$.
+  假设 $\pi \Proves \maeh{\Gamma_1}{\Gamma_2} \Sequent
+  \maeh{\Delta_1}{\Delta_2}$。我们对 $n=\pheight{\pi}$ 进行归纳来证明该断言。
 
-  If $n=0$, then $\maeh{\Gamma_1}{\Gamma_2} \Sequent
-  \maeh{\Delta_1}{\Delta_2}$ is an axiom, and some atomic
-  !!{formula}~$!A$ occurs in both $\Gamma_1, \Gamma_2$ and $\Delta_1,
-  \Delta_2$. There are four cases depending on whether $!A$~belongs to
-  the first part or the second on the left, and whether it belongs to
-  the first or second part on the right.
+  如果 $n=0$，那么 $\maeh{\Gamma_1}{\Gamma_2} \Sequent
+  \maeh{\Delta_1}{\Delta_2}$ 是一个公理，并且某个原子公式~$!A$ 同时出现在 $\Gamma_1, \Gamma_2$ 和 $\Delta_1,
+  \Delta_2$ 中。根据 $!A$~属于左侧的第一部分还是第二部分，以及属于右侧的第一部分还是第二部分，分为四种情况。
   \begin{enumerate}
-    \item $!A \in \Gamma_1$ and $!A \in \Delta_1$. We want a~$!C$ such
-    that both $\Gamma_1 \Sequent \Delta_1, !C$ and $!C, \Gamma_2
-    \Sequent \Delta_2$ are !!{provable}. The first is already an axiom
-    regardless of how we pick~$!C$ since $!A$ occurs on both the left
-    and right. Our only option to guarantee that $!C, \Gamma_2
-    \Sequent \Delta_2$ is !!{provable} is to let $!C \ident \lfalse$.
-    \item $!A \in \Gamma_1$ and $!A \in \Delta_2$. Then $\Gamma_1
-    \Sequent \Delta_1, !A$ and $!A, \Gamma_2 \Sequent \Delta_2$ are
-    both axioms, so we can pick $!C \ident !A$.
-    \item $!A \in \Gamma_2$ and $!A \in \Delta_1$. Then $!A, \Gamma_1
-    \Sequent \Delta_1$ and $\Gamma_2 \Sequent \Delta_2, !A$ would be 
-    axioms, but they have~$!A$ on the wrong sides. So $!A$ isn't the
-    interpolant. However, using $\RightR{\lnot}$ and $\LeftR{\lnot}$
-    we can !!{prove} $\Gamma_1
-    \Sequent \Delta_1, \lnot!A$ and $\lnot !A, \Gamma_2 \Sequent
-    \Delta_2$.
-    \item $!A \in \Gamma_2$ and $!A \in \Delta_2$. Exercise.
+    \item $!A \in \Gamma_1$ 且 $!A \in \Delta_1$。我们需要找到一个~$!C$，使得 $\Gamma_1 \Sequent \Delta_1, !C$ 和 $!C, \Gamma_2
+    \Sequent \Delta_2$ 都是可推导的。因为 $!A$ 同时出现在左侧和右侧，无论我们如何选取~$!C$，第一个相继式都已经是公理。为了保证 $!C, \Gamma_2
+    \Sequent \Delta_2$ 是可推导的，我们唯一的选择是令 $!C \ident \lfalse$。
+    \item $!A \in \Gamma_1$ 且 $!A \in \Delta_2$。那么 $\Gamma_1
+    \Sequent \Delta_1, !A$ 和 $!A, \Gamma_2 \Sequent \Delta_2$ 都是公理，因此我们可以选取 $!C \ident !A$。
+    \item $!A \in \Gamma_2$ 且 $!A \in \Delta_1$。那么 $!A, \Gamma_1
+    \Sequent \Delta_1$ 和 $\Gamma_2 \Sequent \Delta_2, !A$ 将是公理，但 $!A$ 出现在了错误的一侧。因此 $!A$ 不是插值。然而，使用 $\RightR{\lnot}$ 和 $\LeftR{\lnot}$ 规则，我们可以推导出 $\Gamma_1
+    \Sequent \Delta_1, \lnot!A$ 和 $\lnot !A, \Gamma_2 \Sequent
+    \Delta_2$。
+    \item $!A \in \Gamma_2$ 且 $!A \in \Delta_2$。练习。
   \end{enumerate}
-  The cases where $\maeh{\Gamma_1}{\Gamma_2} \Sequent
-  \maeh{\Delta_1}{\Delta_2}$ is an axiom because $\lfalse \in
-  \Gamma_1$ or $\lfalse \in \Gamma_2$ are left as exercises.
+  因 $\lfalse \in \Gamma_1$ 或 $\lfalse \in \Gamma_2$ 而使得 $\maeh{\Gamma_1}{\Gamma_2} \Sequent
+  \maeh{\Delta_1}{\Delta_2}$ 是公理的情况，也留作练习。
 
-  If $n>0$, $\pi$ ends in a logical inference. We have to distinguish
-  cases cases according to which rule was used, and to which part the
-  principal formula belongs. In each case we can use the induction
-  hypothesis that the lemma holds for all !!{proof}s~$\pi_1$ with
-  $\pheight{\pi_1} < n$, and however the end-sequent of~$\pi_1$ may be
-  partitioned into two parts. Let's consider some specific cases.
+  如果 $n>0$，则 $\pi$ 以一条逻辑推理规则结束。我们必须根据使用了哪条规则以及主公式属于哪个部分来区分情况。在每种情况下，我们都可以使用归纳假设：该引理对所有满足 $\pheight{\pi_1} < n$ 的推导~$\pi_1$ 成立，且无论其末尾相继式如何被分割为两部分。让我们考虑一些具体的情况。
   \begin{enumerate}
-    \item $\pi$ ends in $\RightR{\lnot}$ with principal formula~$\lnot
-    !A$. We have two cases: depending on whether $\lnot !A$ belongs to
-    the first or second part, $\pi$ ends in either
+    \item $\pi$ 以 $\RightR{\lnot}$ 结束，主公式为~$\lnot !A$。我们有两种情况：根据 $\lnot !A$ 属于第一部分还是第二部分，$\pi$ 要么结束于
     \[
     \AxiomC{}
     \RightLabel{$\pi_1$}
@@ -119,7 +80,7 @@ then there is !!a{formula}~$!C$ in the !!{language}~$\Lang L(!C)
       \maeh{\Delta_1, \lnot !A}{\Delta_2}$
     \DisplayProof
     \]
-    or
+    要么
     \[
     \AxiomC{}
     \RightLabel{$\pi_1$}
@@ -130,54 +91,33 @@ then there is !!a{formula}~$!C$ in the !!{language}~$\Lang L(!C)
       \maeh{\Delta_1}{\Delta_2, \lnot !A}$
     \DisplayProof
     \]
-    Note that if the principal !!{formula}~$\lnot !A$ belongs to the
-    first part we assigned the active !!{formula}~$!A$ also to the
-    first part the premise. This is a choice we get to make. The
-    inductive hypothesis would also apply if we assigned the active
-    formula to the other part, but then we would not be able to find
-    an interpolant (exercise: try it).
+    注意，如果主公式~$\lnot !A$ 属于第一部分，我们也将前提中的活动公式~$!A$ 分配给了第一部分。这是我们可以做出的选择。如果我们把活动公式分配给另一部分，归纳假设同样适用，但那样我们将无法找到一个插值（练习：尝试一下）。
 
-    Consider the first situation first, where $\lnot !A$~belongs
-    to the first part. By inductive hypothesis, there is an
-    interpolant of the end-sequent of~$\pi_1$, i.e., !!a{formula}~$!C_1$
-    such that both
+    首先考虑第一种情形，即 $\lnot !A$~属于第一部分。根据归纳假设，存在~$\pi_1$ 的末尾相继式的一个插值，即一个公式~$!C_1$，使得
     \begin{align*}
-    !A, \Gamma_1 & \Sequent \Delta_1, !C_1 &&\text{and} &
+    !A, \Gamma_1 & \Sequent \Delta_1, !C_1 &&与 &
     !C_1, \Gamma_2 & \Sequent \Delta_2
-    \intertext{are provable. What we need is !!a{formula}~$!C$ such that
-    both of the following are !!{provable}:}
-    \Gamma_1 & \Sequent \Delta_1, \lnot !A, !C &&\text{and} &
+    \intertext{都是可证的。我们需要的是一个公式~$!C$，使得以下两个相继式都是可推导的：}
+    \Gamma_1 & \Sequent \Delta_1, \lnot !A, !C &&与 &
     !C, \Gamma_2 & \Sequent \Delta_2
     \end{align*}
-    Clearly, we can just take $!C \ident !C_1$: the inductive hypothesis
-    already told us that the sequent on the right is !!{provable}, and
-    the sequent on the left follows from the sequent we got from the
-    inductive hypothesis by~$\RightR{\lnot}$. The inductive hypothesis
-    also tells us that $\Lang L(!C_1) \subseteq \Lang L(!A, \Gamma_1,
-    \Delta_1) \cap \Lang L(\Gamma_2, \Delta_2)$. Since $\Lang L(\lnot
-    !A) = \Lang L(!A)$ and $\Lang L(!C) = \Lang L(!C_1)$ we have that
-    $\Lang L(!C_1) \subseteq \Lang L(\Gamma_1, \Delta_1, \lnot !A) \cap \Lang
-    L(\Gamma_2, \Delta_2)$.
+    显然，我们可以直接取 $!C \ident !C_1$：归纳假设已经告诉我们右侧的相继式是可推导的，而左侧的相继式则可以通过对归纳假设得到的相继式应用~$\RightR{\lnot}$ 规则得到。归纳假设还告诉我们 $\Lang L(!C_1) \subseteq \Lang L(!A, \Gamma_1,
+    \Delta_1) \cap \Lang L(\Gamma_2, \Delta_2)$。由于 $\Lang L(\lnot
+    !A) = \Lang L(!A)$ 且 $\Lang L(!C) = \Lang L(!C_1)$，我们有 $\Lang L(!C_1) \subseteq \Lang L(\Gamma_1, \Delta_1, \lnot !A) \cap \Lang
+    L(\Gamma_2, \Delta_2)$。
 
-    In the second scenario the situation is slightly different
-    in that $\lnot !A$~belongs to the second part. We assign the
-    active !!{formula} in the premise also to the second part and
-    apply the inductive hypothesis to
+    在第二种情形中，情况略有不同，因为 $\lnot !A$~属于第二部分。我们将前提中的活动公式也分配给第二部分，并应用归纳假设可知
     \begin{align*}
-    \Gamma_1 & \Sequent \Delta_1, !C_1 &&\text{and} &
+    \Gamma_1 & \Sequent \Delta_1, !C_1 &&与 &
     !C_1, !A, \Gamma_2 & \Sequent \Delta_2
-    \intertext{are provable. If we again apply the \RightR{\lnot} rule to the second of these, we get !!{proof}s of}
-    \Gamma_1 & \Sequent \Delta_1, !C_1 &&\text{and} &
+    \intertext{是可证的。如果我们再次对第二个相继式应用 \RightR{\lnot} 规则，就得到}
+    \Gamma_1 & \Sequent \Delta_1, !C_1 &&与 &
     !C_1, \Gamma_2 & \Sequent \Delta_2, \lnot !A
-    \end{align*}
-    These are again exactly the sequents we want to be !!{provable} if
-    $!C_1$ is an interpolant; we again let $!C \ident !C_1$. $\Lang
+    \end{align*}的推导。
+    这些正是在 $!C_1$ 是插值时我们希望可推导的相继式；我们再次令 $!C \ident !C_1$。和前面一样，有 $\Lang
     L(!C_1) \subseteq \Lang L(\Gamma_1, \Delta_1) \cap \Lang L(\Gamma_2,
-    \Delta_2, \lnot !A)$ as before.
-    \item $\pi$ ends in $\RightR{\lif}$ with principal !!{formula}~$!A
-    \lif !B$. We again have two cases, depending on whether $!A \lif
-    !B$ belongs to the first or second part. The !!{proof}~$\pi$ ends
-    in either
+    \Delta_2, \lnot !A)$。
+    \item $\pi$ 以 $\RightR{\lif}$ 结束，主公式为~$!A \lif !B$。我们同样有两种情况，取决于 $!A \lif !B$ belongs to the first or second part. The !!{proof}~$$，$\pi$ 要么结束于
     \[
     \AxiomC{}
     \RightLabel{$\pi_1$}
@@ -188,7 +128,7 @@ then there is !!a{formula}~$!C$ in the !!{language}~$\Lang L(!C)
       \maeh{\Delta_1, !A \lif !B}{\Delta_2}$
     \DisplayProof
     \]
-    or
+    要么
     \[
     \AxiomC{}
     \RightLabel{$\pi_1$}
@@ -199,22 +139,16 @@ then there is !!a{formula}~$!C$ in the !!{language}~$\Lang L(!C)
       \maeh{\Delta_1}{\Delta_2, !A \lif !B}$
     \DisplayProof
     \]
-    Again we have assigned the active !!{formula}s to the same part in
-    the premise as the principal !!{formula} in the conclusion. In the
-    first secenario, we apply the inductive hypothesis and get
-    !!{proof}s of
+    同样地，我们在前提中将活动公式分配给了与结论中主公式相同的部分。在第一种情形中，我们应用归纳假设，得到
     \begin{align*}
-    !A, \Gamma_1 & \Sequent \Delta_1, !B, !C_1 &&\text{and} & !C_1, \Gamma_2 & \Sequent \Delta_2
-    \intertext{The sequent on the left is a suitable premise for \RightR{\lif}. So we have the following !!{provable} sequents:}
-    \Gamma_1 & \Sequent \Delta_1, !A \lif !B, !C_1 &&\text{and} & !C_1, \Gamma_2 & \Sequent \Delta_2
+    !A, \Gamma_1 & \Sequent \Delta_1, !B, !C_1 &&与 & !C_1, \Gamma_2 & \Sequent \Delta_2
+    \intertext{的推导。左侧的相继式是应用 \RightR{\lif} 规则的合适前提。因此我们有以下可推导的相继式：}
+    \Gamma_1 & \Sequent \Delta_1, !A \lif !B, !C_1 &&与 & !C_1, \Gamma_2 & \Sequent \Delta_2
     \end{align*}
-    This means that $!C_1$ is also an interpolant for the end-sequent
-    of~$\pi$ and we can take $!C \ident !C_1$ once more.
+    这意味着 $!C_1$ 也是~$\pi$ 的末尾相继式的一个插值，我们可以再次取 $!C \ident !C_1$。
     
-    The other scenario is handled the same way.
-    \item $\pi$ ends in $\LeftR{\lif}$ with principal !!{formula}~$!A
-    \lif !B$. If $!A \lif !B$ belongs to the first part, the !!{proof}~$\pi$ ends
-    in
+    另一种情形的处理方式相同。
+    \item $\pi$ 以 $\LeftR{\lif}$ 结束，主公式为~$!A \lif !B$。如果 $!A \lif !B$ 属于第一部分，推导~$\pi$ 结束于
     \[
     \AxiomC{}
     \RightLabel{$\pi_1$}
@@ -228,18 +162,14 @@ then there is !!a{formula}~$!C$ in the !!{language}~$\Lang L(!C)
       \maeh{\Delta_1}{\Delta_2}$
     \DisplayProof
     \]
-    The inductive hypothesis now gives us four !!{provable} sequents,
-    two for the interpolant $!C_1$ of the left premise and two for the
-    interpolant $!C_2$ of the second premise:
+    现在归纳假设给我们四个可推导的相继式，其中两个对应于左前提的插值 $!C_1$，另两个对应于右前提的插值 $!C_2$：
     \begin{align*}
     \Gamma_1 & \Sequent \Delta_1, !A, !C_1 &&\text{(1)} &
     !C_1, \Gamma_2 & \Sequent \Delta_2 && \text{(2)}\\
     !B, \Gamma_1 & \Sequent \Delta_1, !C_2 &&\text{(3)} &
     !C_2, \Gamma_2 & \Sequent \Delta_2 && \text{(4)}
     \end{align*}
-    Sequents (1) and (3) can serve as premises of~\LeftR{\lif}, if we
-    apply weakening and add $!C_2$ on the right to~(1) and $!C_1$ on
-    the right to~(3):
+    如果我们应用弱化规则，在 (1) 的右侧添加 $!C_2$，在 (3) 的右侧添加 $!C_1$，相继式 (1) 和 (3) 就可以作为~\LeftR{\lif} 规则的前提：
     \[
     \AxiomC{}
     \Deduce$\Gamma_1 \fCenter \Delta_1, !A, !C_1, !C_2$
@@ -249,13 +179,11 @@ then there is !!a{formula}~$!C$ in the !!{language}~$\Lang L(!C)
     \BinaryInf$!A \lif !B, \Gamma_1 \fCenter \Delta_1, !C_1, !C_2$
     \DisplayProof
     \]
-    By applying $\RightR{\lor}$ we get the sequent
+    应用 $\RightR{\lor}$ 规则，我们得到相继式
     \[
     !A \lif !B, \Gamma_1 \fCenter \Delta_1, !C_1 \lor !C_2
     \]
-    This suggests that $!C_1 \lor !C_2$ might be our interpolant in
-    this case. And indeed, we can !!{prove} the other required sequent
-    from the remaining sequents (2) and~(4):
+    这表明在这种情况下，$!C_1 \lor !C_2$ 可能是此时的插值。确实，我们可以从剩下的相继式 (2) 和 (4) 推导出另一个所需的相继式：
     \[
     \AxiomC{}
     \Deduce$!C_1, \Gamma_2 \fCenter \Delta_2$
@@ -265,37 +193,34 @@ then there is !!a{formula}~$!C$ in the !!{language}~$\Lang L(!C)
     \BinaryInf$!C_1 \lor !C_2, \Gamma_2 \fCenter \Delta_2$
     \DisplayProof
     \]
-    It remains to verify that $!C_1 \lor !C_2$ is in the correct
-    language. The inductive hypothesis gives us that 
+    接下来需要验证 $!C_1 \lor !C_2$ 属于正确的语言。归纳假设告诉我们
     \begin{align*}
     \Lang L(!C_1) & \subseteq
-    \Lang L(\Gamma_1, \Delta_1, !A) \cap \Lang L(\Gamma_2, \Delta_2) &\text{and}\\
+    \Lang L(\Gamma_1, \Delta_1, !A) \cap \Lang L(\Gamma_2, \Delta_2) &与\\
     \Lang L(!C_2) & \subseteq
     \Lang L(!B, \Gamma_1, \Delta_1) \cap \Lang L(\Gamma_2, \Delta_2)
-    \intertext{Since}
-    \Lang L(!A) & \subseteq \Lang L(!A \lif !B) &\text{and}\\
+    \intertext{由于}
+    \Lang L(!A) & \subseteq \Lang L(!A \lif !B) &与\\
     \Lang L(!B) & \subseteq \Lang L(!A \lif !B)
-    \intertext{we have both}
+    \intertext{我们既有}
     \Lang L(!C_1) & \subseteq
-    \Lang L(\Gamma_1, \Delta_1, !A \lif !B) \cap \Lang L(\Gamma_2, \Delta_2) &\text{and}\\
+    \Lang L(\Gamma_1, \Delta_1, !A \lif !B) \cap \Lang L(\Gamma_2, \Delta_2) &与\\
     \Lang L(!C_2) & \subseteq
     \Lang L(\Gamma_1, \Delta_1, !A \lif !B) \cap \Lang L(\Gamma_2, \Delta_2)
-    \intertext{and consequently, $\Lang L (!C_1 \lor !C_2) = {}$}
+    \intertext{因此，$\Lang L (!C_1 \lor !C_2) = {}$}
     \Lang L(!C_1) \cup \Lang L(!C_2) & \subseteq
     \Lang L(\Gamma_1, \Delta_1, !A \lif !B) \cap \Lang L(\Gamma_2, \Delta_2),
     \end{align*}
-    which is as required.
+    这符合要求。
 
-    In the case where $!A \lif !B$ belongs to the second part, the
-    situation is different, but handled in a similar way. The
-    inductive hypothesis again gives us four !!{provable} sequents:
+    在 $!A \lif !B$ 属于第二部分的情况下，情况有所不同，但处理方式类似。归纳假设再次给我们四个可推导的相继式：
     \begin{align*}
     \Gamma_1 & \Sequent \Delta_1, !C_1 &&\text{(1)} &
     !C_1, \Gamma_2 & \Sequent \Delta_2, !A && \text{(2)}\\
     \Gamma_1 & \Sequent \Delta_1, !C_2 &&\text{(3)} &
     !C_2, !B, \Gamma_2 & \Sequent \Delta_2 && \text{(4)}
     \end{align*}
-    Now sequents (2) and (4)---plus some weakened !!{formula}s---serve as premises of~\LeftR{\lif}:
+    现在，相继式 (2) 和 (4)——加上一些通过弱化添加的公式——可以作为~\LeftR{\lif} 规则的前提：
     \[
     \AxiomC{}
     \Deduce$!C_1, !C_2, \Gamma_2 \fCenter \Delta_2, !A$
@@ -305,13 +230,8 @@ then there is !!a{formula}~$!C$ in the !!{language}~$\Lang L(!C)
     \BinaryInf$!A \lif !B, !C_1, !C_2, \Gamma_2 \fCenter \Delta_2$
     \DisplayProof
     \]
-    We again want to turn this into a sequent that has a single
-    !!{formula} built from $!C_1$ and $!C_2$, but this time we need it
-    in the antecedent (since we're now dealing with the second part).
-    Applying $\LeftR{\land}$ does the trick; we should take $!C \ident
-    (!C_1 \land !C_2)$ as the interpolant. Fortuitously, we can use
-    the remaining sequents (1) and (3) to !!{prove} the corresponding
-    sequent for the other part:
+    我们再次希望将其转化为前件包含一个由 $!C_1$ 和 $!C_2$ 构成的公式的相继式（因为现在处理的是第二部分）。应用 $\LeftR{\land}$ 规则即可；我们应将 $!C \ident
+    (!C_1 \land !C_2)$ 取作插值。碰巧，我们可以用剩下的相继式 (1) 和 (3) 推导出对应另一部分的相继式：
     \[
     \AxiomC{}
     \Deduce$\Gamma_1 \fCenter \Delta_1, !C_1$
@@ -321,11 +241,11 @@ then there is !!a{formula}~$!C$ in the !!{language}~$\Lang L(!C)
     \BinaryInf$\Gamma_1 \fCenter \Delta_1, !C_1 \land !C_2$
     \DisplayProof
     \]
-    As before, we have $\Lang L(!C_1 \land !C_2) \subseteq \Lang
+    和前面一样，我们有 $\Lang L(!C_1 \land !C_2) \subseteq \Lang
     L(\Gamma_1, \Delta_1) \cap \Lang L(\Gamma_2, \Delta_2, !A \lif
-    !B)$.
+    !B)$。
 
-    \item $\pi$ ends in $\RightR{\lforall}$ with principal !!{formula}~$\lforall[x][!A(x)]$:
+    \item $\pi$ 以 $\RightR{\lforall}$ 结束，主公式为~$\lforall[x][!A(x)]$：
     \[
     \AxiomC{}
     \RightLabel{$\pi_1$}
@@ -336,7 +256,7 @@ then there is !!a{formula}~$!C$ in the !!{language}~$\Lang L(!C)
       \maeh{\Delta_1, \lforall[x][!A(x)]}{\Delta_2}$
     \DisplayProof
     \]
-    or
+    或
     \[
     \AxiomC{}
     \RightLabel{$\pi_1$}
@@ -347,32 +267,20 @@ then there is !!a{formula}~$!C$ in the !!{language}~$\Lang L(!C)
       \maeh{\Delta_1}{\Delta_2, \lforall[x][!A(x)]}$
     \DisplayProof
     \]
-    In the first scenario, the induction hypothesis gives us !!{proof}s
-    of $\Gamma_1 \Sequent \Delta_1, !A(c), !C_1$ and $!C_1, \Gamma_2
-    \Sequent \Delta_2$. We can apply $\RightR{\lforall}$ to the first
-    to obtain $\Gamma_1 \Sequent \Delta_1, \lforall[x][!A(x)], !C_1$.
-    (The eigenvariable condition is satisfied, since it was already
-    satisfied in the \RightR{\lforall} rule at the end of~$\pi$.) Thus
-    $!C_1$ would be an interpolant if the condition that $\Lang
+    在第一种情形中，归纳假设给出了 $\Gamma_1 \Sequent \Delta_1, !A(c), !C_1$ 和 $!C_1, \Gamma_2
+    \Sequent \Delta_2$ 的推导。我们可以对第一个相继式应用 $\RightR{\lforall}$ 规则得到 $\Gamma_1 \Sequent \Delta_1, \lforall[x][!A(x)], !C_1$。
+    （特征变元条件满足，因为它在~$\pi$ 末尾的 \RightR{\lforall} 规则中已经满足。）因此，如果 $\Lang
     L(!C_1) \subseteq \Lang L(\Gamma_1, \Delta_1, \lforall[x][!A(x)])
-    \cap \Lang L(\Gamma_2, \Delta_2)$ is satisfied. By the inductive
-    hypothesis, we have $\Lang L(!C_1) \subseteq \Lang L(\Gamma_1,
-    \Delta_1, !A(c)) \cap \Lang L(\Gamma_2, \Delta_2)$. So we have to
-    worry about~$c$---can $c$ occur in~$!C_1$? It can't. If $c$ occurs
-    in $!C_1$, we would have both $c \in \Lang L(\Gamma_1, \Delta_1,
-    !A(c))$ (which is true) and also $c \in \Lang L(\Gamma_2,
-    \Delta_2)$. But then $c$ would occur in the conclusion of the
-    $\RightR{\lforall}$ inference in~$\pi$, violating the eigenvariable
-    condition.
+    \cap \Lang L(\Gamma_2, \Delta_2)$ 这一条件满足，那么 $!C_1$ 就是一个插值。根据归纳假设，我们有 $\Lang L(!C_1) \subseteq \Lang L(\Gamma_1,
+    \Delta_1, !A(c)) \cap \Lang L(\Gamma_2, \Delta_2)$。所以我们需要担心~$c$——$c$ 可能出现在~$!C_1$ 中吗？不可能。如果 $c$ 出现在 $!C_1$ 中，我们将同时有 $c \in \Lang L(\Gamma_1, \Delta_1,
+    !A(c))$（这是真的）以及 $c \in \Lang L(\Gamma_2,
+    \Delta_2)$。但这样一来，$c$ 就会出现在~$\pi$ 中 $\RightR{\lforall}$ 推理的结论里，违反了特征变元条件。
     
-    The other scenario is similar.
+    另一种情形类似。
 
-    \item $\pi$ ends in $\RightR{\lexists}$ with principal
-    !!{formula}~$\lexists[x][!A(x)]$. We again have two scenarios. We
-    consider the scenario where $\lexists[x][!A(x)]$ belongs to the
-    first part, and leave the other as an exercise.
+    \item $\pi$ 以 $\RightR{\lexists}$ 结束，主公式为~$\lexists[x][!A(x)]$。我们同样有两种情形。我们考虑 $\lexists[x][!A(x)]$ 属于第一部分的情形，另一种情形留作练习。
 
-    In the first scenario, $\pi$ ends in
+    在第一种情形中，$\pi$ 结束于
     \[
     \AxiomC{}
     \RightLabel{$\pi_1$}
@@ -383,30 +291,25 @@ then there is !!a{formula}~$!C$ in the !!{language}~$\Lang L(!C)
       \maeh{\Delta_1, \lexists[x][!A(x)]}{\Delta_2}$
     \DisplayProof
     \]
-    The induction hypothesis gives us !!{proof}s of $\Gamma_1 \Sequent
-    \Delta_1, \lexists[x][!A(x)], !A(t), !C_1$ and $!C_1, \Gamma_2
-    \Sequent \Delta_2$. We can apply $\RightR{\lexists}$ to the first
-    to obtain $\Gamma_1 \Sequent \Delta_1, \lexists[x][!A(x)], !C_1$.
-    Thus $!C_1$ would again be an interpolant if the condition that
-    $\Lang L(!C_1) \subseteq \Lang L(\Gamma_1, \Delta_1,
-    \lexists[x][!A(x)]) \cap \Lang L(\Gamma_2, \Delta_2)$ is
-    satisfied. Here the inductive hypothesis gives us $\Lang L(!C_1)
+    归纳假设给出了 $\Gamma_1 \Sequent
+    \Delta_1, \lexists[x][!A(x)], !A(t), !C_1$ 和 $!C_1, \Gamma_2
+    \Sequent \Delta_2$ 的推导。我们可以对第一个相继式应用 $\RightR{\lexists}$ 规则得到 $\Gamma_1 \Sequent \Delta_1, \lexists[x][!A(x)], !C_1$。
+    因此，如果条件 $\Lang L(!C_1) \subseteq \Lang L(\Gamma_1, \Delta_1,
+    \lexists[x][!A(x)]) \cap \Lang L(\Gamma_2, \Delta_2)$ 满足，$!C_1$ 将再次是一个插值。这里归纳假设告诉我们 $\Lang L(!C_1)
     \subseteq \Lang L(\Gamma_1, \Delta_1, \lexists[x][!A(x)], !A(t))
     \cap \Lang L(\Gamma_2, \Delta_2)$. Now remember that we assumed
     that there are no !!{function}s. That means the term~$t$ can only
-    be !!a{constant}, i.e., $t \ident b$. If $b \notin \Lang L(!C_1)$
-    or $b \in \Lang L(\Gamma_1, \Delta_1, \lexists[x][!A(x)]) \cap
-    \Lang L(\Gamma_2, \Delta_2)$ there is nothing to worry about: we
-    can take $!C_1$ as the interpolant. But what if $b \in \Lang
-    L(!C_1)$ and $b \notin \Lang L(\Gamma_1, \Delta_1,
+    be !!a{constant}, i.e., $t \ident b$。如果 $b \notin \Lang L(!C_1)$
+    或者 $b \in \Lang L(\Gamma_1, \Delta_1, \lexists[x][!A(x)]) \cap
+    \Lang L(\Gamma_2, \Delta_2)$，那么没什么可担心的：我们可以取 $!C_1$ 作为插值。但如果 $b \in \Lang
+    L(!C_1)$ 且 $b \notin \Lang L(\Gamma_1, \Delta_1,
     \lexists[x][!A(x)]) \cap \Lang L(\Gamma_2, \Delta_2)$? First of
-    all, by replacing all occurrences of~$b$ in~$!C_1$ by
-    !!a{variable}~$y$ we can write $!C_1 \ident \Subst{!C_1'}{b}{y}$
-    where $!C_1'$~does not contain~$b$. Furthermore, either $b \notin
-    \Lang L(\Gamma_1, \Delta_1, \lexists[x][!A(x)])$ or $b \notin
-    \Lang L(\Gamma_2, \Delta_2)$. We can take $!C \ident
-    \lforall[y][!C_1'(y)]$ or $!C \ident \lexists[y][!C_1'(y)]$,
-    respectively. In the first case, we have:
+    all, by replacing all occurrences of~$$，将~$!C_1$ 中的 $b$ 替换为变元~$y$，我们可以写成 $!C_1 \ident \Subst{!C_1'}{b}{y}$
+    其中 $!C_1'$~不含~$b$。此外，要么 $b \notin
+    \Lang L(\Gamma_1, \Delta_1, \lexists[x][!A(x)])$，要么 $b \notin
+    \Lang L(\Gamma_2, \Delta_2)$。我们可以分别取 $!C \ident
+    \lforall[y][!C_1'(y)]$ 或 $!C \ident \lexists[y][!C_1'(y)]$。
+    在第一种情况下，我们有：
     \[
     \AxiomC{}
     \Deduce$\Gamma_1 \fCenter
@@ -418,7 +321,7 @@ then there is !!a{formula}~$!C$ in the !!{language}~$\Lang L(!C)
       \Delta_1, \lexists[x][!A(x)], \lforall[y][!C_1'(y)]$
     \DisplayProof
     \]
-    and
+    和
     \[
     \AxiomC{}
     \Deduce$!C_1'(b), \lforall[y][!C_1'(y)], \Gamma_2 \fCenter \Delta_2$
@@ -426,16 +329,10 @@ then there is !!a{formula}~$!C$ in the !!{language}~$\Lang L(!C)
     \UnaryInf$\lforall[y][!C_1'(y)], \Gamma_2 \fCenter \Delta_2$
     \DisplayProof
     \]
-    The !!{proof}s of the top sequents are from the inductive
-    hypothesis (in the second one, we apply admissibility of weakening
-    with $\lforall[y][!C_1'(y)]$ in the antecedent). The eigenvariable
-    condition on \RightR{\lforall} in the first !!{proof} is satisfied
-    because $b \notin \Lang L(\Gamma_1, \Delta_1,
-    \lexists[x][!A(x)])$, and $!C_1'$~was defined so it does not
-    contain~$b$.
+    顶端相继式的推导来自归纳假设（在第二个推导中，我们在前件应用了对 $\lforall[y][!C_1'(y)]$ 的弱化可容许性）。第一个推导中 \RightR{\lforall} 规则的特征变元条件得到满足，因为 $b \notin \Lang L(\Gamma_1, \Delta_1,
+    \lexists[x][!A(x)])$，且 $!C_1'$~的定义保证了它不包含~$b$。
     
-    In the second case, we have (from the inductive hypothesis plus
-    admissibility of weakening by~$\lexists[y][!C_1'(y)]$):
+    在第二种情况下，我们有（基于归纳假设及对 $\lexists[y][!C_1'(y)]$ 的弱化可容许性）：
     \[
     \AxiomC{}
     \Deduce$\Gamma_1 \fCenter
@@ -448,7 +345,7 @@ then there is !!a{formula}~$!C$ in the !!{language}~$\Lang L(!C)
       \Delta_1, \lexists[x][!A(x)], \lexists[y][!C_1'(y)]$
     \DisplayProof
     \]
-    and
+    和
     \[
     \AxiomC{}
     \Deduce$!C_1'(b), \Gamma_2 \fCenter \Delta_2$
@@ -456,15 +353,14 @@ then there is !!a{formula}~$!C$ in the !!{language}~$\Lang L(!C)
     \UnaryInf$\lexists[y][!C_1'(y)], \Gamma_2 \fCenter \Delta_2$
     \DisplayProof
     \]
-    The eigenvariable condition on \LeftR{\lexists} in the second
-    !!{proof} is satisfied because $b \notin \Lang L(\Gamma_2,
-    \Delta_2)$, and $!C_1'$ was defined so it does not contain~$b$.
+    第二个推导中 \LeftR{\lexists} 规则的特征变元条件得到满足，因为 $b \notin \Lang L(\Gamma_2,
+    \Delta_2)$，且 $!C_1'$ 的定义保证了它不包含~$b$。
   \end{enumerate}
-  The other cases are similary; we leave them as exercises.
+  其他情况类似；我们将其留作练习。
 \end{proof}
 
 \begin{prob}
-Suppose we had a connective $\lnand$ with rules
+假设我们有一个联结词 $\lnand$ 及其规则
 \[
 \Axiom$\Gamma \fCenter \Delta, !A$
 \Axiom$\Gamma \fCenter \Delta, !B$
@@ -477,118 +373,84 @@ Suppose we had a connective $\lnand$ with rules
 \UnaryInf$\Gamma \fCenter \Delta, !A \lnand !B$
 \DisplayProof
 \]
-Show that Maehara's Lemma still holds by carrying out the cases in the
-proof of \olref{lem:maehara} where $\pi$ ends in one of these rules.
+通过处理 \olref{lem:maehara} 证明中 $\pi$ 以这些规则之一结尾的情形，证明 Maehara 引理仍然成立。
 \end{prob}
 
-Having established Maehara's Lemma, we can use it to prove Craig's
-Interpolation Theorem.
+确立了 Maehara 引理之后，我们可以用它来证明 Craig 插值定理。
 
 \begin{proof}[Proof of \olref{thm:interpolation}]
-  Suppose $!A \Sequent !B$ is !!{provable}. Apply \olref{lem:maehara}
-  to $\maeh{!A}{\ } \Sequent \maeh{\ }{!B}$ to obtain the
-  interpolant~$!C$. We have $\Proves !A \Sequent !C$ and $\Proves !C
-  \Sequent !B$.
+  假设 $!A \Sequent !B$ 是可推导的。将 \olref{lem:maehara} 应用于 $\maeh{!A}{\ } \Sequent \maeh{\ }{!B}$ 以得到
+  插值式~$!C$。则有 $\Proves !A \Sequent !C$ 和 $\Proves !C
+  \Sequent !B$。
 \end{proof}
 
-Suppose $\Gamma$ is a theory (set of !!{sentence}s) in
-!!a{language}~$\Lang L$ containing an $n$-place {predicate}~$R$. We
-say that $\Gamma$ \emph{implicitly defines}~$R$, iff
+假设 $\Gamma$ 是一个语言~$\Lang L$ 中的理论（语句集合），该语言包含一个 $n$ 元谓词~$R$。我们说 $\Gamma$ \emph{隐式定义}了~$R$，当且仅当
 \begin{align*}
 \Gamma, \Gamma'
 & \Entails \lforall[x_1][\dots\lforall[x_n][(R(x_1,\dots,x_n) \liff
 R'(x_1, \dots, x_n))]],
-\intertext{where $\Gamma'$ is $\Gamma$ with all
-occurrences of~$R$ replaced by~$R' \notin \Lang L$. $\Gamma$
-\emph{explicitly defines}~$R$ iff there is some~$!A(x_1, \dots, x_n)$
-not containing~$R$ such that}
+\intertext{其中 $\Gamma'$ 是将 $\Gamma$ 中所有 $R$ 的出现替换为不在 $\Lang L$ 中的 $R'$ 后得到的。$\Gamma$ \emph{显式定义}了~$R$，当且仅当存在某个不包含~$R$ 的公式~$!A(x_1, \dots, x_n)$ 使得}
 \Gamma &\Entails
 \lforall[x_1][\dots\lforall[x_n][(R(x_1,\dots,x_n) \liff !A(x_1,
 \dots, x_n))]].
 \end{align*}
-Clearly, if $\Gamma$ explicitly defines $R$ it implicitly defines~$R$.
-The converse is not obvious, but nevertheless holds:
+显然，如果 $\Gamma$ 显式定义了 $R$，那么它也就隐式定义了~$R$。反之则并不显然，但依然成立：
 
-\begin{lem}[Beth Definability Theorem]
-  If $\Gamma$ implicitly defines~$R$ then it also explicitly defines it.
+\begin{lem}[Beth 可定义性定理]
+  如果 $\Gamma$ 隐式定义了~$R$，那么它也显式定义了~$R$。
 \end{lem}
 
 \begin{proof}
-  Suppose $\Gamma$ implicitly defines~$R$. Let $R'$, $\Gamma'$ be as
-  above and $\Lang L' = \Lang L(\Gamma') = \Lang L \setminus \{R\}
-  \cup \{R'\}$. By hypothesis, we have
+  假设 $\Gamma$ 隐式定义了~$R$。令 $R'$、$\Gamma'$ 如上所述，并令 $\Lang L' = \Lang L(\Gamma') = \Lang L \setminus \{R\}
+  \cup \{R'\}$。由假设，我们有
   \begin{align*}
     \Gamma, \Gamma' & 
     \Sequent \lforall[x_1][\dots\lforall[x_n][(R(x_1,\dots,x_n) 
     \liff R'(x_1, \dots, x_n))]]
-  \intertext{Let $c_1$, \dots,~$c_n$ be !!{constant}s not occurring in~$\Gamma$. By the invertibility lemma we have}
+  \intertext{令 $c_1$, \dots,~$c_n$ 为不在 $\Gamma$ 中出现的常项符号。由可逆性引理，我们得到}
     \Gamma, \Gamma', R(c_1,\dots,c_n) & \Sequent  R'(c_1, \dots, c_n)
-  \intertext{Apply Maehara's Lemma to}
+  \intertext{将 Maehara 引理应用于}
     \maeh{\Gamma, R(c_1,\dots,c_n)}{\Gamma'} & \Sequent
       \maeh{\ }{R'(c_1, \dots, c_n)}
-  \intertext{to find an~$!A \ident !A(x_1, \dots, x_n)$ such that}
+  \intertext{以找到一个公式~$!A \ident !A(x_1, \dots, x_n)$，使得}
     \Gamma, R(c_1,\dots,c_n) & \Sequent !A(c_1, \dots, c_n) \\
     !A(c_1, \dots, c_n), \Gamma' & \Sequent R'(c_1, \dots, c_n)
-  \intertext{have !!{proof}s. Since $\Lang L(!A) = \Lang L_1 \cap
-  \Lang L_2 = \Lang L(\Gamma) \setminus \{R\}$, $!A$~does not contain~$R$.
-  Replace $R'$ everywhere by~$R$ in the !!{proof} of the second sequent
-  to get !!a{proof} of}
+  \intertext{有推导。由于 $\Lang L(!A) = \Lang L_1 \cap
+  \Lang L_2 = \Lang L(\Gamma) \setminus \{R\}$，$!A$ 不包含~$R$。
+  将第二个相继式的推导中所有的 $R'$ 替换为~$R$，得到}
     !A(c_1, \dots, c_n), \Gamma & \Sequent R(c_1, \dots, c_n)
   \end{align*}
-  Apply \RightR{\lif} and \RightR{\lforall} to get !!a{proof} of
+  应用 \RightR{\lif} 和 \RightR{\lforall} 规则，得到一个推导：
   \[
     \Gamma \Sequent \lforall[x_1][\dots\lforall[x_n][(R(x_1,\dots,x_n) \liff !A(x_1, \dots, x_n))]].
   \]
-  This shows that $!A(x_1, \dots, x_n)$ explicitly defines $!R$
-  in~$\Gamma$.
+  这表明 $!A(x_1, \dots, x_n)$ 在~$\Gamma$ 中显式定义了 $!R$。
 \end{proof}
 
-A third result which is equivalent to interpolation (and, like it, can
-be proved using Maehara's Lemma) is the following theorem: If two
-consistent theories~$\Gamma_1$, $\Gamma_2$ contain a complete theory
-$\Gamma$ in the language~$\Lang L(\Gamma) \subseteq \Lang L(\Gamma_1)
-\cap \Lang L(\Gamma_2)$, then $\Gamma_1 \cup \Gamma_2$ is consistent.
+第三个与插值性等价的结果（并且同样可以用 Maehara 引理证明）是下面的定理：如果两个一致理论~$\Gamma_1$、$\Gamma_2$ 包含一个语言~$\Lang L(\Gamma) \subseteq \Lang L(\Gamma_1)
+\cap \Lang L(\Gamma_2)$ 上的完备理论 $\Gamma$，那么 $\Gamma_1 \cup \Gamma_2$ 是一致的。
 
-Recall that a complete theory is one such that for every
-!!{sentence}~$!A$ in its language either $\Gamma \Proves !A$ or
-$\Gamma \Proves \lnot !A$. Since $\Gamma_1$ and~$\Gamma_2$ are consistent
-extensions of~$\Gamma$, $\Gamma$ must be consistent. It follows that
-if $!A$ is !!a{sentence} in the language $\Lang L(\Gamma_1) \cap \Lang
-L(\Gamma_2)$, we can't have $\Gamma_1 \Entails !A$ and $\Gamma_2
-\Entails \lnot !A$. To see this, suppose there were such an~$!A$. If
-$\Gamma_1 \Entails !A$ then $\Gamma \Entails !A$. Otherwise, by
-completeness of~$\Gamma$, $\Gamma \Entails \lnot !A$, and since
-$\Gamma \subseteq \Gamma_1$, $\Gamma_1 \Entails \lnot !A$, making
-$\Gamma_1$ inconsistent. So $\Gamma \Entails !A$ and since $\Gamma
-\subseteq \Gamma_2$, $\Gamma_2 \Entails !A$. So $\Gamma \Entails/
-\lnot !A$, or $\Gamma_2$ would be inconsistent.
+回忆一下，完备理论指的是对其语言中的每个语句~$!A$，要么 $\Gamma \Proves !A$，要么 $\Gamma \Proves \lnot !A$。由于 $\Gamma_1$ 和~$\Gamma_2$ 是 $\Gamma$ 的一致扩张，$\Gamma$ 必须是一致的。由此可知，如果 $!A$ 是语言 $\Lang L(\Gamma_1) \cap \Lang
+L(\Gamma_2)$ 中的一个语句，我们不可能有 $\Gamma_1 \Entails !A$ 且 $\Gamma_2
+\Entails \lnot !A$。为了看出这一点，假设存在这样的~$!A$。如果 $\Gamma_1 \Entails !A$，那么 $\Gamma \Entails !A$。否则，由 $\Gamma$ 的完备性，$\Gamma \Entails \lnot !A$，并且由于 $\Gamma \subseteq \Gamma_1$，有 $\Gamma_1 \Entails \lnot !A$，这将导致 $\Gamma_1$ 不一致。因此 $\Gamma \Entails !A$，并且由于 $\Gamma
+\subseteq \Gamma_2$，有 $\Gamma_2 \Entails !A$。所以 $\Gamma \Entails/
+\lnot !A$，否则 $\Gamma_2$ 就会不一致。
 
-The non-existence of !!a{sentence}~$!A$ in the joint
-!!{language}~$\Lang L(\Gamma_1) \cap \Lang L(\Gamma_2)$ with $\Gamma_1
-\Entails !A$ and $\Gamma_2 \Entails \lnot !A$ is all that's needed for
-the proof, which we give here proof-theoretically using Maehara's
-Lemma.
+在共同语言~$\Lang L(\Gamma_1) \cap \Lang L(\Gamma_2)$ 中不存在满足 $\Gamma_1
+\Entails !A$ 和 $\Gamma_2 \Entails \lnot !A$ 的语句~$!A$，这正是证明所需的条件。下面我们用证明论方法，借助 Maehara 引理给出证明。
 
-\begin{thm}[Robinson's Joint Consistency Theorem]
-Suppose $\Gamma_1$, $\Gamma_2$ are consistent theories and for no~$!A$
-in the !!{language} $\Lang L(\Gamma_1) \cap \Lang L(\Gamma_2)$ do we
-have $\Gamma_1 \Entails !A$ and $\Gamma_2 \Entails \lnot !A$. Then
-$\Gamma_1 \cup \Gamma_2$ is consistent.
+\begin{thm}[Robinson 联合一致性定理]
+假设 $\Gamma_1$、$\Gamma_2$ 是一致的理论，并且不存在语言 $\Lang L(\Gamma_1) \cap \Lang L(\Gamma_2)$ 中的语句~$!A$ 使得 $\Gamma_1 \Entails !A$ 且 $\Gamma_2 \Entails \lnot !A$。那么 $\Gamma_1 \cup \Gamma_2$ 是一致的。
 \end{thm}
 
 \begin{proof}
-  Suppose for the contrary that $\Gamma_1 \cup \Gamma_2$ is
-  inconsistent. Then the sequent $\Gamma_1, \Gamma_2 \Sequent \ $ has
-  !!a{proof}. Apply Maehara's Lemma to $\maeh{\Gamma_1}{\Gamma_2}
-  \Sequent \maeh{\ }{\ }$ to get !!a{sentence}~$!A$ in the
-  !!{language}~$\Lang L(\Gamma_1) \cap \Lang L(\Gamma_2)$ such that
-  $\Proves \Gamma_1 \Sequent !A$ and $\Proves !A, \Gamma_2 \Sequent
-  \quad$. From the latter we get $\Proves \Gamma_2 \Sequent \lnot !A$.
-  But we assumed that no such !!{sentence} exists.
+  反设 $\Gamma_1 \cup \Gamma_2$ 不一致。那么相继式 $\Gamma_1, \Gamma_2 \Sequent \ $ 有一个推导。将 Maehara 引理应用于 $\maeh{\Gamma_1}{\Gamma_2}
+  \Sequent \maeh{\ }{\ }$，得到一个语言~$\Lang L(\Gamma_1) \cap \Lang L(\Gamma_2)$ 中的语句~$!A$，使得
+  $\Proves \Gamma_1 \Sequent !A$ 和 $\Proves !A, \Gamma_2 \Sequent
+  \quad$。由后者可得 $\Proves \Gamma_2 \Sequent \lnot !A$。
+  但这与我们假设不存在这样的语句相矛盾。
 \end{proof}
 
-Above we have tacitly assumed that the theories $\Gamma$, $\Gamma_1$,
-$\Gamma_2$ are finite. By compactness, the results also hold for
-infinite theories.
+以上我们默认了理论 $\Gamma$、$\Gamma_1$、$\Gamma_2$ 是有限的。根据紧致性定理，这些结果对无限理论也成立。
 
 \end{document}

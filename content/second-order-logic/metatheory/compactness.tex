@@ -8,63 +8,50 @@
 
 \olfileid{sol}{met}{com}
 
-\olsection{Second-order Logic is not Compact}
+\olsection{二阶逻辑不是紧致的}
 
 \begin{explain}
-Call a set of sentences~$\Gamma$ \emph{finitely satisfiable} if every
-one of its finite subsets is satisfiable.  First-order logic has the
-property that if a set of !!{sentence}s~$\Gamma$ is finitely
-satisfiable, it is satisfiable.  This property is called
-\emph{compactness}.  It has an equivalent version involving
-entailment: if $\Gamma \Entails !A$, then already $\Gamma_0 \Entails
-!A$ for some finite subset~$\Gamma_0 \subseteq \Gamma$. In this
-version it is an immediate corollary of the completeness theorem: for
-if $\Gamma \Entails !A$, by completeness $\Gamma \Proves !A$. But a
-!!{derivation} can only make use of finitely many !!{sentence}s
-of~$\Gamma$.
+如果一个语句集~$\Gamma$ 的每个有限子集都是可满足的，则称它是\emph{有限可满足的}。
+一阶逻辑具有如下性质：若一个语句集~$\Gamma$ 是有限可满足的，则它是可满足的。
+这个性质称为\emph{紧致性}。
+它有一个涉及语义后承的等价版本：若 $\Gamma \Entails !A$，则存在某个有限子集~$\Gamma_0 \subseteq \Gamma$ 使得 $\Gamma_0 \Entails !A$。
+在语义后承的版本中，紧致性是一阶逻辑完备性定理的直接推论：因为若 $\Gamma \Entails !A$，则由完备性可得 $\Gamma \Proves !A$。
+然而一个推导只能使用~$\Gamma$ 中的有限多个语句。
 
-Compactness is not true for second-order logic. There are sets of
-second-order !!{sentence}s that are finitely satisfiable but not
-satisfiable, and that entail some~$!A$ without a finite subset
-entailing~$!A$.  
+紧致性对二阶逻辑不成立。
+存在有限可满足但不可满足的二阶语句集，也存在语义地后承某个~$!A$ 但没有任何有限子集语义地后承~$!A$ 的二阶语句集。
 \end{explain}
 
 
 \begin{thm}
 \ollabel{thm:sol-undecidable}
-Second-order logic is not compact.
+二阶逻辑不是紧致的。
 \end{thm}
 
 \begin{proof}
-Recall that 
-\[
+回顾 \[
 \fn{Inf} \ident \lexists[u][(\lforall[x][\lforall[y][(\eq[u(x)][u(y)]
       \lif \eq[x][y])]] \land \lexists[y][\lforall[x][\eq/[y][u(x)]]])]
-\]
-is satisfied in !!a{structure} iff its domain is infinite. Let
-$!A^{\ge n}$ be a sentence that asserts that the domain has at least
-$n$ !!{element}s, e.g.,
+\] 在一个结构中被满足当且仅当该结构的论域是无穷的。
+令 $!A^{\ge n}$ 为断言该论域中至少有 $n$ 个元素的语句，例如
 \[
 !A^{\ge n} \ident \lexists[x_1][\dots\lexists[x_n][(\eq/[x_1][x_2]
     \land \eq/[x_1][x_3] \land \dots \land \eq/[x_{n-1}][x_n])]].
 \]
-Consider the set of !!{sentence}s
+考虑语句集
 \[
 \Gamma = \{\lnot \fn{Inf}, !A^{\ge 1}, !A^{\ge 2}, !A^{\ge 3}, \dots\}.
 \]
-It is finitely satisfiable, since for any finite subset~$\Gamma_0
-\subseteq \Gamma$
-there is some $k$ so that $!A^{\ge k} \in \Gamma$ but no $!A^{\ge n}
-\in \Gamma$ for $n>k$. If $\Domain{M}$ has $k$ !!{element}s,
-$\Sat{M}{\Gamma_0}$. But, $\Gamma$ is not satisfiable: if
-$\Sat{M}{\lnot \fn{Inf}}$, $\Domain{M}$ must be finite, say, of
-size~$k$. Then $\Sat/{M}{!A^{\ge k+1}}$.
+它是有限可满足的：因为对于任意有限子集~$\Gamma_0 \subseteq \Gamma$，
+都存在某个 $k$，使得 $!A^{\ge k} \in \Gamma$ 但对所有 $n>k$ 都有 $!A^{\ge n} \notin \Gamma$。
+若 $\Domain{M}$ 有 $k$ 个元素，则 $\Sat{M}{\Gamma_0}$。
+但是，$\Gamma$ 本身是不可满足的：如果
+$\Sat{M}{\lnot \fn{Inf}}$，则 $\Domain{M}$ 必须是有穷的，设其大小为~$k$。
+那么 $\Sat/{M}{!A^{\ge k+1}}$。
 \end{proof}
 
 \begin{prob}
-Give an example of a set~$\Gamma$ and !!a{sentence}~$!A$ so that
-$\Gamma \Entails !A$ but for every finite subset~$\Gamma_0 \subseteq
-\Gamma$, $\Gamma_0 \Entails/ !A$.
+给出一个集合~$\Gamma$ 和一个语句~$!A$ 的例子，使得 $\Gamma \Entails !A$，但对每个有限子集~$\Gamma_0 \subseteq \Gamma$，都有 $\Gamma_0 \Entails/ !A$。
 \end{prob}
 
 

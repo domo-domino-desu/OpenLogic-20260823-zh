@@ -8,45 +8,42 @@
 
 \olfileid{int}{sem}{pro}
 
-\olsection{Propositions}
+\olsection{命题}
 
-Sometimes it is useful to have a name for the set of worlds in
-!!a{relational model}~$\mModel{M}$ where !!a{formula}~$!A$ is true. We
-call it the \emph{proposition} defined by~$!A$, and write
-$\Prop{M}{!A}$. 
+有时，为关系模型~$\mModel{M}$ 中使公式~$!A$ 为真的世界集合取一个名字会很有用。我们称其为由~$!A$ 定义的\emph{命题}，并记作 $\Prop{M}{!A}$。
 
 \begin{defn}
-  We extend the function $V$ to a function $\Prop{M}{!A} \colon \Frm
-  \to \Pow{W}$ inductively as follows:
+  我们将函数 $V$ 归纳地扩展为函数 $\Prop{M}{!A} \colon \Frm
+  \to \Pow{W}$，定义如下：
   \begin{enumerate}
   \item $\Prop{M}{\lfalse} = \emptyset$
   \item $\Prop{M}{p} = V(p)$
   \item $\Prop{M}{\lnot !B} = {}$
     \[
-      \Setabs{w \in W}{\text{for every $w'$ such that $Rww'$, $w'
+      \Setabs{w \in W}{\text{对每个满足~$Rww'$ 的~$w'$，都有~$w'
           \notin \Prop{M}{!B}$}}.
     \]
-  \item $\Prop{M}{!B \land !C} = \Prop{M}{!B} \cap \Prop{M}{!C}$.
-  \item $\Prop{M}{!B \lor !C} = \Prop{M}{!B} \cup \Prop{M}{!C}$.
+  \item $\Prop{M}{!B \land !C} = \Prop{M}{!B} \cap \Prop{M}{!C}$。
+  \item $\Prop{M}{!B \lor !C} = \Prop{M}{!B} \cup \Prop{M}{!C}$。
   \item $\Prop{M}{!B \lif !C} = {}$
     \[
-      \Setabs{w \in W}{\text{for every $w'$ such that $Rww'$, if $w'
-          \in \Prop{M}{!B}$ then $w' \in \Prop{M}{!C}$}}.
+      \Setabs{w \in W}{\text{对每个满足~$Rww'$ 的~$w'$，若~$w'
+          \in \Prop{M}{!B}$ 则~$w' \in \Prop{M}{!C}$}}.
     \]
   \end{enumerate}
 \end{defn}
 
 \begin{prop}
   \ollabel{prop:propositions-true}
-  $\mModel{M}{!A}[w]$ iff $w \in \Prop{M}{!A}$
+  $\mModel{M}{!A}[w]$ 当且仅当 $w \in \Prop{M}{!A}$。
 \end{prop}
 
 \begin{proof}
-  Exercise.
+  练习。
 \end{proof}
 
 \begin{prob}
-  Prove \olref[int][sem][pro]{prop:propositions-true}.
+  证明 \olref[int][sem][pro]{prop:propositions-true}。
 \end{prob}
 
 \end{document}

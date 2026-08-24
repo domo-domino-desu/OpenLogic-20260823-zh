@@ -8,52 +8,17 @@
 
 \olfileid{nml}{frd}{int}
 
-\olsection{Introduction}
+\olsection{引言}
 
-One question that interests modal logicians is the relationship
-between the accessibility relation and the truth of certain
-!!{formula}s in models with that accessibility relation. For instance,
-suppose the accessibility relation is reflexive, i.e., for every $w
-\in W$, $Rww$. In other words, every world is accessible from
-itself. That means that when $\Box !A$ is true at a world~$w$, $w$
-itself is among the accessible worlds at which~$!A$ must therefore be
-true. So, if the accessibility relation~$R$ of~$\mModel{M}$ is
-reflexive, then whatever world $w$ and formula $!A$ we take, $\Box !A
-\lif !A$ will be true there (in other words, the schema $\Box p \lif
-p$ and all its substitution instances are true in~$\mModel{M}$).
+模态逻辑学家感兴趣的一个问题是，可达关系与具有该关系的模型中某些公式的真值之间的关系。例如，假设可达关系是自反的，即对每个 $w \in W$，都有 $Rww$。换句话说，每个世界都可从自身可达。这意味着，当 $\Box !A$ 在世界~$w$ 上为真时，$w$ 本身就在可达世界之中，因此~$!A$ 必然在这些世界上为真。因此，如果~$\mModel{M}$ 的可达关系~$R$ 是自反的，那么无论我们取哪个世界 $w$ 和哪个公式 $!A$，$\Box !A \lif !A$ 都会在该世界上为真（换言之，模式 $\Box p \lif p$ 及其所有代入实例在~$\mModel{M}$ 中都为真）。
 
-The converse, however, is false. It's not the case, e.g., that if
-$\Box p \lif p$ is true in~$\mModel{M}$, then $R$ is reflexive. For we
-can easily find a non-reflexive model~$\mModel{M}$ where $\Box p \lif
-p$ is true at all worlds: take the model with a single world~$w$, not
-accessible from itself, but with $w \in V(p)$. By picking the truth
-value of $p$ suitably, we can make $\Box !A \lif !A$ true in a model
-that is not reflexive.
+然而，逆命题并不成立。例如，并非如果 $\Box p \lif p$ 在~$\mModel{M}$ 中为真，$R$ 就是自反的。因为我们很容易找到一个非自反的模型~$\mModel{M}$，使得 $\Box p \lif p$ 在所有世界上都为真：取一个只含单个世界~$w$ 的模型，$w$ 不可从自身可达，但 $w \in V(p)$。通过适当地选取 $p$ 的真值，我们可以在一个非自反的模型中使 $\Box !A \lif !A$ 为真。
 
-The solution is to remove the variable assignment~$V$ from the
-equation. If we require that $\Box p \lif p$ is true at all worlds
-in~$\mModel{M}$, regardless of which worlds are in~$V(p)$, then it is
-necessary that $R$ is reflexive. For in any non-reflexive model, there
-will be at least one world~$w$ such that not $Rww$. If we set $V(p) =
-W \setminus \{w\}$, then $p$ will be true at all worlds other
-than~$w$, and so at all worlds accessible from~$w$ (since $w$ is
-guaranteed not to be accessible from~$w$, and $w$ is the only world
-where~$p$ is false). On the other hand, $p$ is false at $w$, so $\Box
-p \lif p$ is false at~$w$.
+解决方法是将赋值~$V$ 从考量中移除。如果我们要求，无论 $V(p)$ 中包含哪些世界，$\Box p \lif p$ 在~$\mModel{M}$ 的所有世界上都为真，那么 $R$ 必定是自反的。因为在任何非自反模型中，都至少存在一个世界~$w$ 使得 $Rww$ 不成立。如果我们令 $V(p) =
+W \setminus \{w\}$，那么 $p$ 将在除~$w$ 以外的所有世界上为真，因此在所有从~$w$ 可达的世界上也为真（因为已知 $w$ 不可从自身可达，且 $w$ 是唯一一个~$p$ 为假的世界）。另一方面，$p$ 在 $w$ 上为假，所以 $\Box p \lif p$ 在~$w$ 上为假。
 
-This suggests that we should introduce a notation for model structures
-without a valuation: we call these \emph{frames}. A frame $\mModel{F}$
-is simply a pair $\tuple{W, R}$ consisting of a set of worlds with an
-accessibility relation. Every model $\tuple{W, R, V}$ is then, as we
-say, \emph{based on} the frame $\tuple{W, R}$. Conversely, a frame
-determines the class of models based on it; and a class of frames
-determines the class of models which are based on any frame in the
-class. And we can define $\mModel{F} \Entails !A$, the notion of !!a{formula}
-being \emph{valid} in a frame as: $\mSat{M}{!A}$ for all $\mModel{M}$
-based on~$\mModel{F}$.
+这表明，我们应当为不带赋值的模型结构引入一种记法：我们称之为\emph{框架}。框架 $\mModel{F}$ 就是由世界集和可达关系组成的二元组 $\tuple{W, R}$。于是，正如我们的说法，每个模型 $\tuple{W, R, V}$ 都\emph{基于}框架 $\tuple{W, R}$。反之，一个框架决定了基于它的所有模型构成的类；而一个框架类决定了基于该类中任意框架的所有模型构成的类。我们可以定义 $\mModel{F} \Entails !A$，即公式在框架中\emph{有效}这一概念：对所有基于~$\mModel{F}$ 的 $\mModel{M}$，都有 $\mSat{M}{!A}$。
 
-With this notation, we can establish correspondence relations between
-!!{formula}s and classes of frames: e.g., $\mModel{F} \Entails \Box p \lif p$
-if, and only if, $\mModel{F}$ is reflexive.
+利用这种记法，我们可以在公式与框架类之间建立对应关系：例如，$\mModel{F} \Entails \Box p \lif p$ 当且仅当 $\mModel{F}$ 是自反的。
 
 \end{document}

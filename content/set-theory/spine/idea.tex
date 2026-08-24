@@ -4,39 +4,23 @@
 
 \olfileid{sth}{spine}{valpha}
 
-\olsection{Defining the Stages as the $V_\alpha$s}
+\olsection{将各个阶段定义为 $V_\alpha$}
 
-In \olref[sth][ordinals][]{chap}, we defined well-orderings and the
-(von Neumann) ordinals. In this chapter, we will use these to
-characterise the hierarchy of sets \emph{itself}. To do this, recall
-that in \olref[sth][ordinals][opps]{sec}, we defined the idea of
-successor and limit ordinals. We use these ideas in following
-definition:
+在 \olref[sth][ordinals][]{chap} 中，我们定义了良序与 von Neumann（冯·诺伊曼）序数。在本章中，我们将用它们来刻画集合层级\emph{本身}。为此，回顾在 \olref[sth][ordinals][opps]{sec} 中，我们定义了后继序数与极限序数的概念。我们在以下定义中使用这些概念：
 
 \begin{defn}\ollabel{defValphas}
 	\begin{align*}
 	V_\emptyset &\defis \emptyset\\
 	V_{\ordsucc{\alpha}} &\defis \Pow{V_\alpha} & & 
-	\text{for any ordinal }\alpha\\
+	\text{对任意序数 }\alpha\\
 	V_{\alpha} &\defis \bigcup_{\gamma < \alpha} V_\gamma & & 
-	\text{when }\alpha\text{ is a limit ordinal}
+	\text{当 }\alpha\text{ 是极限序数}
 \end{align*}
 \end{defn}
-\noindent
-This will be a definition by \emph{transfinite recursion} on the
-ordinals. In this regard, we should compare this with recursive
-definitions of functions on the natural numbers.\footnote{Cf.\ the
-definitions of addition, multiplication, and exponentiation in
-\olref[sfr][infinite][dedekind]{sec}.} As when dealing with natural
-numbers, one defines a base case and successor cases; but when dealing
-with ordinals, we also need to describe the behaviour of \emph{limit}
-cases. 
 
-This definition of the $V_\alpha$s will be an important milestone. We
-have informally motivated our hierarchy of sets as forming sets by
-\emph{stages}. The $V_\alpha$s are, in effect, just those stages.
-Importantly, though, this is an \emph{internal} characterisation of
-the stages. Rather than suggesting a possible \emph{model} of the
-theory, we will have defined the stages \emph{within} our set theory.
+\noindent
+这是通过序数上的\emph{超限递归}作出的定义。在这方面，我们应将其与自然数上函数的递归定义进行比较。\footnote{参见 \olref[sfr][infinite][dedekind]{sec} 中加法、乘法和指数的定义。}如同处理自然数时那样，需要定义基始情形与后继情形；但在处理序数时，我们还需要描述\emph{极限}情形的行为。
+
+$V_\alpha$ 的这一定义将是一个重要的里程碑。我们曾非形式地指出，我们的集合层级是通过\emph{阶段}来形成集合的。$V_\alpha$ 实际上正是这些阶段。然而重要的是，这是对阶段的\emph{内在}刻画。我们并不是在提出该理论的一个可能\emph{模型}，而是在我们的集合论\emph{内部}定义这些阶段。
 
 \end{document}

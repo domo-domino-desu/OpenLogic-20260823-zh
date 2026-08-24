@@ -8,93 +8,32 @@
 
 \olfileid{inc}{int}{ovr}
 
-\olsection{Overview of Incompleteness Results}
+\olsection{不完全性结论概述}
 
-Hilbert expected that mathematics could be formalized in an
-!!{axiomatizable} theory which it would be possible to prove
-!!{complete} and !!{decidable}. Moreover, he aimed to prove the
-consistency of this theory with very weak, ``finitary,'' means, which
-would defend classical mathematics against the challenges of
-intuitionism.  G\"odel's incompleteness theorems showed that these
-goals cannot be achieved.
+Hilbert 期望数学能被形式化为一个可公理化的理论，并且能够证明该理论是完备且可判定的。
+此外，他还力图以非常弱的、“有穷”的方法来证明这个理论的一致性，这将能捍卫经典数学以对抗直觉主义的挑战。
+G\"odel 的不完全性定理表明，这些目标都无法实现。
 
-G\"odel's first incompleteness theorem showed that a version of
-Russell and Whitehead's \emph{Principia Mathematica} is not
-!!{complete}.  But the proof was actually very general and applies to
-a wide variety of theories.  This means that it wasn't just that
-\emph{Principia Mathematica} did not manage to completely capture
-mathematics, but that \emph{no} acceptable theory does.  It took a
-while to isolate the features of theories that suffice for the
-incompleteness theorems to apply, and to generalize G\"odel's proof to
-apply make it depend only on these features.  But we are now in a
-position to state a very general version of the first incompleteness
-theorem for theories in the language $\Lang L_A$ of arithmetic.
+G\"odel 第一不完全性定理表明，Russell 和 Whitehead 的《数学原理》的某个版本是不完备的。但该证明实际上极具一般性，适用于范围广泛的理论。这意味着，不仅是《数学原理》未能完全把握数学，而且任何“可接受的”理论都无法做到。人们花了一段时间才分离出那些足以使不完全性定理成立的理论特征，并将 G\"odel 的证明加以推广，使其仅依赖于这些特征。但现在，我们已经能够为算术语言 $\Lang L_A$ 中的理论陈述一个非常通用的第一不完全性定理版本。
 
 \begin{thm}
-If $\Gamma$ is a consistent and !!{axiomatizable} theory in~$\Lang
-L_A$ which !!{represents} all computable functions and !!{decidable}
-relations, then $\Gamma$ is not !!{complete}.
+如果 $\Gamma$ 是 $\Lang L_A$ 中的一个一致的且可公理化的理论，并且它表示了所有可计算函数和可判定关系，那么 $\Gamma$ 不是完备的。
 \end{thm}
 
-To say that $\Gamma$ is not !!{complete} is to say that for at least
-one !!{sentence}~$!A$, $\Gamma \Proves/ !A$ and $\Gamma \Proves/ \lnot
-!A$.  Such !!a{sentence} is called \emph{independent} (of~$\Gamma)$.
-We can in fact relatively quickly prove that there must be independent
-sentences. But the power of G\"odel's proof of the theorem lies in the
-fact that it exhibits a \emph{specific example} of such an independent
-!!{sentence}. The intriguing construction produces
-!!a{sentence}~$!G_\Gamma$, called a \emph{G\"odel sentence}
-for~$\Gamma$, which is unprovable because in $\Gamma$, $!G_\Gamma$ is
-equivalent to the claim that $!G_\Gamma$ is unprovable in~$\Gamma$.  It
-does so \emph{constructively}, i.e., given an axiomatization
-of~$\Gamma$ and a description of the !!{derivation} system, the proof gives a
-method for actually writing down~$!G_\Gamma$.
+说 $\Gamma$ 不是完备的，就是说至少存在一个语句~$!A$，使得 $\Gamma \Proves/ !A$ 且 $\Gamma \Proves/ \lnot !A$。这样的语句被称为（关于~$\Gamma$ 的）\emph{独立}语句。事实上，我们可以相对较快地证明独立语句必然存在。但 G\"odel 对该定理证明的威力在于，它给出了这种独立语句的一个\emph{具体例子}。这个巧妙的构造产生了一个语句~$!G_\Gamma$，称为 $\Gamma$ 的一个\emph{哥德尔语句}，它之所以不可证，是因为在 $\Gamma$ 中，$!G_\Gamma$ 等价于断言 $!G_\Gamma$ 在~$\Gamma$ 中不可证。这个证明是\emph{构造性}的，也就是说，给定 $\Gamma$ 的一个公理化以及推导系统的描述，该证明提供了实际写出 $!G_\Gamma$ 的方法。
 
-The construction in G\"odel's proof requires that we find a way to
-express in $\Lang L_A$ the properties of and operations on terms and
-!!{formula}s of $\Lang L_A$ itself. These include properties such as
-``$!A$ is !!a{sentence},'' ``$\delta$ is !!a{derivation} of~$!A$,''
-and operations such as $\Subst{!A}{t}{x}$.  This way must (a) express
-these properties and relations via a ``coding'' of symbols and
-sequences thereof (which is what terms, !!{formula}s, !!{derivation}s,
-etc. are) as natural numbers (which is what $\Lang L_A$ can talk
-about). It must (b) do this in such a way that $\Gamma$ will prove the
-relevant facts, so we must show that these properties are coded by
-!!{decidable} properties of natural numbers and the operations
-correspond to computable functions on natural numbers. This is called
-``arithmetization of syntax.''
+G\"odel 证明中的构造要求我们找到一种方法，用 $\Lang L_A$ 来表达 $\Lang L_A$ 本身的项和公式的性质与操作。这些性质包括“$!A$ 是一个语句”、“$\delta$ 是 $!A$ 的一个推导”等，操作则包括诸如 $\Subst{!A}{t}{x}$ 等。这种方法必须 (a) 对符号及其序列（项、公式、推导等正是这样的序列）进行“编码”，将其转化为自然数（这是 $\Lang L_A$ 所能谈论的对象），以此来表达这些性质和关系。它还必须 (b) 以这种方式进行，使得 $\Gamma$ 能够证明相关事实；因此我们必须证明，这些性质是由自然数的可判定性质编码的，而这些操作对应于自然数上的可计算函数。这被称为“语法的算术化”。
 
-Before we investigate how syntax can be arithmetized, however, we will
-consider the condition that~$\Gamma$ is ``strong enough,'' i.e.,
-!!{represents} all computable functions and !!{decidable} relations.
-This requires that we give a precise definition of ``computable.''
-This can be done in a number of ways, e.g., via the model of Turing
-machines, or as those functions computable by programs in some
-general-purpose programming language.  Since our aim is to
-!!{represents}s these functions and relations in a theory in the
-language~$\Lang L_A$, however, it is best to pick a simple definition
-of computability of just numerical functions.  This is the notion of
-\emph{recursive function}.  So we will first discuss the recursive
-functions. We will then show that $\Th{Q}$ already !!{represents} all
-recursive functions and relations.  This will allow us to apply the
-incompleteness theorem to specific theories such as $\Th{Q}$ and
-$\Th{PA}$, since we will have established that these are examples of
-theories that are ``strong enough.''
+然而，在研究语法如何被算术化之前，我们将先考虑 $\Gamma$ “足够强”这一条件，即它能表示所有可计算函数和可判定关系。这要求我们给出“可计算”的精确定义。这可以通过多种方式完成，例如通过图灵机模型，或者定义为可由某种通用编程语言中的程序计算的函数。然而，由于我们的目标是在语言 $\Lang L_A$ 的一个理论中表示这些函数和关系，最好选择一个仅针对数值函数的简单的可计算性定义。这就是\emph{递归函数}的概念。因此我们将首先讨论递归函数。然后我们将证明 $\Th{Q}$ 已经能表示所有递归函数和关系。这将使我们能把不完全性定理应用到诸如 $\Th{Q}$ 和 $\Th{PA}$ 这样的具体理论上，因为我们将确认这些理论都属于“足够强”的例子。
 
-The end result of the arithmetization of syntax is
-!!a{formula} $\OProv[\Gamma](x)$ which, via the coding of !!{formula}s
-as numbers, expresses provability from the axioms of~$\Gamma$.
-Specifically, if $!A$ is coded by the number~$n$, and $\Gamma \Proves
-!A$, then $\Gamma \Proves \Prov[\Gamma](\num{n})$.  This ``provability
-predicate'' for $\Gamma$ allows us also to express, in a certain
-sense, the consistency of $\Gamma$ as !!a{sentence} of~$\Lang L_A$:
-let the ``consistency statement'' for~$\Gamma$ be the !!{sentence}
-$\lnot \Prov[\Gamma](\num{n})$, where we take $n$ to be the code of a
-contradiction, e.g., of~$\lfalse$.  The second incompleteness theorem
-states that consistent !!{axiomatizable} theories also do not prove
-their own consistency statements.  The conditions required for this
-theorem to apply are a bit more stringent than just that the theory
-represents all computable functions and !!{decidable} relations, but
-we will show that $\Th{PA}$ satisfies them.
+语法算术化的最终结果，是一个公式 $\OProv[\Gamma](x)$，
+它通过将公式编码为数，表达了从~$\Gamma$ 的公理出发的可证性。
+具体来说，若 $!A$ 由数~$n$ 编码，并且 $\Gamma \Proves !A$，那么 $\Gamma \Proves \Prov[\Gamma](\num{n})$。
+$\Gamma$ 的这个“可证性谓词”也使我们能够在某种意义上，
+将 $\Gamma$ 的一致性表达为~$\Lang L_A$ 的一个语句：
+令 $\Gamma$ 的“一致性语句”为语句 $\lnot \Prov[\Gamma](\num{n})$，
+其中我们将 $n$ 取为一个矛盾式（例如~$\lfalse$）的编码。
+第二不完全性定理断言，一致的可公理化理论也不能证明它们自身的一致性语句。
+这个定理成立所需的条件，比“该理论表示所有可计算函数和可判定关系”这一要求还要更严格一些，不过我们将证明 $\Th{PA}$ 满足这些条件。
 
 \end{document}

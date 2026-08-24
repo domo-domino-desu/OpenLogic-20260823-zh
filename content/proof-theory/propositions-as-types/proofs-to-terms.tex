@@ -8,36 +8,30 @@
 
 \olfileid{int}{pty}{pt}
 
-\olsection{Converting \usetoken{P}{derivation} to Proof Terms}
+\olsection{将推导转换为证明项}
 
-The process of converting natural deduction !!{proof}s to proof terms,
-i.e., translating !!{proof}s in~\Log{N2i} to !!{proof}s in~\Log{tN2i},
-is extremely straightforward. It simply amounts to writing a proof
-term to the left of each !!{formula} on the right of a sequent in the
-!!{derivation}, resulting in sequents of the form $\Gamma \Sequent M :
-!A$.  We'll then say that $M$ \emph{witnesses}~$!A$ in
-context~$\Gamma$. Which proof term to write is entirely determined by
-the rules of \Log{tN2i}.
+将自然演绎推导转换为证明项的过程（即将~\Log{N2i} 中的推导翻译为~\Log{tN2i} 中的推导）是非常直接的。
+它只需在推导的相继式中，为右侧每个公式的左边写上一个证明项，从而得到形如 $\Gamma \Sequent M :
+!A$ 的相继式。 我们此后便称，$M$ 在上下文~$\Gamma$ 中\emph{见证}了~$!A$。
+具体写哪个证明项，完全由 \Log{tN2i} 的规则决定。
 
 \begin{prop}
-Every !!{proof}~$\delta$ of $\Gamma \Sequent !A$ in \Log{N2i}
-corresponds to !!a{proof}~$\delta'$ of $\Gamma \Sequent N : !A$ in
-\Log{tN2i}. The proof term $N$ is uniquely determined by~$\delta$.
+对于 \Log{N2i} 中每个 $\Gamma \Sequent !A$ 的推导~$\delta$，
+都对应于 \Log{tN2i} 中一个 $\Gamma \Sequent N : !A$ 的推导~$\delta'$。
+该证明项 $N$ 由~$\delta$ 唯一确定。
 \end{prop}
 
 \begin{proof}
-We proceed by induction on the height of~$\delta$. If $\delta$ is the
-axiom $x:!A \Sequent !A$, then $\delta'$ is the axiom~$x:!A \Sequent
-x:!A$. If $\delta$ ends in an inference rule, the inductive hypothesis
-provides proof terms for each premise, and \Log{tN2i}-!!{proof}s of
-sequents including these proof terms  corresponding to each premise.
-We apply the corresponding rule of \Log{tN2i}; the corresponding proof
-term is determined by the \Log{tN2i} inference rule.
+我们对~$\delta$ 的高度进行归纳。如果 $\delta$ 是公理 $x:!A \Sequent !A$，
+那么 $\delta'$ 就是公理~$x:!A \Sequent x:!A$。
+如果 $\delta$ 以某条推理规则结束，
+根据归纳假设，每个前提都有相应的证明项，并且存在包含这些证明项的相继式的 \Log{tN2i} 推导。
+我们应用 \Log{tN2i} 的相应规则；相应的证明项则由该 \Log{tN2i} 推理规则确定。
 \end{proof}
 
 \begin{ex}
-  Consider the very simple !!{proof} in \Log{N1i} of $(!A \land !B)
-  \lif (!B \land !A)$:
+  考虑 \Log{N1i} 中一个非常简单的推导 $(!A \land !B)
+  \lif (!B \land !A)$：
   \[
   \AxiomC{$\Discharge{!A\land !B}{x}$}
   \RightLabel{\Elim\land[2]}
@@ -51,7 +45,7 @@ term is determined by the \Log{tN2i} inference rule.
   \UnaryInfC{$(!A \land !B) \lif (!B \land !A)$}
   \DisplayProof
   \]
-  In \Log{N2i} it looks like this:
+  在 \Log{N2i} 中，它如下所示：
   \[
   \Axiom$x : !A\land !B \fCenter !A\land !B$
   \RightLabel{\Elim\land[2]}
@@ -65,16 +59,13 @@ term is determined by the \Log{tN2i} inference rule.
   \UnaryInf$\fCenter (!A \land !B) \lif (!B \land !A)$
   \DisplayProof
   \]
-  We assign proof terms from the top down. The proof terms for the
-  axioms are just the same as the variable in the context,~$x$. The
-  proof terms associated with $\Elim\land[i]$ are then determined as
-  $\proj{2}{x}$ and~$\proj{1}{x}$. When we apply \Intro{\land}, we
-  combine these two proof terms: $\pair{\proj{2}{x}}{\proj{1}{x}}$.
-  Finally, the \Intro{\lif} rule applies a $\lambd$-abstraction,
-  binding~$x$ and recording that $x$ labelled the assumption~$!A \land
-  !B$: $\lambd[\typeof{x}{!A \land
-  !B}][\pair{\proj{2}{x}}{\proj{1}{x}}]$.
-  The !!{proof} in \Log{tN2i} then is:
+  我们从上至下分配证明项。公理的证明项就是上下文中的同名变元，即~$x$。
+  于是，与 $\Elim\land[i]$ 规则关联的证明项就确定为 $\proj{2}{x}$ 和~$\proj{1}{x}$。
+  当我们应用 \Intro{\land} 规则时，将这两个证明项组合起来：$\pair{\proj{2}{x}}{\proj{1}{x}}$。
+  最后，\Intro{\lif} 规则应用了一个 $\lambd$-抽象，绑定~$x$ 并记录 $x$ 标注了假设~$!A \land
+  !B$：$\lambd[\typeof{x}{!A \land
+  !B}][\pair{\proj{2}{x}}{\proj{1}{x}}]$。
+  因此，\Log{tN2i} 中的推导就是：
   \[
   \Axiom$x : !A\land !B \fCenter x: !A\land !B$
   \RightLabel{\Elim\land[2]}
@@ -91,6 +82,5 @@ term is determined by the \Log{tN2i} inference rule.
   \DisplayProof
   \]
 \end{ex}
-
 
 \end{document}

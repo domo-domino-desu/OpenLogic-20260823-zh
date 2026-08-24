@@ -8,117 +8,81 @@
 
 \olfileid{mod}{lin}{prf}
 
-\olsection{Lindstr\"om's Theorem}
+\olsection{Lindstr\"om 定理}
 
 \begin{lem}
 \ollabel{lem:lindstrom}
-Suppose $!E \in L(\Lang{L})$, with $\Lang{L}$ finite, and assume
-also that there is an $n \in \Nat$ such that for any two
-!!{structure}s $\Struct{M}$ and~$\Struct{N}$, if $\Struct{M} \equiv_n
-\Struct{N}$ and $\Struct{M} \models_L !E$ then also $\Struct{N}
-\models_L !E$. Then $!E$ is equivalent to a first-order
-!!{sentence}, i.e., there is a first-order $!D$ such that
-$\Mod(L){!E} = \Mod(L){!D}$.
+设 $!E \in L(\Lang{L})$，其中 $\Lang{L}$ 有限，并假设存在 $n \in \Nat$，
+使得对任意两个结构 $\Struct{M}$ 和~$\Struct{N}$，若 $\Struct{M} \equiv_n
+\Struct{N}$ 且 $\Struct{M} \models_L !E$，
+则也有 $\Struct{N} \models_L !E$。那么 $!E$ 等价于一个一阶语句，
+即存在一阶的 $!D$ 使得 $\Mod(L){!E} = \Mod(L){!D}$。
 \end{lem}
 
-\begin{proof} 
-Let $n$ be such that any two $n$-equivalent !!{structure}s
-$\Struct{M}$ and $\Struct{N}$ agree on the value assigned to~$!E$.
-Recall \olref[bas][pis]{prop:qr-finite}: there are only finitely many
-first-order !!{sentence}s in a finite !!{language} that have
-quantifier rank no greater than~$n$, up to logical equivalence. Now,
-for each fixed !!{structure}~$\Struct{M}$ let $!D_{\Struct{M}}$ be the
-conjunction of all first-order !!{sentence}s~$!E$ true in~$\Struct{M}$
-with $\QuantRank{!E} \le n$ (this conjunction is finite), so that
-$\Struct{N} \models !D_{\Struct{M}}$ if and only if $\Struct{N}
-\equiv_n \Struct{M}$. Then put $!D = \textstyle\bigvee
-\Setabs{!D_{\Struct{M}}}{\Struct{M} \models_L !E}$; this disjunction
-is also finite (up to logical equivalence).
+\begin{proof}
+取定这样的 $n$，使得任意两个 $n$ 等价的结构 $\Struct{M}$ 和 $\Struct{N}$ 在~$!E$ 上取值一致。
+回顾 \olref[bas][pis]{prop:qr-finite}：在有限语言中，量词秩不大于~$n$ 的一阶语句在逻辑等价意义下只有有限多个。
+现在，对每个固定的结构~$\Struct{M}$，令 $!D_{\Struct{M}}$ 为所有在~$\Struct{M}$ 中为真
+且 $\QuantRank{!E} \le n$ 的一阶语句~$!E$ 的合取（该合取是有限的），
+从而 $\Struct{N} \models !D_{\Struct{M}}$ 当且仅当 $\Struct{N}
+\equiv_n \Struct{M}$。然后令 $!D = \textstyle\bigvee
+\Setabs{!D_{\Struct{M}}}{\Struct{M} \models_L !E}$；该析取在逻辑等价意义下也是有限的。
 
-The conclusion $\Mod(L){!E} = \Mod(L){!D}$ follows. In fact, if
-$\Struct{N} \models_L !D$ then for some $\Struct{M} \models_L
-!E$ we have $\Struct{N} \models !D_{\Struct{M}}$, whence also
-$\Struct{N} \models_L !E$ (by the hypothesis of the
-lemma). Conversely, if $\Struct{N} \models_L !E$ then
-$!D_\Struct{N}$ is a disjunct in $!D$, and since $\Struct{N}
-\models !D_\Struct{N}$, also $\Struct{N} \models_L !D$.
+结论 $\Mod(L){!E} = \Mod(L){!D}$ 成立。事实上，如果 $\Struct{N} \models_L !D$，
+则存在某个 $\Struct{M} \models_L !E$ 使得 $\Struct{N} \models !D_{\Struct{M}}$，
+因此也有 $\Struct{N} \models_L !E$（根据引理假设）。
+反之，若 $\Struct{N} \models_L !E$，则 $!D_\Struct{N}$ 是 $!D$ 的一个析取支，
+又因为 $\Struct{N}
+\models !D_\Struct{N}$，故也有 $\Struct{N} \models_L !D$。
 \end{proof}
 
-\begin{thm}[Lindstr\"om's Theorem]
-  \ollabel{thm:lindstrom} Suppose $\tuple{L, \models_L}$ has the
-  Compactness and the L\"owenheim--Skolem Properties. Then
-  $\tuple{L, \models_L} \le \tuple{F, \models}$ (so
-  $\tuple{L, \models_L}$ is equivalent to first-order logic).
+\begin{thm}[Lindstr\"om 定理]
+  \ollabel{thm:lindstrom} 设 $\tuple{L, \models_L}$ 具有紧致性和 L\"owenheim--Skolem 性质。
+  则 $\tuple{L, \models_L} \le \tuple{F, \models}$（因此 $\tuple{L, \models_L}$ 等价于一阶逻辑）。
 \end{thm}
 
 \begin{proof}
-By \olref{lem:lindstrom}, it suffices to show that for any $!E
-\in L(\Lang{L})$, with $\Lang{L}$ finite, there is $n \in \Nat$
-such that for any two !!{structure}s $\Struct{M}$ and~$\Struct{N}$: if
-$\Struct{M} \equiv_n \Struct{N}$ then $\Struct{M}$ and $\Struct{N}$
-agree on~$!E$. For then $!E$ is equivalent to a first-order
-!!{sentence}, from which $\tuple{L, \models_L} \le \tuple{F, \models}$
-follows. Since we are working in a finite, purely relational
-!!{language}, by \olref[bas][pis]{thm:b-n-f} we can replace the statement
-that $\Struct{M} \equiv_n \Struct{N}$ by the corresponding algebraic
-statement that $I_n(\emptyset,\emptyset)$.
+根据 \olref{lem:lindstrom}，只需证明：对任意有限语言 $\Lang{L}$ 中的 $!E
+\in L(\Lang{L})$，都存在 $n \in \Nat$，使得对任意两个结构 $\Struct{M}$ 和~$\Struct{N}$：若
+$\Struct{M} \equiv_n \Struct{N}$ 则 $\Struct{M}$ 和 $\Struct{N}$
+在~$!E$ 上取值一致。因为若如此，$!E$ 便等价于某个一阶语句，由此即可得
+$\tuple{L, \models_L} \le \tuple{F, \models}$。由于我们在一个有限、纯关系的语言中工作，根据 \olref[bas][pis]{thm:b-n-f}，我们可以将
+$\Struct{M} \equiv_n \Struct{N}$ 这一陈述替换为等价的代数陈述 $I_n(\emptyset,\emptyset)$。
 
-Given $!E$, suppose towards a contradiction that for each $n$ there
-are !!{structure}s $\Struct{M}_n$ and $\Struct{N}_n$ such that
-$I_n(\emptyset, \emptyset)$, but (say) $\Struct{M}_n \models_L !E$
-whereas $\Struct{N}_n \not\models_L !E$. By the Isomorphism Property
-we can assume that all the $\Struct{M}_n$'s interpret the constants of
-the language by the same objects; furthermore, since there are only
-finitely many atomic !!{sentence}s in the language, we may also assume
-that they satisfy the same atomic !!{sentence}s (we can take a
-subsequence of the $\Struct{M}$'s otherwise). Let $\Struct{M}$ be the
-union of all the $\Struct{M}_n$'s, i.e., the unique minimal
-!!{structure} having each $\Struct{M}_n$ as a substructure.  As in the
-proof of \olref[lsp]{thm:abstract-p-isom}, let $\Struct{M}^*$ be the
-extension of $\Struct{M}$ with !!{domain} $\Domain{M} \cup
-\Domain{M}^{<\omega}$, in the expanded !!{language} comprising the
-concatenation predicates $P$ and~$Q$.
+给定 $!E$，反设对每个 $n$，都存在结构 $\Struct{M}_n$ 和 $\Struct{N}_n$ 使得
+$I_n(\emptyset, \emptyset)$，但（不妨设）$\Struct{M}_n \models_L !E$
+而 $\Struct{N}_n \not\models_L !E$。根据同构性质，我们可以假定所有 $\Struct{M}_n$ 对语言中常项的解释相同；进一步，由于语言中只有有限多个原子语句，我们还可以假定它们满足相同的原子语句（否则可取 $\Struct{M}$ 序列的一个子序列）。令 $\Struct{M}$ 为所有 $\Struct{M}_n$ 的并，即包含每个 $\Struct{M}_n$ 作为子结构的唯一最小结构。如 \olref[lsp]{thm:abstract-p-isom} 的证明所示，令 $\Struct{M}^*$ 为 $\Struct{M}$ 的扩张，其论域为
+$\Domain{M} \cup
+\Domain{M}^{<\omega}$，所在的语言是扩充了拼接谓词 $P$ 与~$Q$ 的语言。
 
-Similarly, define $\Struct{N}_n$, $\Struct{N}$ and $\Struct{N}^*$. Now
-let $\Struct{M}$ be the !!{structure} whose !!{domain} comprises the
-!!{domain}s of $\Struct{M}^*$ and $\Struct{N}^*$ as well as the natural
-numbers~$\Nat$ along with their natural ordering~$\le$, in the
-!!{language} with extra predicates representing the !!{domain}s
-$\Domain{M}$, $\Domain{N}$, $\Domain{M}^{<\omega}$ and
-$\Domain{N}^{<\omega}$ as well as predicates coding the domains of
-$\Struct{M}_n$ and $\Struct{N}_n$ in the sense that:
+类似地，定义 $\Struct{N}_n$、$\Struct{N}$ 和 $\Struct{N}^*$。现在令 $\Struct{M}$ 为这样一个结构：其论域包含 $\Struct{M}^*$ 和 $\Struct{N}^*$ 的论域、自然数集~$\Nat$ 及其自然序~$\le$，语言中增加了表示论域
+$\Domain{M}$、$\Domain{N}$、$\Domain{M}^{<\omega}$ 和
+$\Domain{N}^{<\omega}$ 的谓词，以及按下述意义编码 $\Struct{M}_n$ 和 $\Struct{N}_n$ 的论域的谓词：
 \begin{align*}
   \Domain{M_n} & = \Setabs{a \in \Domain{M}}{R(a, n)}; & 
   \Domain{N_n} & = \Setabs{a \in \Domain{N}}{S(a,n)}; \\
   \Domain{M}^{<\omega}_n & = \Setabs{a \in \Domain{M}^{<\omega}}{R(a,n)}; &
   \Domain{N}^{<\omega}_n & = \Setabs{a \in \Domain{N}^{<\omega}}{S(a,n)}. 
 \end{align*}
-The !!{structure}~$\Struct{M}$ also has a ternary relation $J$ such
-that $J(n, \mathbf{a}, \mathbf{b})$ holds if and only if
-$I_n(\mathbf{a}, \mathbf{b})$.
+该结构~$\Struct{M}$ 还有一个三元关系 $J$，使得
+$J(n, \mathbf{a}, \mathbf{b})$ 成立当且仅当
+$I_n(\mathbf{a}, \mathbf{b})$。
 
-Now there is !!a{sentence}~$!D$ in the !!{language}~$\Lang{L}$ augmented
-by $R$, $S$, $J$, etc., saying that $\le$ is a discrete linear ordering
-with first but no last element and such that $\Struct{M}_n \models
-!E$, $\Struct{N}_n \not\models !E$, and for each $n$ in the
-ordering, $J(n, \mathbf{a}, \mathbf{b})$ holds if and only if
-$I_n(\mathbf{a}, \mathbf{b})$.
+现在，在语言~$\Lang{L}$ 加上 $R$、$S$、$J$ 等所得的语言中，存在一个语句~$!D$，它断言：$\le$ 是一个有首元但无末元的离散线性序，且 $\Struct{M}_n \models
+!E$，$\Struct{N}_n \not\models !E$，并且对于该序中的每个 $n$，
+$J(n, \mathbf{a}, \mathbf{b})$ 成立当且仅当
+$I_n(\mathbf{a}, \mathbf{b})$。
 
-Using the Compactness Property, we can find a model $\Struct{M}^*$ of
-$!D$ in which the ordering contains a non-standard element~$n^*$. In
-particular then $\Struct{M^*}$ will contain sub!!{structure}s
-$\Struct{M_{n^*}}$ and $\Struct{N_{n^*}}$ such that $\Struct{M_{n^*}}
-\models_L !E$ and $\Struct{N_{n^*}} \not\models_L !E$. But now we can
-define a set $\mathcal{I}$ of pairs of $k$-tuples from
-$\Domain{M_{n^*}}$ and $\Domain{N_{n^*}}$ by putting
-$\tuple{\mathbf{a}, \mathbf{b}} \in \mathcal{I}$ if and only if
-$J(n^*-k, \mathbf{a}, \mathbf{b})$, where $k$ is the length of
-$\mathbf{a}$ and $\mathbf{b}$. Since $n^*$ is non-standard, for each
-standard $k$ we have that $n^* - k >0$, and the set $\mathcal{I}$
-witnesses the fact that $\Struct{M_{n^*}} \simeq_p
-\Struct{N_{n^*}}$. But by \olref[lsp]{thm:abstract-p-isom},
-$\Struct{M_{n^*}}$ is $L$-equivalent to $\Struct{N_{n^*}}$, a
-contradiction.
+利用紧致性性质，我们可以找到 $!D$ 的一个模型 $\Struct{M}^*$，其中该线性序包含一个非标准元素~$n^*$。特别地，此时 $\Struct{M^*}$ 将包含子结构
+$\Struct{M_{n^*}}$ 和 $\Struct{N_{n^*}}$，使得 $\Struct{M_{n^*}}
+\models_L !E$ 且 $\Struct{N_{n^*}} \not\models_L !E$。但现在我们可以定义一个由来自
+$\Domain{M_{n^*}}$ 和 $\Domain{N_{n^*}}$ 的 $k$ 元组构成的序对集合 $\mathcal{I}$，规定
+$\tuple{\mathbf{a}, \mathbf{b}} \in \mathcal{I}$ 当且仅当
+$J(n^*-k, \mathbf{a}, \mathbf{b})$，其中 $k$ 是
+$\mathbf{a}$ 和 $\mathbf{b}$ 的长度。由于 $n^*$ 是非标准的，对每个标准的 $k$，都有 $n^* - k >0$，并且集合 $\mathcal{I}$ 见证了
+$\Struct{M_{n^*}} \simeq_p
+\Struct{N_{n^*}}$。但根据 \olref[lsp]{thm:abstract-p-isom}，
+$\Struct{M_{n^*}}$ 与 $\Struct{N_{n^*}}$ 是 $L$ 等价的，这就产生了矛盾。
 \end{proof}
 
 \end{document}

@@ -3,42 +3,23 @@
 \begin{document}
 
 \olfileid{sth}{cardinals}{cp}
-\olsection{Cantor's Principle}
+\olsection{康托尔原则}
 
-Cast your mind back to \olref[ordinals][vn]{sec}. We were discussing
-well-ordered sets, and suggested that it would be nice to have objects
-which go proxy for well-orders. With this is mind, we introduced
-ordinals, and then showed in
-\olref[ordinals][ordtype]{ordtypesworklikeyouwant} that these
-behave as we would want them to, i.e.:
+让我们回想一下 \olref[ordinals][vn]{sec}。当时我们在讨论良序集，并提出希望能有某种对象来充当良序的\emph{代表}。基于这一想法，我们引入了序数，并在
+\olref[ordinals][ordtype]{ordtypesworklikeyouwant} 中证明了它们的表现确实符合我们的预期，即：
 \[
 	\ordtype{A, <} = \ordtype{B, \lessdot} 
-	\text{ iff } \tuple{A, <} \isomorphic \tuple{B, \lessdot}.
+	\text{ 当且仅当 } \tuple{A, <} \isomorphic \tuple{B, \lessdot}.
 \]
-Cast your mind back even further, to \olref[sfr][siz][equ]{sec}.
-There, working na\"ively, we introduced the notion of the ``size'' of
-a set. Specifically, we said that two sets are equinumerous,
-$\cardeq{A}{B}$, just in case there is !!a{bijection} $f \colon A \to
-B$. This is an intrinsically {simpler} notion than that of a
-well-ordering: we are only interested in !!{bijection}s, and not (as
-with order-isomorphisms) whether the !!{bijection}s ``preserve any
-structure''.
+再往前回想 \olref[sfr][siz][equ]{sec}。在那里，我们朴素地引入了集合“大小”的概念。具体而言，我们说两个集合是等势的，记作 $\cardeq{A}{B}$，当且仅当存在一个双射 $f \colon A \to
+B$。这个概念本质上比良序的概念\emph{更简单}：我们只关心是否存在双射，而不关心双射是否“保持了某种结构”（序同构则要求这一点）。
 
-This all gives rise to an obvious thought. Just as we introduced
-certain objects, \emph{ordinals}, to calibrate well-orders, we can
-introduce certain objects, \emph{cardinals}, to calibrate size. That
-is the aim of this chapter. 
+由此自然产生了一个显而易见的想法。正如我们引入某些对象——即\emph{序数}——来标度良序一样，我们也可以引入某些对象——即\emph{基数}——来标度大小。这正是本章的目标。
 
-Before we say what these cardinals will be, we should lay down a
-principle which they ought to satisfy. Writing $\card{X}$ for the
-cardinality of the set $X$, we would want them to obey:
+在说明基数究竟是什么之前，我们应当先确立它们理应满足的一条原则。用 $\card{X}$ 表示集合 $X$ 的基数，我们希望基数满足：
 \[
-	\card{A} = \card{B} \text{ iff } \cardeq{A}{B}.
+	\card{A} = \card{B} \text{ 当且仅当 } \cardeq{A}{B}.
 \]
-We'll call this \emph{Cantor's} Principle, since Cantor was probably
-the first to have it very clearly in mind. (We'll say more about its
-relationship to \emph{Hume's} Principle in \olref[hp]{sec}.) So
-our aim is to define $\card{X}$, for each $X$, in such a way that it
-delivers Cantor's Principle.
+我们将此称为\emph{康托尔}原则，因为康托尔很可能是第一个对此有清晰认识的人。（关于它与\emph{休谟}原则的关系，我们将在 \olref[hp]{sec} 中作进一步讨论。）因此，我们的目标就是为每个 $X$ 定义 $\card{X}$，使之满足康托尔原则。
 
 \end{document}

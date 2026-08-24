@@ -8,39 +8,22 @@
 
 \olfileid{con}{min}{sph}
 
-\olsection{Sphere Models}
+\olsection{球形模型}
 
-One way of providing a formal semantics for counterfactuals is to turn
-Lewis's informal account into a mathematical structure. The spheres
-around a world~$w$ then are sets of worlds. Since the spheres are
-nested, the sets of worlds around~$w$ have to be linearly ordered by
-the subset relation.
+为反事实条件句提供形式语义的一种方法是，将 Lewis 的非形式描述转化为一个数学结构。这样，世界~$w$ 周围的球层就成了世界的集合。由于球层是嵌套的，$w$ 周围的这些世界集合必须按子集关系线性排序。
 
 \begin{defn}
-  A \emph{sphere model} is a triple~$\mModel{M} = \tuple{W, O, V}$
-  where $W$ is a non-empty set of worlds, $V\colon \PVar \to \Pow{W}$
-  is a valuation, and $O\colon W \to \Pow{\Pow{W}}$ assigns to each
-  world~$w$ a \emph{system of spheres}~$O_w$. For each $w$, $O_w$ is a
-  set of sets of worlds, and must satisfy:
+  一个\emph{球形模型}是一个三元组~$\mModel{M} = \tuple{W, O, V}$，
+  其中 $W$ 是一个非空的世界集合，$V\colon \PVar \to \Pow{W}$ 是一个赋值，而 $O\colon W \to \Pow{\Pow{W}}$ 为每个世界~$w$ 指派一个\emph{球层系统}~$O_w$。对每个 $w$，$O_w$ 是一个世界集合的集合，并且必须满足：
   \begin{enumerate}
-  \item $O_w$ is \emph{centered} on~$w$: $\{w\} \in O_w$.
-  \item $O_w$ is \emph{nested}: whenever $S_1$, $S_2 \in O_w$, $S_1
-    \subseteq S_2$ or $S_2 \subseteq S_1$, i.e., $O_w$ is linearly
-    ordered by~$\subseteq$.
-  \item $O_w$ is closed under non-empty unions.
-  \item $O_w$ is closed under non-empty intersections.
+  \item $O_w$ \emph{以 $w$ 为中心}：$\{w\} \in O_w$。
+  \item $O_w$ 是\emph{嵌套的}：只要 $S_1, S_2 \in O_w$，就有 $S_1 \subseteq S_2$ 或 $S_2 \subseteq S_1$，即 $O_w$ 按~$\subseteq$ 线性排序。
+  \item $O_w$ 对非空并封闭。
+  \item $O_w$ 对非空交封闭。
   \end{enumerate}
 \end{defn}
 
-The intuition behind $O_w$ is that the worlds ``around'' $w$ are
-stratified according to how far away they are from~$w$. The innermost
-sphere is just $w$ by itself, i.e., the set~$\{w\}$: $w$ is closer
-to~$w$ than the worlds in any other sphere. If $S \subsetneq S'$, then
-the worlds in $S' \setminus S$ are further way from $w$ than the
-worlds in~$S$: $S' \setminus S$ is the ``layer'' between the $S$ and
-the worlds outside of~$S'$. In particular, we have to think of the
-spheres as containing all the worlds within their outer surface; they
-are not just the individual layers.
+$O_w$ 背后的直观是：$w$ “周围”的世界根据它们距离 $w$ 的远近被分层。最内层的球层就是 $w$ 本身，即集合~$\{w\}$：$w$ 比任何其他球层中的世界都更接近 $w$。如果 $S \subsetneq S'$，那么 $S' \setminus S$ 中的世界就比 $S$ 中的世界离 $w$ 更“远”：$S' \setminus S$ 是 $S$ 与 $S'$ 之外世界之间的“层”。特别是，我们必须将球层理解为包含其外表面以内的所有世界；它们不仅仅是单独的层。
 
 \begin{figure}
 \begin{center}
@@ -57,57 +40,32 @@ are not just the individual layers.
   \spherepos{20}{4}{node[world] {$w_7$}}
   \path (5,0) node[left] {$p$};
 \end{tikzpicture}
-\caption{Diagram of a sphere model}
+\caption{球形模型示意图}
 \ollabel{fig:sphere-model}
 \end{center}
 \end{figure}
 
-The diagram in \olref{fig:sphere-model} corresponds to the sphere
-model with $W = \{w, w_1, \dots, w_7\}$, $V(p) = \{w_5, w_6,
-w_7\}$. The innermost sphere $S_1 = \{w\}$. The closest worlds to $w$
-are $w_1, w_2, w_3$, so the next larger sphere is $S_2 = \{w, w_1,
-w_2, w_3\}$. The worlds further out are $w_4$, $w_5$, $w_6$, so the
-outermost sphere is $S_3 = \{w, w_1, \dots, w_6\}$. The system of
-spheres around $w$ is $O_w = \{S_1, S_2, S_3\}$. The world~$w_7$ is
-not in any sphere around~$w$. The closest worlds in which $p$~is true
-are $w_5$ and~$w_6$, and so the smallest $p$-admitting sphere
-is~$S_3$.
+\olref{fig:sphere-model} 中的示意图对应于这样一个球形模型：$W = \{w, w_1, \dots, w_7\}$，$V(p) = \{w_5, w_6,
+w_7\}$。最内层的球层是 $S_1 = \{w\}$。距离 $w$ 最近的世界是 $w_1, w_2, w_3$，所以下一个更大的球层是 $S_2 = \{w, w_1,
+w_2, w_3\}$。更远的世界是 $w_4$, $w_5$, $w_6$，因此最外层的球层是 $S_3 = \{w, w_1, \dots, w_6\}$。$w$ 周围的球层系统是 $O_w = \{S_1, S_2, S_3\}$。世界~$w_7$ 不在 $w$ 周围的任何球层中。其中 $p$~为真的最近的世界是 $w_5$ 和~$w_6$，因此最小的 $p$-\allowbreak 容许球层是~$S_3$。
 
-To define satisfaction of a formula~$!A$ at world~$w$ in a sphere
-model~$\mModel M$, $\mSat{M}{!A}[w]$, we expand the definition for
-modal !!{formula}s to include a clause for $!B \cif !C$:
+为了在球形模型~$\mModel M$ 中定义公式~$!A$ 在世界~$w$ 处的满足关系，$\mSat{M}{!A}[w]$，我们将模态公式的定义扩展，加入针对 $!B \cif !C$ 的条款：
 
 \begin{defn}
-  $\mSat{M}{!B \cif !C}[w]$ iff either
+  $\mSat{M}{!B \cif !C}[w]$ 当且仅当要么
   \begin{enumerate}
-  \item\ollabel{sphere-vac} For all $u \in \bigcup O_w$, $\mSat/{M}{!B}[u]$, or
-  \item\ollabel{sphere-nonvac} For some $S \in O_w$,
+  \item\ollabel{sphere-vac} 对所有 $u \in \bigcup O_w$，$\mSat/{M}{!B}[u]$，要么
+  \item\ollabel{sphere-nonvac} 存在 $S \in O_w$，使得
     \begin{enumerate}
-      \item $\mSat{M}{!B}[u]$ for some $u \in
-        S$, and
-      \item for all $v \in S$, either
-        $\mSat/{M}{!B}[v]$ or $\mSat{M}{!C}[v]$.
+      \item $\mSat{M}{!B}[u]$ 对某个 $u \in S$ 成立，且
+      \item 对所有 $v \in S$，要么 $\mSat/{M}{!B}[v]$，要么 $\mSat{M}{!C}[v]$。
     \end{enumerate}
   \end{enumerate}
 \end{defn}
 
-According to this definition, $\mSat{M}{!B \cif !C}[w]$ iff either the
-antecedent~$!B$ is false everywhere in the spheres around~$w$, or
-there is a sphere~$S$ where $!B$ is true, and the material conditional
-$!B \lif !C$ is true at all worlds in that ``$!B$-admitting''
-sphere. Note that we didn't require in the definition that $S$ is the
-\emph{innermost} $!B$-admitting sphere, contrary to what one might
-expect from the intuitive explanation. But if the condition
-in~\olref{sphere-nonvac} is satisfied for some sphere~$S$, then it is
-also satisfied for all spheres~$S$ contains, and hence in particular
-for the innermost sphere.
+根据这个定义，$\mSat{M}{!B \cif !C}[w]$ 当且仅当前件~$!B$ 在 $w$ 周围的所有球层中都为假，或者存在一个球层~$S$，其中 $!B$ 为真，并且实质条件句 $!B \lif !C$ 在该“$!B$-\allowbreak 容许”球层中的所有世界上都为真。注意，定义中并未要求 $S$ 是\emph{最内层的} $!B$-\allowbreak 容许球层，这与直观解释可能给出的预期相反。但是，如果~\olref{sphere-nonvac} 中的条件对某个球层~$S$ 成立，那么它对所有 $S$ 所包含的球层也成立，因此特别地，对最内层的球层也成立。
 
-Note also that the definition of sphere models does not require that
-there \emph{is} an innermost $!B$-admitting sphere: we may have an
-infinite sequence $S_1 \supsetneq S_2 \supsetneq \dots \supsetneq
-\{w\}$ of $!B$-admitting spheres, and hence no innermost
-$!B$-admitting spheres. In that case, $\mSat{M}{!B \cif !C}[w]$ iff
-$!B \lif !C$ holds throughout the spheres $S_i$, $S_{i+1}$, \dots, for
-some~$i$.
+另请注意，球形模型的定义并不要求一定\emph{存在}一个最内层的 $!B$-\allowbreak 容许球层：我们可能有一个无穷序列 $S_1 \supsetneq S_2 \supsetneq \dots \supsetneq
+\{w\}$ 的 $!B$-\allowbreak 容许球层，因而没有最内层的 $!B$-\allowbreak 容许球层。在这种情况下，$\mSat{M}{!B \cif !C}[w]$ 当且仅当对某个~$i$，$!B \lif !C$ 在球层 $S_i$, $S_{i+1}$, \dots 中处处成立。
 
 \end{document}

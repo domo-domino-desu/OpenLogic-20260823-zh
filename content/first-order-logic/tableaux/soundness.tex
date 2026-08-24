@@ -9,232 +9,125 @@
 \iftag{FOL}
       {\olfileid{fol}{tab}{sou}}
       {\olfileid{pl}{tab}{sou}}
-      
-\olsection{Soundness}
+
+\olsection{可靠性}
 
 \begin{explain}
-!!^a{derivation} system, such as tableaux, is \emph{sound}
-if it cannot !!{derive} things that do not actually hold.  Soundness is
-thus a kind of guaranteed safety property for !!{derivation} systems.
-Depending on which proof theoretic property is in question, we would
-like to know for instance, that
+一个推导系统（例如分析表）是\emph{可靠的}，如果它无法推导出实际上并不成立的结论。
+因此，可靠性是推导系统的一种确保安全性的性质。
+根据所关注的证明论性质不同，我们希望知道，例如：
 \begin{enumerate}
-\item every !!{derivable}~$!A$ is \iftag{FOL}{valid}{a tautology};
-\item if !!a{sentence} is !!{derivable} from some others, it is also a
-  consequence of them;
-\item if a set of !!{sentence}s is inconsistent, it is unsatisfiable.
+\item 每个可推导的~$!A$ 都是 \iftag{FOL}{有效的}{重言式}；
+\item 如果一个语句可以从其他一些语句推导出来，那么它也是这些语句的后承；
+\item 如果一个语句集是不一致的，那么它是不可满足的。
 \end{enumerate}
-These are important properties of !!a{derivation} system.  If any of them do
-not hold, the !!{derivation} system is deficient---it would !!{derive} too much.
-Consequently, establishing the soundness of !!a{derivation} system is of the
-utmost importance.
+这些是推导系统的重要性质。如果其中任何一条不成立，该推导系统就是有缺陷的——它会推出过多的东西。
+因此，确立一个推导系统的可靠性是至关重要的。
 
-Because all these proof-theoretic properties are defined via closed
-!!{tableau}s of some kind or other, proving (1)--(3) above requires
-proving something about the semantic properties of closed
-!!{tableau}s.  We will first define what it means for !!a{signed
-  formula} to be satisfied in a structure, and then show that if a
-!!{tableau} is closed, no structure satisfies all its assumptions.
-(1)--(3) then follow as corollaries from this result.
+由于所有这些证明论性质都是通过某种封闭分析表来定义的，要证明上面的（1）–（3），就需要证明关于封闭分析表语义性质的某些结论。
+我们将首先定义带号公式在结构中被满足的含义，然后证明如果一个分析表是封闭的，则没有结构能满足其所有假设。
+（1）–（3）将作为该结果的推论得出。
 \end{explain}
 
 \begin{defn}
-\iftag{FOL}{!!^a{structure}}{!!^a{valuation}}~$\iftag{FOL}{\Struct{M}}{\pAssign{v}}$
-\emph{satisfies} !!a{signed formula} $\sFmla{\True}{!A}$ iff
-$\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$, and it satisfies
-$\sFmla{\False}{!A}$ iff
-$\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A}$. $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$
-satisfies a set of !!{signed formula}s~$\Gamma$ iff it satisfies every
-$\sFmla{S}{!A} \in \Gamma$. $\Gamma$~is \emph{satisfiable} if there is
-\iftag{FOL}{!!a{structure}}{!!a{valuation}} that satisfies it, and
-\emph{unsatisfiable} otherwise.
+\iftag{FOL}{一个结构}{一个赋值}~$\iftag{FOL}{\Struct{M}}{\pAssign{v}}$
+\emph{满足}带号公式 $\sFmla{\True}{!A}$，当且仅当
+$\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$；它满足
+$\sFmla{\False}{!A}$，当且仅当
+$\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A}$。$\iftag{FOL}{\Struct{M}}{\pAssign{v}}$
+满足一个带号公式的集合~$\Gamma$，当且仅当它满足每一个
+$\sFmla{S}{!A} \in \Gamma$。如果存在一个\iftag{FOL}{结构}{赋值}满足~$\Gamma$，则称~$\Gamma$ 是\emph{可满足的}，否则称为\emph{不可满足的}。
 \end{defn}
 
-\begin{thm}[Soundness]
+\begin{thm}[可靠性]
   \ollabel{thm:tableau-soundness}
-  If $\Gamma$ has a closed !!{tableau}, $\Gamma$ is unsatisfiable.
+  如果 $\Gamma$ 有一个封闭的分析表，则 $\Gamma$ 是不可满足的。
 \end{thm}
 
 \begin{proof}
-Let's call a branch of !!a{tableau} satisfiable iff the set of
-!!{signed formula}s on it is satisfiable, and let's call !!a{tableau}
-satisfiable if it contains at least one satisfiable branch.
+我们称一个分析表的分支是\emph{可满足的}，当且仅当其上的带号公式集是可满足的；称一个分析表是\emph{可满足的}，当且仅当它至少包含一个可满足的分支。
 
-We show the following: Extending a satisfiable !!{tableau} by one of
-the rules of inference always results in a satisfiable !!{tableau}.
-This will prove the theorem: any closed !!{tableau} results by
-applying rules of inference to the !!{tableau} consisting only of
-assumptions from~$\Gamma$. So if $\Gamma$ were satisfiable, any
-!!{tableau} for it would be satisfiable. A closed !!{tableau},
-however, is clearly not satisfiable: every branch contains both
-$\sFmla{\True}{!A}$ and $\sFmla{\False}{!A}$, and no structure can
-both satisfy and not satisfy~$!A$.
+我们证明如下结论：将一个可满足的分析表用任意一条推理规则扩展，结果总是一个可满足的分析表。
+这将证明该定理：任何封闭分析表，都是对仅由~$\Gamma$ 中的假设构成的分析表应用推理规则而得到的。因此，如果 $\Gamma$ 是可满足的，那么它的任何分析表都将是可满足的。然而，一个封闭的分析表显然不是可满足的：每个分支都同时包含 $\sFmla{\True}{!A}$ 和 $\sFmla{\False}{!A}$，而没有结构能既满足又不满足~$!A$。
 
-Suppose we have a satisfiable !!{tableau}, i.e., !!a{tableau} with at
-least one satisfiable branch. Applying a rule of inference either adds
-!!{signed formula}s to a branch, or splits a branch in two. If the
-!!{tableau} has a satisfiable branch which is not extended by the rule
-application in question, it remains a satisfiable branch in the
-extended !!{tableau}, so the extended tableau is satisfiable. So we
-only have to consider the case where a rule is applied to a
-satisfiable branch.
+假设我们有一个可满足的分析表，即一个至少有一个可满足分支的分析表。应用一条推理规则，要么会给某个分支添加带号公式，要么会将一个分支分裂成两个。如果该分析表有一个可满足分支，而该分支并未被当前的规则应用所扩展，那么该分支在扩展后的分析表中依然可满足，因此扩展后的分析表是可满足的。所以我们只需要考虑规则被应用于一个可满足分支的情形。
 
-Let $\Gamma$ be the set of !!{signed formula}s on that branch, and
-let $\sFmla{S}{!A} \in \Gamma$ be the !!{signed formula} to which the
-rule is applied. If the rule does not result in a split branch, we
-have to show that the extended branch, i.e., $\Gamma$ together with
-the conclusions of the rule, is still satisfiable. If the rule results
-in a split branch, we have to show that at least one of the two
-resulting branches is satisfiable.
+设 $\Gamma$ 为该分支上的带号公式集，并设 $\sFmla{S}{!A} \in \Gamma$ 是被应用该规则的带号公式。如果该规则不导致分支分裂，我们需要证明扩展后的分支，即 $\Gamma$ 连同该规则的结论，仍然是可满足的。如果该规则导致分支分裂，我们需要证明两个结果分支中至少有一个是可满足的。
   
-First, we consider the possible inferences that do not result in a split branch.
+首先，我们考虑不导致分支分裂的推理情况。
 \begin{enumerate}
-\item The branch is expanded by applying $\TRule{\True}{\lnot}$ to
-  $\sFmla{\True}{\lnot !B} \in \Gamma$. Then the extended branch
-  contains the !!{signed formula}s $\Gamma \cup
-  \{\sFmla{\False}{!B}\}$.  Suppose
-  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$. In particular,
-  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\lnot !B}$. Thus,
-  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!B}$, i.e.,
-  $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ satisfies
-  $\sFmla{\False}{!B}$.
-\item The branch is expanded by applying $\TRule{\False}{\lnot}$ to
-  $\sFmla{\False}{\lnot !B} \in \Gamma$: Exercise.
-\item The branch is expanded by applying $\TRule{\True}{\land}$ to
-  $\sFmla{\True}{!B \land !C} \in \Gamma$, which results in two new
-  !!{signed formula}s on the branch: $\sFmla{\True}{!B}$ and
-  $\sFmla{\True}{!C}$. Suppose
-  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$, in particular
-  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B \land !C}$. Then
-  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$ and
-  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$. This means that
-  $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ satisfies both
-  $\sFmla{\True}{!B}$ and $\sFmla{\True}{!C}$.
-\item The branch is expanded by applying $\TRule{\False}{\lor}$ to
-  $\sFmla{\False}{!B \lor !C} \in \Gamma$: Exercise.
-\item The branch is expanded by applying $\TRule{\False}{\lif}$ to
-  $\sFmla{\False}{!B \lif !C} \in \Gamma$: This results in two new
-  !!{signed formula}s on the branch: $\sFmla{\True}{!B}$ and
-  $\sFmla{\False}{!C}$. Suppose
-  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$, in particular
-  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!B \lif !C}$. Then
-  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$ and
-  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$. This means that
-  $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ satisfies both
-  $\sFmla{\True}{!B}$ and $\sFmla{\False}{!C}$.
+\item 该分支通过将 $\TRule{\True}{\lnot}$ 应用于 $\sFmla{\True}{\lnot !B} \in \Gamma$ 而扩展。那么扩展后的分支包含带号公式 $\Gamma \cup
+  \{\sFmla{\False}{!B}\}$。假设 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$。特别地，$\iftag{FOL}{\Sat{M}}{\pSat{v}}{\lnot !B}$。因此，$\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!B}$，即 $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ 满足 $\sFmla{\False}{!B}$。
+\item 该分支通过将 $\TRule{\False}{\lnot}$ 应用于 $\sFmla{\False}{\lnot !B} \in \Gamma$ 而扩展：练习。
+\item 该分支通过将 $\TRule{\True}{\land}$ 应用于 $\sFmla{\True}{!B \land !C} \in \Gamma$ 而扩展，这会在分支上产生两个新的带号公式：$\sFmla{\True}{!B}$ 和 $\sFmla{\True}{!C}$。假设 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$，特别地 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B \land !C}$。则 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$ 且 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$。这意味着 $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ 同时满足 $\sFmla{\True}{!B}$ 和 $\sFmla{\True}{!C}$。
+\item 该分支通过将 $\TRule{\False}{\lor}$ 应用于 $\sFmla{\False}{!B \lor !C} \in \Gamma$ 而扩展：练习。
+\item 该分支通过将 $\TRule{\False}{\lif}$ 应用于 $\sFmla{\False}{!B \lif !C} \in \Gamma$ 而扩展：这会在分支上产生两个新的带号公式：$\sFmla{\True}{!B}$ 和 $\sFmla{\False}{!C}$。假设 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$，特别地 $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!B \lif !C}$。则 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$ 且 $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$。这意味着 $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ 同时满足 $\sFmla{\True}{!B}$ 和 $\sFmla{\False}{!C}$。
 
 \iftag{FOL}{%
-\item The branch is expanded by applying $\TRule{\True}{\lforall}$ to
-  $\sFmla{\True}{\lforall[x][!B(x)]} \in \Gamma$: This results in a
-  new !!{signed formula}~$\sFmla{\True}{!A(t)}$ on the branch.
-  Suppose $\Sat{M}{\Gamma}$, in particular,
-  $\Sat{M}{\lforall[x][!A(x)]}$.  By
-  \olref[syn][sem]{prop:quant-terms}, $\Sat{M}{!A(t)}$.  Consequently,
-  $\Struct{M}$ satisfies $\sFmla{\True}{!A(t)}$.
+\item 该分支通过将 $\TRule{\True}{\lforall}$ 应用于 $\sFmla{\True}{\lforall[x][!B(x)]} \in \Gamma$ 而扩展：这会在分支上产生一个新的带号公式~$\sFmla{\True}{!A(t)}$。假设 $\Sat{M}{\Gamma}$，特别地，$\Sat{M}{\lforall[x][!A(x)]}$。由 \olref[syn][sem]{prop:quant-terms}，$\Sat{M}{!A(t)}$。因此，$\Struct{M}$ 满足 $\sFmla{\True}{!A(t)}$。
 
-\item The branch is expanded by applying $\TRule{\False}{\lforall}$ to
-  $\sFmla{\False}{\lforall[x][!B(x)]} \in \Gamma$: This results in a
-  new !!{signed formula}~$\sFmla{\False}{!A(a)}$ where $a$ is
-  !!a{constant} not occurring in~$\Gamma$. Since $\Gamma$ is
-  satisfiable, there is a $\Struct{M}$ such that $\Sat{M}{\Gamma}$, in
-  particular $\Sat/{M}{\lforall[x][!B(x)]}$. We have to show that
-  $\Gamma \cup \{\sFmla{\False}{!A(a)}\}$ is satisfiable. To do this,
-  we define a suitable~$\Struct{M'}$ as follows.
+\item 该分支通过将 $\TRule{\False}{\lforall}$ 应用于 $\sFmla{\False}{\lforall[x][!B(x)]} \in \Gamma$ 而扩展：这会在分支上产生一个新的带号公式~$\sFmla{\False}{!A(a)}$，其中 $a$ 是一个不在~$\Gamma$ 中出现的常项符号。由于 $\Gamma$ 是可满足的，存在 $\Struct{M}$ 使得 $\Sat{M}{\Gamma}$，特别地 $\Sat/{M}{\lforall[x][!B(x)]}$。我们需要证明 $\Gamma \cup \{\sFmla{\False}{!A(a)}\}$ 是可满足的。为此，我们如下定义一个合适的~$\Struct{M'}$。
 
-  By \olref[syn][ass]{prop:sat-quant}, $\Sat/{M}{\lforall[x][!B(x)]}$
-  iff for some $s$, $\Sat/{M}{!B(x)}[s]$. Now let $\Struct{M'}$ be
-  just like $\Struct{M}$, except $\Assign{a}{M'} = s(x)$.  By
-  \olref[syn][ext]{cor:extensionality-sent}, for any
-  $\sFmla{\True}{!C} \in \Gamma$, $\Sat{M'}{!C}$, and for any
-  $\sFmla{\False}{!C} \in \Gamma$, $\Sat/{M'}{!C}$, since $a$ does not
-  occur in~$\Gamma$.
+由 \olref[syn][ass]{prop:sat-quant}，$\Sat/{M}{\lforall[x][!B(x)]}$ 当且仅当对某个 $s$，$\Sat/{M}{!B(x)}[s]$。现在令 $\Struct{M'}$ 与 $\Struct{M}$ 完全相同，除了 $\Assign{a}{M'} = s(x)$。由 \olref[syn][ext]{cor:extensionality-sent}，对任意 $\sFmla{\True}{!C} \in \Gamma$，$\Sat{M'}{!C}$；对任意 $\sFmla{\False}{!C} \in \Gamma$，$\Sat/{M'}{!C}$，因为 $a$ 不在~$\Gamma$ 中出现。
 
-  By \olref[syn][ext]{prop:extensionality}, $\Sat/{M'}{!A(x)}[s]$.  By
-  \olref[syn][ext]{prop:ext-formulas}, $\Sat/{M'}{!A(a)}[s]$.  Since
-  $!A(a)$ is !!a{sentence}, by
-  \olref[syn][ass]{prop:sentence-sat-true}, $\Sat/{M'}{!A(a)}$, i.e.,
-  $\Struct{M'}$ satisfies $\sFmla{\False}{!A(a)}$.
-\item The branch is expanded by applying $\TRule{\True}{\lexists}$ to
-  $\sFmla{\True}{\lexists[x][!B(x)]} \in \Gamma$: Exercise.
-\item The branch is expanded by applying $\TRule{\False}{\lexists}$ to
-  $\sFmla{\False}{\lexists[x][!B(x)]} \in \Gamma$: Exercise.}{}
+由 \olref[syn][ext]{prop:extensionality}，$\Sat/{M'}{!A(x)}[s]$。由 \olref[syn][ext]{prop:ext-formulas}，$\Sat/{M'}{!A(a)}[s]$。由于 $!A(a)$ 是一个语句，由 \olref[syn][ass]{prop:sentence-sat-true}，$\Sat/{M'}{!A(a)}$，即 $\Struct{M'}$ 满足 $\sFmla{\False}{!A(a)}$。
+\item 该分支通过将 $\TRule{\True}{\lexists}$ 应用于 $\sFmla{\True}{\lexists[x][!B(x)]} \in \Gamma$ 而扩展：练习。
+\item 该分支通过将 $\TRule{\False}{\lexists}$ 应用于 $\sFmla{\False}{\lexists[x][!B(x)]} \in \Gamma$ 而扩展：练习。}{}
 \end{enumerate}
-Now let's consider the possible inferences that result in a split branch.
+现在考虑导致分支分裂的推理情况。
 \begin{enumerate}
-\item The branch is expanded by applying $\TRule{\False}{\land}$ to
-  $\sFmla{\False}{!B \land !C} \in \Gamma$, which results in two
-  branches, a left one continuing through $\sFmla{\False}{!B}$ and a
-  right one through $\sFmla{\False}{!C}$. Suppose
-  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$, in particular
-  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!B \land !C}$.  Then
-  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!B}$ or
-  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$. In the former case,
-  $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ satisfies
-  $\sFmla{\False}{!B}$, i.e., $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$
-  satisfies the formulas on the left branch. In the latter,
-  $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ satisfies
-  $\sFmla{\False}{!C}$, i.e., $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$
-  satisfies the formulas on the right branch.
-\item The branch is expanded by applying $\TRule{\True}{\lor}$ to
-  $\sFmla{\True}{!B \lor !C} \in \Gamma$: Exercise.
-\item The branch is expanded by applying $\TRule{\True}{\lif}$ to
-  $\sFmla{\True}{!B \lif !C} \in \Gamma$: Exercise.
-\item The branch is expanded by \Cut: This results in two branches,
-  one containing $\sFmla{\True}{!B}$, the other containing
-  $\sFmla{\False}{!B}$. Since $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$
-  and either $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$ or
-  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!B}$,
-  $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ satisfies either the left or
-  the right branch.
+\item 该分支通过将 $\TRule{\False}{\land}$ 应用于 $\sFmla{\False}{!B \land !C} \in \Gamma$ 而扩展，这导致两个分支：左分支延伸出 $\sFmla{\False}{!B}$，右分支延伸出 $\sFmla{\False}{!C}$。假设 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$，特别地 $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!B \land !C}$。则 $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!B}$ 或 $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$。在前一种情况下，$\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ 满足 $\sFmla{\False}{!B}$，即 $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ 满足左边分支上的公式。在后一种情况下，$\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ 满足 $\sFmla{\False}{!C}$，即 $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ 满足右边分支上的公式。
+\item 该分支通过将 $\TRule{\True}{\lor}$ 应用于 $\sFmla{\True}{!B \lor !C} \in \Gamma$ 而扩展：练习。
+\item 该分支通过将 $\TRule{\True}{\lif}$ 应用于 $\sFmla{\True}{!B \lif !C} \in \Gamma$ 而扩展：练习。
+\item 该分支通过\Cut 规则扩展：这导致两个分支，一个包含 $\sFmla{\True}{!B}$，另一个包含 $\sFmla{\False}{!B}$。由于 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$，并且要么 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$ 要么 $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!B}$，因此 $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ 要么满足左边分支，要么满足右边分支。
 \end{enumerate}
 \end{proof}
 
 \tagprob{FOL}
 \begin{prob}
-Complete the proof of \olref[fol][tab][sou]{thm:tableau-soundness}.
+补全 \olref[fol][tab][sou]{thm:tableau-soundness} 的证明。
 \end{prob}
 \tagendprob
 
 \tagprob{notFOL}
 \begin{prob}
-Complete the proof of \olref[pl][tab][sou]{thm:tableau-soundness}.
+补全 \olref[pl][tab][sou]{thm:tableau-soundness} 的证明。
 \end{prob}
 \tagendprob
 
 \begin{cor}
 \ollabel{cor:weak-soundness}
-If $\Proves !A$ then $!A$ is \iftag{FOL}{valid}{a tautology}.
+若 $\Proves !A$，则 $!A$ 是\iftag{FOL}{有效的}{重言式}。
 \end{cor}
 
 \begin{cor}
 \ollabel{cor:entailment-soundness}
-If $\Gamma \Proves !A$ then $\Gamma \Entails !A$.
+若 $\Gamma \Proves !A$，则 $\Gamma \Entails !A$。
 \end{cor}
 
 \begin{proof}
-  If $\Gamma \Proves !A$ then for some $!B_1$, \dots, $!B_n \in
-  \Gamma$, $\{\sFmla{\False}{!A}, \sFmla{\True}{!B_1}, \dots,
-  \sFmla{\True}{!B_n}\}$ has a closed !!{tableau}. By
-  \olref{thm:tableau-soundness}, every
-  \iftag{FOL}{!!{structure}}{!!{valuation}}~$\iftag{FOL}{\Struct{M}}{\pAssign{v}}$
-  either makes some $!B_i$ false or makes $!A$ true.  Hence, if
-  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$ then also
-  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$.
+  若 $\Gamma \Proves !A$，则存在 $!B_1$, \dots, $!B_n \in
+  \Gamma$，使得 $\{\sFmla{\False}{!A}, \sFmla{\True}{!B_1}, \dots,
+  \sFmla{\True}{!B_n}\}$ 具有封闭的分析表。由
+  \olref{thm:tableau-soundness}，每个
+  \iftag{FOL}{结构}{赋值}~$\iftag{FOL}{\Struct{M}}{\pAssign{v}}$
+  要么使某个 $!B_i$ 为假，要么使 $!A$ 为真。因此，若
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$，则也有
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$。
 \end{proof}
 
 \begin{cor}
 \ollabel{cor:consistency-soundness}
-If $\Gamma$ is satisfiable, then it is consistent.
+若 $\Gamma$ 是可满足的，则它是一致的。
 \end{cor}
 
 \begin{proof}
-We prove the contrapositive.  Suppose that $\Gamma$ is not consistent.
-Then there are $!B_1$, \dots, $!B_n \in \Gamma$ and a closed
-!!{tableau} for $\{\sFmla{\True}{!B_1}, \dots, \sFmla{\True}{!B_n}\}$.  By
-\olref{thm:tableau-soundness}, there is no
-$\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ such that
-$\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B_i}$ for all $i=1$, \dots,~$n$.  But
-then $\Gamma$ is not satisfiable.
+我们证明其逆否命题。假设 $\Gamma$ 不是一致的。
+则存在 $!B_1$, \dots, $!B_n \in \Gamma$ 以及 $\{\sFmla{\True}{!B_1}, \dots, \sFmla{\True}{!B_n}\}$ 的一个封闭
+分析表。由 \olref{thm:tableau-soundness}，不存在
+$\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ 使得
+$\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B_i}$ 对所有 $i=1$, \dots,~$n$ 成立。因此
+$\Gamma$ 不是可满足的。
 \end{proof}
 
 \end{document}

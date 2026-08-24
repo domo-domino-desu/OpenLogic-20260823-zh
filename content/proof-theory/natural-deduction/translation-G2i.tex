@@ -8,46 +8,24 @@
 
 \olfileid{pt}{nat}{tgi}
 
-\olsection{Translating from \Log{G2i} to \Log{N2i}}
+\olsection{从 \Log{G2i} 到 \Log{N2i} 的翻译}
 
-The antecedents of sequents in \Log{G2i} are multisets~$\Gamma$ of
-!!{formula}s, while those of sequents in \Log{N2i} are sets~$\Gamma'$
-of labelled formulas with the property that every label occurs only
-once. Let's say a set~$\Gamma'$ of labelled !!{formula}s
-\emph{corresponds to} the multiset~$\Gamma$ if, for every
-!!{formula}~$!A$, the number of !!{element}s of~$\Gamma'$ of the form
-$x : !A$ is less than or equal to the multiplicity of~$!A$ (i.e., the
-number of copies of~$!A$) in~$\Gamma$.
+在 \Log{G2i} 中，相继式的前件是公式的多重集~$\Gamma$；而在 \Log{N2i} 中，相继式的前件是带标签公式的集合~$\Gamma'$，且满足每个标签至多出现一次。若对每个公式~$!A$，$\Gamma'$ 中形如 $x : !A$ 的元素数目不超过~$!A$ 在~$\Gamma$ 中的重数（即~$!A$ 的副本数），则称带标签公式的集合~$\Gamma'$ \emph{对应于}多重集~$\Gamma$。
 
 \begin{prop}\ollabel{prop:G2i-to-N2i}
-If $\Log{G2i} + \Cut \Proves \Gamma \Sequent \Delta$ then $\Log{N2i}
-\Proves \Gamma' \Sequent !C$, where $!C \ident \lfalse$ if $\Delta$ is
-empty and $\Delta = \{!A\}$ otherwise, and $\Gamma'$ corresponds
-to~$\Gamma$.
+如果 $\Log{G2i} + \Cut \Proves \Gamma \Sequent \Delta$，则 $\Log{N2i}
+\Proves \Gamma' \Sequent !C$，其中若 $\Delta$ 为空则 $!C \ident \lfalse$，否则 $\Delta = \{!A\}$（此时 $!C \ident !A$），且 $\Gamma'$ 对应于~$\Gamma$。
 \end{prop}
 
 \begin{proof}
-  We show that if $\pi$ is !!a{proof} of $\Gamma \Sequent \Delta$ in
-  \Log{G2ci}, then there is a~$\Gamma'$ corresponding to~$\Gamma$ and
-  !!a{proof}~$\delta$ of~$\Gamma' \Sequent !C$ in~\Log{N2i}. We do
-  this by induction on $n = \pheight{\pi}$.
+  我们要证明：如果 $\pi$ 是 \Log{G2ci} 中 $\Gamma \Sequent \Delta$ 的推导，则存在对应于~$\Gamma$ 的~$\Gamma'$，以及 \Log{N2i} 中~$\Gamma' \Sequent !C$ 的推导~$\delta$。为此，我们对 $n = \pheight{\pi}$ 进行归纳。
 
-  If $n = 0$, then $\pi$ is an axiom. If it is the axiom $\lfalse \Sequent
-  \quad$, $\delta$ is the axiom $x:\lfalse \Sequent \lfalse$, i.e.,
-  $\Gamma' = \{x:\lfalse\}$ and $!C \ident \lfalse$. If $\pi$ is an
-  axiom of the form $!A \Sequent !A$, then $\delta$ is $x: !A \Sequent !A$.
+  若 $n = 0$，则 $\pi$ 是一条公理。若为公理 $\lfalse \Sequent \quad$，则 $\delta$ 为公理 $x:\lfalse \Sequent \lfalse$，即 $\Gamma' = \{x:\lfalse\}$ 且 $!C \ident \lfalse$。若 $\pi$ 是形如 $!A \Sequent !A$ 的公理，则 $\delta$ 为 $x: !A \Sequent !A$。
   
-  If $n>0$, $\pi$ ends in a rule~$R$. The inductive hypothesis
-  guarantees that there are !!{proof}s of sequents corresponding to
-  the premises of that rule in~\Log{N2c}. We can assume that all
-  discharge labels in those proofs are distinct, and that a label $x$
-  only occurs above an inference that discharges it, if it is
-  discharged at all (by relabelling if necessary). We then show how
-  these !!{proof}s can be combined to provide proofs of a suitable
-  $\Gamma' \Sequent !C$. We distinguish cases according to~$R$.
+  若 $n>0$，则 $\pi$ 的最后一步应用了某条规则~$R$。归纳假设保证了在~\Log{N2c} 中存在对应于该规则前提的相继式的推导。我们可以假设这些推导中的所有解除标签互不相同，并且若标签 $x$ 被解除，则它只出现在解除它的推理上方（必要时可进行重标记）。接下来我们展示如何组合这些推导，以得到合适的 $\Gamma' \Sequent !C$ 的推导。我们根据~$R$ 分情况讨论。
 
   \begin{enumerate}
-    \item If $R$ is \RightR{\Weakening}, $\pi$ ends in
+    \item 若 $R$ 为 \RightR{\Weakening}，则 $\pi$ 的最后一步为
     \[
     \AxiomC{}
     \RightLabel{$\pi_1$}
@@ -56,10 +34,8 @@ to~$\Gamma$.
     \UnaryInf$\Gamma \fCenter !A$
     \DisplayProof
     \]
-    The induction hypothesis applied to $\pi_1$ yields !!a{proof}
-    of~$\Gamma' \Sequent \lfalse$. We apply $\FalseInt$ to get
-    !!a{proof} of $\Gamma' \Sequent !A$.
-    \item If $R$ is \LeftR{\Weakening}, $\pi$ ends in
+    对 $\pi_1$ 应用归纳假设，可得~$\Gamma' \Sequent \lfalse$ 的推导。我们再应用 $\FalseInt$ 规则，便得到 $\Gamma' \Sequent !A$ 的推导。
+    \item 若 $R$ 为 \LeftR{\Weakening}，则 $\pi$ 的最后一步为
     \[
     \AxiomC{}
     \RightLabel{$\pi_1$}
@@ -68,13 +44,8 @@ to~$\Gamma$.
     \UnaryInf$!A, \Gamma \fCenter \Delta$
     \DisplayProof
     \]
-    The induction hypothesis applied to $\pi_1$ yields !!a{proof}
-    of~$\Gamma' \Sequent !C$. Which we take as $\delta$. Note that if
-    $\Gamma'$ corresponds to $\Gamma$, it also corresponds to $!A,
-    \Gamma$ as the number of $x : !A$ in $\Gamma'$ is no greater than
-    the number of copies of~$!A$ in $\Gamma$, and so also no greater
-    than the number of copies of $!A$ in $\Gamma \cup \{!A\}$.
-    \item If $R$ is \LeftR{\Contraction}, $\pi$ ends in
+    对 $\pi_1$ 应用归纳假设，可得~$\Gamma' \Sequent !C$ 的推导，我们将其取作 $\delta$。注意，若 $\Gamma'$ 对应于 $\Gamma$，则它也对应于 $!A, \Gamma$，因为 $\Gamma'$ 中形如 $x : !A$ 的元素数不超过 $\Gamma$ 中~$!A$ 的副本数，从而也不超过 $\Gamma \cup \{!A\}$ 中 $!A$ 的副本数。
+    \item 若 $R$ 为 \LeftR{\Contraction}，则 $\pi$ 的最后一步为
     \[
     \AxiomC{}
     \RightLabel{$\pi_1$}
@@ -83,15 +54,9 @@ to~$\Gamma$.
     \UnaryInf$!A, \Gamma \fCenter \Delta$
     \DisplayProof
     \]
-    The induction hypothesis applied to $\pi_1$ yields !!a{proof}
-    of~$\Pi, \Gamma' \Sequent !C$, where $\Pi \subseteq \{x : !A,
-    y:!A\}$. If $\Pi = \{x : !A, y:!A\}$, replace all labelled
-    !!{formula}s $y:!A$ in~$\pi_1$ by $x:!A$. Since $x$~occurs in the
-    context of the end-sequent of~$\pi_1$ we can assume that no
-    inference in~$\pi_1$ discharges !!a{formula} of the form~$x:!B$,
-    i.e., no $x:!B$ on the left side of a sequent in~$\pi_1$ is
-    active. Consequently, the result is still !!a{proof} in~\Log{N2i}.
-    \item If $R$ is $\RightR{\lif}$, $\pi$ ends in
+    对 $\pi_1$ 应用归纳假设，可得~$\Pi, \Gamma' \Sequent !C$ 的推导，其中 $\Pi \subseteq \{x : !A,
+    y:!A\}$。若 $\Pi = \{x : !A, y:!A\}$，则将~$\pi_1$ 中所有带标签公式 $y:!A$ 替换为 $x:!A$。由于 $x$ 出现在~$\pi_1$ 的末端相继式的语境中，我们可以假设~$\pi_1$ 中没有推理会解除形如~$x:!B$ 的公式，即~$\pi_1$ 中相继式左侧的 $x:!B$ 都不是主动的。因此，替换后的结果仍然是~\Log{N2i} 中的一个推导。
+    \item 若 $R$ 为 $\RightR{\lif}$，则 $\pi$ 的最后一步为
     \[
     \AxiomC{}
     \RightLabel{$\pi_1$}
@@ -100,11 +65,8 @@ to~$\Gamma$.
     \UnaryInf$\Gamma \fCenter !A \lif !B$
     \DisplayProof
     \]
-    By the inductive hypothesis, there is !!a{proof}~$\delta_1$ of $x:
-    !A, \Gamma' \Sequent !B$ or $\Gamma' \Sequent !B$ where $\Gamma'$
-    corresponds to~$\Gamma$. We can take $\delta_1$
-    to be $\delta$ plus an application of \Intro{\lif}.
-    \item If $R$ is \LeftR{\lif}, $\pi$ ends in
+    由归纳假设，存在 $x: !A, \Gamma' \Sequent !B$ 或 $\Gamma' \Sequent !B$ 的推导~$\delta_1$，其中 $\Gamma'$ 对应于~$\Gamma$。我们可以在 $\delta_1$ 之后应用 \Intro{\lif} 规则，将其结果作为 $\delta$。
+    \item 若 $R$ 为 \LeftR{\lif}，则 $\pi$ 的最后一步为
     \[
     \AxiomC{}
     \RightLabel{$\pi_1$}
@@ -116,16 +78,7 @@ to~$\Gamma$.
     \BinaryInf$!A \lif !B, \Gamma_1, \Gamma_2 \fCenter \Delta$
     \DisplayProof
     \]
-    The inductive hypothesis yields !!{proof}s $\delta_1$ of $\Gamma_1'
-    \Sequent !A$ and $\delta_2$ of $x: !B, \Gamma_2' \Sequent !C$ or of
-    of $\Gamma_2' \Sequent !C$. If $\delta_2$ is of the latter form,
-    $\delta_2$ can serve as~$\delta$. Otherwise, we can relabel all
-    formulas and discharge labels in~$\pi_1$ to ensure that no label
-    occurs in both $\delta_1$ and~$\delta_2$. Then $\Gamma_1' \cup
-    \Gamma_2'$ corresponds to $\Gamma_1 \cup \Gamma_2$. Since $x:!B$
-    occurs in the end-sequent of~$\delta_2$, $x:!B$ cannot be active in
-    any inference with discharge label~$x$ in~$\delta_2$. Replace every
-    axiom $x:!B \Sequent !B$ in~$\delta_2$ with the !!{proof}~$\delta_3$
+    由归纳假设，存在 $\Gamma_1' \Sequent !A$ 的推导 $\delta_1$，以及 $x: !B, \Gamma_2' \Sequent !C$ 或 $\Gamma_2' \Sequent !C$ 的推导 $\delta_2$。若 $\delta_2$ 为后一种形式，则可直接将 $\delta_2$ 作为~$\delta$。否则，我们可以重标记~$\pi_1$ 中的所有公式和解除标签，以确保没有标签同时出现在 $\delta_1$ 和~$\delta_2$ 中。于是 $\Gamma_1' \cup \Gamma_2'$ 对应于 $\Gamma_1 \cup \Gamma_2$。由于 $x:!B$ 出现在~$\delta_2$ 的末端相继式中，$x:!B$ 在~$\delta_2$ 的任何带解除标签~$x$ 的推理中都不可能是主动的。将~$\delta_2$ 中的每条公理 $x:!B \Sequent !B$ 替换为推导~$\delta_3$
     \[
     \Axiom$x: !A \lif !B \fCenter !A \lif !B$
     \AxiomC{}
@@ -135,10 +88,9 @@ to~$\Gamma$.
     \BinaryInf$x: !A \lif !B \fCenter !B$
     \DisplayProof
     \]
-    and every occurrence of $x:!B$ in~$\delta_2$ by $x:!A \lif !B$.
-    The result $\Subst{\delta_2}{\delta_3}{x:!B}$ is !!a{proof} of
-    $x:!A \lif !B, \Gamma_1', \Gamma_2' \Sequent !C$.
-    \item If $R$ is \RightR{\land}, $\pi$ ends in
+    并将~$\delta_2$ 中每一处 $x:!B$ 替换为 $x:!A \lif !B$。
+    所得结果 $\Subst{\delta_2}{\delta_3}{x:!B}$ 即为 $x:!A \lif !B, \Gamma_1', \Gamma_2' \Sequent !C$ 的推导。
+    \item 若 $R$ 为 \RightR{\land}，则 $\pi$ 的最后一步为
     \[
     \AxiomC{}
     \RightLabel{$\pi_1$}
@@ -150,14 +102,8 @@ to~$\Gamma$.
     \BinaryInf$\Gamma_1, \Gamma_2 \fCenter !A \land !B$
     \DisplayProof
     \]
-    The inductive hypothesis yields proof $\delta_1$ of $\Gamma_1'
-    \Sequent !A$ and $\delta_2$ of $\Gamma_2' \Sequent !A$. By
-    relabelling all formulas and discharge labels in~$\pi_2$ we can
-    ensure that no label occurs in both $\delta_1$ and $\delta_2$. Then
-    $\Gamma_1' \cup \Gamma_2'$ corresponds to $\Gamma_1 \cup
-    \Gamma_2$. We obtain !!a{proof}~$\delta$ by applying $\Intro{\land}$
-    to the end-sequents of $\delta_1$ and~$\delta_2$.
-    \item If $R$ is $\LeftR{\land}$, $\pi$ ends in, e.g.,
+    由归纳假设，存在 $\Gamma_1' \Sequent !A$ 的推导 $\delta_1$ 和 $\Gamma_2' \Sequent !A$ 的推导 $\delta_2$。通过重标记~$\pi_2$ 中的所有公式和解除标签，我们可以确保没有标签同时出现在 $\delta_1$ 和 $\delta_2$ 中。于是 $\Gamma_1' \cup \Gamma_2'$ 对应于 $\Gamma_1 \cup \Gamma_2$。我们对 $\delta_1$ 和~$\delta_2$ 的末端相继式应用 $\Intro{\land}$ 规则，便得到推导~$\delta$。
+    \item 若 $R$ 为 $\LeftR{\land}$，则 $\pi$ 的最后一步为，例如，
     \[
     \AxiomC{}
     \RightLabel{$\pi_1$}
@@ -166,23 +112,17 @@ to~$\Gamma$.
     \UnaryInf$!A \land !B, \Gamma \fCenter \Delta$
     \DisplayProof
     \]
-    By the inductive hypothesis, there is !!a{proof}~$\delta_1$ of $x:
-    !A, \Gamma' \Sequent !C$ or $\Gamma' \Sequent !C$ where $\Gamma'$
-    corresponds to~$\Gamma$. In the latter case, we can take $\delta_1$
-    to be $\delta$. In the former case, observe that since $x:!A$ occurs
-    in the end-sequent, $x:!A$ is not active in any inference with
-    discharge label~$x$ in~$\delta_1$. Replace every axiom $x:!A
-    \Sequent !A$ with the !!{proof}~$\delta_2$
+    由归纳假设，存在 $x: !A, \Gamma' \Sequent !C$ 或 $\Gamma' \Sequent !C$ 的推导~$\delta_1$，其中 $\Gamma'$ 对应于~$\Gamma$。在后一种情况下，我们取 $\delta_1$ 作为 $\delta$。在前一种情况下，注意到因为 $x:!A$ 出现在末端相继式中，$x:!A$ 在~$\delta_1$ 的任何带解除标签~$x$ 的推理中都不是主动的。将每条公理 $x:!A \Sequent !A$ 替换为推导~$\delta_2$
     \[
     \Axiom$x: !A \land !B \fCenter !A \land !B$
     \RightLabel{\Elim{\land}}
     \UnaryInf$x: !A \land !B \fCenter !A$
     \DisplayProof
     \]
-    and every occurrence of $x:!A$ by $x:!A \land !B$, i.e., consider
-    $\Subst{\delta_1}{\delta_2}{x:!A}$. This is !!a{proof} of $x:!A
-    \land !B, \Gamma' \Sequent !C$.
-    \item If $R$ is \Cut, $\pi$ ends in
+    并将每一处 $x:!A$ 替换为 $x:!A \land !B$，即考虑
+    $\Subst{\delta_1}{\delta_2}{x:!A}$。这便是 $x:!A
+    \land !B, \Gamma' \Sequent !C$ 的推导。
+    \item 若 $R$ 为 \Cut，则 $\pi$ 的最后一步为
     \[
     \AxiomC{}
     \RightLabel{$\pi_1$}
@@ -194,12 +134,8 @@ to~$\Gamma$.
     \BinaryInf$\Gamma_1, \Gamma_2 \fCenter \Delta$
     \DisplayProof
     \]
-    The inductive hypothesis yields proof $\delta_1$ of $\Gamma_1'
-    \Sequent !A$ and $\delta_2$ of $x:!A, \Gamma_2' \Sequent !C$ or of
-    $\Gamma_2' \Sequent !C$. In the latter case, take $\delta$ to
-    be~$\delta_2$. Otherwise, replace every axiom $x:!A \Sequent !A$ in
-    $\delta_2$ by $\delta_1$ to obtain~$\delta$ as the !!{proof}~$\Subst{\delta_2}{\delta_1}{x:!A}$ of $\Gamma_1',
-    \Gamma_2' \Sequent !C$.
+    由归纳假设，存在 $\Gamma_1' \Sequent !A$ 的推导 $\delta_1$ 和 $x:!A, \Gamma_2' \Sequent !C$ 或 $\Gamma_2' \Sequent !C$ 的推导 $\delta_2$。在后一种情况下，取 $\delta$ 为~$\delta_2$。否则，将 $\delta_2$ 中的每条公理 $x:!A \Sequent !A$ 替换为 $\delta_1$，从而得到 $\delta$，即 $\Subst{\delta_2}{\delta_1}{x:!A}$ 对 $\Gamma_1',
+    \Gamma_2' \Sequent !C$ 的推导。
   \end{enumerate}
 \end{proof}
 

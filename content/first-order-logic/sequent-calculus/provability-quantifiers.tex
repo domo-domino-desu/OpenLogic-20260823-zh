@@ -5,28 +5,28 @@
 \documentclass[../../../include/open-logic-section]{subfiles}
 
 \begin{document}
+项或公式的\emph{高度}是衡量其复杂性的一种方式，由递归定义。
+例如，公式 $R(c)$ 的高度可以通过计算其直接成分 $R$ 和 $c$ 的高度，取其最大值再加1而得到。
+但每一个递归定义的概念都能用这种“一致的”方式来表达吗？
+定义公式高度的另一种方式，是取其构造树中最长分支的长度，或者等价地，取能生成该公式的最短构造序列的长度。
+前一种定义度量的是语法分析树的“深度”，后一种则度量从原子公式构建该公式所需的步数。
+我们将采用后一种定义，因为它更贴近于对公式度数进行归纳论证的方式。
 
 \olfileid{fol}{seq}{qpr}
-\olsection{\usetoken{S}{derivability} and the Quantifiers}
+\olsection{可证性与量词}
 
 \begin{explain}
-  The completeness theorem also requires that the sequent calculus
-  rules yield the facts about~$\Proves$ established in this
-  section.
+  完备性定理也要求相继式演算规则能够得出本节所建立的关于~$\Proves$ 的事实。
 \end{explain}
 
 \begin{thm}
-\ollabel{thm:strong-generalization} If $c$ is a constant not occurring
-in $\Gamma$ or $!A(x)$ and $\Gamma \Proves !A(c)$, then $\Gamma
-\Proves \lforall[x][!A(x)]$.
+\ollabel{thm:strong-generalization} 如果 $c$ 是不在 $\Gamma$ 或 $!A(x)$ 中出现的常项，且 $\Gamma \Proves !A(c)$，则 $\Gamma
+\Proves \lforall[x][!A(x)]$。
 \end{thm}
 
 \begin{proof}
-Let $\pi_0$ be an $\Log{LK}$-!!{derivation} of $\Gamma_0 \Sequent !A(c)$
-for some finite $\Gamma_0 \subseteq \Gamma$.  By adding a
-$\RightR{\lforall}$ inference, we obtain !!a{derivation} of $\Gamma_0 \Sequent
-\lforall[x][!A(x)]$, since $c$ does not occur in $\Gamma$ or $!A(x)$
-and thus the eigenvariable condition is satisfied.
+令 $\pi_0$ 为 $\Gamma_0 \Sequent !A(c)$ 的一个 $\Log{LK}$-推导，其中 $\Gamma_0$ 是 $\Gamma$ 的某个有限子集。通过增加一个 $\RightR{\lforall}$ 推理，我们得到 $\Gamma_0 \Sequent
+\lforall[x][!A(x)]$ 的一个推导，因为 $c$ 不在 $\Gamma$ 或 $!A(x)$ 中出现，因而满足特征变元条件。
 \end{proof}
 
 \begin{prop}
@@ -39,15 +39,13 @@ and thus the eigenvariable condition is satisfied.
 
 \begin{proof}
 \begin{tagenumerate}{prvEx,prvAll}
-\tagitem{prvEx}{The sequent $!A(t) \Sequent \lexists[x][!A(x)]$ is
-  !!{derivable}:
+\tagitem{prvEx}{相继式 $!A(t) \Sequent \lexists[x][!A(x)]$ 是可推导的：
   \begin{prooftree}
     \Axiom$!A(t) \fCenter !A(t)$
     \RightLabel{\RightR{\lexists}}
     \UnaryInf$!A(t) \fCenter \lexists[x][!A(x)]$
     \end{prooftree}}{}
-\tagitem{prvAll}{The sequent $\lforall[x][!A(x)] \Sequent !A(t)$ is
-  !!{derivable}:
+\tagitem{prvAll}{相继式 $\lforall[x][!A(x)] \Sequent !A(t)$ 是可推导的：
   \begin{prooftree}
     \Axiom$!A(t) \fCenter !A(t)$
     \RightLabel{\LeftR{\lforall}}

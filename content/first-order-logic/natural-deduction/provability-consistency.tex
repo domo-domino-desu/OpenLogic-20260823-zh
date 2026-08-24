@@ -10,21 +10,17 @@
       {\olfileid{fol}{ntd}{prv}}
       {\olfileid{pl}{ntd}{prv}}
       
-\olsection{\usetoken{S}{derivability} and Consistency}
+\olsection{可推导性与一致性}
 
-We will now establish a number of properties of the !!{derivability}
-relation.  They are independently interesting, but each will play a
-role in the proof of the completeness theorem.
+下面我们将确立可推导性关系的若干性质。这些性质各自具有独立的意义，但也都将在完备性定理的证明中发挥作用。
 
 \begin{prop}\ollabel{prop:provability-contr}
-  If $\Gamma \Proves !A$ and $\Gamma \cup \{!A\}$ is inconsistent,
-  then $\Gamma$ is inconsistent.
+  如果 $\Gamma \Proves !A$ 且 $\Gamma \cup \{!A\}$ 不一致，
+  则 $\Gamma$ 不一致。
 \end{prop}
 
 \begin{proof}
-Let the !!{derivation} of~$!A$ from~$\Gamma$ be~$\delta_1$ and the
-!!{derivation} of~$\lfalse$ from $\Gamma \cup \{!A\}$
-be~$\delta_2$. We can then !!{derive}:
+设 $\delta_1$ 是从 $\Gamma$ 到 $!A$ 的推导，$\delta_2$ 是从 $\Gamma \cup \{!A\}$ 到 $\lfalse$ 的推导。那么我们可以构造如下推导：
 \begin{prooftree}
 \AxiomC{$\Gamma, \Discharge{!A}{1}$}
 \RightLabel{$\delta_2$}
@@ -37,20 +33,16 @@ be~$\delta_2$. We can then !!{derive}:
 \RightLabel{\Elim{\lnot}}
 \BinaryInfC{$\lfalse$}
 \end{prooftree}
-In the new !!{derivation}, the assumption~$!A$ is !!{discharged}, so it is
-!!a{derivation} from~$\Gamma$.
+在这个新推导中，假设 $!A$ 被解除了，因此它是仅从 $\Gamma$ 推出的推导。
 \end{proof}
 
 \begin{prop}
 \ollabel{prop:prov-incons}
-$\Gamma \Proves !A$ iff $\Gamma \cup \{\lnot !A\}$ is inconsistent.
+$\Gamma \Proves !A$ 当且仅当 $\Gamma \cup \{\lnot !A\}$ 不一致。
 \end{prop}
 
 \begin{proof}
-First suppose $\Gamma \Proves !A$, i.e., there is
-!!a{derivation}~$\delta_0$ of~$!A$ from !!{undischarged}
-assumptions~$\Gamma$. We obtain !!a{derivation} of $\lfalse$ from
-$\Gamma \cup \{\lnot !A\}$ as follows:
+首先假设 $\Gamma \Proves !A$，即存在一个以 $\Gamma$ 为未解除假设到 $!A$ 的推导 $\delta_0$。我们如下构造一个从 $\Gamma \cup \{\lnot !A\}$ 到 $\lfalse$ 的推导：
 \begin{prooftree}
   \AxiomC{$\lnot !A$}
   \AxiomC{$\Gamma$}
@@ -60,10 +52,7 @@ $\Gamma \cup \{\lnot !A\}$ as follows:
   \BinaryInfC{$\lfalse$}
 \end{prooftree}
 
-Now assume $\Gamma \cup \{\lnot !A\}$ is inconsistent, and let
-$\delta_1$ be the corresponding !!{derivation} of~$\lfalse$ from
-!!{undischarged} assumptions in~$\Gamma \cup \{\lnot !A\}$. We obtain
-!!a{derivation} of~$!A$ from~$\Gamma$ alone by using~$\FalseCl$:
+现在假设 $\Gamma \cup \{\lnot !A\}$ 是不一致的，并令 $\delta_1$ 为相应的以 $\Gamma \cup \{\lnot !A\}$ 为未解除假设到 $\lfalse$ 的推导。我们利用 $\FalseCl$ 规则得到一个仅从 $\Gamma$ 推出 $!A$ 的推导：
 \begin{prooftree}
   \AxiomC{$\Gamma, \Discharge{\lnot !A}{1}$}
   \RightLabel{$\delta_1$}
@@ -75,19 +64,15 @@ $\delta_1$ be the corresponding !!{derivation} of~$\lfalse$ from
 \end{proof}
 
 \begin{prob}
-Prove that $\Gamma \Proves \lnot !A$ iff $\Gamma \cup \{!A\}$ is
-inconsistent.
+证明 $\Gamma \Proves \lnot !A$ 当且仅当 $\Gamma \cup \{!A\}$ 是不一致的。
 \end{prob}
 
 \begin{prop}\ollabel{prop:explicit-inc}
-  If $\Gamma \Proves !A$ and $\lnot !A \in \Gamma$, then $\Gamma$ is
-  inconsistent.
+  若 $\Gamma \Proves !A$ 且 $\lnot !A \in \Gamma$，则 $\Gamma$ 是不一致的。
 \end{prop}
 
 \begin{proof}
-  Suppose $\Gamma \Proves !A$ and $\lnot !A \in \Gamma$.  Then there
-  is !!a{derivation}~$\delta$ of~$!A$ from~$\Gamma$. Consider this
-    simple application of the $\Elim{\lnot}$ rule:
+  假设 $\Gamma \Proves !A$ 且 $\lnot !A \in \Gamma$。那么存在一个从 $\Gamma$ 到 $!A$ 的推导 $\delta$。考虑下面这个对 $\Elim{\lnot}$ 规则的简单应用：
   \begin{prooftree}
     \AxiomC{$\lnot !A$}
     \AxiomC{$\Gamma$}
@@ -96,19 +81,15 @@ inconsistent.
     \RightLabel{\Elim{\lnot}}
     \BinaryInfC{$\lfalse$}
   \end{prooftree}
-  Since $\lnot !A \in \Gamma$, all !!{undischarged} assumptions are
-  in~$\Gamma$, this shows that $\Gamma \Proves \lfalse$.
+  由于 $\lnot !A \in \Gamma$，所有未解除的假设都属于 $\Gamma$，这表明 $\Gamma \Proves \lfalse$。
 \end{proof}
 
 \begin{prop}\ollabel{prop:provability-exhaustive}
-  If $\Gamma \cup \{!A\}$ and $\Gamma \cup \{\lnot !A\}$ are both
-  inconsistent, then $\Gamma$ is inconsistent.
+  若 $\Gamma \cup \{!A\}$ 和 $\Gamma \cup \{\lnot !A\}$ 都是不一致的，则 $\Gamma$ 是不一致的。
 \end{prop}
 
 \begin{proof}
-There are !!{derivation}s $\delta_1$ and $\delta_2$ of~$\lfalse$ from
-  $\Gamma \cup \{ !A \}$ and $\lfalse$ from $\Gamma \cup \{ \lnot !A
-  \}$, respectively. We can then !!{derive}
+存在推导 $\delta_1$ 和 $\delta_2$，它们分别从 $\Gamma \cup \{ !A \}$ 和 $\Gamma \cup \{ \lnot !A \}$ 推出 $\lfalse$。于是我们可以构造如下推导：
 \begin{prooftree}
 \AxiomC{$\Gamma, \Discharge{\lnot !A}{2}$}
 \RightLabel{$\delta_2$}
@@ -123,9 +104,7 @@ There are !!{derivation}s $\delta_1$ and $\delta_2$ of~$\lfalse$ from
 \RightLabel{\Elim{\lnot}}
 \BinaryInfC{$\lfalse$}
 \end{prooftree}
-Since the assumptions $!A$ and $\lnot !A$ are !!{discharged}, this is
-!!a{derivation} of~$\lfalse$ from~$\Gamma$ alone. Hence $\Gamma$ is
-inconsistent.
+由于假设 $!A$ 和 $\lnot !A$ 均被解除，这是一个仅从 $\Gamma$ 推出 $\lfalse$ 的推导。因此 $\Gamma$ 是不一致的。
 \end{proof}
 
 \end{document}

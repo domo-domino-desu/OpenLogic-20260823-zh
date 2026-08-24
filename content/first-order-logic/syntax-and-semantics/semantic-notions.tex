@@ -7,123 +7,85 @@
 \begin{document}
 
 \olfileid{fol}{syn}{sem}
-\olsection{Semantic Notions}
+\olsection{语义概念}
 
 \begin{explain}
-Given the definition of !!{structure}s for first-order languages, we can
-define some basic semantic properties of and relationships between
-sentences.  The simplest of these is the notion of \emph{validity} of
-a sentence.  A sentence is valid if it is satisfied in every
-!!{structure}.  Valid sentences are those that are satisfied regardless of
-how the non-logical symbols in it are interpreted.  Valid sentences
-are therefore also called \emph{logical truths}---they are true, i.e.,
-satisfied, in any !!{structure} and hence their truth depends only on the
-logical symbols occurring in them and their syntactic !!{structure}, but not
-on the non-logical symbols or their interpretation.
+给出一阶语言结构的定义之后，我们就可以定义语句的一些基本语义性质及语句之间的关系。
+其中最简单的概念是语句的\emph{有效性}。
+如果一个语句在每个结构中都被满足，则它是有效的。
+有效语句是指无论其中的非逻辑符号如何解释，都能被满足的语句。
+因此，有效语句也被称为\emph{逻辑真理}——它们是真的，即在任何结构中都得到满足，
+因此它们为真仅取决于其中出现的逻辑符号及其句法结构，而不依赖于非逻辑符号或其解释。
 \end{explain}
 
-\begin{defn}[Validity]
-A sentence $!A$ is \emph{valid}, $\Entails !A$, iff $\Sat{M}{!A}$ for every
-!!{structure}~$\Struct M$.
+\begin{defn}[有效性]
+语句 $!A$ 是\emph{有效的}，记作 $\Entails !A$，当且仅当对于每个结构~$\Struct M$ 都有 $\Sat{M}{!A}$。
 \end{defn}
 
-\begin{defn}[Entailment]
-A set of sentences~$\Gamma$ \emph{entails} a sentence~$!A$, $\Gamma
-\Entails !A$, iff for every !!{structure}~$\Struct M$ with
-$\Sat{M}{\Gamma}$, $\Sat{M}{!A}$.
+\begin{defn}[后承]
+语句集 $\Gamma$ \emph{语义地后承}语句 $!A$，记作 $\Gamma
+\Entails !A$，当且仅当对于每个满足 $\Sat{M}{\Gamma}$ 的结构~$\Struct M$，都有 $\Sat{M}{!A}$。
 \end{defn}
 
-
-\begin{defn}[Satisfiability]
-A set of sentences~$\Gamma$ is \emph{satisfiable} if $\Sat{M}{\Gamma}$
-for some !!{structure}~$\Struct M$.  If $\Gamma$ is not satisfiable it is
-called \emph{unsatisfiable}.
+\begin{defn}[可满足性]
+语句集 $\Gamma$ 是\emph{可满足的}，如果存在某个结构~$\Struct M$ 使得 $\Sat{M}{\Gamma}$。
+如果 $\Gamma$ 不可满足，则称之为\emph{不可满足的}。
 \end{defn}
 
 \begin{prop}
-A sentence $!A$ is valid iff $\Gamma \Entails !A$ for every set of
-sentences~$\Gamma$.
+语句 $!A$ 是有效的，当且仅当对于每个语句集 $\Gamma$ 都有 $\Gamma \Entails !A$。
 \end{prop}
 
 \begin{proof}
-For the forward direction, let $!A$ be valid, and let $\Gamma$ be a
-set of sentences. Let $\Struct M$ be !!a{structure} so that
-$\Sat{M}{\Gamma}$. Since $!A$ is valid, $\Sat{M}{!A}$, hence $\Gamma
-\Entails !A$.
+正向：设 $!A$ 有效，且 $\Gamma$ 为一语句集。设 $\Struct M$ 是一个满足 $\Sat{M}{\Gamma}$ 的结构。由于 $!A$ 有效，故 $\Sat{M}{!A}$，因而 $\Gamma \Entails !A$。
 
-For the contrapositive of the reverse direction, let $!A$ be invalid,
-so there is !!a{structure}~$\Struct M$ with $\Sat/{M}{!A}$. When $\Gamma
-= \{ \ltrue \}$, since $\ltrue$ is valid, $\Sat{M}{\Gamma}$. Hence,
-there is !!a{structure}~$\Struct M$ so that $\Sat{M}{\Gamma}$ but
-$\Sat/{M}{!A}$, hence $\Gamma$ does not entail $!A$.
+反向（证其逆否命题）：设 $!A$ 无效，则存在结构 $\Struct M$ 使得 $\Sat/{M}{!A}$。取 $\Gamma = \{ \ltrue \}$，由于 $\ltrue$ 有效，故 $\Sat{M}{\Gamma}$。于是，存在结构 $\Struct M$ 使得 $\Sat{M}{\Gamma}$ 但 $\Sat/{M}{!A}$，因此 $\Gamma$ 不语义地后承 $!A$。
 \end{proof}
 
 \begin{prop}
 \ollabel{prop:entails-unsat}
-$\Gamma \Entails !A$ iff $\Gamma \cup \{\lnot !A\}$ is unsatisfiable.
+$\Gamma \Entails !A$ 当且仅当 $\Gamma \cup \{\lnot !A\}$ 不可满足。
 \end{prop}
 
 \begin{proof}
-For the forward direction, suppose $\Gamma \Entails !A$ and suppose to the
-contrary that there is !!a{structure}~$\Struct M$ so that $\Sat{M}{\Gamma
-  \cup \{ \lnot !A \}}$. Since $\Sat{M}{\Gamma}$ and $\Gamma \Entails
-!A$, $\Sat{M}{!A}$. Also, since $\Sat{M}{\Gamma\cup \{ \lnot !A \}}$,
-$\Sat{M}{\lnot !A}$, so we have both $\Sat{M}{!A}$ and $\Sat/{M}{!A}$,
-a contradiction. Hence, there can be no such !!{structure}~$\Struct M$, so
-$\Gamma \cup \{ \lnot !A \}$ is unsatisfiable.
+正向：假设 $\Gamma \Entails !A$，并反设存在结构 $\Struct M$ 使得 $\Sat{M}{\Gamma
+  \cup \{ \lnot !A \}}$。由于 $\Sat{M}{\Gamma}$ 且 $\Gamma \Entails !A$，可得 $\Sat{M}{!A}$。同时，由 $\Sat{M}{\Gamma\cup \{ \lnot !A \}}$ 可得 $\Sat{M}{\lnot !A}$，于是既有 $\Sat{M}{!A}$ 又有 $\Sat/{M}{!A}$，矛盾。因此，不可能存在这样的结构 $\Struct M$，故 $\Gamma \cup \{ \lnot !A \}$ 不可满足。
 
-For the reverse direction, suppose $\Gamma \cup \{ \lnot !A \}$ is
-unsatisfiable. So for every !!{structure}~$\Struct M$, either
-$\Sat/{M}{\Gamma}$ or $\Sat{M}{!A}$. Hence, for every !!{structure}
-$\Struct M$ with $\Sat{M}{\Gamma}$, $\Sat{M}{!A}$, so $\Gamma \Entails
-!A$.
+反向：假设 $\Gamma \cup \{ \lnot !A \}$ 不可满足。则对每个结构 $\Struct M$，要么 $\Sat/{M}{\Gamma}$，要么 $\Sat{M}{!A}$。因此，对每个满足 $\Sat{M}{\Gamma}$ 的结构 $\Struct M$，都有 $\Sat{M}{!A}$，即 $\Gamma \Entails !A$。
 \end{proof}
 
 \begin{prob}
 \begin{enumerate}
-\item Show that $\Gamma \Entails \bot$ iff $\Gamma$ is unsatisfiable.
-\item Show that $\Gamma \cup \{!A\} \Entails \bot$ iff $\Gamma \Entails \lnot !A$.
-\item Suppose $c$ does not occur in $!A$ or $\Gamma$.  Show that
-  $\Gamma \Entails \lforall[x][!A]$ iff $\Gamma \Entails
-  \Subst{!A}{c}{x}$.
+\item 证明：$\Gamma \Entails \bot$ 当且仅当 $\Gamma$ 不可满足。
+\item 证明：$\Gamma \cup \{!A\} \Entails \bot$ 当且仅当 $\Gamma \Entails \lnot !A$。
+\item 假设 $c$ 不在 $!A$ 或 $\Gamma$ 中出现。证明：$\Gamma \Entails \lforall[x][!A]$ 当且仅当 $\Gamma \Entails
+  \Subst{!A}{c}{x}$。
 \end{enumerate}
 \end{prob}
 
 \begin{prop}
-If $\Gamma \subseteq \Gamma'$ and $\Gamma \Entails !A$, then $\Gamma'
-\Entails !A$.
+如果 $\Gamma \subseteq \Gamma'$ 且 $\Gamma \Entails !A$，那么 $\Gamma' \Entails !A$。
 \end{prop}
 
 \begin{proof}
-Suppose that $\Gamma \subseteq \Gamma'$ and $\Gamma \Entails !A$. Let
-$\Struct M$ be a structure such that $\Sat{M}{\Gamma'}$; then $\Sat{M}{\Gamma}$,
-and since $\Gamma \Entails !A$, we get that $\Sat{M}{!A}$. Hence,
-whenever $\Sat{M}{\Gamma'}$, $\Sat{M}{!A}$, so $\Gamma' \Entails !A$.
+假设 $\Gamma \subseteq \Gamma'$ 且 $\Gamma \Entails !A$。设 $\Struct M$ 是一个满足 $\Sat{M}{\Gamma'}$ 的结构；则 $\Sat{M}{\Gamma}$，并且由于 $\Gamma \Entails !A$，可得 $\Sat{M}{!A}$。因此，只要 $\Sat{M}{\Gamma'}$ 就有 $\Sat{M}{!A}$，故 $\Gamma' \Entails !A$。
 \end{proof}
 
-
-\begin{thm}[Semantic Deduction Theorem]
+\begin{thm}[语义演绎定理]
 \ollabel{thm:sem-deduction}
-$\Gamma \cup \{!A\} \Entails !B$ iff $\Gamma \Entails !A \lif !B$.
+$\Gamma \cup \{!A\} \Entails !B$ 当且仅当 $\Gamma \Entails !A \lif !B$。
 \end{thm}
 
 \begin{proof}
-For the forward direction, let $\Gamma \cup \{ !A \} \Entails !B$ and
-let $\Struct M$ be !!a{structure} so that $\Sat{M}{\Gamma}$. If
-$\Sat{M}{!A}$, then $\Sat{M}{\Gamma \cup \{ !A \} }$, so since $\Gamma
-\cup \{ !A \}$ entails $!B$, we get $\Sat{M}{!B}$. Therefore,
-$\Sat{M}{!A \lif !B}$, so $\Gamma \Entails !A \lif !B$.
+正向：设 $\Gamma \cup \{ !A \} \Entails !B$，并设 $\Struct M$ 是一个满足 $\Sat{M}{\Gamma}$ 的结构。如果 $\Sat{M}{!A}$，则 $\Sat{M}{\Gamma \cup \{ !A \} }$，于是由 $\Gamma \cup \{ !A \}$ 语义地后承 $!B$ 可得 $\Sat{M}{!B}$。因此，$\Sat{M}{!A \lif !B}$，故 $\Gamma \Entails !A \lif !B$。
 
-For the reverse direction, let $\Gamma \Entails !A \lif !B$ and
-$\Struct M$ be !!a{structure} so that $\Sat{M}{\Gamma \cup \{ !A
-  \}}$. Then $\Sat{M}{\Gamma}$, so $\Sat{M}{!A \lif !B}$, and since
-$\Sat{M}{!A}$, $\Sat{M}{!B}$. Hence, whenever $\Sat{M}{\Gamma \cup \{
-  !A \} }$, $\Sat{M}{!B}$, so $\Gamma \cup \{ !A \} \Entails !B$.
+反向：设 $\Gamma \Entails !A \lif !B$，且 $\Struct M$ 是一个满足 $\Sat{M}{\Gamma \cup \{ !A
+  \}}$ 的结构。则 $\Sat{M}{\Gamma}$，于是 $\Sat{M}{!A \lif !B}$，并且由于 $\Sat{M}{!A}$，可得 $\Sat{M}{!B}$。因此，只要 $\Sat{M}{\Gamma \cup \{
+  !A \} }$，就有 $\Sat{M}{!B}$，即 $\Gamma \cup \{ !A \} \Entails !B$。
 \end{proof}
 
 \begin{prop}\ollabel{prop:quant-terms}
-  Let $\Struct{M}$ be !!a{structure}, and $!A(x)$ !!a{formula} with
-  one free variable~$x$, and $t$~a closed term. Then:
+  设 $\Struct{M}$ 为一个结构，$!A(x)$ 为一个含自由变元 $x$ 的公式，$t$ 为一个闭项。则：
   \begin{tagenumerate}{prvEx,prvAll}
     \tagitem{prvEx}{$!A(t) \Entails \lexists[x][!A(x)]$}{}
     \tagitem{prvAll}{$\lforall[x][!A(x)] \Entails !A(t)$}{}
@@ -133,25 +95,14 @@ $\Sat{M}{!A}$, $\Sat{M}{!B}$. Hence, whenever $\Sat{M}{\Gamma \cup \{
 \begin{proof}
   \begin{tagenumerate}{prvEx,prvAll}
     \tagitem{prvEx}{%
-      \iftag{probEx}{Exercise.}{Suppose $\Sat{M}{!A(t)}$. Let $s$ be a
-        variable assignment with $s(x) = \Value{t}{M}$. Then
-        $\Sat{M}{!A(t)}[s]$ since $!A(t)$ is !!a{sentence}. By
-        \olref[ext]{prop:ext-formulas}, $\Sat{M}{!A(x)}[s]$. By
-        \olref[ass]{prop:sat-quant},
-        $\Sat{M}{\lexists[x][!A(x)]}$.}}{}
+      \iftag{probEx}{练习。}{假设 $\Sat{M}{!A(t)}$。设 $s$ 为一个满足 $s(x) = \Value{t}{M}$ 的变元指派。那么，因为 $!A(t)$ 是一个语句，所以 $\Sat{M}{!A(t)}[s]$。根据 \olref[ext]{prop:ext-formulas}，$\Sat{M}{!A(x)}[s]$。再根据 \olref[ass]{prop:sat-quant}，$\Sat{M}{\lexists[x][!A(x)]}$。}}{}
     \tagitem{prvAll}{%
-      \iftag{probAll}{Exercise.}{Suppose
-        $\Sat{M}{\lforall[x][!A(x)]}$. Let $s$ be a variable
-        assignment with $s(x) = \Value{t}{M}$. By
-        \olref[ass]{prop:sat-quant}, $\Sat{M}{!A(x)}[s]$.  By
-        \olref[ext]{prop:ext-formulas}, $\Sat{M}{!A(t)}[s]$. By
-        \olref[ass]{prop:sentence-sat-true}, $\Sat{M}{!A(t)}$ since
-        $!A(t)$ is !!a{sentence}.}}{}
+      \iftag{probAll}{练习。}{假设 $\Sat{M}{\lforall[x][!A(x)]}$。设 $s$ 为一个满足 $s(x) = \Value{t}{M}$ 的变元指派。根据 \olref[ass]{prop:sat-quant}，$\Sat{M}{!A(x)}[s]$。根据 \olref[ext]{prop:ext-formulas}，$\Sat{M}{!A(t)}[s]$。因为 $!A(t)$ 是一个语句，所以根据 \olref[ass]{prop:sentence-sat-true}，$\Sat{M}{!A(t)}$。}}{}
   \end{tagenumerate}
 \end{proof}
 
 \begin{probtag}{probEx,probAll}
-  Complete the proof of \olref[fol][syn][sem]{prop:quant-terms}.
+  完成命题 \olref[fol][syn][sem]{prop:quant-terms} 的证明。
 \end{probtag} 
 
 \end{document}

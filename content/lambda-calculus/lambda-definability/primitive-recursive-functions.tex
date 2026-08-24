@@ -7,20 +7,18 @@
 \begin{document}
 
 \olfileid{lam}{ldf}{prf}
-\olsection{Primitive Recursive Functions are \usetoken{S}{lambda definable}} 
+\olsection{原始递归函数是 \usetoken{S}{lambda definable}}
 
-Recall that the primitive recursive functions are those that can be
-defined from the basic functions $\Zero$, $\Succ$, and $\Proj{n}{i}$
-by composition and primitive recursion.
+回顾一下，原始递归函数是指那些可以从基本函数 $\Zero$、$\Succ$ 和 $\Proj{n}{i}$
+出发，通过复合与原始递归定义出来的函数。
 
 \begin{lem}
   \ollabel{lem:basic}
-  The basic primitive recursive functions $\Zero$, $\Succ$, and
-  projections~$\Proj{n}{i}$ are !!{lambda definable}.
+  基本的原始递归函数 $\Zero$、$\Succ$ 和投影函数~$\Proj{n}{i}$ 都是 $\lambd$-可定义的。
 \end{lem}
 
 \begin{proof}
-They are !!{lambda define}d by the following terms:
+它们分别由以下项给出 $\lambd$-定义：
 \begin{align*}
   \fn{Zero} & \ident \lambd[a][\lambd[fx][x]]\\
   \fn{Succ} & \ident \lambd[a][\lambd[fx][f (a f x)]] \\
@@ -29,85 +27,78 @@ They are !!{lambda define}d by the following terms:
 \end{proof}
 
 \begin{lem}
-  \ollabel{lem:comp} Suppose the $k$-ary function $f$, and $n$-ary
-  functions $g_0, \dots, g_{k-1}$, are !!{lambda definable} by terms
-  $F$, $G_0$, \dots, $G_k$, and $h$ is defined from them by composition.
-  Then $H$ is !!{lambda definable}.
+  \ollabel{lem:comp} 设 $k$ 元函数 $f$ 和 $n$ 元函数 $g_0, \dots, g_{k-1}$ 分别由项
+  $F$, $G_0$, \dots, $G_k$ $\lambd$-定义，而 $h$ 是由它们通过复合定义得到的函数。
+  则 $h$ 是 $\lambd$-可定义的。
 \end{lem}
 
 \begin{proof}
-  $h$ can be !!{lambda define}d by the term
+  $h$ 可由项
   \[
   H \ident \lambd[x_0 \dots x_{n-1}][F\, (G_0 x_0 \dots
     x_{n-1}) \dots (G_{k-1} x_0 \dots x_{n-1})]
   \]
-  We leave verification of this fact as an exercise.
+  $\lambd$-定义。此事实的验证留作练习。
 \end{proof}
 
 \begin{prob}
-  Complete the proof of \olref[lam][ldf][prf]{lem:comp} by showing
-  that $H\num{n_0}\dots\num{n_{n-1}} \red \num{h(n_0, \dots,
-    n_{n-1})}$.
+  请通过证明 $H\num{n_0}\dots\num{n_{n-1}} \red \num{h(n_0, \dots,
+    n_{n-1})}$ 补全 \olref[lam][ldf][prf]{lem:comp} 的证明。
 \end{prob}
 
-Note that \olref{lem:comp} did not require that $f$ and $g_0$,
-\dots,~$g_{k-1}$ are primitive recursive; it is only required that
-they are total and !!{lambda definable}.
+注意，\olref{lem:comp} 并不要求 $f$ 和 $g_0$, \dots,~$g_{k-1}$ 是原始递归函数；只要求它们是全函数且 $\lambd$-可定义的。
 
 \begin{lem}\ollabel{lem:prim}
-  Suppose $f$ is an $n$-ary function and~$g$ is an $n+2$-ary function,
-  they are !!{lambda definable} by terms $F$ and~$G$, and the
-  function~$h$ is defined from $f$ and $g$ by primitive
-  recursion. Then $h$ is also !!{lambda definable}.
+  假设 $f$ 是一个 $n$ 元函数，$g$ 是一个 $n+2$ 元函数，
+  它们分别由项 $F$ 和~$G$ $\lambd$-定义，而函数~$h$ 是由 $f$ 和 $g$ 经原始递归定义的。
+  那么 $h$ 也是 $\lambd$-可定义的。
 \end{lem}
 
 \begin{proof}
-  Recall that $h$ is defined by
+  根据定义，$h$ 为：
   \begin{align*}
     h(x_1, \dots, x_n, 0) &= f(x_1, \dots, x_n)\\
     h(x_1, \dots, x_n, y+1) & = h(x_1, \dots, x_n, y, h(x_1, \dots, x_n, y)).
   \end{align*}
-  Informally speaking, the primitive recursive definition iterates the
-  application of the function $h$ $y$ times and applies it to $f(x_1,
-  \dots, x_n)$. This is reminiscent of the definition of Church
-  numerals, which is also defined as a iterator.
+  直观上讲，原始递归定义将函数 $h$ 的作用迭代 $y$ 次，并将其应用于 $f(x_1,
+  \dots, x_n)$。这让人联想到 Church 数码的定义，它们也是作为迭代器定义的。
 
-  For simplicity, we give the definition and proof for a single
-  additional argument~$x$. The function $h$ is !!{lambda define}d by:
+  为简单起见，我们仅针对单一额外参数~$x$ 给出定义与证明。
+  函数 $h$ 由以下项给出 $\lambd$-定义：
   \begin{align*}
     H \ident & \lambd[x][\lambd[y][\fn{Snd} (y
         D \tuple{\num{0}, F x})]]
-    \intertext{where }
+    \intertext{其中 }
     D \ident & \lambd[p][\tuple{\fn{Succ} (\fn{Fst}\, p), (G x
           (\fn{Fst}\, p) (\fn{Snd}\, p))}]
   \end{align*}
-  The iteration state we maintain is a pair, the first of which is the
-  current $y$ and the second is the corresponding value of~$h$. For
-  every step of iteration we create a pair of new values of $y$ and
-  $h$; after the iteration is done we return the second part of the
-  pair and that's the final $h$ value. We now prove this is indeed a
-  representation of primitive recursion.
+  我们维护的迭代状态是一个序对，其第一分量为当前的 $y$，第二分量为对应的~$h$ 值。
+  在迭代的每一步，我们构造由新的 $y$ 值与 $h$ 值组成的序对；迭代结束后，我们返回该序对的第二分量，即为最终的 $h$ 值。
+  现在证明这确实是原始递归的表示。
 
-  We want to prove that for any $n$ and $m$, $H\,\num{n}\,\num{m} \red
-  \num{h(n,m)}$. To do this we first show that if $D_n \ident
-  \Subst{D}{\num{n}}{x}$, then $D_n^m \tuple{\num{0}, F\, \num{n}} \red
-  \tuple{\num{m}, \num{h(n, m)}}$ We proceed by induction on~$m$.
+  我们要证明，对任意 $n$ 和 $m$，$H\,\num{n}\,\num{m} \red
+  \num{h(n,m)}$。
+  为此，我们首先证明，如果 $D_n \ident
+  \Subst{D}{\num{n}}{x}$，那么 $D_n^m \tuple{\num{0}, F\, \num{n}} \red
+  \tuple{\num{m}, \num{h(n, m)}}$。
+  我们对~$m$ 进行归纳。
 
-  If $m=0$, we want $D_n^0 \tuple{\num{0}, F\, \num{n}} \red
-  \tuple{\num{0}, \num{h(n, 0)}}$. But $D_n^0 \tuple{\num{0}, F\,
-    \num{n}}$ just is $\tuple{\num{0}, F\, \num{n}}$. Since $F$
-  !!{lambda define}s~$f$, this reduces to $\tuple{\num{0},
-    \num{f(n)}}$, and since $f(n) = h(n, 0)$, this is $\tuple{\num{0},
-    \num{h(n,0)}}$
+  若 $m=0$，我们要证 $D_n^0 \tuple{\num{0}, F\, \num{n}} \red
+  \tuple{\num{0}, \num{h(n, 0)}}$。
+  而 $D_n^0 \tuple{\num{0}, F\,
+    \num{n}}$ 即是 $\tuple{\num{0}, F\, \num{n}}$。
+  由于 $F$ $\lambd$-定义了~$f$，这归约为 $\tuple{\num{0},
+    \num{f(n)}}$；又因 $f(n) = h(n, 0)$，即得 $\tuple{\num{0},
+    \num{h(n,0)}}$。
 
-  Now suppose that $D_n^m \tuple{\num{0}, F\, \num{n}} \red
-  \tuple{\num{m}, \num{h(n, m)}}$. We want to
-  show that $D_n^{m+1} \tuple{\num{0}, F\, \num{n}} \red
-  \tuple{\num{m+1}, \num{h(n, m+1)}}$.
+  现假设 $D_n^m \tuple{\num{0}, F\, \num{n}} \red
+  \tuple{\num{m}, \num{h(n, m)}}$。
+  我们要证 $D_n^{m+1} \tuple{\num{0}, F\, \num{n}} \red
+  \tuple{\num{m+1}, \num{h(n, m+1)}}$。
   \begin{align*}
     D_n^{m+1} \tuple{\num{0}, F\, \num{n}}
     & \ident D_n(D_n^{m} \tuple{\num{0}, F\, \num{n}})\\
-    & \red D_n\,\tuple{\num{m}, \num{h(n, m)}} \text{\qquad (by IH)}\\
+    & \red D_n\,\tuple{\num{m}, \num{h(n, m)}} \text{\qquad (由归纳假设)}\\
     & \ident (\lambd[p][
       \tuple{
         \fn{Succ} (\fn{Fst}\, p), (G \, \num{n} (\fn{Fst}\, p) (\fn{Snd}\, p))
@@ -119,9 +110,9 @@ they are total and !!{lambda definable}.
     \tuple{\fn{Succ}\, \num{m}, (G \, \num{n} \,\num{m} \, \num{h(n,m)})}\\
     & \red \tuple{\num{m+1}, \num{g(n, m, h(n, m))}}
   \end{align*}
-  Since $g(n, m, h(n, m)) = h(n, m+1)$, we are done.
+  由 $g(n, m, h(n, m)) = h(n, m+1)$，即得所证。
 
-  Finally, consider
+  最后，考虑
   \begin{align*}
     H\,\num n\,\num m &\ident \lambd[x][\lambd[y][\fn{Snd} (y
         (\lambd[p].\tuple{\fn{Succ} (\fn{Fst}\, p), (G\, x\,
@@ -137,16 +128,13 @@ they are total and !!{lambda definable}.
   \end{align*}  
 \end{proof}
 
-
 \begin{prop}
-  Every primitive recursive function is !!{lambda definable}.
+  每个原始递归函数都是 $\lambd$-可定义的。
 \end{prop}
 
 \begin{proof}
-  By \olref{lem:basic}, all basic functions are !!{lambda definable},
-  and by \olref{lem:comp} and \olref{lem:prim}, the !!{lambda definable}
-  functions are closed under composition and primitive recursion.
+  由 \olref{lem:basic}，所有基本函数都是 $\lambd$-可定义的；
+  而由 \olref{lem:comp} 和 \olref{lem:prim}，$\lambd$-可定义的函数在复合与原始递归下是封闭的。
 \end{proof}
 
 \end{document}
-

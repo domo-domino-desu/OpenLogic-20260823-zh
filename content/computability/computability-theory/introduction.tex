@@ -1,68 +1,27 @@
-% Part: computability
-% Chapter: computability-theory
-% Section: introduction
-
 \documentclass[../../../include/open-logic-section]{subfiles}
 
 \begin{document}
 
 \olfileid{cmp}{thy}{int}
-\olsection{Introduction}
+\olsection{引言}
 
-The branch of logic known as \emph{computability theory} deals with
-issues having to do with the computability, or relative computability,
-of functions and sets. It is evidence of Kleene's influence
-that the subject used to be known as \emph{recursion theory}, and
-today, both names are commonly used.
+逻辑学中称为\emph{可计算性理论}的分支，研究函数与集合的可计算性或相对可计算性问题。由于 Kleene（克林）的影响，该学科曾被称为\emph{递归理论}，如今这两个名称都常被使用。% Part: computability
+% Chapter: computability-theory
+% Section: introduction
 
-Let us call a function~$f\colon \Nat \pto \Nat$ \emph{partial
-  computable} if it can be computed in some model of computation. If
-$f$ is total we will simply say that $f$~is \emph{computable}. A
-relation~$R$ with computable characteristic function~$\Char{R}$ is
-also called computable. If $f$ and~$g$ are partial functions, we will
-write $f(x) \fdefined$ to mean that $f$ is defined at~$x$, i.e., $x$~is
-in the domain of~$f$; and $f(x) \fundefined$ to mean the opposite,
-i.e., that $f$ is not defined at~$x$. We will use $f(x) \simeq g(x)$
-to mean that either $f(x)$ and $g(x)$ are both undefined, or they are
-both defined and equal.
+若函数~$f\colon \Nat \pto \Nat$ 能在某种计算模型中计算，我们就称其为\emph{部分可计算的}。若~$f$ 是全函数，则简称~$f$ 是\emph{可计算的}。若关系~$R$ 的特征函数~$\Char{R}$ 是可计算的，则称该关系也是可计算的。若 $f$ 和~$g$ 是偏函数，我们用 $f(x) \fdefined$ 表示 $f$ 在~$x$ 处有定义，即 $x$ 属于~$f$ 的定义域；反之，用 $f(x) \fundefined$ 表示 $f$ 在~$x$ 处无定义。我们用 $f(x) \simeq g(x)$ 表示：要么 $f(x)$ 和 $g(x)$ 均无定义，要么均有定义且相等。
 
-One can explore the theory of computability without having to refer to
-a specific model of computation. To do this, one shows that there is a
-universal partial computable function~$\fn{Un}(k, x)$. This allows us
-to enumerate the partial computable functions. We will adopt the
-notation~$\cfind{k}$ to denote the $k$-th unary partial computable
-function, defined by $\cfind{k}(x) \simeq \fn{Un}(k, x)$. (Kleene used
-$\{ k \}$ for this purpose, but this notation has not been used as
-much recently.)  Slightly more generally, we can uniformly enumerate
-the partial computable functions of arbitrary arities, and we will use
-$\cfind{k}[n]$ to denote the $k$-th $n$-ary partial recursive
-function.
+我们可以不依赖特定的计算模型来研究可计算性理论。为此，只需证明存在一个通用部分可计算函数~$\fn{Un}(k, x)$。由此我们可以枚举部分可计算函数。我们将采用记号~$\cfind{k}$ 表示第~$k$ 个一元部分可计算函数，其定义为$\cfind{k}(x) \simeq \fn{Un}(k, x)$。（Kleene 曾为此使用 $\{ k \}$，但该记号近来已不多用。）稍作推广，我们可以一致地枚举任意元数的部分可计算函数，并用 $\cfind{k}[n]$ 表示第~$k$ 个 $n$ 元部分递归函数。
 
-If $f(\vec x, y)$ is a total or partial function, then $\umin{y}{f
-(\vec x, y)}$ is the function of~$\vec x$ that returns the least~$y$
-such that $f(\vec x, y) = 0$, assuming that all of $f(\vec x, 0)$,
-\dots, $f(\vec x, y-1)$ are defined; if there is no such $y$,
-$\umin{y}{f (\vec x, y)}$ is undefined. If $R(\vec x, y)$ is a
-relation, $\umin{y}{R(\vec x, y)}$ is defined to be the least~$y$ such
-that $R(\vec x, y)$ is true; in other words, the least~$y$ such that
-$1 \tsub \Char{R}(\vec x, y) = 0$.
+如果 $f(\vec x, y)$ 是全函数或偏函数，那么$\umin{y}{f
+(\vec x, y)}$ 是关于自变元~$\vec x$ 的函数，它返回使 $f(\vec x, y) = 0$ 成立的最小~$y$，且假定 $f(\vec x, 0)$, \dots, $f(\vec x, y-1)$ 均有定义；若不存在这样的 $y$，则$\umin{y}{f (\vec x, y)}$ 无定义。如果 $R(\vec x, y)$ 是关系，则$\umin{y}{R(\vec x, y)}$ 定义为使 $R(\vec x, y)$ 为真的最小~$y$；换言之，即满足$1 \tsub \Char{R}(\vec x, y) = 0$的最小~$y$。
 
-To show that a function is computable, there are
-two ways one can proceed:
+要证明一个函数是可计算的，有两条途径：
 \begin{enumerate}
-\item Rigorously: describe a Turing machine or partial recursive
-  function explicitly, and show that it computes the function you have
-  in mind;
-\item Informally: describe an algorithm that computes it, and appeal to
-  Church's thesis.
+\item \emph{严格地}：明确地描述一个图灵机或部分递归函数，并证明它计算了目标函数；
+\item \emph{非形式地}：描述一个计算它的算法，并诉诸 Church（邱奇）论题。
 \end{enumerate}
-There is no fine line between the two; a detailed description of
-an algorithm should provide enough information so that it is
-relatively clear how one could, in principle, design the right Turing
-machine or sequence of partial recursive definitions. Fully rigorous
-definitions are unlikely to be informative, and we will try to find a
-happy medium between these two approaches; in short, we will try to
-find intuitive yet rigorous proofs that the precise definitions could
-be obtained.
+
+两者之间并无严格的界限；对算法的详细描述应提供足够的信息，使人原则上能相对清楚地看出如何设计出正确的图灵机或部分递归定义序列。完全严格的定义往往缺乏启发性，我们将尝试在这两种方法之间寻找合理的折中；简言之，我们将努力提供既直观又严格的证明，以确保相应的精确定义能够得出。
 
 \end{document}

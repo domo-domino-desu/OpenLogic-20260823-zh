@@ -10,152 +10,142 @@
       {\olfileid{fol}{com}{cpd}}
       {\olfileid{pl}{com}{cpd}}
 
-\olsection{A Direct Proof of the Compactness Theorem}
+\olsection{紧致性定理的直接证明}
 
-We can prove the Compactness Theorem directly, without appealing to
-the Completeness Theorem, using the same ideas as in the proof of the
-completeness theorem.  In the proof of the Completeness Theorem we
-started with a consistent set~$\Gamma$ of !!{sentence}s, expanded it
-to a consistent\iftag{FOL}{, saturated,}{} and !!{complete}
-set~$\Gamma^*$ of !!{sentence}s, and then showed that in the
-\iftag{FOL}{term
-  model~$\Struct{M(\Gamma^*)}$}{!!{valuation}~$\pAssign{v(\Gamma^*)}$}
-constructed from $\Gamma^*$, all !!{sentence}s of~$\Gamma$ are true,
-so $\Gamma$ is satisfiable.
+我们可以不借助完备性定理，而是沿用证明完备性定理的思路，直接证明紧致性定理。在完备性定理的证明中，我们从一致的语句集~$\Gamma$ 出发，将其扩张为一个一致的\iftag{FOL}{、饱和的、}{}完全的语句集~$\Gamma^*$，然后证明在由 $\Gamma^*$ 构造出的\iftag{FOL}{项模型~$\Struct{M(\Gamma^*)}$}{赋值~$\pAssign{v(\Gamma^*)}$}中，$\Gamma$ 的所有语句都为真，因此 $\Gamma$ 是可满足的。
 
-We can use the same method to show that a finitely satisfiable set of
-sentences is satisfiable. We just have to prove the corresponding
-versions of the results leading to the truth lemma where we replace
-``consistent'' with ``finitely satisfiable.''
+我们可以使用同样的方法来证明，一个有限可满足的语句集是可满足的。只需证明推导真引理时所用结论的对应版本，将其中的“一致的”替换为“有限可满足的”即可。
 
 \begin{prop}
 \ollabel{prop:fsat-ccs}
-Suppose $\Gamma$ is !!{complete} and finitely satisfiable. Then:
+设 $\Gamma$ 是完全且有限可满足的。那么：
 \begin{enumerate}
 \tagitem{prvAnd}{$(!A \land !B) \in \Gamma$
-  iff both $!A \in \Gamma$ and $!B \in \Gamma$.}{}
+  当且仅当 $!A \in \Gamma$ 且 $!B \in \Gamma$。}{}
 
-\tagitem{prvOr}{$(!A \lor !B) \in \Gamma$ iff
-  either $!A \in \Gamma$ or $!B \in \Gamma$.}{}
+\tagitem{prvOr}{$(!A \lor !B) \in \Gamma$ 当且仅当
+   $!A \in \Gamma$ 或 $!B \in \Gamma$。}{}
 
-\tagitem{prvIf}{$(!A \lif !B) \in \Gamma$ iff
-  either $!A \notin \Gamma$ or $!B \in \Gamma$.}{}
+\tagitem{prvIf}{$(!A \lif !B) \in \Gamma$ 当且仅当
+   $!A \notin \Gamma$ 或 $!B \in \Gamma$。}{}
 \end{enumerate}
 \end{prop}
 
 \tagprob{FOL}
+
+
 \begin{prob}
-Prove \olref[fol][com][cpd]{prop:fsat-ccs}. Avoid the use of $\Proves$.
+证明 \olref[fol][com][cpd]{prop:fsat-ccs}。避免使用 $\Proves$。
 \end{prob}
+
+
 \tagendprob
 
 \tagprob{notFOL}
+
+
 \begin{prob}
-Prove \olref[pl][com][cpd]{prop:fsat-ccs}. Avoid the use of $\Proves$.
+证明 \olref[pl][com][cpd]{prop:fsat-ccs}。避免使用 $\Proves$。
 \end{prob}
+
+
 \tagendprob
 
 \iftag{FOL}{%
+
+
 \begin{lem}
-\ollabel{lem:fsat-henkin} Every finitely satisfiable set~$\Gamma$ can
-be extended to a saturated finitely satisfiable set~$\Gamma'$.
+\ollabel{lem:fsat-henkin} 每个有限可满足集~$\Gamma$ 都可以扩张为一个饱和的有限可满足集~$\Gamma'$。
 \end{lem}
+
+
 }{}
 
 \tagprob{FOL}
+
+
 \begin{prob}
-Prove \olref[fol][com][cpd]{lem:fsat-henkin}. (Hint: The crucial step
-is to show that if $\Gamma_n$ is finitely satisfiable, so is $\Gamma_n
-\cup \{!D_n\}$, without any appeal to !!{derivation}s or consistency.)
+证明 \olref[fol][com][cpd]{lem:fsat-henkin}。（提示：关键步骤是证明，若 $\Gamma_n$ 是有限可满足的，则 $\Gamma_n
+\cup \{!D_n\}$ 也是有限可满足的，而不诉诸任何推导或一致性。）
 \end{prob}
+
+
 \tagendprob
 
 \iftag{FOL}{
+
+
 \begin{prop}\ollabel{prop:fsat-instances}
-Suppose $\Gamma$ is complete, finitely satisfiable, and saturated.
+设 $\Gamma$ 是完全、有限可满足且饱和的。
 \begin{tagenumerate}{prvEx,prvAll}
-\tagitem{prvEx}{$\lexists[x][!A(x)] \in \Gamma$ iff $!A(t) \in \Gamma$
-  for at least one closed term~$t$.}{}
-\tagitem{prvAll}{$\lforall[x][!A(x)] \in \Gamma$ iff $!A(t) \in \Gamma$
-  for all closed terms~$t$.}{}
+\tagitem{prvEx}{$\lexists[x][!A(x)] \in \Gamma$ 当且仅当对至少一个闭项~$t$，有 $!A(t) \in \Gamma$。}{}
+\tagitem{prvAll}{$\lforall[x][!A(x)] \in \Gamma$ 当且仅当对所有闭项~$t$，都有 $!A(t) \in \Gamma$。}{}
 \end{tagenumerate}
 \end{prop}
+
+
 }{}
 
 \tagprob{FOL}
+
+
 \begin{prob}
-Prove \olref[fol][com][cpd]{prop:fsat-instances}.
+证明 \olref[fol][com][cpd]{prop:fsat-instances}。
 \end{prob}
+
+
 \tagendprob
 
 \begin{lem}
-\ollabel{lem:fsat-lindenbaum} Every finitely satisfiable set~$\Gamma$
-can be extended to !!a{complete} and finitely satisfiable
-set~$\Gamma^*$.
+\ollabel{lem:fsat-lindenbaum} 每个有限可满足集~$\Gamma$ 都可以扩张为一个完全且有限可满足的集合~$\Gamma^*$。
 \end{lem}
 
 \tagprob{FOL}
+
+
 \begin{prob}
-Prove \olref[fol][com][cpd]{lem:fsat-lindenbaum}.  (Hint: the crucial
-step is to show that if $\Gamma_n$ is finitely satisfiable, then
-either $\Gamma_n \cup \{!A_n\}$ or $\Gamma_n \cup \{\lnot !A_n\}$ is
-finitely satisfiable.)
+证明 \olref[fol][com][cpd]{lem:fsat-lindenbaum}。（提示：关键步骤是证明，若 $\Gamma_n$ 是有限可满足的，则 $\Gamma_n \cup \{!A_n\}$ 或 $\Gamma_n \cup \{\lnot !A_n\}$ 是有限可满足的。）
 \end{prob}
+
+
 \tagendprob
 
 \tagprob{notFOL}
+
+
 \begin{prob}
-Prove \olref[pl][com][cpd]{lem:fsat-lindenbaum}.  (Hint: the crucial
-step is to show that if $\Gamma_n$ is finitely satisfiable, then
-either $\Gamma_n \cup \{!A_n\}$ or $\Gamma_n \cup \{\lnot !A_n\}$ is
-finitely satisfiable.)
+证明 \olref[pl][com][cpd]{lem:fsat-lindenbaum}。（提示：关键步骤是证明，若 $\Gamma_n$ 是有限可满足的，则 $\Gamma_n \cup \{!A_n\}$ 或 $\Gamma_n \cup \{\lnot !A_n\}$ 是有限可满足的。）
 \end{prob}
+
+
 \tagendprob
 
-\begin{thm}[Compactness]
-\ollabel{thm:compactness-direct} $\Gamma$ is satisfiable if and only
-if it is finitely satisfiable.
+\begin{thm}[紧致性]
+\ollabel{thm:compactness-direct} $\Gamma$ 是可满足的，当且仅当它是有限可满足的。
 \end{thm}
 
 \begin{proof}
-If $\Gamma$ is satisfiable, then there is
-\iftag{FOL}{!!a{structure}~$\Struct{M}$}{!!a{valuation}~$\pAssign{v}$}
-such that $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$ for all $!A \in \Gamma$.
-Of course, this \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} also
-satisfies every finite subset of~$\Gamma$, so $\Gamma$ is finitely
-satisfiable.
+如果 $\Gamma$ 是可满足的，那么存在\iftag{FOL}{一个结构~$\Struct{M}$}{一个赋值~$\pAssign{v}$}使得对所有 $!A \in \Gamma$，都有 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$。显然，这个\iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$}也满足 $\Gamma$ 的每个有限子集，因此 $\Gamma$ 是有限可满足的。
 
-Now suppose that $\Gamma$ is finitely satisfiable.\iftag{FOL}{ By
-  \olref{lem:fsat-henkin}, there is a finitely satisfiable, saturated
-  set $\Gamma' \supseteq \Gamma$.}{} By \olref{lem:fsat-lindenbaum},
-$\iftag{FOL}{\Gamma'}{\Gamma}$ can be extended to !!a{complete} and
-finitely satisfiable set~$\Gamma^*$\iftag{FOL}{, and $\Gamma^*$ is
-  still saturated}{}. Construct the \iftag{FOL}{term
-  model~$\Struct{M(\Gamma^*)}$}{!!{valuation}~$\pAssign{v(\Gamma^*)}$}
-as in \olref[mod]{defn:termmodel}.\iftag{FOL}{ Note that
-\olref[mod]{prop:quant-termmodel} did not rely on the fact that
-$\Gamma^*$ is consistent (or !!{complete} or saturated, for that
-matter), but just on the fact that $\Struct{M(\Gamma^*)}$ is covered.}{}
-The proof of the Truth Lemma (\olref[mod]{lem:truth}) goes through if
-we replace references to \olref[ccs]{prop:ccs}\iftag{FOL}{ and
-\olref[hen]{prop:saturated-instances} by references to
-\olref{prop:fsat-ccs} and \olref{prop:fsat-instances}}.
+现在假设 $\Gamma$ 是有限可满足的。\iftag{FOL}{根据 \olref{lem:fsat-henkin}，存在一个有限可满足的饱和集 $\Gamma' \supseteq \Gamma$。}{} 根据 \olref{lem:fsat-lindenbaum}，$\iftag{FOL}{\Gamma'}{\Gamma}$ 可被扩张为一个完全且有限可满足的集合~$\Gamma^*$\iftag{FOL}{，且 $\Gamma^*$ 仍保持饱和}{}。按 \olref[mod]{defn:termmodel} 的方式构造\iftag{FOL}{项模型~$\Struct{M(\Gamma^*)}$}{赋值~$\pAssign{v(\Gamma^*)}$}。\iftag{FOL}{注意，\olref[mod]{prop:quant-termmodel} 并不依赖于 $\Gamma^*$ 是一致的（或完全的、饱和的）这一事实，而仅依赖于 $\Struct{M(\Gamma^*)}$ 是覆盖的。}{} 若将对 \olref[ccs]{prop:ccs}\iftag{FOL}{ 和 \olref[hen]{prop:saturated-instances} 的引用替换为对 \olref{prop:fsat-ccs} 和 \olref{prop:fsat-instances} 的引用，}{}真引理（\olref[mod]{lem:truth}）的证明依然成立。
 \end{proof}
 
 \tagprob{FOL}
+
 \begin{prob}
-Write out the complete proof of the Truth Lemma
-(\olref[fol][com][mod]{lem:truth}) in the version required for the
-proof of \olref[fol][com][cpd]{thm:compactness-direct}.
+写出证明 \olref[fol][com][cpd]{thm:compactness-direct} 时所需版本的真引理
+(\olref[fol][com][mod]{lem:truth}) 的完整证明。
 \end{prob}
+
 \tagendprob
 
 \tagprob{notFOL}
+
 \begin{prob}
-Write out the complete proof of the Truth Lemma
-(\olref[pl][com][mod]{lem:truth}) in the version required for the
-proof of \olref[pl][com][cpd]{thm:compactness-direct}.
+写出证明 \olref[pl][com][cpd]{thm:compactness-direct} 时所需版本的真引理
+(\olref[pl][com][mod]{lem:truth}) 的完整证明。
 \end{prob}
+
 \tagendprob
 
 \end{document}

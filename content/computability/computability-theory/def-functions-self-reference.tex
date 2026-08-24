@@ -7,51 +7,37 @@
 \begin{document}
 
 \olfileid{cmp}{thy}{slf}
-\olsection{Defining Functions using Self-Reference}
+\olsection{使用自指定义函数}
 
-It is generally useful to be able to define functions in terms of
-themselves. For example, given computable functions $k$, $l$, and~$m$,
-the fixed-point lemma tells us that there is a partial computable
-function~$f$ satisfying the following equation for every~$y$:
+通过函数自身来定义函数通常很有用。例如，给定可计算函数 $k$、$l$ 和~$m$，不动点引理告诉我们，存在一个部分可计算函数~$f$，使得对每个~$y$ 都满足以下方程：
 \[
 f(y) \simeq
 \begin{cases}
-k(y) & \text{if $l(y) = 0$} \\
-f(m(y)) & \text{otherwise.}
+k(y) & \text{若 $l(y) = 0$} \\
+f(m(y)) & \text{否则。}
 \end{cases}
 \]
-Again, more specifically, $f$~is obtained by letting
+同样，更具体地说，$f$ 是通过令
 \[
 g(x,y) \simeq
 \begin{cases}
-k(y) & \text{if $l(y) = 0$} \\
-\cfind{x}(m(y)) & \text{otherwise}
+k(y) & \text{若 $l(y) = 0$} \\
+\cfind{x}(m(y)) & \text{否则}
 \end{cases}
 \]
-and then using the fixed-point lemma to find an index~$e$ such that
-$\cfind{e}(y) = g(e,y)$.
+而得到的，然后应用不动点引理找到一个指标~$e$，使得
+$\cfind{e}(y) = g(e,y)$。
 
-For a concrete example, the ``greatest common divisor'' function
-$\fn{gcd}(u,v)$ can be defined by
+作为一个具体的例子，“最大公约数”函数 $\fn{gcd}(u,v)$ 可以用下式定义：
 \[
 \fn{gcd}(u,v) \simeq
 \begin{cases}
-v & \text{if $u = 0$} \\
-\fn{gcd}(\fn{mod}(v, u), u) & \text{otherwise}
+v & \text{若 $u = 0$} \\
+\fn{gcd}(\fn{mod}(v, u), u) & \text{否则}
 \end{cases}
 \]
-where $\fn{mod}(v, u)$ denotes the remainder of dividing $v$
-by~$u$. An appeal to the fixed-point lemma shows that $\fn{gcd}$ is
-partial computable. (In fact, this can be put in the format above,
-letting $y$ code the pair $\tuple{u, v}$.) A subsequent induction
-on~$u$ then shows that, in fact, $\fn{gcd}$ is total.
+其中 $\fn{mod}(v, u)$ 表示 $v$ 除以~$u$ 的余数。应用不动点引理可知 $\fn{gcd}$ 是部分可计算的。（事实上，这可以写成上述形式，令 $y$ 编码序对 $\tuple{u, v}$。）随后对~$u$ 进行归纳即可证明，$\fn{gcd}$ 实际上是全函数。
 
-Of course, one can cook up self-referential definitions that are much
-fancier than the examples just discussed. Most programming languages
-support definitions of functions in terms of themselves, one way or
-another. Note that this is a little bit less dramatic than being able
-to define a function in terms of an \emph{index} for an algorithm
-computing the functions, which is what, in full generality, the
-fixed-point theorem lets you do.
+当然，我们可以构造出比刚才讨论的例子复杂得多的自指定义。大多数编程语言都以某种方式支持用函数自身来定义函数。注意，与用计算该函数的算法的\emph{指标}来定义函数相比，这稍显平淡，而不动点定理在最一般的意义上允许我们做的正是后者。
 
 \end{document}

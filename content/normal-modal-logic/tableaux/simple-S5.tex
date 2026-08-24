@@ -8,22 +8,16 @@
 
 \olfileid{nml}{tab}{s5}
 
-\olsection{Simple \usetoken{P}{tableau} for \Log{S5}}
+\olsection{\Log{S5} 的简化\usetoken{P}{tableau}}
 
-\Log{S5} is sound and complete with respect to the class of universal
-models, i.e., models where every world is accessible from every
-world. In universal models the accessibility relation doesn't matter:
-``there is a world~$w$ where $\mSat{M}{!A}[w]$'' is true if and only
-if there is such a $w$ that's accessible from~$u$. So in \Log{S5}, we
-can define models as simply a set of worlds and a valuation~$V$. This
-suggests that we should be able to simplify the !!{tableau} rules as
-well. In the general case, we take as prefixes sequences of positive
-integers, so that we can keep track of which such prefixes name worlds
-which are accessible from others: $\sigma.n$ names a world accessible
-from~$\sigma$. But in \Log{S5} any world is accessible from any world,
-so there is no need to so keep track. Instead, we can use positive
-integers as prefixes. The simplified rules are given in
-\olref{tab:rules-S5}.
+\Log{S5} 相对于普遍模型类——即任意世界都可从任意世界可达的模型——是可靠且完备的。
+在普遍模型中，可达关系并不重要：“存在一个世界~$w$ 使得 $\mSat{M}{!A}[w]$”为真，当且仅当存在这样一个从~$u$ 可达的 $w$。
+因此在 \Log{S5} 中，我们可以把模型简单地定义为一个世界集合和一个赋值~$V$。
+这表明，我们也应该能够简化分析表规则。
+在一般情形中，我们取正整数序列作为前缀，以便追踪哪些前缀命名了可从其他世界到达的世界：$\sigma.n$ 命名一个从~$\sigma$ 可达的世界。
+但在 \Log{S5} 中，任意世界都可从任意世界可达，因此无需如此追踪。
+我们可以直接使用正整数作为前缀。
+简化后的规则见\olref{tab:rules-S5}。
 
 \begin{table}
   \begin{center}
@@ -40,7 +34,7 @@ integers as prefixes. The simplified rules are given in
       \RightLabel{\TRule{\False}{\Box}}
       \UnaryInfC{\sFmla{\False}{!A}[m]}
       \DisplayProof\\
-      $m$ is used & $m$ is new
+      $m$ 已使用 & $m$ 是新的
       \\[1ex]
       \hline}{}
     \iftag{prvDiamond}{
@@ -53,18 +47,18 @@ integers as prefixes. The simplified rules are given in
       \RightLabel{\TRule{\False}{\Diamond}}
       \UnaryInfC{\sFmla{\False}{!A}[m]}
       \DisplayProof\\
-      $m$ is new & $m$ is used
+      $m$ 是新的 & $m$ 已使用
       \\[1ex]
       \hline}{}
     \end{tabular}
   \end{center}
-  \caption{Simplified rules for \Log{S5}.}
+  \caption{\Log{S5} 的简化规则。}
   \ollabel{tab:rules-S5}
 \end{table}
 
 \begin{ex}
-  We give a simplified closed tableau that shows $\Log{S5} \Proves
-  \Ax{5}$, i.e., $\Diamond!A \lif \Box\Diamond!A$.
+  我们给出一个简化的闭分析表，来证明 $\Log{S5} \Proves
+  \Ax{5}$，即 $\Diamond!A \lif \Box\Diamond!A$。
   \begin{oltableau}
     [\pFmla{\False}{\Diamond\formula{A} \lif \Box\Diamond \formula{A}}{1},
       just = \TAss

@@ -4,108 +4,89 @@
 
 \olfileid{sth}{ord-arithmetic}{mult}
 
-\olsection{Ordinal Multiplication}
+\olsection{序数乘法}
 
-We now turn to ordinal multiplication, and we approach this much like
-ordinal addition. So, suppose we want to multiply $\alpha$ by~$\beta$.
-To do this, you might imagine a rectangular grid, with width $\alpha$
-and height $\beta$; the product of $\alpha$ and $\beta$ is now the
-result of moving along each row, then moving through the next
-row\ldots until you have moved through the entire grid. Otherwise put,
-the product of $\alpha$ and $\beta$ arises by replacing \emph{each}
-element in $\beta$ with a copy of $\alpha$.  
+现在我们转向序数乘法，其处理方式与序数加法非常相似。假设我们要计算 $\alpha$ 乘以 $\beta$。为此，可以想象一个宽为 $\alpha$、高为 $\beta$ 的矩形网格；$\alpha$ 与 $\beta$ 的乘积，就是沿着每一行移动，然后移到下一行……直至遍历整个网格的结果。换言之，将 $\beta$ 中的\emph{每个}元素替换为 $\alpha$ 的一个\emph{副本}，就得到了 $\alpha$ 与 $\beta$ 的乘积。
 
-To make this formal, we simply use the reverse lexicographic ordering
-on the Cartesian product of $\alpha$ and $\beta$:
+为了将其形式化，我们直接对 $\alpha$ 和 $\beta$ 的笛卡尔积取逆字典序：
 
 \begin{defn}
-For any ordinals $\alpha, \beta$, their product $\alpha \ordtimes \beta = \ordtype{\alpha \times \beta, \rlexless}$.
+对于任意序数 $\alpha, \beta$，它们的乘积 $\alpha \ordtimes \beta = \ordtype{\alpha \times \beta, \rlexless}$。
 \end{defn}
 \noindent
-We must again confirm that this is a well-formed definition:
+我们必须再次确认这是一个良定义：
 
 \begin{lem}\ollabel{ordtimeslessiswo}
-$\tuple{\alpha \times \beta, \rlexless}$ is a well-order, for any
-ordinals $\alpha$ and $\beta$.
+对任意序数 $\alpha$ 和 $\beta$，$\tuple{\alpha \times \beta, \rlexless}$ 是一个良序。
 \end{lem}
 
 \begin{proof}
-Exactly as for \olref[add]{ordsumlessiswo}.
+证明与 \olref[add]{ordsumlessiswo} 完全相同。
 \end{proof}
 \noindent
-And it is not hard to prove that multiplication behaves thus:
+并且不难证明乘法满足以下性质：
 
 \begin{lem}\ollabel{ordtimesrecursion}
-For any ordinals $\alpha, \beta$:
+对任意序数 $\alpha, \beta$：
 \begin{align*}
 	\alpha \ordtimes 0 &= 0\\
 	\alpha \ordtimes (\beta \ordplus 1) &= 
 		(\alpha \ordtimes \beta) \ordplus \alpha\\
 	\alpha  \ordtimes \beta &= 
 		\supstrict_{\delta < \beta}(\alpha \ordtimes \delta) && 
-		\text{when $\beta$ is a limit ordinal}.
+		\text{当 $\beta$ 是极限序数时}.
 \end{align*}
 \end{lem}
 
 \begin{proof}
-Left as an exercise.
+留作练习。
 \end{proof}
 
-Indeed, just as in the case of addition, we could have defined ordinal
-multiplication via these recursion equations, rather than offering a
-direct definition. Equally, as with addition, certain behaviour is
-familiar:
+事实上，正如加法的情形一样，我们本可以通过这些递归方程来定义序数乘法，而不是直接给出定义。同样与加法类似，乘法的某些性质也是我们所熟悉的：
 
 \begin{lem}\ollabel{ordinalmultiplicationisnice}
-If $\alpha, \beta, \gamma$ are ordinals, then:
+若 $\alpha, \beta, \gamma$ 是序数，则：
 \begin{enumerate}
-	\item\ollabel{ordtimes1} if $\alpha \neq 0$ and $\beta < \gamma$,
-	then $\alpha \ordtimes \beta < \alpha \ordtimes \gamma$;
-	\item\ollabel{ordtimes2} if $\alpha \neq 0$ and $\alpha \ordtimes
-	\beta = \alpha\ordtimes\gamma$, then $\beta = \gamma$;
+	\item\ollabel{ordtimes1} 若 $\alpha \neq 0$ 且 $\beta < \gamma$，
+	则 $\alpha \ordtimes \beta < \alpha \ordtimes \gamma$；
+	\item\ollabel{ordtimes2} 若 $\alpha \neq 0$ 且 $\alpha \ordtimes
+	\beta = \alpha\ordtimes\gamma$，则 $\beta = \gamma$；
 	\item\ollabel{ordtimes3}  $\alpha \ordtimes (\beta \ordtimes
-	\gamma) = (\alpha \ordtimes \beta) \ordtimes \gamma$;
-	\item\ollabel{ordtimes4}  If $\alpha \leq \beta$, then $\alpha
-	\ordtimes \gamma \leq \beta \ordtimes \gamma$;
+	\gamma) = (\alpha \ordtimes \beta) \ordtimes \gamma$；
+	\item\ollabel{ordtimes4}  若 $\alpha \leq \beta$，则 $\alpha
+	\ordtimes \gamma \leq \beta \ordtimes \gamma$；
 	\item\ollabel{ordtimes5}  $\alpha \ordtimes (\beta \ordplus
 	\gamma) = (\alpha \ordtimes \beta )\ordplus (\alpha\ordtimes
-	\gamma)$.
+	\gamma)$。
 \end{enumerate}
 \end{lem}
 
 \begin{proof}
-Left as an exercise.
+留作练习。
 \end{proof}
 
-You can prove (or look up) other results, to your heart's content.
-But, given
-\olref[ord-arithmetic][add]{ordsumnotcommute}, the
-following should not come as a surprise:
+读者可按自己的兴趣去证明（或查阅）其他结果。但是，考虑到
+\olref[ord-arithmetic][add]{ordsumnotcommute}，
+以下结论应当不足为奇：
 
 \begin{prop}
-Ordinal multiplication is not commutative: $2 \ordtimes \omega  =
-\omega < \omega \ordtimes 2$
+序数乘法不满足交换律：$2 \ordtimes \omega  =
+\omega < \omega \ordtimes 2$。
 \end{prop}
 
 \begin{proof}
-$2 \ordtimes \omega = \supstrict_{n < \omega}(2\ordtimes  n) = \omega \in \supstrict_{n < \omega}(\omega \ordplus n) = \omega \ordplus \omega = \omega \ordtimes 2$.
+$2 \ordtimes \omega = \supstrict_{n < \omega}(2\ordtimes  n) = \omega \in \supstrict_{n < \omega}(\omega \ordplus n) = \omega \ordplus \omega = \omega \ordtimes 2$。
 \end{proof}
 \noindent 
-Again, the intuitive rationale is quite straightforward. To compute $2
-\ordtimes \omega$, you replace each natural number with two entities.
-You would get the same order type if you simply inserted all the
-``half'' numbers into the natural numbers, i.e., you considered the
-natural ordering on $\Setabs{\nicefrac{n}{2}}{n \in \omega}$. And, put
-like that, the order type is plainly the same as that of $\omega$
-itself. But, to compute $\omega \ordtimes 2$, you place down two
-copies of $\omega$, one after the other. 
+同样，其直观解释也非常直接。为了计算 $2
+\ordtimes \omega$，我们用两个对象替换每个自然数。如果简单地将所有“半数”插入自然数序列中，即考虑 $\Setabs{\nicefrac{n}{2}}{n \in \omega}$ 上的自然序，就会得到相同的序型。这样看来，该序型显然与 $\omega$ 本身的序型相同。但是，为了计算 $\omega \ordtimes 2$，则需要依次排下 $\omega$ 的两个副本，一个接在另一个之后。
 
 \begin{prob}
-Prove
-\olref[sth][ord-arithmetic][mult]{ordtimeslessiswo},
-\olref[sth][ord-arithmetic][mult]{ordtimesrecursion},
-and
-\olref[sth][ord-arithmetic][mult]{ordinalmultiplicationisnice}
+证明
+\olref[sth][ord-arithmetic][mult]{ordtimeslessiswo}、
+\olref[sth][ord-arithmetic][mult]{ordtimesrecursion}、
+以及
+\olref[sth][ord-arithmetic][mult]{ordinalmultiplicationisnice}。
 \end{prob}
 
 \end{document}

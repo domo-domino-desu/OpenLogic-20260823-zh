@@ -7,47 +7,32 @@
 \begin{document}
 
 \olfileid{cmp}{thy}{ces}
-\olsection{Computably Enumerable Sets}
+\olsection{可计算枚举集}
 
 \begin{defn}
-A set is \emph{computably enumerable} if it is empty or the range of a
-computable function.
+一个集合是\emph{可计算枚举的}，如果它是空集，或是某个可计算函数的值域。
 \end{defn}
 
 \begin{history}
-Computably enumerable sets are also called \emph{recursively
-  enumerable} instead. This is the original terminology, and today
-both are commonly used, as well as the abbreviations ``c.e.'' and
-``r.e.''
+可计算枚举集也可称为\emph{递归可枚举}集。这是最初的术语，如今两者及其缩写“c.e.”和“r.e.”都很常用。
 \end{history}
 
 \begin{explain}
-You should think about what the definition means, and why the
-terminology is appropriate. The idea is that if $S$ is the range of
-the computable function~$f$, then
+请思考这一定义的含义，以及为何该术语是恰当的。其直观是，如果 $S$ 是可计算函数~$f$ 的值域，那么
 \[
 S = \{ f(0), f(1), f(2), \dots \},
 \]
-and so $f$ can be seen as ``enumerating'' the elements of~$S$. Note
-that according to the definition, $f$~need not be an increasing
-function, i.e., the enumeration need not be in increasing order. In
-fact, $f$ need not even be injective, i.e., repetitions in the
-enumeration $f(0)$, $f(1)$, $f(2)$, \dots{} of~$S$ are allowed. For
-instance, the constant function $f(x) = 0$ enumerates the set $\{ 0
-\}$.
+因此 $f$ 可以看作“枚举”了~$S$ 的元素。注意，根据定义，$f$~不必是递增函数，即枚举的顺序不必是递增的。事实上，$f$ 甚至不必是单射的，即在~$S$ 的枚举 $f(0)$、$f(1)$、$f(2)$、\dots{} 中允许出现重复项。例如，常函数 $f(x) = 0$ 就枚举了集合 $\{ 0 \}$。
 \end{explain}
 
-Any computable set is computably enumerable. To see this, suppose
-$S$~is computable. If $S$ is empty, then by definition it is
-computably enumerable. Otherwise, let $a$ be any element of
-$S$. Define $f$ by
+任何可计算集都是可计算枚举的。为说明这一点，设 $S$~是可计算的。如果 $S$ 是空集，那么根据定义它是可计算枚举的。否则，令 $a$ 为 $S$ 中的任意元素。按下式定义 $f$：
 \[
 f(x) =
 \begin{cases}
-x & \text{if $\Char{S}(x) = 1$} \\
-a & \text{otherwise.}
+x & \text{如果 $\Char{S}(x) = 1$} \\
+a & \text{否则。}
 \end{cases}
 \]
-Then $f$ is a computable function, and $S$ is the range of~$f$.
+那么 $f$ 是可计算函数，且 $S$ 是~$f$ 的值域。
 
 \end{document}

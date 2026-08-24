@@ -8,69 +8,54 @@
 
 \olfileid{nml}{frd}{acc}
 
-\olsection{Properties of Accessibility Relations}
+\olsection{可达关系的性质}
 
-Many modal !!{formula}s turn out to be characteristic of simple, and
-even familiar, properties of the accessibility relation. In one
-direction, that means that any model that has a given property makes a
-corresponding !!{formula} (and all its substitution instances)
-true. We begin with five classical examples of kinds of accessibility
-relations and the formulas the truth of which they guarantee.
+许多模态公式结果都刻画了可达关系的简单甚至为人熟知的性质。在一个方向上，这意味着任何具有给定性质的模型都会使得相应的公式（及其所有代入实例）为真。我们先给出可达关系的五个经典种类以及它们所保证为真的公式。
 
 \begin{thm}\ollabel{thm:soundschemas}
-  Let $\mModel{M} = \tuple{W, R, V}$ be a model.  If $R$ has the
-  property on the left side of \olref{tab:five}, every instance of the
-  !!{formula} on the right side is true in~$\mModel{M}$.
+  令 $\mModel{M} = \tuple{W, R, V}$ 为一个模型。如果 $R$ 具有 \olref{tab:five} 左侧的性质，则右侧公式的每个实例在~$\mModel{M}$ 中为真。
 \end{thm}
 
 \begin{table}[t]
     \begin{tabular}{| l || l |}
       \hline
-      {\emph{If $R$ is \dots}} & {\emph{then \dots is true in~$\mModel{M}$:}} \\
+      {\emph{若 $R$ 是……}} & {\emph{则……在~$\mModel{M}$中为真：}} \\
       \hline \hline
-      \emph{serial}: $\forall u \exists v Ruv$ & \hbox to.43\textwidth
+      \emph{持续的}: $\forall u \exists v Ruv$ & \hbox to.43\textwidth
            {$\Box p \lif \Diamond p$ \hfill (\Ax{D})} \\
       \hline
-      \emph{reflexive}: $\forall w Rww$  
+      \emph{自反的}: $\forall w Rww$  
       & \hbox to.43\textwidth
           {$\Box p \lif p$ \hfill (\Ax{T})} \\
       \hline
-      \emph{symmetric}: &  \hbox to .43\textwidth
+      \emph{对称的}: &  \hbox to .43\textwidth
            {$p \lif \Box\Diamond p$ \hfill (\Ax{B})} \\
            $\forall u\forall v(Ruv \lif Rvu)$ & \\
       \hline
-      \emph{transitive}: & \hbox to.43\textwidth
+      \emph{传递的}: & \hbox to.43\textwidth
            {$\Box p \lif \Box \Box p$ \hfill (\Ax{4})} \\
       $\forall u \forall v \forall w ((Ruv \land Rvw) \lif Ruw)$ & \\
       \hline 
-      \emph{euclidean}: & \hbox to .43\textwidth
+      \emph{欧几里得的}: & \hbox to .43\textwidth
         {$\Diamond p \lif \Box\Diamond p$ \hfill (\Ax{5})} \\
       $\forall w \forall u \forall v ((Rwu \land Rwv) \lif Ruv)$ &\\
       \hline
     \end{tabular}
-    \caption{Five correspondence facts.}
+    \caption{五个对应事实。}
     \ollabel{tab:five}
   \end{table} 
 
 
 \begin{proof}
-  Here is the case for \Ax{B}: to show that the schema is true in a
-  model we need to show that all of its instances are true at all worlds
-  in the model. So let $!A \lif \Box\Diamond !A$ be a given instance
-  of \Ax{B}, and let $w \in W$ be an arbitrary world. Suppose the
-  antecedent $!A$ is true at $w$, in order to show that $\Box \Diamond
-  !A$ is true at $w$. So we need to show that $\Diamond !A$ is true at
-  all $w'$ accessible from $w$. Now, for any $w'$ such that $Rww'$ we
-  have, using the hypothesis of symmetry, that also $Rw'w$ (see
-  \olref{fig:Bsymm}). Since $\mSat{M}{!A}[w]$, we have
-  $\mSat{M}{\Diamond !A}[w']$. Since $w'$ was an arbitrary world such
-  that $Rww'$, we have $\mSat{M}{\Box\Diamond!A}[w]$.
+  这里是 \Ax{B} 的情况：要证明该模式在模型中为真，我们需要证明它的所有实例在模型的所有世界上都为真。因此，设 $!A \lif \Box\Diamond !A$ 是 \Ax{B} 的一个给定实例，并设 $w \in W$ 是任意一个世界。假设前件 $!A$ 在 $w$ 上为真，以证明 $\Box \Diamond
+  !A$ 在 $w$ 上为真。为此，我们需要证明对于所有从 $w$ 可达的 $w'$，$\Diamond !A$ 在 $w'$ 上为真。现在，对于任意满足 $Rww'$ 的 $w'$，利用对称性假设，可得 $Rw'w$（参见 \olref{fig:Bsymm}）。由于 $\mSat{M}{!A}[w]$，我们有
+  $\mSat{M}{\Diamond !A}[w']$。由于 $w'$ 是任意满足 $Rww'$ 的世界，我们得到 $\mSat{M}{\Box\Diamond!A}[w]$。
 
-  We leave the other cases as exercises.
+  其余情况留作练习。
 \end{proof}
 
 \begin{prob}
-  Complete the proof of \olref[nml][frd][acc]{thm:soundschemas}.
+  完成 \olref[nml][frd][acc]{thm:soundschemas} 的证明。
 \end{prob}
 
 \begin{figure}
@@ -84,82 +69,62 @@ relations and the formulas the truth of which they guarantee.
       \draw[->, bend left] (w2) to (w1); 
     \end{tikzpicture}
   \end{center}
-\caption{The argument from symmetry.}
+\caption{对称性论证。}
 \ollabel{fig:Bsymm}
 \end{figure}
 
-Notice that the converse implications of \olref{thm:soundschemas} do
-not hold: it's not true that if a model verifies a schema, then the
-accessibility relation of that model has the corresponding property.
-In the case of \Ax{T} and reflexive models, it is easy to give an
-example of a model in which \Ax{T} itself fails: let $W = \{w\}$ and
-$V(p) = \emptyset$. Then $R$ is not reflexive, but $\mSat{M}{\Box
-  p}[w]$ and $\mSat/{M}{p}[w]$. But here we have just a single
-instance of \Ax{T} that fails in~$\mModel{M}$; other instances, e.g.,
-$\Box \lnot p \lif \lnot p$ are true. It is harder to give examples
-where \emph{every substitution instance} of~\Ax{T} is true
-in~$\mModel{M}$ and $\mModel{M}$ is not reflexive. But there are such
-models, too:
+注意，\olref{thm:soundschemas} 的反向蕴涵并不成立：并非如果一个模型使得一个模式为真，该模型的可达关系就具有对应的性质。
+对于 \Ax{T} 和自反模型，很容易给出一个使得 \Ax{T} 本身不成立的模型的例子：令 $W = \{w\}$ 且 $V(p) = \emptyset$。
+那么 $R$ 不是自反的，但是 $\mSat{M}{\Box
+  p}[w]$ 且 $\mSat/{M}{p}[w]$。但这里我们只是有一个 \Ax{T} 的实例在~$\mModel{M}$中不成立；其他实例，例如 $\Box \lnot p \lif \lnot p$，则是真的。
+要给出一个模型，使得~\Ax{T} 的\emph{所有代入实例}在~$\mModel{M}$中都为真，而 $\mModel{M}$ 却不是自反的，则更加困难。但这样的模型确实存在：
 
 \begin{prop}\ollabel{prop:reflexive}
-  Let $\mModel{M} = \tuple{W, R, V}$ be a model such that $W = \{u, v
-  \}$, where worlds $u$ and $v$ are related by $R$: i.e., both $Ruv$
-  and $Rvu$.  Suppose that for all $p$: $u \in V(p) \Leftrightarrow v
-  \in V(p)$. Then:
+  设 $\mModel{M} = \tuple{W, R, V}$ 是一个模型，其中 $W = \{u, v
+  \}$，并且世界 $u$ 和 $v$ 通过 $R$ 相互关联：即 $Ruv$ 和 $Rvu$ 都成立。
+  假设对所有 $p$：$u \in V(p) \Leftrightarrow v
+  \in V(p)$。那么：
   \begin{enumerate}
-  \item For all $!A$: $\mSat{M}{!A}[u]$ if and only if
-    $\mSat{M}{!A}[v]$ (use induction on $!A$).
-  \item Every instance of~\Ax{T} is true in $\mModel{M}$.
+  \item 对所有 $!A$：$\mSat{M}{!A}[u]$ 当且仅当
+    $\mSat{M}{!A}[v]$（对 $!A$ 施归纳）。
+  \item \Ax{T} 的每个实例在 $\mModel{M}$ 中都为真。
   \end{enumerate}
-  Since $\mModel{M}$ is not reflexive (it is, in fact,
-  \emph{irreflexive}), the converse of \olref{thm:soundschemas}
-  fails in the case of \Ax{T} (similar arguments can be given for
-  some---though not all---the other schemas mentioned in
-  \olref{thm:soundschemas}).
+  由于 $\mModel{M}$ 不是自反的（实际上它是\emph{非自反的}），
+  \olref{thm:soundschemas} 的反向蕴涵在 \Ax{T} 的情况下不成立（\olref{thm:soundschemas} 中提到的一些（尽管不是全部）其他模式也可以给出类似的论证）。
 \end{prop}
 
 \begin{prob}
-  Prove the claims in \olref[nml][frd][acc]{prop:reflexive}.
+  证明 \olref[nml][frd][acc]{prop:reflexive} 中的断言。
 \end{prob}
 
-Although we will focus on the five classical !!{formula}s \Ax{D},
-\Ax{T}, \Ax{B}, \Ax{4}, and \Ax{5}, we record in
-\olref{tab:anotherfive} a few more properties of accessibility
-relations. The accessibility relation~$R$ is partially functional, if
-from every world at most one world is accessible. If it is the case
-that from every world exactly one world is accessible, we call it
-functional. (Thus the functional relations are precisely those that
-are both serial and partially functional). They are called
-``functional'' because the accessibility relation operates like a
-(partial) function. A relation is weakly dense if whenever $Ruv$,
-there is a~$w$ ``between'' $u$ and~$v$. So weakly dense relations are
-in a sense the opposite of transitive relations: in a transitive
-relation, whenever you can reach $v$ from~$u$ by a detour via~$w$, you
-can reach $v$ from $u$ directly; in a weakly dense relation, whenever
-you can reach $v$ from~$u$ directly, you can also reach it by a detour
-via some~$w$. A relation is weakly directed if whenever you can reach
-worlds $u$ and~$v$ from some world~$w$, you can reach a single
-world~$t$ from both $u$ and~$v$---this is sometimes called the
-``diamond property'' or ``confluence.''
+尽管我们将主要关注五个经典公式 \Ax{D}、\Ax{T}、\Ax{B}、\Ax{4} 和 \Ax{5}，但我们还是在
+\olref{tab:anotherfive} 中记录了可达关系的更多一些性质。
+可达关系~$R$ 是\emph{部分函数的}，如果从每个世界出发，最多只有一个世界是可达的。
+如果从每个世界出发恰好有一个世界是可达的，我们就称它是\emph{函数的}。
+（因此，函数关系恰好就是那些既持续又部分函数的关系）。之所以称为“函数的”，是因为可达关系的作用方式如同（偏）函数。
+一个关系是\emph{弱稠密的}，如果只要 $Ruv$，就存在一个位于 $u$ 和~$v$ “之间”的~$w$。
+所以，弱稠密关系在某种意义上是传递关系的反面：在传递关系中，只要能从 $u$ 经由 $w$ 绕道到达 $v$，就能直接从 $u$ 到达 $v$；
+在弱稠密关系中，只要能直接从 $u$ 到达 $v$，也能经由某个 $w$ 绕道到达 $v$。
+一个关系是\emph{弱有向的}，如果只要从某个世界~$w$ 能到达世界 $u$ 和~$v$，就能从 $u$ 和 $v$ 均到达同一个世界~$t$——这有时也被称为‘菱形性质’或‘汇合性’。
 
 \begin{table}[t]
     \begin{tabular}{| p{.50\textwidth} || p{.43\textwidth} |}
       \hline
-      {\emph{If $R$ is \dots}} & {\emph{then \dots is true in~$\mModel{M}$:}} \\
+      {\emph{若 $R$ 是……}} & {\emph{则……在~$\mModel{M}$ 中为真：}} \\
       \hline \hline
-      \emph{partially functional}: & 
+      \emph{部分函数的}： & 
       \multirow{2}{*}{$\Diamond p \lif \Box p$} \\
       $ \forall w \forall u \forall v ((Rwu \land Rwv) \lif u =v )$ & \\
       \hline
-      \multirow{2}{*}{\emph{functional}: $\forall w \exists v \forall u(Rwu \liff \eq[u][v]) $} 
+      \multirow{2}{*}{\emph{函数的}：$\forall w \exists v \forall u(Rwu \liff \eq[u][v]) $} 
       & \multirow{2}{*}{$\Diamond p \liff \Box p$} \\
       & \\
       \hline
-      \emph{weakly dense}: &  \multirow{2}{*}{$\Box \Box p \lif
+      \emph{弱稠密的}： &  \multirow{2}{*}{$\Box \Box p \lif
         \Box p$} \\
       $\forall u\forall v(Ruv \lif \exists w(Ruw \land Rwv))$ & \\
       \hline
-      \emph{weakly connected}: &
+      \emph{弱连通的}： &
       \multirow{3}{*}{\hbox to.43\textwidth{$
         \begin{array}{@{}l@{}}
           \Box ((p \land \Box p) \lif q) \lor {} \\
@@ -169,21 +134,21 @@ world~$t$ from both $u$ and~$v$---this is sometimes called the
       $\forall w \forall u \forall v ((Rwu \land Rwv) \lif {}$ &\\
       \qquad $(Ruv \lor u=v \lor Rvu))$ & \\
       \hline 
-      \emph{weakly directed}: & \multirow{3}{*}{\hbox to .43\textwidth
+      \emph{弱有向的}： & \multirow{3}{*}{\hbox to .43\textwidth
         {$\Diamond\Box p \lif \Box\Diamond p$\hfill (\Ax{G})}} \\
       $\forall w \forall u \forall v ((Rwu \land Rwv) \lif {}$ & \\
       \qquad $\exists t (Rut \land Rvt))$ & \\
       \hline
     \end{tabular}
-    \caption{Five more correspondence facts.}
+    \caption{另外五个对应事实。}
     \ollabel{tab:anotherfive}
   \end{table} 
 
 \begin{prob}
-  Let $\mModel{M} = \tuple{W, R, V}$ be a model. Show that if $R$
-  satisfies the left-hand properties of
-  \olref[nml][frd][acc]{tab:anotherfive}, every instance of the
-  corresponding right-hand formula is true in~$\mModel{M}$.
+  设 $\mModel{M} = \tuple{W, R, V}$ 为一个模型。证明：若 $R$
+  满足
+  \olref[nml][frd][acc]{tab:anotherfive} 表格左侧的性质，
+  则右侧对应的公式的每个实例在~$\mModel{M}$ 中均为真。
 \end{prob}
 
 

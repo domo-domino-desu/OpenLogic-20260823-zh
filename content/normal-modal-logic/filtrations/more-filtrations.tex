@@ -8,24 +8,9 @@
 
 \olfileid{nml}{fil}{acc}
 
-\olsection{Filtrations and Properties of Accessibility}
+\olsection{滤过与可达关系的性质}
 
-As noted, filtrations of universal, serial, and reflexive models are
-always also universal, serial, or reflexive. But not every filtration
-of a symmetric or transitive model is symmetric or transitive,
-respectively. In some cases, however, it is possible to define
-filtrations so that this does hold. In order to do so, we proceed as
-in the definition of the coarsest filtration, but add additional
-conditions to the definition of~$R^*$.  Let $\Gamma$ be closed under
-sub-!!{formula}s. Consider the relations~$C_i(u,v)$ in
-\olref{tab:Cn-filtrations} between worlds $u$, $v$ in a model
-$\mModel{M} =\tuple{W, R, V}$. We can define $R^*[u][v]$ on the basis
-of combinations of these conditions. For instance, if we stipulate
-that $R^*[u][v]$ iff the condition $C_1(u,v)$ holds, we get exactly
-the coarsest filtration. If we stipulate $R^*[u][v]$ iff both
-$C_1(u,v)$ and $C_2(u, v)$ hold, we get a different filtration. It is
-``finer'' than the coarsest since fewer pairs of worlds satisfy
-$C_1(u,v)$ and $C_2(u,v)$ than $C_1(u,v)$ alone.
+如前所述，全称模型、序列模型、自反模型的滤过也总是全称、序列或自反的。但对称模型或传递模型的滤过却未必分别是对称的或传递的。不过在某些情形下，我们确实可以把滤过定义成使这条性质成立。为此，我们仿照最粗滤过的定义那样进行，只是在~$R^*$ 的定义里再加上一些额外条件。设 $\Gamma$ 对子公式封闭。考虑模型 $\mModel{M} =\tuple{W, R, V}$ 中世界 $u$、$v$ 之间、在 \olref{tab:Cn-filtrations} 里给出的那些关系~$C_i(u,v)$。我们可以在这些条件的各种组合的基础上定义 $R^*[u][v]$。举例来说，如果我们规定 $R^*[u][v]$ 当且仅当条件 $C_1(u,v)$ 成立，得到的恰好就是最粗滤过。如果我们规定 $R^*[u][v]$ 当且仅当 $C_1(u,v)$ 和 $C_2(u, v)$ 都成立，就会得到一个不同的滤过。它比最粗滤过"更细"，因为同时满足 $C_1(u,v)$ 和 $C_2(u,v)$ 的世界对，比只满足 $C_1(u,v)$ 的世界对要少。
 
 \begin{table}[ht]
   \centering
@@ -33,103 +18,97 @@ $C_1(u,v)$ and $C_2(u,v)$ than $C_1(u,v)$ alone.
     \hline
     \multirow{2}{*}{$C_1(u,v)$:}
     \iftag{prvBox}{&
-      if $\Box!A \in \Gamma$ and $\mSat{M}{\Box!A}[u]$
-      then $\mSat{M}{!A}[v]$;\iftag{prvDiamond}{ and}{}\\}{}
+      若 $\Box!A \in \Gamma$ 且 $\mSat{M}{\Box!A}[u]$
+      ，则 $\mSat{M}{!A}[v]$；\iftag{prvDiamond}{ 并且}{}\\}{}
     \iftag{prvDiamond}{&
-      if $\Diamond!A \in \Gamma$  and $\mSat{M}{!A}[v]$
-      then $\mSat{M}{\Diamond!A}[u]$; \\}{}
+      若 $\Diamond!A \in \Gamma$  且 $\mSat{M}{!A}[v]$
+      ，则 $\mSat{M}{\Diamond!A}[u]$； \\}{}
     \hline
-    \multirow{2}{*}{$C_2(u,v)$:} 
+    \multirow{2}{*}{$C_2(u,v)$:}
     \iftag{prvBox}{&
-      if $\Box!A \in \Gamma$ and $\mSat{M}{\Box!A}[v]$
-      then $\mSat{M}{!A}[u]$;\iftag{prvDiamond}{ and}{}\\}{}
+      若 $\Box!A \in \Gamma$ 且 $\mSat{M}{\Box!A}[v]$
+      ，则 $\mSat{M}{!A}[u]$；\iftag{prvDiamond}{ 并且}{}\\}{}
     \iftag{prvDiamond}{&
-      if $\Diamond!A \in \Gamma$ and $\mSat{M}{!A}[u]$
-      then $\mSat{M}{\Diamond!A}[v]$; \\}{}
+      若 $\Diamond!A \in \Gamma$ 且 $\mSat{M}{!A}[u]$
+      ，则 $\mSat{M}{\Diamond!A}[v]$； \\}{}
     \hline
     \multirow{2}{*}{$C_3(u,v)$:}
     \iftag{prvBox}{&
-      if $\Box!A \in \Gamma$ and $\mSat{M}{\Box!A}[u]$
-      then $\mSat{M}{\Box!A}[v]$;\iftag{prvDiamond}{ and}{}\\}{}
+      若 $\Box!A \in \Gamma$ 且 $\mSat{M}{\Box!A}[u]$
+      ，则 $\mSat{M}{\Box!A}[v]$；\iftag{prvDiamond}{ 并且}{}\\}{}
     \iftag{prvDiamond}{&
-      if $\Diamond!A \in \Gamma$ and $\mSat{M}{\Diamond!A}[v]$
-      then $\mSat{M}{\Diamond!A}[u]$; \\}{}
+      若 $\Diamond!A \in \Gamma$ 且 $\mSat{M}{\Diamond!A}[v]$
+      ，则 $\mSat{M}{\Diamond!A}[u]$； \\}{}
     \hline
     \multirow{2}{*}{$C_4(u,v)$:}
     \iftag{prvBox}{&
-      if $\Box!A \in \Gamma$ and $\mSat{M}{\Box!A}[v]$
-      then $\mSat{M}{\Box!A}[u]$;\iftag{prvDiamond}{ and}{}\\}{}
+      若 $\Box!A \in \Gamma$ 且 $\mSat{M}{\Box!A}[v]$
+      ，则 $\mSat{M}{\Box!A}[u]$；\iftag{prvDiamond}{ 并且}{}\\}{}
     \iftag{prvDiamond}{&
-      if $\Diamond!A \in \Gamma$ and $\mSat{M}{\Diamond!A}[u]$
-      then $\mSat{M}{\Diamond!A}[v]$; \\}{}
+      若 $\Diamond!A \in \Gamma$ 且 $\mSat{M}{\Diamond!A}[u]$
+      ，则 $\mSat{M}{\Diamond!A}[v]$； \\}{}
     \hline
     \end{tabular}
-  \caption{Conditions on possible worlds for defining
-    filtrations.}
+  \caption{用于定义滤过的、关于可能世界的条件。}
   \ollabel{tab:Cn-filtrations}
 \end{table}
 
 \begin{thm}\ollabel{thm:more-filtrations}
-  Let $\mModel{M} =\tuple{W,R,V}$ be a model, $\Gamma$ closed under
-  sub-!!{formula}s. Let $W^*$ and $V^*$ be defined as in
-  \olref[fil]{defn:filtration}. Then:
+  设 $\mModel{M} =\tuple{W,R,V}$ 是一个模型，$\Gamma$ 对子公式封闭。设 $W^*$ 和 $V^*$
+  按 \olref[fil]{defn:filtration} 中的定义给出。则：
   \begin{enumerate}
-  \item Suppose $R^*[u][v]$ if and only if $C_1(u, v) \land
-    C_2(u,v)$. Then $R^*$ is symmetric, and $\mModel{M^*} =
-    \tuple{W^*,R^*,V^*}$ is a filtration if $\mModel{M}$ is symmetric.
-  \item Suppose $R^*[u][v]$ if and only if $C_1(u, v)
-    \land C_3(u,v)$. Then $R^*$ is transitive, and
-    $\mModel{M^*}=\tuple{W^*,R^*,V^*}$ is a filtration if $\mModel{M}$
-    is transitive.
-  \item Suppose $R^*[u][v]$ if and only if $C_1(u, v) \land C_2(u,v)
-    \land C_3(u,v) \land C_4(u,v)$. Then $R^*$ is symmetric and
-    transitive, and $\mModel{M^*}=\tuple{W^*,R^*,V^*}$ is a filtration
-    if $\mModel{M}$ is symmetric and transitive.
-  \item Suppose $R^*$ is defined as $R^*[u][v]$ if and only if $C_1(u,
-    v) \land C_3(u,v) \land C_4(u,v)$. Then $R^*$ is transitive and
-    euclidean, and $\mModel{M^*}=\tuple{W^*,R^*,V^*}$ is a filtration
-    if $\mModel{M}$ is transitive and euclidean.
+  \item 设 $R^*[u][v]$ 当且仅当 $C_1(u, v) \land
+    C_2(u,v)$。则 $R^*$ 是对称的，且当 $\mModel{M}$ 是对称的时候，$\mModel{M^*} =
+    \tuple{W^*,R^*,V^*}$ 是一个滤过。
+  \item 设 $R^*[u][v]$ 当且仅当 $C_1(u, v)
+    \land C_3(u,v)$。则 $R^*$ 是传递的，且当 $\mModel{M}$
+    是传递的时候，$\mModel{M^*}=\tuple{W^*,R^*,V^*}$ 是一个滤过。
+  \item 设 $R^*[u][v]$ 当且仅当 $C_1(u, v) \land C_2(u,v)
+    \land C_3(u,v) \land C_4(u,v)$。则 $R^*$ 是对称且传递的，且当 $\mModel{M}$
+    是对称且传递的时候，$\mModel{M^*}=\tuple{W^*,R^*,V^*}$ 是一个滤过。
+  \item 设 $R^*$ 定义为：$R^*[u][v]$ 当且仅当 $C_1(u,
+    v) \land C_3(u,v) \land C_4(u,v)$。则 $R^*$ 是传递且欧几里得的，且当 $\mModel{M}$
+    是传递且欧几里得的时候，$\mModel{M^*}=\tuple{W^*,R^*,V^*}$ 是一个滤过。
   \end{enumerate}
 \end{thm}
 
 \begin{proof}
   \begin{enumerate}
-    \item It's immediate that $R^*$ is symmetric, since $C_1(u,v)
-      \Leftrightarrow C_2(v,u)$ and $C_2(u,v) \Leftrightarrow
-      C_1(v,u)$. So it's left to show that if $\mModel{M}$ is
-      symmetric then $\mModel{M^*}$ is a filtration
-      through~$\Gamma$. Condition $C_1(u,v)$ guarantees that
+    \item $R^*$ 是对称的这一点是显然的，因为 $C_1(u,v)
+      \Leftrightarrow C_2(v,u)$ 且 $C_2(u,v) \Leftrightarrow
+      C_1(v,u)$。所以剩下要证明的是：若 $\mModel{M}$ 是
+      对称的，则 $\mModel{M^*}$ 是通过~$\Gamma$ 的一个滤过。条件 $C_1(u,v)$ 保证了
       \iftag{prvBox}{%
         \iftag{prvDiamond}{%
-          \olref[fil]{defn:filtration-R2} and
-          \olref[fil]{defn:filtration-R3} of
-          \olref[fil]{defn:filtration} are}{%
-          \olref[fil]{defn:filtration}\olref[fil]{defn:filtration-R2} is}}{%
-        \olref[fil]{defn:filtration}\olref[fil]{defn:filtration-R3} is}
-      satisfied. So we just have to verify
-      \olref[fil]{defn:filtration}\olref[fil]{defn:filtration-R1},
-      i.e., that $Ruv$ implies $R^*[u][v]$.
+          \olref[fil]{defn:filtration} 的
+          \olref[fil]{defn:filtration-R2} 和
+          \olref[fil]{defn:filtration-R3} 都}{%
+          \olref[fil]{defn:filtration}\olref[fil]{defn:filtration-R2} }}{%
+        \olref[fil]{defn:filtration}\olref[fil]{defn:filtration-R3} }
+      得到满足。所以我们只需验证
+      \olref[fil]{defn:filtration}\olref[fil]{defn:filtration-R1}，
+      即证明 $Ruv$ 蕴涵 $R^*[u][v]$。
 
-      So suppose $Ruv$. To show $R^*[u][v]$ we need to establish that
-      $C_1(u,v)$ and $C_2(u,v)$. For $C_1$: \iftag{prvBox}{if $\Box!A
-        \in\Gamma$ and $\mSat{M}{\Box!A}[u]$ then also
-        $\mSat{M}{!A}[v]$ (since $Ruv$).\iftag{prvDiamond}{ Similarly,
-        }{}}{}\iftag{prvDiamond}{if $\Diamond!A \in \Gamma$ and
-        $\mSat{M}{!A}[v]$ then $\mSat{M}{\Diamond!A}[u]$ since
-        $Ruv$.}{} For $C_2$: \iftag{prvBox}{if $\Box!A \in \Gamma$ and
-        $\mSat{M}{\Box!A}[v]$ then $Ruv$ implies $Rvu$ by symmetry, so
-        that $\mSat{M}{!A}[u]$.\iftag{prvDiamond}{ Similarly,
-        }{}}{}\iftag{prvDiamond}{if $\Diamond!A \in\Gamma$ and
-        $\mSat{M}{!A}[u]$ then $\mSat{M}{\Diamond!A}[v]$ (since $Rvu$
-        by symmetry).}{}
-    \item Exercise.
-    \item Exercise.
-    \item Exercise.
+      于是设 $Ruv$。要证明 $R^*[u][v]$，我们需要证明
+      $C_1(u,v)$ 和 $C_2(u,v)$ 都成立。对于 $C_1$：\iftag{prvBox}{若 $\Box!A
+        \in\Gamma$ 且 $\mSat{M}{\Box!A}[u]$，则由 $Ruv$ 也有
+        $\mSat{M}{!A}[v]$。\iftag{prvDiamond}{ 类似地，
+        }{}}{}\iftag{prvDiamond}{若 $\Diamond!A \in \Gamma$ 且
+        $\mSat{M}{!A}[v]$，则由
+        $Ruv$ 有 $\mSat{M}{\Diamond!A}[u]$。}{} 对于 $C_2$：\iftag{prvBox}{若 $\Box!A \in \Gamma$ 且
+        $\mSat{M}{\Box!A}[v]$，则由对称性 $Ruv$ 蕴涵 $Rvu$，从而
+        $\mSat{M}{!A}[u]$。\iftag{prvDiamond}{ 类似地，
+        }{}}{}\iftag{prvDiamond}{若 $\Diamond!A \in\Gamma$ 且
+        $\mSat{M}{!A}[u]$，则 $\mSat{M}{\Diamond!A}[v]$（由对称性 $Rvu$
+        成立）。}{}
+    \item 练习。
+    \item 练习。
+    \item 练习。
   \end{enumerate}
 \end{proof}
 
 \begin{prob}
-  Complete the proof of \olref[nml][fil][acc]{thm:more-filtrations}.
+  完成 \olref[nml][fil][acc]{thm:more-filtrations} 的证明。
 \end{prob}
 
 \end{document}

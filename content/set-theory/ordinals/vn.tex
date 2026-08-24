@@ -3,59 +3,47 @@
 \begin{document}
 
 \olfileid{sth}{ordinals}{vn}	
-\olsection[Von Neumann's Construction]{Von Neumann's Construction of the Ordinals}
+\olsection[Von Neumann's Construction]{von Neumann（冯·诺伊曼）的序数构造}
 
-\olref[sth][ordinals][iso]{thm:woalwayscomparable} gives rise to a
-thought. We could introduce certain objects, called \emph{order
-types}, to go proxy for the well-orderings. Writing $\ordtype{A, <}$
-for the order type of the well-ordering $\tuple{A, <}$, we would hope
-to secure the following two principles:
+\olref[sth][ordinals][iso]{thm:woalwayscomparable} 引发了一个想法。
+我们可以引入一些称为\emph{序型}的对象，来充当良序的代表。
+用 $\ordtype{A, <}$ 表示良序 $\tuple{A, <}$ 的序型，我们希望确立以下两条原则：
 \begin{align*}
 	\ordtype{A, <} = \ordtype{B, \lessdot} & 
-	\text{ iff } \ordeq{\tuple{A, <}}{\tuple{B, \lessdot}}\\
+	\text{ 当且仅当 } \ordeq{\tuple{A, <}}{\tuple{B, \lessdot}}\\
 	\ordtype{A, <} < \ordtype{B, \lessdot}&
-	\text{ iff }\ordeq{\tuple{A, <}}{\tuple{B_b, \lessdot_b}}\text{ for some }b \in B
+	\text{ 当且仅当 }\ordeq{\tuple{A, <}}{\tuple{B_b, \lessdot_b}}\text{ 对于某个 }b \in B
 \end{align*}
-Moreover, we might hope to introduce order-types \emph{as certain
-sets}, just as we can introduce the natural numbers as certain sets. 
+此外，我们可能还希望将序型\emph{作为某类集合}引入，就像我们可以将自然数作为某类集合引入一样。
 
-The most common way to do this---and the approach we will follow---is
-to define these order-types via certain \emph{canonical} well-ordered
-sets. These canonical sets were first introduced by von Neumann:
+实现这一目标最常用的方法——也是我们将遵循的路径——是通过某些\emph{典范的}良序集来定义这些序型。
+这些典范集合最早由 von Neumann 引入：
 
 \begin{defn}
-The set $A$ is \emph{transitive} {iff} $(\forall x \in A)x \subseteq
-A$. Then $A$ is an \emph{ordinal} {iff} $A$ is transitive and
-well-ordered by $\in$.
+集合 $A$ 是\emph{传递的}，当且仅当 $(\forall x \in A)x \subseteq A$。
+$A$ 是\emph{序数}，当且仅当 $A$ 是传递的且被 $\in$ 良序化。
 \end{defn}
-\noindent
-In what follows, we will use Greek letters for ordinals. It follows
-immediately from the definition that, if $\alpha$ is an ordinal, then
-$\tuple{\alpha, \in_\alpha}$ is a well-ordering, where $\in_\alpha =
-\Setabs{\tuple{x, y} \in \alpha^2}{x \in y}$. So, abusing notation a
-little, we can just say that $\alpha$ \emph{itself} is a
-well-ordering. 
 
-Here are our first few ordinals:
+\noindent
+在下文中，我们将用希腊字母表示序数。
+由定义立得，若 $\alpha$ 为序数，则 $\tuple{\alpha, \in_\alpha}$ 为良序，其中 $\in_\alpha =
+\Setabs{\tuple{x, y} \in \alpha^2}{x \in y}$。
+所以，稍加滥用记号，我们可以直接说 $\alpha$ \emph{本身}就是一个良序。
+
+以下是我们的前几个序数：
 \[
 	\emptyset, \{\emptyset\}, 
 	\{\emptyset, \{\emptyset\}\}, 
 	\{\emptyset, \{\emptyset\}, \{\emptyset, \{\emptyset\}\}\}, \ldots
 \]
-You will note that these are the first few ordinals that we
-encountered in our Axiom of Infinity, i.e., in von Neumann's
-definition of $\omega$ (see \olref[sth][z][infinity-again]{sec}). This
-is no coincidence. Von Neumann's definition of the ordinals treats
-natural numbers as ordinals, but allows for transfinite ordinals too. 
+你会注意到，这些正是我们在无穷公理中，即在 von Neumann 对 $\omega$ 的定义中（参见 \olref[sth][z][infinity-again]{sec}）最初遇到的那几个序数。
+这并非巧合。von Neumann 的序数定义将自然数视为序数，但也允许存在超限序数。
 
-As always, we can now ask: \emph{are} these the ordinals? Or has von
-Neumann simply given us some sets that we can \emph{treat} as the
-ordinals? The kinds of discussions one might have about this question
-are similar to the discussions we had in \olref[sfr][rel][ref]{sec},
-\olref[sfr][arith][ref]{sec},
-\olref[sfr][infinite][dedekindsproof]{sec}, and
-\olref[sth][z][nat]{sec}, so we will not belabour the point.
-Instead, in what follows, we will simply use ``the ordinals'' to speak
-of ``the von Neumann ordinals''. 
+和往常一样，我们现在可以问：这些\emph{就是}序数吗？还是说 von Neumann 仅仅给了我们一些可以\emph{当作}序数来处理的集合？
+关于这个问题的讨论，与我们之前在 \olref[sfr][rel][ref]{sec}、
+\olref[sfr][arith][ref]{sec}、
+\olref[sfr][infinite][dedekindsproof]{sec} 以及
+\olref[sth][z][nat]{sec} 中进行的讨论类似，因此我们就不在此赘述了。
+在后续行文中，我们将简单地用“序数”来指代“冯·诺伊曼序数”。
 
 \end{document}

@@ -8,119 +8,102 @@
 
 \olfileid{nml}{syn}{trw}
 
-\olsection{Truth at a World}
+\olsection{世界上的真}
 
-Every modal model determines which modal !!{formula}s count as true at
-which worlds in it. The relation ``model $\mModel{M}$ makes
-!!{formula}~$!A$ true at world~$w$'' is the basic notion of relational
-semantics. The relation is defined inductively and coincides with the
-usual characterization using truth tables for the non-modal operators.
+每个模态模型决定了其中哪些模态公式在哪些世界上为真。“模型 $\mModel{M}$ 使公式~$!A$ 在世界~$w$ 上为真”这一关系是关系语义学的基本概念。该关系是归纳定义的，并且对于非模态算子，其定义与使用真值表的通常刻画一致。
 
 \begin{defn}\ollabel{defn:mmodels}
-  \emph{Truth of !!a{formula}~$!A$ at~$w$} in a~$\mModel M$, in symbols:
-  $\mSat{M}{!A}[w]$, is defined inductively as follows:
+  \emph{公式~$!A$ 在~$\mModel M$ 中的世界~$w$ 处为真}，记作：
+  $\mSat{M}{!A}[w]$，归纳定义如下：
   \begin{enumerate}
-  \tagitem{prvFalse}{\indcase{!A}{\lfalse}{Never $\mSat{M}{\lfalse}[w]$}.}{}
-  \tagitem{prvTrue}{\indcase{!A}{\ltrue}{Always $\mSat{M}{\ltrue}[w]$}.}{}
-  \item $\mSat{M}{p}[w]$ iff $w \in V(p)$.
-  \tagitem{prvNot}{\indcase{!A}{\lnot !B}{$\mSat{M}{\indfrm}[w]$ iff
+  \tagitem{prvFalse}{\indcase{!A}{\lfalse}{永不 $\mSat{M}{\lfalse}[w]$}.}{}
+  \tagitem{prvTrue}{\indcase{!A}{\ltrue}{恒有 $\mSat{M}{\ltrue}[w]$}.}{}
+  \item $\mSat{M}{p}[w]$ 当且仅当 $w \in V(p)$。
+  \tagitem{prvNot}{\indcase{!A}{\lnot !B}{$\mSat{M}{\indfrm}[w]$ 当且仅当
     $\mSat/{M}{!B}[w]$}.}{}
-  \tagitem{prvAnd}{\indcase{!A}{(!B \land !C)}{$\mSat{M}{\indfrm}[w]$ iff
-    $\mSat{M}{!B}[w]$ and $\mSat{M}{!C}[w]$}.}{}
-  \tagitem{prvOr}{\indcase{!A}{(!B \lor !C)}{$\mSat{M}{\indfrm}[w]$ iff
-    $\mSat{M}{!B}[w]$ or $\mSat{M}{!C}[w]$} (or both).}{}
-  \tagitem{prvIf}{\indcase{!A}{(!B \lif !C)}{$\mSat{M}{\indfrm}[w]$ iff
-    $\mSat/{M}{!B}[w]$ or $\mSat{M}{!C}[w]$}.}{}
-  \tagitem{prvIff}{\indcase{!A}{(!B \liff !C)}{$\mSat{M}{\indfrm}[w]$ iff
-    either both $\mSat{M}{!B}[w]$ and $\mSat{M}{!C}[w]$ or
-    neither $\mSat{M}{!B}[w]$ nor $\mSat{M}{!C}[w]$}.}{}
+  \tagitem{prvAnd}{\indcase{!A}{(!B \land !C)}{$\mSat{M}{\indfrm}[w]$ 当且仅当
+    $\mSat{M}{!B}[w]$ 且 $\mSat{M}{!C}[w]$}.}{}
+  \tagitem{prvOr}{\indcase{!A}{(!B \lor !C)}{$\mSat{M}{\indfrm}[w]$ 当且仅当
+    $\mSat{M}{!B}[w]$ 或 $\mSat{M}{!C}[w]$}（或两者皆成立）.}{}
+  \tagitem{prvIf}{\indcase{!A}{(!B \lif !C)}{$\mSat{M}{\indfrm}[w]$ 当且仅当
+    $\mSat/{M}{!B}[w]$ 或 $\mSat{M}{!C}[w]$}.}{}
+  \tagitem{prvIff}{\indcase{!A}{(!B \liff !C)}{$\mSat{M}{\indfrm}[w]$ 当且仅当
+    要么 $\mSat{M}{!B}[w]$ 与 $\mSat{M}{!C}[w]$ 皆成立，要么
+    $\mSat{M}{!B}[w]$ 与 $\mSat{M}{!C}[w]$ 皆不成立}.}{}
   \item\ollabel{defn:sub:mmodels-box}
-    \indcase{!A}{\Box !B}{$\mSat{M}{\indfrm}[w]$ iff
-    $\mSat{M}{!B}[w']$ for all $w' \in W$ with $Rww'$.}
+    \indcase{!A}{\Box !B}{$\mSat{M}{\indfrm}[w]$ 当且仅当
+    $\mSat{M}{!B}[w']$ 对所有满足 $Rww'$ 的 $w' \in W$ 成立。}
   \item\ollabel{defn:sub:mmodels-diamond}
-    \indcase{!A}{\Diamond !B}{$\mSat{M}{\indfrm}[w]$ iff
-    $\mSat{M}{!B}[w']$ for at least one $w' \in W$ with $Rww'$.}
+    \indcase{!A}{\Diamond !B}{$\mSat{M}{\indfrm}[w]$ 当且仅当
+    $\mSat{M}{!B}[w']$ 对至少一个满足 $Rww'$ 的 $w' \in W$ 成立。}
   \end{enumerate}
 \end{defn}
 
-Note that by clause~\olref{defn:sub:mmodels-box}, !!a{formula}~$\Box
-!B$ is true at~$w$ whenever there are no~$w'$ with $Rww'$. In
-such a case $\Box !B$ is \emph{vacuously} true at~$w$. Also,
-$\Box !B$ may be satisfied at~$w$ even if $!B$ is not. The truth
-of~$!B$ at~$w$ does not guarantee the truth of~$\Diamond !B$
-at~$w$. This holds, however, if $Rww$, e.g., if $R$ is reflexive.  If
-there is no $w'$ such that $Rww'$, then $\mSat/{M}{\Diamond !A}[w]$,
-for any~$!A$.
+注意，根据条款~\olref{defn:sub:mmodels-box}，只要不存在满足 $Rww'$ 的~$w'$，公式~$\Box!B$ 就在~$w$ 上为真。在这种情况下，$\Box !B$ 在~$w$ 上是\emph{空真的}。此外，即使 $!B$ 在 $w$ 上不被满足，$\Box !B$ 也可能在 $w$ 上被满足。$!B$ 在~$w$ 上为真并不能保证 $\Diamond !B$ 在~$w$ 上为真。然而，如果 $Rww$（例如 $R$ 是自反的），则这一结论成立。如果不存在 $w'$ 使得 $Rww'$，那么对任何~$!A$，$\mSat/{M}{\Diamond !A}[w]$。
 
 \begin{prob}
-  Consider the model of \olref[nml][syn][rel]{fig:simple}. Which of the
-  following hold?
+  考虑 \olref[nml][syn][rel]{fig:simple} 中的模型。下列哪些成立？
     \begin{enumerate}
-    \item $\mSat{M}{q}[w_1]$;
-    \item $\mSat{M}{\lnot q}[w_3]$;
-    \item $\mSat{M}{p \lor q}[w_1]$;
-    \item $\mSat{M}{\Box (p \lor q)}[w_1]$;
-    \item $\mSat{M}{\Box q}[w_3]$;
-    \item $\mSat{M}{\Box \bot}[w_3]$;
-    \item $\mSat{M}{\Diamond q}[w_1]$;
-    \item $\mSat{M}{\Box q}[w_1]$;
-    \item $\mSat{M}{\lnot \Box\Box \lnot q}[w_1]$.
+    \item $\mSat{M}{q}[w_1]$；
+    \item $\mSat{M}{\lnot q}[w_3]$；
+    \item $\mSat{M}{p \lor q}[w_1]$；
+    \item $\mSat{M}{\Box (p \lor q)}[w_1]$；
+    \item $\mSat{M}{\Box q}[w_3]$；
+    \item $\mSat{M}{\Box \bot}[w_3]$；
+    \item $\mSat{M}{\Diamond q}[w_1]$；
+    \item $\mSat{M}{\Box q}[w_1]$；
+    \item $\mSat{M}{\lnot \Box\Box \lnot q}[w_1]$。
     \end{enumerate}
 \end{prob}
 
 % Prove duality of \Box and \Diamond
+
+
 \begin{tagblock}{prvDiamond}
 \begin{prop}\ollabel{prop:dual}
   \begin{enumerate}
-  \item $\mSat{M}{\Box !A}[w]$ iff $\mSat{M}{\lnot\Diamond\lnot !A}[w]$.
-  \item $\mSat{M}{\Diamond !A}[w]$ iff $\mSat{M}{\lnot\Box\lnot !A}[w]$.
+  \item $\mSat{M}{\Box !A}[w]$ 当且仅当 $\mSat{M}{\lnot\Diamond\lnot !A}[w]$。
+  \item $\mSat{M}{\Diamond !A}[w]$ 当且仅当 $\mSat{M}{\lnot\Box\lnot !A}[w]$。
   \end{enumerate}
 \end{prop}
 
 \begin{proof}
   \begin{enumerate}
-    \item $\mSat{M}{\lnot\Diamond\lnot !A}[w]$ iff $\mSat/{M}{\Diamond\lnot
-      !A}[w]$ by definition of $\mSat{M}{}[w]$. $\mSat{M}{\Diamond\lnot
-      !A}[w]$ iff for some $w'$ with $Rww'$, $\mSat{M}{\lnot
-      !A}[w']$. Hence, $\mSat/{M}{\Diamond\lnot !A}[w]$ iff for all
-    $w'$ with $Rww'$, $\mSat/{M}{\lnot !A}[w']$. We also have
-    $\mSat/{M}{\lnot !A}[w']$ iff $\mSat{M}{!A}[w']$. Together we have
-    $\mSat{M}{\lnot\Diamond\lnot !A}[w]$ iff for all $w'$ with $Rww'$,
-    $\mSat{M}{!A}[w']$. Again by definition of $\mSat{M}{}[w]$, that
-      is the case iff $\mSat{M}{\Box !A}[w]$.
-    \item \iftag{probDiamond}{Exercise.}{$\mSat{M}{\lnot\Box\lnot !A}[w]$ iff
-      $\mSat/{M}{\Box\lnot !A}$. $\mSat{M}{\Box\lnot !A}[w]$ iff for all
-      $w'$ with $Rww'$, $\mSat{M}{\lnot !A}[w']$. Hence,
-      $\mSat/{M}{\Box\lnot !A}[w]$ iff for some $w'$ with $Rww'$,
-      $\mSat/{M}{\lnot !A}[w']$. We also have $\mSat/{M}{\lnot
-        !A}[w']$ iff $\mSat{M}{!A}[w']$. Together we have
-      $\mSat{M}{\lnot\Box\lnot !A}[w]$ iff for some~$w'$ with
-      $Rww'$, $\mSat{M}{!A}[w']$. Again by definition of
-      $\mSat{M}{}[w]$, that is the case iff $\mSat{M}{\Diamond
-        !A}[w]$.}
+    \item 根据 $\mSat{M}{}[w]$ 的定义，$\mSat{M}{\lnot\Diamond\lnot !A}[w]$ 当且仅当 $\mSat/{M}{\Diamond\lnot
+      !A}[w]$。$\mSat{M}{\Diamond\lnot
+      !A}[w]$ 当且仅当 $\mSat{M}{\lnot
+      !A}[w']$ 对某个满足 $Rww'$ 的 $w'$ 成立。因此，$\mSat/{M}{\Diamond\lnot !A}[w]$ 当且仅当 $\mSat/{M}{\lnot !A}[w']$ 对所有满足 $Rww'$ 的 $w'$ 成立。我们还有
+    $\mSat/{M}{\lnot !A}[w']$ 当且仅当 $\mSat{M}{!A}[w']$。综合起来，我们得到
+    $\mSat{M}{\lnot\Diamond\lnot !A}[w]$ 当且仅当 $\mSat{M}{!A}[w']$ 对所有满足 $Rww'$ 的 $w'$ 成立。再次根据 $\mSat{M}{}[w]$ 的定义，这当且仅当 $\mSat{M}{\Box !A}[w]$。
+    \item \iftag{probDiamond}{练习。}{$\mSat{M}{\lnot\Box\lnot !A}[w]$ 当且仅当
+      $\mSat/{M}{\Box\lnot !A}$。$\mSat{M}{\Box\lnot !A}[w]$ 当且仅当 $\mSat{M}{\lnot !A}[w']$ 对所有
+      满足 $Rww'$ 的 $w'$ 成立。因此，
+      $\mSat/{M}{\Box\lnot !A}[w]$ 当且仅当 $\mSat/{M}{\lnot !A}[w']$ 对某个满足 $Rww'$ 的 $w'$ 成立。我们还有 $\mSat/{M}{\lnot
+        !A}[w']$ 当且仅当 $\mSat{M}{!A}[w']$。综合起来，我们得到
+      $\mSat{M}{\lnot\Box\lnot !A}[w]$ 当且仅当 $\mSat{M}{!A}[w']$ 对某个满足 $Rww'$ 的~$w'$ 成立。再次根据 $\mSat{M}{}[w]$ 的定义，这当且仅当 $\mSat{M}{\Diamond
+        !A}[w]$。}
   \end{enumerate}
 \end{proof}
 
 \begin{probtag}{probDiamond}
-  Complete the proof of \olref[nml][syn][trw]{prop:dual}.
+  完成 \olref[nml][syn][trw]{prop:dual} 的证明。
 \end{probtag}
 \end{tagblock}
 
 \begin{prob}
-  Let $\mModel{M} = \tuple{W, R, V}$ be a model, and suppose $w_1, w_2 \in
-  W$ are such that:
+  设 $\mModel{M} = \tuple{W, R, V}$ 为一模型，且 $w_1, w_2 \in W$ 满足：
   \begin{enumerate}
-  \item $w_1 \in V(p)$ if and only if $w_2 \in V(p)$ (for every !!{propositional variable} $p$); and
-  \item for all $w \in W$: $Rw_1w$ if and only if $Rw_2w$.
+  \item $w_1 \in V(p)$ 当且仅当 $w_2 \in V(p)$（对每个命题变元 $p$）；且
+  \item 对所有 $w \in W$：$Rw_1w$ 当且仅当 $Rw_2w$。
   \end{enumerate}
-  Using induction on !!{formula}s, show that for all !!{formula}s $!A$:
-  $\mSat{M}{!A}[w_1]$ if and only if $\mSat{M}{!A}[w_2]$.
+  施归纳于公式，证明对所有公式 $!A$：
+  $\mSat{M}{!A}[w_1]$ 当且仅当 $\mSat{M}{!A}[w_2]$。
 \end{prob}
 
 \begin{probtag}{prvDiamond}
-  Let $\mModel{M} = \tuple{W, R, V}$. Show that
-  $\mSat{M}{\lnot\Diamond !A}[w]$ if and only if
-  $\mSat{M}{\Box\lnot!A}[w]$.
+  设 $\mModel{M} = \tuple{W, R, V}$。证明
+  $\mSat{M}{\lnot\Diamond !A}[w]$ 当且仅当
+  $\mSat{M}{\Box\lnot!A}[w]$。
 \end{probtag}
 
 \end{document}

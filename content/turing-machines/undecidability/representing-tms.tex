@@ -7,137 +7,103 @@
 \begin{document}
 
 \olfileid{tur}{und}{rep}
-\olsection{Representing Turing Machines}
+\olsection{表示图灵机}
 
 \begin{explain}
-In order to represent Turing machines and their behavior by !!a{sentence}
-of first-order logic, we have to define a suitable language. The
-language consists of two parts: !!{predicate}s for describing
-configurations of the machine, and expressions for numbering execution
-steps (``moments'') and positions on the tape.
+为了用一阶逻辑的语句来表示图灵机及其行为，我们必须定义一个合适的语言。
+该语言由两部分组成：用于描述机器配置的谓词符号，以及用于对执行步骤（“时刻”）和纸带位置进行编号的表达式。
 
-We introduce two kinds of !!{predicate}s, both of them 2-place: For
-each state~$q$, !!a{predicate}~$\Obj Q_q$, and for each tape
-symbol~$\sigma$, !!a{predicate}~$\Obj S_\sigma$. The former allow us
-to describe the state of~$M$ and the position of its tape head, the
-latter allow us to describe the contents of the tape.  
+我们引入两类谓词符号，它们都是二元的：对于每个状态~\(q\)，引入一个谓词符号~\(\Obj Q_q\)；对于每个纸带符号~\(\sigma\)，引入一个谓词符号~\(\Obj S_\sigma\)。前者用于描述~\(M\) 的状态及其读写头的位置，后者用于描述纸带的内容。
 
-In order to express the positions of the tape head and the number of
-steps executed, we need a way to express numbers. This is done using
-!!a{constant}~$\Obj 0$, and a $1$-place function~$\prime$, the
-successor function. By convention it is written \emph{after} its
-argument (and we leave out the parentheses).
+为了表达读写头的位置和已执行的步数，我们需要一种表达数的方式。
+这通过一个常项符号~\(\Obj 0\) 和一个一元函数~\(\prime\)（即后继函数）来实现。
+按惯例，它写在自变元\emph{之后}（并且我们省略括号）。
 
-For each number $n$ there is a canonical term~$\num{n}$, the
-\emph{numeral} for~$n$, which represents it in~$\Lang L_M$. $\num{0}$
-is $\Obj 0$, $\num{1}$ is $\Obj 0'$, $\num{2}$ is $\Obj 0''$, and so
-on. More formally:
+对于每个数~\(n\)，都有一个标准项~\(\num{n}\)，即~\(n\) 的\emph{数词}，它在~\(\Lang L_M\) 中表示~\(n\)。
+\(\num{0}\) 是 \(\Obj 0\)，\(\num{1}\) 是 \(\Obj 0'\)，\(\num{2}\) 是 \(\Obj 0''\)，依此类推。
+更形式化地：
 \begin{align*}
 \num{0} & = \Obj 0 \\
 \num{n+1} &= \num{n}'
 \end{align*}
-The term $\num{0}$, i.e., $\Obj 0$ names the leftmost position on the
-tape as well as the time before the first execution step (the initial
-configuration). The term $\num{1}$, i.e., $\Obj 0'$ names the square
-to the right of the leftmost square, and the time after the first
-execution step, and so on.
+项 \(\num{0}\)（即 \(\Obj 0\)）命名纸带最左端的位置，以及第一个执行步骤之前的时刻（初始配置）。
+项 \(\num{1}\)（即 \(\Obj 0'\)）命名最左端方格右侧的方格，以及第一个执行步骤之后的时刻，依此类推。
 
-We also introduce !!a{predicate}~$<$ to express both the ordering of
-tape positions (when it means ``to the left of'') and execution steps
-(then it means ``before'').
+我们还引入一个谓词符号~\(<\)，用以表达纸带位置之间的顺序（此时意为“在……左边”）和执行步骤之间的顺序（此时意为“在……之前”）。
 
-Once we have the language in place, we list the ``axioms'' of $!T(M,
-w)$, i.e., the !!{sentence}s which, taken together, describe the
-behavior of~$M$ when run on input~$w$.  There will be !!{sentence}s
-which lay down conditions on $\Obj 0$, $\prime$, and $<$,
-!!{sentence}s that describes the input configuration, and
-!!{sentence}s that describe what the configuration of $M$ is after it
-executes a particular instruction.
+语言确定后，我们便可以列出 \(!T(M, w)\) 的“公理”，即那些共同描述~\(M\) 在输入~\(w\) 上运行行为的语句。
+这些语句包括：为 \(\Obj 0\)、\(\prime\) 和 \(<\) 设定条件的语句，描述输入配置的语句，以及描述~\(M\) 在执行特定指令后的配置的语句。
 \end{explain}
 
 \begin{defn}
   \ollabel{defn:tm-descr}
-Given a Turing machine $M = \tuple{Q, \Sigma, q_0, \delta}$, the
-language~$\Lang L_M$ consists of:
+给定一台图灵机 $M = \tuple{Q, \Sigma, q_0, \delta}$，其语言~\(\Lang L_M\) 由以下符号组成：
 \begin{enumerate}
-\item A two-place !!{predicate} $\Obj Q_q(x, y)$ for every state~$q \in
-  Q$.  Intuitively, $\Obj Q_q(\num{m}, \num{n})$ expresses ``after $n$
-  steps, $M$ is in state~$q$ scanning the $m$th square.''
-\item A two-place !!{predicate} $\Obj S_\sigma(x, y)$ for every
-  symbol~$\sigma\in \Sigma$.  Intuitively, $\Obj S_\sigma(\num{m},
-  \num{n})$ expresses ``after $n$ steps, the $m$th square contains
-  symbol~$\sigma$.''
-\item A !!{constant} $\Obj 0$
-\item A one-place !!{function} $\prime$
-\item A two-place !!{predicate} $<$
+\item 对于每个状态~\(q \in Q\)，一个二元谓词符号 \(\Obj Q_q(x, y)\)。
+  直观上，$\Obj Q_q(\num{m}, \num{n})$ 表示“在第 \(n\) 步之后，\(M\) 处于状态~\(q\) 并正在扫描第 \(m\) 个方格”；
+\item 对于每个符号~\(\sigma\in \Sigma\)，一个二元谓词符号 \(\Obj S_\sigma(x, y)\)。
+  直观上，$\Obj S_\sigma(\num{m},
+  \num{n})$ 表示“在第 \(n\) 步之后，第 \(m\) 个方格包含符号~\(\sigma\)”；
+\item 一个常项符号 \(\Obj 0\)；
+\item 一个一元函数符号 \(\prime\)；
+\item 一个二元谓词符号 \(<\)。
 \end{enumerate}
 \end{defn}
 
-The !!{sentence}s describing the operation of the Turing machine~$M$ on
-input $w = \sigma_{i_1}\dots\sigma_{i_k}$ are the following:
+描述图灵机~\(M\) 在输入 $w = \sigma_{i_1}\dots\sigma_{i_k}$ 上运行的语句如下：
 \begin{enumerate}
-\item Axioms describing numbers and~$<$:
+\item 描述数和~$<$ 的公理：
 \begin{enumerate}
-\item !!^a{sentence} that says that every number is less than its successor:
+\item 表示每个数都小于其后继的语句：
 \[
 \lforall[x][x < x']
 \]
-\item !!^a{sentence} that ensures that $<$ is transitive:
+\item 确保~$<$ 具有传递性的语句：
 \[
 \lforall[x][\lforall[y][\lforall[z][
       ((x < y \land y < z) \lif x < z)]]]
 \]
 \end{enumerate}
-\item Axioms describing the input configuration:
+\item 描述输入配置的公理：
 \begin{enumerate}
-\item After $0$~steps---before the machine starts---$M$ is in
-  the initial state~$q_0$, scanning square~$1$:
+\item 在第~$0$ 步之后（即机器启动前），$M$ 处于初始状态~$q_0$，正在扫描方格~$1$：
 \[
 \Obj Q_{q_0}(\num{1}, \num{0})
 \]
-\item The first $k+1$ squares contain the symbols $\TMendtape$,
-  $\sigma_{i_1}$, \dots, $\sigma_{i_k}$:
+\item 前~$k+1$ 个方格包含符号 $\TMendtape$, $\sigma_{i_1}$, \dots, $\sigma_{i_k}$：
 \[
 \Obj S_\TMendtape(\num{0}, \num{0}) \land
 \Obj S_{\sigma_{i_1}}(\num{1}, \num{0}) \land
 \dots \land
 \Obj S_{\sigma_{i_k}}(\num{k}, \num{0})
 \]
-\item Otherwise, the tape is empty:
+\item 其余方格为空：
 \[
 \lforall[x][(\num{k} < x \lif \Obj S_\TMblank(x, \num{0}))]
 \]
 \end{enumerate}
-\item Axioms describing the transition from one configuration to
-  the next:
+\item 描述从一个配置转移到下一个配置的公理：
 
-For the following, let $!A(x, y)$ be the conjunction of all !!{sentence}s
-of the form
+在下文中，令 $!A(x, y)$ 为所有形如
 \[
 \lforall[z][
   (((z < x \lor x < z) \land \Obj S_\sigma(z, y))
   \lif \Obj S_\sigma(z, y'))]
 \]
-where $\sigma \in \Sigma$.  We use $!A(\num{m},\num{n})$ to express
-``other than at square~$m$, the tape after $n+1$ steps is the same as
-after $n$ steps.''
+（其中 $\sigma \in \Sigma$）的语句的合取。我们用 $!A(\num{m},\num{n})$ 来表示“除第~$m$ 个方格以外，第~$n+1$ 步之后的纸带与第~$n$ 步之后的纸带相同”。
 \begin{enumerate}
-\item \ollabel{rep-right} For every instruction $\delta(q_i, \sigma) =
-  \tuple{q_j, \sigma', \TMright}$, the !!{sentence}:
+\item \ollabel{rep-right} 对于每条指令 $\delta(q_i, \sigma) =
+  \tuple{q_j, \sigma', \TMright}$，有语句：
 \begin{align*}
 & \lforall[x][\lforall[y][(
    (\Obj Q_{q_i}(x, y) \land \Obj S_{\sigma}(x, y)) \lif {}]] \\
 &\qquad   (\Obj Q_{q_j}(x', y') \land \Obj S_{\sigma'}(x, y') \land
 !A(x, y)))
 \end{align*}
-This says that if, after~$y$ steps, the machine is in state~$q_i$
-scanning square~$x$ which contains symbol~$\sigma$, then after $y+1$
-steps it is scanning square~$x+1$, is in state~$q_j$, square~$x$ now
-contains~$\sigma'$, and every square other than~$x$ contains the
-same symbol as it did after~$y$ steps.
+这条语句表示：如果在第~$y$ 步之后，机器处于状态~$q_i$ 并正在扫描包含符号~$\sigma$ 的方格~$x$，那么在第~$y+1$ 步之后，它将扫描方格~$x+1$，处于状态~$q_j$，方格~$x$ 现在包含~$\sigma'$，并且除~$x$ 以外的每个方格包含的符号与第~$y$ 步之后包含的相同。
 
-\item \ollabel{rep-left} For every instruction $\delta(q_i, \sigma) =
-  \tuple{q_j, \sigma', \TMleft}$, the !!{sentence}:
+\item \ollabel{rep-left} 对于每条指令 $\delta(q_i, \sigma) =
+  \tuple{q_j, \sigma', \TMleft}$，有语句：
 \begin{align*}
 & \lforall[x][\lforall[y][
     ((\Obj Q_{q_i}(x', y) \land \Obj S_{\sigma}(x', y)) \lif {}]]\\
@@ -148,24 +114,11 @@ same symbol as it did after~$y$ steps.
 & \qquad (\Obj Q_{q_j}(\num{0}, y') \land \Obj S_{\sigma'}(\num{0},
   y') \land !A(\num{0}, y)))
 \end{align*}
-Take a moment to think about how this works: now we don't start with
-``if scanning square~$x$ \dots'' but: ``if scanning square $x+1$
-\dots'' A move to the left means that in the next step the machine is
-scanning square~$x$.  But the square that is written on is~$x+1$.  We
-do it this way since we don't have subtraction or a predecessor
-function.
+请思考一下这是如何运作的：现在我们不是以“如果正在扫描方格~$x$……”开头，而是：“如果正在扫描方格 $x+1$……”。向左移动意味着在下一步机器将扫描方格~$x$。但被写入的方格是~$x+1$。我们这样处理是因为我们没有减法或前驱函数。
 
-Note that numbers of the form $x+1$ are $1$, $2$, \dots, i.e., this
-doesn't cover the case where the machine is scanning square~$0$ and is
-supposed to move left (which of course it can't---it just stays
-put). That special case is covered by the second conjunction: it says
-that if, after $y$ steps, the machine is scanning square~$0$ in state
-$q_i$ and square~$0$ contains symbol~$\sigma$, then after $y+1$ steps
-it's still scanning square~$0$, is now in state~$q_j$, the symbol on
-square~$0$ is $\sigma'$, and the squares other than square~$0$ contain
-the same symbols they contained ofter $y$~steps.
-\item \ollabel{rep-stay} For every instruction $\delta(q_i, \sigma) =
-  \tuple{q_j, \sigma', \TMstay}$, the !!{sentence}:
+注意，形如 $x+1$ 的数是 $1$, $2$, \dots，也就是说，这并未涵盖机器正在扫描方格~$0$ 且本应左移的情况（当然，它不能左移——它会停在原地）。这一特殊情况由第二个合取式涵盖：它表示，如果在第~$y$ 步之后，机器在状态~$q_i$ 下扫描方格~$0$ 且方格~$0$ 包含符号~$\sigma$，那么在第~$y+1$ 步之后，它仍然在扫描方格~$0$，现在处于状态~$q_j$，方格~$0$ 上的符号是 $\sigma'$，并且除方格~$0$ 以外的方格包含的符号与第~$y$ 步之后包含的相同。
+\item \ollabel{rep-stay} 对于每条指令 $\delta(q_i, \sigma) =
+  \tuple{q_j, \sigma', \TMstay}$，有语句：
 \begin{align*}
 & \lforall[x][\lforall[y][(
    (\Obj Q_{q_i}(x, y) \land \Obj S_{\sigma}(x, y)) \lif {}]] \\
@@ -174,38 +127,33 @@ the same symbols they contained ofter $y$~steps.
 \end{align*}
 \end{enumerate}
 \end{enumerate}
-Let $!T(M, w)$ be the conjunction of all the above !!{sentence}s for Turing
-machine~$M$ and input~$w$.
 
-In order to express that~$M$ eventually halts, we have to find a
-!!{sentence} that says ``after some number of steps, the transition
-function will be undefined.''  Let $X$~be the set of all pairs
-$\tuple{q, \sigma}$ such that~$\delta(q, \sigma)$ is undefined.  Let
-$!E(M, w)$ then be the !!{sentence}
+令 $!T(M, w)$ 为上述所有关于图灵机~$M$ 和输入~$w$ 的语句的合取。
+
+为了表达~$M$ 最终会停机，我们必须找到一个表示“在某个步数之后，转移函数将无定义”的语句。令 $X$ 为所有使得~$\delta(q, \sigma)$ 无定义的序偶 $\tuple{q, \sigma}$ 的集合。令 $!E(M, w)$ 为如下语句：
 \[
 \lexists[x][\lexists[y][(\bigvee_{\tuple{q, \sigma} \in
       X}(\Obj Q_q(x, y) \land \Obj S_\sigma(x, y)))]]
 \]
 
-If we use a Turing machine with a designated halting state~$h$, it
-is even easier: then the !!{sentence}~$!E(M, w)$
+如果我们使用带有指定停机状态~$h$ 的图灵机，事情就更简单了：此时语句~$!E(M, w)$
 \[
 \lexists[x][\lexists[y][\Obj Q_h(x, y)]]
 \]
-expresses that the machine eventually halts.
+就表示机器最终会停机。
 
 \begin{prop}
 \ollabel{prop:mlessk}
-If $m < k$, then $!T(M, w) \Entails \num{m} < \num{k}$
+如果 $m < k$，则 $!T(M, w) \Entails \num{m} < \num{k}$
 \end{prop}
 
 \begin{proof}
-Exercise.
+练习。
 \end{proof}
 
 \begin{prob}
-Prove \olref[tur][und][rep]{prop:mlessk}.
-(Hint: use induction on $k-m$).
+证明 \olref[tur][und][rep]{prop:mlessk}。
+（提示：对 $k-m$ 使用归纳法）。
 \end{prob}
 
 \end{document}

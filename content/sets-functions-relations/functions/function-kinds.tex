@@ -7,112 +7,80 @@
 \begin{document}
 
 \olfileid{sfr}{fun}{kin}
-\olsection{Kinds of Functions}
+\olsection{函数的种类}
 
 \begin{explain}
-It will be useful to introduce a kind of taxonomy for some of the
-kinds of functions which we encounter most frequently. 
+为我们最常遇到的几类函数引入一种分类法会很有用。
 
-To start, we might want to consider functions which have the property
-that every member of the codomain is a value of the function. Such
-functions are called !!{surjective}, and can be pictured as in
-\olref{fig:surjective}.
+首先，我们可以考察具有如下性质的函数：其陪域中的每个元素都是该函数的值。这样的函数称为满射的，如\olref{fig:surjective}所示。
 
 \begin{figure}
   \olasset{assets/diagrams/surjective.tikz}
-  \caption{!!^a{surjective} function has every !!{element} of the
-    codomain as a value.}
+  \caption{满射函数的陪域中的每个元素都是该函数的值。}
   \ollabel{fig:surjective}
 \end{figure}
 \end{explain}
 
-\begin{defn}[!!^{surjective} function]
-A function $f \colon A \rightarrow B$ is \emph{!!{surjective}} iff $B$
-is also the range of~$f$, i.e., for every $y \in B$ there is at least
-one $x \in A$ such that~$f(x) = y$, or in symbols:
+\begin{defn}[满射函数]
+函数 $f \colon A \rightarrow B$ 是\emph{满射的}，当且仅当 $B$ 也是~$f$ 的值域，即对每个 $y \in B$，都至少有一个 $x \in A$ 使得~$f(x) = y$，用符号表示：
 \[
   (\forall y \in B)(\exists x \in A)f(x) = y.
 \]
-We call such a function !!a{surjection} from $A$ to $B$.
+我们称这样的函数为从 $A$ 到 $B$ 的满射。
 \end{defn}
 
 \begin{explain}
-If you want to show that $f$ is !!a{surjection}, then you need to show
-that every object in $f$'s codomain is the value of $f(x)$ for some
-input $x$.
+如果要证明 $f$ 是满射，你需要证明 $f$ 的陪域中的每个对象都是某个输入 $x$ 对应的值 $f(x)$。
 
-Note that any function \emph{induces} !!a{surjection}. After all,
-given a function $f \colon A \to B$, let $f' \colon A \to \ran{f}$ be
-defined by $f'(x) = f(x)$. Since $\ran{f}$ is \emph{defined} as
-$\Setabs{f(x) \in B}{x \in A}$, this function $f'$ is guaranteed to be
-!!a{surjection}
+注意，任何函数都\emph{诱导}出一个满射。事实上，给定函数 $f \colon A \to B$，令 $f' \colon A \to \ran{f}$ 定义为 $f'(x) = f(x)$。由于 $\ran{f}$ 被\emph{定义}为 $\Setabs{f(x) \in B}{x \in A}$，该函数 $f'$ 必定是一个满射。
 \end{explain}
 
 \begin{explain}
-Now, any function maps each possible input to a unique output. But
-there are also functions which never map different inputs to the same
-outputs. Such functions are called !!{injective}, and can be pictured
-as in \olref{fig:injective}.
+任何函数都将每个可能的输入映射到唯一的输出。但也存在一些函数，它们从不会把不同的输入映射到相同的输出。这样的函数称为单射的，如\olref{fig:injective}所示。
 \begin{figure}
   \olasset{assets/diagrams/injective.tikz}
-  \caption{!!^a{injective} function never maps two different
-    arguments to the same value.}
+  \caption{单射函数从不会把两个不同的自变元映射到同一个值。}
   \ollabel{fig:injective}
 \end{figure}
 \end{explain}
 
-\begin{defn}[!!^{injective} function] 
-A function $f \colon A \rightarrow B$ is \emph{!!{injective}} iff for
-each $y \in B$ there is at most one $x \in A$ such that~$f(x) = y$. We
-call such a function !!a{injection} from $A$ to~$B$.
+\begin{defn}[单射函数]
+函数 $f \colon A \rightarrow B$ 是\emph{单射的}，当且仅当对每个 $y \in B$，都至多有一个 $x \in A$ 使得~$f(x) = y$。我们称这样的函数为从 $A$ 到~$B$ 的单射。
 \end{defn}
 
 \begin{explain}
-If you want to show that $f$ is !!a{injection}, you need to show that
-for any !!{element}s $x$ and $y$ of $f$'s domain, if $f(x)=f(y)$, then
-$x=y$. 
+如果要证明 $f$ 是单射，你需要证明：对 $f$ 定义域中的任意元素 $x$ 和 $y$，如果 $f(x)=f(y)$，则 $x=y$。
 \end{explain}
 
 \begin{ex}
-The constant function $f\colon \Nat \to \Nat$ given by $f(x) = 1$ is
-neither !!{injective}, nor !!{surjective}.
+由 $f(x) = 1$ 给出的常值函数 $f\colon \Nat \to \Nat$ 既非单射也非满射。
 
-The identity function $f\colon \Nat \to \Nat$ given by $f(x) = x$ is
-both !!{injective} and !!{surjective}.
+由 $f(x) = x$ 给出的恒等函数 $f\colon \Nat \to \Nat$ 既是单射的又是满射的。
 
-The successor function $f \colon \Nat \to \Nat$ given by $f(x) = x+1$
-is !!{injective} but not !!{surjective}.
-  
-The function $f \colon \Nat \to \Nat$ defined by:
+由 $f(x) = x+1$ 给出的后继函数 $f \colon \Nat \to \Nat$ 是单射的，但不是满射的。
+
+函数 $f \colon \Nat \to \Nat$ 定义如下：
 \[
   f(x) =
   \begin{cases}
-    \frac{x}{2} & \text{if $x$ is even} \\
-    \frac{x+1}{2} & \text{if $x$ is odd.}
+    \frac{x}{2} & \text{若 $x$ 是偶数} \\
+    \frac{x+1}{2} & \text{若 $x$ 是奇数。}
   \end{cases}
 \]
-is !!{surjective}, but not !!{injective}.
+该函数是满射的，但不是单射的。
 \end{ex}
 
 \begin{explain}
-Often enough, we want to consider functions which are both
-!!{injective} and !!{surjective}. We call such functions
-!!{bijective}. They look like the function pictured in
-\olref{fig:bijective}. !!^{bijection}s are also sometimes called
-\emph{one-to-one correspondences}, since they uniquely pair elements
-of the codomain with elements of the domain.
+很多时候，我们要考虑既是单射又是满射的函数。我们称这样的函数为双射的。它们类似于\olref{fig:bijective}中所描绘的函数。双射有时也被称为\emph{一一对应}，因为它们将陪域中的元素与定义域中的元素唯一地配对。
 \begin{figure}
   \olasset{assets/diagrams/bijective.tikz}
-  \caption{!!^a{bijective} function uniquely pairs the elements of the
-    codomain with those of the domain.}
+  \caption{双射函数将陪域中的元素与定义域中的元素唯一地配对。}
   \ollabel{fig:bijective}
 \end{figure}
 \end{explain}
 
-\begin{defn}[!!^{bijection}] 
-A function $f \colon A \to B$ is \emph{!!{bijective}} iff it is both
-!!{surjective} and !!{injective}. We call such a function
-!!a{bijection} from $A$ to~$B$ (or between $A$ and~$B$).
+\begin{defn}[双射]
+函数 $f \colon A \to B$ 是\emph{双射的}，当且仅当它既是满射的又是单射的。我们称这样的函数为从 $A$ 到~$B$（或在 $A$ 与~$B$ 之间）的双射。
 \end{defn}
 
 \end{document}

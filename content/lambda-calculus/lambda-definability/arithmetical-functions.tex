@@ -7,36 +7,31 @@
 \begin{document}
 
 \olfileid{lam}{rep}{arf}
-\olsection{\usetoken{S}{lambda definable} Arithmetical Functions}
+\olsection{\usetoken{S}{lambda definable}的算术函数}
 
 \begin{prop}
   \ollabel{prop:succ-ld}
-  The successor function~$\Succ$ is !!{lambda definable}.
+  后继函数~$\Succ$ 是 $\lambd$-可定义的。
 \end{prop}
 
 \begin{proof}
-A term that !!{lambda define}s the successor function is
+一个 $\lambd$-定义了后继函数的项为
 \begin{align*}
   \fn{Succ} & \ident \lambd[a][\lambd[fx][f ({a} f x)]].
-  \intertext{Given our conventions, this is short for}
+  \intertext{根据我们的约定，它是以下项的简写：}
   \fn{Succ} & \ident \lambd[a][\lambd[f][\lambd[x][(f (({a} f) x))]]].
-  \intertext{$\fn{Succ}$ is a function that accepts as argument a
-    number~$a$, and evaluates to another function, $\lambd[fx][f ({a}
-      f x)]$. That function is not itself a Church numeral. However,
-    if the argument $a$ is a Church numeral, it reduces to one. Consider:}
+  \intertext{$\fn{Succ}$ 是一个以数字~$a$ 为自变元的函数，它求值为另一个函数，即 $\lambd[fx][f ({a}
+      f x)]$。该函数本身并不是丘奇数。然而，如果自变元 $a$ 是丘奇数，它就归约为一个丘奇数。考虑：}
    (\lambd[a][\lambd[fx][f ({a} f x)]])\,\num{n} & \redone
    \lambd[fx][f ({\num{n}} f x)].
-   \intertext{The embedded term $\num{n}fx$ is a redex, since
-     $\num{n}$ is $\lambd[fx][f^nx]$. So $\num{n}fx \redone f^nx$ and
-     so, for the entire term we have}
+   \intertext{内嵌的项 $\num{n}fx$ 是一个可归约式，因为 $\num{n}$ 就是 $\lambd[fx][f^nx]$。所以 $\num{n}fx \redone f^nx$，于是，对整个项我们有}
    \fn{Succ}\, \num n & \red \lambd[fx][f(f^n(x))],
 \end{align*}
-i.e., $\num{n+1}$.
+即 $\num{n+1}$。
 \end{proof}
 
 \begin{ex}
-  Let's look at what happens when we apply $\fn{Succ}$ to~$\num{0}$,
-  i.e., $\lambd[fx][x]$. We'll spell the terms out in full:
+  我们来看看将 $\fn{Succ}$ 应用到~$\num{0}$ 上会发生什么，$\num{0}$ 即 $\lambd[fx][x]$。我们将项完整地写出来：
   \begin{align*}
     \fn{Succ}\, \num{0} & \ident (\lambd[a][\lambd[f][\lambd[x][(f (({a} f) x))]]])(\lambd[f][\lambd[x][x]])\\
     & \redone \lambd[f][\lambd[x][(f (({(\lambd[f][\lambd[x][x]])} f) x))]] \\
@@ -46,96 +41,79 @@ i.e., $\num{n+1}$.
 \end{ex}
 
 \begin{prob}
-  The term 
+  项
   \begin{align*}
     \fn{Succ}' & \ident \lambd[{n}][\lambd[fx][{n} f (f x)]]
   \end{align*}
-  !!{lambda define}s the successor function. Explain why.
+  $\lambd$-定义了后继函数。请说明其原理。
 \end{prob}
 
 \begin{prop}
   \ollabel{prop:add-ld}
-  The addition function~$\Add$ is !!{lambda definable}.
+  加法函数~$\Add$ 是 $\lambd$-可定义的。
 \end{prop}
 
 \begin{proof}
-Addition is !!{lambda define}d by the terms  
+加法可由项
 \begin{align*}
   \fn{Add} & \ident \lambd[{a}{b}][\lambd[fx][{a} f ({b} f x)]]
-\intertext{or, alternatively,}
+\intertext{或者，}
   \fn{Add}' & \ident \lambd[{a}{b}][{a}\, \fn{Succ} \, {b}].
-\intertext{The first addition works as follows: $\fn{Add}$ first
-  accept two numbers ${a}$ and ${b}$. The result is a function that
-  accepts $f$ and $x$ and returns $af(bfx)$. If $a$ and $b$ are Church
-  numerals $\num{n}$ and $\num{m}$, this reduces to $f^{n+m}(x)$,
-  which is identical to $f^{n}(f^{m}(x))$. Or, slowly:}
+\intertext{定义。第一个加法项的工作方式如下：$\fn{Add}$ 首先接受两个数字 ${a}$ 和 ${b}$ 作为自变元。结果是一个接受 $f$ 和 $x$ 并返回 $af(bfx)$ 的函数。如果 $a$ 和 $b$ 是丘奇数 $\num{n}$ 和 $\num{m}$，那么这归约为 $f^{n+m}(x)$，它与 $f^{n}(f^{m}(x))$ 等同。或者，一步步来看：}
   (\lambd[{a}{b}][\lambd[fx][{a} f ({b} f x)]])\num n\,\num m & \redone
   \lambd[fx][\num{n}\, f (\num {m}\, f x)] \\
   & \redone \lambd[fx][\num{n}\, f (f^m x)] \\
   & \redone \lambd[fx][f^n (f^m x)] \ident \num {n+m}.
-\intertext{The second representation of addition $\fn{Add'}$ works
-  differently: Applied to two Church numerals $\num{n}$ and
-  $\num{m}$,}
+\intertext{第二种加法表示 $\fn{Add'}$ 的工作方式不同：应用到两个丘奇数 $\num{n}$ 和 $\num{m}$ 上时，}
 \fn{Add}' \num n \,\num m
 & \redone \num{n}\, \fn{Succ}\, \num{m}.
-\intertext{But $\num{n} f x$ always reduces to $f^n(x)$. So,}
+\intertext{但 $\num{n} f x$ 总是归约为 $f^n(x)$。所以，}
   \num{n}\,  \fn{Succ}\, \num{m} & \red \fn{Succ}^n(\num{m}).
 \end{align*}
-And since $\fn{Succ}$ !!{lambda define}s the successor function, and the
-successor function applied $n$ times to~$m$ gives $n+m$, this in turn
-reduces to~$\num{n+m}$.
+由于 $\fn{Succ}$ $\lambd$-定义了后继函数，而对 $m$ 应用后继函数 $n$ 次得到 $n+m$，因此它最终归约为~$\num{n+m}$。
 \end{proof}
 
 \begin{prop}
   \ollabel{prop:mult-ld}
-  Multiplication is !!{lambda definable} by the term
+  乘法可由项
   \[
   \fn{Mult} \ident \lambd[ab][\lambd[fx][a (b f) x]]
   \]
+  $\lambd$-定义。
 \end{prop}
 
 \begin{proof}
-  To see how this works, suppose we apply $\fn{Mult}$ to Church numerals
-  $\num{n}$ and $\num{m}$: $\fn{Mult} \, \num{n} \, \num{m}$ reduces to
-  $\lambd[fx][\num{n}(\num{m}\, f)x]$.  The term $\num{m} f$ defines a
-  function which applies $f$ to its argument $m$ times. Consequently,
-  $\num{n} (\num{m} f) x$ applies the function ``apply $f$ $m$ times''
-  itself $n$ times to~$x$. In other words, we apply $f$ to $x$, $n\cdot
-  m$ times. But the resulting normal term is just the Church numeral
-  $\num{nm}$.
+为了理解其工作原理，假设我们将 $\fn{Mult}$ 应用到丘奇数 $\num{n}$ 和 $\num{m}$ 上：$\fn{Mult} \, \num{n} \, \num{m}$ 归约为
+  $\lambd[fx][\num{n}(\num{m}\, f)x]$。项 $\num{m} f$ 定义了一个将 $f$ 对其自变元应用 $m$ 次的函数。因此，$\num{n} (\num{m} f) x$ 将“将 $f$ 应用 $m$ 次”这个函数本身对 $x$ 应用 $n$ 次。换句话说，我们对 $x$ 应用 $f$ 共 $n\cdot m$ 次。但所得的范式正是丘奇数 $\num{nm}$。
 \end{proof}
 
 \begin{editorial}
-We can actually simplify this term further by $\eta$-reduction:
+实际上，我们可以通过 $\eta$-归约进一步简化这个项：
 \[
   \fn{Mult} \ident \lambd[ab][\lambd[f][a (b f)]].
 \]
 
-But then we first have to explain $\eta$-reduction.
+但这需要我们首先解释 $\eta$-归约。
 \end{editorial}
 
 \begin{prob}
-Multiplication can be !!{lambda define}d by the term
-\[
+  乘法也可以由项
+  \[
   \fn{Mult}' \ident \lambd[ab][a (\fn{Add}\, a) \num{0}].
 \]
-Explain why this works.
+  $\lambd$-定义。
+  请说明其原理。
 \end{prob}
 
-The definition of exponentiation as a $\lambd$-term is
-surprisingly simple:
+指数运算作为 $\lambd$-项的定义出奇地简单：
 \[
   \fn{Exp} \ident \lambd[be][e b].
 \]
-The first argument $b$ is the base and the second~$e$ is the exponent.
-Intuitively, $e f$ is $f^e$ by our encoding of numbers. If you find it
-hard to understand, we can still define exponentiation also by
-iterated multiplication:
+第一个自变元 $b$ 是底数，第二个自变元~$e$ 是指数。直观上，根据我们对数字的编码，$e f$ 就是 $f^e$。如果你觉得这很难理解，我们仍然可以通过迭代乘法来定义指数运算：
 \[
   \fn{Exp}' \ident \lambd[be][e (\fn{Mult}\, b) \num{1}].
 \]
 
-Predecessor and subtraction on Church numeral is not as simple as we
-might think: it requires encoding of pairs.
+在丘奇数上定义前驱和减法并不像我们想象的那么简单：它需要用到序对的编码。
 
 \end{document}

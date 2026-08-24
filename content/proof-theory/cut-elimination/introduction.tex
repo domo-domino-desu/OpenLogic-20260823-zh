@@ -8,9 +8,9 @@
 
 \olfileid{pt}{cut}{int}
 
-\olsection{Introduction}
+\olsection{引言}
 
-The \Cut{} rule is the rule
+\Cut{}（切割）规则即如下规则：
 \[
 \Axiom$\Gamma \fCenter \Delta, !A$
 \Axiom$!A, \Pi \fCenter \Lambda$
@@ -18,80 +18,27 @@ The \Cut{} rule is the rule
 \BinaryInf$\Gamma, \Pi \fCenter \Delta, \Lambda$
 \DisplayProof
 \]
-(The !!{formula}~$!A$ is called the \emph{cut formula}.)
+（公式~$!A$ 称为\emph{切割公式}。）
 
-\Cut{} was included in Gentzen's original sequent calculus~\Log{LK}.
-Gentzen's \emph{Hauptsatz} (``main theorem'') states that every
-sequent !!{provable} in~\Log{LK} is also !!{provable} without using
-the \Cut{} rule, i.e., that \Cut{} can be ``eliminated'' from
-\Log{LK}-proofs. Our systems \Log{G1c} and \Log{G3c} do not contain
-\Cut, but the question can be raised for them as well: can \Cut{} be
-eliminated from !!{proof}s that use \Cut{} plus the other rules of
-\Log{G1c} (or those of \Log{G3c})? In our established terminology it
-can be asked equivalently as: Is \Cut{} an admissible rule of
-\Log{G1c} (or \Log{G3c}).
+\Cut{} 规则被包含在 Gentzen 最初的相继式演算~\Log{LK} 中。
+Gentzen 的 \emph{Hauptsatz}（“主要定理”）断言，每一个在~\Log{LK} 中可推导的相继式，也可以在不使用 \Cut{} 规则的情况下推导出来，即 \Cut{} 可以从 \Log{LK} 证明中“消除”。我们的系统 \Log{G1c} 和 \Log{G3c} 并不包含 \Cut，但同样可以对它们提出这个问题：能否从使用了 \Cut{} 以及 \Log{G1c}（或 \Log{G3c}）的其他规则的推导中消除 \Cut{}？用我们已经建立的术语，这个问题可以等价地表述为：\Cut{} 是 \Log{G1c}（或 \Log{G3c}）的\emph{可容许规则}吗？
 
-The cut elimination theorem is perhaps the most important and
-celebrated result of proof theory. It first of all establishes that
-\Log{G1c} and \Log{G3c} don't need a rule which you might, at first
-blush, think is clearly required. For when you try to formalize actual
-proofs, you'll notice that you need a way to deal with the use of
-lemmas. Mathematicians like to prove results, and then appeal to these
-results in proofs of other results. So you might first formalize a
-proof of result $L$ (the lemma) as the !!{proof} of a sequent
-$\Sequent L$. Then you formalize the proof of the second result~$R$,
-the proof of which uses~$L$, as the !!{proof} of a sequent $L \Sequent
-R$. How do you know that there is a proof of~$R$, i.e., !!a{proof} of
-just $\Sequent R$? You need a way to combine the two !!{proof}s, and
-the \Cut{} rule would allow you to do that.
+切割消去定理或许是证明论中最为重要和著名的结果。它首先确立了，\Log{G1c} 和 \Log{G3c} 并不需要初看似乎必不可少的规则。因为当你尝试将实际的证明形式化时，你会发现需要一种处理引理调用的方法。数学家们喜欢先证明一些结果，然后在证明其他结果时援引这些结果。所以，你可能先把结果 $L$（引理）的证明形式化为相继式 $\Sequent L$ 的一个推导。然后，你把使用了引理 $L$ 的第二个结果 $R$ 的证明，形式化为相继式 $L \Sequent R$ 的一个推导。你怎么知道存在 $R$ 的一个证明，即 $\Sequent R$ 自身的一个推导呢？你需要一种方法来组合这两个推导，而 \Cut{} 规则恰好提供了这种方法。
 
-We mentioned that \Log{G1c} and \Log{G3c} are complete, and so they
-prove any sequent you might expect to be able to prove---all valid
-sequents. This can be proved directly. But at the time Gentzen was
-writing, only axiomatic derivation systems were known to be complete.
-To show \Log{LK} complete, Gentzen provided a translation of
-!!{derivation}s in the axiomatic system into \Log{LK}-!!{proof}s. This
-translation used \Cut{} essentially. Cut elimination is not just an
-important result for classical logic: many other logics have sequent
-calculi. For some logics, a direct proof of completeness for their
-sequent calculi is hard or impossible, so translations from other
-systems (using \Cut) are the only way to show completeness. Then
-proving cut elimination proof-theoretically is necessary to establish
-that \Cut{} is superfluous and that the system without \Cut{} is
-complete.
+我们之前提到过，\Log{G1c} 和 \Log{G3c} 是完备的，因此它们能证明任何期望能证明的相继式——所有有效的相继式。这可以直接证明。但在 Gentzen 写作的时代，只有公理化推导系统已知是完备的。为了证明 \Log{LK} 是完备的，Gentzen 提供了一种将公理化推导系统中的推导翻译为 \Log{LK} 推导的方法。这个翻译本质上使用了 \Cut{}。切割消去不仅是经典逻辑的一个重要结果：许多其他逻辑也有相继式演算。对某些逻辑来说，直接证明其相继式演算的完备性是困难或不可能的，因此，来自其他系统（使用 \Cut）的翻译就成了证明完备性的唯一途径。于是，为了确立 \Cut{} 是多余的且不含 \Cut{} 的系统本身也是完备的，就必须从证明论上证明切割消去。
 
-Cut elimination is also important because it can be applied to obtain
-other, independently interesting results. Two cases we'll consider are
-the Craig interpolation lemma and Herbrand' theorem.
+切割消去也很重要，因为它可以用来获得其他本身就很有意思的结果。我们将考虑的两个例子是 Craig 插值引理和 Herbrand（埃尔布朗）定理。
 
-The ideas used to prove cut elimination typically involve showing how
-!!a{proof} that uses \Cut{} can be transformed into one without. These
-transformations are usually ``local,'' i.e., we take a part of !!
-a{proof} (usually a sub-!!{proof} ending in a \Cut{} inference) and
-replace it with another sub-!!{proof} of the same sequent but in which
-the \Cut{} inference has been removed or replaced by others. Such
-arguments provide step-by-step algorithms for transforming !!{proof}s
-with \Cut{} into ones without. This provides more information when cut
-elimination procedures are used in applications. For instance, there
-are model theoretic proofs of the interpolation lemma the form ``if
-$!A \lif !B$'' is valid then an interpolant exists (never mind what
-and interpolant is for the moment). A proof-theoretic argument using
-cut elimination provides an algorithm that takes !!a{proof} of $!A
-\lif !B$ and returns an interpolant. In contrast to the model
-theoretic argument, the proof theoretic argument is
-\emph{constructive}.
+证明切割消去的思路通常涉及展示如何将一个使用了 \Cut{} 的推导变换为一个没有使用它的推导。这些变换通常是“局部的”，即我们取证明的一部分（通常是以 \Cut{} 推理结束的子推导），并用另一个推导出同一相继式的子推导来替换它，只是在该子推导中 \Cut{} 推理已被移除或替换为其他推理。这样的论证提供了逐步的算法，用于将带有 \Cut{} 的推导变换为不带的推导。在切割消去程序的应用中，这能提供更多的信息。例如，对于插值引理，存在模型论的证明，其形式为“如果 $!A \lif !B$ 有效，则存在一个插值式（暂且不管插值式是什么）”。使用切割消去的证明论论证则提供了一个算法，它接受 $!A \lif !B$ 的一个推导，并返回一个插值式。与模型论论证相比，证明论论证是\emph{构造性的}。
 
-There are two popular ways to prove the cut elimination theorem. One
-(going back to Gentzen) shows that you can remove top-most cuts in a
-proof, and then just removes top-most cuts until none are left. The
-other (originally due to Sch\"utte and Tait) focuses on the most
-complex cuts in !!a{proof}, and successively removes cuts that are
-maximal in the sense that no other cut has a cut !!{formula} of higher
-depth. They each have their advantages and drawbacks. For some
-systems, one approach works while another is hard to implement or even
-impossible. So, we describe both approaches. We'll prove cut
-elimination for~\Log{G3c}. In fact, we'll show not that \Cut{} can be
-eliminated, but \emph{context-sharing cut}~\CutCS:
+证明切割消去定理有两种流行的途径。
+一种途径（可追溯到 Gentzen）表明，可以移除证明中最顶层的切割，然后只需不断移除最顶层的切割，直到没有切割剩下。
+另一种途径（最初由 Sch\"utte 和 Tait 提出）则关注推导中最复杂的切割，并逐步移除那些极大切割——即没有其他切割的切割公式具有更高深度的切割。
+它们各有优缺点。
+对于某些系统，一种途径行之有效，而另一种则难以实现甚至完全无法使用。
+因此，我们将对两种途径都加以描述。
+我们将针对系统~\Log{G3c} 证明切割消去。
+事实上，我们将证明的不是 \Cut{} 能被消去，而是\emph{上下文共享切割}~\CutCS{} 能被消去：
 \[
 \Axiom$\Gamma \fCenter \Delta, !A$
 \Axiom$!A, \Gamma \fCenter \Delta$
@@ -99,11 +46,7 @@ eliminated, but \emph{context-sharing cut}~\CutCS:
 \BinaryInf$\Gamma \fCenter \Delta$
 \DisplayProof
 \]
-If a sequent calculus allows weakening and contraction (either as
-actual rules like in \Log{G1c} or as admissible rules like in
-\Log{G3c}), \Cut{} can simulate \CutCS, and vice versa. We choose
-\CutCS{} over \Cut because the first cut elimination strategy is
-easier to describe for~\CutCS, and the second strategy only works
-for~\CutCS.
+如果一个相继式演算允许弱化和紧缩（无论是像在 \Log{G1c} 中那样作为实际规则，还是像在 \Log{G3c} 中那样作为可容许规则），\Cut{} 就可以模拟 \CutCS，反之亦然。
+我们选择 \CutCS{} 而非 \Cut，是因为对于 \CutCS{} 而言第一种切割消去策略更容易描述，并且第二种策略仅适用于 \CutCS。
 
 \end{document}

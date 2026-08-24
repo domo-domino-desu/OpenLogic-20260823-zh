@@ -3,62 +3,34 @@
 \begin{document}
 
 \olfileid{sth}{story}{rus}
-\olsection{Russell's Paradox (again)}
+\olsection{罗素悖论（再论）}
 
-In \olref[sfr][][]{part}, we worked with a na\"{i}ve set theory. But
-according to a \emph{very} na\"{i}ve conception, sets are just the
-extensions of predicates. This na\"ive thought would mandate the
-following principle:
+在 \olref[sfr][][]{part} 中，我们探讨了一种朴素的集合论。但根据一种\emph{非常}朴素的观点，集合不过是谓词的外延。这种朴素的想法要求我们接受如下原则：
 
 \begin{defish}
-  \emph{Na\"{i}ve Comprehension.} $\Setabs{x}{\phi(x)}$ exists for any formula $\phi$.
+  \emph{朴素概括原则。} 对任意公式 $\phi$，$\Setabs{x}{\phi(x)}$ 都存在。
 \end{defish}
 
-Tempting as this principle is, it is provably inconsistent. We saw this in \olref[sfr][set][rus]{sec}, but the result is so important, and so straightforward, that it's worth repeating. Verbatim.
+尽管这条原则很诱人，但可以证明它是不一致的。我们在 \olref[sfr][set][rus]{sec} 中已经见过这一点，但这个结果如此重要，又如此直截了当，值得逐字重复一遍。
 
-\begin{thm}[Russell's Paradox]
-There is no set $R = \Setabs{x}{x \notin x}$
+\begin{thm}[罗素悖论]
+不存在集合 $R = \Setabs{x}{x \notin x}$
 \end{thm}
 
 \begin{proof}
-If $R = \Setabs{x}{x \notin x}$ exists, then
-$R \in R$ iff $R \notin R$, which is a contradiction.
+如果 $R = \Setabs{x}{x \notin x}$ 存在，那么 $R \in R$ 当且仅当 $R \notin R$，这是一个矛盾。
 \end{proof}
 
-Russell discovered this result in June 1901. (He did not, though, put
-the paradox in quite the form we just presented it, since he was
-considering Frege's set theory, as outlined in \emph{Grundgesetze}. We
-will return to this in \olref[blv]{sec}.) Russell wrote to
-Frege on June 16, 1902, explaining the inconsistency in Frege's
-system. For the correspondence, and a bit of background, see
-\citet[pp.~124--8]{Heijenoort1967}. 
+Russell（罗素）在 1901 年 6 月发现了这个结果。（不过，他并没有以我们刚才呈现的那种精确形式提出该悖论，因为他当时考虑的是 Frege（弗雷格）在《Grundgesetze》中概述的集合论。我们将在 \olref[blv]{sec} 中回到这一点。）Russell 于 1902 年 6 月 16 日写信给 Frege，解释了 Frege 系统中的不一致性。关于通信及一些背景，参见 \citet[pp.~124--8]{Heijenoort1967}。
 
-It is worth emphasising that this two-line proof is a result of
-\emph{pure logic}. Granted, we implicitly used a (non-logical?)\ axiom, Extensionality, in our notation $\Setabs{x}{x \notin x}$; for $\Setabs{x}{\phi(x)}$ is to be \emph{the unique} (by Extensionality) set of the $\phi$s, if one exists. But we can avoid even the hint of Extensionality, just by stating the result as follows:
-\emph{there is no set whose members are exactly the non-self-membered
-sets}. And this has nothing much to do with sets. As Russell himself observed, exactly similar reasoning
-will lead you to conclude: \emph{no man shaves exactly the men who do
-not shave themselves}. Or: \emph{no pug sniffs exactly the pugs which
-don't sniff themselves}. And so on. Schematically, the shape of the
-result is just: 
+值得强调的是，这个两行证明是\emph{纯粹逻辑}的结果。诚然，我们在记号 $\Setabs{x}{x \notin x}$ 中隐含地使用了一条（非逻辑的？）公理，即外延公理；因为如果存在的话，$\Setabs{x}{\phi(x)}$ 被理解为（由外延性保证）满足 $\phi$ 的元素所组成的\emph{唯一}集合。但我们甚至可以避免哪怕一点点对外延性的依赖，只需将结果陈述如下：\emph{不存在一个集合，其元素恰好是所有不以自身为元素的集合}。而这与集合并没有多大关系。正如 Russell 本人所观察到的，完全相同的推理会导致如下结论：\emph{没有人给恰好那些不给自己刮胡子的人刮胡子}。或者：\emph{没有哪只哈巴狗嗅恰好那些不嗅自己的哈巴狗}。诸如此类。从图式上看，该结果的形式仅仅是：
 \[
 \lnot \exists x \forall z(Rzx \liff \lnot R zz).
 \]
-And that's just a theorem (scheme) of first-order logic. Consequently,
-we can't avoid Russell's Paradox just by tinkering with our set
-theory; it arises before we even \emph{get} to set theory. If we're
-going to use (classical) first-order logic, we simply have to
-\emph{accept} that there is no set $R = \Setabs{x}{x\notin x}$. 
+而这不过是一阶逻辑的一个（图式）定理。因此，我们不能仅仅通过对集合论修修补补来避免罗素悖论；它甚至在我们\emph{抵达}集合论之前就出现了。如果我们要使用（经典）一阶逻辑，我们就只能\emph{接受}不存在集合 $R = \Setabs{x}{x\notin x}$ 这一事实。
 
-The upshot is this. If you want to accept Na\"{i}ve Comprehension
-whilst \emph{avoiding} inconsistency, you cannot just tinker with the
-\emph{set theory}. Instead, you would have to overhaul your
-\emph{logic}.
+要点在于：如果你既想接受朴素概括原则，又想\emph{避免}不一致性，你就不能只对\emph{集合论}修修补补。相反，你将不得不彻底改革你的\emph{逻辑}。
 
-Of course, set theories with non-classical logics have been presented.
-But they are---to say the least---non-standard. The standard approach
-to Russell's Paradox is to treat it as a straightforward non-existence
-proof, and then to try to learn how to live with it. That is the
-approach we will follow.
+当然，基于非经典逻辑的集合论已经被提出来了。但它们至少可以说是非标准的。处理罗素悖论的标准方法是将其视为一个直截了当的不存在性证明，然后学着与之共存。这也是我们将采取的做法。
 
 \end{document}

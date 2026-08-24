@@ -8,24 +8,24 @@
 
 \olfileid{nml}{prf}{prs}
 
-\olsection{Proofs in Modal Systems}
+\olsection{模态系统中的证明}
 
-We now come to proofs in systems of modal logic other than~\Log{K}.
+现在我们讨论 \Log{K} 以外的模态逻辑系统中的证明。
 
 \begin{prop}\ollabel{prop:S5facts}
-The following provability results obtain:
+下列可证性结果成立：
   \begin{enumerate}
-  \item $\Log{KT5} \Proves \Ax{B}$;
-  \item $\Log{KT5} \Proves \Ax{4}$;
-  \item $\Log{KDB4} \Proves \Ax{T}$;
-  \item $\Log{KB4} \Proves \Ax{5}$;
-  \item $\Log{KB5} \Proves \Ax{4}$;
-  \item \ollabel{prop:S5facts-KT-D}$\Log{KT} \Proves \Ax{D}$.
+  \item $\Log{KT5} \Proves \Ax{B}$；
+  \item $\Log{KT5} \Proves \Ax{4}$；
+  \item $\Log{KDB4} \Proves \Ax{T}$；
+  \item $\Log{KB4} \Proves \Ax{5}$；
+  \item $\Log{KB5} \Proves \Ax{4}$；
+  \item \ollabel{prop:S5facts-KT-D}$\Log{KT} \Proves \Ax{D}$。
   \end{enumerate}
 \end{prop}
 
 \begin{proof}
-  We exhibit proofs for each.
+  下面给出各项的证明。
   \begin{enumerate}
     \item $\Log{KT5} \Proves \Ax{B}$:
       \begin{derivation}
@@ -36,9 +36,9 @@ The following provability results obtain:
     \item $\Log{KT5} \Proves \Ax{4}$:
       \begin{derivation}
         1. &$\Log{KT5} \Proves \Diamond\Box!A \lif \Box\Diamond\Box!A$ & \Ax{5}
-        with $\Box!A$ for $p$\\
+        以 $\Box!A$ 代 $p$\\
         2. & $\Log{KT5} \Proves \Box!A \lif \Diamond\Box!A$ & $\Ax{T_\Diamond}$
-        with $\Box!A$ for $p$\\
+        以 $\Box!A$ 代 $p$\\
         3. & $\Log{KT5} \Proves \Box!A \lif \Box\Diamond\Box!A$ & \PL, 2, 1\\
         4. & $\Log{KT5} \Proves \Diamond\Box!A \lif \Box!A$ & $\Ax{5_\Diamond}$\\
         5. & $\Log{KT5} \Proves \Box\Diamond\Box!A \lif \Box\Box!A$ & \RK{}, 4 \\
@@ -48,7 +48,7 @@ The following provability results obtain:
       \begin{derivation}
         1. & $\Log{KDB4} \Proves \Diamond\Box!A \lif !A $ & $\Ax{B_\Diamond}$ \\
         2. & $\Log{KDB4} \Proves \Box\Box!A \lif \Diamond\Box!A$ & $\Ax{D}$
-        with $\Box!A$ for $p$\\
+        以 $\Box!A$ 代 $p$\\
         3. & $\Log{KDB4} \Proves \Box\Box!A \lif !A$ & \PL, 1, 2\\
         4. & $\Log{KDB4} \Proves \Box!A \lif \Box\Box!A$ & \Ax{4} \\
         5. & $\Log{KDB4} \Proves \Box!A \lif !A$ & \PL, 4, 3. \\
@@ -56,7 +56,7 @@ The following provability results obtain:
     \item $\Log{KB4} \Proves \Ax{5}$:
       \begin{derivation}
         1. & $\Log{KB4} \Proves \Diamond!A \lif \Box \Diamond\Diamond!A$ & \Ax{B}
-        with $\Diamond!A$ for $p$\\
+        以 $\Diamond!A$ 代 $p$\\
         2. & $\Log{KB4} \Proves \Diamond\Diamond !A \lif \Diamond !A$ &
         $\Ax{4_\Diamond}$ \\
         3. & $\Log{KB4} \Proves \Box\Diamond\Diamond !A \lif \Box \Diamond!A$ &
@@ -65,8 +65,8 @@ The following provability results obtain:
       \end{derivation}
     \item $\Log{KB5} \Proves \Ax{4}$:
       \begin{derivation}
-        1. & $\Log{KB5} \Proves \Box!A \lif \Box\Diamond\Box !A$ & \Ax{B} with
-        $\Box!A$ for $p$ \\
+        1. & $\Log{KB5} \Proves \Box!A \lif \Box\Diamond\Box !A$ & \Ax{B} 以
+        $\Box!A$ 代 $p$ \\
         2. & $\Log{KB5} \Proves  \Diamond\Box!A \lif \Box !A$ &
         $\Ax{5_\Diamond}$\\
         3. & $\Log{KB5} \Proves  \Box\Diamond\Box!A \lif \Box\Box !A$ & \RK{}, 2 \\
@@ -82,26 +82,21 @@ The following provability results obtain:
 \end{proof}
 
 \begin{defn}
-  Following tradition, we define \Log{S4} to be the system
-  \Log{KT4}, and \Log{S5} the system \Log{KTB4}.
+  按照惯例，我们定义 \Log{S4} 为系统 \Log{KT4}，\Log{S5} 为系统 \Log{KTB4}。
 \end{defn}
 
-The following proposition shows that the classical system \Log{S5} has
-several equivalent axiomatizations. This should not surprise, as the
-various combinations of axioms all characterize equivalence relations
-(see \olref[frd][es5]{prop:equivalences}).
+下列命题表明，经典系统 \Log{S5} 具有多种等价的公理化方式。这不足为奇，因为公理的各种组合刻画的都是等价关系（参见 \olref[frd][es5]{prop:equivalences}）。
 
 \begin{prop}\ollabel{prop:S5}
-  $\Log{KTB4} = \Log{KT5} = \Log{KDB4} = \Log{KDB5}$.
+  $\Log{KTB4} = \Log{KT5} = \Log{KDB4} = \Log{KDB5}$。
 \end{prop}
 
 \begin{proof}
-  Exercise.
+  习题。
 \end{proof}
 
 \begin{prob}
-  Prove \olref[nml][prf][prs]{prop:S5}.
+  证明 \olref[nml][prf][prs]{prop:S5}。
 \end{prob}
-
 
 \end{document}

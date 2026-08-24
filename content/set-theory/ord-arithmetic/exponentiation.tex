@@ -3,57 +3,42 @@
 \begin{document}
 
 \olfileid{sth}{ord-arithmetic}{expo}
-\olsection{Ordinal Exponentiation}
+\olsection{序数幂}
 
-We now move to ordinal exponentiation. Sadly, there is no \emph{nice}
-synthetic definition for ordinal exponentiation.
+现在我们来讨论序数幂。遗憾的是，对于序数幂并不存在一个\emph{好的}构造性定义。
 
-Sure, there \emph{are} explicit synthetic definitions. Here is one.
-Let $\text{finfun}(\alpha,\beta)$ be the set of all functions $f
-\colon \alpha \to \beta$ such that $\Setabs{\gamma \in
-\alpha}{f(\gamma) \neq 0}$ is equinumerous with some natural number.
-Define a well-ordering on $\text{finfun}(\alpha,\beta)$ by $f
-\sqsubset g$ iff $f \neq g$ and $f(\gamma_0) < g(\gamma_0)$, where
+当然，\emph{确实有}显式的构造性定义。这里给出一种。令 $\text{finfun}(\alpha,\beta)$ 为所有满足 $\Setabs{\gamma \in
+\alpha}{f(\gamma) \neq 0}$ 与某个自然数等势的函数 $f
+\colon \alpha \to \beta$ 的集合。在 $\text{finfun}(\alpha,\beta)$ 上定义良序如下：$f
+\sqsubset g$ 当且仅当 $f \neq g$ 且 $f(\gamma_0) < g(\gamma_0)$，其中
 $\gamma_0 = \text{max}\Setabs{\gamma \in \alpha}{f(\gamma) \neq
-g(\gamma)}$. Then we can define $\ordexpo{\alpha}{\beta}$ as
-$\ordtype{\text{finfun}(\alpha, \beta), \sqsubset}$. Potter employs
-this explicit definition, and then immediately explains:
+g(\gamma)}$。于是我们可以将 $\ordexpo{\alpha}{\beta}$ 定义为
+$\ordtype{\text{finfun}(\alpha, \beta), \sqsubset}$。Potter 采用了
+这个显式定义，并立即解释道：
+
 \begin{quote}
-	The choice of this ordering is determined purely by our desire to
-	obtain a definition of ordinal exponentiation which obeys the
-	appropriate recursive condition\ldots, and it is much harder to
-	picture than either the ordered sum or the ordered product.
+	选择该序关系纯粹是为了得到一个满足相应递归条件的序数幂定义……，并且它比序数和或序数积要难以想象得多。
 	\citep[p.~199]{Potter2004}
 \end{quote}
-Quite. We explained addition as ``a copy of $\alpha$ followed by a
-copy of $\beta$'', and multiplication as ``a $\beta$-sequence of
-copies of $\alpha$''. But we have nothing pithy to say about
-$\text{finfun}(\alpha, \gamma)$. So instead, we'll offer the
-definition of ordinal exponentiation just \emph{by} transfinite
-recursion, i.e.:
+
+确实如此。我们曾将加法刻画为“一个 $\alpha$ 的副本后面跟着一个 $\beta$ 的副本”，将乘法刻画为“一个由 $\alpha$ 的副本组成的 $\beta$ 序列”。但对于 $\text{finfun}(\alpha, \gamma)$，我们则没有什么简洁的直观刻画。因此，我们将仅\emph{借由}超限递归来给出序数幂的定义，即：
 
 \begin{defn}\ollabel{ordexporecursion}
 \begin{align*}
 	\ordexpo{\alpha}{0} &= 1\\
 	\ordexpo{\alpha}{\beta\ordplus 1} &=\ordexpo{\alpha}{\beta} \ordtimes \alpha\\
-	\ordexpo{\alpha}{\beta} &= \bigcup_{\delta < \beta}\ordexpo{\alpha}{\delta}& & \text{when $\beta$ is a limit ordinal}
+	\ordexpo{\alpha}{\beta} &= \bigcup_{\delta < \beta}\ordexpo{\alpha}{\delta}& & \text{当 $\beta$ 是极限序数时}
 \end{align*}
 \end{defn}
 
-If we were working \emph{as} set theorists, we might want to explore
-some of the properties of ordinal exponentiation. But we have nothing
-much more to add, except to note the unsurprising fact that ordinal
-exponentiation does not commute. Thus $\ordexpo{2}{\omega} =
-\bigcup_{\delta < \omega}\ordexpo{2}{\delta} = \omega$, whereas
-$\ordexpo{\omega}{2} = \omega \ordtimes \omega$. But then, we should
-not \emph{expect} exponentiation to commute, since it does not commute
-with natural numbers: $\ordexpo{2}{3} = 8 < 9 = \ordexpo{3}{2}$. 
+如果我们纯粹\emph{以}集合论者的身份开展工作，或许会想探索序数幂的更多性质。但我们没有太多要补充的，只需指出一个并不令人意外的事实：序数幂不满足交换律。因此 $\ordexpo{2}{\omega} =
+\bigcup_{\delta < \omega}\ordexpo{2}{\delta} = \omega$，而
+$\ordexpo{\omega}{2} = \omega \ordtimes \omega$。不过话说回来，我们本就不该\emph{期望}幂运算满足交换律，因为自然数上的幂运算也不可交换：$\ordexpo{2}{3} = 8 < 9 = \ordexpo{3}{2}$。
 
 \begin{prob}
-Using Transfinite Induction, prove that, if we define
+使用超限归纳法证明：如果我们定义
 $\ordexpo{\alpha}{\beta} = \ordtype{\text{finfun}(\alpha, \beta),
-\sqsubset}$, we obtain the recursion equations of
-\olref[sth][ord-arithmetic][expo]{ordexporecursion}.
+\sqsubset}$，则可以得到 \olref[sth][ord-arithmetic][expo]{ordexporecursion} 中的递归等式。
 \end{prob}
 
 \end{document}

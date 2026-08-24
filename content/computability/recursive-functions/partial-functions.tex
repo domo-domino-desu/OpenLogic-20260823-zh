@@ -7,113 +7,60 @@
 \begin{document}
 
 \olfileid{cmp}{rec}{par}
-\olsection{Partial Recursive Functions}
+\olsection{部分递归函数}
 
+作为递归函数定义的动机，请注意，我们关于存在非原始递归的可计算函数的证明实际上确立了更多的结论。
+论证很简单：我们所利用的全部事实只是，可以枚举函数 $f_0,f_1,\dots$，使得将 $f_x(y)$ 视为 $x$ 和 $y$ 的函数时，它是可计算的。
+因此，该论证适用于\emph{任何能以这种方式枚举的函数类}。
+这使我们陷入一个困境：我们想要明确地描述可计算函数；但是，对可计算函数集合的任何明确描述都不可能是穷尽的！
 
-To motivate the definition of the recursive functions, note that our
-proof that there are computable functions that are not primitive
-recursive actually establishes much more. The argument was
-simple: all we used was the fact that it is possible to enumerate
-functions $f_0,f_1,\dots$ such that, as a function of $x$ and $y$,
-$f_x(y)$ is computable. So the argument applies to \emph{any class of
-  functions that can be enumerated in such a way}. This puts us in a
-bind: we would like to describe the computable functions explicitly;
-but any explicit description of a collection of computable functions
-cannot be exhaustive!
+解决之道是引入\emph{偏}函数。
+我们将看到，偏可计算函数\emph{的确}是可枚举的。\iftag{TMs}{事实上，我们已大致知道情况确实如此，因为图灵机是可以系统地枚举的。}{}
+我们稍后将回到对角论证，并探讨为何在包含偏函数时它就无法成立。
 
-The way out is to allow \emph{partial} functions to come into play. We
-will see that it \emph{is} possible to enumerate the partial
-computable functions.\iftag{TMs}{ In fact, we already pretty much know
-  that this is the case, since it is possible to enumerate Turing
-  machines in a systematic way.}{} We will come back to our diagonal
-argument later, and explore why it does not go through when partial
-functions are included.
+现在的问题是：我们需要在原始递归函数的基础上添加什么，才能得到所有的偏递归函数？我们需要做两件事：
 
-The question is now this: what do we need to add to the primitive
-recursive functions to obtain all the partial recursive functions? We
-need to do two things:
 \begin{enumerate}
-\item Modify our definition of the primitive recursive functions to
-  allow for partial functions as well.
-\item \emph{Add} something to the definition, so that some new partial
-  functions are included.
+\item 修改原始递归函数的定义，使其同样允许偏函数。
+\item 向该定义中\emph{添加}一些内容，从而包含新的偏函数。
 \end{enumerate}
 
-The first is easy. As before, we will start with zero, successor, and
-projections, and close under composition and primitive recursion. The
-only difference is that we have to modify the definitions of
-composition and primitive recursion to allow for the possibility that
-some of the terms in the definition are not defined. If $f$ and $g$
-are partial functions, we will write $f(x) \fdefined$ to mean that $f$
-is defined at $x$, i.e., $x$ is in the domain of $f$; and $f(x)
-\fundefined$ to mean the opposite, i.e., that $f$ is not defined at~$x$.
-We will use $f(x) \simeq g(x)$ to mean that either $f(x)$ and $g(x)$
-are both undefined, or they are both defined and equal. We will use these
-notations for more complicated terms as well. We will adopt the
-convention that if $h$ and $g_0$, \dots,~$g_k$ all are partial functions,
-then
+第一点很容易。和之前一样，我们将从零函数、后继函数和投影函数出发，并在复合与原始递归下封闭。唯一的区别是，我们必须修改复合与原始递归的定义，以允许定义中的某些项可能无定义的情况。如果 $f$ 和 $g$ 是偏函数，我们将用 $f(x) \fdefined$ 表示 $f$ 在 $x$ 处有定义，即 $x$ 在 $f$ 的定义域中；而用 $f(x) \fundefined$ 表示相反的情况，即 $f$ 在 $x$ 处无定义。我们将用 $f(x) \simeq g(x)$ 表示要么 $f(x)$ 和 $g(x)$ 都无定义，要么它们都有定义并且相等。我们也将这些记号用于更复杂的项。我们将采用如下约定：如果 $h$ 和 $g_0$, \dots, $g_k$ 都是偏函数，那么
 \[
 h(g_0(\vec x),\dots,g_k(\vec x))
 \]
-is defined if and only if each $g_i$ is defined at $\vec x$, and $h$
-is defined at $g_0(\vec x)$, \dots,~$g_k(\vec x)$. With this
-understanding, the definitions of composition and primitive recursion
-for partial functions is just as above, except that we have to replace
-``$=$'' by ``$\simeq$''.
+有定义当且仅当每个 $g_i$ 都在 $\vec x$ 处有定义，并且 $h$ 在 $g_0(\vec x)$, \dots, $g_k(\vec x)$ 处有定义。基于这一理解，偏函数的复合与原始递归定义就与上文完全相同，只不过我们必须将“$=$”替换为“$\simeq$”。
 
-What we will add to the definition of the primitive recursive
-functions to obtain partial functions is the \emph{unbounded search
-  operator}. If $f(x,\vec z)$ is any partial function on the natural
-numbers, define $\mu x \; f(x,\vec z)$ to be
+为了得到偏函数，我们将向原始递归函数定义中添加的是\emph{无界搜索算子}。如果 $f(x,\vec z)$ 是自然数上的任意偏函数，定义 $\mu x \; f(x,\vec z)$ 为
+
 \begin{quote}
-  the least $x$ such that $f(0,\vec z), f(1,\vec z), \dots, f(x,\vec
-  z)$ are all defined, and $f(x,\vec z) = 0$, if such an $x$ exists
+  使得 $f(0,\vec z), f(1,\vec z), \dots, f(x,\vec
+  z)$ 均有定义且 $f(x,\vec z) = 0$ 的最小 $x$（如果这样的 $x$ 存在），
 \end{quote}
-with the understanding that $\mu x \; f(x,\vec z)$ is undefined
-otherwise. This defines $\mu x \; f(x,\vec z)$ uniquely.
+
+并约定否则 $\mu x \; f(x,\vec z)$ 无定义。这唯一地定义了 $\mu x \; f(x,\vec z)$。
 
 \begin{explain}
-Note that our definition makes no reference to\iftag{TMs}{ Turing
-  machines, or}{} algorithms, or any specific computational model. But
-like composition and primitive recursion, there is an operational,
-computational intuition behind unbounded search. When it
-comes to the computability of a partial function, arguments
-where the function is undefined correspond to inputs for which the
-computation does not halt. The procedure for computing $\mu x \;
-f(x,\vec z)$ will amount to this: compute $f(0,\vec z), f(1,\vec z),
-f(2,\vec z)$ until a value of 0 is returned. If any of the
-intermediate computations do not halt, however, neither does the
-computation of $\mu x \; f(x,\vec z)$.
+请注意，我们的定义并未提及\iftag{TMs}{图灵机，或}{}算法，或任何特定的计算模型。但是，与复合和原始递归一样，无界搜索背后也有一种操作性和计算性的直观。就偏函数的可计算性而言，函数无定义的自变元对应于计算不会停机的输入。计算 $\mu x \;
+f(x,\vec z)$ 的过程相当于：计算 $f(0,\vec z), f(1,\vec z),
+f(2,\vec z)$，直到返回值 0。然而，如果任何中间计算不停机，那么 $\mu x \; f(x,\vec z)$ 的计算也不会停机。
 \end{explain}
 
-If $R(x,\vec z)$ is any relation, $\mu x \; R(x,\vec z)$ is defined to
-be $\mu x \; (1 \tsub \Char{R}(x,\vec z))$. In other words, $\mu x \;
-R(x,\vec z)$ returns the least value of $x$ such that $R(x,\vec z)$
-holds. So, if $f(x,\vec z)$ is a total function, $\mu x \; f(x,\vec
-z)$ is the same as $\mu x \; (f(x,\vec z) = 0)$. But note that our
-original definition is more general, since it allows for the
-possibility that $f(x,\vec z)$ is not everywhere defined (whereas, in
-contrast, the characteristic function of a relation is always total).
+如果 $R(x,\vec z)$ 是任意关系，$\mu x \; R(x,\vec z)$ 被定义为 $\mu x \; (1 \tsub \Char{R}(x,\vec z))$。换言之，$\mu x \;
+R(x,\vec z)$ 返回使 $R(x,\vec z)$ 成立的最小 $x$ 值。因此，如果 $f(x,\vec z)$ 是全函数，那么 $\mu x \; f(x,\vec
+z)$ 就等同于 $\mu x \; (f(x,\vec z) = 0)$。但请注意，我们最初的定义更为一般，因为它允许 $f(x,\vec z)$ 可能并非处处有定义（相反，关系的特征函数总是全函数）。
 
 \begin{defn}
-The set of \emph{partial recursive functions} is the smallest set of
-partial functions from the natural numbers to the natural numbers (of
-various arities) containing zero, successor, and projections, and
-closed under composition, primitive recursion, and unbounded search.
+\emph{部分递归函数}集合是满足以下条件的最小偏函数（从自然数到自然数，具有不同元数）集合：包含零函数、后继函数和投影函数，且在复合、原始递归和无界搜索下封闭。
 \end{defn}
 
-Of course, some of the partial recursive functions will happen to be
-total, i.e., defined for every argument.
+当然，部分递归函数中有一些恰好是全函数，即对每个自变元都有定义。
 
 \begin{defn}
 \ollabel{defn:recursive-fn}
-The set of \emph{recursive functions} is
-the set of partial recursive functions that are total.
+\emph{递归函数}集合是所有作为全函数的部分递归函数构成的集合。
 \end{defn}
 
-A recursive function is sometimes called ``total recursive'' to
-emphasize that it is defined everywhere.
+递归函数有时也被称为“全递归函数”，以强调它是处处有定义的。
 
 \end{document}
-
-

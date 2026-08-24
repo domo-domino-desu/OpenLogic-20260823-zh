@@ -7,110 +7,84 @@
 \begin{document}
 
 \olfileid{tur}{und}{tra}
-\olsection{Trakhtenbrot's Theorem}
+\olsection{Trakhtenbrot 定理}
 
 \begin{explain}
-  In \olref[rep]{sec} we defined !!{sentence}s $!T(M,w)$ and~$!E(M,w)$
-  for a Turing machine~$M$ and input string~$w$. Then we showed in
-  \olref[ver]{lem:valid-if-halt} and \olref[ver]{lem:halt-if-valid}
-  that $!T(M,w) \lif !E(M,w)$ is valid iff $M$, started on input~$w$,
-  eventually halts. Since the Halting Problem is undecidable, this
-  implies that validity and satisfiability of !!{sentence}s of
-  first-order logic is undecidable
-  (\cref{tur:und:uns:thm:decision-prob,tur:und:uns:cor:undecidable-sat}).
+  在 \olref[rep]{sec} 中，我们为图灵机~$M$ 和输入字符串~$w$ 定义了语句 $!T(M,w)$ 和~$!E(M,w)$。
+  随后我们在 \olref[ver]{lem:valid-if-halt} 和 \olref[ver]{lem:halt-if-valid} 中证明了，$!T(M,w) \lif !E(M,w)$ 有效当且仅当 $M$ 以输入~$w$ 启动后最终停机。
+  由于停机问题是不可判定的，这意味着一阶逻辑语句的有效性与可满足性是不可判定的（\cref{tur:und:uns:thm:decision-prob,tur:und:uns:cor:undecidable-sat}）。
 
-  But validity and satisfiability of sentences is defined for
-  arbitrary !!{structure}s, finite or infinite. You might suspect that
-  it is easier to decide if !!a{sentence} is satisfiable in a finite
-  !!{structure} (or valid in all finite !!{structure}s). We can adapt
-  the proof of the unsolvability of the decision problem so that it
-  shows this is not the case.
+  但是，语句的有效性和可满足性是针对任意结构（有限或无穷）定义的。
+  你可能会想，判定一个语句在有限结构中是否可满足（或在所有有限结构中有效）或许会更容易。
+  我们可以修改判定问题不可解性的证明，以表明情况并非如此。
 
-  First, if you go back to the proof of
-  \olref[ver]{lem:halt-if-valid}, you'll see that what we did there is
-  produce a model~$\Struct M$ of~$!T(M,w)$ which describes exactly
-  what machine~$M$ does when started on input~$w$.  The domain of that
-  model was~$\Nat$, i.e., infinite. But if $M$ actually halts on
-  input~$w$, we can build a finite model~$\Struct M'$ in the same way.
-  Suppose $M$ started on input~$w$ halts after~$k$ steps. Take as
-  domain~$\Domain{M'}$ the set $\{0, \dots, n\}$, where $n$ is the
-  larger of~$k$ and the length of~$w$, and let
+  首先，如果你回顾 \olref[ver]{lem:halt-if-valid} 的证明，
+  你会发现我们在那里构造了一个~$!T(M,w)$ 的模型~$\Struct M$，它精确地描述了机器~$M$ 以输入~$w$ 启动时的行为。
+  该模型的论域是~$\Nat$，因而是无穷的。
+  但如果 $M$ 确实以输入~$w$ 启动后停机，我们就可以用同样的方式构造一个有限模型~$\Struct M'$。
+  假设 $M$ 以输入~$w$ 启动后在~$k$ 步停机。
+  取论域~$\Domain{M'}$ 为集合 $\{0, \dots, n\}$，其中 $n$ 是~$k$ 和~$w$ 的长度中的较大者，并令
   \[
     \Assign{\prime}{M'}(x) = 
     \begin{cases}
-      x + 1 &\text{if $x < n$}\\
-      n &\text{otherwise,}
+      x + 1 &\text{若 $x < n$}\\
+      n &\text{否则，}
     \end{cases}
   \]
-  and $\tuple{x,y} \in \Assign{<}{M'}$ iff $x < y$ or $x = y = n$.
-  Otherwise $\Struct{M'}$ is defined just like~$\Struct{M}$. By the
-  definition of~$\Struct{M'}$, just like in the proof of
-  \olref[ver]{lem:halt-if-valid}, $\Sat{M'}{!T(M,w)}$.  And since we
-  assumed that $M$ halts on input~$w$, $\Sat{M'}{!E(M,w)}$. So,
-  $\Struct{M'}$ is a finite model of~$!T(M,w) \land !E(M,w)$ (note
-  that we've replaced $\lif$ with~$\land$).
+  且令 $\tuple{x,y} \in \Assign{<}{M'}$ 成立当且仅当 $x < y$ 或 $x = y = n$。
+  除此之外，$\Struct{M'}$ 的定义与~$\Struct{M}$ 完全相同。
+  根据~$\Struct{M'}$ 的定义，正如在 \olref[ver]{lem:halt-if-valid} 的证明中那样，$\Sat{M'}{!T(M,w)}$。
+  并且由于我们假设 $M$ 以输入~$w$ 启动后停机，$\Sat{M'}{!E(M,w)}$。
+  因此，$\Struct{M'}$ 是~$!T(M,w) \land !E(M,w)$ 的一个有限模型（注意我们用~$\land$ 替代了 $\lif$）。
   
-  We are halfway to a proof: we've shown that if $M$ halts on
-  input~$w$, then $!T(M,w) \land !E(M,w)$ has a finite model.
-  Unfortunately, the converse of this does not hold, i.e., there are
-  Turing machines that don't halt on some input~$w$, but $!T(M,w)
-  \land !E(M,w)$ still has a finite model. For instance, consider the
-  machine~$M$ with the single state $q_0$ and instruction
-  $\delta(q_0,\TMblank) = \tuple{q_0,\TMblank,\TMstay}$. Started on
-  empty input~$w = \emptyseq$, this machine never halts: it is in an
-  infinite loop, but does not change the tape or move the head. All
-  configurations are the same (same state, same head position, same
-  tape contents). We can define a finite !!{structure}~$\Struct{M''}$
-  that satisfies $!T(M,\emptyseq) \land !E(M,\emptyseq)$ (exercise).
-  We can, however, change~$!T(M,w)$ in a suitable way so that such
-  !!{structure}s are ruled out.
+  我们的证明已经完成了一半：我们证明了如果 $M$ 以输入~$w$ 启动后停机，那么 $!T(M,w) \land !E(M,w)$ 有一个有限模型。
+  不幸的是，其逆命题并不成立，即存在某些图灵机 $M$ 和输入~$w$，使得 $M$ 在~$w$ 上不停机，但 $!T(M,w)
+  \land !E(M,w)$ 仍然有有限模型。
+  例如，考虑只有状态 $q_0$ 且指令为 $\delta(q_0,\TMblank) = \tuple{q_0,\TMblank,\TMstay}$ 的机器~$M$。
+  在空输入~$w = \emptyseq$ 上启动时，这台机器永远不会停机：它陷入了无限循环，但既不改变纸带也不移动读写头。
+  所有的格局都是相同的（相同状态、相同读写头位置、相同纸带内容）。
+  我们可以定义一个满足 $!T(M,\emptyseq) \land !E(M,\emptyseq)$ 的有限结构~$\Struct{M''}$（练习）。
+  然而，我们可以通过适当地修改~$!T(M,w)$，以排除这样的结构。
 
   \begin{prob}
-    Let $M$ be a Turing machine with the single state $q_0$ and single
-    instruction $\delta(q_0,\TMblank) = \tuple{q,\TMblank,\TMstay}$.
-    Let $\Domain{M''} = \{0, 1, 2\}$, $\Assign{\prime}{M''}(0) =
-    \Assign{\prime}{M'}(1) = 1$ and $\Assign{\prime}{M''}(2) = 2$, and
-    $\Assign{<}{M''} = \{\tuple{0,1}, \tuple{1,1}, \tuple{2,2}\}$.
-    Define $\Assign{\Obj Q_{q_0}}{M''}$, $\Assign{\Obj
-    S_{\TMblank}}{M''}$, and $\Assign{\Obj S_{\TMendtape}}{M''}$ so
-    that $!T(M,\emptyseq)$ and $!E(M,\emptyseq)$ become true and
-    explain why they are. Hint: Observe that $\delta(q_0, \TMendtape)$
-    is undefined. Ensure that
+    设 $M$ 是一台只有状态 $q_0$ 和单条指令 $\delta(q_0,\TMblank) = \tuple{q,\TMblank,\TMstay}$ 的图灵机。
+    令 $\Domain{M''} = \{0, 1, 2\}$、$\Assign{\prime}{M''}(0) =
+    \Assign{\prime}{M'}(1) = 1$ 和 $\Assign{\prime}{M''}(2) = 2$，以及 $\Assign{<}{M''} = \{\tuple{0,1}, \tuple{1,1}, \tuple{2,2}\}$。
+    定义 $\Assign{\Obj Q_{q_0}}{M''}$、$\Assign{\Obj
+    S_{\TMblank}}{M''}$ 和 $\Assign{\Obj S_{\TMendtape}}{M''}$，使得 $!T(M,\emptyseq)$ 和 $!E(M,\emptyseq)$ 为真，并解释其原因。
+    提示：注意 $\delta(q_0, \TMendtape)$ 是无定义的。
+    确保
     \begin{align*}
     & \Obj Q_{q_0}(\num{1}, \num{n}) \land \Obj S_{\TMendtape}(\num{0}, \num{n})
       \land 
-      \lforall[x][(\num{0} < x \lif \Obj S_\TMblank(x, \num{n}))] \text{\quad for all $n \in \Nat$}\\
+      \lforall[x][(\num{0} < x \lif \Obj S_\TMblank(x, \num{n}))] \text{\quad 对所有 $n \in \Nat$}\\
     & \lexists[y][(\Obj Q_{q_0}(\num{0}, y) \land \Obj S_{\TMendtape}(\num{0}, y))]
     \end{align*}
-    are both true in~$\Struct{M''}$.
+    在~$\Struct{M''}$ 中都为真。
   \end{prob}
 \end{explain}
 
-Consider the !!{sentence}s describing the operation of the Turing
-machine~$M$ on input $w = \sigma_{i_1}\dots\sigma_{i_k}$:
+考虑描述图灵机~$M$ 在输入 $w = \sigma_{i_1}\dots\sigma_{i_k}$ 上操作的语句：
 \begin{enumerate}
-\item Axioms describing numbers and~$<$ (just like in the definition
-of~$!T(M,w)$ in \olref[rep]{sec}).
-\item Axioms describing the input configuration: just like in the definition
-of~$!T(M,w)$.
-\item Axioms describing the transition from one configuration to
-  the next:
+\item 描述数和~$<$ 的公理（与 \olref[rep]{sec} 中定义~$!T(M,w)$ 时相同）。
+\item 描述初始格局的公理：与定义~$!T(M,w)$ 时相同。
+\item 描述从一个格局转移到下一个格局的公理：
 
-For the following, let $!A(x, y)$ be as before, and let
+对于以下内容，令 $!A(x, y)$ 如前所述，并令
 \[
   !B(y) \ident \lforall[x][(x < y \lif \eq/[x][y])].
 \]
 \begin{enumerate}
-\item \ollabel{rep-right} For every instruction $\delta(q_i, \sigma) =
-  \tuple{q_j, \sigma', \TMright}$, the !!{sentence}:
+\item \ollabel{rep-right} 对于每条指令 $\delta(q_i, \sigma) =
+  \tuple{q_j, \sigma', \TMright}$，语句：
 \begin{align*}
 & \lforall[x][\lforall[y][(
    (\Obj Q_{q_i}(x, y) \land \Obj S_{\sigma}(x, y)) \lif {}]] \\
 &\qquad   (\Obj Q_{q_j}(x', y') \land \Obj S_{\sigma'}(x, y') \land
 !A(x, y) \land !B(y')))
 \end{align*}
-\item \ollabel{rep-left} For every instruction $\delta(q_i, \sigma) =
-  \tuple{q_j, \sigma', \TMleft}$, the !!{sentence}
+\item \ollabel{rep-left} 对于每条指令 $\delta(q_i, \sigma) =
+  \tuple{q_j, \sigma', \TMleft}$，语句：
 \begin{align*}
 & \lforall[x][\lforall[y][
     ((\Obj Q_{q_i}(x', y) \land \Obj S_{\sigma}(x', y)) \lif {}]]\\
@@ -121,8 +95,8 @@ For the following, let $!A(x, y)$ be as before, and let
 & \qquad (\Obj Q_{q_j}(\num{0}, y') \land \Obj S_{\sigma'}(\num{0},
   y') \land !A(\num{0}, y) \land !B(y')))
 \end{align*}
-\item \ollabel{rep-stay} For every instruction $\delta(q_i, \sigma) =
-  \tuple{q_j, \sigma', \TMstay}$, the !!{sentence}:
+\item \ollabel{rep-stay} 对于每条指令 $\delta(q_i, \sigma) =
+  \tuple{q_j, \sigma', \TMstay}$，语句：
 \begin{align*}
 & \lforall[x][\lforall[y][(
    (\Obj Q_{q_i}(x, y) \land \Obj S_{\sigma}(x, y)) \lif {}]] \\
@@ -130,11 +104,8 @@ For the following, let $!A(x, y)$ be as before, and let
 !A(x, y) \land !B(y')))
 \end{align*}
 \end{enumerate}
-As you can see, the !!{sentence}s describing the transitions of~$M$ 
-are the same as the corresponding !!{sentence}
-in~$!T(M,w)$, except we add $!B(y')$ at the end. $!B(y')$~ensures
-that the number $y'$ of the ``next'' configuration is different from
-all previous numbers $\Obj 0$, $\Obj 0'$, \dots.
+如你所见，描述~$M$ 转移的语句与~$!T(M,w)$ 中对应的语句相同，只是我们在末尾添加了 $!B(y')$。
+$!B(y')$~确保了“下一个”格局的编号 $y'$ 与之前的所有编号 $\Obj 0$, $\Obj 0'$, …… 都不同。
 % \item Sentences that express consistency conditions:
 % \begin{enumerate}
 %   \item\ollabel{rep-con-symb}%
@@ -159,101 +130,66 @@ all previous numbers $\Obj 0$, $\Obj 0'$, \dots.
 %   for every pair $q$, $q'$ of states of~$T$.
 % \end{enumerate}
 \end{enumerate}
-Let $!T'(M, w)$ be the conjunction of all the above !!{sentence}s for Turing
-machine~$M$ and input~$w$.
+令 $!T'(M, w)$ 为上述所有关于图灵机~$M$ 和输入~$w$ 的语句的合取。
 
 \begin{lem}\ollabel{lem:halts-sat}
-  If $M$ started on input~$w$ halts, then $!T'(M,w) \land !E(M,w)$ has
-  a finite model.
+  若 $M$ 以输入~$w$ 启动后停机，则 $!T'(M,w) \land !E(M,w)$ 有一个有限模型。
 \end{lem}
 
 \begin{proof}
-  Let $\Struct{M'}$ be as in the proof of
-  \olref[ver]{lem:halt-if-valid}, except
-  \begin{align*}
+  令 $\Struct{M'}$ 如 \olref[ver]{lem:halt-if-valid} 的证明中所述，除以下不同外：\begin{align*}
     \Domain{M'} & = \{0, \dots, n\},\\
     \Assign{\prime}{M'}(x) & = 
     \begin{cases}
-      x + 1 &\text{if $x < n$}\\
-      n &\text{otherwise,}
+      x + 1 &\text{若 $x < n$}\\
+      n &\text{否则，}
     \end{cases} \\
-    \tuple{x,y} \in \Assign{<}{M'} &\text{iff $x < y$ or $x = y = n$,}
+    \tuple{x,y} \in \Assign{<}{M'} &\text{当且仅当 $x < y$ 或 $x = y = n$，}
   \end{align*}
-  where $n = \max(k,\len{w})$ and $k$~is the least number such that
-  $M$ started on input~$w$ has halted after~$k$ steps. We leave the
-  verification that $\Sat{M'}{!T'(M,w) \land E(M,w)}$ as an exercise.
+  其中 $n = \max(k,\len{w})$，且 $k$~是使得 $M$ 以输入~$w$ 启动后在第~$k$ 步停机的最小数。我们将 $\Sat{M'}{!T'(M,w) \land E(M,w)}$ 的验证留作练习。
 \end{proof}
 
 \begin{prob}
-  Complete the proof of \olref[tur][und][tra]{lem:halts-sat} by
-  proving that $\Sat{M'}{!T(M,w) \land E(M,w)}$.
+  请完成 \olref[tur][und][tra]{lem:halts-sat} 的证明，即证明 $\Sat{M'}{!T(M,w) \land E(M,w)}$。
 \end{prob}
 
 \begin{lem}\ollabel{lem:sat-halts}
-  If $!T'(M,w) \land !E(M,w)$ has a finite model, then $M$ started on
-  input~$w$ halts.
+  如果 $!T'(M,w) \land !E(M,w)$ 有一个有限模型，那么 $M$ 以输入~$w$ 启动后会停机。
 \end{lem}
 
 \begin{proof}
-  We show the contrapositive. Suppose that $M$ started on~$w$ does not
-  halt. If $!T'(M,w) \land !E(M,w)$ has no model at all, we are done.
-  So assume $\Struct{M}$ is a model of~$!T(M,w) \land !E(M, w)$. We
-  have to show that it cannot be finite.
+  我们证明其逆否命题。假设 $M$ 以输入~$w$ 启动后不停机。如果 $!T'(M,w) \land !E(M,w)$ 根本没有模型，则得证。
+  所以假设 $\Struct{M}$ 是~$!T(M,w) \land !E(M, w)$ 的一个模型。我们需要证明它不可能是有限的。
   
-  We can prove, just like in \olref[ver]{lem:config}, that if~$M$,
-  started on input~$w$, has not halted after~$n$ steps, then $!T'(M,w)
-  \Entails !C(M, w, n) \land !B(\num{n})$. Since $M$ started on
-  input~$w$ does not halt, $!T'(M,w) \Entails !C(M, w, n) \land
-  !B(\num{n})$ for all~$n \in \Nat$. Note that by
-  \olref[rep]{prop:mlessk}, $!T'(M,w) \Entails \num{k} < \num{n}$ for
-  all~$k < n$. Also $!B(\num{n}) \Entails \num{k} < \num{n} \lif
-  \eq/[\num{k}][\num{n}]$. So, $\Sat{M}{\eq/[\num{k}][\num{n}]}$ for
-  all~$k < n$, i.e., the infinitely many terms~$\num{k}$ must all have
-  different values in~$\Struct{M}$. But this requires that
-  $\Domain{M}$ be infinite, so $\Struct{M}$ cannot be a finite model
-  of~$!T'(M,w) \land !E(M, w)$.
+  正如在 \olref[ver]{lem:config} 中那样，我们可以证明：如果 $M$ 以输入~$w$ 启动后，在~$n$ 步之后仍未停机，那么 $!T'(M,w)
+  \Entails !C(M, w, n) \land !B(\num{n})$。由于 $M$ 以输入~$w$ 启动后不停机，因此对所有 $n \in \Nat$，$!T'(M,w) \Entails !C(M, w, n) \land
+  !B(\num{n})$。注意，根据 \olref[rep]{prop:mlessk}，对所有 $k < n$，$!T'(M,w) \Entails \num{k} < \num{n}$。另外 $!B(\num{n}) \Entails \num{k} < \num{n} \lif
+  \eq/[\num{k}][\num{n}]$。所以，对所有 $k < n$，$\Sat{M}{\eq/[\num{k}][\num{n}]}$，即无穷多个项~$\num{k}$ 在~$\Struct{M}$ 中必须取不同的值。但这要求 $\Domain{M}$ 是无穷的，所以 $\Struct{M}$ 不可能是~$!T'(M,w) \land !E(M, w)$ 的有限模型。
 \end{proof}
 
 \begin{prob}
-  Complete the proof of \olref[tur][und][tra]{lem:sat-halts} by
-  proving that if~$M$, started on input~$w$, has not halted after~$n$
-  steps, then $!T'(M,w) \Entails !B(\num{n})$.
+  请完成 \olref[tur][und][tra]{lem:sat-halts} 的证明，即证明：如果 $M$ 以输入~$w$ 启动后，在~$n$ 步之后仍未停机，那么 $!T'(M,w) \Entails !B(\num{n})$。
 \end{prob}
 
-\begin{thm}[Trakhtenbrot's Theorem]
+\begin{thm}[Trakhtenbrot 定理]
   \ollabel{thm:trakhtenbrodt}
-  It is undecidable if an arbitrary !!{sentence} of first-order logic has
-  a finite model (i.e., is finitely satisfiable).
+  任意一阶逻辑语句是否拥有有限模型（即是否有限可满足），这是不可判定的。
 \end{thm}
 
 \begin{proof}
-  Suppose there were a Turing machine~$F$ that decides the finite
-  satisfiability problem. Then given any Turing machine~$M$ and
-  input~$w$, we could compute the sentence~$!T'(M,w) \land !E(M,w)$,
-  and use~$F$ to decide if it has a finite model. By
-  \cref{tur:und:tra:lem:halts-sat,tur:und:tra:lem:sat-halts}, it does iff $M$
-  started on input~$w$ halts. So we could use $F$ to solve the halting
-  problem, which we know is unsolvable.
+  假设存在一台图灵机~$F$ 可以判定有限可满足性问题。那么给定任意图灵机~$M$ 和输入~$w$，我们都可以计算出语句~$!T'(M,w) \land !E(M,w)$，并用~$F$ 来判定它是否有一个有限模型。根据 \cref{tur:und:tra:lem:halts-sat,tur:und:tra:lem:sat-halts}，它有有限模型当且仅当 $M$ 以输入~$w$ 启动后停机。这样我们就可以用 $F$ 来解决停机问题，但我们知道停机问题是不可解的。
 \end{proof}
 
 \begin{cor}\ollabel{cor:fproof-incomp}%
-  There can be no !!{derivation} system that is sound and complete for
-  \emph{finite} validity, i.e., !!a{derivation} system which has $\Proves !B$
-  iff $\Sat{M}{!B}$ for every finite !!{structure}~$\Struct{M}$.
+  不可能存在一个关于\emph{有限}有效性的既可靠又完备的推导系统，即，不存在这样一个推导系统，使得对于每个有限结构~$\Struct{M}$，$\Proves !B$ 当且仅当 $\Sat{M}{!B}$。
 \end{cor}
 
 \begin{proof}
-  Exercise.
+  留作练习。
 \end{proof}
 
 \begin{prob}
-  Prove \olref[tur][und][tra]{cor:fproof-incomp}. Observe that $!B$ is
-  satisfied in every finite !!{structure} iff $\lnot !B$ is not
-  finitely satisfiable.  Explain why finite satisfiability is
-  semi-decidable in the sense of
-  \olref[tur][und][uns]{thm:valid-ce}. Use this to argue that if
-  there were !!a{derivation} system for finite validity, then finite
-  satisfiability would be decidable.
+  证明 \olref[tur][und][tra]{cor:fproof-incomp}。注意，$!B$ 在每个有限结构中可满足当且仅当 $\lnot !B$ 不是有限可满足的。请解释为何有限可满足性在 \olref[tur][und][uns]{thm:valid-ce} 的意义上是半可判定的。并由此论证：如果存在一个关于有限有效性的推导系统，那么有限可满足性就是可判定的。
 \end{prob}
 
 

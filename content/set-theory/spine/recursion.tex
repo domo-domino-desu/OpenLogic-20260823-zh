@@ -3,66 +3,46 @@
 \begin{document}
 
 \olfileid{sth}{spine}{recursion}
-\olsection{The Transfinite Recursion Theorem(s)}
+\olsection{超限递归定理}
 
-The first thing we must do, though, is confirm that
-\olref[valpha]{defValphas} is a successful definition. More generally,
-we need to prove that any attempt to offer a transfinite by
-(transfinite) recursion will succeed. That is the aim of this section.
+然而，我们必须首先确认 \olref[valpha]{defValphas} 是一个成功的定义。更一般地，我们需要证明，任何通过（超限）递归给出超限定义的尝试都会成功。这正是本节的目标。
 
-\emph{Warning: this is tricky material}. The overarching moral,
-though, is quite simple: Transfinite Induction plus Replacement
-guarantee the legitimacy of (several versions of) transfinite
-recursion.\footnote{A reminder: all formulas and terms can have parameters (unless explicitly stated otherwise).}
+\emph{警告：这部分内容比较复杂}。不过，其核心要旨非常简单：超限归纳加上替换公理保证了（若干版本的）超限递归的合法性。\footnote{提醒：所有公式和项都可以带有参数（除非另有明确说明）。}
 
 \begin{defn}
-	Let $\tau(x)$ be a term; let $f$ be a function; let $\alpha$ be an ordinal. We say that $f$ is an \emph{$\alpha$-approximation} for $\tau$ iff both $\dom{f} = \alpha$ and $(\forall \beta \in \alpha)f(\beta) = \tau(\funrestrictionto{f}{\beta})$.
+	设 $\tau(x)$ 是一个项；设 $f$ 是一个函数；设 $\alpha$ 是一个序数。我们称 $f$ 是 $\tau$ 的一个 \emph{$\alpha$-近似}，当且仅当 $\dom{f} = \alpha$ 且 $(\forall \beta \in \alpha)f(\beta) = \tau(\funrestrictionto{f}{\beta})$。
 \end{defn}
 
-\begin{lem}[Bounded Recursion]\ollabel{transrecursionfun}
-For any term $\tau(x)$ and any ordinal $\alpha$, there is a unique $\alpha$-approximation for $\tau$.
+\begin{lem}[有界递归]\ollabel{transrecursionfun}
+对任意项 $\tau(x)$ 和任意序数 $\alpha$，存在唯一的 $\tau$ 的 $\alpha$-近似。
 \end{lem}
 \begin{proof}
-We will show that, for any $\gamma \leq \alpha$, there is a unique
-$\gamma$-approximation. 
+我们将证明，对任意 $\gamma \leq \alpha$，都存在唯一的 $\gamma$-近似。
 
-We first establish uniqueness. Let $g$ and $h$ (respectively) be $\gamma$- and $\delta$-approximations. A transfinite induction on their arguments shows that
-$g(\beta) = h(\beta)$ for any $\beta \in \dom{g} \cap \dom{h} =
-\gamma \cap \delta = \min(\gamma, \delta)$. So our approximations are unique (if they exist), and agree on all values.
+我们首先证明唯一性。设 $g$ 和 $h$（分别）是 $\gamma$-近似和 $\delta$-近似。对其自变元进行超限归纳可知，对任意 $\beta \in \dom{g} \cap \dom{h} =
+\gamma \cap \delta = \min(\gamma, \delta)$ 都有 $g(\beta) = h(\beta)$。因此我们的近似（如果存在的话）是唯一的，并且在所有值上都是一致的。
 
-To establish existence, we now use a simple transfinite induction
-(\olref[ordinals][opps]{simpletransrecursion}) on ordinals
-$\delta \leq \alpha$. 
+为证明存在性，我们现在对序数 $\delta \leq \alpha$ 施加简单的超限归纳（\olref[ordinals][opps]{simpletransrecursion}）。
 
-The empty function is trivially an $\emptyset$-approximation. 
+空函数显然是一个 $\emptyset$-近似。
 
-If $g$ is a $\gamma$-approximation, then $g \cup
-\{\tuple{\gamma, \tau(g)}\}$ is a $\ordsucc{\gamma}$-approximation.
+如果 $g$ 是一个 $\gamma$-近似，那么 $g \cup
+\{\tuple{\gamma, \tau(g)}\}$ 是一个 $\ordsucc{\gamma}$-近似。
 
-If $\gamma$ is a limit ordinal and $g_\delta$ is a $\delta$-approximation for all $\delta < \gamma$, let $g = \bigcup_{\delta \in \gamma} g_\delta$. This
-is a function, since our various $g_\delta$s agree on all values. And
-if $\delta \in \gamma$ then $g(\delta) = g_{\ordsucc{\delta}}(\delta) =
-\tau(\funrestrictionto{g_{\ordsucc{\delta}}}{\delta}) =
-\tau(\funrestrictionto{g}{\delta})$.
+如果 $\gamma$ 是一个极限序数，并且对所有的 $\delta < \gamma$，$g_\delta$ 都是 $\delta$-近似，则令 $g = \bigcup_{\delta \in \gamma} g_\delta$。由于各个 $g_\delta$ 在所有值上都是一致的，所以这是一个函数。并且如果 $\delta \in \gamma$，那么 $g(\delta) = g_{\ordsucc{\delta}}(\delta) = \tau(\funrestrictionto{g_{\ordsucc{\delta}}}{\delta}) = \tau(\funrestrictionto{g}{\delta})$。
 
-This completes the proof by transfinite induction.
+这就完成了超限归纳证明。
 \end{proof}
 
-If we allow ourselves to define a \emph{term} rather than a function,
-then we can remove the bound $\alpha$ from the previous result. In
-the statement and proof of the following result, when $\sigma$ is a term, we
-let $\funrestrictionto{\sigma}{\alpha} = \Setabs{\tuple{\beta,
-\sigma(\beta)}}{\beta \in \alpha}$.
+如果我们定义的是一个 \emph{项} 而非函数，那么我们可以从上述结果中去除界限 $\alpha$。在下面结果的陈述和证明中，当 $\sigma$ 是一个项时，我们令 $\funrestrictionto{\sigma}{\alpha} = \Setabs{\tuple{\beta,
+\sigma(\beta)}}{\beta \in \alpha}$。
 
-\begin{thm}[General Recursion]\ollabel{transrecursionschema}
-For any term $\tau(x)$, we can explicitly define a term
-$\sigma(x)$, such that
-$\sigma(\alpha) = \tau(\funrestrictionto{\sigma}{\alpha})$ for any
-ordinal~$\alpha$.
+\begin{thm}[一般递归]\ollabel{transrecursionschema}
+对任意项 $\tau(x)$，我们可以显式地定义一个项 $\sigma(x)$，使得对任意序数~$\alpha$，都有 $\sigma(\alpha) = \tau(\funrestrictionto{\sigma}{\alpha})$。
 \end{thm}
 
 \begin{proof}
-For each $\alpha$, by \olref{transrecursionfun} there is a unique $\alpha$-approximation, $f_\alpha$, for~$\tau$. Define $\sigma(\alpha)$ as $f_{\ordsucc{\alpha}}(\alpha)$. Now:
+对每个 $\alpha$，根据 \olref{transrecursionfun}，存在唯一的 $\tau$ 的 $\alpha$-近似 $f_\alpha$。定义 $\sigma(\alpha)$ 为 $f_{\ordsucc{\alpha}}(\alpha)$。于是：
 	\begin{align*}
 		\sigma(\alpha) &= 
 		f_{\ordsucc{\alpha}}(\alpha) \\&= 
@@ -71,61 +51,46 @@ For each $\alpha$, by \olref{transrecursionfun} there is a unique $\alpha$-appro
 		\tau(\Setabs{\tuple{\beta, f_{\ordsucc{\beta}}(\beta)}}{\beta \in \alpha})\\&=
 		\tau(\funrestrictionto{\sigma}{\alpha})
 	\end{align*}
-noting that $f_{\ordsucc{\beta}}(\beta) = f_{\ordsucc{\alpha}}(\beta)$ for all $\beta < \alpha$, as in \olref{transrecursionfun}. 
+注意到对所有的 $\beta < \alpha$，$f_{\ordsucc{\beta}}(\beta) = f_{\ordsucc{\alpha}}(\beta)$，如 \olref{transrecursionfun} 中所述。
 \end{proof}
 \noindent 
-Note that \olref{transrecursionschema} is a \emph{schema}. Crucially, we cannot
-expect $\sigma$ to define a function, i.e., a certain kind of
-\emph{set}, since then $\dom{\sigma}$ would be the set of all
-ordinals, contradicting the Burali-Forti Paradox
-(\olref[ordinals][basic]{buraliforti}).
+注意，\olref{transrecursionschema} 是一个\emph{模式}。关键是，我们不能期望 $\sigma$ 定义一个函数，即某种\emph{集合}，因为那样的话 $\dom{\sigma}$ 就会是所有序数的集合，这与 Burali-Forti 悖论（\olref[ordinals][basic]{buraliforti}）矛盾。
 
-It still remains to show, though, that \olref{transrecursionschema}
-vindicates our definition of the $V_\alpha$s. This may not be
-immediately obvious; but it will become apparent with a last, simple,
-version of transfinite recursion.
+不过，我们仍然需要证明，\olref{transrecursionschema} 能够证实我们对 $V_\alpha$ 的定义。这可能并非显而易见；但通过超限递归的最后一种简单版本，这一点将变得显然。
 
-\begin{thm}[Simple Recursion]\ollabel{simplerecursionschema} 
-For any terms $\tau(x)$ and $\theta(x)$ and any set $A$, we can
-explicitly define a term $\sigma(x)$ such that:
+\begin{thm}[简单递归]\ollabel{simplerecursionschema} 
+对任意项 $\tau(x)$ 和 $\theta(x)$ 以及任意集合 $A$，我们可以显式地定义一个项 $\sigma(x)$，使得：
 \begin{align*}
 	\sigma(\emptyset) &= A\\
 	\sigma(\ordsucc{\alpha}) &= \tau(\sigma(\alpha)) &&
-		\text{for any ordinal }\alpha\\
+		\text{对任意序数 }\alpha\\
 	\sigma(\alpha) &= \theta(\ran{\funrestrictionto{\sigma}{\alpha}})&&
-	\text{when }\alpha\text{ is a limit ordinal}
+	\text{当 }\alpha\text{ 是极限序数}
 \end{align*}
 \end{thm}
 
 \begin{proof}
-We start by defining a term, $\xi(x)$, as follows: 
+我们首先定义一个项 $\xi(x)$ 如下： 
 %t $\xi(x) = A$ if $x$ is not a function whose domain is an ordinal;
 %otherwise let:
 \[
 	\xi(x) = 
 	\begin{cases}
-			A &\text{if $x$ is not a function whose}\\
-			&\hspace{1em}\text{domain is an ordinal; otherwise:}\\
-			\tau(x(\alpha)) & \text{if $\dom{x} = \ordsucc{\alpha}$}\\
-			\theta(\ran{x}) & \text{if $\dom{x}$ is a limit ordinal}
+			A &\text{若 $x$ 不是}\\
+			&\hspace{1em}\text{定义域为某个序数的函数；否则：}\\
+			\tau(x(\alpha)) & \text{若 $\dom{x} = \ordsucc{\alpha}$}\\
+			\theta(\ran{x}) & \text{若 $\dom{x}$ 是极限序数}
 	\end{cases}
 \]
-By \olref{transrecursionschema}, there is a term $\sigma(x)$ such that
-$\sigma(\alpha) = \xi(\funrestrictionto{\sigma}{\alpha})$ for every
-ordinal $\alpha$; moreover, $\funrestrictionto{\sigma}{\alpha}$ is a
-function with domain $\alpha$. We show that $\sigma$ has the required
-properties, by simple transfinite induction
-(\olref[ordinals][opps]{simpletransrecursion}). 
+根据 \olref{transrecursionschema}，存在一个项 $\sigma(x)$，使得对每个序数 $\alpha$，$\sigma(\alpha) = \xi(\funrestrictionto{\sigma}{\alpha})$；并且，$\funrestrictionto{\sigma}{\alpha}$ 是一个定义域为 $\alpha$ 的函数。我们通过简单的超限归纳（\olref[ordinals][opps]{simpletransrecursion}）证明 $\sigma$ 具有所需的性质。 
 
-First, $\sigma(\emptyset) = \xi(\emptyset) = A$. 
+首先，$\sigma(\emptyset) = \xi(\emptyset) = A$。 
 
-Next, $\sigma(\ordsucc{\alpha}) = \xi(\funrestrictionto{\sigma}{\ordsucc{\alpha}}) = \tau(\funrestrictionto{\sigma}{\ordsucc{\alpha}}(\alpha)) = \tau(\sigma(\alpha))$.
+其次，$\sigma(\ordsucc{\alpha}) = \xi(\funrestrictionto{\sigma}{\ordsucc{\alpha}}) = \tau(\funrestrictionto{\sigma}{\ordsucc{\alpha}}(\alpha)) = \tau(\sigma(\alpha))$。
 
-Last, $\sigma(\alpha) = \xi(\funrestrictionto{\sigma}{\alpha}) = \theta(\ran{\funrestrictionto{\sigma}{\alpha}})$, when $\alpha$ is a limit.
+最后，当 $\alpha$ 是极限序数时，$\sigma(\alpha) = \xi(\funrestrictionto{\sigma}{\alpha}) = \theta(\ran{\funrestrictionto{\sigma}{\alpha}})$。
 \end{proof}
 \noindent
-Now, to vindicate \olref[valpha]{defValphas}, just take $A
-= \emptyset$ and $\tau(x) = \Pow{x}$ and $\theta(x) = \bigcup x$. At long last, this vindicates the definition of the $V_\alpha$s!{}
-
+现在，为了证实 \olref[valpha]{defValphas}，只需令 $A = \emptyset$，$\tau(x) = \Pow{x}$，$\theta(x) = \bigcup x$。终于，这证实了 $V_\alpha$ 的定义！{}
 
 \end{document}

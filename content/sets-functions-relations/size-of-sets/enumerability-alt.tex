@@ -8,103 +8,66 @@
 
 \olfileid{sfr}{siz}{enm-alt}
 
-\olsection{Enumerations and \usetoken{S}{enumerable} Sets}
+\olsection{枚举与可数集}
 
 \begin{editorial}
-  This section defines enumerations as bijections with (initial
-  segments) of $\Nat$, the way it's done in set theory. So it
-  conflicts slightly with the definitions in \olref[enm]{sec}, and
-  repeats all the examples there. It is also a bit more terse than
-  that section.
+  本节按照集合论中的方式，将枚举定义为从 $\Nat$（或其初始段）到集合的双射。因此，它与 \olref[enm]{sec} 节中的定义略有冲突，并且重复了那里的所有例子。同时，本节也比那一节更简练。
 \end{editorial}
 
-We can specify finite set is by simply enumerating its
-!!{element}s. We do this when we define a set like so:
+我们可以通过直接枚举其元素来确定一个有限集合。我们在如下定义集合时就是这样做的：
 \[
   A = \{a_1, a_2, \ldots, a_n\}.
 \]
-Assuming that the !!{element}s $a_1$, \dots, $a_n$ are all distinct,
-this gives us !!a{bijection} between $A$ and the first $n$ natural
-numbers $0$, \dots, $n-1$. Conversely, since every finite set has only
-finitely many !!{element}s, every finite set can be put into such a
-correspondence. In other words, if $A$ is finite, there is
-!!a{bijection} between $A$ and $\{0, \dots, n-1\}$, where $n$ is the
-number of !!{element}s of~$A$.
+假设元素 $a_1$, \dots, $a_n$ 互不相同，这就给出了 $A$ 与前 $n$ 个自然数 $0$, \dots, $n-1$ 之间的一个双射。反过来，由于每个有限集都只有有限多个元素，所以每个有限集都能与自然数的一个初始段建立这样的对应关系。换句话说，如果 $A$ 是有限的，则在 $A$ 与 $\{0, \dots, n-1\}$ 之间存在一个双射，其中 $n$ 是~$A$ 的元素个数。
 
-If we allow for certain kinds of infinite sets, then we will also
-allow some infinite sets to be enumerated. We can make this precise by
-saying that an infinite set is enumerated by !!a{bijection} between it
-and all of~$\Nat$.
+如果我们容许某些种类的无穷集，那么我们也会允许对一些无穷集进行枚举。精确地说，一个无穷集是通过它与整个~$\Nat$ 之间的双射来枚举的。
 
-\begin{defn}[Enumeration, set-theoretic] 
-An \emph{enumeration} of a set $A$ is !!a{bijection} whose range is
-$A$ and whose domain is either an initial set of natural numbers $\{0,
-1, \ldots, n\}$ {or} the entire set of natural numbers~$\Nat$. 
+\begin{defn}[枚举（集合论）]
+一个集合 $A$ 的\emph{枚举}，是指以自然数的某个初始段 $\{0,
+1, \ldots, n\}$ {或}整个自然数集~$\Nat$ 为定义域、以 $A$ 为值域的双射。
 \end{defn}
 
 \begin{explain}
-There is an intuitive underpinning to this use of the word
-\emph{enumeration}. For to say that we have enumerated a set $A$ is to
-say that there is !!a{bijection} $f$ which allows us to count out the
-elements of the set $A$. The $0$th element is $f(0)$, the 1st is
-$f(1)$, \ldots the $n$th is $f(n)$\ldots.\footnote{Yes, we count
-from $0$. Of course we could also start with~$1$. This would
-make no big difference. We would just have to replace~$\Nat$
-by~$\PosInt$.} The rationale for this may be made even clearer by
-adding the following:
+对\emph{枚举}一词的这种用法有其直观基础。因为说我们枚举了一个集合 $A$，就意味着存在一个双射 $f$，让我们能够“数出”集合 $A$ 的元素：第 $0$ 个元素是 $f(0)$，第 $1$ 个是 $f(1)$，……第 $n$ 个是 $f(n)$……\footnote{是的，我们从 $0$ 开始数。当然也可以从~$1$ 开始。这不会有太大区别，我们只需将~$\Nat$ 替换为~$\PosInt$ 即可。}补充以下定义可以使这一直观更加清晰：
 \end{explain}
 
 \begin{defn}
   \ollabel{defn:enumerable}
-  A set~$A$ is !!{enumerable} iff either $A = \emptyset$ or there is
-  an enumeration of~$A$. We say that $A$ is !!{nonenumerable} iff $A$
-  is not !!{enumerable}.
+  一个集合~$A$ 是\emph{可数的}，当且仅当 $A = \emptyset$ 或者存在~$A$ 的一个枚举。我们称 $A$ 是\emph{不可数的}，当且仅当 $A$ 不是可数的。
 \end{defn}
 
 \begin{explain}
-So a set is !!{enumerable} iff it is empty or you can use an
-enumeration to count out its !!{element}s.
+所以，一个集合是可数的，当且仅当它是空集，或者可以用枚举数出它的元素。
 \end{explain}
 
 \begin{ex}
-A function enumerating the natural numbers is simply the identity
-function $\Id{\Nat} \colon \Nat \to \Nat$ given by $\Id{\Nat}(n) = n$. A
-function enumerating the \emph{positive} natural numbers, $\Nat^+ =
-\Nat \setminus \{0\}$, is the function $g(n) = n + 1$, i.e., the
-successor function.
+枚举自然数集的函数就是恒等函数 $\Id{\Nat} \colon \Nat \to \Nat$，由 $\Id{\Nat}(n) = n$ 给出。枚举\emph{正}自然数集 $\Nat^+ =
+\Nat \setminus \{0\}$ 的函数是 $g(n) = n + 1$，即后继函数。
 \end{ex}
 
 \begin{prob}
-Show that a set $A$ is !!{enumerable} iff either $A = \emptyset$ or
-there is !!a{surjection} $f\colon \Nat \to A$. Show that $A$ is
-!!{enumerable} iff there is !!a{injection} $g\colon A \to \Nat$. 
+证明一个集合 $A$ 是可数的，当且仅当 $A = \emptyset$ 或者存在一个满射 $f\colon \Nat \to A$。证明 $A$ 是可数的，当且仅当存在一个单射 $g\colon A \to \Nat$。
 \end{prob}
 
 \begin{ex}
-The functions $f\colon \Nat \to \Nat$ and $g \colon \Nat \to \Nat$
-given by
+由
 \begin{align*}
-  f(n) & = 2n \text{ and}\\
+  f(n) & = 2n \text{ 和}\\
   g(n) & = 2n+1
 \end{align*}
-respectively enumerate the even natural numbers and the odd natural
-numbers. But neither is !!{surjective}, so neither is an enumeration
-of $\Nat$.
+给出的函数 $f\colon \Nat \to \Nat$ 和 $g \colon \Nat \to \Nat$ 分别枚举了偶自然数集和奇自然数集。但两者都不是满射，所以都不是 $\Nat$ 的枚举。
 \end{ex}
 
 \begin{prob}
-Define an enumeration of the square numbers $1$, $4$, $9$, $16$, \dots
+为平方数 $1$, $4$, $9$, $16$, \dots 定义一个枚举。
 \end{prob}
 
 \begin{ex}
-Let $\lceil x \rceil$ be the \emph{ceiling} function, which rounds $x$
-up to the nearest integer. Then the function $f \colon \Nat \to \Int$
-given by:
+令 $\lceil x \rceil$ 为\emph{向上取整}函数，即将 $x$ 向上取整为最近的整数。则由下式给出的函数 $f \colon \Nat \to \Int$：
 \[
   f(n) = (-1)^{n} \left\lceil\tfrac{n}{2}\right\rceil
 \]
-enumerates the set of
-integers~$\Int$ as follows:
+如下枚举了整数集~$\Int$：
 \[
 \begin{array}{c c c c c c c c}
 f(0) & f(1) & f(2) & f(3) & f(4) & f(5) & f(6) & \dots \\ \\
@@ -112,24 +75,21 @@ f(0) & f(1) & f(2) & f(3) & f(4) & f(5) & f(6) & \dots \\ \\
 0 & -1 & 1 & -2 & 2 & -3 & 3& \dots
 \end{array}
 \]
-Notice how $f$ generates the values of $\Int$ by ``hopping'' back and
-forth between positive and negative integers. You can also think of
-$f$ as defined by cases as follows:
+注意 $f$ 是如何通过在正负整数之间来回“跳跃”来生成 $\Int$ 的值的。你也可以把 $f$ 看作按如下分情况定义的函数：
 \[
 f(n) = \begin{cases}
-  \frac{n}{2} & \text{if $n$ is even}\\
-  -\frac{n+1}{2} & \text{if $n$ is odd}
+  \frac{n}{2} & \text{如果 $n$ 是偶数}\\
+  -\frac{n+1}{2} & \text{如果 $n$ 是奇数}
   \end{cases}
 \]
 \end{ex}
 
 \begin{prob}
-Show that if $A$ and $B$ are !!{enumerable}, so is $A \cup B$.
+证明如果 $A$ 和 $B$ 都是可数的，那么 $A \cup B$ 也是可数的。
 \end{prob}
 
 \begin{prob}
-Show by induction on $n$ that if $A_1$, $A_2$, \dots, $A_n$ are all
-!!{enumerable}, so is $A_1 \cup \dots \cup A_n$.
+通过对 $n$ 进行归纳来证明：如果 $A_1$, $A_2$, \dots, $A_n$ 都是可数的，那么 $A_1 \cup \dots \cup A_n$ 也是可数的。
 \end{prob}
 
 \end{document}

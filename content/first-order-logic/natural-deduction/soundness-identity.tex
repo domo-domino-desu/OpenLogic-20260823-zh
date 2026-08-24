@@ -8,20 +8,16 @@
 
 \olfileid{fol}{ntd}{sid}
 
-\olsection{Soundness with \usetoken{S}{identity}}
+\olsection{带\usetoken{S}{identity}的可靠性}
 
 \begin{prop}
-Natural deduction with rules for $\eq$ is sound.
+带等词规则的自然演绎是可靠的。
 \end{prop}
 
 \begin{proof}
-Any !!{formula} of the form $\eq[t][t]$ is valid, since
-for every !!{structure}~$\Struct M$, $\Sat{M}{\eq[t][t]}$. (Note that
-we assume the term $t$ to be closed, i.e., it contains no variables,
-so variable assignments are irrelevant).
+任何形如 $\eq[t][t]$ 的公式都是有效的，因为对于每个结构~$\Struct M$，$\Sat{M}{\eq[t][t]}$。（注意，我们假设 $t$ 是闭项，即它不含变元，因此变元指派无关紧要）。
 
-Suppose the last inference in !!a{derivation} is \Elim{\eq}, i.e., the
-!!{derivation} has the following form:
+假设一个推导中最后的推理是 \Elim{\eq}，即该推导具有如下形式：
 \begin{prooftree}
   \AxiomC{$\Gamma_1$}
   \RightLabel{$\delta_1$}
@@ -32,16 +28,14 @@ Suppose the last inference in !!a{derivation} is \Elim{\eq}, i.e., the
   \RightLabel{\Elim{\eq}}
   \BinaryInfC{$!A(t_2)$}
 \end{prooftree}
-The premises $\eq[t_1][t_2]$ and $!A(t_1)$ are !!{derive}d from
-!!{undischarged} assumptions~$\Gamma_1$ and $\Gamma_2$, respectively.
-We want to show that $!A(t_2)$ follows from $\Gamma_1 \cup \Gamma_2$.
-Consider !!a{structure}~$\Struct{M}$ with $\Sat{M}{\Gamma_1 \cup
-  \Gamma_2}$. By induction hypothesis, $\Sat{M}{!A(t_1)}$ and
-$\Sat{M}{\eq[t_1][t_2]}$. Therefore, $\Value{t_1}{M} = \Value{t_2}{M}$. Let
-$s$ be any variable assignment, and $m = \Value{t_1}{M} = \Value{t_2}{M}$. By
-\olref[fol][syn][ext]{prop:ext-formulas}, $\Sat{M}{!A(t_1)}[s]$ iff
-$\Sat{M}{!A(x)}[\Subst{s}{m}{x}]$ iff $\Sat{M}{!A(t_2)}[s]$. Since
-$\Sat{M}{!A(t_1)}$, we have $\Sat{M}{!A(t_2)}$.
+前提 $\eq[t_1][t_2]$ 和 $!A(t_1)$ 分别从未解除的假设~$\Gamma_1$ 和 $\Gamma_2$ 推导得出。
+我们想要证明 $!A(t_2)$ 是 $\Gamma_1 \cup \Gamma_2$ 的语义后承。
+考虑一个满足 $\Sat{M}{\Gamma_1 \cup
+  \Gamma_2}$ 的结构~$\Struct{M}$。根据归纳假设，$\Sat{M}{!A(t_1)}$ 且 $\Sat{M}{\eq[t_1][t_2]}$。因此，$\Value{t_1}{M} = \Value{t_2}{M}$。令
+$s$ 为任意变元指派，并设 $m = \Value{t_1}{M} = \Value{t_2}{M}$。根据
+\olref[fol][syn][ext]{prop:ext-formulas}，$\Sat{M}{!A(t_1)}[s]$ 当且仅当
+$\Sat{M}{!A(x)}[\Subst{s}{m}{x}]$，当且仅当 $\Sat{M}{!A(t_2)}[s]$。由于
+$\Sat{M}{!A(t_1)}$，我们得到 $\Sat{M}{!A(t_2)}$。
 \end{proof}
 
 \end{document}

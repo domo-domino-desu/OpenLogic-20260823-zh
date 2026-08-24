@@ -8,70 +8,48 @@
 
 \olfileid{sfr}{ind}{int}
 
-\olsection{Introduction}
+\olsection{引言}
 
 \begin{explain}
-Induction is a commonly-used proof technique of mathematics in logic.
-You may be familiar with it from math, in which you do induction on
-natural numbers. As it turns out, there are lots of different kinds of
-mathematical and logical sets of objects that lend themselves to induction.
+归纳是逻辑学中常用的数学证明方法。你可能已经在数学中见过它，在那里你在自然数上做归纳。
+事实证明，有许多不同种类的数学与逻辑对象集合都适合进行归纳。
 
-In general, what induction allows one to do is prove a universal claim; that
-is, show that every object of a certain kind has some property. In particular,
-induction is often useful where a ``universal introduction'' method of proof
-is too complicated. Induction only works on mathematical objects that are
-constructed in special ways: if every element in the set is either basic or is
-built up from basic elements, then we can use induction on it. More precisely:
+一般而言，归纳法允许我们证明一个全称论断；也就是说，证明某一类对象中的每一个都具有某种性质。
+特别地，当“全称引入”的证明方法过于复杂时，归纳法通常非常有用。
+归纳法只适用于以特殊方式构造的数学对象：如果一个集合中的每个元素或者是基本元素，或者是由基本元素构造而来的，那么我们就可以对它使用归纳法。更准确地说：
 \end{explain}
 
 \begin{defn}
-A set $S$ is \emph{closed} under a function $f$ iff whenever $x \in
-S$, then $f(x) \in S$.
+集合 $S$ \emph{对}函数 $f$ \emph{封闭}，当且仅当若 $x \in S$，则 $f(x) \in S$。
 \end{defn}
 
 \begin{explain}
-For example, the natural numbers ($\mathbb{N}$) are closed under the
-successor function $f(x) = x+1$. If $x$ is a natural number, so is
-$x+1$. The natural numbers are not, however, closed under the
-predecessor function $f(x) = x-1$, since $0$ is a natural number, but
-$-1$ is not.
+例如，自然数集（$\mathbb{N}$）对后继函数 $f(x) = x+1$ 封闭。如果 $x$ 是自然数，那么 $x+1$ 也是自然数。然而，自然数集对前驱函数 $f(x) = x-1$ 不封闭，因为 $0$ 是自然数，但 $-1$ 不是。
 \end{explain}
 
 \begin{defn}
-A property $P$ is said to be \emph{preserved under} a function $f(x)$
-when, for any object $a$ in the domain of $f$, $P(a)$ implies
-$P(f(a))$ (if $a$ has property $P$, then so does $f(a)$).
+称性质 $P$ \emph{在}函数 $f(x)$ \emph{下保持}，是指对 $f$ 定义域中的任意对象 $a$，$P(a)$ 蕴含 $P(f(a))$（即若 $a$ 具有性质 $P$，则 $f(a)$ 也具有性质 $P$）。
 \end{defn}
 
 \begin{explain}
-The property of ``being an even number'' is preserved under the
-function $f(x) = x+2$, since if $x$ is even, so is $x+2$. The property
-of being an even number is not preserved under the successor function,
-since if $x$ is even, $x+1$ is odd.
+“是偶数”这一性质在函数 $f(x) = x+2$ 下保持，因为若 $x$ 是偶数，则 $x+2$ 也是偶数。该性质在后继函数下不保持，因为若 $x$ 是偶数，则 $x+1$ 是奇数。
 
-Induction works on natural numbers because every natural number can be
-reached from 0 by applying the successor function a finite number of
-times. This is characteristic of any set upon which we can do
-induction.
+归纳法对自然数有效，是因为每个自然数都可以通过从 $0$ 开始有限次应用后继函数而得到。任何我们可以对其做归纳的集合都具有这一特征。
 \end{explain}
 
-\begin{defn}[Induction on $\Nat$]
-If 0 has some property $P$, and if $P$ is preserved under the
-successor function, then every natural number has property $P$.
+\begin{defn}[自然数上的归纳]
+如果 $0$ 具有某个性质 $P$，且 $P$ 在后继函数下保持，那么每个自然数都具有性质 $P$。
 \end{defn}
 
-\begin{ex} The sum of the first $n$ natural numbers is $\frac{n(n+1)}{2}$. \\
+\begin{ex} 前 $n$ 个自然数的和为 $\frac{n(n+1)}{2}$。 \\
 
-\textbf{Base case.} The sum of the first 0 natural numbers is $0=
-\frac{0\cdot 1}{2}$.\\
+\textbf{基础步骤.} 前 $0$ 个自然数的和为 $0=
+\frac{0\cdot 1}{2}$。\\
 
-\textbf{Inductive step.} Suppose the property holds for $k$. We will
-show that it holds for $k+1$. In other words, suppose that $P(k)$
-holds, that is,
+\textbf{归纳步骤.} 假设该性质对 $k$ 成立。我们将证明它对 $k+1$ 也成立。换句话说，假设 $P(k)$ 成立，即
 \[ 0 + 1 + \ldots + k = \frac{k(k+1)}{2} \]
-We will show that $P(k+1)$ holds, i.e. that
+利用 $P(k)$ 的假设，我们将证明 $P(k+1)$ 成立，即
 \[ 0 + 1 + \ldots + k + (k+1) = \frac{(k+1)(k+2)}{2} \]
-by using the assumption that $P(k)$.
 
 \begin{align*}
 0 + 1 + \ldots + k &= \frac{k(k+1)}{2} \tag{Assumption} \\
@@ -81,55 +59,40 @@ by using the assumption that $P(k)$.
 &= \frac{2k + k + 2k +2}{2} \\
 &=\frac{(k+1)(k+2)}{2}
 \end{align*}
-Hence, the inductive step goes through, and we have proved the claim.
+因此，归纳步骤成立，从而证明了该论断。
 \end{ex}
 
 \begin{explain}
-For !!{formula}s, the basic elements are the atomic !!{formula}s. More
-complex !!{formula}s are obtained by joining together less-complicated
-!!{formula}s using operators. Each operator can be seen as
-corresponding to a function of !!{formula}s that returns a new
-!!{formula} joining these two together with the operator in
-question. For example, the function that joins two !!{formula}s $!!^a$
-and $!B$ into a conjunction can be written as $\mathcal E _\land (!!^a,
-!B) = !!^a \land !B$. We can call these \emph{formula-building
-  functions}. The set of !!{formula}s is closed these functions:
-whenever $!!^a$ and $!B$ are !!{formula}s, so are $\lnot !!^a$, $!!^a \land
-!B$, etc.
+对于公式，基本元素是原子公式。更复杂的公式通过使用（逻辑）算子连接较简单的公式而得到。每个算子都可以看作对应一个以公式为自变元的函数，该函数返回一个用该算子将它们连接而成的新公式。例如，将两个公式 $!!^a$ 和 $!B$ 连接成合取式的函数可以写作 $\mathcal E _\land (!!^a,
+!B) = !!^a \land !B$。我们可以称这些为\emph{公式构造函数}。公式的集合对这些函数封闭：若 $!!^a$ 和 $!B$ 是公式，则 $\lnot !!^a$、$!!^a \land !B$ 等也是公式。
 \end{explain}
 
-\begin{defn}[Induction on !!{formula}s]
-If every atomic !!{formula} has property $P$ and $P$ is preserved
-under the !!{formula}-building functions, then every !!{formula} has
-property $P$.
+\begin{defn}[公式上的归纳]
+如果每个原子公式都具有性质 $P$，且 $P$ 在公式构造函数下保持，那么每个公式都具有性质 $P$。
 \end{defn}
 
 \begin{explain}
-This definition suggests a ``recipe'' for inductive proofs on
-!!{formula}s. If we are asked to show that every !!{formula} has
-property $P$, follow the following steps:\\
+这个定义为公式上的归纳证明提供了一个“配方”。若要证明每个公式都具有性质 $P$，请遵循以下步骤：\\
 
-\textbf{Base Case.} Let $!!^a$ be an atomic !!{formula}. [\ldots]
-Therefore, $!!^a$ has property $P$.
+\textbf{基础步骤.} 设 $!!^a$ 是一个原子公式。[\ldots] 因此，$!!^a$ 具有性质 $P$。
 
-\textbf{Inductive Step.} Let $!!^a$ and $!B$ be !!{formula}s, both of
-which have the property $P$.
+\textbf{归纳步骤.} 设 $!!^a$ 和 $!B$ 都是公式，且二者都具有性质 $P$。
 
-Case $\lnot$: [\ldots] Therefore, $\lnot !!^a$ has property $P$.
+$\lnot$ 情形：[\ldots] 因此，$\lnot !!^a$ 具有性质 $P$。
 
-Case $\land$: [\ldots] Therefore, $!!^a \land !B$ has property $P$.
+$\land$ 情形：[\ldots] 因此，$!!^a \land !B$ 具有性质 $P$。
 
-Case $\lor$: [\ldots] Therefore, $!!^a \lor !B$ has property $P$.
+$\lor$ 情形：[\ldots] 因此，$!!^a \lor !B$ 具有性质 $P$。
 
-Case $\lif$: [\ldots] Therefore, $!!^a \lif !B$ has property $P$.
+$\lif$ 情形：[\ldots] 因此，$!!^a \lif !B$ 具有性质 $P$。
 
-Case $\liff$: [\ldots] Therefore, $!!^a \liff !B$ has property $P$.
+$\liff$ 情形：[\ldots] 因此，$!!^a \liff !B$ 具有性质 $P$。
 
-Case $\lforall[]$: [\ldots] Therefore, $\lforall[x] !!^a$ has property $P$.
+$\lforall[]$ 情形：[\ldots] 因此，$\lforall[x] !!^a$ 具有性质 $P$。
 
-Case $\lexists[]$: [\ldots] Therefore, $\lexists[x] !!^a$ has property $P$. \\
+$\lexists[]$ 情形：[\ldots] 因此，$\lexists[x] !!^a$ 具有性质 $P$。 \\
 
-Therefore, every !!{formula} has property $P$.
+因此，每个公式都具有性质 $P$。
 \end{explain}
 
 \end{document}

@@ -7,44 +7,17 @@
 \begin{document}
 
 \olfileid{sfr}{arith}{ref}
-\olsection{Some Philosophical Reflections}
+\olsection{一些哲学反思}
 
-So much for the technicalities. But what did they achieve?
+技术细节就到此为止。但它们究竟取得了什么成就呢？
 
-Well, pretty uncontestably, they gave us some {lovely} pure mathematics. Moreover,
-there were some deep conceptual achievements. It was a profound
-insight, to see that the Completeness Property expresses the crucial
-difference between the reals and the rationals. Moreover, the explicit
-construction of reals, as Dedekind cuts, puts the subject matter of
-analysis on a firm footing. We know that the notion of a
-\emph{complete ordered field} is coherent, for the cuts form just such
-a field. 
+几乎无可争议的是，它们为我们提供了一些{美妙}的纯粹数学。此外，还带来了一些深刻的概念性成就。认识到完备性质表达了实数与有理数之间的关键区别，这是一个深刻的洞见。再者，将实数显式地构造为戴德金分割，为分析学奠定了坚实的基础。我们知道，\emph{完备有序域}这一概念是协调的，因为分割恰好构成了这样一个域。
 
-For all that, we should air a few reservations about these achievements. 
+尽管如此，我们应当对这些成就表达一些保留意见。
 
-First, it is not clear that thinking of reals in terms of cuts is any
-\emph{more} rigorous than thinking of reals in terms of their familiar
-(possibly infinite) decimal expansions. This latter ``construction''
-of the reals has some resemblance to the construction of the reals via
-Cauchy sequence; but in fact, it was essentially known to
-mathematicians from the early 17th century onwards (see
-\olref[cauchy]{sec}). The real increase in rigour came from the
-realisation that the reals have the Completeness Property; the ability
-to construct real numbers as particular sets is perhaps not, by
-itself, so very interesting.
+首先，从分割的角度来理解实数，是否比用其熟悉的（可能无限的）十进制展开来理解实数\emph{更}严格，这一点并不清楚。后一种对实数的“构造”有些类似于通过柯西序列构造实数；但事实上，从17世纪早期起，数学家们实质上就已经知道了这种构造（参见 \olref[cauchy]{sec}）。严格性的真正提升在于认识到实数具有完备性质；而将实数构造为特定集合的能力本身，也许并不那么有趣。
 
-It is even less clear that the (much easier) arithmetization of the
-integers, or of the rationals, increases rigour in those areas. Here,
-it is worth making a simple observation. Having \emph{constructed} the
-integers as equivalence classes of ordered pairs of naturals, and then
-constructed the rationals as equivalence classes of ordered pairs of
-integers, and then constructed the reals as sets of rationals, we
-immediately \emph{forget about} the constructions. In particular: no
-one would ever want to \emph{invoke} these constructions during a
-mathematical proof (excepting, of course, a proof that the
-constructions behaved as they were supposed to). It's much easier to
-speak about a real, directly, than to speak about some set of sets of
-sets of sets of sets of sets of sets of naturals. 
+更不清楚的是，（简单得多的）整数或有理数的算术化是否增加了那些领域的严格性。这里值得注意一个简单的事实。当我们把整数\emph{构造}为自然数的有序对的等价类，然后把有理数构造为整数的有序对的等价类，最后把实数构造为有理数的集合之后，我们立刻就会\emph{忘掉}这些构造。特别是：除了在证明这些构造确实具有预期性质时，没有人会想在数学证明中\emph{援引}这些构造。直接谈论一个实数，要比谈论某个自然数的集合的集合的集合的集合的集合的集合的集合容易得多。
 %(For reals were constructed as sets of rationals; and these were constructed as equivalence classes of ordered pairs of integers, i.e., sets of sets of sets of integers; etc.).
 %2/3 = [2,3]
 %	i.e. {<2,3>, ... }
@@ -58,48 +31,15 @@ sets of sets of sets of sets of sets of naturals.
 %
 %integers are
 %	sets of sets of sets of naturals
-	
-It is most doubtful of all that these definitions tell us what the
-integers, rationals, or reals \emph{are}, \emph{metaphysically
-speaking}. That is, it is doubtful that the reals (say) \emph{are}
-certain sets (of sets of sets\ldots). The main barrier to such a view
-is that the construction could have been done in many different ways.
-In the case of the reals, there are some genuinely interestingly
-different constructions (see \olref[cauchy]{sec}). But here is a
-really trivial way to obtain some different constructions: as in
-\olref[sfr][rel][ref]{sec}, we could have defined ordered pairs
-slightly differently; if we had used this alternative notion of an
-ordered pair, then our constructions would have worked precisely as
-well as they did, but we would have ended up with different objects.
-As such, there are many rival set-theoretic constructions of the
-integers, the rationals, and the reals. And now it would just be
-arbitrary (and embarrassing) to claim that the integers (say) are
-\emph{these} sets, rather than \emph{those}. (As in
-\olref[sfr][rel][ref]{sec}, this is an instance of an argument made
-famous by \citealt{Benacerraf1965}.)
 
-A further point is worth raising: there is something quite \emph{odd}
-about our constructions. We started with the natural numbers. We then
-construct the integers, and construct ``the $0$ of the integers'',
-i.e., $ \equivrep{0,0}{\Intequiv}$. But $0 \neq
-\equivrep{0,0}{\Intequiv}$. Indeed,  given our constructions,
-\emph{no} natural number is an integer. But that seems extremely
-counter-intuitive. Indeed, in \olref[sfr][set][imp]{sec}, we claimed
-without much argument that $\Nat \subseteq \Rat$. If the constructions
-tell us exactly \emph{what} the numbers are, this claim was trivially
-false. 
+最令人怀疑的是，这些定义是否揭示了整数、有理数或实数在\emph{形而上学意义上}\emph{是}什么。也就是说，实数（例如）是否\emph{就是}某些集合（的集合的集合……），是令人怀疑的。这种观点的主要障碍在于，构造本可以用许多不同的方式来完成。对于实数，确实存在一些真正有趣的不同构造（参见 \olref[cauchy]{sec}）。但这里有一个获得不同构造的极为平凡的方法：正如在 \olref[sfr][rel][ref]{sec} 中那样，我们本可以稍微不同地定义有序对；如果我们使用了这种替代性的有序对概念，那么我们的构造照样可以同样好地进行，但最终得到的对象却会不同。如此一来，关于整数、有理数和实数，就有许多相互竞争的集合论构造。此时，声称整数（例如）是\emph{这些}集合而非\emph{那些}集合，就完全是任意的（甚至是令人尴尬的）了。（正如在 \olref[sfr][rel][ref]{sec} 中，这是 \citealt{Benacerraf1965} 使其闻名的一个论证的实例。）
 
-Standing back, then, where do we get to? Working in a na\"ive set
-theory, and helping ourselves to the naturals, we are able to
-\emph{treat} integers, rationals, and reals as certain sets. In that
-sense, we can \emph{embed} the theories of these entities within a set
-theory. But the philosophical import of this embedding is just not
-that straightforward. 
+还有一点值得指出：我们的构造有某种相当\emph{奇怪}的地方。我们从自然数出发。然后构造整数，并构造“整数的 $0$”，即 $ \equivrep{0,0}{\Intequiv}$。但 $0 \neq
+\equivrep{0,0}{\Intequiv}$。事实上，根据我们的构造，\emph{没有}一个自然数是整数。但这似乎极其反直觉。确实，在 \olref[sfr][set][imp]{sec} 中，我们未加太多论证就声称过 $\Nat \subseteq \Rat$。如果这些构造确切地告诉我们数\emph{是}什么，那么这一断言显然是错误的。
 
-Of course, none of this is the last word!{} The point is only this.
-Showing that the arithmetization of the reals \emph{is} of deep
-philosophical significance would require some additional
-\emph{philosophical} argument.
+退一步看，我们得到了什么？在朴素集合论中展开工作，并借助自然数，我们能够将整数、有理数和实数\emph{视为}某些集合。在这个意义上，我们可以将这些实体的理论\emph{嵌入}到一个集合论中。但这种嵌入的哲学含义并不那么直截了当。
+
+当然，这些都不是定论！{} 要点仅仅是：要表明实数的算术化\emph{具有}深刻的哲学意义，还需要一些额外的\emph{哲学}论证。
 
 %Additionally: for the entire duration of this chapter, we have treated
 %the natural numbers as simply \emph{given} to us. But what can we do

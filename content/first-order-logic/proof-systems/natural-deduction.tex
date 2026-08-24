@@ -10,60 +10,35 @@
       {\olfileid{fol}{prf}{ntd}}
       {\olfileid{pl}{prf}{ntd}}
 
-\olsection{Natural Deduction}
+\olsection{自然演绎}
 
-Natural deduction is !!a{derivation} system intended to mirror actual
-reasoning (especially the kind of regimented reasoning employed by
-mathematicians).  Actual reasoning proceeds by a number of ``natural''
-patterns. For instance, proof by cases allows us to establish a
-conclusion on the basis of a disjunctive premise, by establishing that
-the conclusion follows from either of the disjuncts. Indirect proof
-allows us to establish a conclusion by showing that its negation leads
-to a contradiction. Conditional proof establishes a conditional claim
-``if \dots then \dots'' by showing that the consequent follows from
-the antecedent.  Natural deduction is a formalization of some of these
-natural inferences.  Each of the logical connectives and quantifiers
-comes with two rules, an introduction and an elimination rule, and
-they each correspond to one such natural inference pattern. For
-instance, $\Intro{\lif}$ corresponds to conditional proof, and
-$\Elim{\lor}$ to proof by cases.  A particularly simple rule is
-$\Elim{\land}$ which allows the inference from $!A \land !B$ to~$!A$
-(or $!B$).
+自然演绎是一种旨在反映实际推理（尤其是数学家所使用的那种严密规范的推理）的推导系统。
+实际推理遵循许多“自然”的模式。
+例如，分情形证明允许我们在一个析取前提的基础上确立一个结论，方式是通过表明该结论从两个析取支中的任何一个都能推出。
+间接证明则让我们可以通过证明结论的否定会导致矛盾来确立该结论。
+条件证明通过证明后件能从前件推出，来确立一个条件句“如果……那么……”。
+自然演绎便是其中一些自然推理的形式化。
+每个逻辑联结词和量词都对应两条规则，一条引入规则和一条消去规则，它们各自对应一种这样的自然推理模式。
+例如，$\Intro{\lif}$ 对应条件证明，而 $\Elim{\lor}$ 对应分情形证明。
+特别简单的一条规则是 $\Elim{\land}$，它允许从 $!A \land !B$ 推出~$!A$（或 $!B$）。
 
-One feature that distinguishes natural deduction from other
-!!{derivation} systems is its use of assumptions. !!^a{derivation} in
-natural deduction is a tree of !!{formula}s.  A single !!{formula}
-stands at the root of the tree of !!{formula}s, and the ``leaves'' of
-the tree are !!{formula}s from which the conclusion is derived.  In
-natural deduction, some leaf !!{formula}s play a role inside the
-!!{derivation} but are ``used up'' by the time the !!{derivation}
-reaches the conclusion. This corresponds to the practice, in actual
-reasoning, of introducing hypotheses which only remain in effect for a
-short while.  For instance, in a proof by cases, we assume the truth
-of each of the disjuncts; in conditional proof, we assume the truth of
-the antecedent; in indirect proof, we assume the truth of the negation
-of the conclusion.  This way of introducing hypothetical assumptions
-and then doing away with them in the service of establishing an
-intermediate step is a hallmark of natural deduction. The formulas at
-the leaves of a natural deduction !!{derivation} are called
-assumptions, and some of the rules of inference may ``!!{discharge}''
-them.  For instance, if we have !!a{derivation} of~$!B$ from some
-assumptions which include~$!A$, then the $\Intro{\lif}$ rule allows us
-to infer~$!A \lif !B$ and discharge any assumption of the form~$!A$.
-(To keep track of which assumptions are discharged at which
-inferences, we label the inference and the assumptions it discharges
-with a number.)  The assumptions that remain !!{undischarged} at the
-end of the !!{derivation} are together sufficient for the truth of the
-conclusion, and so !!a{derivation} establishes that its
-!!{undischarged} assumptions entail its conclusion.
+自然演绎区别于其他推导系统的一个特点是它对假设的运用。
+自然演绎中的一个推导是一个公式树。
+单个公式位于公式树的根部，而树的“叶子”则是推导出结论所依据的公式。
+在自然演绎中，有些叶公式在推导过程中扮演了角色，但在推导到达结论时就被“用完”了。
+这对应于实际推理中引入仅暂时生效的假设的做法。
+例如，在分情形证明中，我们假设每个析取支为真；在条件证明中，我们假设前件为真；在间接证明中，我们假设结论的否定为真。
+这种引入假设并在确立中间步骤时将其消去的做法，是自然演绎的标志。
+自然演绎推导中位于叶子的公式称为\emph{假设}，而某些推理规则可以“解除”它们。
+例如，如果我们有一个从包含~$!A$ 在内的一些假设推出~$!B$ 的推导，那么 $\Intro{\lif}$ 规则就允许我们推断出~$!A \lif !B$，并解除任何形式为~$!A$ 的假设。
+（为了追踪哪些假设在哪些推理步骤被解除，我们为推理步骤及被其解除的假设标上相同的数字。）
+推导结束时仍未被解除的假设，共同足以保证结论为真，因此一个推导确立了其未解除的假设是其结论的语义后承。
 
-The relation $\Gamma \Proves !A$ based on natural deduction holds iff
-there is !!a{derivation} in which $!A$~is the last !!{sentence} in the
-tree, and every leaf which is !!{undischarged} is in~$\Gamma$. $!A$~is
-a theorem in natural deduction iff there is !!a{derivation} in which
-$!A$~is the last !!{sentence} and all assumptions are !!{discharged}.
-For instance, here is !!a{derivation} that shows that $\Proves (!A
-\land !B) \lif !A$:
+基于自然演绎的关系 $\Gamma \Proves !A$ 成立，当且仅当存在一个推导，其中 $!A$~是树中最后一个语句，且每个未被解除的叶公式都属于~$\Gamma$。
+$!A$~是自然演绎中的定理，当且仅当存在一个推导，其中 $!A$~是最后一个语句且所有假设均被解除。
+例如，以下是一个表明 $\Proves (!A
+\land !B) \lif !A$ 的推导：
+
 \begin{prooftree}
   \AxiomC{$\Discharge{!A \land !B}{1}$}
   \RightLabel{\Elim{\land}}
@@ -71,20 +46,15 @@ For instance, here is !!a{derivation} that shows that $\Proves (!A
   \DischargeRule{\Intro{\lif}}{1}
   \UnaryInfC{$(!A \land !B) \lif !A$}
 \end{prooftree}
-The label~$1$ indicates that the assumption $!A \land !B$ is
-!!{discharged} at the \Intro{\lif} inference.
-  
-A set~$\Gamma$ is inconsistent iff $\Gamma \Proves \lfalse$ in natural
-deduction.  The rule \FalseInt{} makes it so that from an inconsistent
-set, any !!{sentence} can be !!{derive}d.
 
-Natural deduction systems were developed by Gerhard Gentzen and
-Stanis\l{}aw Ja\'skowski in the 1930s, and later developed by Dag
-Prawitz and Frederic Fitch. Because its inferences mirror natural
-methods of proof, it is favored by philosophers. The versions
-developed by Fitch are often used in introductory logic textbooks. In
-the philosophy of logic, the rules of natural deduction have sometimes
-been taken to give the meanings of the logical operators
-(``proof-theoretic semantics'').
+标签~$1$ 表明假设 $!A \land !B$ 在 \Intro{\lif} 推理步骤处被解除。
+
+一个集合~$\Gamma$ 是不一致的，当且仅当在自然演绎中 $\Gamma \Proves \lfalse$。
+规则 \FalseInt{} 使得从一个不一致的集合中可以推导出任何语句。
+
+自然演绎系统由 Gerhard Gentzen（根岑）和 Stanisław Jaśkowski（亚斯科夫斯基）在 20 世纪 30 年代创立，后来由 Dag Prawitz（普拉维茨）和 Frederic Fitch（菲奇）加以发展。
+由于其推理反映了自然的证明方法，它受到哲学家的青睐。
+Fitch 发展的版本常在入门逻辑教科书中使用。
+在逻辑哲学中，自然演绎的规则有时被认为给出了逻辑算子的意义（“证明论语义学”）。
 
 \end{document}

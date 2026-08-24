@@ -1,44 +1,39 @@
-% Part: lambda-calculus
-% Chapter: syntax
-% Section: abbreviated-syntax
-
 \documentclass[../../../include/open-logic-section]{subfiles}
 
 \begin{document}
 
 \olfileid{lam}{syn}{abb}
-\olsection{Abbreviated Syntax}
+\olsection{缩写语法}
 
-Terms as defined in \olref[trm]{defn:term} are sometimes cumbersome to
-write, so it is useful to introduce a more concise syntax. We must of
-course be careful to make sure that the terms in the concise notation
-also are uniquely readable.  One widely used version called
-\emph{abbreviated terms} is as follows.
+\olref[trm]{defn:term} 所定义的项有时写起来颇为繁琐，因此引入一种更简洁的语法很有用。
+当然，我们必须谨慎地确保，用这种简洁语法写出的项也是\emph{唯一可读的}。
+一种被广泛使用的约定称为\emph{缩写项}，其规则如下：
+% Part: lambda-calculus
+% Chapter: syntax
+% Section: abbreviated-syntax
 
 \begin{enumerate}
-\item When parentheses are left out, application takes place from left
-  to right. For example, if $M$, $N$, $P$, and~$Q$ are terms, then
-  $MNPQ$ abbreviates $(((MN)P)Q)$.
-\item Again, when parentheses are left out, lambda abstraction is
-  given the widest scope possible. From example, $\lambd[x][MNP]$ is
-  read as $(\lambd[x][MNP])$.
-\item A lambda can be used to abstract multiple variables. For
-  example, $\lambd[xyz][M]$ is short for
-  $\lambd[x][\lambd[y][\lambd[z][M]]]$.
+\item 省略括号时，应用按从左到右进行。例如，若 $M$、$N$、$P$ 和~$Q$ 是项，则
+  $MNPQ$ 是 $(((MN)P)Q)$ 的缩写。
+\item 同样，省略括号时，λ 抽象被赋予尽可能宽的辖域。例如，$\lambd[x][MNP]$ 读作
+  $(\lambd[x][MNP])$。
+\item 单个 λ 可用于抽象多个变元。例如，$\lambd[xyz][M]$ 是
+  $\lambd[x][\lambd[y][\lambd[z][M]]]$ 的缩写。
 \end{enumerate}
 
-For example,
+例如，
 \[
 \lambd[xy][xxyx \lambd[z][xz]]
 \]
-abbreviates
+是
 \[
 (\lambd[x][(\lambd[y][((((xx)y)x)(\lambd[z][(xz)]))])]).
 \]
+的缩写。
 
 \begin{prob}
-Expand the abbreviated term $\lambd[g][(\lambd[x][g (x x)])
-  \lambd[x][g (x x)]]$.
+展开缩写项 $\lambd[g][(\lambd[x][g (x x)])
+  \lambd[x][g (x x)]]$。
 \end{prob}
 
 \end{document}

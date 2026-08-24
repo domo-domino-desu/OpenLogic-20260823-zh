@@ -8,35 +8,29 @@
 
 \olfileid{nml}{syn}{rel}
 
-\olsection{Relational Models}
+\olsection{关系模型}
 
-The basic concept of semantics for normal modal logics is that of a
-\emph{relational model}. It consists of a set of worlds, which are
-related by a binary ``accessibility relation,'' together with an
-assignment which determines which !!{propositional variable}s count as
-``true'' at which worlds.
+正规模态逻辑语义的基本概念是\emph{关系模型}。
+它由一个世界集合、一个将这些世界联系起来的二元“可达关系”，
+以及一个确定哪些命题变元在哪些世界上“为真”的赋值构成。
 
 \begin{defn}
-  A \emph{model} for the basic modal language is a triple $\mModel{M}
-  = \tuple{W, R, V}$, where
+  基本模态语言的一个\emph{模型}是一个三元组 $\mModel{M}
+  = \tuple{W, R, V}$，其中
   \begin{enumerate}
-  \item $W$ is a nonempty set of ``worlds,''
-  \item $R$ is a binary accessibility relation on~$W$, and
-  \item $V$ is a function assigning to each !!{propositional
-    variable}~$p$ a set $V(p)$ of possible worlds.
+  \item $W$ 是一个非空的“世界”集合，
+  \item $R$ 是 $W$ 上的二元可达关系，
+  \item $V$ 是一个函数，它为每个命题变元~$p$ 指派一个可能世界的集合 $V(p)$。
   \end{enumerate}
-  When $Rww'$ holds, we say that $w'$ is \emph{accessible
-    from}~$w$. When $w \in V(p)$ we say $p$ is \emph{true at}~$w$.
+  当 $Rww'$ 成立时，我们称 $w'$ \emph{从 $w$ 可达}。
+  当 $w \in V(p)$ 时，我们称 $p$ \emph{在 $w$ 为真}。
 \end{defn}
 
-The great advantage of relational semantics is that models can be
-represented by means of simple diagrams, such as the one in
-\olref{fig:simple}. Worlds are represented by nodes, and world~$w'$ is
-accessible from~$w$ precisely when there is an arrow from~$w$
-to~$w'$. Moreover, we label a node (world) by~$\mTrue{p}$ when $w \in V(p)$,
-and otherwise by~\mFalse{p}. \olref{fig:simple} represents the model
-with $W = \{w_1, w_2, w_3\}$, $R = \{\tuple{w_1, w_2},\tuple{w_1,
-  w_3}\}$, $V(p) = \{w_1, w_2\}$, and $V(q) = \{w_2\}$.
+关系语义的一大优势在于，模型可以用简单的图表来表示，例如图~\olref{fig:simple}。
+世界由节点表示，且世界~$w'$ 从~$w$ 可达当且仅当存在一条从~$w$ 指向~$w'$ 的箭头。
+此外，当 $w \in V(p)$ 时，我们用~$\mTrue{p}$ 标记该节点（世界），否则用~\mFalse{p} 标记。
+图~\olref{fig:simple} 表示了具有 $W = \{w_1, w_2, w_3\}$、$R = \{\tuple{w_1, w_2},\tuple{w_1,
+  w_3}\}$、$V(p) = \{w_1, w_2\}$ 和 $V(q) = \{w_2\}$ 的模型。
 
 \begin{figure}
   \begin{center}
@@ -50,7 +44,7 @@ with $W = \{w_1, w_2, w_3\}$, $R = \{\tuple{w_1, w_2},\tuple{w_1,
       \draw[->] (w1) to (w3);
     \end{tikzpicture}
   \end{center}
-  \caption{A simple model.}
+  \caption{一个简单模型。}
   \ollabel{fig:simple}
 \end{figure}
 

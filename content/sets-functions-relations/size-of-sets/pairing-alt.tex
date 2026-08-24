@@ -6,29 +6,40 @@
 
 \begin{document}
 
+集合、函数和关系是数学最基本的概念，而集合论则是大多数数学赖以建立的基础。
+既然本教材所讨论的主题也属于数学范畴，它们同样可以用集合论的语言来描述。
+这意味着我们处理的基本概念——公式、结构、推导等等——都有集合论的刻画。
+例如，我们可以把公式看作一个符号序列，而一个符号序列不过是一个将数字映射到符号的函数。
+我们可以把结构看作一个有序元组，它由一个论域以及该论域上的一批函数和关系组成。
+对这些概念的集合论刻画，使我们能够以数学上精确的方式来证明关于它们的命题。
+我们目前定义的许多概念都有这样的集合论刻画。
+例如，一个语言~$\Lang L$ 的公式集合可以归纳地定义，一旦这样定义后，我们就可以对公式进行归纳，并通过归纳来证明关于公式的命题。
+之所以可能这样做，正是由于公式被归纳地定义为某个最小集合的元素，这个集合包含所有原子公式，并且在形成规则下是封闭的。
+但我们还没有从形式上对此进行辩护，也没有一般性地解释“最小”和“封闭”是什么意思。
+这些概念本身是集合论的，我们需要对它们给出精确的说明，以便（a）确信对公式进行归纳是合法的，以及将这种推理方式推广到其他归纳定义的集合和关系上去。
+这些就是我们在本部分将要讨论的主题。
+
 \olfileid{sfr}{siz}{pai-alt}
 
-\olsection{An Alternative Pairing Function}
+\olsection{另一种配对函数}
 
 \begin{explain}
-There are other enumerations of $\Nat^2$ that make it easier to
-figure out what their inverses are. Here is one. Instead of
-visualizing the enumeration in an array, start with the list of
-positive integers associated with (initially) empty spaces. Imagine
-filling these spaces successively with pairs $\tuple{n,m}$ as follows.
-Starting with the pairs that have~$0$ in  the first place (i.e., pairs
-$\tuple{0,m}$), put the first (i.e., $\tuple{0,0}$) in the first empty
-place, then skip an empty space, put the second (i.e., $\tuple{0,1}$)
-in the next empty place, skip one again, and so forth. The
-(incomplete) beginning of our enumeration now looks like this
+除了前述枚举，还有其他枚举 $\Nat^2$ 的方法，使我们更容易求出其逆函数。
+这里介绍一种。我们不再用阵列来可视化枚举，而是从一个与（初始为空的）空位相关联的正整数列表开始。
+设想按如下方式依次用数对 $\tuple{n,m}$ 填充这些空位。
+从第一分量为~$0$ 的数对（即 $\tuple{0,m}$）开始，
+将第一个数对（即 $\tuple{0,0}$）填入第一个空位，
+然后跳过一个空位，将第二个数对（即 $\tuple{0,1}$）填入下一个空位，
+再跳过一个空位，依此类推。
+此时，枚举的开头（尚不完整）如下所示：
 \[\small
 \begin{array}{@{}c c c c c c c c c c c@{}}
 \mathbf 1 & \mathbf 2 & \mathbf 3 & \mathbf 4 & \mathbf 5 & \mathbf 6 & \mathbf 7 & \mathbf 8 & \mathbf 9 & \mathbf{10} & \dots \\ \\
 \tuple{0,0} &  & \tuple{0,1} &  & \tuple{0,2} &  & \tuple{0,3} & & \tuple{0,4} &  & \dots \\
 \end{array}
 \]
-Repeat this with pairs $\tuple{1,m}$ for the place that still remain
-empty, again skipping every other empty place:
+对仍然空着的位置，用数对 $\tuple{1,m}$ 重复这一过程，
+同样每隔一个空位放置一个：
 \[\small
 \begin{array}{@{}c c c c c c c c c c c@{}}
 \mathbf 1 & \mathbf 2 & \mathbf 3 & \mathbf 4 & \mathbf 5 & \mathbf 6 & \mathbf 7 & \mathbf 8 & \mathbf 9 & \mathbf{10} & \dots \\ \\
@@ -36,8 +47,8 @@ empty, again skipping every other empty place:
 \tuple{0,3} & & \tuple{0,4} &  \tuple{1,2} & \dots \\
 \end{array}
 \]
-Enter pairs $\tuple{2,m}$, $\tuple{3,m}$, etc., in the same way. Our
-completed enumeration thus starts like this:
+以同样的方式填入数对 $\tuple{2,m}$、$\tuple{3,m}$ 等等。
+完成后的枚举开头如下：
 \[\small
 \begin{array}{@{}cc c c c c c c c c c@{}}
 \mathbf 1 & \mathbf 2 & \mathbf 3 & \mathbf 4 & \mathbf 5 & \mathbf 6 & \mathbf 7 & \mathbf 8 & \mathbf 9 & \mathbf{10} & \dots \\ \\
@@ -45,9 +56,8 @@ completed enumeration thus starts like this:
 \tuple{1,1} & \tuple{0,3} & \tuple{3,0}  & \tuple{0,4} &  \tuple{1,2} & \dots \\
 \end{array}
 \]
-If we number the cells in the array above according to this
-enumeration, we will not find a neat zig-zag line, but this
-arrangement:
+如果按此枚举为上述阵列中的格子编号，
+我们看到的将不是一条整齐的锯齿线，而是这样的排列：
 \[
 \begin{array}{ c | c | c | c | c | c | c | c }
 & \mathbf 0 & \mathbf 1 & \mathbf 2 & \mathbf 3 & \mathbf 4 & \mathbf 5 & \dots \\
@@ -67,48 +77,46 @@ arrangement:
 \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \ddots\\
 \end{array}
 \]
-We can see that the pairs in row~$0$ are in the odd numbered places of
-our enumeration, i.e., pair $\tuple{0,m}$ is in place $2m+1$; pairs in
-the second row, $\tuple{1,m}$, are in places whose number is the
-double of an odd number, specifically,  $2 \cdot (2m+1)$; pairs in the
-third row, $\tuple{2,m}$, are in places whose number is four times an
-odd number, $4 \cdot (2m+1)$; and so on. The factors of $(2m+1)$ for
-each row, $1$, $2$, $4$, $8$, \dots, are exactly the powers of~$2$:
-$1= 2^0$, $2 = 2^1$, $4 = 2^2$, $8 = 2^3$, \dots\@ In fact, the
-relevant exponent is always the first member of the pair in
-question. Thus, for pair $\tuple{n,m}$ the factor is $2^n$.  This
-gives us the general formula: $2^n \cdot (2m+1)$. However, this is a
-mapping of pairs to \emph{positive} integers, i.e., $\tuple{0,0}$ has
-position~$1$. If we want to begin at position~$0$ we must subtract~$1$
-from the result. This gives us:
+可以看出，第~$0$ 行的数对位于我们枚举的奇数编号位置，
+即数对 $\tuple{0,m}$ 在第 $2m+1$ 个位置；
+第二行的数对 $\tuple{1,m}$ 位于编号为某个奇数两倍的位置，
+具体为 $2 \cdot (2m+1)$；
+第三行的数对 $\tuple{2,m}$ 位于编号为某个奇数四倍的位置，
+即 $4 \cdot (2m+1)$；以此类推。
+各行中 $(2m+1)$ 所乘的因子 $1$、$2$、$4$、$8$、\dots，
+恰好是~$2$ 的幂：$1= 2^0$，$2 = 2^1$，$4 = 2^2$，$8 = 2^3$，\dots\@
+事实上，相应的指数总是该数对的第一个分量。
+因此，对于数对 $\tuple{n,m}$，因子为 $2^n$。
+由此得到通式：$2^n \cdot (2m+1)$。
+然而，这是将数对映射到\emph{正整数}，
+即 $\tuple{0,0}$ 位于位置~$1$。
+如果我们要从位置~$0$ 开始计数，
+就必须将结果减去~$1$。由此得到：
 \end{explain}
 
 \begin{ex}
-The function $h\colon \Nat^2 \to \Nat$ given by
+由
 \[
 h(n,m) = 2^n (2m+1) - 1
 \]
-is a pairing function for the set of pairs of natural numbers~$\Nat^2$.
+给出的函数 $h\colon \Nat^2 \to \Nat$ 是自然数对集合~$\Nat^2$ 的一个配对函数。
 \end{ex}
 
 \begin{explain}
-Accordingly, in our second enumeration of $\Nat^2$, the pair
-$\tuple{0,0}$ has code $h(0,0) = 2^0(2\cdot 0+1) - 1 = 0$;
-$\tuple{1,2}$ has code $2^{1} \cdot (2 \cdot 2 + 1) - 1 = 2
-\cdot 5 - 1 = 9$; $\tuple{2,6}$ has code $2^{2} \cdot (2
-\cdot 6 + 1) - 1 = 51$.
+因此，在我们对 $\Nat^2$ 的第二种枚举中，数对 $\tuple{0,0}$ 的代码是 $h(0,0) = 2^0(2\cdot 0+1) - 1 = 0$；
+$\tuple{1,2}$ 的代码是 $2^{1} \cdot (2 \cdot 2 + 1) - 1 = 2
+\cdot 5 - 1 = 9$；$\tuple{2,6}$ 的代码是 $2^{2} \cdot (2
+\cdot 6 + 1) - 1 = 51$。
 \end{explain}
 
-Sometimes it is enough to encode pairs of natural numbers~$\Nat^2$
-without requiring that the encoding is surjective. Such encodings have
-inverses that are only partial functions. 
+有时，只需对自然数对~$\Nat^2$ 进行编码，而不要求该编码是满射。这类编码的逆仅是偏函数。
 
 \begin{ex}
-The function $j\colon \Nat^2 \to \Nat^+$ given by
+由
 \[
 j(n,m) = 2^n3^m
 \]
-is !!a{injective} function $\Nat^2 \to \Nat$.
+给出的函数 $j\colon \Nat^2 \to \Nat^+$ 是一个 $\Nat^2 \to \Nat$ 的单射函数。
 \end{ex}
 
 \end{document}

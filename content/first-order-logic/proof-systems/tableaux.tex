@@ -12,44 +12,31 @@
 
 \olsection{\usetoken{P}{tableau}}
 
-While many !!{derivation} systems operate with arrangements of
-!!{sentence}s, !!{tableau}s operate with !!{signed formula}s.
-!!^a{signed formula} is a pair consisting of a truth value sign
-($\True$ or $\False$) and !!a{sentence}
+许多推导系统操作的是语句的排列，而分析表操作的是带号公式。
+带号公式是由一个真值符号（$\True$ 或 $\False$）和一个语句
 \[
-\sFmla{\True}{!A} \text{ or } \sFmla{\False}{!A}.
+\sFmla{\True}{!A} \text{ 或 } \sFmla{\False}{!A}.
 \]
-!!^a{tableau} consists of !!{signed formula}s arranged in a
-downward-branching tree. It begins with a number of \emph{assumptions}
-and continues with !!{signed formula}s which result from one of the
-!!{signed formula}s above it by applying one of the rules of
-inference. Each rule allows us to add one or more !!{signed formula}s
-to the end of a branch, or two !!{signed formula}s side by side---in
-this case a branch splits into two, with the two added !!{signed
-  formula}s forming the ends of the two branches.
+组成的序对。
+分析表由排列成向下分叉树形结构的带号公式构成。它始于若干\emph{假设}，其后的带号公式则是通过对其上方的某个带号公式应用某条推理规则而得到的。
+每条规则允许我们在一个分支的末端添加一个或多个带号公式，或者并排添加两个带号公式——在后一种情况下，分支分裂为二，新增的两个带号公式分别构成这两个新分支的末端。
 
-A rule applied to a complex !!{signed formula} results in the addition
-of !!{signed formula}s which are immediate sub-!!{formula}s. They come
-in pairs, one rule for each of the two signs.  For instance, the
-$\TRule{\True}{\land}$ rule applies to $\sFmla{\True}{!A \land !B}$,
-and allows the addition of both the two !!{signed formula}s
-$\sFmla{\True}{!A}$ and~$\sFmla{\True}{!B}$ to the end of any branch
-containing $\sFmla{\True}{!A \land !B}$, and the rule
-$\TRule{\False}{!A \land !B}$ allows a branch to be split by adding
-$\sFmla{\False}{!A}$ and $\sFmla{\False}{!B}$ side-by-side.
-!!^a{tableau} is closed if every one of its branches contains a
-matching pair of !!{signed formula}s $\sFmla{\True}{!A}$ and
-$\sFmla{\False}{!A}$.
+将规则应用于复杂的带号公式，所添加的将是该公式的直接子公式。这些规则成对出现，每种真值符号各对应一条规则。例如，
+$\TRule{\True}{\land}$ 规则应用于 $\sFmla{\True}{!A \land !B}$，
+允许将两个带号公式 $\sFmla{\True}{!A}$ 和~$\sFmla{\True}{!B}$ 添加到包含 $\sFmla{\True}{!A \land !B}$ 的任何分支的末端；而规则
+$\TRule{\False}{!A \land !B}$ 则允许通过并排添加 $\sFmla{\False}{!A}$ 和 $\sFmla{\False}{!B}$ 来分裂分支。
+如果一个分析表的每一个分支都包含一对匹配的带号公式 $\sFmla{\True}{!A}$ 和
+$\sFmla{\False}{!A}$，则称该分析表是\emph{封闭的}。
 
-The $\Proves$ relation based on !!{tableau}s is defined as follows:
-$\Gamma \Proves !A$ iff there is some finite set~$\Gamma_0 = \{!B_1,
-\dots, !B_n\} \subseteq \Gamma$ such that there is a closed !!{tableau}
-for the assumptions
+基于分析表的 $\Proves$ 关系定义如下：
+$\Gamma \Proves !A$ 当且仅当存在某个有限子集~$\Gamma_0 = \{!B_1,
+\dots, !B_n\} \subseteq \Gamma$，使得对假设
 \[
 \{\sFmla{\False}{!A}, \sFmla{\True}{!B_1}, \dots, \sFmla{\True}{!B_n}\} 
 \]
-For instance, here is a closed !!{tableau} that shows that $\Proves
-(!A \land !B) \lif !A$:
+存在一个封闭的分析表。
+例如，下面的封闭分析表证明了 $\Proves
+(!A \land !B) \lif !A$：
 \begin{oltableau}
   [\sFmla{\False}{(\formula{A} \land \formula{B}) \lif \formula{A}}, just = \TAss
     [\sFmla{\True}{\formula{A} \land \formula{B}}, just = {\TRule{\False}{\lif}[1]}
@@ -62,28 +49,16 @@ For instance, here is a closed !!{tableau} that shows that $\Proves
   ]
 \end{oltableau}
 
-A set $\Gamma$ is inconsistent in the !!{tableau} calculus if there is
-a closed !!{tableau} for assumptions
+在分析表演算中，如果存在 $!B_i \in \Gamma$，使得对假设
 \[
 \{\sFmla{\True}{!B_1}, \dots, \sFmla{\True}{!B_n}\} 
 \]
-for some $!B_i \in \Gamma$.
+存在一个封闭的分析表，则集合 $\Gamma$ 是\emph{不一致的}。
 
-!!^{tableau}s were invented in the 1950s independently by Evert
-Beth and Jaakko Hintikka, and simplified and popularized by Raymond
-Smullyan. They are very easy to use, since constructing !!a{tableau} is a
-very systematic procedure. Because of the systematic nature of
-!!{tableau}s, they also lend themselves to implementation by
-computer. However, !!a{tableau} is often hard to read and their
-connection to proofs are sometimes not easy to see. The approach is
-also quite general, and many different logics have !!{tableau}
-systems. !!^{tableau}s also help us to find !!{structure}s that
-satisfy given (sets of) !!{sentence}s: if the set is satisfiable, it
-won't have a closed !!{tableau}, i.e., any !!{tableau} will have an
-open branch. The satisfying !!{structure} can be ``read off'' an open
-branch, provided every rule it is possible to apply has been applied
-on that branch.  There is also a very close connection to the sequent
-calculus: essentially, a closed !!{tableau} is a condensed
-!!{derivation} in the sequent calculus, written upside-down.
+分析表由 Evert Beth（贝思）和 Jaakko Hintikka（欣提卡）于 1950 年代独立发明，并由 Raymond Smullyan（斯穆里安）加以简化和推广。
+分析表非常易于使用，因为构造分析表是一个极具系统性的过程。得益于这种系统性，分析表也很适合用计算机实现。
+然而，分析表往往难以阅读，它与证明之间的联系有时也不易看出。
+这种方法也相当通用，许多不同的逻辑都有相应的分析表系统。分析表还能帮助我们找到满足给定语句（或语句集合）的结构：如果该语句集是可满足的，它就不会有封闭的分析表，亦即任何分析表都会有一个开放分支。满足该集合的结构可以从某个开放分支上“读出”，前提是该分支上所有可能应用的规则都已被应用。
+分析表与相继式演算之间也有非常紧密的联系：本质上，一个封闭的分析表就是一个倒过来写的、浓缩的相继式演算推导。
 
 \end{document}

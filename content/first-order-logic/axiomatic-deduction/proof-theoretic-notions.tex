@@ -10,126 +10,112 @@
       {\olfileid{fol}{axd}{ptn}}
       {\olfileid{pl}{axd}{ptn}}
 
-\olsection{Proof-Theoretic Notions}
+\olsection{证明论概念}
 
 \begin{explain}
-Just as we've defined a number of important semantic notions
-(\iftag{FOL}{validity}{tautology}, entailment, satisfiability), we now
-define corresponding \emph{proof-theoretic notions}.  These are not
-defined by appeal to satisfaction of !!{sentence}s in !!{structure}s,
-but by appeal to the !!{derivability} or !!{nonderivability} of
-certain formulas.  It was an important discovery that these notions
-coincide.  That they do is the content of the \emph{soundness} and
-\emph{completeness theorems}.
+正如我们已经定义了若干重要的语义概念
+（\iftag{FOL}{有效性}{重言式}、语义后承、可满足性），我们现在定义
+相对应的\emph{证明论概念}。这些概念不是诉诸语句在结构中的满足关系来定义的，
+而是依据某些公式的\emph{可推导性}或\emph{不可推导性}来定义的。
+一个重要的发现是，这些概念是重合的。这即是\emph{可靠性}与\emph{完备性}定理的内容。
 \end{explain}
 
-\begin{defn}[!!^{derivability}]
-!!^a{formula}~$!A$ is \emph{!!{derivable}} from $\Gamma$, written
-$\Gamma \Proves !A$, if there is !!a{derivation} from~$\Gamma$ ending
-in~$!A$.
+\begin{defn}[可推导性]
+公式~$!A$ \emph{从 $\Gamma$ 可推导}，记作 $\Gamma \Proves !A$，
+如果存在一个从~$\Gamma$ 出发并以~$!A$ 结尾的推导。
 \end{defn}
 
-\begin{defn}[Theorems]
-!!^a{formula}~$!A$ is a \emph{theorem} if there is !!a{derivation} of
-$!A$ from the empty set.  We write $\Proves !A$ if $!A$ is a theorem
-and $\Proves/ !A$ if it is not.
+\begin{defn}[定理]
+公式~$!A$ 是一个\emph{定理}，如果存在一个从空集推导~$!A$ 的推导。
+若~$!A$ 是定理，则记作 $\Proves !A$；否则记作 $\Proves/ !A$。
 \end{defn}
 
-\begin{defn}[Consistency]
-A set $\Gamma$ of !!{formula}s is \emph{consistent} if and only if
-$\Gamma\Proves/ \lfalse$; it is \emph{inconsistent} otherwise.
+\begin{defn}[一致性]
+公式的集合~$\Gamma$ 是\emph{一致的}，当且仅当 $\Gamma\Proves/ \lfalse$，否则它是\emph{不一致的}。
 \end{defn}
 
-\begin{prop}[Reflexivity]
+\begin{prop}[自反性]
 \ollabel{prop:reflexivity}
-If $!A \in \Gamma$, then $\Gamma \Proves !A$.
+若 $!A \in \Gamma$，则 $\Gamma \Proves !A$。
 \end{prop}
 
 \begin{proof}
-  The !!{formula}~$!A$ by itself is !!a{derivation} of~$!A$ from~$\Gamma$.
+  公式~$!A$ 本身即构成一个从~$\Gamma$ 推导~$!A$ 的推导。
 \end{proof}
 
-\begin{prop}[Monotonicity]
+\begin{prop}[单调性]
 \ollabel{prop:monotonicity}
-If $\Gamma \subseteq \Delta$ and $\Gamma \Proves !A$, then $\Delta
-\Proves !A$.
+若 $\Gamma \subseteq \Delta$ 且 $\Gamma \Proves !A$，则 $\Delta \Proves !A$。
 \end{prop}
 
 \begin{proof}
-Any !!{derivation} of $!A$ from $\Gamma$ is also !!a{derivation} of
-$!A$ from~$\Delta$.
+  任何从~$\Gamma$ 推导~$!A$ 的推导，同时也是从~$\Delta$ 推导~$!A$ 的推导。
 \end{proof}
 
-\begin{prop}[Transitivity]
+\begin{prop}[传递性]
 \ollabel{prop:transitivity}
-If $\Gamma \Proves !A$ and $\{!A\} \cup \Delta \Proves
-!B$, then $\Gamma \cup \Delta \Proves !B$.
+若 $\Gamma \Proves !A$ 且 $\{!A\} \cup \Delta \Proves
+!B$，则 $\Gamma \cup \Delta \Proves !B$。
 \end{prop}
 
 \begin{proof}
-  Suppose $\{!A\} \cup \Delta \Proves !B$. Then there is
-  !!a{derivation} $!B_1$, \dots, $!B_l = !B$ from~$\{!A\} \cup
-  \Delta$. Some of the steps in that !!{derivation} will be correct
-  because of a rule which refers to a prior line~$!B_i = !A$. By
-  hypothesis, there is !!a{derivation} of~$!A$ from~$\Gamma$, i.e.,
-  !!a{derivation}~$!A_1$, \dots, $!A_k = !A$ where every $!A_i$ is an
-  axiom, !!a{element} of~$\Gamma$, or correct by a rule of
-  inference. Now consider the sequence
+  假设 $\{!A\} \cup \Delta \Proves !B$。那么存在一个从集合~$\{!A\} \cup \Delta$ 推导~$!B$ 的推导 $!B_1$, \dots, $!B_l = !B$。
+  在该推导中，某些步骤的正确性来自于某条引用了前述某行~$!B_i = !A$ 的规则。
+  根据假设，存在一个从~$\Gamma$ 推导~$!A$ 的推导，即一个推导~$!A_1$, \dots, $!A_k = !A$，其中每个 $!A_i$ 或是公理，或是~$\Gamma$ 中的元素，或是根据推理规则而正确的。
+  现在考虑序列
   \[
   !A_1, \dots, !A_k = !A, !B_1, \dots, !B_l = !B.
   \]
-  This is a correct !!{derivation} of~$!B$ from $\Gamma \cup \Delta$
-  since every $B_i = !A$ is now justified by the same rule which
-  justifies~$!A_k = !A$.
+  这是一个从 $\Gamma \cup \Delta$ 推导~$!B$ 的正确推导，因为现在每一个等于 $!A$ 的 $B_i$ 都由证成 $!A_k = !A$ 的同一条规则所证成。
 \end{proof}
 
-Note that this means that in particular if $\Gamma \Proves !A$ and $!A
-\Proves !B$, then $\Gamma \Proves !B$. It follows also that if $!A_1,
-\dots, !A_n \Proves !B$ and $\Gamma \Proves !A_i$ for each~$i$, then
-$\Gamma \Proves !B$.
+注意，这特别意味着，如果 $\Gamma \Proves !A$ 且 $!A
+\Proves !B$，那么 $\Gamma \Proves !B$。由此也可得，如果 $!A_1,
+\dots, !A_n \Proves !B$ 且对每个~$i$ 都有 $\Gamma \Proves !A_i$，那么
+$\Gamma \Proves !B$。
 
 \begin{prop}
 \ollabel{prop:incons}
-$\Gamma$ is inconsistent iff $\Gamma \Proves !A$ for every~$!A$.
+$\Gamma$ 是不一致的，当且仅当对每个~$!A$ 都有 $\Gamma \Proves !A$。
 \end{prop}
 
 \begin{proof}
-Exercise.
+习题。
 \end{proof}
 
 \tagprob{FOL}
+
+
 \begin{prob}
-Prove \olref[fol][axd][ptn]{prop:incons}.
+证明 \olref[fol][axd][ptn]{prop:incons}。
 \end{prob}
+
+
 \tagendprob
 
 \tagprob{notFOL}
+
+
 \begin{prob}
-Prove \olref[pl][axd][ptn]{prop:incons}.
+证明 \olref[pl][axd][ptn]{prop:incons}。
 \end{prob}
+
+
 \tagendprob
 
-\begin{prop}[Compactness]
+\begin{prop}[紧致性]
 \ollabel{prop:proves-compact}
   \begin{enumerate}
-  \item If $\Gamma \Proves !A$ then there is a finite subset $\Gamma_0
-    \subseteq \Gamma$ such that $\Gamma_0 \Proves !A$.
-  \item If every finite subset of~$\Gamma$ is
-    consistent, then $\Gamma$ is consistent.
+  \item 若 $\Gamma \Proves !A$，则存在有限子集 $\Gamma_0
+    \subseteq \Gamma$ 使得 $\Gamma_0 \Proves !A$。
+  \item 若 $\Gamma$ 的每个有限子集都是一致的，则 $\Gamma$ 是一致的。
   \end{enumerate}
 \end{prop}
 
 \begin{proof}
   \begin{enumerate}
-    \item If $\Gamma \Proves !A$, then there is a finite sequence of
-      !!{formula}s $!A_1$, \dots,~$!A_n$ so that $!A \ident !A_n$ and
-      each $!A_i$ is either a logical axiom, !!a{element} of~$\Gamma$
-      or follows from previous !!{formula}s by modus ponens.  Take
-      $\Gamma_0$ to be those $!A_i$ which are in~$\Gamma$.  Then the
-      !!{derivation} is likewise !!a{derivation} from~$\Gamma_0$, and
-      so $\Gamma_0 \Proves !A$.
-    \item This is the contrapositive of~(1) for the special case $!A
-      \ident \lfalse$.
+    \item 若 $\Gamma \Proves !A$，则存在一个有限的公式序列 $!A_1$, \dots,~$!A_n$，使得 $!A \ident !A_n$，且每个 $!A_i$ 或是逻辑公理，或是~$\Gamma$ 中的元素，或是由先前的公式经肯定前件律得出。取 $\Gamma_0$ 为属于~$\Gamma$ 的那些 $!A_i$。那么该推导同样是从~$\Gamma_0$ 出发的推导，因此 $\Gamma_0 \Proves !A$。
+    \item 这是 (1) 在 $!A \ident \lfalse$ 这一特殊情况下的逆否命题。
 \end{enumerate}
 \end{proof}
 

@@ -8,58 +8,34 @@
 
 \olfileid{nml}{com}{cmk}
 
-\olsection{Determination and Completeness for  \Log{K}}
+\olsection{\Log{K} 的决定性与完备性}
 
-We are now prepared to use the canonical model to establish
-completeness. Completeness follows from the fact that the !!{formula}s
-true in the canonical model for~$\Sigma$ are exactly the
-$\Sigma$-!!{derivable} ones. Models with this property are said to
-\emph{determine}~$\Sigma$.
+现在我们可以利用典范模型来证明完备性。完备性可由以下事实得出：在 $\Sigma$ 的典范模型中为真的公式恰好是那些 $\Sigma$-可推导的公式。具有此性质的模型被称为\emph{决定}了 $\Sigma$。
 
 \begin{defn}
-  A model $\mModel{M}$ \emph{determines} a normal modal
-  logic~$\Sigma$ precisely when $\mSat{M}{!A}$ if and only if $\Sigma
-  \Proves !A$, for all !!{formula}s~$!A$.
+  模型 $\mModel{M}$ \emph{决定}一个正规模态逻辑~$\Sigma$，当且仅当对所有公式~$!A$，$\mSat{M}{!A}$ 当且仅当 $\Sigma \Proves !A$。
 \end{defn}
 
-\begin{thm}[Determination]\ollabel{thm:determination}
-   $\mSat{M^\Sigma}{!A}$ if and only if $\Sigma \Proves !A$.
+\begin{thm}[决定性]\ollabel{thm:determination}
+   $\mSat{M^\Sigma}{!A}$ 当且仅当 $\Sigma \Proves !A$。
 \end{thm}
 
 \begin{proof}
-  If $\mSat{M^\Sigma}{!A}$, then for every complete
-  $\Sigma$-consistent $\Delta$, we have
-  $\mSat{M^\Sigma}{!A}[\Delta]$. Hence, by the Truth Lemma, $!A \in
-  \Delta$ for every complete $\Sigma$-consistent $\Delta$, whence by
-  \olref[lin]{cor:provability-characterization} (with $\Gamma =
-  \emptyset$), $\Sigma \Proves !A$.
+  若 $\mSat{M^\Sigma}{!A}$，则对每个完全 $\Sigma$-一致集 $\Delta$，我们有 $\mSat{M^\Sigma}{!A}[\Delta]$。因此，根据真值引理，对每个完全 $\Sigma$-一致集 $\Delta$，都有 $!A \in \Delta$，于是由 \olref[lin]{cor:provability-characterization}（取 $\Gamma = \emptyset$）可得 $\Sigma \Proves !A$。
 
-  Conversely, if $\Sigma \Proves !A$ then by
-  \olref[ccs]{prop:ccs-properties}\olref[ccs]{prop:ccs-closed}, every
-  complete $\Sigma$-consistent $\Delta$ contains~$!A$, and hence by
-  the Truth Lemma, $\mSat{M^\Sigma}{!A}[\Delta]$ for every~$\Delta \in
-  W^\Sigma$, i.e., $\mSat{M^\Sigma}{!A}$.
+  反之，若 $\Sigma \Proves !A$，则由 \olref[ccs]{prop:ccs-properties}\olref[ccs]{prop:ccs-closed}，每个完全 $\Sigma$-一致集 $\Delta$ 都包含~$!A$，从而根据真值引理，对每个~$\Delta \in W^\Sigma$，都有 $\mSat{M^\Sigma}{!A}[\Delta]$，即 $\mSat{M^\Sigma}{!A}$。
 \end{proof}
 
-Since the canonical model for \Log{K} determines~\Log{K}, we
-immediately have completeness of~\Log{K} as a corollary:
+由于 \Log{K} 的典范模型决定了~\Log{K}，我们立即可得 \Log{K} 完备性的推论：
 
 \begin{cor}\ollabel{cor:Kcomplete}
-  The basic modal logic \Log{K} is complete with respect to the
-  class of all models, i.e., if $\Entails !A$ then $\Log{K}
-  \Proves !A$.
+  基本模态逻辑 \Log{K} 相对于所有模型类是完备的，即若 $\Entails !A$ 则 $\Log{K} \Proves !A$。
 \end{cor}
 
 \begin{proof}
-  Contrapositively, if $\Log{K} \Proves/ !A$ then by Determination
-  $\mSat/{M^{\Log{K}}}{!A}$ and hence $!A$ is not valid.
+  由逆否命题，若 $\Log{K} \Proves/ !A$，则由决定性 $\mSat/{M^{\Log{K}}}{!A}$，从而 $!A$ 不是有效的。
 \end{proof}
 
-For the general case of completeness of a system $\Sigma$ with respect
-to a class of models, e.g., of \Log{KTB4} with respect to the class of
-reflexive, symmetric, transitive models, determination alone is not
-enough.  We must also show that the canonical model for the system
-$\Sigma$ is a member of the class, which does not follow obviously
-from the canonical model construction---nor is it always true!
+对于系统 $\Sigma$ 相对于某一模型类具有完备性的一般情形，例如 \Log{KTB4} 相对于自返、对称、传递模型类的完备性，仅有决定性是不够的。我们还必须证明系统 $\Sigma$ 的典范模型是该模型类中的成员，而这并不能由典范模型的构造直接得出——而且这并不总是成立的！
 
 \end{document}

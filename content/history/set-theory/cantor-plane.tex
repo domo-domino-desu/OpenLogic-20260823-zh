@@ -3,78 +3,57 @@
 \begin{document}
 
 \olfileid{his}{set}{cantorplane}
-\olsection{Cantor on the Line and the Plane}
+\olsection{康托尔论线段与平面}
 
-Some of the circumstances surrounding the proof of
-Schr\"oder-Bernstein tie in with the history we discussed in
-\olref[his][set][pathology]{sec}. Recall that, in 1877,
-Cantor proved that there are exactly as many points on a square as on
-one of its sides. Here, we will present his (first attempted) proof.
+Schr\"oder-Bernstein（施罗德--伯恩斯坦）定理证明的一些背景，与我们在
+\olref[his][set][pathology]{sec} 节中讨论过的历史有关联。
+回想一下，1877年，Cantor（康托尔）证明了正方形上的点与其一条边上的点恰好一样多。
+在此，我们将给出他第一次尝试的证明。
 
-Let $\unitline$ be the unit line, i.e., the set of points $[0,1]$. Let
-$\unitsquare$ be the unit square, i.e., the set of points $\unitline
-\times \unitline$. In these terms, Cantor proved that
-$\cardeq{\unitline}{\unitsquare}$. He wrote a note to Dedekind,
-essentially containing the following argument.
+令 $\unitline$ 为单位线段，即点集 $[0,1]$。
+令 $\unitsquare$ 为单位正方形，即点集 $\unitline
+\times \unitline$。
+用这些记号来说，Cantor 证明了 $\cardeq{\unitline}{\unitsquare}$。
+他给 Dedekind（戴德金）写了一张便条，实质上包含了如下论证。
 
 \begin{thm}\ollabel{thm:cantorplane}
 $\cardeq{\unitline}{\unitsquare}$
 \end{thm}
 
-\begin{proof}[Proof: first part.] 
-Fix $a, b \in \unitline$. Write them in binary notation, so that we
-have infinite sequences of $0$s and $1$s, $a_1$, $a_2$, \dots, and
-$b_1$, $b_2$, \dots, such that:
+\begin{proof}[证明：第一部分]
+任取 $a, b \in \unitline$。将它们写成二进制表示，于是我们得到由 $0$ 和 $1$ 组成的无限序列 $a_1$, $a_2$, \dots, 以及 $b_1$, $b_2$, \dots，使得：
 \begin{align*}
 a &= 0.a_1a_2a_3a_4\dots\\
 b &= 0.b_1b_2b_3b_4\dots
-\intertext{Now consider the function $f \colon \unitsquare \to \unitline$ given by} 
+\intertext{现在考虑由下式给出的函数 $f \colon \unitsquare \to \unitline$：} 
 f(a, b) & = 0.a_1b_1a_2b_2a_3b_3a_4b_4\dots
 \end{align*}
-Now $f$ is !!a{injection}, since if $f(a, b) = f(c,d)$, then  $a_n =
-c_n$ and $b_n = d_n$ for all $n \in \Nat$, so that $a = c$ and $b =
-d$.
+现在 $f$ 是一个单射，因为如果 $f(a, b) = f(c,d)$，那么对所有 $n \in \Nat$ 都有 $a_n =
+c_n$ 且 $b_n = d_n$，因此 $a = c$ 且 $b = d$。
 \end{proof}
 
-Unfortunately, as Dedekind pointed out to Cantor, this does not answer
-the original question. Consider $0.\dot{1}\dot{0} =
-0.1010101010\ldots$. We need that $f(a,b) = 0.\dot{1}\dot{0}$, where:
+遗憾的是，正如 Dedekind 向 Cantor 所指出的，这并未解决最初的问题。
+考虑 $0.\dot{1}\dot{0} =
+0.1010101010\ldots$。我们需要 $f(a,b) = 0.\dot{1}\dot{0}$，其中：
 \begin{align*}
 a&= 0.\dot{1}\dot{1} = 0.111111\ldots\\
 b&= 0
 \end{align*}
-But $a = 0.\dot{1}\dot{1} = 1$. So, when we say ``write $a$ and $b$ in
-binary notation'', we have to choose \emph{which} notation to use;
-and, since $f$ is to be a \emph{function}, we can use only \emph{one}
-of the two possible notations. But if, for example, we use the simple
-notation, and write $a$ as ``$1.000\ldots$'', then we have no pair
-$\tuple{a, b}$ such that $f(a, b) = 0.\dot{1}\dot{0}$. 
+但是 $a = 0.\dot{1}\dot{1} = 1$。所以，当我们说“将 $a$ 和 $b$ 写成二进制表示”时，我们必须选择使用\emph{哪种}表示法；并且，既然 $f$ 应当是一个\emph{函数}，我们只能使用两种可能表示法中的\emph{一种}。
+但是，比如，如果我们使用简单表示法，并将 $a$ 写成“$1.000\ldots$”，那么就不存在任何有序对 $\tuple{a, b}$ 使得 $f(a, b) = 0.\dot{1}\dot{0}$。 
 
-To summarise: Dedekind pointed out that, given the possibility of
-certain recurring decimal expansions, Cantor's function $f$ is
-!!a{injection} but \emph{not} !!a{surjection}. So Cantor has shown
-only that $\cardle{\unitsquare}{\unitline}$ and \emph{not} that
-$\cardeq{\unitsquare}{\unitline}$. 
+总而言之：Dedekind 指出，由于存在某些循环小数展开的可能，Cantor 的函数 $f$ 是一个单射但\emph{不是}满射。所以 Cantor 只证明了 $\cardle{\unitsquare}{\unitline}$，而\emph{没有}证明 $\cardeq{\unitsquare}{\unitline}$。 
 
-Cantor wrote back to Dedekind almost immediately, essentially
-suggesting that the proof could be completed as follows:
+Cantor 几乎立刻回信给 Dedekind，实质上建议可以按如下方式完成证明：
 
-\begin{proof}[Proof: completed.] 
-So, we have shown that $\cardle{\unitsquare}{\unitline}$. But there is
-obviously !!a{injection} from $\unitline$ to $\unitsquare$: just lay
-the line flat along one side of the square. So
-$\cardle{\unitline}{\unitsquare}$ and
-$\cardle{\unitsquare}{\unitline}$. By Schr\"{o}der--Bernstein
-(\olref[sfr][siz][sb]{thm:schroder-bernstein}),
-$\cardeq{\unitline}{\unitsquare}$.
+\begin{proof}[证明：补全]
+这样，我们已经证明了 $\cardle{\unitsquare}{\unitline}$。
+但显然存在一个从 $\unitline$ 到 $\unitsquare$ 的单射：只需将线段平放在正方形的一条边上即可。
+因此 $\cardle{\unitline}{\unitsquare}$ 且 $\cardle{\unitsquare}{\unitline}$。
+根据 Schr\"{o}der--Bernstein 定理（\olref[sfr][siz][sb]{thm:schroder-bernstein}），有 $\cardeq{\unitline}{\unitsquare}$。
 \end{proof}
 
-But of course, Cantor could not complete the last line in these terms,
-for the Schr\"{o}der-Bernstein Theorem was not yet proved. Indeed,
-although Cantor would subsequently formulate this as a general
-conjecture, it was not satisfactorily proved until 1897. (And so,
-later in 1877, Cantor offered a different proof of
-\olref{thm:cantorplane}, which did not go via
-Schr\"{o}der--Bernstein.)
+然而，Cantor 当时无法用这些术语写下最后一行，因为 Schr\"{o}der--Bernstein 定理尚未得到证明。
+事实上，尽管 Cantor 后来将此表述为一个一般性猜想，但直到1897年它才得到令人满意的证明。（因此，在1877年晚些时候，Cantor 给出了 \olref{thm:cantorplane} 的另一个证明，该证明并未借助 Schr\"{o}der--Bernstein 定理。）
 
 \end{document}

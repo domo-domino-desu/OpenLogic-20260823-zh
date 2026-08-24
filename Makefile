@@ -9,6 +9,10 @@
 # The PDF of the open-logic-config documentation also requires
 # pandoc http://pandoc.org/
 
+# 中译本正文含大量中文字符，pdflatex 无法渲染 CJK，必须用 lualatex 或
+# xelatex；这里统一固定为 lualatex（-pdflatex=lualatex），不要求每次手动
+# 传参数。
+
 .PHONY : FORCE_MAKE
 
 ALLTEXFILES = open-logic-debug.tex open-logic-complete.tex \
@@ -31,20 +35,20 @@ branches: FORCE_MAKE
 	git checkout master
 	for branch in `git branch --list --no-column |grep -v master` ; do \
 		git checkout $$branch ;\
-		latexmk -pdf -dvi- -ps- open-logic-debug ;\
-		latexmk -pdf -dvi- -ps- open-logic-complete ;\
+		latexmk -pdf -pdflatex=lualatex -dvi- -ps- open-logic-debug ;\
+		latexmk -pdf -pdflatex=lualatex -dvi- -ps- open-logic-complete ;\
 		mkdir -p branches/$$branch ;\
 		cp open-logic-debug.pdf open-logic-complete.pdf branches/$$branch ;\
-	done 
+	done
 	git checkout master
-	latexmk -pdf -dvi- -ps- open-logic-debug
-	latexmk -pdf -dvi- -ps- open-logic-complete
+	latexmk -pdf -pdflatex=lualatex -dvi- -ps- open-logic-debug
+	latexmk -pdf -pdflatex=lualatex -dvi- -ps- open-logic-complete
 
 open-logic-config.pdf: open-logic-config.sty
 	grep -e "^%" -e "^$$" open-logic-config.sty | cut --bytes=3-|pandoc -f markdown -M date="`git log --format=format:"%ad %h" --date=short -1 open-logic-config.sty`" -o open-logic-config.pdf
 
 %.pdf : %.tex FORCE_MAKE
-	latexmk -pdf -dvi- -ps- -cd $<
+	latexmk -pdf -pdflatex=lualatex -dvi- -ps- -cd $<
 
 clean:	
 	latexmk -c $(ALLTEXFILES)

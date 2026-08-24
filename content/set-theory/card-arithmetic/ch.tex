@@ -4,147 +4,79 @@
 
 \olfileid{sth}{card-arithmetic}{ch}
 
-\olsection{The Continuum Hypothesis}
+\olsection{连续统假设}
 
-The previous result hints (correctly) that cardinal exponentiation
-would be quite \emph{easy}, if infinite cardinals are guaranteed to
-``play straightforwardly'' with powers of $2$, i.e., (by
-\olref[opps]{lem:SizePowerset2Exp}) with taking powersets. But we
-cannot assume that infinite cardinals \emph{do} play straightforwardly 
-powersets. 
+上一节的结果正确地提示了：如果无穷基数能保证与 $2$ 的幂“顺畅配合”，即（根据 \olref[opps]{lem:SizePowerset2Exp}）与取幂集操作顺畅配合，那么基数幂运算将会相当\emph{简易}。但我们不能假设无穷基数确实\emph{能}与幂集顺畅配合。
 
-To start unpacking this, we introduce some nice notation.
+为了深入探讨这一点，我们引入一些简洁的记号。
 
 \begin{defn}
-Where $\cardsucc{\cardfont{a}}$ is the least cardinal strictly greater
-than $\cardfont{a}$, we define two infinite sequences:
+令 $\cardsucc{\cardfont{a}}$ 为严格大于 $\cardfont{a}$ 的最小基数，我们定义如下两个无穷序列：
 \begin{align*}
 	\aleph_{0} &\defis \omega & 		
 	\beth_{0} &\defis \omega\\
 	\aleph_{\alpha \ordplus 1} &\defis \cardsucc{(\aleph_{\alpha})} &
 	\beth_{\alpha+1} &\defis \cardexpo{2}{\beth_{\alpha}}\\
 	\aleph_{\alpha} &\defis \bigcup_{\beta< \alpha} \aleph_{\beta} &
-	\beth_{\alpha} &\defis \bigcup_{\beta < \alpha}\beth_{\beta} & \text{when $\alpha$ is a limit ordinal}.
-	\end{align*}
+	\beth_{\alpha} &\defis \bigcup_{\beta < \alpha}\beth_{\beta} & \text{当 $\alpha$ 是极限序数时}.
+\end{align*}
 \end{defn}
 
-The definition of $\cardsucc{\cardfont{a}}$ is in order, since
-\olref[cardinals][classing]{lem:NoLargestCardinal} tells us that, for each
-cardinal $\cardfont{a}$, there is some cardinal greater than
-$\cardfont{a}$, and Transfinite Induction guarantees that there is a
-\emph{least} cardinal greater than $\cardfont{a}$. The rest of the
-definition of $\cardfont{a}$ is provided by transfinite recursion. 
+$\cardsucc{\cardfont{a}}$ 的定义是妥当的，因为 \olref[cardinals][classing]{lem:NoLargestCardinal} 告诉我们，对每个基数 $\cardfont{a}$，都存在某个大于 $\cardfont{a}$ 的基数，而超限归纳法保证了存在一个大于 $\cardfont{a}$ 的\emph{最小}基数。该定义的其余部分则由超限递归给出。
 
-Cantor introduced this ``$\aleph$'' notation; this is \emph{aleph},
-the first letter in the Hebrew alphabet and the first letter in the
-Hebrew word for ``infinite''. Peirce introduced the ``$\beth$''
-notation; this is \emph{beth}, which is the second letter in the
-Hebrew alphabet.\footnote{Peirce used this notation in a letter to
-Cantor of December 1900. Unfortunately, Peirce also gave a bad
-argument there that $\beth_\alpha$ does not exist for $\alpha \geq
-\omega$.} Now, these notations provide us with infinite cardinals.
+Cantor（康托尔）引入了这个“$\aleph$”记号；这是 \emph{aleph}，希伯来字母表的第一个字母，也是希伯来语中“无穷”一词的首字母。Peirce（皮尔士）引入了“$\beth$”记号；这是 \emph{beth}，希伯来字母表的第二个字母。\footnote{Peirce 在 1900 年 12 月写给 Cantor 的信中使用了这个记号。不幸的是，Peirce 在那里还给出了一个错误的论证，声称对于 $\alpha \geq \omega$，$\beth_\alpha$ 不存在。}由此，这些记号便为我们给出了无穷基数。
 
 \begin{prop}
-$\aleph_\alpha$ and $\beth_\alpha$ are cardinals, for every
-ordinal $\alpha$. 
+对所有序数 $\alpha$，$\aleph_\alpha$ 和 $\beth_\alpha$ 均为基数。
 \end{prop}
 
 \begin{proof}
-Both results hold by a simple transfinite induction. $\aleph_0 =
-\beth_0 = \omega$ is a cardinal by
-\olref[cardinals][classing]{omegaisacardinal}. Assuming $\aleph_\alpha$ and
-$\beth_\alpha$ are both cardinals, $\aleph_{\alpha+1}$ and
-$\beth_{\alpha+1}$ are explicitly defined as cardinals. And the union
-of a set of cardinals is a cardinal, by
-\olref[cardinals][classing]{unioncardinalscardinal}.
+两个结论通过简单的超限归纳即可证明。$\aleph_0 = \beth_0 = \omega$ 是基数，由 \olref[cardinals][classing]{omegaisacardinal} 可知。假设 $\aleph_\alpha$ 和 $\beth_\alpha$ 都是基数，则 $\aleph_{\alpha+1}$ 和 $\beth_{\alpha+1}$ 由显式定义即为基数。而根据 \olref[cardinals][classing]{unioncardinalscardinal}，一组基数的并集仍是基数。
 \end{proof}
 \noindent
-Moreover, every infinite cardinal is an $\aleph$:
+此外，每一个无穷基数都是一个 $\aleph$：
 
 \begin{prop}
-If $\cardfont{a}$ is an infinite cardinal, then $\cardfont{a} =
-\aleph_\gamma$ for some unique $\gamma$.
+若 $\cardfont{a}$ 是无穷基数，则存在唯一的 $\gamma$ 使得 $\cardfont{a} = \aleph_\gamma$。
 \end{prop}
 
 \begin{proof}
-By transfinite induction on cardinals. For induction, suppose that if
-$\cardfont{b} < \cardfont{a}$ then $\cardfont{b} =
-\aleph_{\gamma_\cardfont{b}}$. If $\cardfont{a} =
-\cardsucc{\cardfont{b}}$ for some $\cardfont{b}$, then $\cardfont{a} =
-\cardsucc{(\aleph_{\gamma_\cardfont{b}})}=
-\aleph_{\gamma_\cardfont{b}+1}$. If $\cardfont{a}$ is not the
-successor of any cardinal, then since cardinals are ordinals
-$\cardfont{a} = \bigcup_{\cardfont{b} < \cardfont{a}} \cardfont{b} =
-\bigcup_{\cardfont{b} < \cardfont{a}}{\aleph_{\gamma_\cardfont{b}}}$,
-so $\cardfont{a} = \aleph_\gamma$ where $\gamma =
-\bigcup_{\cardfont{b} < \cardfont{a}}\gamma_\cardfont{b}$. 
+对基数进行超限归纳。归纳假设：若 $\cardfont{b} < \cardfont{a}$ 则 $\cardfont{b} =
+\aleph_{\gamma_\cardfont{b}}$。若存在某个 $\cardfont{b}$ 使得 $\cardfont{a} =
+\cardsucc{\cardfont{b}}$，则 $\cardfont{a} = \cardsucc{(\aleph_{\gamma_\cardfont{b}})}= \aleph_{\gamma_\cardfont{b}+1}$。若 $\cardfont{a}$ 不是任何基数的后继，那么由于基数是序数，$\cardfont{a} = \bigcup_{\cardfont{b} < \cardfont{a}} \cardfont{b} =
+\bigcup_{\cardfont{b} < \cardfont{a}}{\aleph_{\gamma_\cardfont{b}}}$，因此 $\cardfont{a} = \aleph_\gamma$，其中 $\gamma =
+\bigcup_{\cardfont{b} < \cardfont{a}}\gamma_\cardfont{b}$。 
 \end{proof}
 
-Since every infinite cardinal is an $\aleph$, this prompts us to ask:
-is every infinite cardinal a~$\beth$? Certainly if that \emph{were}
-the case, then the infinite cardinals would ``play straightforwardly''
-with the operation of taking powersets. Indeed, we would have the
-following:
+既然每个无穷基数都是一个 $\aleph$，这促使我们发问：是否每个无穷基数也都是一个~$\beth$？当然，\emph{倘若}果真如此，那么无穷基数将与取幂集操作“顺畅配合”。事实上，我们将得到以下结论：
 
 \begin{defish}
-\emph{Generalized Continuum Hypothesis} (GCH). $\aleph_\alpha  = \beth_\alpha$, for all $\alpha$. 
+\emph{广义连续统假设} (GCH)。对所有 $\alpha$，$\aleph_\alpha  = \beth_\alpha$。
 \end{defish}
 
-Moreover, if GCH held, then we could make some considerable
-simplifications with cardinal exponentiation. In particular, we could
-show that when $\cardfont{b} < \cardfont{a}$, the value of
-$\cardexpo{\cardfont{a}}{\cardfont{b}}$ is trapped by
-$\cardfont{a}\leq \cardexpo{\cardfont{a}}{\cardfont{b}} \leq
-\cardsucc{\cardfont{a}}$. We could then go on to give precise
-conditions which determine which of the two possibilities obtains
-(i.e., whether $\cardfont{a} = \cardexpo{\cardfont{a}}{\cardfont{b}}$
-or $\cardexpo{\cardfont{a}}{\cardfont{b}} =
-\cardsucc{\cardfont{a}}$).\footnote{The condition is dictated by
-\emph{cofinality}.}
+此外，倘若 GCH 成立，我们就能对基数幂运算做相当程度的简化。特别地，当 $\cardfont{b} < \cardfont{a}$ 时，我们可以证明 $\cardexpo{\cardfont{a}}{\cardfont{b}}$ 的值会被 $\cardfont{a}\leq \cardexpo{\cardfont{a}}{\cardfont{b}} \leq
+\cardsucc{\cardfont{a}}$ 所限定。进而，我们可以给出精确的条件，以判定这两种可能性中哪一个成立（即究竟是 $\cardfont{a} = \cardexpo{\cardfont{a}}{\cardfont{b}}$ 还是 $\cardexpo{\cardfont{a}}{\cardfont{b}} =
+\cardsucc{\cardfont{a}}$）。\footnote{该条件由\emph{共尾度}决定。}
 
-But GCH is a \emph{hypothesis}, not a \emph{theorem}. In fact,
-\citet{Godel1938} proved that if $\ZFC$ is consistent, then so is
-$\ZFC + \text{GCH}$. But it later turned out that we can equally add
-$\lnot$GCH to $\ZFC$. Indeed, consider the simplest non-trivial
-\emph{instance} of GCH, namely: 
+但 GCH 是一个\emph{假说}，而非一个\emph{定理}。事实上，\citet{Godel1938} 证明了如果 $\ZFC$ 是一致的，那么 $\ZFC + \text{GCH}$ 也是一致的。但后来发现，我们同样可以将 $\lnot$GCH 加到 $\ZFC$ 中。考虑 GCH 最简单且非平凡的\emph{实例}，即：
 
 \begin{defish}
-\emph{Continuum Hypothesis} (CH). $\aleph_1 = \beth_1$. 
+\emph{连续统假设} (CH)。$\aleph_1 = \beth_1$。
 \end{defish}
 
-\citet{Cohen1963} proved that if $\ZFC$ is consistent then so is $\ZFC
-+ \lnot\text{CH}$. So the Continuum Hypothesis is independent from $\ZFC$.
+\citet{Cohen1963} 证明了如果 $\ZFC$ 是一致的，那么 $\ZFC + \lnot\text{CH}$ 也是一致的。因此连续统假设独立于 $\ZFC$。
 
-The Continuum Hypothesis is so-called, since ``the continuum'' is
-another name for the real line, $\Real$.
-\olref[opps]{continuumis2aleph0} tells us that $\card{\Real} =
-\beth_1$. So the Continuum Hypothesis states that there is no cardinal
-between the cardinality of the natural numbers, $\aleph_0 = \beth_0$,
-and the cardinality of the continuum, $\beth_1$.
+该假设之所以被称为“连续统假设”，是因为“连续统”是实数轴 $\Real$ 的另一个名称。\olref[opps]{continuumis2aleph0} 告诉我们 $\card{\Real} = \beth_1$。所以连续统假设说的是：不存在其他基数介于自然数的势 $\aleph_0 = \beth_0$ 与连续统的势 $\beth_1$ 之间。
 
-Given the \emph{independence} of (G)CH from $\ZFC$, what should say
-about their \emph{truth}? Well, there is \emph{much} to say. Indeed,
-and much fertile recent work in set theory has been directed at
-investigating these issues. But two very quick points are certainly worth
-emphasising. 
+既然（广义）连续统假设独立于 $\ZFC$，我们该如何看待它们的\emph{真值}呢？能说的\emph{太多}了。事实上，集合论中许多富有成果的近期研究都致力于探讨这些问题。但有两点非常简短的看法，无疑值得强调。
 
-First: it does not \emph{immediately} follow from these formal
-independence results that either GCH or CH is \emph{indeterminate} in
-truth value. After all, maybe we just need to add more axioms, which
-strike us as natural, and which will settle the question one way or
-another. G\"odel himself suggested that this was the right response. 
+第一：从这些形式上的独立性结果，并不能\emph{直接}推出广义连续统假设或连续统假设的真值是\emph{不确定的}。毕竟，也许我们只需要添加更多在我们看来很自然的公理，就能非此即彼地解决这一问题。G\"odel（哥德尔）本人就曾暗示这是正确的应对方式。
 
-Second: the independence of CH from $\ZFC$ is certainly
-\emph{striking}, but it is certainly not \emph{incredible} (in the
-literal sense). The point is simply that, for all $\ZFC$ tells us,
-moving from cardinals to their successors may involve a less blunt
-tool than simply taking powersets.
+第二：CH 独立于 $\ZFC$ 这个结果当然是\emph{惊人的}，但它绝不是\emph{不可信的}（就其字面意义而言）。这一点很简单：就 $\ZFC$ 所揭示的信息而言，从一个基数过渡到它的后继，所用的工具可能比简单地取幂集更精细。
  %The operation of taking powersets moves us from one stage of the
  %hierarchy to its successor stage (from $V_{\alpha}$ to
  %$V_{\alpha+1}$). 
 
-With those two observations made, if you want to know more, you will
-now have to turn to the various philosophers and mathematicians with
-horses in the race.\footnote{Though you might want to start by reading \citet[\S15.6]{Potter2004}.}
+给出了这两点观察之后，如果你想了解更多，现在就得去向那些在此问题上各执己见的哲学家和数学家求教了。\footnote{不过，你可能想从阅读 \citet[\S15.6]{Potter2004} 开始。}
 
 \end{document}

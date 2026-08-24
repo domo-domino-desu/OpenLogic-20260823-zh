@@ -4,72 +4,49 @@
 
 \documentclass[../../../include/open-logic-section]{subfiles}
 
-
 \begin{document}
 
 \olfileid{sfr}{fun}{par}
 
-\olsection{Partial Functions}
+\olsection{偏函数}
 
 \begin{explain}
-It is sometimes useful to relax the definition of function so that it
-is not required that the output of the function is defined for all
-possible inputs. Such mappings are called \emph{partial functions}.
+有时放宽函数的定义是有用的，即不要求函数的输出对所有可能的输入都有定义。
+这样的映射称为\emph{偏函数}。
 \end{explain}
 
 \begin{defn}
-A \emph{partial function} $f \colon A \pto B$ is a mapping which
-assigns to every !!{element} of~$A$ at most one !!{element} of~$B$.
-If $f$ assigns an element of~$B$ to $x \in A$, we say $f(x)$ is
-\emph{defined}, and otherwise \emph{undefined}. If $f(x)$ is defined,
-we write $f(x) \fdefined$, otherwise $f(x) \fundefined$. The
-\emph{domain} of a partial function~$f$ is the subset of~$A$ where it
-is defined, i.e., $\dom{f} = \Setabs{x \in A}{f(x) \fdefined}$.
+一个\emph{偏函数} $f \colon A \pto B$ 是一个映射，它将 $B$ 中至多一个元素指派给 $A$ 的每个元素。
+如果 $f$ 将 $B$ 的一个元素指派给 $x \in A$，我们就说 $f(x)$ 是\emph{有定义的}，否则就是\emph{未定义的}。
+如果 $f(x)$ 有定义，我们记作 $f(x) \fdefined$，否则记作 $f(x) \fundefined$。
+偏函数~$f$ 的\emph{定义域}是 $A$ 中使得 $f$ 有定义的子集，即$\dom{f} = \Setabs{x \in A}{f(x) \fdefined}$。
 \end{defn}
 
 \begin{ex}
-Every function $f\colon A \to B$ is also a partial function. Partial
-functions that are defined everywhere on~$A$---i.e., what we so far
-have simply called a function---are also called \emph{total}
-functions.
+每个函数 $f\colon A \to B$ 也是一个偏函数。那些在 $A$ 上处处有定义的偏函数——也就是我们之前简称为函数的那种——也称为\emph{全函数}。
 \end{ex}
 
 \begin{ex}
-The partial function $f \colon \Real \pto \Real$ given by $f(x) = 1/x$
-is undefined for $x = 0$, and defined everywhere else.
+由 $f(x) = 1/x$ 给出的偏函数 $f \colon \Real \pto \Real$ 在 $x = 0$ 处未定义，在其他各处都有定义。
 \end{ex}
 
 \begin{prob}
-Given $f\colon A \pto B$, define the partial function $g\colon B \pto
-A$ by: for any $y \in B$, if there is a unique $x \in A$ such that
-$f(x) = y$, then $g(y) = x$; otherwise $g(y) \fundefined$.  Show that
-if $f$ is injective, then $g(f(x)) = x$ for all $x \in \dom{f}$, and
-$f(g(y)) = y$ for all $y \in \ran{f}$.
+给定 $f\colon A \pto B$，如下定义偏函数 $g\colon B \pto A$：对任意 $y \in B$，如果存在唯一的 $x \in A$ 使得 $f(x) = y$，则令 $g(y) = x$；否则令 $g(y) \fundefined$。试证：若 $f$ 是单射，则对所有 $x \in \dom{f}$ 有 $g(f(x)) = x$，且对所有 $y \in \ran{f}$ 有 $f(g(y)) = y$。
 \end{prob}
 
-\begin{defn}[Graph of a partial function]
-Let $f\colon A \pto B$ be a partial function. The \emph{graph} of~$f$
-is the relation $R_f \subseteq A \times B$ defined by
+\begin{defn}[偏函数的图像]
+设 $f\colon A \pto B$ 是一个偏函数。$f$ 的\emph{图像}是关系 $R_f \subseteq A \times B$，定义为
 \[
 R_f = \Setabs{\tuple{x,y}}{f(x) = y}.
 \]
 \end{defn}
 
 \begin{prop}
-Suppose $R \subseteq A \times B$ has the property that whenever $Rxy$
-and $Rxy'$ then $y = y'$.  Then $R$ is the graph of the partial
-function $f\colon A \pto B$ defined by: if there is a $y$ such that
-$Rxy$, then $f(x) = y$, otherwise $f(x) \fundefined$.  If $R$ is also
-\emph{serial}, i.e., for each $x \in A$ there is a $y \in B$ such that
-$Rxy$, then $f$ is total.
+设 $R \subseteq A \times B$ 满足如下性质：只要 $Rxy$ 且 $Rxy'$，就有 $y = y'$。那么 $R$ 就是如下定义的偏函数 $f\colon A \pto B$ 的图像：若存在 $y$ 使得 $Rxy$，则令 $f(x) = y$，否则令 $f(x) \fundefined$。如果 $R$ 还是\emph{序列的}，即对每个 $x \in A$ 都存在 $y \in B$ 使得 $Rxy$，那么 $f$ 就是全函数。
 \end{prop}
 
 \begin{proof}
-Suppose there is a $y$ such that $Rxy$.  If there were another $y'
-\neq y$ such that $Rxy'$, the condition on $R$ would be
-violated. Hence, if there is a $y$ such that $Rxy$, that $y$ is
-unique, and so $f$ is well-defined.  Obviously, $R_f = R$ and $f$ is
-total if~$R$ is serial.
+假设存在 $y$ 使得 $Rxy$。如果还存在另一个 $y' \neq y$ 使得 $Rxy'$，则违背了关于 $R$ 的条件。因此，如果存在 $y$ 使得 $Rxy$，那么这个 $y$ 是唯一的，所以 $f$ 是良定义的。显然，$R_f = R$，并且若 $R$ 是序列的，则 $f$ 是全函数。
 \end{proof}
 
 \end{document}

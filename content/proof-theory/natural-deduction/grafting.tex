@@ -8,16 +8,15 @@
 
 \olfileid{pt}{nat}{gra}
 
-\olsection{Grafting \usetoken{P}{proof}}
+\olsection{\usetoken{P}{proof}的嫁接}
 
-!!^{proof}s in \Log{N1c} and~\Log{N1i} are !!{proof}s of !!{formula}s~$!A$ from
-assumptions~$!B$. Suppose $!B$ itself has !!a{proof}. How do we
-combine the !!{proof} of~$!B$ with the !!{proof} of $!A$ from~$!B$ to
-get !!a{proof} of~$!A$ that doesn't use the assumption~$!B$?
+在 \Log{N1c} 和~\Log{N1i} 中，推导是由假设~$!B$ 推出公式~$!A$ 的推导。
+假设 $!B$ 本身也有一个推导。
+我们如何将 $!B$ 的推导与由~$!B$ 推出 $!A$ 的推导结合起来，
+从而得到一个不使用假设~$!B$ 的 $!A$ 的推导呢？
 
-One option is to remove the assumption~$!B$ from the !!{proof} of~$!A$
-by applying~\Intro{\lif}. Then we can combine the resulting !!{proof}
-of~$!B \lif !A$ with the !!{proof} of~$!B$ to obtain
+一种方案是，通过应用~\Intro{\lif} 解除假设~$!B$。
+然后，我们可以将由此得到的 $!B \lif !A$ 的推导与 $!B$ 的推导结合起来，以得到
 \[
 \AxiomC{$\Discharge{!B}{x}$}
 \DeduceC{$!A$}
@@ -29,56 +28,34 @@ of~$!B \lif !A$ with the !!{proof} of~$!B$ to obtain
 \BinaryInfC{$!A$}
 \DisplayProof
 \]
-This is straightforward, but somewhat ugly: why introduce $\lif$ only
-to eliminate it right away? It should be possible to avoid this kind
-of ``detour'' through $!B \lif !A$. (That they can always be avoided
-is in fact the content of the normalization theorem.)
+这样做固然直接，但多少有点难看：为什么刚引入 $\lif$ 又立刻消去它呢？
+应该可以避免这种经由 $!B \lif !A$ 的“迂回”。（这种迂回总是可以避免的，这实际上就是正规化定理的内容。）
 
-In \Log{N1c} and~\Log{N1i} we can actually avoid it in this case quite easily: we
-can simply replace the assumptions~$!B^x$ by the entire !!{proof}
-of~$!B$. This ``grafting'' of !!{proof}s onto the assumptions of
-others is quite useful and so we record it as a definition.
+在 \Log{N1c} 和~\Log{N1i} 中，我们实际上在此情形下可以非常轻松地避免这种迂回：
+只需简单地将所有假设~$!B^x$ 替换为 $!B$ 的整个推导即可。
+这种将一个推导“嫁接”到其他推导的假设上的操作非常有用，因此我们将其记录为一条定义。
 
 \begin{defn}
-If $\delta_1$ is a \Log{N1c}-!!{proof} (or \Log{N1i}-!!{proof})
-of~$!A$ from open assumption~$!B^x$, and $\delta_2$ is a
-\Log{N1c}-!!{proof} (\Log{N1i}-!!{proof}) of~$!B$, then
-$\Subst{\delta_1}{\delta_2}{!B^x}$ is the result of replacing every
-undischarged occurrence of~$!B^x$ in~$\delta_1$ by~$\delta_2$.
+若 $\delta_1$ 是一个以开放假设~$!B^x$ 推出~$!A$ 的 \Log{N1c}-推导（或 \Log{N1i}-推导），且 $\delta_2$ 是一个~$!B$ 的 \Log{N1c}-推导（\Log{N1i}-推导），则 $\Subst{\delta_1}{\delta_2}{!B^x}$ 是将 $\delta_1$ 中每一个未解除的 $!B^x$ 的出现替换为 $\delta_2$ 所得到的结果。
 \end{defn}
 
-Provided that $\delta_1$ and $\delta_2$ don't have different
-assumption !!{formula}s labelled with the same label, and no open
-assumption of~$\delta_2$ contains an eigenvariable of~$\delta_1$, the
-resulting $\Subst{\delta_1}{\delta_2}{!B^x}$ is a correct !!{proof},
-and its open assumptions are those of $\delta_1$ together with those
-of~$\delta_2$. When grafting !!{proof}s, these conditions will
-typically be satisfied. The first is satisfied whenever $\delta_1$ and
-$\delta_2$ are subproofs of a larger !!{proof}. If the second is not
-satisfied, we can rename the eigenvariables of~$\delta_1$ so that it
-is.
+只要 $\delta_1$ 和 $\delta_2$ 没有带相同标签的不同假设公式，且 $\delta_2$ 没有开放假设包含 $\delta_1$ 的本征变元，那么得到的 $\Subst{\delta_1}{\delta_2}{!B^x}$ 就是一个正确的推导，并且其开放假设是 $\delta_1$ 与 $\delta_2$ 的开放假设之并。在进行推导嫁接时，这些条件通常都能满足。当 $\delta_1$ 和 $\delta_2$ 是某个更大推导的子证明时，第一个条件总是满足的。如果第二个条件不满足，我们可以对 $\delta_1$ 的本征变元进行重命名，使其得以满足。
 
-A corresponding definition applies to \Log{N2c} and~\Log{N2i}.
+类似的定义适用于 \Log{N2c} 和~\Log{N2i}。
 
 \begin{defn}
-If $\delta_1$ is a \Log{N2c}-!!{proof} (or \Log{N2i}-!!{proof})
-of~$x:!B, \Gamma_1 \Sequent !A$, and $\delta_2$ is a
-\Log{N1c}-!!{proof} (\Log{N1i}-!!{proof}) of~$\Gamma_2 \Sequent !B$,
-then $\Subst{\delta_1}{\delta_2}{x:!B}$ is the result of replacing
-every axiom $x:!B \Sequent !B$ in~$\delta_1$ by~$\delta_2$, and adding
-$\Gamma_2$ to the context of every sequent below such axioms.
+若 $\delta_1$ 是一个~$x:!B, \Gamma_1 \Sequent !A$ 的 \Log{N2c}-推导（或 \Log{N2i}-推导），且 $\delta_2$ 是一个~$\Gamma_2 \Sequent !B$ 的 \Log{N1c}-推导（\Log{N1i}-推导），则 $\Subst{\delta_1}{\delta_2}{x:!B}$ 是将 $\delta_1$ 中每一个公理 $x:!B \Sequent !B$ 替换为 $\delta_2$，并将 $\Gamma_2$ 添加到这些公理下方所有相继式的语境中所得到的结果。
 \end{defn}
 
 \begin{prop}
-If $\delta_1 \Proves x:!B, \Gamma_1 \Sequent
-!A$ and $\delta_2 \Proves \Gamma_2 \Sequent !B$, then
-$\Subst{\delta_1}{\delta_2}{x:!B} \Proves \Gamma_1, \Gamma_2 \Sequent
-!A$, provided no eigenvariable of~$\delta_1$ occurs in~$\Gamma_2$.
+若 $\delta_1 \Proves x:!B, \Gamma_1 \Sequent
+!A$ 且 $\delta_2 \Proves \Gamma_2 \Sequent !B$，则 $\Subst{\delta_1}{\delta_2}{x:!B} \Proves \Gamma_1, \Gamma_2 \Sequent
+!A$，只要 $\delta_1$ 的本征变元不出现在 $\Gamma_2$ 中。
 \end{prop}
 
 
 \begin{proof}
-  By induction on $\pheight{\delta}$.
+  对 $\pheight{\delta}$ 施归纳。
 \end{proof}
 
 \end{document}

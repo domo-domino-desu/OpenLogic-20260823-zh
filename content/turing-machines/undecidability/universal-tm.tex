@@ -7,133 +7,51 @@
 \begin{document}
 
 \olfileid{tur}{und}{uni}
-\olsection{Universal Turing Machines}
+\olsection{通用图灵机}
 
-In \olref[enu]{sec} we discussed how every Turing machine can be
-described by a finite sequence of integers. This sequence encodes the
-states, alphabet, start state, and instructions of the Turing machine.
-We also pointed out that the set of all of these descriptions is
-!!{enumerable}. Since the set of such descriptions is !!{denumerable},
-this means that there is !!a{surjective} function from~$\Nat$ to
-these descriptions. Such !!a{surjective} function can be obtained, for
-instance, using Cantor's zig-zag method.  It gives us a way of
-enumerating all (descriptions) of Turing machines. If we fix one such
-enumeration, it now makes sense to talk of the $1$st, $2$nd, \dots,
-$e$th Turing machine.  These numbers are called \emph{indices}.
+在\olref[enu]{sec}节中，我们讨论了每台图灵机如何可以由一个有限的整数序列来描述。该序列编码了图灵机的状态、字母表、起始状态以及指令。我们还指出，所有这些描述的集合是可数的。既然这类描述的集合是可数无穷的，就意味着存在一个从~$\Nat$ 到这些描述的满射函数。运用康托尔之字形法，就可以得到这样一个满射函数。这为我们提供了一种枚举所有图灵机（描述）的方法。固定了这样一种枚举后，谈论第~$1$ 台、第~$2$ 台、……、第~$e$ 台图灵机便有了意义。这些数字被称为\emph{指标}。
 
 \begin{defn}
-If $M$~is the $e$th Turing machine (in our fixed enumeration), we
-say that $e$~is an \emph{index} of~$M$. We write $M_e$ for the $e$th
-Turing machine.
+如果 $M$ 是第~$e$ 台图灵机（在我们固定的枚举中），则称 $e$ 是~$M$ 的一个\emph{指标}。我们用 $M_e$ 表示第~$e$ 台图灵机。
 \end{defn}
 
-A machine may have more than one index, e.g., two descriptions of~$M$
-may differ in the order in which we list its instructions, and these
-different descriptions will have different indices.
+一台机器可能有不止一个指标，例如，对~$M$ 的两种描述可能仅在列出指令的顺序上有所不同，而这些不同的描述将具有不同的指标。
 
-Importantly, it is possible to give the enumeration of Turing machine
-descriptions in such a way that we can effectively compute the
-description of~$M$ from its index, and to effectively compute an index
-of a machine~$M$ from its description.  By the Church--Turing thesis,
-it is then possible to find a Turing machine which recovers the
-description of the Turing machine with index~$e$ and writes the
-corresponding description on its tape as output. The description would
-be a sequence of blocks of~$\TMstroke$'s (representing the positive
-integers in the sequence describing~$M_e$).
+重要的是，我们可以给出一种图灵机描述的枚举，使得从指标~$e$ 能够有效计算出~$M$ 的描述，且从机器~$M$ 的描述也能有效计算出它的一个指标。根据丘奇--图灵论题，存在一台图灵机，它能够根据指标~$e$ 恢复对应图灵机的描述，并将该描述作为输出写在纸带上。该描述将是若干由~$\TMstroke$ 构成的区块序列（代表描述~$M_e$ 的序列中的正整数）。
 
-Given this, it now becomes natural to ask: what functions of Turing
-machine indices are themselves computable by Turing machines? What
-properties of Turing machine indices can be decided by Turing
-machines?  An example: the function that maps an index~$e$ to the
-number of states the Turing machine with index~$e$ has, is computable
-by a Turing machine. Here's what such a Turing machine would do:
-started on a tape containing a single block of $e$~$\TMstroke$'s, it
-would first decode $e$ into its description. The description is now
-represented by a sequence of blocks of~$\TMstroke$'s on the tape.
-Since the first !!{element} in this sequence is the number of states.
-So all that has to be done now is to erase everything but the first
-block of $\TMstroke$'s and then halt.
+由此自然产生了一个问题：图灵机指标的哪些函数本身可由图灵机计算？图灵机指标的哪些性质可由图灵机判定？举个例子：将指标~$e$ 映射到具有该指标的图灵机所拥有的状态数的函数，可由图灵机计算。这样一台图灵机会这样做：以纸带上包含单个由~$e$ 个 $\TMstroke$ 组成的区块作为初始状态开始，它首先将~$e$ 解码为其描述。此时，描述由纸带上若干由~$\TMstroke$ 构成的区块序列来表示。由于该序列的第一个元素就是状态数，因此现在只需擦除第一个 $\TMstroke$ 区块以外的所有内容，然后停机。
 
-A remarkable result is the following:
+一个重要的结果如下：
 
-\begin{thm}\ollabel{thm:universal-tm} There is a \emph{universal
-  Turing machine}~$U$ which, when started on input $\tuple{e,n}$ 
+\begin{thm}\ollabel{thm:universal-tm} 存在一台\emph{通用图灵机}~$U$，当以输入 $\tuple{e,n}$ 启动时：
   \begin{enumerate}
-    \item halts iff $M_e$ halts on input~$n$, and
-    \item if $M_e$ halts with output $m$, so does~$U$.
+    \item $U$ 停机当且仅当 $M_e$ 在输入~$n$ 上停机，并且
+    \item 如果 $M_e$ 以输出 $m$ 停机，那么~$U$ 也以输出 $m$ 停机。
   \end{enumerate}
-  $U$ thus computes the function $f\colon \Nat \times \Nat \pto \Nat$
-  given by $f(e,n) = m$ if $M_e$ started on input~$n$ halts with
-  output~$m$, and undefined otherwise.
+  因此，$U$ 计算了部分函数 $f\colon \Nat \times \Nat \pto \Nat$：若 $M_e$ 以输入~$n$ 启动并以输出~$m$ 停机，则 $f(e,n) = m$；否则 $f(e,n)$ 无定义。
 \end{thm}
 
 \begin{proof}
-  To actually produce~$U$ is basically impossible, since it is an
-  extremely complicated machine. But we can describe in outline how it
-  works, and then invoke the Church--Turing thesis.  When it starts,
-  $U$'s tape contains a block of $e$ $\TMstroke$'s followed by a block
-  of $n$~$\TMstroke$'s. It first ``decodes'' the index~$e$ to the
-  right of the input~$n$. This produces a list of numbers (i.e.,
-  blocks of $\TMstroke$'s separated by~$\TMblank$'s) that describes
-  the instructions of machine~$M_e$. $U$ then writes the number of the
-  start state of~$M_e$ and the number~$1$ on the tape to the right of
-  the description of~$M_e$. (Again, these are represented in unary, as
-  blocks of $\TMstroke$'s.) Next, it copies the input (block of
-  $n$~$\TMstroke$'s) to the right---but it replaces each $\TMstroke$
-  by a block of three $\TMstroke$'s (remember, the number of the $\TMstroke$
-  symbol is~$3$, $1$ being the number of~$\TMendtape$ and $2$ being
-  the number of~$\TMblank$). At the left end of this sequence of blocks
-  (separated by $\TMblank$ symbols on the tape of~$U$), it writes a
-  single~$\TMstroke$, the code for~$\TMendtape$.
+  实际构造出~$U$ 基本上是不可能的，因为它是一台极其复杂的机器。但我们可以概述它的工作方式，然后援引丘奇--图灵论题。当~$U$ 启动时，它的纸带上包含一个由 $e$ 个 $\TMstroke$ 组成的区块，后面跟着一个由 $n$ 个 $\TMstroke$ 组成的区块。它首先将指标~$e$``解码''至输入~$n$ 的右侧。这会得到一个数字列表（即由~$\TMblank$ 分隔的多个 $\TMstroke$ 区块），该列表描述了机器~$M_e$ 的指令。接着，$U$ 在 $M_e$ 描述的右侧纸带上，写下~$M_e$ 的起始状态编号以及数字~$1$。（同样，这些都以一元形式表示，即由 $\TMstroke$ 构成的区块。）然后，它将输入（由 $n$ 个 $\TMstroke$ 组成的区块）复制到右侧——但它将每个 $\TMstroke$ 替换为一个由三个 $\TMstroke$ 组成的区块（记住，符号 $\TMstroke$ 的编码是~$3$，$\TMendtape$ 的编码是~$1$，$\TMblank$ 的编码是~$2$）。在这一系列区块（在~$U$ 的纸带上由 $\TMblank$ 符号分隔）的左端，它写入一个单独的~$\TMstroke$，这是~$\TMendtape$ 的编码。
 
-  $U$ now has on its tape: the index~$e$, the number~$n$, the code
-  number of the start state (the ``current state''), the number of the
-  initial head position~$1$ (the ``current head position''), and the
-  initial contents of the ``tape'' (a sequence of blocks
-  of~$\TMstroke$'s representing the code numbers of the symbols
-  of~$M_e$---the ``symbols''---separated by~$\TMblank$'s).
+  现在，$U$ 的纸带上记录了：指标~$e$，数字~$n$，起始状态的编码数（``当前状态''），初始读写头位置~$1$ 的编号（``当前读写头位置''），以及``纸带''的初始内容（一系列代表~$M_e$ 各符号编码数的 $\TMstroke$ 区块——即``符号''——由~$\TMblank$ 分隔）。
 
-  It now simulates what $M_e$ would do if started on input~$n$, by
-  doing the following:
+  它现在通过执行以下操作，来模拟~$M_e$ 在输入~$n$ 上启动后的行为：
   \begin{enumerate}
-    \item Find the number~$k$ of the ``current head position'' (at the
-    beginning, that's~$1$),
-    \item Move to the $k$th block in the ``tape'' to see what the
-    ``symbol'' there is,
+    \item 找到``当前读写头位置''的编号~$k$（开始时是~$1$），
+    \item 移动到``纸带''上的第~$k$ 个区块，查看那里的``符号''是什么，
     \item\ollabel{find-inst}%
-    Find the instruction matching the current ``state'' and
-    ``symbol,''
-    \item Move back to the $k$th block on the ``tape'' and replace the
-    ``symbol'' there with the code number of the symbol $M_e$ would
-    write,
-    \item Move the head to where it records the current ``state'' and
-    replace the number there with the number of the new state,
-    \item Move to the place where it records the ``tape position'' and
-    erase a~$\TMstroke$ or add a~$\TMstroke$ (if the instruction says
-    to move left or right, respectively).
-    \item Repeat.\footnote{We're glossing over some subtle
-    difficulties here. E.g., $U$~may need some extra space when it
-    increases the counter where it keeps track of the ``current head
-    position''---in that case it will have to move the entire ``tape''
-    to the right.}
+    找到与当前``状态''和``符号''匹配的指令，
+    \item 移回``纸带''上的第~$k$ 个区块，并将那里的``符号''替换为~$M_e$ 会写下的符号的编码数，
+    \item 将读写头移动到记录当前``状态''的地方，并将那里的数字替换为新状态的编号，
+    \item 移动到记录``纸带位置''的地方，擦除一个~$\TMstroke$ 或添加一个~$\TMstroke$（若指令分别要求向左或向右移动）。
+    \item 重复。\footnote{我们在此忽略了一些微妙的困难。例如，当~$U$ 增加记录``当前读写头位置''的计数器时，它可能需要一些额外的空间——在这种情况下，它将不得不把整个``纸带''向右移动。}
   \end{enumerate}
-  If $M_e$ started on input~$n$ never halts, then $U$ also never
-  halts, so its output is undefined.
+  如果~$M_e$ 在输入~$n$ 上启动后永不停机，那么~$U$ 也永不停机，因此它的输出无定义。
 
-  If in step~\olref{find-inst} it turns out that the description
-  of~$M_e$ contains no instruction for the current
-  ``state''/``symbol'' pair, then $M_e$ would halt. If this happens,
-  $U$ erases the part of its tape to the left of the ``tape.'' For
-  each block of three~$\TMstroke$'s (representing a~$\TMstroke$ on
-  $M_e$'s tape), it writes a $\TMstroke$ on the left end of its own
-  tape, and successively erases the ``tape.'' When this is done,
-  $U$'s~tape contains a single block of~$\TMstroke$'s of length~$m$.
+  如果在步骤~\olref{find-inst} 中发现~$M_e$ 的描述不包含针对当前``状态''/``符号''组合的指令，那么~$M_e$ 将会停机。若发生这种情况，$U$ 会擦除``纸带''左侧的部分。对于每一个由三个~$\TMstroke$ 组成的区块（代表~$M_e$ 纸带上的一个~$\TMstroke$），它会在自己纸带的左端写入一个 $\TMstroke$，并依次擦除``纸带''。完成后，$U$ 的纸带上包含一个长度为~$m$ 的、由~$\TMstroke$ 组成的区块。
   
-  If $U$ encounters something other than a block of
-  three~$\TMstroke$'s on the ``tape,'' it immediately halts. Since
-  $U$'s~tape in this case does not contain a single block
-  of~$\TMstroke$'s, its output is not a natural number, i.e., $f(e,n)$
-  is undefined in this case.
+  如果~$U$ 在``纸带''上遇到非三个~$\TMstroke$ 构成的区块，它会立即停机。由于此时~$U$ 的纸带并不包含单一的一个由~$\TMstroke$ 构成的区块，其输出就不是一个自然数，即，在这种情况下 $f(e,n)$ 是无定义的。
 \end{proof}
 
 \end{document}

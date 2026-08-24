@@ -1,55 +1,18 @@
-% Part: computability
-% Chapter: recursive-functions
-% Section: introduction
-
 \documentclass[../../../include/open-logic-section]{subfiles}
 
 \begin{document}
 
 \olfileid{cmp}{rec}{int}
-\olsection{Introduction}
+\olsection{引言}
 
-In order to develop a mathematical theory of computability, one has to,
-first of all, develop a \emph{model} of computability.  We now think of
-computability as the kind of thing that computers do, and computers
-work with symbols.  But at the beginning of the development of
-theories of computability, the paradigmatic example of computation was
-\emph{numerical} computation.  Mathematicians were always interested
-in number-theoretic functions, i.e., functions $f\colon \Nat^n \to
-\Nat$ that can be computed. So it is not surprising that at the
-beginning of the theory of computability, it was such functions that
-were studied.  The most familiar examples of computable numerical
-functions, such as addition, multiplication, exponentiation (of
-natural numbers) share an interesting feature: they can be defined
-\emph{recursively}.  It is thus quite natural to attempt a general
-definition of \emph{computable function} on the basis of recursive
-definitions.  Among the many possible ways to define number-theoretic
-functions recursively, one particularly simple pattern of definition
-here becomes central: so-called \emph{primitive recursion}.
+% Part: computability
+% Chapter: recursive-functions
+% Section: introduction
 
-In addition to computable functions, we might be interested in
-computable sets and relations. A set is computable if we can compute
-the answer to whether or not a given number is !!a{element} of the
-set, and a relation is computable iff we can compute whether or not a
-tuple $\tuple{n_1, \dots, n_k}$ is !!a{element} of the relation.  By
-considering the \emph{characteristic function} of a set or relation,
-discussion of computable sets and relations can be subsumed under that
-of computable functions.  Thus we can define primitive recursive
-relations as well, e.g., the relation ``$n$ evenly divides $m$'' is a
-primitive recursive relation.
+为了发展可计算性的数学理论，首先必须建立可计算性的\emph{模型}。我们现在把可计算性看作计算机所做的那种事情，而计算机处理的是符号。但在可计算性理论发展的初期，计算的典型范例是\emph{数值}计算。数学家一直对数论函数感兴趣，即可以计算的函数 $f\colon \Nat^n \to \Nat$。因此，在可计算性理论的开端，所研究的正是这类函数，这并不令人意外。我们最熟悉的可计算数值函数，例如（自然数的）加法、乘法、乘方，都有一个有趣的特征：它们都可以被\emph{递归地}定义。因此，试图在递归定义的基础上给出\emph{可计算函数}的一般定义，是很自然的。在递归定义数论函数的众多可能方式中，一种特别简单的定义模式在这里成为核心：即所谓的\emph{原始递归}。
 
-Primitive recursive functions---those that can be defined using just
-primitive recursion---are not, however, the only computable
-number-theoretic functions. Many generalizations of primitive
-recursion have been considered, but the most powerful and
-widely-accepted additional way of computing functions is by unbounded
-search.  This leads to the definition of \emph{partial recursive
-  functions}, and a related definition to \emph{general recursive
-  functions}.  General recursive functions are computable and total,
-and the definition characterizes exactly the partial recursive
-functions that happen to be total.  Recursive functions can simulate
-every other model of computation (Turing machines, lambda calculus,
-etc.) and so represent one of the many accepted models of computation.
+除了可计算函数，我们可能还对可计算的集合与关系感兴趣。如果能计算出任意给定的数是否属于某集合，则该集合是可计算的；而当且仅当能计算出任意给定的元组 $\tuple{n_1, \dots, n_k}$ 是否属于某关系时，该关系才是可计算的。通过考虑集合或关系的\emph{特征函数}，关于可计算集合与关系的讨论就可以归入关于可计算函数的讨论之中。因此，我们同样可以定义原始递归关系，例如，“$n$ 整除 $m$”这一关系就是一个原始递归关系。
 
+然而，原始递归函数——即仅使用原始递归定义的函数——并非仅有的可计算数论函数。人们考虑过对原始递归的多种推广，但最强大且被广泛接受的额外计算函数的方法是无界搜索。这导出了\emph{部分递归函数}的定义，以及与之相关的\emph{一般递归函数}的定义。一般递归函数是可计算且全的，该定义恰好刻画了那些恰好为全函数的部分递归函数。递归函数能模拟所有其他计算模型（图灵机、λ 演算等），因此代表了众多公认的计算模型之一。
 
 \end{document}

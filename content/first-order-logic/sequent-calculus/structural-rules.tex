@@ -10,17 +10,14 @@
       {\olfileid{fol}{seq}{srl}}
       {\olfileid{pl}{seq}{srl}}
 
-\olsection{Structural Rules}
+\olsection{结构规则}
 
-We also need a few rules that allow us to rearrange !!{sentence}s in
-the left and right side of a sequent.  Since the logical rules require
-that the !!{sentence}s in the premise which the rule acts upon stand
-either to the far left or to the far right, we need an ``exchange''
-rule that allows us to move !!{sentence}s to the right position.  It's
-also important sometimes to be able to combine two identical
-!!{sentence}s into one, and to add !!a{sentence} on either side.
+我们还需要一些规则，以便重新排列矢列左右两侧的语句。
+由于逻辑规则要求规则所作用的前提中的语句必须位于最左侧或最右侧，
+因此我们需要一个“交换”规则来将语句移至所需位置。
+有时，能够将两个相同的语句合并为一个，并在任意一侧添加语句，也是很重要的。
 
-\subsection{Weakening}
+\subsection{弱化规则}
 
 \begin{defish}
 \Axiom$ \Gamma \fCenter \Delta $
@@ -34,7 +31,7 @@ also important sometimes to be able to combine two identical
 \DisplayProof
 \end{defish}
 
-\subsection{Contraction}
+\subsection{收缩}
 
 \begin{defish}
 \Axiom$ !A, !A, \Gamma \fCenter \Delta $
@@ -48,7 +45,7 @@ also important sometimes to be able to combine two identical
 \DisplayProof
 \end{defish}
 
-\subsection{Exchange}
+\subsection{交换}
 
 \begin{defish}
 \Axiom$ \Gamma, !A, !B, \Pi \fCenter \Delta $
@@ -62,11 +59,10 @@ also important sometimes to be able to combine two identical
 \DisplayProof
 \end{defish}
 
-A series of weakening, contraction, and exchange inferences will often
-be indicated by double inference lines.
+一系列弱化、收缩和交换的推理步骤通常会用双推理线来标示。
 
-The following rule, called ``cut,'' is not strictly speaking
-necessary, but makes it a lot easier to reuse and combine !!{derivation}s.
+下面这条被称为“切割”的规则，严格来说并非必需，但它能大大方便推导的复用与组合。
+
 \begin{defish}
 \[
 \Axiom$ \Gamma \fCenter \Delta, !A$

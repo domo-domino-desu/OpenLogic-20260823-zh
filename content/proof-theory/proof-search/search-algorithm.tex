@@ -8,82 +8,56 @@
 
 \olfileid{pt}{ps}{sal}
 
-\olsection{Search Algorithm for \Log{G3c}}
+\olsection{\Log{G3c} 的搜索算法}
 
-We describe a search algorithm for \Log{G3c}. It is not the only
-possible one, and not even the most efficient one. But it is correct:
-if a sequent $\Gamma \Sequent \Delta$ has !!a{proof}, it will
-eventually halt and find !!a{proof}. It is also fool-proof: if it
-halts without having found !!a{proof}, or never halts, then $\Gamma
-\Sequent \Delta$ is not valid to begin with.
+本节描述 \Log{G3c} 的一个搜索算法。它并非唯一可能的算法，甚至也不是最有效的算法。
+但它是正确的：如果一个相继式 $\Gamma \Sequent \Delta$ 有推导，该算法最终将终止并找到一个推导。
+它也是万无一失的：如果算法终止却没有找到推导，或者永不终止，那么 $\Gamma
+\Sequent \Delta$ 从一开始就不是有效的。
 
-A key necessary feature of the algorithm is that it ensures that every
-!!{formula} in $\Gamma \Sequent \Delta$, or in a sequent produced in
-the proof search, is ``reduced,'' i.e., it is treated as the principal
-formula of an inference rule applied backwards, and that this happens
-as often as necessary. We call this feature \emph{fairness}
+该算法一个关键的必要特征是，它确保 $\Gamma \Sequent \Delta$ 中、或证明搜索过程中产生的任一相继式中的每个公式都被“归约”，
+即，它被作为反向应用的推理规则的主公式来处理，并且这一过程会根据需要重复足够多次。
+我们称这一特性为\emph{公平性}。
 
-The algorithm works in stages. The output of each stage is a tree of
-sequents, and the output of the next stage is produced by reducing
-!!a{formula} in every topmost sequent that isn't already an axiom.
+该算法分阶段运行。每一阶段的输出是一个相继式树，
+下一阶段的输出则是通过归约每个尚未是公理的顶端相继式中的一个公式而产生的。
 
-At stage $0$ we start with $\Gamma \Sequent \Delta$. In order to
-ensure fairness we assign numbers as indices to the !!{formula}s in
-$\Gamma$ and $\Delta$ in such a way that different !!{formula}s
-receive different numbers. E.g., think of counting off the
-!!{formula}s from left to right. We write the numbers as superscripts.
-E.g., if we are searching for !!a{proof} of $!A, !B \Sequent !C$, the
-output of stage~$0$ is $!A^1, !B^2 \Sequent !C^3$. The largest~$n$
-occurring as a superscript in such an indexed sequent is its
-\emph{maximal index} ($3$~in the example).
+在第 $0$ 阶段，我们从 $\Gamma \Sequent \Delta$ 开始。
+为确保公平性，我们给 $\Gamma$ 和 $\Delta$ 中的公式分配数字作为指标，使得不同公式获得不同的编号。
+比如，可以设想从左向右为公式编号。
+我们将编号写为上标。
+例如，若要搜索 $!A, !B \Sequent !C$ 的一个推导，那么第$0$阶段的输出是 $!A^1, !B^2 \Sequent !C^3$。
+在这样的指标相继式中，作为上标出现的最大~$n$ 称为它的\emph{最大指标}（示例中为~$3$）。
 
-If the sequent contains quantifiers, we will also need to know which
-terms to use when reducing $\lexists[x][!A(x)]$ on the right or
-$\lforall[x][!A(x)]$ on the left. We will only need terms built from
-the !!{constant}s $\Obj c_0$, $\Obj c_1$, $\Obj c_2$, \dots, using any
-of the function symbols occurring in~$\Gamma$ and $\Delta$. We assume
-that the set of all these terms is given in some fixed enumeration, so
-that we can talk about, e.g., ``the first !!{constant} not occuring in
-$\Gamma \Sequent \Delta$.'' Each indexed sequent in the tree the
-algorithm produces has an associated set of !!{constant}s. The set of
-!!{constant}s assigned to the sequent in stage~$0$ is the set of all
-!!{constant}s occuring in it (if there are any), and $\{\Obj c_0\}$ if
-it contains no !!{constant}s.
+如果相继式包含量词，我们还需知道当归约右侧的 $\lexists[x][!A(x)]$ 或左侧的 $\lforall[x][!A(x)]$ 时该使用哪些项。
+我们只需由常项符号 $\Obj c_0$, $\Obj c_1$, $\Obj c_2$, \dots 及出现在~$\Gamma$ 和 $\Delta$ 中的函数符号所构造出的项。
+我们假设所有这些项的集合已按某种固定的枚举给出，这样我们就可以谈论诸如“第一个不在 $\Gamma \Sequent \Delta$ 中出现的常项符号”之类的概念。
+算法生成的树中的每个指标相继式都有一个关联的常项符号集合。
+在第$0$阶段，指派给相继式的常项符号集合是其中出现的所有常项符号的集合（如果有的话），如果它不含任何常项符号，则是 $\{\Obj c_0\}$。
 
-Suppose the algorithm has generated a tree of indexed sequents, with
-associated sets of !!{constant}s, at stage~$n$. At stage~$n+1$, we do
-the following, for each topmost sequent. 
+假设算法在第~$n$ 阶段已经生成了一棵带有关联常项符号集合的指标相继式树。
+在第~$n+1$ 阶段，我们对每个顶端相继式执行以下操作。
 
-If there is !!a{formula}~$!A$ that occurs on both the left and the
-right of the sequent, or the left contains~$\lfalse$, we do nothing:
-such sequents have !!{proof}s in~\Log{G3c}, and for this particular
-topmost sequent there is nothing left to do.
+如果有一个公式~$!A$ 同时出现在相继式的左边和右边，或者左边包含~$\lfalse$，我们不做任何操作：
+这样的相继式在~\Log{G3c} 中已有推导，对于该顶端相继式无需再作处理。
 
-If there is no non-atomic !!{formula} in the sequent, then abort the
-algorithm. There is no proof of $\Gamma \Sequent \Delta$.
+如果相继式中没有非原子公式，则中止算法。$\Gamma \Sequent \Delta$ 没有证明。
 
-Otherwise, pick the non-atomic !!{formula}~$!A$ with the smallest
-index~$i$. Then the topmost sequent in question is either $!A^i, \Pi
-\Sequent \Lambda$ or $\Pi \Sequent \Lambda, !A^i$. Let $k$ be the
-maximum index of the sequent, and $C$ the set of !!{constant}s
-assigned to it.
+否则，选取指标~$i$ 最小的非原子公式~$!A$。那么该顶端相继式要么是 $!A^i, \Pi \Sequent \Lambda$，要么是 $\Pi \Sequent \Lambda, !A^i$。
+令 $k$ 为该相继式的最大指标，$C$ 为指派给它的常项符号集合。
 
-We ``reduce'' $!A^i$, i.e., we generate new topmost sequents according
-to the inference rule determined by the !!{main operator} of~$!A$
-and according to whether $!A^i$ appears on the left or the right.
+我们“归约” $!A^i$，即根据~$!A$ 的主联结词以及 $!A^i$ 出现在左边还是右边，按照相应的推理规则生成新的顶端相继式。
 
 \begin{enumerate}
-  \item $!A \ident !B \land !C$ and occurs on the left: Add one new
-  topmost sequent above $(!B \land !C)^i, \Pi \Sequent \Lambda$:
+  \item 若 $!A \ident !B \land !C$ 且出现在左边：在 $(!B \land !C)^i, \Pi \Sequent \Lambda$ 上方添加一个新的顶端相继式：
   \[
   \Axiom$!B^k, !C^{k+1}, \Pi \fCenter \Lambda$
   \RightLabel{\LeftR{\land}}
   \UnaryInf$(!B \land !C)^i, \Pi \fCenter \Lambda$
   \DisplayProof
   \]
-  The set of !!{constant}s assigned to the new sequent is~$C$.
-  \item $!A \ident !B \land !C$ and occurs on the right: Add two new
-  topmost sequents above $\Pi \Sequent \Lambda, (!B \land !C)^i$:
+  指派给新相继式的常项符号集合是~$C$。
+  \item 若 $!A \ident !B \land !C$ 且出现在右边：在 $\Pi \Sequent \Lambda, (!B \land !C)^i$ 上方添加两个新的顶端相继式：
   \[
   \Axiom$\Pi \fCenter \Lambda, !B^k$
   \Axiom$\Pi \fCenter \Lambda, !C^k$
@@ -91,55 +65,33 @@ and according to whether $!A^i$ appears on the left or the right.
   \BinaryInf$\Pi \fCenter \Lambda, (!B \land !C)^i$
   \DisplayProof
   \]
-  The set of !!{constant}s assigned to the new sequent is~$C$.
+  指派给新相继式的常项符号集合是~$C$。
 
-  \item The cases where $!A \ident \lnot !B$, $!A \ident !B \lor !C$,
-  and $!A \ident !B \lif !C$ are similar and left as exercises.
+  \item $!A \ident \lnot !B$、$!A \ident !B \lor !C$ 以及 $!A \ident !B \lif !C$ 的情况类似，留作练习。
 
-  \item $!A \ident \lexists[x][!B(x)]$ and occurs on the left: Add one new
-  topmost sequent above $\lexists[x][!B(x)]^i, \Pi \Sequent \Lambda$:
+  \item 若 $!A \ident \lexists[x][!B(x)]$ 且出现在左边：在 $\lexists[x][!B(x)]^i, \Pi \Sequent \Lambda$ 上方添加一个新的顶端相继式：
   \[
   \Axiom$!B(c)^k, \Pi \fCenter \Lambda$
   \RightLabel{\LeftR{\lexists}}
   \UnaryInf$\lexists[x][!B(x)]^i, \Pi \fCenter \Lambda$
   \DisplayProof
   \]
-  where $c$ is the first !!{constant} not in~$C$. The set of
-  !!{constant}s assigned to the new sequent is $C \cup \{c\}$.
-  \item $!A \ident \lexists[x][!B(x)]$ and occurs on the right: Add one new
-  topmost sequent above $\Pi \Sequent \Lambda, \lexists[x][!B(x)]$:
+  其中 $c$ 是不在~$C$ 中的第一个常项符号。指派给新相继式的常项符号集合是 $C \cup \{c\}$。
+  \item 若 $!A \ident \lexists[x][!B(x)]$ 且出现在右边：在 $\Pi \Sequent \Lambda, \lexists[x][!B(x)]$ 上方添加一个新的顶端相继式：
   \[
   \Axiom$\Pi \fCenter \Lambda, \lexists[x][!B(x)]^k, !B(t)^{k+1}$
   \RightLabel{\LeftR{\lexists}}
   \UnaryInf$\Pi \fCenter \Lambda, \lexists[x][!B(x)]^i$
   \DisplayProof
   \]
-  where $t$ is the first term containing only !!{constant}s in~$C$ not
-  already used in the reduction of $\lexists[x][!B(x)]$ on the right
-  below this sequent (or $\Obj c_0$ if all such terms have been used).
-  The set of !!{constant}s assigned to the new sequent is $C$.
-  \item The cases where $!A \ident \lforall[x][!B(x)]$ are similar and
-  left as exercises.
+  其中 $t$ 是仅由~$C$ 中常项符号构成、且在此相继式下方对 $\lexists[x][!B(x)]$ 进行右侧归约时尚未使用过的第一个项（若所有这样的项均已使用，则取 $\Obj c_0$）。指派给新相继式的常项符号集合是 $C$。
+  \item $!A \ident \lforall[x][!B(x)]$ 的情况类似，留作练习。
 \end{enumerate}
 
-If at stage $n+1$ we have not added a new sequent to any topmost
-sequent, the algorithm terminates successfully. In this case we have
-found !!a{proof} of~$\Gamma \Sequent \Delta$, obtained from the tree
-at stage $n+1$ by erasing all indices. The topmost sequents are all of
-the form $!A, \Pi \Sequent \Lambda, !A$ or of the form $\lfalse, \Pi
-\Sequent \Lambda$. All inferences are correct inferences of~\Log{G3c}.
-This is obvious for the propositional inferences. Observe that at each
-step, the set~$C$ of !!{constant}s assigned to a sequent contains all
-the !!{constant}s occuring in the sequent. Hence, in the reduction
-using \LeftR{\lexists} and \RightR{\lforall}, the eigenvariable
-condition is satisfied, since the eigenvariable~$c$ was !!a{constant}
-not in the set~$C$ assigned to the conclusion, $c$ also did not occur
-in the conclusion. We have:
+如果在阶段 $n+1$ 我们没有向任何顶端相继式添加新的相继式，那么算法成功终止。此时，我们通过擦除阶段 $n+1$ 的树中所有指标，便得到了~$\Gamma \Sequent \Delta$ 的一个推导。顶端相继式都具有 $!A, \Pi \Sequent \Lambda, !A$ 的形式，或具有 $\lfalse, \Pi \Sequent \Lambda$ 的形式。所有的推理都是~\Log{G3c} 的正确推理。这对命题推理而言是显然的。注意，在每一步，指派给一个相继式的常项符号集合~$C$ 包含了该相继式中出现的所有常项符号。因此，在使用 \LeftR{\lexists} 和 \RightR{\lforall} 进行归约时，本征变元条件是满足的，因为本征变元~$c$ 是一个不在结论的常项符号集合~$C$ 中的常项符号，所以 $c$ 也不出现在结论中。我们得到：
 
 \begin{prop}
-The proof search algorithm for \Log{G3c} is correct: if it terminates
-successfully, the starting sequent~$\Gamma \Sequent \Delta$ has
-!!a{proof}.
+\Log{G3c} 的证明搜索算法是正确的：如果它成功终止，则起始相继式~$\Gamma \Sequent \Delta$ 有推导。
 \end{prop}
 
 

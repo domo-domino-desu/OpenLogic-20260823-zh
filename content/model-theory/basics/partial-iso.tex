@@ -7,217 +7,149 @@
 \begin{document}
 
 \olfileid{mod}{bas}{pis}
-\section{Partial Isomorphisms}
+\section{部分同构}
 
 \begin{defn}
-  Given two !!{structure}s $\Struct{M}$ and $\Struct{N}$, a
-  \emph{partial isomorphism} from $\Struct{M}$ to $\Struct{N}$ is a
-  finite partial function $p$ taking arguments in $\Domain M$ and returning
-  values in $\Domain N$, which satisfies the isomorphism conditions from
-  \olref[iso]{defn:isomorphism} on its domain:
+  给定两个结构 $\Struct{M}$ 和 $\Struct{N}$，从 $\Struct{M}$ 到 $\Struct{N}$ 的一个
+  \emph{部分同构}是一个有限偏函数 $p$，其自变元取自 $\Domain M$ 且取值于 $\Domain N$，
+  并在其定义域上满足 \olref[iso]{defn:isomorphism} 中的同构条件：
   \begin{enumerate}
-  \item $p$ is !!{injective};
-  \item for every !!{constant}~$c$: if $p(\Assign{c}{M})$ is defined,
-    then $p(\Assign{c}{M}) = \Assign{c}{N}$;
-  \item for every $n$-place !!{predicate} $P$: if $a_1$, \dots, $a_n$
-    are in the domain of $p$, then $\langle a_1, \dots, a_n\rangle \in
-    \Assign P M$ if and only if $\langle p(a_1), \dots, p(a_n) \rangle
-    \in \Assign P N$;
-  \item for every $n$-place !!{function} $f$: if $a_1$, \dots, $a_n$
-    are in the domain of $p$, then $p(\Assign f M (a_1, \dots,a_n))
-    = \Assign f N (p(a_1), \dots, p(a_n))$.
+  \item $p$ 是单射的；
+  \item 对每个常项符号~$c$：若 $p(\Assign{c}{M})$ 有定义，
+    则 $p(\Assign{c}{M}) = \Assign{c}{N}$；
+  \item 对每个 $n$ 元谓词符号 $P$：若 $a_1$、\dots、$a_n$
+    在 $p$ 的定义域中，则 $\langle a_1, \dots, a_n\rangle \in
+    \Assign P M$ 当且仅当 $\langle p(a_1), \dots, p(a_n) \rangle
+    \in \Assign P N$；
+  \item 对每个 $n$ 元函数符号 $f$：若 $a_1$、\dots、$a_n$
+    在 $p$ 的定义域中，则 $p(\Assign f M (a_1, \dots,a_n))
+    = \Assign f N (p(a_1), \dots, p(a_n))$。
   \end{enumerate}
-  That $p$ is finite means that $\dom{p}$ is finite.
+  所谓 $p$ 是有限的，是指 $\dom{p}$ 是有限的。
 \end{defn}
 
-Notice that the empty function~$\emptyset$ is always a partial
-isomorphism between any two !!{structure}s.
+注意空函数~$\emptyset$ 总是任意两个结构之间的一个部分同构。
 
 \begin{defn}\ollabel{defn:partialisom}
-  Two !!{structure}s $\Struct{M}$ and $\Struct{N}$, are
-  \emph{partially isomorphic}, written $\Struct{M} \iso[p]
-  \Struct{N}$, if and only if there is a non-empty set $I$
-  of partial isomorphisms between $\Struct{M}$ and $\Struct{N}$
-  satisfying the \emph{back-and-forth} property:
+  两个结构 $\Struct{M}$ 与 $\Struct{N}$ 是\emph{部分同构的}，记作 $\Struct{M} \iso[p]
+  \Struct{N}$，
+  当且仅当存在一个 $\Struct{M}$ 与 $\Struct{N}$ 之间的非空部分同构集合 $I$，
+  满足以下的\emph{来回性质}：
   \begin{enumerate}
-  \item (\emph{Forth}) For every $p \in I$ and $a \in \Domain M$
-    there is $q \in I$ such that $p \subseteq q$ and $a$ is
-    in the domain of $q$;
-  \item (\emph{Back}) For every $p \in I$ and $b \in \Domain N$
-    there is $q \in I$ such that $p \subseteq q$ and $b$ is
-    in the range of $q$.
+  \item (\emph{向前}) 对每个 $p \in I$ 和每个 $a \in \Domain M$，
+    存在 $q \in I$ 使得 $p \subseteq q$ 且 $a$ 在 $q$ 的定义域中；
+  \item (\emph{向后}) 对每个 $p \in I$ 和每个 $b \in \Domain N$，
+    存在 $q \in I$ 使得 $p \subseteq q$ 且 $b$ 在 $q$ 的值域中。
   \end{enumerate}
 \end{defn}
 
 \begin{thm}\ollabel{thm:p-isom1}
-  If $\Struct{M} \iso[p] \Struct{N}$ and $\Struct{M}$ and
-  $\Struct{N}$ are !!{enumerable}, then $\Struct{M} \iso
-  \Struct{N}$.
+  如果 $\Struct{M} \iso[p] \Struct{N}$ 且 $\Struct{M}$ 和
+  $\Struct{N}$ 是可数的，则 $\Struct{M} \iso
+  \Struct{N}$。
 \end{thm}
 
 \begin{proof}
-  Since $\Struct{M}$ and $\Struct{N}$ are !!{enumerable}, let $\Domain{M} =
-  \{a_0, a_1, \ldots \}$ and $\Domain{N} = \{b_0, b_1, \ldots \}$. Starting
-  with an arbitrary $p_0 \in I$, we define an increasing
-  sequence of partial isomorphisms $p_0 \subseteq p_1 \subseteq p_2
-  \subseteq \cdots$ as follows:
+  由于 $\Struct{M}$ 和 $\Struct{N}$ 是可数的，设 $\Domain{M} =
+  \{a_0, a_1, \ldots \}$ 和 $\Domain{N} = \{b_0, b_1, \ldots \}$。从
+  任意一个 $p_0 \in I$ 出发，我们如下定义一个递增的部分同构序列 $p_0 \subseteq p_1 \subseteq p_2
+  \subseteq \cdots$：
   \begin{enumerate}
-  \item if $n+1$ is odd, say $n = 2r$, then using the Forth property
-    find a $p_{n+1} \in I$ such that $p_n \subseteq p_{n+1}$
-    and $a_r$ is in the domain of $p_{n+1}$;
-  \item if $n+1$ is even, say $n+1 =2r$, then using the Back property
-    find a $p_{n+1} \in I$ such that $p_n \subseteq p_{n+1}$
-    and $b_r$ is in the range of $p_{n+1}$.
+  \item 若 $n+1$ 是奇数，比方说 $n = 2r$，则利用向前性质
+    找到一个 $p_{n+1} \in I$，使得 $p_n \subseteq p_{n+1}$
+    且 $a_r$ 在 $p_{n+1}$ 的定义域中；
+  \item 若 $n+1$ 是偶数，比方说 $n+1 = 2r$，则利用向后性质
+    找到一个 $p_{n+1} \in I$，使得 $p_n \subseteq p_{n+1}$
+    且 $b_r$ 在 $p_{n+1}$ 的值域中。
   \end{enumerate}
-If we now put:
-\[
+  现令：
+  \[
 p = \bigcup_{n\ge 0} p_n,
 \]
-we have that $p$ is a an isomorphism between $\Struct{M}$ and
-$\Struct{N}$.
+  则 $p$ 是 $\Struct{M}$ 与 $\Struct{N}$ 之间的一个同构。
 \end{proof}
 
 \begin{prob}
-  Show in detail that $p$ as defined in
-  \olref[mod][bas][pis]{thm:p-isom1} is in fact an isomorphism.
+  详细证明 \olref[mod][bas][pis]{thm:p-isom1} 中定义的 $p$ 确实是一个同构。
 \end{prob}
 
 \begin{thm}\ollabel{thm:p-isom2}
-  Suppose $\Struct{M}$ and $\Struct{N}$ are !!{structure}s for a
-  purely relational !!{language} (!!a{language} containing only
-  !!{predicate}s, and no !!{function}s or constants). Then if
-  $\Struct{M} \iso[p] \Struct{N}$, also $\Struct{M} \elemequiv
-  \Struct{N}$.
+  设 $\Struct{M}$ 和 $\Struct{N}$ 是纯关系语言（即只包含
+  谓词符号，不含函数符号或常项符号的语言）的结构。那么若
+  $\Struct{M} \iso[p] \Struct{N}$，则 $\Struct{M} \elemequiv
+  \Struct{N}$。
 \end{thm}
 
 \begin{proof}
-  By induction on !!{formula}s, one shows that if $a_1$, \dots, $a_n$ and
-  $b_1$, \dots, $b_n$ are such that there is a partial isomorphism $p$
-  mapping each $a_i$ to $b_i$ and $s_1(x_i) =a_i$ and $s_2(x_i) =b_i$
-  (for $i =1$, \dots,~$n$), then $\Sat{M}{!A}[s_1]$ if
-  and only if $\Sat{N}{!A}[s_2]$. The case for $n=0$
-  gives $\Struct{M} \elemequiv \Struct{N}$.
+  通过对公式进行归纳可以证明：若 $a_1$、\dots、$a_n$ 和
+  $b_1$、\dots、$b_n$ 使得存在一个部分同构 $p$
+  将每个 $a_i$ 映射到 $b_i$，且 $s_1(x_i) =a_i$ 且 $s_2(x_i) =b_i$
+  （其中 $i = 1$，\dots，$n$），则 $\Sat{M}{!A}[s_1]$ 当且仅当
+  $\Sat{N}{!A}[s_2]$。$n=0$ 时的情形便给出 $\Struct{M} \elemequiv \Struct{N}$。
 \end{proof}
 
 \begin{rem}
-If !!{function}s are present, the previous result is still true, but
-one needs to consider the isomorphism induced by $p$ between the
-sub!!{structure} of $\Struct{M}$ generated by $a_1$, \dots, $a_n$ and the
-sub!!{structure} of $\Struct{N}$ generated by $b_1$, \dots, $b_n$.
+若语言中包含函数符号，上述结果仍然成立，但需要考察由 $p$ 在
+由 $a_1$、\dots、$a_n$ 生成的 $\Struct{M}$ 的子结构与由 $b_1$、\dots、$b_n$ 生成的 $\Struct{N}$ 的子结构之间诱导的同构。
 \end{rem}
 
-The previous result can be ``broken down'' into stages by establishing a
-connection between the number of nested quantifiers in !!a{formula} and
-how many times the relevant partial isomorphisms can be extended.
+通过建立公式中嵌套量词的层数与相关部分同构可被扩充的次数之间的联系，上述结果可被“分解”为不同的阶段。
 
 \begin{defn}
-  For any !!{formula}~$!A$, the \emph{quantifier rank} of $!A$, denoted
-  by $\QuantRank{!A} \in \Nat$, is recursively defined as
-  the highest number of nested quantifiers in $!A$.  Two
-  !!{structure}s $\Struct{M}$ and $\Struct{N}$ are \emph{$n$-equivalent},
-  written $\Struct{M} \elemequiv[n] \Struct{N}$, if they agree on all
-  sentences of quantifier rank less than or equal to~$n$.
+  对任意公式 $!A$，其\emph{量词秩}，记作
+  $\QuantRank{!A}$（$\QuantRank{!A} \in \Nat$），递归地定义为 $!A$ 中嵌套量词的
+  最大层数。两个结构 $\Struct{M}$ 与 $\Struct{N}$ 是\emph{$n$-等价的}，
+  记作 $\Struct{M} \elemequiv[n] \Struct{N}$，如果它们在所有量词秩小于等于 $n$ 的语句上真值一致。
 \end{defn}
 
 \begin{prop}\ollabel{prop:qr-finite}
-  Let $\Lang{L}$ be a finite purely relational !!{language}, i.e., a
-  !!{language} containing finitely many !!{predicate}s and !!{constant}s,
-  and no !!{function}s. Then for each $n \in \Nat$ there are
-  only finitely many first-order !!{sentence}s in the !!{language}
-  $\Lang{L}$ that have quantifier rank no greater than $n$, up to
-  logical equivalence.
+  设 $\Lang{L}$ 是一个有限的纯关系语言，即一个包含有限多个谓词符号和常项符号，
+  且没有函数符号的语言。则对每个 $n \in \Nat$，在语言
+  $\Lang{L}$ 中，量词秩不超过 $n$ 的一阶语句在逻辑等价的意义下只有有限多个。
 \end{prop}
 
 \begin{proof}
-  By induction on $n$.
+  对 $n$ 进行归纳。
 \end{proof}
 
 \begin{defn}
-  Given !!a{structure}~$\Struct{M}$, let $\Domain M^{<\omega}$ be the set of
-  all finite sequences over $\Domain{M}$. We use $\mathbf{a},
-  \mathbf{b}, \mathbf{c}, \ldots$ to range over finite sequences of
-  elements. If $\mathbf{a} \in \Domain{M}^{<\omega}$ and $a \in \Domain{M}$, then
-  $\mathbf{a}a$ represents the \emph{concatenation} of $\mathbf{a}$ with $a$.
+  给定结构~$\Struct{M}$，令 $\Domain M^{<\omega}$ 为 $\Domain{M}$ 上所有有限序列的集合。我们使用 $\mathbf{a},
+  \mathbf{b}, \mathbf{c}, \ldots$ 来表示元素的有限序列。
+  如果 $\mathbf{a} \in \Domain{M}^{<\omega}$ 且 $a \in \Domain{M}$，那么 $\mathbf{a}a$ 表示 $\mathbf{a}$ 与 $a$ 的\emph{拼接}。
 \end{defn}
 
 \begin{defn}
-  Given !!{structure}s $\Struct{M}$ and $\Struct{N}$, we define
-  relations $I_n \subseteq \Domain M^{<\omega} \times \Domain N^{<\omega}$ between
-  sequences of equal length, by recursion on $n$ as follows:
+  给定结构 $\Struct{M}$ 和 $\Struct{N}$，我们按 $n$ 递归定义等长序列之间的关系 $I_n \subseteq \Domain M^{<\omega} \times \Domain N^{<\omega}$ 如下：
    \begin{enumerate}
-   \item $I_0(\mathbf{a},\mathbf{b})$ if and only if $\mathbf{a}$ and
-     $\mathbf{b}$ satisfy the same atomic !!{formula}s in  $\Struct{M}$
-     and  $\Struct{N}$; i.e., if $s_1(x_i) = a_i$ and $s_2(x_i) =
-     b_i$ and $!A$ is atomic with all !!{variable}s among
-     $x_1$, \dots,~$x_n$, then $\Sat{M}{!A}[s_1]$ if and
-     only if~$\Sat{N}{!A}[s_2]$.
-   \item $I_{n+1} (\mathbf{a},\mathbf{b})$ if and only if for every
-     $a\in \Domain M$ there is a $b\in \Domain N$ such that $I_n
-     (\mathbf{a}a,\mathbf{b}b)$, and vice-versa.
+   \item $I_0(\mathbf{a},\mathbf{b})$ 当且仅当 $\mathbf{a}$ 和 $\mathbf{b}$ 在 $\Struct{M}$ 和 $\Struct{N}$ 中满足相同的原子公式；即，如果 $s_1(x_i) = a_i$ 且 $s_2(x_i) =
+     b_i$ 且 $!A$ 是原子公式，且其所有变元都在 $x_1$, \dots,~$x_n$ 之中，那么 $\Sat{M}{!A}[s_1]$ 当且仅当~$\Sat{N}{!A}[s_2]$。
+   \item $I_{n+1} (\mathbf{a},\mathbf{b})$ 当且仅当对于每个 $a\in \Domain M$，存在 $b\in \Domain N$ 使得 $I_n
+     (\mathbf{a}a,\mathbf{b}b)$，反之亦然。
    \end{enumerate}
 \end{defn}
 
 
 \begin{defn}
-  Write $\Struct{M} \approx_n \Struct{N}$ if
-  $I_n(\emptyseq,\emptyseq)$ holds of $\Struct{M}$ and
-  $\Struct{N}$ (where $\emptyseq$ is the empty sequence).
+  如果 $I_n(\emptyseq,\emptyseq)$ 对 $\Struct{M}$ 和 $\Struct{N}$ 成立（其中 $\emptyseq$ 是空序列），则记作 $\Struct{M} \approx_n \Struct{N}$。
 \end{defn}
 
 \begin{thm}\ollabel{thm:b-n-f}
-  Let $\Lang{L}$ be a purely relational !!{language}. Then $I_n
-  (\mathbf{a},\mathbf{b})$ implies that for every $!A$ such that
-  $\QuantRank{!A} \le n$, we have $\Sat{M}{!A}[\mathbf{a}]$ if and
-  only if $\Sat{N}{!A}[\mathbf{b}]$ (where again $\mathbf{a}$
-  satisfies $!A$ if any $s$ such that $s(x_i) = a_i$ satisfies
-  $!A$). Moreover, if $\Lang{L}$ is finite, the converse also holds.
+  设 $\Lang{L}$ 是一个纯关系语言。则 $I_n
+  (\mathbf{a},\mathbf{b})$ 蕴含：对每个满足 $\QuantRank{!A} \le n$ 的 $!A$，都有 $\Sat{M}{!A}[\mathbf{a}]$ 当且仅当 $\Sat{N}{!A}[\mathbf{b}]$（此处 $\mathbf{a}$ 满足 $!A$ 仍是指任何满足 $s(x_i) = a_i$ 的 $s$ 都满足 $!A$）。此外，若 $\Lang{L}$ 有限，其逆命题也成立。
 \end{thm}
 
 \begin{proof}
-  The proof that $I_n(\mathbf{a},\mathbf{b})$ implies that
-  $\mathbf{a}$ and $\mathbf{b}$ satisfy the same !!{formula}s of
-  quantifier rank no greater than $n$ is by an easy induction on
-  $!A$. For the converse we proceed by induction on $n$, using
-  \olref{prop:qr-finite}, which ensures that for each $n$
-  there are at most finitely many non-equivalent !!{formula}s of that
-  quantifier rank.
+  $I_n(\mathbf{a},\mathbf{b})$ 蕴含 $\mathbf{a}$ 和 $\mathbf{b}$ 满足相同量词秩不超过 $n$ 的公式，这一点的证明通过对 $!A$ 进行简单的归纳即可完成。对于逆命题，我们通过对 $n$ 的归纳来证明，其中使用了 \olref{prop:qr-finite}，它保证了对于每个 $n$，至多只有有限多个互不等价的公式具有该量词秩。
 
-  For $n=0$ the hypothesis that $\mathbf{a}$ and $\mathbf{b}$ satisfy
-  the same quantifier-free !!{formula}s gives that they satisfy the same
-  atomic ones, so that $I_0(\mathbf{a},\mathbf{b})$.
+  对于 $n=0$，假设 $\mathbf{a}$ 和 $\mathbf{b}$ 满足相同的无量词公式，可推出它们满足相同的原子公式，因此有 $I_0(\mathbf{a},\mathbf{b})$。
 
-  For the $n+1$ case, suppose that $\mathbf{a}$ and $\mathbf{b}$
-  satisfy the same !!{formula}s of quantifier rank no greater than
-  $n+1$; in order to show that $I_{n+1}(\mathbf{a},\mathbf{b})$
-  suffices to show that for each $a \in \Domain M$ there is a $b \in
-  \Domain N$ such that $I_n(\mathbf{a}a,\mathbf{b}b)$, and by the
-  inductive hypothesis again suffices to show that for each $a \in
-  \Domain M$ there is a $b \in \Domain N$ such that $\mathbf{a}a$ and
-  $\mathbf{b}b$ satisfy the same !!{formula}s of quantifier rank no
-  greater than $n$.
+  对于 $n+1$ 的情况，假设 $\mathbf{a}$ 和 $\mathbf{b}$ 满足相同量词秩不超过 $n+1$ 的公式；为证明 $I_{n+1}(\mathbf{a},\mathbf{b})$，只需证明对于每个 $a \in \Domain M$，存在 $b \in \Domain N$ 使得 $I_n(\mathbf{a}a,\mathbf{b}b)$，而根据归纳假设，只需证明对于每个 $a \in \Domain M$，存在 $b \in \Domain N$ 使得 $\mathbf{a}a$ 和 $\mathbf{b}b$ 满足相同量词秩不超过 $n$ 的公式。
 
-  Given $a \in \Domain M$, let $!T^a_n$ be set of !!{formula}s
-  $!B(x,\mathbf{y})$ of rank no greater than $n$ satisfied by
-  $\mathbf{a}a$ in $\Struct{M}$; $!T^a_n$ is finite, so we can
-  assume it is a single first-order !!{formula}. It follows that
-  $\mathbf{a}$ satisfies $\lexists[x][!T^a_n(x,\mathbf{y})]$, which
-  has quantifier rank no greater than $n+1$. By hypothesis
-  $\mathbf{b}$ satisfies the same !!{formula} in $\Struct{N}$, so that
-  there is a $b \in \Domain N$ such that $\mathbf{b}b$ satisfies
-  $!T^a_n$; in particular, $\mathbf{b}b$ satisfies the same
-  !!{formula}s of quantifier rank no greater than $n$ as
-  $\mathbf{a}a$. Similarly one shows that for every $b \in \Domain N$
-  there is $a\in \Domain M$ such that $\mathbf{a}a$ and $\mathbf{b}b$
-  satisfy the same !!{formula}s of quantifier rank no greater than $n$,
-  which completes the proof.
+  给定 $a \in \Domain M$，令 $!T^a_n$ 为 $\mathbf{a}a$ 在 $\Struct{M}$ 中满足的、量词秩不超过 $n$ 的所有公式 $!B(x,\mathbf{y})$ 组成的集合；$!T^a_n$ 是有限的，因此我们可以假设它是一个单个的一阶公式。由此可知，$\mathbf{a}$ 满足 $\lexists[x][!T^a_n(x,\mathbf{y})]$，该公式的量词秩不超过 $n+1$。根据假设，$\mathbf{b}$ 在 $\Struct{N}$ 中也满足同一个公式，因此存在 $b \in \Domain N$ 使得 $\mathbf{b}b$ 满足 $!T^a_n$；特别地，$\mathbf{b}b$ 与 $\mathbf{a}a$ 满足相同量词秩不超过 $n$ 的公式。类似地可以证明，对于每个 $b \in \Domain N$，都存在 $a\in \Domain M$ 使得 $\mathbf{a}a$ 和 $\mathbf{b}b$ 满足相同量词秩不超过 $n$ 的公式，这就完成了证明。
 \end{proof}
 
 \begin{cor}\ollabel{cor:b-n-f}
-  If $\Struct{M}$ and $\Struct{N}$ are purely relational !!{structure}s
-  in a finite !!{language}, then $\Struct{M} \approx_n\Struct{N}$ if and
-  only if $\Struct{M} \elemequiv[n] \Struct{N}$. In particular
-  $\Struct{M} \elemequiv \Struct{N}$ if and only if for each $n$,
-  $\Struct{M} \approx_n \Struct{N}$ .
+  若 $\Struct{M}$ 和 $\Struct{N}$ 是有限语言中的纯关系结构，则 $\Struct{M} \approx_n\Struct{N}$ 当且仅当 $\Struct{M} \elemequiv[n] \Struct{N}$。特别地，$\Struct{M} \elemequiv \Struct{N}$ 当且仅当对于每个 $n$，有 $\Struct{M} \approx_n \Struct{N}$。
 \end{cor}
 
 \end{document}

@@ -8,88 +8,41 @@
 
 \olfileid{nml}{prf}{prf}
 
-\olsection{\usetoken{P}{derivation} and Modal Systems}
+\olsection{\usetoken{P}{derivation} 与模态系统}
 
-We first define what !!a{derivation} is for normal modal
-logics. Roughly, !!a{derivation} is a sequence of !!{formula}s in
-which every !!{element} is either (a substitution instance of) one of
-a number of \emph{axioms}, or follows from previous !!{element}s by
-one of a few inference rules. For normal modal logics, all instances
-of tautologies\iftag{prvDiamond}{, \Ax{K}, and~\Dual{}}{ and~\Ax{K}}
-count as axioms. This results in the modal system~$\Log{K}$, the
-smallest normal modal logic. We may wish to add additional axioms to
-obtain other systems, however. The rules are always modus ponens~\MP{}
-and necessitation~\Nec.
+我们首先定义正规模态逻辑中的推导。粗略而言，推导是一个公式序列，其中每个元素要么是若干\emph{公理}之一的代入实例，要么通过某几条推理规则之一由前面的元素得出。对于正规模态逻辑，所有重言式实例\iftag{prvDiamond}{、\Ax{K} 和~\Dual{}}{以及~\Ax{K}}均算作公理。这就得到了模态系统~$\Log{K}$，即最小的正规模态逻辑。不过，我们有时希望增加额外公理以得到其他系统。推理规则则始终是肯定前件~\MP{} 和必然化规则~\Nec。
 
 \begin{defn}
-  Given a modal system $\Log{K} !A_1 \dots !A_n$ and !!a{formula}~$!B$
-  we say that $!B$ is \emph{!!{derivable}} in $\Log{K} !A_1 \dots
-  !A_n$, written $\Log{K} !A_1 \dots !A_n \Proves !B$, if and only if
-  there are !!{formula}s $!C_1$, \dots, $!C_k$ such that $!C_k = !B$
-  and each $!C_i$ is either a tautological instance, or an instance of
-  one of $\Ax{K}$,\iftag{prvDiamond}{ $\Dual$,}{} $!A_1$,
-  \dots, $!A_n$, or it follows from previous !!{formula}s by means of
-  the rules \MP{} or~\Nec.
+  给定一个模态系统 $\Log{K} !A_1 \dots !A_n$ 和一个公式~$!B$，我们称 $!B$ 在 $\Log{K} !A_1 \dots
+  !A_n$ 中是\emph{可推导的}，记作 $\Log{K} !A_1 \dots !A_n \Proves !B$，当且仅当存在公式 $!C_1$, \dots, $!C_k$ 使得 $!C_k = !B$，且每个 $!C_i$ 要么是一个重言式实例，要么是 $\Ax{K}$、\iftag{prvDiamond}{ $\Dual$、}{} $!A_1$, \dots, $!A_n$ 中之一的实例，要么是通过规则 \MP{} 或 \Nec 由前面的公式得出。
 \end{defn}
 
-The following proposition allows us to show that $!B \in \Sigma$
-by exhibiting a $\Sigma$-!!{derivation} of~$!B$.
+下述命题使得我们能够通过展示~$!B$ 的一个 $\Sigma$-推导来证明 $!B \in \Sigma$。
 
 \begin{prop}
   $\Log{K} !A_1 \dots !A_n = \Setabs{!B}{\Log{K} !A_1 \dots !A_n \Proves !B}$.
 \end{prop}
 
 \begin{proof}
-  We use induction on the length of !!{derivation}s to show that
-  $\Setabs{!B}{\Log{K} !A_1 \dots !A_n \Proves !B} \subseteq
-  \Log{K} !A_1 \dots !A_n$.
+  我们对推导的长度进行归纳，以证明 $\Setabs{!B}{\Log{K} !A_1 \dots !A_n \Proves !B} \subseteq
+  \Log{K} !A_1 \dots !A_n$。
 
-  If the !!{derivation} of~$!B$ has length~$1$, it contains a single
-  !!{formula}. That !!{formula} cannot follow from previous formulas
-  by \MP{} or \Nec, so must be a tautological instance, an instance of
-  \Ax{K},\iftag{prvDiamond}{ $\Dual$,}{} or an instance
-  of one of $!A_1$, \dots,~$!A_n$. But $\Log{K}!A_1\dots!A_n$ contains
-  these as well, so $!B \in \Log{K}!A_1 \dots !A_n$.
+  若~$!B$ 的推导长度为~$1$，则它仅包含一个公式。该公式不可能通过 \MP{} 或 \Nec 由前面的公式得出，因此必定是一个重言式实例，或是 \Ax{K}\iftag{prvDiamond}{、$\Dual$}{} 或 $!A_1$, \dots,~$!A_n$ 中之一的实例。但 $\Log{K}!A_1\dots!A_n$ 也包含这些公式，故有 $!B \in \Log{K}!A_1 \dots !A_n$。
 
-  If the !!{derivation} of $!B$ has length~$> 1$, then $!B$ may in
-  addition be obtained by \MP{} or \Nec{} from !!{formula}s not
-  occurring as the last line in the !!{derivation}. If $!B$ follows
-  from $!C$ and $!C \lif !B$ (by \MP), then $!C$ and $!C \lif !B \in
-  \Log{K}!A_1 \dots !A_n$ by induction hypothesis. But every modal
-  logic is closed under modus ponens, so $!B \in \Log{K}!A_1 \dots
-  !A_n$. If $!B \equiv \Box !C$ follows from $!C$ by \Nec, then $!C
-  \in \Log{K}!A_1 \dots !A_n$ by induction hypothesis. But every
-  normal modal logic is closed under $\Nec$, so $!B \in
-  \Log{K}!A_1\dots!A_n$.
+  若 $!B$ 的推导长度~$> 1$，则 $!B$ 还可能是由推导中非最后一行的公式通过 \MP{} 或 \Nec{} 得到的。若 $!B$ 由 $!C$ 和 $!C \lif !B$ 通过 \MP 得出，则由归纳假设，$!C$ 与 $!C \lif !B \in
+  \Log{K}!A_1 \dots !A_n$。但每个模态逻辑都对肯定前件封闭，因此 $!B \in \Log{K}!A_1 \dots
+  !A_n$。若 $!B \equiv \Box !C$ 由 $!C$ 通过 \Nec 得出，则由归纳假设 $!C
+  \in \Log{K}!A_1 \dots !A_n$。但每个正规模态逻辑都对 $\Nec$ 封闭，因此 $!B \in
+  \Log{K}!A_1\dots!A_n$。
 
-  The converse inclusion follows by showing that
-  $\Sigma = \Setabs{!B}{\Log{K} !A_1 \dots !A_n \Proves !B }$ is a normal
-  modal logic containing all the instances of $!A_1$,
-  \dots, $!A_n$, and the observation that $\Log{K} !A_1 \dots !A_n$
-  is, by definition, the smallest such logic.
+  相反的包含关系可通过证明 $\Sigma = \Setabs{!B}{\Log{K} !A_1 \dots !A_n \Proves !B }$ 是一个包含 $!A_1$, \dots, $!A_n$ 的所有实例的正规模态逻辑，并根据定义 $\Log{K} !A_1 \dots !A_n$ 是这类逻辑中最小的一个而得证。
   \begin{enumerate}
-    \item Every tautology~$!B$ is a tautological instance, so
-      $\Log{K}!A_1\dots!A_n \Proves !B$, so $\Sigma$ contains all
-      tautologies.
-    \item If $\Log{K}!A_1\dots!A_n \Proves !C$ and
-      $\Log{K}!A_1\dots!A_n \Proves !C \lif !B$, then
-      $\Log{K}!A_1\dots!A_n \Proves !B$: Combine the !!{derivation} of
-      $!C$ with that of $!C \lif !B$, and add the line~$!B$. The last
-      line is justified by \MP{}. So $\Sigma$ is closed under modus
-      ponens.
-    \item If $!B$ has !!a{derivation}, then every substitution
-      instance of~$!B$ also has !!a{derivation}: apply the substitution
-      to every !!{formula} in the !!{derivation}. (Exercise: prove by
-      induction on the length of !!{derivation}s that the result is
-      also a correct !!{derivation}). So $\Sigma$ is closed under
-      uniform substitution. (We have now established that $\Sigma$
-      satisfies all conditions of a modal logic.)
-    \item We have $\Log{K}!A_1\dots!A_n \Proves \Ax{K}$, so $K \in \Sigma$.
-    \tagitem{prvDiamond}{We have
-      $\Log{K}!A_1\dots!A_n \Proves \Dual$, so $\Dual \in \Sigma$.}{}
-    \item If $\Log{K}!A_1\dots!A_n \Proves !C$, the additional
-      line~$\Box !C$ is justified by~\Nec. Consequently, $\Sigma$ is
-      closed under~\Nec. Thus, $\Sigma$ is normal.
+    \item 每个重言式~$!B$ 都是重言式实例，因此 $\Log{K}!A_1\dots!A_n \Proves !B$，故 $\Sigma$ 包含所有重言式。
+    \item 若 $\Log{K}!A_1\dots!A_n \Proves !C$ 且 $\Log{K}!A_1\dots!A_n \Proves !C \lif !B$，则 $\Log{K}!A_1\dots!A_n \Proves !B$：将 $!C$ 的推导与 $!C \lif !B$ 的推导合并，并添加一行~$!B$。最后一行的依据是 \MP{}。所以 $\Sigma$ 对肯定前件封闭。
+    \item 若 $!B$ 有一个推导，则~$!B$ 的每个代入实例也有一个推导：对该推导中的每个公式施行代入。（练习：通过对推导长度归纳，证明结果也是一个正确的推导。）因此 $\Sigma$ 对一致代入封闭。（至此我们已确立 $\Sigma$ 满足模态逻辑的所有条件。）
+    \item 我们有 $\Log{K}!A_1\dots!A_n \Proves \Ax{K}$，故 $K \in \Sigma$。
+    \tagitem{prvDiamond}{我们有 $\Log{K}!A_1\dots!A_n \Proves \Dual$，故 $\Dual \in \Sigma$。}{}
+    \item 若 $\Log{K}!A_1\dots!A_n \Proves !C$，则附加行~$\Box !C$ 的依据是~\Nec。因此，$\Sigma$ 对~\Nec 封闭。故 $\Sigma$ 是正规模态逻辑。
   \end{enumerate}
 \end{proof}
 

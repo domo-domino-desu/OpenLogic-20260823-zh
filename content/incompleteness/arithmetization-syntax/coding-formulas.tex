@@ -7,82 +7,64 @@
 \begin{document}
 
 \olfileid{inc}{art}{frm}
-\olsection{Coding \printtoken{P}{formula}}
+\olsection{编码 \printtoken{P}{formula}}
 
-Once we have defined the relation $\fn{Term}(x)$ primitive
-recursively, we can use it to define the corresponding relation for
-!!{formula}s, $\fn{Frm}(x)$ primitive recursively.
+一旦原始递归地定义了关系 $\fn{Term}(x)$，我们便可用它来原始递归地定义公式对应的关系 $\fn{Frm}(x)$。
 
 \begin{prop}
-The relation $\fn{Atom}(x)$ which holds iff $x$ is the G\"odel number
-of an atomic !!{formula}, is primitive recursive.
+关系 $\fn{Atom}(x)$（当且仅当 $x$ 是原子公式的哥德尔数时成立）是原始递归的。
 \end{prop}
 
 \begin{proof}
-The number $x$ is the G\"odel number of an atomic !!{formula} iff
-one of the following holds:
+$x$ 是原子公式的哥德尔数，当且仅当以下条件之一成立：
 \begin{enumerate}
-\item There are $n$, $j < x$, and $z < x$ such that for each $i < n$,
-  $\fn{Term}((z)_i)$ and $x = $
+\item 存在 $n$、$j < x$ 和 $z < x$，使得对每个 $i < n$，
+  $\fn{Term}((z)_i)$ 且 $x = $
 \[
 \Gn{\Obj P^n_j(} \concat \fn{flatten}(z) \concat \Gn{)}.
 \]
-\item There are $z_1, z_2 < x$ such that $\fn{Term}(z_1)$,
-  $\fn{Term}(z_2)$, and $x = $
+\item 存在 $z_1, z_2 < x$，使得 $\fn{Term}(z_1)$ 且
+  $\fn{Term}(z_2)$，且 $x = $
 \[
 \Gn{{\eq}(} \concat z_1 \concat \Gn{,} \concat z_2 \concat{\Gn{)}}.
 \]
-  \tagitem{prvFalse}{$x = \Gn{\lfalse}$.}{}
-  \tagitem{prvTrue}{$x = \Gn{\ltrue}$.}{}
+  \tagitem{prvFalse}{$x = \Gn{\lfalse}$。}{}
+  \tagitem{prvTrue}{$x = \Gn{\ltrue}$。}{}
 \end{enumerate}
 \end{proof}
 
 \begin{prop}
 \ollabel{prop:frm-primrec}
-The relation $\fn{Frm}(x)$ which holds iff $x$ is the G\"odel number
-of !!a{formula} is primitive recursive.
+关系 $\fn{Frm}(x)$（当且仅当 $x$ 是公式的哥德尔数时成立）是原始递归的。
 \end{prop}
 
 \begin{proof}
-A sequence of symbols~$s$ is !!a{formula} iff there is formation
-sequence~$s_0$, \dots, $s_{k-1} = s$ of !!{formula} which records
-how~$s$ was formed from atomic !!{formula}s according to the
-formation rules.  The code for each $s_i$ (and indeed of the code of
-the sequence $\tuple{s_0, \dots, s_{k-1}}$) is less than the code~$x$
-of~$s$.
+符号序列~$s$ 是公式，当且仅当存在一个公式的形成序列~$s_0$, \dots, $s_{k-1} = s$，该序列记录了~$s$ 是如何根据形成规则由原子公式形成的。每个~$s_i$ 的编码（事实上整个序列 $\tuple{s_0, \dots, s_{k-1}}$ 的编码亦然）都小于~$s$ 的编码~$x$。
 \end{proof}
 
 \begin{prob}
-Give a detailed proof of \olref[inc][art][frm]{prop:frm-primrec} along
-the lines of the first proof of
-\olref[inc][art][trm]{prop:term-primrec}.
+请仿照 \olref[inc][art][trm]{prop:term-primrec} 的第一个证明的思路，详细给出 \olref[inc][art][frm]{prop:frm-primrec} 的证明。
 \end{prob}
 
 \begin{prop}
 \ollabel{prop:freeocc-primrec}
-The relation $\fn{FreeOcc}(x, z, i)$, which holds iff the $i$-th
-symbol of the formula with G\"odel number~$x$ is a free occurrence of
-the variable with G\"odel number~$z$, is primitive recursive.
+关系 $\fn{FreeOcc}(x, z, i)$（当且仅当哥德尔数为~$x$ 的公式的第~$i$ 个符号是哥德尔数为~$z$ 的变元的自由出现时成立）是原始递归的。
 \end{prop}
 
 \begin{proof}
-Exercise.
+留作练习。
 \end{proof}
 
 \begin{prob}
-Prove \olref[inc][art][frm]{prop:freeocc-primrec}.  You may make use
-of the fact that any substring of !!a{formula} which is !!a{formula}
-is a sub-!!{formula} of it.
+证明 \olref[inc][art][frm]{prop:freeocc-primrec}。你可以利用以下事实：公式中任何本身也是公式的子串，都是该公式的子公式。
 \end{prob}
 
 \begin{prop}
-The property $\fn{Sent}(x)$ which holds iff $x$~is the G\"odel
-number of !!a{sentence} is primitive recursive.
+性质 $\fn{Sent}(x)$（当且仅当~$x$ 是语句的哥德尔数时成立）是原始递归的。
 \end{prop}
 
 \begin{proof}
-A !!{sentence} is !!a{formula} without free occurrences of
-!!{variable}s. So $\fn{Sent}(x)$ holds iff
+语句是不含变元自由出现的公式。因此 $\fn{Sent}(x)$ 成立当且仅当
 \begin{multline*}
 \bforall{i<\len{x}}{\bforall{z<x}{}}\\
 (\bexists{j<z}{z=\Gn{\Obj v_j}} \lif \lnot\fn{FreeOcc}(x,z,i)).

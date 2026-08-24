@@ -7,74 +7,40 @@
 \begin{document}
 
 \olfileid{cmp}{rec}{pri}
-\olsection{Primes}
+\olsection{质数}
 
-Bounded quantification and bounded minimization provide us with a good
-deal of machinery to show that natural functions and relations are
-primitive recursive. For example, consider the relation ``$x$
-divides $y$'', written $x \mid y$.  The relation $x \mid y$ holds if
-division of $y$ by~$x$ is possible without remainder, i.e., if $y$ is
-an integer multiple of~$x$.  (If it doesn't hold, i.e., the remainder
-when dividing $x$ by $y$ is $> 0$, we write $x \nmid y$.) In other
-words, $x \mid y$ iff for some~$z$, $x \cdot z = y$.  Obviously, any
-such $z$, if it exists, must be $\leq y$. So, we have that $x \mid y$
-iff for some $z \le y$, $x \cdot z = y$.  We can define the relation
-$x \mid y$ by bounded existential quantification from $=$ and
-multiplication by
+有界量词和有界极小化为我们提供了大量工具，用于证明常见的函数与关系是原始递归的。例如，考虑关系“$x$ 整除 $y$”，记作 $x \mid y$。关系 $x \mid y$ 成立，当且仅当 $y$ 除以 $x$ 没有余数，也就是说，$y$ 是 $x$ 的整数倍。（如果不成立，即 $y$ 除以 $x$ 的余数 $> 0$，我们记作 $x \nmid y$。）换言之，$x \mid y$ 当且仅当存在某个 $z$ 使得 $x \cdot z = y$。显然，任何这样的 $z$，如果存在，必定 $\le y$。因此，$x \mid y$ 当且仅当存在某个 $z \le y$ 使得 $x \cdot z = y$。我们可以通过对 $=$ 和乘法进行有界存在量化来定义关系 $x \mid y$：
 \[
 x \mid y \defiff \bexists{z \leq y}{(x \cdot z) = y}.
 \]
-We've thus shown that $x \mid y$ is primitive recursive.
+由此便证明了 $x \mid y$ 是原始递归的。
 
-A natural number~$x$ is \emph{prime} if it is neither $0$ nor $1$ and
-is only divisible by $1$ and itself. In other words, prime numbers are
-such that, whenever $y \mid x$, either $y = 1$ or~$y=x$.  To test if
-$x$~is prime, we only have to check if $y \mid x$ for all $y \le x$,
-since if $y > x$, then automatically~$y \nmid x$.  So, the relation
-$\fn{Prime}(x)$, which holds iff $x$ is prime, can be defined by
+一个自然数 $x$ 是\emph{质数}，如果它既不是 $0$ 也不是 $1$，并且只能被 $1$ 和它自身整除。换言之，质数满足：只要 $y \mid x$，则要么 $y = 1$，要么 $y=x$。要检验 $x$ 是否为质数，我们只需对所有 $y \le x$ 检查 $y \mid x$ 是否成立，因为如果 $y > x$，则自动有 $y \nmid x$。因此，关系 $\fn{Prime}(x)$（它在且仅在 $x$ 为质数时成立）可以定义为
 \[
 \fn{Prime}(x) \defiff x \geq 2 \land \bforall{y \leq x}{(y \mid x \lif y
   = 1 \lor y = x)}
 \]
-and is thus primitive recursive.
+因而也是原始递归的。
 
-The primes are $2$, $3$, $5$, $7$, $11$, etc. Consider the function
-$p(x)$ which returns the $x$th prime in that sequence, i.e., $p(0) =
-2$, $p(1) = 3$, $p(2) = 5$, etc. (For convenience we will often write
-$p(x)$ as $p_x$ ($p_0=2$, $p_1=3$, etc.)
+质数有 $2$, $3$, $5$, $7$, $11$ 等。考虑函数 $p(x)$，它返回该序列中第 $x$ 个质数，即 $p(0) = 2$, $p(1) = 3$, $p(2) = 5$ 等。（为方便起见，我们常将 $p(x)$ 写作 $p_x$（$p_0=2$, $p_1=3$ 等）。）
 
-If we had a function
-$\fn{nextPrime(x)}$, which returns the first prime number larger
-than~$x$, $p$~can be easily defined using primitive recursion:
+如果我们有一个函数 $\fn{nextPrime(x)}$，它返回大于 $x$ 的第一个质数，那么 $p$ 就可以很容易地用原始递归定义：
 \begin{align*}
   p(0) & = 2\\
   p(x+1) & = \fn{nextPrime}(p(x))
 \end{align*}
-Since $\fn{nextPrime}(x)$ is the least $y$ such that $y > x$ and
-$y$~is prime, it can be easily computed by unbounded search. But it
-can also be defined by bounded minimization, thanks to a result due to
-Euclid: there is always a prime number between $x$ and $\fact{x}+1$.
+由于 $\fn{nextPrime}(x)$ 是满足 $y > x$ 且 $y$ 是质数的最小 $y$，它可以容易地通过无界搜索来计算。但根据 Euclid（欧几里得）的一个结果，它也可以用有界极小化来定义：在 $x$ 和 $\fact{x}+1$ 之间总存在一个质数。
 \[
   \fn{nextPrime(x)} =
   \bmin{y \leq \fact{x}+1}{(y > x \land \fn{Prime}(y))}.
 \]
-This shows, that $\fn{nextPrime}(x)$ and hence $p(x)$ are (not just
-computable but) primitive recursive.
+这表明 $\fn{nextPrime}(x)$ 进而 $p(x)$ 不仅是可计算的，而且是原始递归的。
 
-(If you're curious, here's a quick proof of Euclid's theorem. Suppose
-$p_n$ is the largest prime $\le x$ and consider the product $p =
-p_0\cdot p_1 \cdot \dots \cdot p_n$ of all primes~$\le x$. Either
-$p+1$ is prime or there is a prime between $x$ and~$p+1$.  Why?
-Suppose $p+1$ is not prime. Then some prime number $q \mid p+1$ where
-$q < p+1$. None of the primes $\le x$ divide $p+1$. (By definition
-of~$p$, each of the primes $p_i \le x$ divides~$p$, i.e., with
-remainder~$0$. So, each of the primes $p_i \le x$ divides $p+1$ with
-remainder~$1$, and so $p_i \nmid p+1$.)  Hence, $q$ is a prime $>
-x$ and $< p+1$.  And $p \le \fact{x}$, so there is a prime $> x$ and $\le
-\fact{x}+1$.)
+（如果你感到好奇，这里给出 Euclid 定理的一个快速证明。假设 $p_n$ 是 $\le x$ 的最大质数，并考虑所有 $\le x$ 的质数的乘积 $p =
+p_0\cdot p_1 \cdot \dots \cdot p_n$。要么 $p+1$ 是质数，要么在 $x$ 和 $p+1$ 之间存在一个质数。为什么呢？假设 $p+1$ 不是质数。那么存在某个质数 $q$ 使得 $q \mid p+1$ 且 $q < p+1$。所有 $\le x$ 的质数都不整除 $p+1$。（根据 $p$ 的定义，每个质数 $p_i \le x$ 都整除 $p$，即余数为 $0$。因此，每个质数 $p_i \le x$ 除 $p+1$ 的余数均为 $1$，所以 $p_i \nmid p+1$。）由此，$q$ 是一个大于 $x$ 且小于 $p+1$ 的质数。又因为 $p \le \fact{x}$，所以存在一个大于 $x$ 且 $\le \fact{x}+1$ 的质数。）
 
 \begin{prob}
-Define integer division $d(x, y)$ using bounded minimization.
+使用有界极小化定义整数除法 $d(x, y)$。
 \end{prob}
 
 \end{document}

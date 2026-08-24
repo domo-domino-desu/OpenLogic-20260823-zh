@@ -8,44 +8,21 @@
 
 \olfileid{mth}{ind}{int}
 
-\olsection{Introduction}
+\olsection{引言}
 
-Induction is an important proof technique which is used, in different
-forms, in almost all areas of logic, theoretical computer science, and
-mathematics.  It is needed to prove many of the results in logic.
+归纳法是一种重要的证明方法，它以不同的形式应用于逻辑、理论计算机科学和数学的几乎所有领域。逻辑中的许多结论都需要用它来证明。
 
-Induction is often contrasted with deduction, and characterized as the
-inference from the particular to the general.  For instance, if we
-observe many green emeralds, and nothing that we would call an emerald
-that's not green, we might conclude that all emeralds are green. This
-is an inductive inference, in that it proceeds from many particular
-cases (this emerald is green, that emerald is green, etc.) to a
-general claim (all emeralds are green).  \emph{Mathematical} induction
-is also an inference that concludes a general claim, but it is of a
-very different kind than this ``simple induction.''
+归纳法常与演绎法相对，并被刻画为一种从特殊到一般的推理。例如，如果我们观察到许多绿宝石，且未发现任何我们会称之为宝石却不绿的东西，我们或许会得出结论：所有宝石都是绿的。这是一种归纳推理，因为它从许多特殊情形（这颗宝石是绿的，那颗宝石是绿的，等等）推进到一个一般性主张（所有宝石都是绿的）。\emph{数学}归纳法同样是一种得出一般性主张的推理，但它与这种“简单归纳”截然不同。
 
-Very roughly, an inductive proof in mathematics concludes that all
-mathematical objects of a certain sort have a certain property.  In
-the simplest case, the mathematical objects an inductive proof is
-concerned with are natural numbers.  In that case an inductive proof
-is used to establish that all natural numbers have some property, and
-it does this by showing that
+粗略地说，数学中的归纳证明旨在得出如下结论：某种类型的所有数学对象都具有某个性质。在最简单的情形下，归纳证明所关心的数学对象是自然数。此时，归纳法用于确立所有自然数都具有某个性质，其方法是证明：
+
 \begin{enumerate}
-    \item $0$ has the property, and
-    \item whenever a number~$k$ has the property, so does~$k+1$.
+    \item $0$ 具有该性质，并且
+    \item 每当一个数~$k$ 具有该性质，则~$k+1$ 也具有该性质。
 \end{enumerate}
-Induction on natural numbers can then also often be used to prove
-general claims about mathematical objects that can be assigned numbers. For
-instance, finite sets each have a finite number~$n$ of elements, and
-if we can use induction to show that every number~$n$ has the property
-``all finite sets of size~$n$ are \dots'' then we will have shown
-something about all finite sets.
 
-Induction can also be generalized to mathematical objects that are
-\emph{inductively defined}.  For instance, expressions of a formal
-language such as those of first-order logic are defined inductively.
-\emph{Structural induction} is a way to prove results about all such
-expressions.  Structural induction, in particular, is very
-useful---and widely used---in logic.
+自然数归纳法也常常可以用来证明关于那些可被指派数字的数学对象的一般性主张。例如，每个有限集都有有限个元素，记其数量为~$n$；如果我们能用归纳法证明每个数~$n$ 都具有性质“所有大小为~$n$ 的有限集都\ldots”，那么我们就证明了关于所有有限集的某种结论。
+
+归纳法也可以推广到那些\emph{归纳定义}的数学对象上。例如，形式语言（如一阶逻辑）的表达式就是归纳定义的。\emph{结构归纳法}是一种用来证明关于所有此类表达式的相关结论的方法。特别是，结构归纳法在逻辑中非常有用，应用也十分广泛。
 
 \end{document}

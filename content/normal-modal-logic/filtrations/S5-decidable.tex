@@ -8,31 +8,26 @@
 
 \olfileid{nml}{fil}{dec}
 
-\olsection{\Log{S5} is Decidable}
-The finite model property gives us an easy way to show that systems of
-modal logic given by schemas are \emph{decidable} (i.e., that there is
-a computable procedure to determine whether !!a{formula} is !!{derivable} in
-the system or not).
+\olsection{\Log{S5} 是可判定的}
+有限模型性质为我们提供了一种简便方法，用以证明由模式定义的模态逻辑系统是\emph{可判定的}
+（即，存在一个可计算过程，能够判定任意公式在该系统中是否可推导）。
 
 \begin{thm}
-  \Log{S5} is decidable.
+  \Log{S5} 是可判定的。
 \end{thm}
 
 \begin{proof}
-  Let $!A$ be given, and suppose the !!{propositional variable}s
-  occurring in $!A$ are among $p_1$, \dots, $p_k$.  Since for each
-  $n$ there are only finitely many models with $n$ worlds assigning a
-  value to $p_1$, \dots, $p_k$, we can enumerate, \emph{in parallel}, all
-  the theorems of \Log{S5} by generating proofs in some systematic
-  way; and all the models containing $1$, $2$, \dots worlds and checking
-  whether $!A$ fails at a world in some such model. Eventually
-  one of the two parallel processes will give an answer, as by
-  \olref[com][fra]{thm:generaldet} and \olref[fmp]{cor:S5fmp}, either
-  $!A$ is !!{derivable} or it fails in a finite universal model.
+  给定 $!A$，并设 $!A$ 中出现的命题变元均在 $p_1$, \dots, $p_k$ 之中。
+  由于对每个 $n$，具有 $n$ 个世界且对 $p_1$, \dots, $p_k$ 赋值的模型只有有限多个，
+  因此我们可以通过某种系统的方式生成证明，来\emph{并行地}枚举 \Log{S5} 的所有定理；
+  同时枚举所有包含 $1$, $2$, \dots 个世界的模型，
+  并检查 $!A$ 是否在某个此类模型的某个世界上失效。
+  最终，这两个并行进程之一会给出答案，因为根据
+  \olref[com][fra]{thm:generaldet} 和 \olref[fmp]{cor:S5fmp}，
+  要么 $!A$ 是可推导的，要么 $!A$ 在某个有限全通模型中失效。
 \end{proof}
 
-The above proof works for \Log{S5} because filtrations of universal
-models are automatically universal. The same holds for reflexivity and
-seriality, but more work is needed for other properties.
+上述证明适用于 \Log{S5}，是因为全通模型的过滤自动保持全通性。
+这对自反性和序列性同样成立，但对于其他性质则需要更多工作。
 
 \end{document}

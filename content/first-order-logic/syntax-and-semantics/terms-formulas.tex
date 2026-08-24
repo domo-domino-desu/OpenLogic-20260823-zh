@@ -8,230 +8,178 @@
 
 \olfileid{fol}{syn}{frm}
 
-\olsection{Terms and \printtoken{P}{formula}}
+\olsection{项与\printtoken{P}{formula}}
 
-Once a first-order language~$\Lang L$ is given, we can define
-expressions built up from the basic vocabulary of~$\Lang L$.  These
-include in particular \emph{terms} and \emph{!!{formula}s}.
+一旦给定了某个一阶语言~$\Lang L$，我们就可以定义由~$\Lang L$ 的基本词汇构建的表达式。其中特别包括\emph{项}和\emph{公式}。
 
-\begin{defn}[Terms]
+\begin{defn}[项]
 \ollabel{defn:terms}
-The set of \emph{terms}~$\Trm[L]$ of~$\Lang L$ is
-defined inductively by:
+语言~$\Lang L$ 的\emph{项}集合~$\Trm[L]$ 归纳定义如下：
 \begin{enumerate}
-\item Every !!{variable} is a term.
-\item Every !!{constant} of~$\Lang L$ is a term.
-\item If $f$ is an $n$-place !!{function} and $t_1$, \dots, $t_n$
-  are terms, then $\Atom{f}{t_1, \ldots, t_n}$ is a term.
+\item 每个变元都是一个项。
+\item $\Lang L$ 的每个常项符号都是一个项。
+\item 若 $f$ 是一个 $n$ 元函数符号且 $t_1$, \dots, $t_n$
+  是项，则 $\Atom{f}{t_1, \ldots, t_n}$ 是一个项。
 \tagitem{limitClause}{
-  Nothing else is a term.}{}
+  此外皆非项。}{}
 \end{enumerate}
-A term containing no !!{variable}s is a \emph{closed term}.
+不含任何变元的项称为\emph{闭项}。
 \end{defn}
 
 \begin{explain}
-The !!{constant}s appear in our specification of the language and the
-terms as a separate category of symbols, but they could instead have
-been included as zero-place !!{function}s.  We could then do without
-the second clause in the definition of terms. We just have to
-understand $\Atom{f}{t_1, \ldots, t_n}$ as just $f$ by itself if $n =
-0$.
+常项符号在语言和项的定义中作为单独的一类符号出现，但它们本也可以被当作零元函数符号包含进来。那样的话，项定义中的第二条就可以省去了。我们只需将 $n = 0$ 时的 $\Atom{f}{t_1, \ldots, t_n}$ 理解为 $f$ 本身即可。
 \end{explain}
 
-\begin{defn}[Formulas]
+\begin{defn}[公式]
 \ollabel{defn:formulas}
-The set of \emph{!!{formula}s}~$\Frm[L]$ of the language~$\Lang L$
-is defined inductively as follows:
+语言~$\Lang L$ 的\emph{公式}集合~$\Frm[L]$ 归纳定义如下：
 \begin{enumerate}
-\tagitem{prvFalse}{$\lfalse$ is an atomic !!{formula}.}{}
+\tagitem{prvFalse}{$\lfalse$ 是一个原子公式。}{}
 
-\tagitem{prvTrue}{$\ltrue$ is an atomic !!{formula}.}{}
+\tagitem{prvTrue}{$\ltrue$ 是一个原子公式。}{}
 
-\item If $R$ is an $n$-place !!{predicate} of~$\Lang L$ and $t_1$, \dots,
-  $t_n$ are terms of~$\Lang L$, then $\Atom{R}{t_1,\ldots, t_n}$ is an
-  atomic !!{formula}.
+\item 若 $R$ 是~$\Lang L$ 的一个 $n$ 元谓词符号且 $t_1$, \dots,
+  $t_n$ 是~$\Lang L$ 的项，则 $\Atom{R}{t_1,\ldots, t_n}$ 是一个
+  原子公式。
 
-\item If $t_1$ and $t_2$ are terms of~$\Lang L$, then $\Atom{\eq}{t_1, t_2}$
-  is an atomic !!{formula}.
+\item 若 $t_1$ 与 $t_2$ 是~$\Lang L$ 的项，则 $\Atom{\eq}{t_1, t_2}$
+  是一个原子公式。
 
-\tagitem{prvNot}{If $!A$ is !!a{formula}, then $\lnot !A$ is
-  !!a{formula}.}{}
+\tagitem{prvNot}{若 $!A$ 是一个公式，则 $\lnot !A$ 是
+  一个公式。}{}
 
-\tagitem{prvAnd}{If $!A$ and $!B$ are !!{formula}s, then $(!A \land
-  !B)$ is !!a{formula}.}{}
+\tagitem{prvAnd}{若 $!A$ 与 $!B$ 是公式，则 $(!A \land
+  !B)$ 是一个公式。}{}
 
-\tagitem{prvOr}{If $!A$ and $!B$ are !!{formula}s, then $(!A \lor !B)$
-  is !!a{formula}.}{}
+\tagitem{prvOr}{若 $!A$ 与 $!B$ 是公式，则 $(!A \lor !B)$
+  是一个公式。}{}
 
-\tagitem{prvIf}{If $!A$ and $!B$ are !!{formula}s, then $(!A \lif !B)$
-  is !!a{formula}.}{}
+\tagitem{prvIf}{若 $!A$ 与 $!B$ 是公式，则 $(!A \lif !B)$
+  是一个公式。}{}
 
-\tagitem{prvIff}{If $!A$ and $!B$ are !!{formula}s, then $(!A \liff !B)$
-  is !!a{formula}.}{}
+\tagitem{prvIff}{若 $!A$ 与 $!B$ 是公式，则 $(!A \liff !B)$
+  是一个公式。}{}
 
-\tagitem{prvAll}{If $!A$ is !!a{formula} and $x$ is !!a{variable},
-  then $\lforall[x][!A]$ is !!a{formula}.}{}
+\tagitem{prvAll}{若 $!A$ 是一个公式且 $x$ 是一个变元，
+  则 $\lforall[x][!A]$ 是一个公式。}{}
 
-\tagitem{prvEx}{If $!A$ is !!a{formula} and $x$ is !!a{variable},
-  then $\lexists[x][!A]$ is !!a{formula}.}{}
+\tagitem{prvEx}{若 $!A$ 是一个公式且 $x$ 是一个变元，
+  则 $\lexists[x][!A]$ 是一个公式。}{}
 
-\tagitem{limitClause}{Nothing else is !!a{formula}.}{}
+\tagitem{limitClause}{此外皆非公式。}{}
 \end{enumerate}
 \end{defn}
 
 \begin{explain}
-The definitions of the set of terms and that of !!{formula}s are
-\emph{inductive definitions}.  Essentially, we construct the set of
-!!{formula}s in infinitely many stages.  In the initial stage, we
-pronounce all atomic formulas to be formulas; this corresponds to the
-first few cases of the definition, i.e., the cases for
+项集和公式集的定义都是\emph{归纳定义}。本质上，公式集是通过无穷多个阶段构建的。在初始阶段，我们规定所有原子公式都是公式；这对应于定义中的前几条，即关于
 \iftag{prvTrue}{$\ltrue$, }{}%
 \iftag{prvFalse}{$\lfalse$, }{}%
-$\Atom{R}{t_1,\dots,t_n}$ and $\Atom{\eq}{t_1,t_2}$. ``Atomic
-!!{formula}'' thus means any !!{formula} of this form.
+$\Atom{R}{t_1,\dots,t_n}$ 和 $\Atom{\eq}{t_1,t_2}$ 的情形。
+因此，“原子公式”指的就是任何具有这种形式的公式。
 
-The other cases of the definition give rules for constructing new
-!!{formula}s out of !!{formula}s already constructed.  At the second
-stage, we can use them to construct !!{formula}s out of atomic
-!!{formula}s.  At the third stage, we construct new formulas from the
-atomic formulas and those obtained in the second stage, and so on.  A
-!!{formula} is anything that is eventually constructed at such a
-stage, and nothing else.
+定义的其他条款给出了从已构造的公式出发构造新公式的规则。在第二阶段，我们可以用这些规则从原子公式构造公式。在第三阶段，我们从原子公式以及第二阶段得到的公式构造新的公式，依此类推。只有最终在某个阶段被构造出来的才是公式，此外皆非公式。
 \end{explain}
 
-By convention, we write $\eq$ between its arguments and leave out the
-parentheses: $\eq[t_1][t_2]$ is an abbreviation for
-$\Atom{\eq}{t_1,t_2}$.  Moreover, $\lnot \Atom{\eq}{t_1,t_2}$ is
-abbreviated as $\eq/[t_1][t_2]$. When writing a formula $(!B \ast !C)$
-constructed from $!B$, $!C$ using a two-place connective~$\ast$, we
-will often leave out the outermost pair of parentheses and write
-simply~$!B \ast !C$.
+按照惯例，我们将 $\eq$ 写在它的主目之间并省略括号：$\eq[t_1][t_2]$ 是
+$\Atom{\eq}{t_1,t_2}$ 的缩写。此外，$\lnot \Atom{\eq}{t_1,t_2}$ 被缩写为
+$\eq/[t_1][t_2]$。在书写由 $!B$, $!C$ 通过二元联结词~$\ast$ 构造的公式 $(!B \ast !C)$ 时，我们通常会省略最外面的一对括号，直接写作~$!B \ast !C$。
 
 \begin{intro}
-Some logic texts require that the !!{variable}~$x$ must occur in~$!A$
-in order for
+有些逻辑教材要求，要使
 \iftag{prvEx}{$\lexists[x][!A]$ }{}%
-\iftag{notprvEx,notprvAll}{}{and }%
+\iftag{notprvEx,notprvAll}{}{和 }%
 \iftag{prvAll}{$\lforall[x][!A]$ }{}%
-to count as
-\iftag{notprvEx,notprvAll}{!!a{formula}}{!!{formula}s}.
-Nothing bad happens if you don't require this, and it makes things
-easier.
+算作
+\iftag{notprvEx,notprvAll}{公式}{公式}，
+变元~$x$ 必须在~$!A$ 中出现。
+不作此要求也不会有任何问题，反而会使事情更简单。
 \end{intro}
 
 \begin{tagblock}{defNot,defOr,defAnd,defIf,defIff,defTrue,defFalse,defEx,defAll}
 \begin{defn}
-Formulas constructed using the defined operators are to be understood
-as follows:
+使用被定义的算子构造的公式应按以下方式理解：
 
 \begin{tagenumerate}{defTrue,defFalse,defNot,defOr,defAnd,defIf,defIff,defEx,defAll}
 
-\tagitem{defTrue}{$\ltrue$ abbreviates
-  \iftag{prvFalse}{$\lnot\lfalse$}{$(!A \lor \lnot !A)$ for some
-    fixed atomic !!{formula}~$!A$}.}{}
+\tagitem{defTrue}{$\ltrue$ 是
+  \iftag{prvFalse}{$\lnot\lfalse$}{$(!A \lor \lnot !A)$（$!A$ 为某固定原子公式）} 的缩写。}{}
 
-\tagitem{defFalse}{$\lfalse$ abbreviates
-  \iftag{prvTrue}{$\lnot\ltrue$}{$(!A \land \lnot !A)$ for some
-    fixed atomic !!{formula}~$!A$}.}{}
+\tagitem{defFalse}{$\lfalse$ 是
+  \iftag{prvTrue}{$\lnot\ltrue$}{$(!A \land \lnot !A)$（$!A$ 为某固定原子公式）} 的缩写。}{}
 
-\tagitem{defNot}{$\lnot !A$ abbreviates $!A \lif \lfalse$.}{}
+\tagitem{defNot}{$\lnot !A$ 是 $!A \lif \lfalse$ 的缩写。}{}
 
-\tagitem{defOr}{$!A \lor !B$ abbreviates
+\tagitem{defOr}{$!A \lor !B$ 是
   \iftag{prvAnd}{$\lnot(\lnot !A \land \lnot !B)$}{$\lnot !A \lif
-    !B$}.}{}
+    !B$} 的缩写。}{}
 
-\tagitem{defAnd}{$!A \land !B$ abbreviates
+\tagitem{defAnd}{$!A \land !B$ 是
   \iftag{prvOr}{$\lnot(\lnot !A \lor \lnot !B)$}{$\lnot (!A \lif
-    \lnot !B)$}.}{}
+    \lnot !B)$} 的缩写。}{}
 
-\tagitem{defIf}{$!A \lif !B$ abbreviates
-  \iftag{prvOr}{$\lnot !A \lor !B)$}{$\lnot (!A \land \lnot !B)$}.}{}
+\tagitem{defIf}{$!A \lif !B$ 是
+  \iftag{prvOr}{$\lnot !A \lor !B)$}{$\lnot (!A \land \lnot !B)$} 的缩写。}{}
 
-\tagitem{defIff}{$!A \liff !B$ abbreviates $(!A \lif !B) \land (!B
-  \lif !A)$.}{}
+\tagitem{defIff}{$!A \liff !B$ 是 $(!A \lif !B) \land (!B
+  \lif !A)$ 的缩写。}{}
 
-\tagitem{defAll}{$\lforall[x][!A]$ abbreviates $\lnot\lexists[x][\lnot !A]$.}{}
+\tagitem{defAll}{$\lforall[x][!A]$ 是 $\lnot\lexists[x][\lnot !A]$ 的缩写。}{}
 
-\tagitem{defEx}{$\lexists[x][!A]$ abbreviates $\lnot\lforall[x][\lnot !A]$.}{}
+\tagitem{defEx}{$\lexists[x][!A]$ 是 $\lnot\lforall[x][\lnot !A]$ 的缩写。}{}
 \end{tagenumerate}
 \end{defn}
 \end{tagblock}
 
-If we work in a language for a specific application, we will often
-write two-place !!{predicate}s and !!{function}s between the
-respective terms, e.g., $t_1 < t_2$ and $(t_1 + t_2)$ in the language
-of arithmetic and $t_1 \in t_2$ in the language of set theory.  The
-successor function in the language of arithmetic is even written
-conventionally \emph{after} its argument:~$t'$.  Officially, however,
-these are just conventional abbreviations for $\Atom{\Obj A^2_0}{t_1, t_2}$,
-$\Obj f^2_0(t_1, t_2)$, $\Atom{\Obj A^2_0}{t_1, t_2}$ and $f^1_0(t)$,
-respectively.
+当我们在针对特定应用的语言中工作时，通常会将二元谓词符号和函数符号写在相应的项之间，
+例如，在算术语言中写 $t_1 < t_2$ 和 $(t_1 + t_2)$，在集合论语言中写 $t_1 \in t_2$。
+算术语言中的后继函数甚至按惯例写在它的\emph{自变元之后}：$t'$。然而，从形式上说，
+这些分别只是 $\Atom{\Obj A^2_0}{t_1, t_2}$、$\Obj f^2_0(t_1, t_2)$、$\Atom{\Obj A^2_0}{t_1, t_2}$ 以及 $f^1_0(t)$ 的约定缩写。
 
-\begin{defn}[Syntactic identity]
-The symbol $\ident$ expresses syntactic identity between strings of
-symbols, i.e., $!A \ident !B$ iff $!A$ and $!B$ are strings of symbols
-of the same length and which contain the same symbol in each place.
+\begin{defn}[语形同一性]
+符号 $\ident$ 表示符号串之间的语形同一性，即 $!A \ident !B$ 当且仅当 $!A$ 和 $!B$ 是具有相同长度的符号串，并且在每个位置上都包含相同的符号。
 \end{defn}
 
-The $\ident$ symbol may be flanked by strings obtained by
-concatenation, e.g., $!A \ident (!B \lor !C)$ means: the string of
-symbols~$!A$ is the same string as the one obtained by concatenating
-an opening parenthesis, the string $!B$, the $\lor$ symbol, the
-string~$!C$, and a closing parenthesis, in this order. If this is the
-case, then we know that the first symbol of~$!A$ is an opening
-parenthesis, $!A$ contains $!B$ as a substring (starting at the second
-symbol), that substring is followed by~$\lor$, etc.
+符号 $\ident$ 的两侧可以是由并置运算得到的符号串，
+例如 $!A \ident (!B \lor !C)$ 表示：符号串 $!A$ 与按顺序并置一个左括号、字符串 $!B$、符号 $\lor$、字符串 $!C$ 和一个右括号所得到的符号串是同一个。
+在这种情况下，我们就知道 $!A$ 的第一个符号是左括号，$!A$ 包含 $!B$ 作为子串（从第二个符号开始），该子串后面跟着 $\lor$，等等。
 
-As terms and !!{formula}s are built up from basic elements via inductive
-definitions, we can use the following induction principles to prove
-things about them.
+由于项和公式是通过归纳定义从基本元素构建起来的，我们可以使用以下归纳原理来证明关于它们的性质。
 
-\begin{lem}[\emph{Principle of induction on terms}]
+\begin{lem}[\emph{项上的归纳原理}]
     \ollabel{lem:trmind}
-    Let $\Lang L$ be a first-order language.
-    If some property~$P$ is such that
+    设 $\Lang L$ 为一阶语言。
+    若某个性质~$P$ 满足：
     %
     \begin{enumerate}
-        \item it holds for every !!{variable}~$v$,
+        \item 它对每个变元~$v$ 成立，
         %
-        \item it holds for every !!{constant}~$a$ of~$\Lang L$, and
+        \item 它对 $\Lang L$ 中的每个常项符号~$a$ 成立，并且
         %
-        \item it holds for $f(t_1,\dotsc,t_n)$ whenever it holds for
-        $t_1$,~\dots, $t_n$ and $f$~is an $n$-place
-            !!{function} of~$\Lang L$
+        \item 只要它对 $t_1$,~\dots, $t_n$ 成立，它对 $f(t_1,\dotsc,t_n)$ 也成立（假设 $t_1$,~\dots, $t_n$ 是 $\Lang{L}$ 的项，且 $f$ 是 $\Lang L$ 的一个 $n$ 元函数符号），
     \end{enumerate}
-    (assuming $t_1$,~\dots, $t_n$ are terms of~$\Lang{L}$),
-    then $P$ holds for every term in~$\Trm[L]$.
+    那么 $P$ 对 $\Trm[L]$ 中的每个项都成立。
 \end{lem}
 
 \begin{prob}
-    Prove \olref[fol][syn][frm]{lem:trmind}.
+    证明 \olref[fol][syn][frm]{lem:trmind}。
 \end{prob}
 
-\begin{lem}[\emph{Principle of induction on !!{formula}s}]
+\begin{lem}[\emph{公式上的归纳原理}]
     \ollabel{thm:frmind}
-    Let $\Lang L$ be a first-order language.
-    If some property~$P$ holds for all the atomic !!{formula}s
-    and is such that
+    设 $\Lang L$ 为一阶语言。
+    若某个性质~$P$ 对所有原子公式都成立，并且满足：
     %
     \begin{enumerate}
-        \tagitem{prvNot}{it holds for $\lnot !A$ whenever it
-            holds for~$!A$;}{}
-        \tagitem{prvAnd}{it holds for $(!A \land !B)$
-            whenever it holds for $!A$ and~$!B$;}{}
-        \tagitem{prvOr}{it holds for $(!A \lor !B)$
-            whenever it holds for $!A$ and~$!B$;}{}
-        \tagitem{prvIf}{it holds for $(!A \lif !B)$
-            whenever it holds for $!A$ and~$!B$;}{}
-        \tagitem{prvIff}{it holds for $(!A \liff !B)$
-            whenever it holds for $!A$ and~$!B$;}{}
-        \tagitem{prvEx}{it holds for $\lexists[x][!A]$
-            whenever it holds for~$!A$;}{}
-        \tagitem{prvAll}{it holds for $\lforall[x][!A]$
-            whenever it holds for~$!A$;}{}
+        \tagitem{prvNot}{只要它对 $!A$ 成立，则它对 $\lnot !A$ 也成立；}{}
+        \tagitem{prvAnd}{只要它对 $!A$ 和 $!B$ 成立，则它对 $(!A \land !B)$ 也成立；}{}
+        \tagitem{prvOr}{只要它对 $!A$ 和 $!B$ 成立，则它对 $(!A \lor !B)$ 也成立；}{}
+        \tagitem{prvIf}{只要它对 $!A$ 和 $!B$ 成立，则它对 $(!A \lif !B)$ 也成立；}{}
+        \tagitem{prvIff}{只要它对 $!A$ 和 $!B$ 成立，则它对 $(!A \liff !B)$ 也成立；}{}
+        \tagitem{prvEx}{只要它对 $!A$ 成立，则它对 $\lexists[x][!A]$ 也成立；}{}
+        \tagitem{prvAll}{只要它对 $!A$ 成立，则它对 $\lforall[x][!A]$ 也成立；}{}
   \end{enumerate}
-  (assuming $!A$ and $!B$ are !!{formula}s of~$\Lang{L}$),
-  then $P$ holds for all formulas in~$\Frm[L]$.
+  (假设 $!A$ 和 $!B$ 是 $\Lang{L}$ 的公式)，
+  那么 $P$ 对 $\Frm[L]$ 中的所有公式都成立。
 \end{lem}
 
 \end{document}

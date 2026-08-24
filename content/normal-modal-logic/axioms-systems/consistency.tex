@@ -8,57 +8,31 @@
 
 \olfileid{nml}{prf}{con}
 
-\olsection{Consistency}
+\olsection{一致性}
 
-Consistency is an important property of sets of !!{formula}s. A set of
-!!{formula}s is inconsistent if a contradiction, such as~$\lfalse$, is
-!!{derivable} from it; and otherwise consistent. If a set is
-inconsistent, its !!{formula}s cannot all be true in a model at a
-world. For the completeness theorem we prove the converse: every
-consistent set is true at a world in a model, namely in the ``canonical
-model.''
+一致性是公式集合的一个重要性质。如果能从公式集中推出矛盾（例如~$\lfalse$），则它是不一致的；否则就是一致的。如果一个集合是不一致的，那么其中的公式不可能在某个模型的某个世界上全都为真。对于完备性定理，我们将证明其逆命题：每个一致的集合都在某个模型的某个世界上为真，即在该“典范模型”的某个世界上为真。
 
 \begin{defn}
-  A set $\Gamma$ is \emph{consistent} relatively to a system~$\Sigma$
-  or, as we will say, $\Sigma$-consistent, if and only if $\Gamma
-  \Proves/[\Sigma] \lfalse$.
+  一个集合 $\Gamma$ 相对于系统~$\Sigma$ 是\emph{一致的}，或者如我们所说的 $\Sigma$-一致的，当且仅当 $\Gamma \Proves/[\Sigma] \lfalse$。
 \end{defn}
 
-So for instance, the set $\{ \Box(p \lif q), \Box p, \lnot\Box q \}$ is
-consistent relatively to propositional logic, but not
-\Log{K}-consistent. Similarly, the set $\{ \Diamond p, \Box\Diamond
-p \lif q, \lnot q \}$ is not \Log{K5}-consistent.
+例如，集合 $\{ \Box(p \lif q), \Box p, \lnot\Box q \}$ 相对于命题逻辑是一致的，但不是 \Log{K}-一致的。类似地，集合 $\{ \Diamond p, \Box\Diamond
+p \lif q, \lnot q \}$ 不是 \Log{K5}-一致的。
 
 \begin{prop}\ollabel{prop:consistencyfacts}
-  Let $\Gamma$ be a set of !!{formula}s. Then:
+  设 $\Gamma$ 是一个公式集。那么：
   \begin{enumerate}
-  \item $\Gamma$ is $\Sigma$-consistent if and only if there is
-    some !!{formula}~$!A$ such that $\Gamma \Proves/[\Sigma]
-    !A$.
+  \item $\Gamma$ 是 $\Sigma$-一致的，当且仅当存在某个公式~$!A$ 使得 $\Gamma \Proves/[\Sigma] !A$。
   \item \ollabel{prop:consistencyfacts-b}%
-    $\Gamma \Proves[\Sigma] !A$ if and only if $\Gamma \cup \{
-    \lnot!A \}$ is not $\Sigma$-consistent.
+    $\Gamma \Proves[\Sigma] !A$ 当且仅当 $\Gamma \cup \{ \lnot!A \}$ 不是 $\Sigma$-一致的。
   \item \ollabel{prop:consistencyfacts-c}%
-    If $\Gamma$ is $\Sigma$-consistent, then for any !!{formula}
-    $!A$, either $\Gamma \cup \{ !A \}$ is
-    $\Sigma$-consistent or $\Gamma \cup \{ \lnot!A \}$ is
-    $\Sigma$-consistent.
+    如果 $\Gamma$ 是 $\Sigma$-一致的，那么对任意公式 $!A$，要么 $\Gamma \cup \{ !A \}$ 是 $\Sigma$-一致的，要么 $\Gamma \cup \{ \lnot!A \}$ 是 $\Sigma$-一致的。
   \end{enumerate}
 \end{prop}
 
 \begin{proof}
-  These facts follow easily using classical propositional logic. We
-  give the argument for \olref{prop:consistencyfacts-c}. Proceed
-  contrapositively and suppose neither $\Gamma \cup \{ !A \}$ nor
-  $\Gamma \cup \{ \lnot!A \}$ is $\Sigma$-consistent. Then by
-  \olref{prop:consistencyfacts-b}, both $\Gamma, !A \Proves[\Sigma]
-  \lfalse$ and $\Gamma, \lnot !A \Proves[\Sigma] \lfalse$. By the
-  deduction theorem $\Gamma \Proves[\Sigma] !A \to \lfalse$ and
-  $\Gamma \Proves[\Sigma] \lnot!A \lif \lfalse$. But $(!A \lif
-  \lfalse) \lif ((\lnot!A \lif \lfalse) \lif \lfalse)$ is a
-  tautological instance, hence by
-  \olref[prp]{prop:derivabilityfacts}\olref[prp]{prop:derivabilityfacts-ruleT},
-  $\Gamma \Proves[\Sigma] \lfalse$.
+  利用经典命题逻辑，这些事实很容易得证。我们给出 \olref{prop:consistencyfacts-c} 的证明。用逆否法，假设 $\Gamma \cup \{ !A \}$ 和 $\Gamma \cup \{ \lnot!A \}$ 都不是 $\Sigma$-一致的。那么由 \olref{prop:consistencyfacts-b}，既有 $\Gamma, !A \Proves[\Sigma] \lfalse$，也有 $\Gamma, \lnot !A \Proves[\Sigma] \lfalse$。根据演绎定理，有 $\Gamma \Proves[\Sigma] !A \to \lfalse$ 和 $\Gamma \Proves[\Sigma] \lnot!A \lif \lfalse$。但 $(!A \lif
+  \lfalse) \lif ((\lnot!A \lif \lfalse) \lif \lfalse)$ 是一个重言式实例，因此由 \olref[prp]{prop:derivabilityfacts}\olref[prp]{prop:derivabilityfacts-ruleT}，可得 $\Gamma \Proves[\Sigma] \lfalse$。
 \end{proof}
 
 \end{document}

@@ -7,84 +7,55 @@
 \begin{document}
 
 \olfileid{cmp}{rec}{com}
-\olsection{Composition}
+\olsection{复合}
 
-If $f$ and $g$ are two one-place functions of natural numbers, we can
-compose them: $h(x) = f(g(x))$. The new function~$h(x)$ is then
-defined by \emph{composition} from the functions $f$ and~$g$. We'd
-like to generalize this to functions of more than one argument.
+如果 $f$ 和 $g$ 是两个自然数的一元函数，我们可以将它们复合：$h(x) = f(g(x))$。这样，新函数~$h(x)$ 就是由函数 $f$ 和~$g$ 通过\emph{复合}定义的。我们希望将这个概念推广到多于一个自变元的函数。
 
-Here's one way of doing this: suppose $f$ is a $k$-place function,
-and $g_0$, \dots, $g_{k-1}$ are $k$ functions which are all
-$n$-place. Then we can define a new $n$-place function $h$ as follows:
+推广的一种方式如下：假设 $f$ 是一个 $k$ 元函数，而 $g_0$，……，$g_{k-1}$ 是 $k$ 个 $n$ 元函数。那么我们可以定义一个新的 $n$ 元函数 $h$ 如下：
 \[
 h(x_0, \dots, x_{n-1}) =
 f(g_0(x_0, \dots, x_{n-1}), \dots, g_{k-1}(x_0, \dots, x_{n-1}))
 \]
-If $f$ and all $g_i$ are computable, so is $h$: To compute $h(x_0,
-\dots, x_{n-1})$, first compute the values $y_i = g_i(x_0, \dots,
-x_{n-1})$ for each $i = 0$, \dots,~$k-1$. Then feed these values into
-$f$ to compute $h(x_0, \dots, x_{k-1}) = f(y_0, \dots, y_{k-1})$.
+如果 $f$ 和所有 $g_i$ 都是可计算的，那么 $h$ 也是可计算的：要计算 $h(x_0,
+\dots, x_{n-1})$，首先对每个 $i = 0$，……，$k-1$ 计算出 $y_i = g_i(x_0, \dots,
+x_{n-1})$ 的值。然后将这些值代入 $f$ 来计算 $h(x_0, \dots, x_{k-1}) = f(y_0, \dots, y_{k-1})$。
 
-This may seem like an overly restrictive characterization of what
-happens when we compute a new function using some existing ones. For
-one thing, sometimes we do not use all the arguments of a function, as
-when we defined $g(x, y, z) = \Succ(z)$ for use in the primitive
-recursive definition of~$\Add$. Suppose we are allowed use of the
-following functions:
+这看起来可能过于严格地刻画了我们利用已有函数计算新函数时的做法。一方面，有时我们并不使用一个函数的所有自变元，就像我们在~$\Add$ 的原始递归定义中定义 $g(x, y, z) = \Succ(z)$ 以供使用时那样。假设我们允许使用以下函数：
 \[
 \Proj{n}{i}(x_0, \dots, x_{n-1}) = x_i
 \]
-The functions~$\Proj{k}{i}$ are called \emph{projection} functions:
-$\Proj{n}{i}$ is an $n$-place function. Then $g$ can be defined by
+函数~$\Proj{k}{i}$ 称为\emph{投影}函数：$\Proj{n}{i}$ 是一个 $n$ 元函数。那么 $g$ 就可以定义为
 \[
 g(x, y, z) = \Succ(\Proj{3}{2}(x, y, z)).
 \]
-Here the role of $f$ is played by the $1$-place function $\Succ$, so
-$k=1$. And we have one $3$-place function $\Proj{3}{2}$ which plays
-the role of $g_0$. The result is a $3$-place function that returns the
-successor of the third argument.
+这里一元函数 $\Succ$ 扮演 $f$ 的角色，所以 $k=1$。而三元函数 $\Proj{3}{2}$ 扮演 $g_0$ 的角色。结果是一个三元函数，它返回第三个自变元的后继。
 
-The projection functions also allow us to define new functions by
-reordering or identifying arguments. For instance, the function $h(x)
-= \Add(x, x)$ can be defined by
+投影函数也允许我们通过重排或等同自变元来定义新函数。例如，函数 $h(x)
+= \Add(x, x)$ 可以定义为
 \[
 h(x_0) = \Add(\Proj{1}{0}(x_0),\Proj{1}{0}(x_0)).
 \]
-Here $k=2$, $n=1$, the role of $f(y_0,y_1)$ is played by $\Add$, and
-the roles of $g_0(x_0)$ and $g_1(x_0)$ are both played
-by~$\Proj{1}{0}(x_0)$, the one-place projection function (aka the
-identity function).
+这里 $k=2$，$n=1$，$\Add$ 扮演 $f(y_0,y_1)$ 的角色，而~$\Proj{1}{0}(x_0)$（即一元投影函数，也称为恒等函数）同时扮演了 $g_0(x_0)$ 和 $g_1(x_0)$ 的角色。
 
-If $f(y_0, y_1)$ is a function we already have, we can define the
-function $h(x_0, x_1) = f(x_1, x_0)$ by
+如果我们已有一个函数 $f(y_0, y_1)$，我们可以通过下式定义函数 $h(x_0, x_1) = f(x_1, x_0)$：
 \[
 h(x_0, x_1) = f(\Proj{2}{1}(x_0, x_1),\Proj{2}{0}(x_0, x_1)).
 \]
-Here $k=2$, $n = 2$, and the roles of $g_0$ and $g_1$ are played by
-$\Proj{2}{1}$ and~$\Proj{2}{0}$, respectively.
+这里 $k=2$，$n = 2$，而 $g_0$ 和 $g_1$ 的角色分别由 $\Proj{2}{1}$ 和~$\Proj{2}{0}$ 扮演。
 
-You may also worry that $g_0$, \dots,~$g_{k-1}$ are all required
-to have the same arity~$n$. (Remember that the \emph{arity} of a
-function is the number of arguments; an $n$-place function has
-arity~$n$.) But adding the projection functions provides the desired
-flexibility. For example, suppose $f$ and~$g$ are $3$-place functions
-and $h$~is the $2$-place function defined by
+你可能还会担心，$g_0$，……，$g_{k-1}$ 都被要求具有相同的元数~$n$。（记住，函数的\emph{元数}是其自变元的个数；一个 $n$ 元函数的元数是~$n$。）但引入投影函数提供了所需的灵活性。例如，假设 $f$ 和~$g$ 是三元函数，而 $h$~是由下式定义的二元函数：
 \[
 h(x,y) = f(x,g(x,x,y),y).
 \]
-The definition of~$h$ can be rewritten with the projection
-functions, as
+利用投影函数，$h$ 的定义可以重写为：
 \[
 h(x,y) = f(\Proj{2}{0}(x,y), g(\Proj{2}{0}(x,y), \Proj{2}{0}(x,y),
 \Proj{2}{1}(x,y)), \Proj{2}{1}(x,y)).
 \]
-Then $h$ is the composition of $f$ with $\Proj{2}{0}$, $l$, and
-$\Proj{2}{1}$, where
+那么 $h$ 是 $f$ 与 $\Proj{2}{0}$、$l$ 和 $\Proj{2}{1}$ 的复合，其中
 \[
 l(x,y) = g(\Proj{2}{0}(x,y),\Proj{2}{0}(x,y),\Proj{2}{1}(x,y)),
 \]
-i.e., $l$ is the composition of $g$ with $\Proj{2}{0}$, $\Proj{2}{0}$,
-and~$\Proj{2}{1}$.
+也就是说，$l$ 是 $g$ 与 $\Proj{2}{0}$、$\Proj{2}{0}$ 和~$\Proj{2}{1}$ 的复合。
 
 \end{document}

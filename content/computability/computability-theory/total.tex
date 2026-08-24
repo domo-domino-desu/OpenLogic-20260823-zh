@@ -7,55 +7,49 @@
 \begin{document}
 
 \olfileid{cmp}{thy}{tot}
-\olsection{Totality is Undecidable}
+\olsection{全体性是不可判定的}
 
-Let us consider one more example of using the $s$-$m$-$n$ theorem to show
-that something is noncomputable. Let $\fn{Tot}$ be the set of indices
-of total computable functions, i.e.
+下面再举一个运用 $s$-$m$-$n$ 定理证明不可计算性的例子。
+令 $\fn{Tot}$ 为全可计算函数的指标集，即
 \[
-\fn{Tot} = \Setabs{x}{\text{for every $y$, $\cfind{x}(y)\fdefined$}}.
+\fn{Tot} = \Setabs{x}{\text{对每个 $y$，$\cfind{x}(y)\fdefined$}}.
 \]
 
 \begin{prop}
 \ollabel{prop:total}
-$\fn{Tot}$ is not computable.
+$\fn{Tot}$ 不是可计算的。
 \end{prop}
 
 \begin{proof}
-To see that $\fn{Tot}$ is not computable, it suffices to show that $K$
-is reducible to it. Let $h(x,y)$ be defined by
+要证明 $\fn{Tot}$ 不可计算，只需证明 $K$ 可归约到它。
+定义 $h(x,y)$ 为
 \[
 h(x,y) \simeq
 \begin{cases}
-0 & \text{if $x \in K$} \\
-\fundefined & \text{otherwise}
+0 & \text{若 $x \in K$} \\
+\fundefined & \text{否则}
 \end{cases}
 \]
-Note that $h(x,y)$ does not depend on $y$ at all. It should
-not be hard to see that $h$~is partial computable: on input $x, y$, the
-we compute~$h$ by first simulating the function~$\cfind{x}$ on input~$x$; if
-this computation halts, $h(x,y)$ outputs $0$ and halts. So
-$h(x,y)$ is just $\Zero(\umin{s}{T(x,x,s)})$, where $\Zero$ is the constant zero
-function.
+注意 $h(x,y)$ 完全不依赖于 $y$。
+不难看出 $h$ 是部分可计算的：对于输入 $x, y$，计算~$h$ 的过程是先模拟函数~$\cfind{x}$ 在输入~$x$ 上的计算；
+如果该计算停机，则 $h(x,y)$ 输出 $0$ 并停机。
+所以 $h(x,y)$ 就是 $\Zero(\umin{s}{T(x,x,s)})$，其中 $\Zero$ 是常值零函数。
 
-Using the $s$-$m$-$n$ theorem, there is a primitive recursive
-function~$k(x)$ such that for every $x$ and~$y$,
+利用 $s$-$m$-$n$ 定理，存在一个原始递归函数~$k(x)$，使得对每个 $x$ 和~$y$，
 \[
 \cfind{k(x)}(y) =
 \begin{cases}
-0 & \text{if $x \in K$} \\
-\fundefined & \text{otherwise}
+0 & \text{若 $x \in K$} \\
+\fundefined & \text{否则}
 \end{cases}
 \]
-So $\cfind{k(x)}$ is total if $x \in K$, and undefined otherwise. Thus,
-$k$ is a reduction of $K$ to~$\fn{Tot}$.
+因此，若 $x \in K$ 则 $\cfind{k(x)}$ 是全函数，否则无定义。
+于是，$k$ 是从 $K$ 到~$\fn{Tot}$ 的归约。
 \end{proof}
 
 \begin{digress}
-It turns out that $\fn{Tot}$ is not even computably enumerable---its
-complexity lies further up on the ``arithmetical hierarchy.''  But we
-will not worry about this strengthening here.
+实际上，$\fn{Tot}$ 甚至不是可计算枚举的——它的复杂度位于“算术分层”的更上方。
+但我们在此不讨论这一更强的结论。
 \end{digress}
 
 \end{document}
-

@@ -7,12 +7,11 @@
 \begin{document}
 
 \olfileid{mod}{bas}{dlo}
-\section{Dense Linear Orders}
+\section{稠密线性序}
 
 \begin{defn}
-  A \emph{dense linear ordering without endpoints} is !!a{structure}
-  $\Struct{M}$ for the !!{language} containing a single 2-place
-  !!{predicate}~$<$ satisfying the following sentences:
+  一个\emph{无端点稠密线性序}是指满足以下语句的结构
+  $\Struct{M}$，其语言仅包含一个二元谓词符号~$<$：
   \begin{enumerate}
   \item $\lforall[x][\lnot x < x]$;
   \item $\lforall[x][\lforall[y][\lforall[z][(x < y \lif (y < z \lif x
@@ -21,64 +20,57 @@
   \item $\lforall[x][\lexists[y][x < y]]$;
   \item $\lforall[x][\lexists[y][y < x]]$;
   \item $\lforall[x][\lforall[y][(x < y \lif \lexists[z][(x < z \land
-        z < y))]]]$.
+        z < y))]]]$。
  \end{enumerate}
 \end{defn}
 
 \begin{thm}\ollabel{thm:cantorQ}
-  Any two !!{enumerable} dense linear orderings without
-  endpoints are isomorphic.
+  任意两个可数的无端点稠密线性序都是同构的。
 \end{thm}
 
 \begin{proof}
-  Let $\Struct{M_1}$ and $\Struct{M_2}$ be !!{enumerable} dense linear
-  orderings without endpoints, with ${<_1} = \Assign{<}{M_1}$ and ${<_2} =
-  \Assign{<}{M_2}$, and let $\PIso{I}$ be the set of all partial
-  isomorphisms between them. $\PIso{I}$ is not empty since at least
-  $\emptyset \in \PIso{I}$. We show that $\PIso{I}$ satisfies the
-  Back-and-Forth property.  Then $\Struct{M_1} \iso[p] \Struct{M_2}$,
-  and the theorem follows by \olref[pis]{thm:p-isom1}.
+  设 $\Struct{M_1}$ 和 $\Struct{M_2}$ 是可数的无端点稠密线性序，
+  其论域分别为 ${<_1} = \Assign{<}{M_1}$ 和 ${<_2} =
+  \Assign{<}{M_2}$，
+  并令 $\PIso{I}$ 为它们之间所有部分同构的集合。
+  $\PIso{I}$ 非空，因为至少 $\emptyset \in \PIso{I}$。
+  我们证明 $\PIso{I}$ 满足往返性质。那么 $\Struct{M_1} \iso[p] \Struct{M_2}$，
+  从而根据 \olref[pis]{thm:p-isom1}，定理得证。
 
-  To show $\PIso{I}$ satisfies the Forth property, let $p \in
-  \PIso{I}$ and let $p(a_i) = b_i$ for $i = 1$, \dots,~$n$, and
-  without loss of generality suppose $a_1 <_1 a_2 <_1 \cdots <_1
-  a_n$. Given $a \in \Domain{M_1}$, find $b \in \Domain{M_2}$ as
-  follows:
+  为证明 $\PIso{I}$ 满足向前性质，设 $p \in \PIso{I}$ 且对 $i = 1$,
+  \dots,~$n$ 有 $p(a_i) = b_i$，
+  不妨设 $a_1 <_1 a_2 <_1 \cdots <_1
+  a_n$。
+  给定 $a \in \Domain{M_1}$，按如下方式寻找 $b \in \Domain{M_2}$：
   \begin{enumerate}
-  \item if $a <_1 a_1$ let $b \in \Domain{M_2}$ be such that $b <_2
-    b_1$;
-  \item if $a_n <_1 a$ let $b \in \Domain{M_2}$ be such that $b_n <_2 b$;
- \item if $a_i <_1 a <_1 a_{i+1}$ for some $i$, then let $b \in
-   \Domain{M_2}$ be such that $b_i <_2 b <_2 b_{i+1}$.
+  \item 若 $a <_1 a_1$，则取 $b \in \Domain{M_2}$ 使得 $b <_2 b_1$；
+  \item 若 $a_n <_1 a$，则取 $b \in \Domain{M_2}$ 使得 $b_n <_2 b$；
+  \item 若对某个 $i$ 有 $a_i <_1 a <_1 a_{i+1}$，则取 $b \in \Domain{M_2}$ 使得 $b_i <_2 b <_2 b_{i+1}$。
   \end{enumerate}
-  It is always possible to find a $b$ with the desired property since
-  $\Struct{M_2}$ is a dense linear ordering without endpoints. Define
-  $q = p \cup \{ \langle a, b \rangle \}$ so that $q \in \PIso{I}$ is
-  the desired extension of $p$. This establishes the Forth
-  property. The Back property is similar. So $\Struct{M_1} \iso[p]
-  \Struct{M_2}$; by \olref[pis]{thm:p-isom1}, $\Struct{M_1} \iso
-  \Struct{M_2}$.
+  由于 $\Struct{M_2}$ 是无端点稠密线性序，总能找到满足所需性质的 $b$。
+  定义 $q = p \cup \{ \langle a, b \rangle \}$，
+  则 $q \in \PIso{I}$ 即为 $p$ 所需的扩张。这就证明了向前性质。
+  向后性质的证明是类似的。因此 $\Struct{M_1} \iso[p]
+  \Struct{M_2}$；
+  由 \olref[pis]{thm:p-isom1} 可得 $\Struct{M_1} \iso
+  \Struct{M_2}$。
 \end{proof}
 
 \begin{prob}
-  Complete the proof of \olref[mod][bas][dlo]{thm:cantorQ} by
-  verifying that $\PIso{I}$ satisfies the Back property.
+  通过验证 $\PIso{I}$ 满足向后性质，完成
+  \olref[mod][bas][dlo]{thm:cantorQ} 的证明。
 \end{prob}
 
 \begin{rem}
-  Let $\Struct{S}$ be any !!{enumerable} dense linear ordering without
-  endpoints. Then (by \olref{thm:cantorQ}) $\Struct{S} \iso
-  \Struct{Q}$, where $\Struct{Q} = (\Rat, <)$ is the !!{enumerable}
-  dense linear ordering having the set $\Rat$ of the rational numbers
-  as its domain. Now consider again the !!{structure}~$\Struct{R} =
-  (\Real, <)$ from \olref[thm]{remark:R}. We saw that there is
-  !!a{enumerable} !!{structure}~$\Struct{S}$ such that $\Struct{R}
-  \elemequiv \Struct{S}$. But $\Struct{S}$ is !!a{enumerable} dense
-  linear ordering without endpoints, and so it is isomorphic (and
-  hence elementarily equivalent) to the !!{structure}~$\Struct{Q}$. By
-  transitivity of elementary equivalence, $\Struct{R} \elemequiv
-  \Struct{Q}$. (We could have shown this directly by establishing
-  $\Struct{R} \iso[p] \Struct{Q}$ by the same back-and-forth
-  argument.)
+  设 $\Struct{S}$ 是任意一个可数的无端点稠密线性序。
+  那么（根据 \olref{thm:cantorQ}）$\Struct{S} \iso \Struct{Q}$，
+  其中 $\Struct{Q} = (\Rat, <)$ 是以有理数集 $\Rat$ 为论域的可数稠密线性序。
+  现在再次考虑 \olref[thm]{remark:R} 中的结构~$\Struct{R} = (\Real, <)$。
+  我们曾看到存在一个可数结构~$\Struct{S}$ 使得 $\Struct{R} \elemequiv
+  \Struct{S}$。但 $\Struct{S}$ 是一个可数的无端点稠密线性序，
+  因此它同构（从而初等等价）于结构~$\Struct{Q}$。
+  由初等等价的传递性，$\Struct{R} \elemequiv \Struct{Q}$。
+  （我们本可以直接通过同样的往返论证建立 $\Struct{R} \iso[p] \Struct{Q}$ 来证明这一点。）
 \end{rem}
+
 \end{document}

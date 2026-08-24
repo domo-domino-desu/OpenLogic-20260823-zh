@@ -8,53 +8,42 @@
 
 \olfileid{aml}{el}{trw}
 
-\olsection{Truth at a World}
+\olsection{在世界中为真}
 
-Just as with normal modal logic, every epistemic model determines which !!{formula}s count as true at
-which worlds in it. We use the same notation ``model $\mModel{M}$ makes
-!!{formula}~$!A$ true at world~$w$'' for the basic notion of relational
-semantics. The relation is defined inductively and is identical to the normal modal case for all non-modal operators.
+与正规模态逻辑一样，每个认知模型都决定了其中哪些公式在哪些世界中为真。
+我们使用相同的记号“模型 $\mModel{M}$ 使公式~$!A$ 在世界~$w$ 为真”来表达关系语义的基本概念。
+这一关系是归纳定义的，并且对所有非模态算子而言，与正规模态逻辑的情形完全相同。
 
 \begin{defn}\ollabel{defn:mmodels}
-  \emph{Truth of !!a{formula}~$!A$ at~$w$} in a~$\mModel M$, in symbols:
-  $\mSat{M}{!A}[w]$, is defined inductively as follows:
+  公式~$!A$ 在模型~$\mModel M$ 的世界~$w$ 处的\emph{真}，记作：
+  $\mSat{M}{!A}[w]$，归纳定义如下：
   \begin{enumerate}
-  \tagitem{prvFalse}{\indcase{!A}{\lfalse}{Never $\mSat{M}{\lfalse}[w]$}.}{}
-  \tagitem{prvTrue}{\indcase{!A}{\ltrue}{Always $\mSat{M}{\ltrue}[w]$}.}{}
-  \item $\mSat{M}{p}[w]$ iff $w \in V(p)$
-  \tagitem{prvNot}{\indcase{!A}{\lnot !B}{$\mSat{M}{\indfrm}[w]$ iff
+  \tagitem{prvFalse}{\indcase{!A}{\lfalse}{永不 $\mSat{M}{\lfalse}[w]$}.}{}
+  \tagitem{prvTrue}{\indcase{!A}{\ltrue}{恒有 $\mSat{M}{\ltrue}[w]$}.}{}
+  \item $\mSat{M}{p}[w]$ 当且仅当 $w \in V(p)$
+  \tagitem{prvNot}{\indcase{!A}{\lnot !B}{$\mSat{M}{\indfrm}[w]$ 当且仅当
     $\mSat/{M}{!B}[w]$}.}{}
-  \tagitem{prvAnd}{\indcase{!A}{(!B \land !C)}{$\mSat{M}{\indfrm}[w]$ iff
-    $\mSat{M}{!B}[w]$ and $\mSat{M}{!C}[w]$}.}{}
-  \tagitem{prvOr}{\indcase{!A}{(!B \lor !C)}{$\mSat{M}{\indfrm}[w]$ iff
-    $\mSat{M}{!B}[w]$ or $\mSat{M}{!C}[w]$} (or both).}{}
-  \tagitem{prvIf}{\indcase{!A}{(!B \lif !C)}{$\mSat{M}{\indfrm}[w]$ iff
-    $\mSat/{M}{!B}[w]$ or $\mSat{M}{!C}[w]$}.}{}
-  \tagitem{prvIff}{\indcase{!A}{(!B \liff !C)}{$\mSat{M}{\indfrm}[w]$ iff
-    either both $\mSat{M}{!B}[w]$ and $\mSat{M}{!C}[w]$ or
-    neither $\mSat{M}{!B}[w]$ nor $\mSat{M}{!C}[w]$}.}{}
+  \tagitem{prvAnd}{\indcase{!A}{(!B \land !C)}{$\mSat{M}{\indfrm}[w]$ 当且仅当
+    $\mSat{M}{!B}[w]$ 且 $\mSat{M}{!C}[w]$}.}{}
+  \tagitem{prvOr}{\indcase{!A}{(!B \lor !C)}{$\mSat{M}{\indfrm}[w]$ 当且仅当
+    $\mSat{M}{!B}[w]$ 或 $\mSat{M}{!C}[w]$（或两者皆成立）}.}{}
+  \tagitem{prvIf}{\indcase{!A}{(!B \lif !C)}{$\mSat{M}{\indfrm}[w]$ 当且仅当
+    $\mSat/{M}{!B}[w]$ 或 $\mSat{M}{!C}[w]$}.}{}
+  \tagitem{prvIff}{\indcase{!A}{(!B \liff !C)}{$\mSat{M}{\indfrm}[w]$ 当且仅当
+    要么 $\mSat{M}{!B}[w]$ 与 $\mSat{M}{!C}[w]$ 均成立，要么 $\mSat{M}{!B}[w]$ 与 $\mSat{M}{!C}[w]$ 均不成立}.}{}
   \item\ollabel{defn:sub:mmodels-box}
-    \indcase{!A}{\Knows_a !B}{$\mSat{M}{\indfrm}[w]$ iff
-    $\mSat{M}{!B}[w']$ for all $w' \in W$ with $R_a ww'$}
-  \end{enumerate} 
+    \indcase{!A}{\Knows_a !B}{$\mSat{M}{\indfrm}[w]$ 当且仅当
+    对所有满足 $R_a ww'$ 的 $w' \in W$，均有 $\mSat{M}{!B}[w']$}
+  \end{enumerate}
 \end{defn}
 
-Here's where we need to think about restrictions on our accessibility
-relations, though. After all, by clause~\olref{defn:sub:mmodels-box},
-!!a{formula}~$\Knows_a !B$ is true at~$w$ whenever there are no~$w'$
-with $R_a ww'$. This is the same clause as in normal modal logic; when
-a world has no successors, all $\Box$-formulas are vacuously true
-there. This seems extremely counterintuitive if we think about
-$\Knows$ as representing \emph{knowledge}. After all, we tend to think
-that there are \emph{no} circumstances under which an agent might know
-both $!A$ and $\lnot !A$ at the same time.
+不过，在此处我们需要考虑对可达关系的限制。
+毕竟，根据条款~\olref{defn:sub:mmodels-box}，当不存在满足 $R_a ww'$ 的 $w'$ 时，公式~$\Knows_a !B$ 在世界~$w$ 就为真。
+这与正规模态逻辑中的条款相同；当一个世界没有后继时，所有 $\Box$-公式在那里都空真。
+如果我们将 $\Knows$ 视为代表\emph{知识}，这似乎极度违反直觉。
+毕竟，我们通常认为，\emph{没有}任何情况能使一个智能体同时知道 $!A$ 和 $\lnot !A$。
 
-One solution is to ensure that our accessibility relation in epistemic
-logic will always be \emph{reflexive}. This roughly corresponds to the
-idea that the actual world is consistent with an agent's information.
-In fact, epistemic logics typically use S5, but others might use
-weaker systems depending on what exactly they want the $\Knows_a$
-relation to represent.
+一种解决方案是确保认知逻辑中的可达关系总是\emph{自反的}。这大致对应于这样的想法：现实世界与智能体的信息是一致的。事实上，认知逻辑通常使用 S5 系统，但其他人可能会使用更弱的系统，这取决于他们究竟希望 $\Knows_a$ 关系代表什么。
 
 \begin{figure}
   \begin{center}
@@ -71,13 +60,12 @@ relation to represent.
       \draw[->,loop below] (w3) to node {$a,b$} (w3) ;
     \end{tikzpicture}
   \end{center}
-  \caption{A simple epistemic model.}
+  \caption{一个简单的认知模型}
   \ollabel{fig:simple}
 \end{figure}
 
 \begin{prob}
-  Consider which of the following hold in
-  \olref[aml][el][trw]{fig:simple}:
+  考虑下列哪些公式在 \olref[aml][el][trw]{fig:simple} 中成立：
   \begin{enumerate}
     \item $\mSat{M}{\lnot q}[w_1]$;
     \item $\mSat{M}{\Knows_a \lnot q}[w_1]$;
@@ -88,28 +76,20 @@ relation to represent.
     \end{enumerate}
 \end{prob}
 
-Now that we have given our basic definition of truth at a world, the
-other semantic concepts from normal modal logic, such as modal
-validity and entailment, simply carry over, applied to this new way of
-thinking about the interpretation for the modal operators.
+既然我们已经给出了公式在世界中为真的基本定义，正规模态逻辑中的其他语义概念，例如模态有效性和语义后承，就可以直接推广过来，应用于这种关于模态算子解释的新思考方式。
 
-We are now also in a position to give truth conditions for the common
-knowledge operator~$\CKnows_G$. Recall from \olref[sfr][rel][ops]{sec}
-that the \emph{transitive closure}~$R^+$ of a relation~$R$ is defined
-as
+现在我们也可以为公共知识算子~$\CKnows_G$ 给出真值条件。回顾 \olref[sfr][rel][ops]{sec}，关系~$R$ 的\emph{传递闭包}~$R^+$ 定义为
 \begin{align*}
   R^+ &= \bigcup_{ n \in \mathbb{N}} R^n, 
-\intertext{where}
-  R^0 & = R \text{ and}\\ 
+\intertext{其中}
+  R^0 & = R \text{ 且}\\ 
   R^{n+1} & = \Setabs{\tuple{x, z}}{\exists y (R^n xy \land Ryz)}.
 \end{align*}
-Then, where $G$ is a group of agents, we define $R_G = ( \bigcup_{b
-\in G} R_b )^+$ to be the transitive closure of the union of all
-agents' accessibility relations.
+那么，若 $G$ 是一个智能体群，我们定义 $R_G = ( \bigcup_{b
+\in G} R_b )^+$ 为所有智能体可达关系的并集的传递闭包。
 
 \begin{defn}
-If $G' \subseteq G$, we let $\mSat{M}{\CKnows_{G'} !A}[ w]$ iff for
-every $w'$ such that $R_{G'} w w'$, $\mSat{M}{!A}[w']$.
+若 $G' \subseteq G$，我们令 $\mSat{M}{\CKnows_{G'} !A}[ w]$ 当且仅当对于每一个满足 $R_{G'} w w'$ 的 $w'$，均有 $\mSat{M}{!A}[w']$。
 \end{defn}
 
 \end{document}

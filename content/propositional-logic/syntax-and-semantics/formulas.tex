@@ -8,175 +8,122 @@
 
 \olfileid{pl}{syn}{fml}
 
-\olsection{Propositional \usetoken{P}{formula}}
+\olsection{命题公式}
 
-!!^{formula}s of propositional logic are built up from
-\emph{!!{propositional
-    variable}s}\iftag{prvFalse}{\iftag{prvTrue}{,}{ and} the
-  propositional constant~$\lfalse$}{}\iftag{prvTrue}{\iftag{prvFalse}{
-    and}{} the propositional constant~$\ltrue$}{} using \emph{logical
-  connectives}.
+命题逻辑的公式由\emph{命题变元}\iftag{prvFalse}{\iftag{prvTrue}{、}{和}命题常项~$\lfalse$}{}\iftag{prvTrue}{\iftag{prvFalse}{和}{}命题常项~$\ltrue$}{}通过\emph{逻辑联结词}构建而成。
 
 \begin{enumerate}
-\item !!^a{denumerable} set~$\PVar$ of !!{propositional variable}s $\Obj p_0$,
-  $\Obj p_1$, \dots
-\tagitem{prvFalse}{The propositional constant for !!{falsity}~$\lfalse$.}{}
-\tagitem{prvTrue}{The propositional constant for !!{truth}~$\ltrue$.}{}
-\item The logical connectives:
+\item 一个由命题变元 $\Obj p_0$, $\Obj p_1$, \dots 组成的可数无穷集~$\PVar$。
+\tagitem{prvFalse}{表示假的命题常项~$\lfalse$.}{}
+\tagitem{prvTrue}{表示真的命题常项~$\ltrue$.}{}
+\item 逻辑联结词：
   \startycommalist
-  \iftag{prvNot}{\ycomma $\lnot$ (negation)}{}%
-  \iftag{prvAnd}{\ycomma $\land$ (conjunction)}{}%
-  \iftag{prvOr}{\ycomma $\lor$ (disjunction)}{}%
-  \iftag{prvIf}{\ycomma $\lif$ (!!{conditional})}{}%
-  \iftag{prvIff}{\ycomma $\liff$ (!!{biconditional})}{}%
-\item Punctuation marks: (, ), and the comma.
+  \iftag{prvNot}{\ycomma $\lnot$（否定）}{}%
+  \iftag{prvAnd}{\ycomma $\land$（合取）}{}%
+  \iftag{prvOr}{\ycomma $\lor$（析取）}{}%
+  \iftag{prvIf}{\ycomma $\lif$（条件句）}{}%
+  \iftag{prvIff}{\ycomma $\liff$（双条件句）}{}%
+\item 标点符号：(、)和逗号。
 \end{enumerate}
 
-We denote this language of propositional logic by $\Lang L_0$.
+我们将此命题逻辑语言记作 $\Lang L_0$。
 
 \iftag{defNot,defOr,defAnd,defIf,defIff,defTrue,defFalse,defEx,defAll}{%
-In addition to the primitive connectives introduced
-above, we also use the following \emph{defined} symbols:
+除了上面引入的原始联结词外，我们还使用以下\emph{被定义}符号：
 \startycommalist
-  \iftag{defNot}{\ycomma $\lnot$ (negation)}{}%
-  \iftag{defAnd}{\ycomma $\land$ (conjunction)}{}%
-  \iftag{defOr}{\ycomma $\lor$ (disjunction)}{}%
-  \iftag{defIf}{\ycomma $\lif$ (!!{conditional})}{}%
-  \iftag{defIff}{\ycomma $\liff$ (!!{biconditional})}{}%
-  \iftag{defFalse}{\ycomma $\lfalse$ (!!{falsity})}{}%
-  \iftag{defTrue}{\ycomma $\ltrue$ (!!{truth})}}{}.
+  \iftag{defNot}{\ycomma $\lnot$（否定）}{}%
+  \iftag{defAnd}{\ycomma $\land$（合取）}{}%
+  \iftag{defOr}{\ycomma $\lor$（析取）}{}%
+  \iftag{defIf}{\ycomma $\lif$（条件句）}{}%
+  \iftag{defIff}{\ycomma $\liff$（双条件句）}{}%
+  \iftag{defFalse}{\ycomma $\lfalse$（假）}{}%
+  \iftag{defTrue}{\ycomma $\ltrue$（真）}}。
 
 \begin{tagblock}{defNot,defOr,defAnd,defIf,defIff,defTrue,defFalse,defEx,defAll}
 \begin{explain}
-A defined symbol is not officially part of the language, but is
-introduced as an informal abbreviation: it allows us to abbreviate
-formulas which would, if we only used primitive symbols, get quite
-long.  This is obviously an advantage.  The bigger advantage, however,
-is that proofs become shorter.  If a symbol is primitive, it has to be
-treated separately in proofs. The more primitive symbols, therefore,
-the longer our proofs.
+被定义符号并非语言的正式组成部分，而是作为一种非正式的缩写引入：它允许我们将那些若仅使用原始符号则会变得相当冗长的公式缩写下来。这显然是一个优点。然而，更大的优点在于证明会变得更短。如果一个符号是原始符号，在证明中就必须单独处理。因此，原始符号越多，我们的证明就越长。
 \end{explain}
 \end{tagblock}
 
 % Alternate symbols
 
 \begin{intro}
-You may be familiar with different terminology and symbols than the
-ones we use above. Logic texts (and teachers) commonly use either
-$\sim$, $\neg$, and~!\ for ``negation'', $\wedge$, $\cdot$, and $\&$
-for ``conjunction''.  Commonly used symbols for the ``conditional'' or
-``implication'' are $\rightarrow$, $\Rightarrow$, and $\supset$.
-\iftag{prvIff,defIff}{Symbols for ``biconditional,'' ``bi-implication,''
-  or ``(material) equivalence'' are $\leftrightarrow$,
-  $\Leftrightarrow$, and $\equiv$.}{}
-\iftag{prvFalse,defFalse}{The $\lfalse$ symbol is variously called
-  ``falsity,'' ``falsum,'' ``absurdity,'' or ``bottom.''}{}
-\iftag{prvTrue,defTrue}{The $\ltrue$ symbol is variously called
-  ``truth,'' ``verum,'' or ``top.''}{}
+你可能熟悉与上面不同的术语和符号。逻辑教材（和教师）通常使用 $\sim$、$\neg$ 和~! 表示“否定”，用 $\wedge$、$\cdot$ 和 $\&$ 表示“合取”。表示“条件句”或“蕴涵”的常用符号有 $\rightarrow$、$\Rightarrow$ 和 $\supset$。
+\iftag{prvIff,defIff}{表示“双条件句”、“双蕴涵”或“（实质）等值”的符号有 $\leftrightarrow$、$\Leftrightarrow$ 和 $\equiv$。}{}
+\iftag{prvFalse,defFalse}{符号 $\lfalse$ 有不同的叫法，例如“假”、“伪”、“荒谬”或“底”。}{}
+\iftag{prvTrue,defTrue}{符号 $\ltrue$ 有不同的叫法，例如“真”、“真符”或“顶”。}{}
 \end{intro}
 
-\begin{defn}[Formula]
+\begin{defn}[公式]
 \ollabel{defn:formulas}
-The set~$\Frm[L_0]$ of \emph{!!{formula}s} of propositional logic
-is defined inductively as follows:
+命题逻辑的\emph{公式}的集合~$\Frm[L_0]$ 归纳定义如下：
 \begin{enumerate}
-\tagitem{prvFalse}{$\lfalse$ is an atomic !!{formula}.}{}
+\tagitem{prvFalse}{$\lfalse$ 是一个原子公式。}{}
 
-\tagitem{prvTrue}{$\ltrue$ is an atomic !!{formula}.}{}
+\tagitem{prvTrue}{$\ltrue$ 是一个原子公式。}{}
 
-\item Every !!{propositional variable}~$\Obj p_i$ is an atomic
-  !!{formula}.
+\item 每个命题变元~$\Obj p_i$ 都是一个原子公式。
 
-\tagitem{prvNot}{If $!A$ is !!a{formula}, then $\lnot !A$ is
-  !!a{formula}.}{}
+\tagitem{prvNot}{如果 $!A$ 是一个公式，那么 $\lnot !A$ 是一个公式。}{}
 
-\tagitem{prvAnd}{If $!A$ and $!B$ are !!{formula}s, then $(!A \land
-  !B)$ is !!a{formula}.}{}
+\tagitem{prvAnd}{如果 $!A$ 和 $!B$ 是公式，那么 $(!A \land !B)$ 是一个公式。}{}
 
-\tagitem{prvOr}{If $!A$ and $!B$ are !!{formula}s, then $(!A \lor !B)$
-  is !!a{formula}.}{}
+\tagitem{prvOr}{如果 $!A$ 和 $!B$ 是公式，那么 $(!A \lor !B)$ 是一个公式。}{}
 
-\tagitem{prvIf}{If $!A$ and $!B$ are !!{formula}s, then $(!A \lif !B)$
-  is !!a{formula}.}{}
+\tagitem{prvIf}{如果 $!A$ 和 $!B$ 是公式，那么 $(!A \lif !B)$ 是一个公式。}{}
 
-\tagitem{prvIff}{If $!A$ and $!B$ are !!{formula}s, then $(!A \liff !B)$
-  is !!a{formula}.}{}
+\tagitem{prvIff}{如果 $!A$ 和 $!B$ 是公式，那么 $(!A \liff !B)$ 是一个公式。}{}
 
-\tagitem{limitClause}{Nothing else is !!a{formula}.}{}
+\tagitem{limitClause}{除此之外皆非公式。}{}
 \end{enumerate}
 \end{defn}
 
 \begin{explain}
-The definition of !!{formula}s is an
-\emph{inductive definition}.  Essentially, we construct the set of
-!!{formula}s in infinitely many stages.  In the initial stage, we
-pronounce all atomic formulas to be formulas; this corresponds to the
-first few cases of the definition, i.e., the cases for
+公式的定义是一个\emph{归纳定义}。本质上，我们分无限多个阶段来构造公式的集合。在初始阶段，我们宣布所有原子公式都是公式；这对应着定义中最前面的几种情形，即
 \iftag{prvTrue}{$\ltrue$, }{}%
 \iftag{prvFalse}{$\lfalse$, }{}%
-$\Obj p_i$.  ``Atomic !!{formula}''
-thus means any !!{formula} of this form.
+$\Obj p_i$ 这些情形。因此，“原子公式”指的就是任何这种形式的公式。
 
-The other cases of the definition give rules for constructing new
-!!{formula}s out of !!{formula}s already constructed.  At the second
-stage, we can use them to construct !!{formula}s out of atomic
-!!{formula}s.  At the third stage, we construct new formulas from the
-atomic formulas and those obtained in the second stage, and so on.  A
-!!{formula} is anything that is eventually constructed at such a
-stage, and nothing else.
+定义的其他情形给出了从已构造出的公式构造新公式的规则。在第二阶段，我们可以利用这些规则从原子公式构造公式。在第三阶段，我们从原子公式及第二阶段得到的公式出发构造新公式，依此类推。公式就是最终在某个阶段被构造出来的东西，除此之外皆非公式。
 \end{explain}
 
-When writing a formula $(!B \ast !C)$ constructed from $!B$, $!C$
-using a two-place connective~$\ast$, we will often leave out the
-outermost pair of parentheses and write simply~$!B \ast !C$.
+当书写由 $!B$、$!C$ 使用二元联结词~$\ast$ 构造出的公式 $(!B \ast !C)$ 时，我们常常会省略最外层的一对括号，直接写作~$!B \ast !C$。
 
 \begin{tagblock}{defNot,defOr,defAnd,defIf,defIff,defTrue,defFalse,defEx,defAll}
 \begin{defn}
-Formulas constructed using the defined operators are to be understood
-as follows:
+使用被定义算子构造的公式应按以下方式理解：
 
 \begin{tagenumerate}{defTrue,defFalse,defNot,defOr,defAnd,defIf,defIff,defEx,defAll}
 
-\tagitem{defTrue}{$\ltrue$ abbreviates
-  \iftag{prvFalse}{$\lnot\lfalse$}{$(!A \lor \lnot !A)$ for some
-    fixed atomic !!{formula}~$!A$}.}{}
+\tagitem{defTrue}{$\ltrue$ 是
+  \iftag{prvFalse}{$\lnot\lfalse$}{$(!A \lor \lnot !A)$（其中 $!A$ 是某个固定的原子公式）} 的缩写。}{}
 
-\tagitem{defFalse}{$\lfalse$ abbreviates
-  \iftag{prvTrue}{$\lnot\ltrue$}{$(!A \land \lnot !A)$ for some
-    fixed atomic !!{formula}~$!A$}.}{}
+\tagitem{defFalse}{$\lfalse$ 是
+  \iftag{prvTrue}{$\lnot\ltrue$}{$(!A \land \lnot !A)$（其中 $!A$ 是某个固定的原子公式）} 的缩写。}{}
 
-\tagitem{defNot}{$\lnot !A$ abbreviates $!A \lif \lfalse$.}{}
+\tagitem{defNot}{$\lnot !A$ 是 $!A \lif \lfalse$ 的缩写。}{}
 
-\tagitem{defOr}{$!A \lor !B$ abbreviates
+\tagitem{defOr}{$!A \lor !B$ 是
   \iftag{prvAnd}{$\lnot(\lnot !A \land \lnot !B)$}{$\lnot !A \lif
-    !B$}.}{}
+    !B$} 的缩写。}{}
 
-\tagitem{defAnd}{$!A \land !B$ abbreviates
+\tagitem{defAnd}{$!A \land !B$ 是
   \iftag{prvOr}{$\lnot(\lnot !A \lor \lnot !B)$}{$\lnot (!A \lif
-    \lnot !B)$}.}{}
+    \lnot !B)$} 的缩写。}{}
 
-\tagitem{defIf}{$!A \lif !B$ abbreviates
-  \iftag{prvOr}{$\lnot !A \lor !B)$}{$\lnot (!A \land \lnot !B)$}.}{}
+\tagitem{defIf}{$!A \lif !B$ 是
+  \iftag{prvOr}{$\lnot !A \lor !B)$}{$\lnot (!A \land \lnot !B)$} 的缩写。}{}
 
-\tagitem{defIff}{$!A \liff !B$ abbreviates $(!A \lif !B) \land (!B
-  \lif !A)$.}{}
+\tagitem{defIff}{$!A \liff !B$ 是 $(!A \lif !B) \land (!B
+  \lif !A)$ 的缩写。}{}
 \end{tagenumerate}
 \end{defn}
 \end{tagblock}
 
-\begin{defn}[Syntactic identity]
-The symbol $\ident$ expresses syntactic identity between strings of
-symbols, i.e., $!A \ident !B$ iff $!A$ and $!B$ are strings of symbols
-of the same length and which contain the same symbol in each place.
+\begin{defn}[语法同一性]
+符号 $\ident$ 表示符号串之间的语法同一性，即 $!A \ident !B$ 当且仅当 $!A$ 和 $!B$ 是长度相同且在每一位置上都包含相同符号的符号串。
 \end{defn}
 
-The $\ident$ symbol may be flanked by strings obtained by
-concatenation, e.g., $!A \ident (!B \lor !C)$ means: the string of
-symbols~$!A$ is the same string as the one obtained by concatenating
-an opening parenthesis, the string $!B$, the $\lor$ symbol, the
-string~$!C$, and a closing parenthesis, in this order. If this is the
-case, then we know that the first symbol of $!A$ is an opening
-parenthesis, $!A$ contains $!B$ as a substring (starting at the second
-symbol), that substring is followed by $\lor$, etc.
+符号 $\ident$ 两侧可放置经拼接得到的字符串，例如 $!A \ident (!B \lor !C)$ 意为：符号串~$!A$ 与按顺序拼接一个开括号、符号串 $!B$、符号 $\lor$、符号串~$!C$ 和一个闭括号所得到的符号串相同。若是这种情况，那么我们就知道 $!A$ 的第一个符号是开括号，$!A$ 包含 $!B$ 作为子串（从第二个符号开始），该子串后面跟着 $\lor$，等等。
 
 \end{document}

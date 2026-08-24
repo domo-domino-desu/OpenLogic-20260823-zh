@@ -7,76 +7,51 @@
 \begin{document}
 
 \olfileid{sfr}{infinite}{induction}
-\olsection[Arithmetical Induction]{Dedekind Algebras and Arithmetical Induction}
+\olsection[算术归纳法]{Dedekind 代数与算术归纳法}
 
-Crucially, now, a Dedekind algebra---indeed, \emph{any} Dedekind
-algebra---will serve as a surrogate for the natural numbers. This is
-thanks to the following trivial consequence:
+现在关键的一点是，一个 Dedekind 代数——事实上，\emph{任意} Dedekind 代数——都将充当自然数的替代品。这得益于以下平凡推论：
 
-\begin{thm}[Arithmetical induction]\ollabel{thm:dedinfiniteinduction}
-Let $N, s, o$ comprise a Dedekind algebra. Then for any set $X$:  
+\begin{thm}[算术归纳法]\ollabel{thm:dedinfiniteinduction}
+设 $N, s, o$ 构成一个 Dedekind 代数。则对任意集合 $X$：  
 	\begin{center}
-		if $o \in X$ and $(\forall {n} \in N \cap X){s}({n}) \in X$, {then} $N \subseteq X$.
+		若 $o \in X$ 且 $(\forall {n} \in N \cap X){s}({n}) \in X$，{则} $N \subseteq X$。
 	\end{center}
 \end{thm}
 
 \begin{proof}
-By the definition of a Dedekind algebra, $N = \closureofunder{s}{o}$.
-Now if both ${o} \in X$ and $(\forall {n} \in N)(n \in X \lif
-{s}({n}) \in X)$, then $N = \closureofunder{s}{o} \subseteq X$.
+由 Dedekind 代数的定义，$N = \closureofunder{s}{o}$。现在若 ${o} \in X$ 且 $(\forall {n} \in N)(n \in X \lif
+{s}({n}) \in X)$，则 $N = \closureofunder{s}{o} \subseteq X$。
 \end{proof}
 
-Since induction is characteristic of the natural numbers, the point is
-this. Given any Dedekind infinite set, we can form a Dedekind algebra,
-and use that algebra as our surrogate for the natural numbers. 
+既然归纳法是自然数的特征，要点便在于：给定任意 Dedekind 无穷集，我们都可以构造一个 Dedekind 代数，并将该代数用作自然数的替代品。
 
-Admittedly, \olref{thm:dedinfiniteinduction} formulates induction in
-\emph{set-theoretic} terms. But we can easily put the principle in
-terms which might be more familiar:
+诚然，\olref{thm:dedinfiniteinduction} 是以\emph{集合论}术语表述归纳法的。但我们很容易将这一原理用更熟悉的方式陈述出来：
 
 \begin{cor}\ollabel{natinductionschema}
-Let $N, s, o$ comprise a Dedekind algebra. Then for any formula
-$\phi(x)$, which may have parameters:
+设 $N, s, o$ 构成一个 Dedekind 代数。则对任一可带参数的公式 $\phi(x)$，有：
 \begin{center}
-	if $\phi(o)$ and $(\forall {n} \in N)(\phi(n)\lif
-	\phi({s}({n})))$, {then} $(\forall n \in N)\phi(n)$
+	若 $\phi(o)$ 且 $(\forall {n} \in N)(\phi(n)\lif
+	\phi({s}({n})))$，{则} $(\forall n \in N)\phi(n)$
 \end{center}
 \end{cor}
 
 \begin{proof}
-Let $X = \Setabs{n \in N}{\phi(n)}$, and now use
-\olref{thm:dedinfiniteinduction}
+令 $X = \Setabs{n \in N}{\phi(n)}$，然后应用 \olref{thm:dedinfiniteinduction}。
 \end{proof}
 
-In this result, we spoke of a formula ``having parameters''. What this
-means, roughly, is that for any objects $c_1, \ldots, c_k$, we can
-work with $\phi(x, c_1, \ldots, c_k)$. More precisely, we can state
-the result without mentioning ``parameters'' as follows. For any
-formula $\phi(x, v_1, \ldots, v_k)$, whose free variables are all
-displayed, we have:
+在这一结果中，我们提到公式“带有参数”。粗略地说，这意味着：对任意对象 $c_1, \ldots, c_k$，我们可以处理 $\phi(x, c_1, \ldots, c_k)$。更精确地说，我们可以无需提及“参数”来陈述这一结果如下：对任意公式 $\phi(x, v_1, \ldots, v_k)$（其自由变元均已列出），我们有：
 	\begin{align*}
 			\forall v_1 \ldots \forall v_k((&\phi(o, v_1,\ldots, v_k) \land {}\\
 			&	(\forall x \in N)(\phi(x,v_1, \ldots, v_k) \lif \phi(s(x), v_1,\ldots, v_k))) \lif {}\\
 			&\hspace{3em} (\forall x \in N)\phi(x, v_1,\ldots, v_k))
 	\end{align*}
-Evidently, speaking of ``having parameters'' can make things much
-easier to read. (In \olref[sth][][]{part}, we will use this device
-rather frequently.)
+显然，使用“带有参数”的说法可以使陈述更易读。（在 \olref[sth][][]{part} 中，我们将相当频繁地使用这一方法。）
 
-Returning to Dedekind algebras: given any Dedekind algebra, we can
-also define the usual arithmetical functions of addition,
-multiplication and exponentiation. This is non-trivial, however, and
-it involves the technique of \emph{recursive definition}. That is a
-technique which we shall introduce and justify much later, and in a
-much more general context. (Enthusiasts might want to revisit this
-after \olref[sth][ord-arithmetic][]{chap}, or perhaps read an alternative
-treatment, such as \citealt[pp.~95--8]{Potter2004}.) But, where $N, s, o$
-comprise a Dedekind algebra, we will ultimately be able to stipulate the
-following:
+回到 Dedekind 代数：给定任意一个 Dedekind 代数，我们也可以定义通常的算术函数，如加法、乘法和乘方。然而这并非显然，它涉及\emph{递归定义}的技术。我们将在更靠后且更一般的语境中引入该技术并论证其合理性。（有兴趣的读者不妨在读完 \olref[sth][ord-arithmetic][]{chap} 后回顾此处，或者阅读另一种处理方式，例如 \citealt[pp.~95--8]{Potter2004}。）但是，当 $N, s, o$ 构成一个 Dedekind 代数时，我们最终将能作出如下规定：
 \begin{align*}
 	{a} + {o} &= {a} & & & {a} \times {o} &= {o} & & & {a}^{o} &= s(o)\\
 {a} + {s}({b}) &= {s}({a}+{b}) &&& {a} \times {s}({b}) &= ({a}\times {b}) + {a}  & & & {a}^{{s}({b})} &= {a}^{b} \times {a}
 \end{align*}
-and show that these behave as one would hope.
+并证明其行为符合预期。
 
 \end{document}

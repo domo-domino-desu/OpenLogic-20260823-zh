@@ -7,93 +7,58 @@
 \begin{document}
 
 \olfileid{fol}{mat}{int}
-\olsection{Introduction}
+\olsection{引言}
 
 \begin{explain}
-The development of the axiomatic method is a significant achievement
-in the history of science, and is of special importance in the history
-of mathematics.  An axiomatic development of a field involves the
-clarification of many questions: What is the field about?  What are the
-most fundamental concepts?  How are they related?  Can all the
-concepts of the field be defined in terms of these fundamental
-concepts?  What laws do, and must, these concepts obey?
+公理化方法的发展是科学史上的重大成就，在数学史上尤为重要。
+对一个领域进行公理化探讨，需要澄清许多问题：该领域研究什么？
+哪些是最基本的概念？它们之间有何关联？
+该领域的所有概念能否用这些基本概念来定义？这些概念实际上遵循以及必须遵循哪些规律？
 
-The axiomatic method and logic were made for each other.  Formal logic
-provides the tools for formulating axiomatic theories, for proving
-theorems from the axioms of the theory in a precisely specified way,
-for studying the properties of all systems satisfying the axioms in a
-systematic way.
+公理化方法与逻辑可谓相辅相成。
+形式逻辑提供了一系列工具，使我们能够形式化公理理论，
+以精确指定的方式从理论公理推导定理，
+并系统地研究所有满足公理的结构之性质。
 \end{explain}
 
 \begin{defn}
-A set of !!{sentence}s~$\Gamma$ is \emph{closed} iff, whenever
-$\Gamma \Entails !A$ then $!A \in \Gamma$.  The \emph{closure} of a set
-of !!{sentence}s~$\Gamma$ is $\Setabs{!A}{\Gamma \Entails !A}$.
+一个语句集合~$\Gamma$ 是\emph{封闭的}，当且仅当：
+只要 $\Gamma \Entails !A$，就有 $!A \in \Gamma$。
+一个语句集合~$\Gamma$ 的\emph{闭包}是 $\Setabs{!A}{\Gamma \Entails !A}$。
 
-We say that~$\Gamma$ is \emph{axiomatized by} a set of
-sentences~$\Delta$ if $\Gamma$ is the closure of~$\Delta$.
+如果 $\Gamma$ 是语句集合~$\Delta$ 的闭包，则称~$\Gamma$ \emph{由}语句集合~$\Delta$ \emph{公理化}。
 \end{defn}
 
 \begin{explain}
-We can think of an axiomatic theory as the set of sentences that is
-axiomatized by its set of axioms~$\Delta$.  In other words, when we
-have a first-order language which contains non-logical symbols for the
-primitives of the axiomatically developed science we wish to study,
-together with a set of !!{sentence}s that express the fundamental laws
-of the science, we can think of the theory as represented by all the
-!!{sentence}s in this language that are entailed by the axioms.  This
-ranges from simple examples with only a single primitive and
-simple axioms, such as the theory of partial orders, to complex
-theories such as Newtonian mechanics.
+我们可以将一个公理化理论视作由其公理集合~$\Delta$ 所公理化的一组语句。
+换句话说，给定一个一阶语言（它包含我们想研究的、经公理化发展的科学中的初始概念所对应的非逻辑符号），以及一组表达该科学基本规律的语句，我们就可以将该理论看作是由此语言中所有为公理所语义后承的语句所构成的。
+这样的理论既包括仅含单一初始概念和简单公理的例子（如偏序理论），也包括复杂的理论（如牛顿力学）。
 
-The important logical facts that make this formal approach to the
-axiomatic method so important are the following.  Suppose $\Gamma$ is
-an axiom system for a theory, i.e., a set of sentences.
+公理方法的形式化处理之所以如此重要，其关键的逻辑事实如下。假设 $\Gamma$ 是一个理论的公理系统，即一组语句。
 \begin{enumerate}
-\item We can state precisely when an axiom system captures an intended
-  class of !!{structure}s.  That is, if we are interested in a certain
-  class of !!{structure}s, we will successfully capture that class by
-  an axiom system~$\Gamma$ iff the !!{structure}s are exactly
-  those~$\Struct M$ such that $\Sat{M}{\Gamma}$.
-\item We may fail in this respect because there are $\Struct M$ such
-  that $\Sat{M}{\Gamma}$, but $\Struct M$ is not one of the
-  !!{structure}s we intend.  This may lead us to add axioms which are
-  not true in~$\Struct M$.
-\item If we are successful at least in the respect that $\Gamma$ is
-  true in all the intended !!{structure}s, then a sentence~$!A$ is true in
-  all intended !!{structure}s whenever $\Gamma \Entails !A$.  Thus we can
-  use logical tools (such as !!{derivation} methods) to show that sentences are
-  true in all intended !!{structure}s simply by showing that they are
-  entailed by the axioms.
-\item Sometimes we don't have intended !!{structure}s in mind, but instead
-  start from the axioms themselves: we begin with some primitives that
-  we want to satisfy certain laws which we codify in an axiom system.
-  One thing that we would like to verify right away is that the axioms
-  do not contradict each other: if they do, there can be no concepts
-  that obey these laws, and we have tried to set up an incoherent
-  theory.  We can verify that this doesn't happen by finding a model
-  of~$\Gamma$.  And if there are models of our theory, we can use
-  logical methods to investigate them, and we can also use logical
-  methods to construct models.
-\item The independence of the axioms is likewise an important
-  question.  It may happen that one of the axioms is actually a
-  consequence of the others, and so is redundant.  We can prove that
-  an axiom $!A$ in $\Gamma$ is redundant by proving $\Gamma \setminus
-  \{!A\} \Entails !A$.  We can also prove that an axiom is not
-  redundant by showing that $(\Gamma \setminus \{!A\}) \cup \{\lnot
-  !A\}$ is satisfiable.  For instance, this is how it was shown that the
-  parallel postulate is independent of the other axioms of geometry.
-\item Another important question is that of definability of concepts
-  in a theory: The choice of the language determines what the models
-  of a theory consist of.  But not every aspect of a theory must be
-  represented separately in its models.  For instance, every ordering
-  $\le$ determines a corresponding strict ordering~$<$---given one, we
-  can define the other.  So it is not necessary that a model of a
-  theory involving such an order must \emph{also} contain the
-  corresponding strict ordering.  When is it the case, in general,
-  that one relation can be defined in terms of others?  When is it
-  impossible to define a relation in terms of others (and hence must
-  add it to the primitives of the language)?
+\item 我们可以精确地陈述一个公理系统何时能刻画一个预期的结构类。
+也就是说，如果我们对某个结构类感兴趣，那么用公理系统~$\Gamma$ 刻画该结构类能成功，当且仅当这些结构恰好是满足 $\Sat{M}{\Gamma}$ 的那些 $\Struct M$。
+\item 我们可能在这方面失败，因为存在满足 $\Sat{M}{\Gamma}$ 但并非我们预期的结构 $\Struct M$。
+这可能导致我们添加在 $\Struct M$ 中不成立的公理。
+\item 如果我们至少成功做到了让 $\Gamma$ 在所有预期结构中都为真，那么只要 $\Gamma \Entails !A$，语句 $!A$ 就在所有预期结构中为真。
+因此，我们可以使用逻辑工具（如推导方法）来证明某些语句在所有预期结构中为真，只需证明它们是公理的语义后承即可。
+\item 有时我们并不预设预期的结构，而是从公理本身出发：我们从一些希望满足特定规律的初始概念出发，并将这些规律表述为一个公理系统。
+我们希望立刻验证的一点是，这些公理彼此不矛盾：如果它们相互矛盾，就不可能有任何概念遵循这些规律，我们试图建立的就会是一个不一致的理论。
+我们可以通过寻找 $\Gamma$ 的一个模型来验证这种情况并未发生。
+并且，如果我们的理论存在模型，我们就可以用逻辑方法对其进行研究，也可以用逻辑方法来构造模型。
+\item 公理的独立性同样是一个重要问题。
+有可能某个公理实际上是其他公理的推论，因而是冗余的。
+要证明 $\Gamma$ 中的公理 $!A$ 是冗余的，只需证明 $\Gamma \setminus
+  \{!A\} \Entails !A$。
+而要证明某个公理不是冗余的，只需证明 $(\Gamma \setminus \{!A\}) \cup \{\lnot
+  !A\}$ 是可满足的。
+例如，平行公设相对于几何的其他公理的独立性就是这样被证明的。
+\item 另一个重要问题是理论中概念的可定义性：语言的选择决定了理论的模型由哪些成分组成。
+但并非理论的每个方面都必须在其模型中被独立地表示。
+例如，每个序 $\le$ 都决定了一个对应的严格序 $<$——给定其中一个，就可以定义另一个。
+因此，一个涉及这种序的理论的模型，并不必须\emph{同时}包含对应的严格序。
+那么，在一般情况下，一个关系何时可以用其他关系来定义？
+何时无法用其他关系来定义一个关系（从而必须将其添加到语言的初始符号中）？
 \end{enumerate}
 \end{explain}
 

@@ -8,61 +8,16 @@
 
 \olfileid{fol}{int}{scp}
 
-\olsection{Soundness and Completeness}
+\olsection{可靠性与完备性}
 
-We'll also introduce !!{derivation} systems for first-order logic.  There are
-many !!{derivation} systems that logicians have developed, but they all define
-the same !!{derivability} relation between !!{sentence}s. We say that
-$\Gamma$ \emph{!!{derive}s}~$!A$, $\Gamma \Proves !A$, if there is
-!!a{derivation} of a certain precisely defined sort. !!^{derivation}s
-are always finite arrangements of symbols---perhaps a list of
-!!{sentence}s, or some more complicated structure.  The purpose of
-!!{derivation} systems is to provide a tool to determine if !!a{sentence} is
-entailed by some set~$\Gamma$.  In order to serve that purpose, it
-must be true that $\Gamma \Entails !A$ if, and only if, $\Gamma
-\Proves !A$.
+我们还将为一阶逻辑引入推导系统。逻辑学家已经发展出许多种推导系统，但它们都定义了语句之间相同的可推导关系。如果存在某种精确定义类型的推导，我们就说 $\Gamma$ \emph{推导}~$!A$，记作 $\Gamma \Proves !A$。推导总是符号的有限排列——可能是一列语句，也可能是某种更复杂的结构。推导系统的目的是提供一种工具，用以判定某个语句是否为某个集合~$\Gamma$ 的语义后承。为了达到这个目的，就必须满足 $\Gamma \Entails !A$ \emph{当且仅当} $\Gamma \Proves !A$。
 
-If $\Gamma \Proves !A$ but not $\Gamma \Entails !A$, our !!{derivation} system
-would be too strong, prove too much.  The property that if $\Gamma
-\Proves !A$ then $\Gamma \Entails !A$ is called \emph{soundness}, and
-it is a minimal requirement on any good !!{derivation} system. On the other
-hand, if $\Gamma \Entails !A$ but not $\Gamma \Proves !A$, then our
-!!{derivation} system is too weak, it doesn't prove enough.  The property that
-if $\Gamma \Entails !A$ then $\Gamma \Proves !A$ is called
-\emph{completeness}. Soundness is usually relatively easy to prove (by
-induction on the structure of !!{derivation}s, which are inductively
-defined). Completeness is harder to prove.
+如果 $\Gamma \Proves !A$ 但并非 $\Gamma \Entails !A$，那么我们的推导系统就太强了，推出了太多东西。如果 $\Gamma \Proves !A$ 则 $\Gamma \Entails !A$，这一性质称为\emph{可靠性}，它是任何一个好的推导系统最起码的要求。另一方面，如果 $\Gamma \Entails !A$ 但并非 $\Gamma \Proves !A$，那么我们的推导系统就太弱了，证明得不够。如果 $\Gamma \Entails !A$ 则 $\Gamma \Proves !A$，这一性质称为\emph{完备性}。可靠性通常相对容易证明（通过对归纳定义的推导结构施归纳）。完备性则更难证明。
 
-Soundness and completeness have a number of important consequences. If
-a set of !!{sentence}s~$\Gamma$ !!{derive}s a contradiction (such as
-$!A \land \lnot !A$) it is called \emph{inconsistent}. Inconsistent
-$\Gamma$s cannot have any models, they are unsatisfiable. From
-completeness the converse follows: any $\Gamma$ that is not
-inconsistent---or, as we will say, \emph{consistent}---has a model. In
-fact, this is equivalent to completeness, and is the form of
-completeness we will actually prove.  It is a deep and perhaps
-surprising result: just because you cannot prove $!A \land \lnot !A$
-from $\Gamma$ guarantees that there is !!a{structure} that is as
-$\Gamma$ describes it.  So completeness gives an answer to the
-question: which sets of !!{sentence}s have models? Answer: all and only
-consistent sets do.
+可靠性与完备性引出了一系列重要推论。如果一个语句集合~$\Gamma$ 能推导出一个矛盾（例如 $!A \land \lnot !A$），就称它是\emph{不一致的}。不一致的 $\Gamma$ 不可能有任何模型，它们是不可满足的。从完备性可以得到其逆命题：任何并非不一致的——或者如我们之后所称的，\emph{一致的}——$\Gamma$ 都有一个模型。事实上，这与完备性是等价的，并且是我们将要实际证明的完备性形式。这是一个深刻而或许令人惊讶的结果：仅仅由于无法从 $\Gamma$ 证明 $!A \land \lnot !A$，就能保证存在一个如 $\Gamma$ 所描述的结构。所以，完备性回答了这样一个问题：哪些语句集合有模型？答案是：所有且仅有一致的集合。
 
-The soundness and completeness theorems have two important
-consequences: the compactness and the L\"owenheim--Skolem theorem.
-These are important results in the theory of models, and can be used
-to establish many interesting results. We've already mentioned two:
-first-order logic cannot express that the !!{domain} of !!a{structure}
-is finite or that it is !!{nonenumerable}.
+可靠性与完备性定理还有两个重要推论：紧致性定理和 L\"owenheim（勒文海姆）--Skolem（斯科伦）定理。这些是模型论中的重要结果，可以用来确立许多有趣的结论。我们已经提到过两个：一阶逻辑无法表达一个结构的论域是有穷的，也无法表达它是不可数的。
 
-Historically, all of this---how to define syntax and semantics of
-first-order logic, how to define good !!{derivation} systems, how to prove that
-they are sound and complete, getting clear about what can and cannot
-be expressed in first-order languages---took a long time to figure out
-and get right.  We now know how to do it, but going through all the
-details can still be confusing and tedious.  But it's also important,
-because the methods developed here for the formal language of
-first-order logic are applied all over the place in logic, computer
-science, and linguistics. So working through the details pays off in
-the long run.
+从历史上看，所有这些工作——如何定义一阶逻辑的语法和语义、如何定义好的推导系统、如何证明它们可靠且完备、厘清一阶语言能和不能表达什么——都花了很长时间才得以澄清和完善。我们现在已然知晓其法，但逐一梳理所有细节仍可能令人困惑与繁琐。但这也很重要，因为这里为一阶逻辑形式语言所发展出来的方法，在逻辑学、计算机科学和语言学等领域都有广泛应用。所以，从长远来看，仔细钻研这些细节是值得的。
 
 \end{document}

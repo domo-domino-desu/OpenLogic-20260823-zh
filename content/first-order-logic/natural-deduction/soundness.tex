@@ -10,60 +10,34 @@
       {\olfileid{fol}{ntd}{sou}}
       {\olfileid{pl}{ntd}{sou}}
       
-\olsection{Soundness}
+\olsection{可靠性}
 
 \begin{explain}
-!!^a{derivation} system, such as natural deduction, is \emph{sound}
-if it cannot !!{derive} things that do not actually follow.  Soundness is
-thus a kind of guaranteed safety property for !!{derivation} systems.
-Depending on which proof theoretic property is in question, we would
-like to know for instance, that
+一个推导系统（如自然演绎），如果它不能推出并非实际后承的结论，就是\emph{可靠的}。因此，可靠性是推导系统的一种保证其安全性的性质。视所讨论的证明论性质而定，我们希望知道例如：
 \begin{enumerate}
-\item every !!{derivable} !!{sentence} is \iftag{FOL}{valid}{a tautology};
-\item if !!a{sentence} is !!{derivable} from some others, it is also a
-  consequence of them;
-\item if a set of !!{sentence}s is inconsistent, it is unsatisfiable.
+\item 每个可推导的语句都是\iftag{FOL}{有效的}{重言式}；
+\item 如果一个语句可以从另一些语句推导出来，那么它也是这些语句的后承；
+\item 如果一个语句集合不一致，那么它是不可满足的。
 \end{enumerate}
-These are important properties of !!a{derivation} system. If any of
-them do not hold, the !!{derivation} system is deficient---it would
-!!{derive} too much.  Consequently, establishing the soundness of a
-!!{derivation} system is of the utmost importance.
+这些是推导系统的重要性质。如果其中任何一个不成立，这个推导系统就是有缺陷的——它会推出太多东西。因此，确立一个推导系统的可靠性至关重要。
 \end{explain}
 
-\begin{thm}[Soundness]
+\begin{thm}[可靠性]
 \ollabel{thm:soundness}
-If $!A$ is !!{derivable} from the !!{undischarged} assumptions
-$\Gamma$, then $\Gamma \Entails !A$.
+如果 $!A$ 可由未解除的假设 $\Gamma$ 推导出来，那么 $\Gamma$ 语义地后承 $!A$。
 \end{thm}
 
 \begin{proof}
-Let $\delta$ be !!a{derivation} of $!A$. We proceed by
-induction on the number of inferences in~$\delta$.
+设 $\delta$ 是 $!A$ 的一个推导。我们对~$\delta$ 中的推理数目进行归纳。
 
-For the induction basis we show the claim if the number of inferences
-is~$0$. In this case, $\delta$ consists only of a single
-!!{sentence}~$!A$, i.e., an assumption. That assumption is
-!!{undischarged}, since assumptions can only be !!{discharged} by
-inferences, and there are no inferences.  So, any
-\iftag{FOL}{!!{structure}~$\Struct{M}$}{!!{valuation}~$\pAssign{v}$}
-that satisfies all of the !!{undischarged} assumptions of the proof
-also satisfies~$!A$.
+对于归纳基础，我们证明当推理数目为~$0$ 时结论成立。此时，$\delta$ 仅由一个语句~$!A$ 构成，即一个假设。因为假设只能通过推理来解除，而这里没有推理，所以该假设是未解除的。因此，任何满足该证明所有未解除假设的\iftag{FOL}{结构~$\Struct{M}$}{赋值~$\pAssign{v}$}也满足~$!A$。
 
-Now for the inductive step. Suppose that $\delta$ contains~$n$
-inferences. The premise(s) of the lowermost inference are !!{derive}d
-using sub-!!{derivation}s, each of which contains fewer than~$n$
-inferences.  We assume the induction hypothesis: The premises of the
-lowermost inference follow from the !!{undischarged} assumptions of
-the sub-!!{derivation}s ending in those premises.  We have to show
-that the conclusion~$!A$ follows from the !!{undischarged} assumptions
-of the entire proof.
+现在考虑归纳步骤。假设 $\delta$ 包含~$n$ 个推理。最末推理的前提是通过子推导导出的，每个子推导包含的推理都少于~$n$ 个。我们假定归纳假设成立：最末推理的前提是以这些前提为结论的子推导的未解除假设的后承。我们需要证明，结论~$!A$ 是整个证明的未解除假设的后承。
 
-We distinguish cases according to the type of the lowermost inference.
-First, we consider the possible inferences with only one premise.
+我们根据最末推理的类型来区分情况。首先考虑只有一个前提的可能推理。
 
 \begin{enumerate}
-\item Suppose that the last inference is \Intro{\lnot}: The
-  !!{derivation} has the form
+\item 假设最后一个推理是 \Intro{\lnot}：推导形如
   \begin{prooftree}
     \AxiomC{$\Gamma, \Discharge{!A}{n}$}
     \RightLabel{$\delta_1$}
@@ -71,21 +45,9 @@ First, we consider the possible inferences with only one premise.
     \DischargeRule{\Intro{\lnot}}{n}
     \UnaryInfC{$\lnot !A$}
   \end{prooftree}
-  By inductive hypothesis, $\lfalse$ follows from the !!{undischarged}
-  assumptions $\Gamma \cup \{!A\}$ of~$\delta_1$. Consider
-  \iftag{FOL}{!!a{structure}~$\Struct{M}$}{!!a{valuation}~$\pAssign{v}$}. We
-  need to show that, if $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$, then
-  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\lnot !A}$. Suppose for reductio
-  that $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$, but
-  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{\lnot !A}$, i.e.,
-  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$. This would mean that
-  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma \cup \{!A\}}$. This is
-  contrary to our inductive hypothesis. So,
-  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\lnot !A}$.
+  根据归纳假设，$\lfalse$ 是~$\delta_1$ 的未解除假设 $\Gamma \cup \{!A\}$ 的后承。考虑\iftag{FOL}{结构~$\Struct{M}$}{赋值~$\pAssign{v}$}。我们需要证明，如果 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$，则 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\lnot !A}$。用归谬法，假设 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$，但 $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{\lnot !A}$，即 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$。这意味着 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma \cup \{!A\}}$。这与我们的归纳假设矛盾。所以，$\iftag{FOL}{\Sat{M}}{\pSat{v}}{\lnot !A}$。
 
-\item The last inference is \Elim{\land}: There are two variants: $!A$
-  or $!B$ may be inferred from the premise $!A \land !B$. Consider the
-  first case. The !!{derivation}~$\delta$ looks like this:
+\item 最后一个推理是 \Elim{\land}：有两种变体：可以从前提 $!A \land !B$ 推出 $!A$ 或 $!B$。考虑第一种情况。推导~$\delta$ 形如：
   \begin{prooftree}
     \AxiomC{$\Gamma$}
     \RightLabel{$\delta_1$}
@@ -93,22 +55,9 @@ First, we consider the possible inferences with only one premise.
     \RightLabel{\Elim{\land}}
     \UnaryInfC{$!A$}
   \end{prooftree}
-  By inductive hypothesis, $!A \land !B$ follows from the
-  !!{undischarged} assumptions~$\Gamma$ of~$\delta_1$. Consider
-  !!a{structure}~\iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$}. We need to
-  show that, if $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$, then
-  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$. Suppose
-  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$. By our inductive
-  hypothesis ($\Gamma \Entails !A \land !B$), we know that
-  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A \land !B}$. By definition,
-  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A \land !B}$ iff
-  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$ and
-  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$.  (The case where $!B$ is
-  inferred from $!A \land !B$ is handled similarly.)
+  根据归纳假设，$!A \land !B$ 是~$\delta_1$ 的未解除假设~$\Gamma$ 的后承。考虑\iftag{FOL}{结构~$\Struct{M}$}{赋值~$\pAssign{v}$}。我们需要证明，如果 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$，则 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$。假设 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$。根据归纳假设（$\Gamma \Entails !A \land !B$），我们知道 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A \land !B}$。根据定义，$\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A \land !B}$ 当且仅当 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$ 且 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$。（从 $!A \land !B$ 推出 $!B$ 的情况类似处理。）
   
-\item The last inference is \Intro{\lor}: There are two variants: $!A
-  \lor !B$ may be inferred from the premise~$!A$ or the
-  premise~$!B$. Consider the first case. The !!{derivation} has the form
+\item 最后一个推理是 \Intro{\lor}：有两种变体：$!A \lor !B$ 可以从前提~$!A$ 或前提~$!B$ 推出。考虑第一种情况。推导形如：
   \begin{prooftree}
     \AxiomC{$\Gamma$}
     \RightLabel{$\delta_1$}
@@ -116,19 +65,9 @@ First, we consider the possible inferences with only one premise.
     \RightLabel{\Intro{\lor}}
     \UnaryInfC{$!A \lor !B$}
   \end{prooftree}
-  By inductive hypothesis, $!A$ follows from the !!{undischarged}
-  assumptions~$\Gamma$ of~$\delta_1$.  Consider
-  \iftag{FOL}{!!a{structure}~$\Struct{M}$}{!!a{valuation}~$\pAssign{v}$}. We
-  need to show that, if $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$, then
-  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A \lor !B}$. Suppose
-  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$; then
-  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$ since $\Gamma \Entails !A$ (the
-  inductive hypothesis). So it must also be the case that
-  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A \lor !B}$.  (The case where $!A
-  \lor !B$ is inferred from~$!B$ is handled similarly.)
+  根据归纳假设，$!A$ 是~$\delta_1$ 的未解除假设~$\Gamma$ 的后承。考虑\iftag{FOL}{结构~$\Struct{M}$}{赋值~$\pAssign{v}$}。我们需要证明，如果 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$，则 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A \lor !B}$。假设 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$；由于 $\Gamma \Entails !A$（归纳假设），则 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$。因此也必有 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A \lor !B}$。（从~$!B$ 推出 $!A \lor !B$ 的情况类似处理。）
   
-\item The last inference is \Intro{\lif}: $!A \lif !B$ is inferred
-  from a subproof with assumption~$!A$ and conclusion~$!B$, i.e.,
+\item 最后一个推理是 \Intro{\lif}：$!A \lif !B$ 是从一个以~$!A$ 为假设、以~$!B$ 为结论的子推导推出的，即：
   \begin{prooftree}
     \AxiomC{$\Gamma, \Discharge{!A}{n}$}
     \RightLabel{$\delta_1$}
@@ -136,23 +75,10 @@ First, we consider the possible inferences with only one premise.
     \DischargeRule{\Intro{\lif}}{n}
     \UnaryInfC{$!A \lif !B$}
   \end{prooftree}
-  By inductive hypothesis, $!B$ follows from the !!{undischarged}
-  assumptions of~$\delta_1$, i.e., $\Gamma \cup \{!A\} \Entails
-  !B$. Consider
-  \iftag{FOL}{!!a{structure}~$\Struct{M}$}{!!a{valuation}~$\pAssign{v}$}. The
-  !!{undischarged} assumptions of~$\delta$ are just $\Gamma$, since
-  $!A$ is discharged at the last inference. So we need to show that
-  $\Gamma \Entails !A \lif !B$.  For reductio, suppose that for some
-  \iftag{FOL}{!!{structure}~$\Struct{M}$}{!!{valuation}~$\pAssign{v}$},
-  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$ but
-  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A \lif !B}$. So,
-  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$ and
-  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!B}$. But by hypothesis, $!B$ is a
-  consequence of $\Gamma \cup \{!A\}$, i.e.,
-  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$, which is a contradiction. So,
-  $\Gamma \Entails !A \lif !B$.
+  根据归纳假设，$!B$ 是~$\delta_1$ 的未解除假设的后承，即 $\Gamma \cup \{!A\} \Entails
+  !B$。考虑\iftag{FOL}{结构~$\Struct{M}$}{赋值~$\pAssign{v}$}。$\delta$ 的未解除假设仅为 $\Gamma$，因为 $!A$ 在最后一个推理中被解除了。所以我们需要证明 $\Gamma \Entails !A \lif !B$。用归谬法，假设对某个\iftag{FOL}{结构~$\Struct{M}$}{赋值~$\pAssign{v}$}，$\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$ 但 $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A \lif !B}$。所以，$\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$ 且 $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!B}$。但根据归纳假设，$!B$ 是 $\Gamma \cup \{!A\}$ 的后承，即 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$，矛盾。因此，$\Gamma \Entails !A \lif !B$。
 
-\item The last inference is \FalseInt: Here, $\delta$ ends in
+\item 最后一个推理是 \FalseInt：这里，$\delta$ 以如下方式结束：
   \begin{prooftree}
     \AxiomC{$\Gamma$}
     \RightLabel{$\delta_1$}
@@ -160,19 +86,12 @@ First, we consider the possible inferences with only one premise.
     \RightLabel{\FalseInt}
     \UnaryInfC{$!A$}
   \end{prooftree}
-  By induction hypothesis, $\Gamma \Entails \lfalse$. We have to show
-  that $\Gamma \Entails !A$. Suppose not; then for
-  some~$\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ we have
-    $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$ and
-    $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A}$. But we always have
-    $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{\lfalse}$, so this would mean
-    that $\Gamma \Entails/ \lfalse$, contrary to the induction
-    hypothesis.
+  根据归纳假设，$\Gamma \Entails \lfalse$。我们需要证明 $\Gamma \Entails !A$。假设不然；则对某个~$\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ 有 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$ 和 $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A}$。但我们总有 $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{\lfalse}$，所以这意味着 $\Gamma \Entails/ \lfalse$，与归纳假设矛盾。
 
-\item The last inference is \FalseCl: Exercise.
+\item 最后一个推理是 \FalseCl：练习。
 
 \iftag{FOL}{
-\item The last inference is \Intro{\lforall}: Then $\delta$ has the form
+\item 最后一个推理是 \Intro{\lforall}：那么 $\delta$ 形如
   \begin{prooftree}
     \AxiomC{$\Gamma$}
     \RightLabel{$\delta_1$}
@@ -180,41 +99,18 @@ First, we consider the possible inferences with only one premise.
     \RightLabel{\Intro{\lforall}}
     \UnaryInfC{$\lforall[x][!A(x)]$}
   \end{prooftree}
-  The premise $!A(a)$ is a consequence of the !!{undischarged}
-  assumptions $\Gamma$ by induction hypothesis.  Consider some
-  structure, $\Struct{M}$, such that $\Sat{M}{\Gamma}$.  We need to
-  show that $\Sat{M}{\lforall[x][!A(x)]}$. Since $\lforall[x][!A(x)]$
-  is !!a{sentence}, this means we have to show that for every variable
-  assignment~$s$, $\Sat{M}{!A(x)}[s]$
-  (\olref[syn][ass]{prop:sat-quant}). Since $\Gamma$ consists entirely
-  of sentences, $\Sat{M}{!B}[s]$ for all $!B \in \Gamma$ by
-  \olref[syn][sat]{defn:satisfaction}.  Let $\Struct{M'}$ be like
-  $\Struct{M}$ except that $\Assign{a}{M'} = s(x)$.  Since $a$ does
-  not occur in~$\Gamma$, $\Sat{M'}{\Gamma}$ by
-  \olref[syn][ext]{cor:extensionality-sent}. Since $\Gamma \Entails
-  !A(a)$, $\Sat{M'}{!A(a)}$.  Since $!A(a)$ is !!a{sentence},
-  $\Sat{M'}{!A(a)}[s]$ by
-  \olref[syn][ass]{prop:sentence-sat-true}. $\Sat{M'}{!A(x)}[s]$ iff
-  $\Sat{M'}{!A(a)}$ by \olref[syn][ext]{prop:ext-formulas} (recall
-  that $!A(a)$ is just $\Subst{!A(x)}{a}{x}$). So,
-  $\Sat{M'}{!A(x)}[s]$. Since $a$ does not occur in~$!A(x)$, by
-  \olref[syn][ext]{prop:extensionality}, $\Sat{M}{!A(x)}[s]$. But $s$
-  was an arbitrary variable assignment, so
-  $\Sat{M}{\lforall[x][!A(x)]}$.
+  根据归纳假设，前提 $!A(a)$ 是未解除假设 $\Gamma$ 的后承。考虑某个满足 $\Sat{M}{\Gamma}$ 的结构 $\Struct{M}$。我们需要证明 $\Sat{M}{\lforall[x][!A(x)]}$。由于 $\lforall[x][!A(x)]$ 是语句，这意味着我们必须证明对每个变元指派~$s$，$\Sat{M}{!A(x)}[s]$ (\olref[syn][ass]{prop:sat-quant})。因为 $\Gamma$ 完全由语句组成，根据 \olref[syn][sat]{defn:satisfaction}，对任意 $!B \in \Gamma$，$\Sat{M}{!B}[s]$。令 $\Struct{M'}$ 除了 $\Assign{a}{M'} = s(x)$ 外与 $\Struct{M}$ 相同。由于 $a$ 不在~$\Gamma$ 中出现，根据 \olref[syn][ext]{cor:extensionality-sent}，有 $\Sat{M'}{\Gamma}$。因为 $\Gamma \Entails !A(a)$，所以 $\Sat{M'}{!A(a)}$。由于 $!A(a)$ 是语句，根据 \olref[syn][ass]{prop:sentence-sat-true}，$\Sat{M'}{!A(a)}[s]$。根据 \olref[syn][ext]{prop:ext-formulas}，$\Sat{M'}{!A(x)}[s]$ 当且仅当 $\Sat{M'}{!A(a)}$（回想 $!A(a)$ 就是 $\Subst{!A(x)}{a}{x}$）。所以，$\Sat{M'}{!A(x)}[s]$。由于 $a$ 不在 $!A(x)$ 中出现，根据 \olref[syn][ext]{prop:extensionality}，$\Sat{M}{!A(x)}[s]$。但 $s$ 是任意变元指派，所以 $\Sat{M}{\lforall[x][!A(x)]}$。
   
-\item The last inference is \Intro{\lexists}: Exercise.
+\item 最后一个推理是 \Intro{\lexists}：练习。
 
-\item The last inference is \Elim{\forall}: Exercise.
+\item 最后一个推理是 \Elim{\forall}：练习。
 }{}
 \end{enumerate}
 
-Now let's consider the possible inferences with several premises:
-\Elim{\lor}, \Intro{\land}, \iftag{FOL}{\Elim{\lif}, and
-  \Elim{\lexists}}{and \Elim{\lif}}.
+现在考虑有多个前提的可能推理：\Elim{\lor}、\Intro{\land}、\iftag{FOL}{\Elim{\lif} 和 \Elim{\lexists}}{和 \Elim{\lif}}。
 \begin{enumerate}
 
-\item The last inference is \Intro{\land}. $!A \land !B$ is inferred
-  from the premises $!A$ and $!B$ and $\delta$ has the form
+\item 最后一个推理是 \Intro{\land}。$!A \land !B$ 是从前提 $!A$ 和 $!B$ 推出的，且 $\delta$ 形如：
   \begin{prooftree}
     \AxiomC{$\Gamma_1$}
     \RightLabel{$\delta_1$}
@@ -225,24 +121,12 @@ Now let's consider the possible inferences with several premises:
     \RightLabel{\Intro{\land}}
     \BinaryInfC{$!A \land !B$}
   \end{prooftree}
-  By induction hypothesis, $!A$ follows from the !!{undischarged}
-  assumptions~$\Gamma_1$ of~$\delta_1$ and $!B$ follows from the
-  !!{undischarged} assumptions~$\Gamma_2$ of~$\delta_2$. The
-  !!{undischarged} assumptions of~$\delta$ are $\Gamma_1 \cup
-  \Gamma_2$, so we have to show that $\Gamma_1 \cup \Gamma_2 \Entails
-  !A \land !B$. Consider
-  \iftag{FOL}{!!a{structure}~$\Struct{M}$}{!!a{valuation}~$\pAssign{v}$}
-  with $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma_1 \cup \Gamma_2}$. Since
-  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma_1}$, it must be the case that
-  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$ as $\Gamma_1 \Entails !A$, and
-  since $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma_2}$,
-  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$ since $\Gamma_2 \Entails
-  !B$. Together, $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A \land !B}$.
+  根据归纳假设，$!A$ 是~$\delta_1$ 的未解除假设~$\Gamma_1$ 的后承，且 $!B$ 是~$\delta_2$ 的未解除假设~$\Gamma_2$ 的后承。$\delta$ 的未解除假设是 $\Gamma_1 \cup \Gamma_2$，所以我们需要证明 $\Gamma_1 \cup \Gamma_2 \Entails
+  !A \land !B$。考虑满足 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma_1 \cup \Gamma_2}$ 的\iftag{FOL}{结构~$\Struct{M}$}{赋值~$\pAssign{v}$}。由于 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma_1}$，且 $\Gamma_1 \Entails !A$，所以必有 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$；同时由于 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma_2}$，且 $\Gamma_2 \Entails !B$，所以有 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$。合起来，$\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A \land !B}$。
   
-\item The last inference is \Elim{\lor}: Exercise.
+\item 最后一个推理是 \Elim{\lor}：练习。
 
-\item The last inference is \Elim{\lif}. $!B$ is inferred from the
-  premises $!A \lif !B$ and~$!A$. The !!{derivation}~$\delta$ looks like this:
+\item 最后一个推理是 \Elim{\lif}。$!B$ 是从前提 $!A \lif !B$ 和~$!A$ 推出的。推导~$\delta$ 形如：
   \begin{prooftree}
     \AxiomC{$\Gamma_1$}
     \RightLabel{$\delta_1$}
@@ -253,62 +137,55 @@ Now let's consider the possible inferences with several premises:
     \RightLabel{\Elim{\lif}}
     \BinaryInfC{$!B$}
   \end{prooftree}
-  By induction hypothesis, $!A \lif !B$ follows from the
-  !!{undischarged} assumptions~$\Gamma_1$ of~$\delta_1$ and $!A$
-  follows from the !!{undischarged} assumptions~$\Gamma_2$
-  of~$\delta_2$. Consider
-  \iftag{FOL}{!!a{structure}~$\Struct{M}$}{!!a{valuation}~$\pAssign{v}$}. We
-  need to show that, if $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma_1 \cup
-    \Gamma_2}$, then $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$. Suppose
-  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma_1 \cup \Gamma_2}$. Since
-  $\Gamma_1 \Entails !A \lif !B$, $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A
-    \lif !B}$. Since $\Gamma_2 \Entails !A$, we have
-  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$. This means that
-  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$ (For if
-  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!B}$, since
-  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$, we'd have
-  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A \lif !B}$,
-  contradicting~$\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A \lif !B}$).
+  根据归纳假设，$!A \lif !B$ 是~$\delta_1$ 的未解除假设~$\Gamma_1$ 的后承，且 $!A$ 是~$\delta_2$ 的未解除假设~$\Gamma_2$ 的后承。考虑\iftag{FOL}{结构~$\Struct{M}$}{赋值~$\pAssign{v}$}。我们需要证明，如果 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma_1 \cup
+    \Gamma_2}$，则 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$。假设 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma_1 \cup \Gamma_2}$。由于 $\Gamma_1 \Entails !A \lif !B$，所以 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A
+    \lif !B}$。由于 $\Gamma_2 \Entails !A$，我们有 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$。这意味着 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$（因为如果 $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!B}$，由于 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$，我们将有 $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A \lif !B}$，这与~$\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A \lif !B}$矛盾）。
 
-\item The last inference is \Elim{\lnot}: Exercise.
+\item 最后一个推理是 \Elim{\lnot}：练习。
   
-\tagitem{FOL}{The last inference is \Elim{\lexists}: Exercise.}{}
+\tagitem{FOL}{最后一个推理是 \Elim{\lexists}：练习。}{}
 \end{enumerate}
 \end{proof}
 
 \tagprob{FOL}
+
+
 \begin{prob}
-Complete the proof of \olref[fol][ntd][sou]{thm:soundness}.
+完成 \olref[fol][ntd][sou]{thm:soundness} 的证明。
 \end{prob}
+
+
 \tagendprob
 
 \tagprob{notFOL}
+
+
 \begin{prob}
-Complete the proof of \olref[pl][ntd][sou]{thm:soundness}.
+完成 \olref[pl][ntd][sou]{thm:soundness} 的证明。
 \end{prob}
+
+
 \tagendprob
 
 \begin{cor}
 \ollabel{cor:weak-soundness}
-If $\Proves !A$, then $!A$ is \iftag{FOL}{valid}{a tautology}.
+若 $\Proves !A$，则 $!A$ 是 \iftag{FOL}{有效的}{重言式}。
 \end{cor}
 
 \begin{cor}
 \ollabel{cor:consistency-soundness}
-If $\Gamma$ is satisfiable, then it is consistent.
+若 $\Gamma$ 可满足，则 $\Gamma$ 是一致的。
 \end{cor}
 
 \begin{proof}
-We prove the contrapositive.  Suppose that $\Gamma$ is not consistent.
-Then $\Gamma \Proves \lfalse$, i.e., there is !!a{derivation} of
-$\lfalse$ from !!{undischarged} assumptions in~$\Gamma$. By
-\olref{thm:soundness}, any
-\iftag{FOL}{!!{structure}~$\Struct{M}$}{!!{valuation}~$\pAssign{v}$}
-that satisfies $\Gamma$ must satisfy $\lfalse$.  Since
-$\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{\lfalse}$ for every
-\iftag{FOL}{!!{structure}~$\Struct{M}$}{!!{valuation}~$\pAssign{v}$},
-no \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} can satisfy $\Gamma$,
-i.e., $\Gamma$ is not satisfiable.
+我们证明其逆否命题。
+假设 $\Gamma$ 不一致。
+则 $\Gamma \Proves \lfalse$，即存在一个从 $\Gamma$ 中的未解除假设推导出 $\lfalse$ 的推导。
+根据 \olref{thm:soundness}，任何满足 $\Gamma$ 的
+\iftag{FOL}{结构~$\Struct{M}$}{赋值~$\pAssign{v}$}
+也必须满足 $\lfalse$。
+由于 $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{\lfalse}$ 对每个
+\iftag{FOL}{结构~$\Struct{M}$}{赋值~$\pAssign{v}$} 都成立，
+所以没有 \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} 能满足 $\Gamma$，
+即 $\Gamma$ 不可满足。
 \end{proof}
-
-\end{document}

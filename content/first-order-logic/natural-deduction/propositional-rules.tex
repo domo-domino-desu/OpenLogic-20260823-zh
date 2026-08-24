@@ -10,10 +10,10 @@
       {\olfileid{fol}{ntd}{prl}}
       {\olfileid{pl}{ntd}{prl}}
 
-\olsection{Propositional Rules}
+\olsection{命题逻辑规则}
 
 
-\subsection{Rules for $\land$}
+\subsection{$\land$ 的规则}
 
 \begin{defish}
 \AxiomC{$!A$}
@@ -35,7 +35,7 @@
 \end{tabular}
 \end{defish}
 
-\subsection{Rules for $\lor$}
+\subsection{$\lor$ 的规则}
 
 \begin{defish}
 \begin{tabular}{r}
@@ -60,7 +60,7 @@
 \DisplayProof
 \end{defish}
 
-\subsection{Rules for $\lif$}
+\subsection{$\lif$ 的规则}
 
 \begin{defish}
 \AxiomC{$\Discharge{!A}{n}$}
@@ -76,7 +76,7 @@
 \DisplayProof
 \end{defish}
 
-\subsection{Rules for $\lnot$}
+\subsection{$\lnot$ 的规则}
 
 \begin{defish}
 \AxiomC{$\Discharge{!A}{n}$}
@@ -93,7 +93,7 @@
 \DisplayProof
 \end{defish}
 
-\subsection{Rules for $\lfalse$}
+\subsection{$\lfalse$ 的规则}
 
 \begin{defish}
 \AxiomC{$\lfalse$}
@@ -108,13 +108,8 @@
 \DisplayProof
 \end{defish}
 
-Note that $\Intro{\lnot}$ and $\FalseCl$ are very similar: The
-difference is that $\Intro{\lnot}$ derives a negated
-!!{sentence}~$\lnot !A$ but $\FalseCl$ a positive !!{sentence}~$!A$.
+注意，$\Intro{\lnot}$ 和 $\FalseCl$ 非常相似：区别在于 $\Intro{\lnot}$ 推导出的是否定语句~$\lnot !A$，而 $\FalseCl$ 推导出的是正语句~$!A$。
 
-Whenever a rule indicates that some assumption may be discharged, we
-take this to be a permission, but not a requirement. E.g., in the
-$\Intro{\lif}$ rule, we may discharge any number of assumptions of the
-form~$!A$ in the !!{derivation} of the premise~$!B$, including zero.
+当某条规则表明某个假设可被解除时，这只是一种许可，而非要求。例如，在 $\Intro{\lif}$ 规则中，在得出前提~$!B$ 的推导中，我们可以解除任意多个形式为~$!A$ 的假设，包括零个。
 
 \end{document}

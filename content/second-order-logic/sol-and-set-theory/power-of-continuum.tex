@@ -8,98 +8,60 @@
 
 \olfileid{sol}{set}{pow}
 
-\olsection{The Power of the Continuum}
+\olsection{连续统的势}
 
 \begin{explain}
-In second-order logic we can quantify over subsets of the !!{domain},
-but not over sets of subsets of the !!{domain}. To do this directly,
-we would need \emph{third-order} logic.  For instance, if we wanted to
-state Cantor's Theorem that there is no !!{injective} function from
-the power set of a set to the set itself, we might try to formulate it
-as ``for every set~$X$, and every set~$P$, if $P$ is the power set
-of~$X$, then not $\cardle{P}{X}$''. And to say that $P$ is the power set
-of~$X$ would require formalizing that the !!{element}s of $P$ are all
-and only the subsets of~$X$, so something like $\lforall[Y][(P(Y)
-  \liff Y \subseteq X)]$. The problem lies in $P(Y)$: that is not
-!!a{formula} of second-order logic, since only terms can be arguments
-to one-place relation variables like~$P$.
+在二阶逻辑中，我们可以量化论域的子集，但不能量化论域子集的集合。要直接做到后者，我们需要\emph{三阶}逻辑。例如，如果我们想陈述康托尔定理——即不存在从一个集合的幂集到该集合本身的单射函数，我们可能会试图将其表述为“对每个集合~$X$ 和每个集合~$P$，如果 $P$ 是 $X$ 的幂集，则并非 $\cardle{P}{X}$”。而要说 $P$ 是 $X$ 的幂集，就需要将“$P$ 的元素恰好是~$X$ 的所有子集”形式化，即形如 $\lforall[Y][(P(Y)
+  \liff Y \subseteq X)]$。问题在于 $P(Y)$：它不是二阶逻辑的公式，因为只有项才能作为像~$P$ 这样的一元关系变元的自变元。
 
-We can, however, \emph{simulate} quantification over sets of sets, if
-the domain is large enough.  The idea is to make use of the fact that
-two-place relations~$R$ relates !!{element}s of the !!{domain} to
-!!{element}s of the !!{domain}. Given such an~$R$, we can collect all
-the !!{element}s to which some~$x$ is $R$-related: $\Setabs{y \in
-  \Domain{M}}{R(x,y)}$ is the set ``coded by''~$x$.  Conversely, if
-$Z \subseteq \Pow{\Domain{M}}$ is some collection of subsets
-of~$\Domain{M}$, and there are at least as many !!{element}s
-of~$\Domain{M}$ as there are sets in~$Z$, then there is also a
-relation~$R \subseteq \Domain{M}^2$ such that every $Y \in Z$ is coded
-by some~$x$ using~$R$.
+然而，如果论域足够大，我们可以\emph{模拟}对集合的集合的量化。其想法是利用二元关系~$R$ 能将论域的元素与论域的元素相联系这一事实。给定这样一个~$R$，我们可以收集所有与某个~$x$ 有 $R$ 关联的元素：$\Setabs{y \in
+  \Domain{M}}{R(x,y)}$ 就是由~$x$ “编码”的集合。反过来，如果 $Z \subseteq \Pow{\Domain{M}}$ 是~$\Domain{M}$ 的一个子集的集合，并且~$\Domain{M}$ 的元素至少和~$Z$ 中的集合一样多，那么也存在一个关系~$R \subseteq \Domain{M}^2$，使得每个 $Y \in Z$ 都能被某个~$x$ 通过~$R$ 编码。
 \end{explain}
 
 \begin{defn}
-If $R \subseteq \Domain{M}^2$, then \emph{$x$ $R$-codes} $\Setabs{y
-  \in \Domain{M}}{R(x, y)}$.
+若 $R \subseteq \Domain{M}^2$，则\emph{$x$ $R$-编码} $\Setabs{y
+  \in \Domain{M}}{R(x, y)}$。
 \end{defn}
 
-If !!a{element}~$x \in \Domain{M}$ $R$-codes a set $Z \subseteq
-\Domain{M}$, then a set $Y \subseteq \Domain{M}$ codes a set of sets,
-namely the sets coded by the !!{element}s of~$Y$.  So a set $Y$ can
-$R$-code $\Pow{X}$. It does so iff for every $Z \subseteq X$, some $x
-\in Y$ $R$-codes~$Z$, and every $x \in Y$ $R$-codes a~$Z \subseteq X$.
+如果一个元素~$x \in \Domain{M}$ $R$-编码一个集合 $Z \subseteq \Domain{M}$，那么一个集合 $Y \subseteq \Domain{M}$ 就编码了一个集合的集合，即由~$Y$ 的元素所编码的那些集合。因此，一个集合 $Y$ 可以 $R$-编码 $\Pow{X}$。而 $Y$ $R$-编码 $\Pow{X}$ 当且仅当：对于每个 $Z \subseteq X$，存在某个 $x \in Y$ $R$-编码~$Z$，并且每个 $x \in Y$ 都 $R$-编码某个 $Z \subseteq X$。
 
 \begin{prop}
-The !!{formula}
+公式
   \[
   \fn{Codes}(x, R, Z) \ident \lforall[y][(Z(y) \liff
     R(x, y))]
   \]
-expresses that $s(x)$ $s(R)$-codes $s(Z)$.  The
-!!{formula} 
+表达了 $s(x)$ $s(R)$-编码 $s(Z)$。公式
 \begin{multline*}
   \fn{Pow}(Y, R, X) \ident \\
   \lforall[Z][(Z \subseteq X \lif \lexists[x][(Y(x) \land
     \fn{Codes}(x, R, Z))])] \land {} \\ \lforall[x][(Y(x) \lif
   \lforall[Z][(\fn{Codes}(x, R, Z) \lif Z \subseteq X)]]
 \end{multline*}
-expresses that $s(Y)$ $s(R)$-codes the power set of~$s(X)$, i.e., the
-elements of $s(Y)$ $s(R)$-code exactly the subsets of $s(X)$.
+表达了 $s(Y)$ $s(R)$-编码~$s(X)$ 的幂集，即 $s(Y)$ 的元素恰好 $s(R)$-编码了 $s(X)$ 的所有子集。
 \end{prop}
 
 \begin{explain}
-With this trick, we can express statements about the power set by
-quantifying over the codes of subsets rather than the subsets
-themselves.  For instance, Cantor's Theorem can now be expressed
-by saying that there is no !!{injective} function from the domain
-of any relation that codes the power set of~$X$ to~$X$ itself.
+利用这个技巧，我们可以通过量化子集的编码而不是子集本身，来表达关于幂集的陈述。例如，康托尔定理现在可以表述为：不存在从任何编码了~$X$ 幂集的关系的论域到~$X$ 本身的单射函数。
 \end{explain}
 
 \begin{prop}
-The sentence
+语句
 \begin{multline*}
   \lforall[X][\lforall[Y][\lforall[R][(\fn{Pow}(Y, R, X) \lif \\
       \lnot \lexists[u][(\lforall[x][\lforall[y][(\eq[u(x)][u(y)] \lif
             \eq[x][y])]] \land {}\\
         \lforall[x][(Y(x) \lif X(u(x)))])])]]]
 \end{multline*}
-is valid.
+是有效的。
 \end{prop}
 
 \begin{explain}
-The power set of !!a{denumerable} set is !!{nonenumerable}, and so its
-cardinality is larger than that of any !!{denumerable} set (which is
-$\aleph_0$).  The size of $\Pow{\Nat}$ is called the ``power of the
-continuum,'' since it is the same size as the points on the real
-number line,~$\Real$. If the !!{domain} is large enough to code the
-power set of !!a{denumerable} set, we can express that a set is the
-size of the continuum by saying that it is equinumerous with any
-set~$Y$ that codes the power set of set~$X$ of size~$\aleph_0$. (If the
-domain is not large enough, i.e., it contains no subset equinumerous
-with~$\Real$, then there can also be no relation that codes~$\Pow{X}$.)
+可数无穷集合的幂集是不可数的，因此它的势大于任何可数无穷集合的势（即 $\aleph_0$）。$\Pow{\Nat}$ 的势被称为“连续统的势”，因为它与实数线~$\Real$ 上的点等势。如果论域足够大，能够编码一个可数无穷集合的幂集，我们就可以通过断言一个集合与任何编码了势为~$\aleph_0$ 的集合~$X$ 之幂集的集合~$Y$ 等势，来表达该集合具有连续统的势。（如果论域不够大，即它不包含任何与~$\Real$ 等势的子集，那么也不存在能编码~$\Pow{X}$ 的关系。）
 \end{explain}
 
 \begin{prop}
-If $\cardle{\Real}{\Domain{M}}$, then the !!{formula}
+若 $\cardle{\Real}{\Domain{M}}$，则公式
 \begin{multline*}
 \fn{Cont}(Y) \ident 
 \lexists[X][\lexists[R][((\fn{Aleph}_0(X) \land
@@ -107,21 +69,15 @@ If $\cardle{\Real}{\Domain{M}}$, then the !!{formula}
       \lforall[x][\lforall[y][((Y(x) \land {} 
       Y(y) \land \lforall[z][R(x,z) \liff R(y,z)]) \lif \eq[x][y])]])]]
 \end{multline*}
-expresses that $\cardeq{s(Y)}{\Real}$.
+表达了 $\cardeq{s(Y)}{\Real}$。
 \end{prop}
 
 \begin{proof}
-  $\fn{Pow}(Y, R, X)$ expresses that $s(Y)$ $s(R)$-codes the power set
-  of~$s(X)$, which $\fn{Aleph}_0(X)$ says is countable. So $s(Y)$ is
-  at least as large as the power of the continuum, although it may be
-  larger (if multiple elements of $s(Y)$ code the same subset of~$X$).
-  This is ruled out be the last conjunct, which requires the
-  association between elements of $s(Y)$ and subsets of $s(Z)$ via
-  $s(R)$ to be !!{injective}.
+  $\fn{Pow}(Y, R, X)$ 表达了 $s(Y)$ $s(R)$-编码~$s(X)$ 的幂集，而 $\fn{Aleph}_0(X)$ 断言 $s(X)$ 是可数无穷的。所以 $s(Y)$ 的势至少与连续统的势一样大，尽管它可能更大（如果 $s(Y)$ 中有多个元素编码了~$X$ 的同一个子集）。这一可能性被最后一个合取枝排除，该合取枝要求经由 $s(R)$ 建立的 $s(Y)$ 的元素与 $s(Z)$ 的子集之间的关联是单射的。
 \end{proof}
 
 \begin{prop}
-$\cardeq{\Domain{M}}{\Real}$ iff
+$\cardeq{\Domain{M}}{\Real}$ 当且仅当
 \begin{multline*}
   \Sat{M}{\lexists[X][\lexists[Y][\lexists[R][(\fn{Aleph}_0(X) \land \fn{Pow}(Y, R, X) \land \\
           \lexists[u][(\lforall[x][\lforall[y][(\eq[u(x)][u(y)] \lif \eq[x][y])]] \land {} \\\lforall[y][(Y(y) \lif \lexists[x][\eq[y][u(x)]])])])]]]}.
@@ -129,27 +85,20 @@ $\cardeq{\Domain{M}}{\Real}$ iff
   \end{prop}
 
 \begin{explain}
-The Continuum Hypothesis is the statement that the size of the
-continuum is the first !!{nonenumerable} cardinality, i.e, that
-$\Pow{\Nat}$ has size~$\aleph_1$. 
+连续统假设是指：连续统的势是第一个不可数基数，即 $\Pow{\Nat}$ 的势是~$\aleph_1$。
 \end{explain}
 
 \begin{prop}
-The Continuum Hypothesis is true iff \[\fn{CH} \ident
-\lforall[X][(\fn{Aleph}_1(X) \liff \fn{Cont}(X))]\] is valid.
+连续统假设为真当且仅当 \[\fn{CH} \ident
+\lforall[X][(\fn{Aleph}_1(X) \liff \fn{Cont}(X))]\] 是有效的。
 \end{prop}
 
-Note that it isn't true that $\lnot \fn{CH}$ is valid iff the
-Continuum Hypothesis is false. In !!a{enumerable} domain, there are no
-subsets of size~$\aleph_1$ and also no subsets of the size of the
-continuum, so $\fn{CH}$ is always true in !!a{enumerable}
-domain. However, we can give a different sentence that is valid iff
-the Continuum Hypothesis is false:
+需要注意的是，并非“$\lnot \fn{CH}$ 是有效的当且仅当连续统假设为假”。在可数论域中，既没有势为~$\aleph_1$ 的子集，也没有势为连续统的子集，因此 $\fn{CH}$ 在可数论域中总是为真。然而，我们可以给出另一个语句，它有效当且仅当连续统假设为假：
 
 \begin{prop}
-The Continuum Hypothesis is false iff \[\fn{NCH} \ident
+连续统假设为假当且仅当 \[\fn{NCH} \ident
 \lforall[X][(\fn{Cont}(X) \lif \lexists[Y][(Y \subseteq X \land \lnot
-    \fn{Count}(Y) \land \lnot \cardeq{X}{Y})])]\] is valid.
+    \fn{Count}(Y) \land \lnot \cardeq{X}{Y})])]\] 是有效的。
 \end{prop}
 
 \end{document}

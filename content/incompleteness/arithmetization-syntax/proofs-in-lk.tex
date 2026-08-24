@@ -7,68 +7,60 @@
 \begin{document}
 
 \olfileid{inc}{art}{plk}
-\olsection{\usetoken{P}{derivation} in $\Log{LK}$}
+\olsection{$\Log{LK}$ 中的\usetoken{P}{derivation}}
 
 \begin{explain}
-In order to arithmetize !!{derivation}s, we must represent
-!!{derivation}s as numbers. Since !!{derivation}s are trees of sequents
-where each inference carries also a label, a recursive
-representation is the most obvious approach: we represent a
-!!{derivation} as a tuple, the components of which are the
-end-sequent, the label, and the representations of the
-sub-!!{derivation}s leading to the premises of the last inference.
+为了对推导进行算术化处理，我们必须把推导表示为数字。
+由于推导是矢列构成的树，且每个推理还带有一个标签，
+因此最显然的表示方法就是递归表示：我们把一个推导表示为一个元组，
+其分量分别是末矢列、标签，
+以及到达最后推理前提的子推导的表示。
 \end{explain}
 
 \begin{defn}
-If $\Gamma$ is a finite sequence of !!{sentence}s, $\Gamma =
-\tuple{!A_1, \dots, !A_n}$, then $\Gn{\Gamma} = \tuple{\Gn{!A_1},
-  \dots, \Gn{!A_n}}$.
+若 $\Gamma$ 是一个语句的有限序列，$\Gamma =
+\tuple{!A_1, \dots, !A_n}$，则 $\Gn{\Gamma} = \tuple{\Gn{!A_1},
+  \dots, \Gn{!A_n}}$。
 
-If $\Gamma \Sequent \Delta$ is a sequent, then a G\"odel number of
-$\Gamma \Sequent \Delta$ is
+若 $\Gamma \Sequent \Delta$ 是一个矢列，则 $\Gamma \Sequent \Delta$ 的一个哥德尔数是
 \[
 \Gn{\Gamma \Sequent \Delta} = \tuple{\Gn{\Gamma}, \Gn{\Delta}}
 \]
 
-If $\pi$ is !!a{derivation} in $\Log{LK}$, then $\Gn{\pi}$ is defined
-as follows:
+若 $\pi$ 是 $\Log{LK}$ 中的一个推导，则 $\Gn{\pi}$ 定义如下：
 \begin{enumerate}
-\item If $\pi$ consists only
-  of the initial sequent $\Gamma \Sequent \Delta$, then $\Gn{\pi}$ is 
+\item 若 $\pi$ 仅由初始矢列 $\Gamma \Sequent \Delta$ 组成，则 $\Gn{\pi}$ 是
   \[
     \tuple{0, \Gn{\Gamma \Sequent \Delta}}.
   \]
-\item If $\pi$ ends in an inference with one or two premises, has
-  $\Gamma \Sequent \Delta$ as its conclusion, and $\pi_1$ and $\pi_2$ are the immediate subproof ending
-  in the premise of the last inference, then $\Gn{\pi}$ is 
+\item 若 $\pi$ 以带有一个或两个前提的推理结束，以 $\Gamma \Sequent \Delta$ 为其结论，并且 $\pi_1$ 和 $\pi_2$ 是结束于最后一个推理前提的直接子推导，则 $\Gn{\pi}$ 分别是
   \begin{align*}
-    & \tuple{1, \Gn{\pi_1}, \Gn{\Gamma \Sequent \Delta}, k} \text{ or}\\ 
+    & \tuple{1, \Gn{\pi_1}, \Gn{\Gamma \Sequent \Delta}, k} \text{ 或}\\ 
     & \tuple{2, \Gn{\pi_1}, \Gn{\pi_2}, \Gn{\Gamma \Sequent \Delta}, k}, 
   \end{align*}
-  respectively, where $k$ is given by the following table according to
-  which rule was used in the last inference:
+  其中 $k$ 按下表根据最后一个推理所使用的规则给出：
 
   \begin{tabular}{lccccccc}
-    \text{Rule:} & \LeftR{\Weakening} & \RightR{\Weakening} &
+    \text{规则：} & \LeftR{\Weakening} & \RightR{\Weakening} &
     \LeftR{\Contraction} & \RightR{\Contraction} &
     \LeftR{\Exchange} & \RightR{\Exchange} \\
     $k$: & 1 & 2 & 3 & 4 & 5 & 6 \\[2ex]
-    \text{Rule:} & \LeftR{\lnot} & \RightR{\lnot} &
-    \LeftR{\land} & \RightR{\land} & 
+    \text{规则：} & \LeftR{\lnot} & \RightR{\lnot} &
+    \LeftR{\land} & \RightR{\land} &
     \LeftR{\lor} & \RightR{\lor} \\
     $k$: & 7 & 8 & 9 & 10 & 11 & 12 \\[2ex]
-    \text{Rule:} & \LeftR{\lif} & \RightR{\lif} &
+    \text{规则：} & \LeftR{\lif} & \RightR{\lif} &
     \LeftR{\lforall} & \RightR{\lforall} &
     \LeftR{\lexists} & \RightR{\lexists} \\
     $k$: & 13 & 14 & 15 & 16 & 17 & 18 \\[2ex]
-    \text{Rule:} & \Cut & = \\
+    \text{规则：} & \Cut & = \\
     $k$: & 19 & 20
   \end{tabular}
 \end{enumerate}
 \end{defn}
 
 \begin{ex}
-  Consider the very simple !!{derivation}
+  考虑如下非常简单的推导：
   \begin{prooftree}
     \Axiom$!A \fCenter !A$
     \RightLabel{\LeftR{\land}}
@@ -76,14 +68,9 @@ as follows:
     \RightLabel{\RightR{\lif}}
     \UnaryInf$\fCenter (!A \land !B) \lif !A$
   \end{prooftree}
-  The G\"odel number of the initial sequent would be $p_0 = \tuple{0,
-    \Gn{!A \Sequent !A}}$.  The G\"odel number of the !!{derivation}
-    ending in the conclusion of~$\LeftR{\land}$ would be $p_1 =
-    \tuple{1, p_0, \Gn{!A \land !B \Sequent !A}, 9}$ ($1$ since
-    $\LeftR{\land}$ has one premise, the G\"odel number of the
-    conclusion~$!A \land !B \Sequent !A$, and $9$ is the number coding
-    $\LeftR{\land}$). The G\"odel number of the entire !!{derivation} then
-    is $\tuple{1, p_1, \Gn{\Sequent (!A \land !B) \lif !A)}, 14}$, i.e.,
+  初始矢列的哥德尔数为 $p_0 = \tuple{0,
+    \Gn{!A \Sequent !A}}$。结束于 $\LeftR{\land}$ 结论的推导的哥德尔数为 $p_1 =
+    \tuple{1, p_0, \Gn{!A \land !B \Sequent !A}, 9}$（$1$ 是因为 $\LeftR{\land}$ 有一个前提，加上结论 $!A \land !B \Sequent !A$ 的哥德尔数，而 $9$ 是 $\LeftR{\land}$ 的编码数字）。整个推导的哥德尔数则是 $\tuple{1, p_1, \Gn{\Sequent (!A \land !B) \lif !A)}, 14}$，即：
   \[
   \tuple{1, \tuple{1, \tuple{0, \Gn{!A \Sequent !A)}}, \Gn{!A \land !B \Sequent !A}, 9},
     \Gn{\Sequent (!A \land !B) \lif !A}, 14}.
@@ -91,35 +78,20 @@ as follows:
 \end{ex}
 
 \begin{explain}
-Having settled on a representation of !!{derivation}s, we must also
-show that we can manipulate such !!{derivation}s primitive recursively,
-and express their essential properties and relations so.  Some
-operations are simple: e.g., given a G\"odel number~$p$ of
-!!a{derivation}, $\fn{EndSeq}(p) = (p)_{(p)_0+1}$ gives us the G\"odel
-number of its end-sequent and $\fn{LastRule}(p) = (p)_{(p)_0+2}$ the
-code of its last rule.  The property $\fn{Sequent}(s)$ defined by
-\[
+确定了推导的表示方法后，我们还必须证明可以原始递归地操作这些推导，并原始递归地表达它们的基本性质和关系。
+有些操作是简单的：例如，给定一个推导的哥德尔数 $p$，$\fn{EndSeq}(p) = (p)_{(p)_0+1}$ 给出其末矢列的哥德尔数，$\fn{LastRule}(p) = (p)_{(p)_0+2}$ 给出其最后规则的代码。
+由 \[
   \len{s} = 2 \land \bforall{i<\len{(s)_0} + \len{(s)_1}}{\fn{Sent}(((s)_0 \concat (s)_1)_i)}
-\]
-holds of $s$ iff $s$ is the G\"odel number of a sequent consisting of
-!!{sentence}s. Some are much harder.  We'll at least sketch how to do
-this.  The goal is to show that the relation ``$\pi$ is
-!!a{derivation} of~$!A$ from~$\Gamma$'' is a primitive recursive
-relation of the G\"odel numbers of $\pi$ and~$!A$.
+\] 定义的性质 $\fn{Sequent}(s)$ 对 $s$ 成立当且仅当 $s$ 是一个由语句组成的矢列的哥德尔数。
+有些操作则要困难得多。我们至少会概述如何做到这一点。目标是证明关系“$\pi$ 是从 $\Gamma$ 到 $!A$ 的推导”是关于 $\pi$ 和 $!A$ 的哥德尔数的原始递归关系。
 \end{explain}
 
 \begin{prop}\ollabel{prop:followsby}
-  The property $\fn{Correct}(p)$ which holds iff the last inference in
-  the !!{derivation}~$\pi$ with G\"odel number~$p$ is correct, is
-  primitive recursive.
+  性质 $\fn{Correct}(p)$（成立当且仅当哥德尔数为 $p$ 的推导 $\pi$ 中最后一个推理是正确的）是原始递归的。
 \end{prop}
 
 \begin{proof}
-  $\Gamma \Sequent \Delta$ is an initial sequent if either there
-  is !!a{sentence}~$!A$ such that $\Gamma \Sequent \Delta$ is $!A
-  \Sequent !A$, or there is a term~$t$ such that $\Gamma \Sequent
-  \Delta$ is $\emptyset \Sequent \eq[t][t]$.  In terms of G\"odel
-  numbers, $\fn{InitSeq}(s)$ holds iff
+  $\Gamma \Sequent \Delta$ 是初始矢列，当且仅当要么存在语句~$!A$ 使得 $\Gamma \Sequent \Delta$ 是 $!A \Sequent !A$，要么存在项~$t$ 使得 $\Gamma \Sequent \Delta$ 是 $\emptyset \Sequent \eq[t][t]$。用哥德尔数表示，$\fn{InitSeq}(s)$ 成立当且仅当
   \begin{align*}
   \bexists{x < s}{} (\fn{Sent}(x) & \land
   s = \tuple{\tuple{x},\tuple{x}})
@@ -128,15 +100,9 @@ relation of the G\"odel numbers of $\pi$ and~$!A$.
   s = \tuple{0, \tuple{\Gn{{\eq}(} \concat t \concat \Gn{,} \concat t \concat \Gn{)}}}).
   \end{align*}
 
-  We also have to show that for each rule of inference~$R$ the
-  relation $\fn{FollowsBy}_R(p)$ is primitive recursive, where
-  $\fn{FollowsBy}_R(p)$ holds iff $p$ is the G\"odel number of
-  !!{derivation}~$\pi$, and the end-sequent of~$\pi$ follows
-  by a correct application of~$R$ from the immediate
-  sub-!!{derivation}s of~$\pi$.
+  我们还要证明，对于每个推理规则~$R$，关系 $\fn{FollowsBy}_R(p)$ 是原始递归的，其中 $\fn{FollowsBy}_R(p)$ 成立当且仅当 $p$ 是推导~$\pi$ 的哥德尔数，且 $\pi$ 的末矢列是通过对~$R$ 的正确运用从 $\pi$ 的直接子推导得到的。
 
-  A simple case is that of the \RightR{\land} rule. If $\pi$ ends in
-  a correct $\RightR{\land}$ inference, it looks like this:
+  一个简单的例子是 \RightR{\land} 规则。如果 $\pi$ 以一个正确的 $\RightR{\land}$ 推理结束，那么它看起来是这样的：
   \begin{prooftree}
     \AxiomC{}
     \RightLabel{$\pi_1$}
@@ -149,17 +115,9 @@ relation of the G\"odel numbers of $\pi$ and~$!A$.
     \RightLabel{\RightR\land}
     \BinaryInf$\Gamma \fCenter \Delta, !A \land !B$
   \end{prooftree}
-  So, the last inference in the !!{derivation} $\pi$
-  is a correct application of $\RightR{\land}$ iff
-  there are sequences of !!{sentence}s $\Gamma$ and $\Delta$
-  as well as two !!{sentence}s $!A$ and~$!B$ such that
-  the end-sequent of $\pi_1$ is $\Gamma \Sequent \Delta, !A$,
-  the end-sequent of $\pi_2$ is $\Gamma \Sequent \Delta, !B$,
-  and the end-sequent of $\pi$ is $\Gamma \Sequent \Delta, !A \land !B$.
-  We just have to translate this into G\"odel
-  numbers.  If $s = \Gn{\Gamma \Sequent \Delta}$ then $(s)_0 =
-  \Gn{\Gamma}$ and $(s)_1 = \Gn{\Delta}$.  So,
-  $\fn{FollowsBy}_{\RightR{\land}}(p)$ holds iff
+  因此，推导 $\pi$ 中的最后一个推理是 $\RightR{\land}$ 的一个正确运用，当且仅当存在语句序列 $\Gamma$ 和 $\Delta$ 以及两个语句 $!A$ 和~$!B$，使得 $\pi_1$ 的末矢列是 $\Gamma \Sequent \Delta, !A$，$\pi_2$ 的末矢列是 $\Gamma \Sequent \Delta, !B$，且 $\pi$ 的末矢列是 $\Gamma \Sequent \Delta, !A \land !B$。
+  我们只需将这一点翻译成哥德尔数。如果 $s = \Gn{\Gamma \Sequent \Delta}$，那么 $(s)_0 = \Gn{\Gamma}$ 且 $(s)_1 = \Gn{\Delta}$。于是，
+  $\fn{FollowsBy}_{\RightR{\land}}(p)$ 成立当且仅当
 \begin{align*}
 & \bexists{g < p}{\bexists{d < p}{\bexists{a < p}{\bexists{b < p}{\quad}}}} \\
 & \qquad \fn{EndSequent}(p) = 
@@ -169,24 +127,13 @@ relation of the G\"odel numbers of $\pi$ and~$!A$.
 & \qquad \fn{EndSequent}((p)_2) = \tuple{g, d \concat \tuple{b}} \land {}\\
 & \qquad (p)_0 = 2 \land \fn{LastRule}(p) = 10.
 \end{align*}
-The individual lines express, respectively, ``there is a
-sequence~($\Gamma$) with G\"odel number~$g$, there is a
-sequence~($\Delta$) with G\"odel number~$d$, !!a{formula}~($!A$) with
-G\"odel number~$a$, and !!a{formula}~($!B$) with G\"odel number~$b$,''
-such that ``the end-sequent of $\pi$ is $\Gamma \Sequent \Delta, !A
-\land !B$,'' ``the end-sequent of $\pi_1$ is $\Gamma \Sequent \Delta,
-!A$,'' ``the end-sequent of $\pi_2$ is $\Gamma \Sequent \Delta, !B$,''
-and ``$\pi$ has two immediate subderivations and the last inference
-rule is $\RightR\land$ (with number~$10$).''
+这几行分别表达的是：“存在哥德尔数为 $g$ 的序列 ($\Gamma$)，哥德尔数为 $d$ 的序列 ($\Delta$)，哥德尔数为 $a$ 的公式 ($!A$)，以及哥德尔数为 $b$ 的公式 ($!B$)”，使得“$\pi$ 的末矢列是 $\Gamma \Sequent \Delta, !A \land !B$”“$\pi_1$ 的末矢列是 $\Gamma \Sequent \Delta, !A$”“$\pi_2$ 的末矢列是 $\Gamma \Sequent \Delta, !B$”，以及“$\pi$ 有两个直接子推导且最后的推理规则是 $\RightR\land$（编号为 $10$）”。
 
-The last inference in~$\pi$ is a correct application of
-$\RightR\lexists$ iff there are sequences $\Gamma$ and $\Delta$,
-!!a{formula}~$!A$, a variable~$x$, and a term~$t$, such that
-the end-sequent of $\pi$ is $\Gamma \Sequent \Delta, \lexists[x][!A]$
-and the end-sequent of $\pi_1$ is $\Gamma \Sequent \Delta,
-\Subst{!A}{t}{x}$. So in terms of G\"odel numbers, we have
+$\pi$ 中的最后一个推理是 $\RightR\lexists$ 的一个正确运用，当且仅当存在序列 $\Gamma$ 和 $\Delta$、一个公式 $!A$、一个变元 $x$ 以及一个项 $t$，使得 $\pi$ 的末矢列是 $\Gamma \Sequent \Delta, \lexists[x][!A]$
+而 $\pi_1$ 的末矢列是 $\Gamma \Sequent \Delta,
+\Subst{!A}{t}{x}$。因此，用哥德尔数表示，我们有
 $\fn{FollowsBy}_{\RightR\lexists}(p)$
-iff
+当且仅当
 \begin{align*}
   & \bexists{g<p}{\bexists{d<p}{\bexists{a<p}{\bexists{x<p}{\bexists{t<p}{\quad}}}}}\\
   & \qquad \fn{EndSequent}(p) = 
@@ -201,7 +148,7 @@ iff
   } \land {}\\
   & \qquad (p)_0 = 1 \land \fn{LastRule}(p) = 18.
 \end{align*}
-We then define $\fn{Correct}(p)$ as
+接着，我们将 $\fn{Correct}(p)$ 定义为
 \begin{multline*}
   \fn{Sequent}(\fn{EndSequent}(p)) \land {}\\ 
   [(\fn{LastRule}(p) = 1 \land 
@@ -209,39 +156,29 @@ We then define $\fn{Correct}(p)$ as
   (\fn{LastRule}(p) = 20 \land \fn{FollowsBy}_{\eq}(p)) \lor {}\\
   (p)_0 = 0 \land \fn{InitialSeq}(\fn{EndSequent}(p))]
 \end{multline*}
-The first line ensures that the end-sequent of~$d$ is actually a
-sequent consisting of !!{sentence}s. The last line covers the case
-where $p$ is just an initial sequent.
+第一行确保 $d$ 的末矢列确实是一个由语句组成的矢列。最后一行覆盖了 $p$ 本身就是一个初始矢列的情况。
 \end{proof}
 
 \begin{prob}
-  Define the following properties as in
-  \olref[inc][art][plk]{prop:followsby}:
+  请仿照
+  \olref[inc][art][plk]{prop:followsby} 中的方式定义下列性质：
   \begin{enumerate}
   \item $\fn{FollowsBy}_{\Cut}(p)$,
   \item $\fn{FollowsBy}_{\LeftR\lif}(p)$,
   \item $\fn{FollowsBy}_{\eq}(p)$,
-  \item $\fn{FollowsBy}_{\RightR{\lforall}}(p)$.
+  \item $\fn{FollowsBy}_{\RightR{\lforall}}(p)$。
   \end{enumerate}
-  For the last one, you will have to also show that you can test
-  primitive recursively if the last inference of the
-  !!{derivation} with G\"odel number~$p$ satisfies the eigenvariable
-  condition, i.e., the eigenvariable~$a$ of the $\RightR{\lforall}$
-  does not occur in the end-sequent.
+  对于最后一个，你还必须证明：可以原始递归地判定哥德尔数为 $p$ 的推导其最后一个推理是否满足本元变元条件，即 $\RightR{\lforall}$ 中的本元变元 $a$ 不在末矢列中出现。
   \end{prob}
   
 
 \begin{prop}
   \ollabel{prop:deriv}
-  The relation $\fn{Deriv}(p)$ which holds if $p$ is the G\"odel
-  number of a correct !!{derivation}~$\pi$, is primitive recursive.
+  关系 $\fn{Deriv}(p)$（当 $p$ 是正确推导 $\pi$ 的哥德尔数时成立）是原始递归的。
 \end{prop}
 
 \begin{proof}
-  !!^a{derivation}~$\pi$ is correct if every one of its inferences
-  is a correct application of a rule, i.e., if every one of its
-  sub-!!{derivation}s ends in a correct inference. So, $\fn{Deriv}(d)$
-  iff
+  一个推导 $\pi$ 是正确的，当且仅当它的每一个推理都是对某个规则的正确运用，也就是说，当且仅当它的每一个子推导都以一个正确的推理结束。所以，$\fn{Deriv}(d)$ 成立当且仅当
   \[
   \bforall{i<\len{\fn{SubtreeSeq}(p)}}{\fn{Correct}((\fn{SubtreeSeq}(p))_i}.
   \]
@@ -249,38 +186,29 @@ where $p$ is just an initial sequent.
 
 
 \begin{prop}
-Suppose $\Gamma$ is a primitive recursive set of !!{sentence}s.  Then
-the relation $\Prf[\Gamma](x, y)$ expressing ``$x$ is the code of
-!!a{derivation}~$\pi$ of $\Gamma_0 \Sequent !A$ for some finite
-$\Gamma_0 \subseteq \Gamma$ and $y$ is the G\"odel number of~$!A$'' is
-primitive recursive.
+假设 $\Gamma$ 是一个原始递归的语句集。那么表达“$x$ 是某个有限集 $\Gamma_0 \subseteq \Gamma$ 的推导 $\pi$ 的编码，该推导的末矢列为 $\Gamma_0 \Sequent !A$，且 $y$ 是 $!A$ 的哥德尔数”的关系 $\Prf[\Gamma](x, y)$ 是原始递归的。
 \end{prop}
 
 \begin{proof}
-Suppose ``$y \in \Gamma$'' is given by the primitive recursive
-predicate~$R_\Gamma(y)$.  We have to show that $\Prf[\Gamma](x, y)$
-which holds iff $y$ is the G\"odel number of a sentence~$!A$ and
-$x$~is the code of an $\Log{LK}$-!!{derivation} with end-sequent
-$\Gamma_0 \Sequent !A$ is primitive recursive.
+设“$y \in \Gamma$”由原始递归谓词~$R_\Gamma(y)$ 给出。
+我们需要证明 $\Prf[\Gamma](x, y)$ 是原始递归的，其中该谓词成立当且仅当
+$y$ 是语句~$!A$ 的哥德尔数，并且 $x$ 是一个 $\Log{LK}$-推导的编码，
+该推导的末矢列为 $\Gamma_0 \Sequent !A$。
 
-By the previous proposition, the property $\fn{Deriv}(x)$ which holds
-iff $x$ is the code of a correct !!{derivation}~$\pi$ in $\Log{LK}$ is
-primitive recursive.  If $x$ is such a code, then $\fn{EndSequent}(x)$
-is the code of the end-sequent of~$\pi$, and so
-$(\fn{EndSequent}(x))_0$ is the code of the left side of the end
-sequent and $(\fn{EndSequent}(x))_1$ the right side.  So we can
-express ``the right side of the end-sequent of~$\pi$ is~$!A$'' as
-$\len{(\fn{EndSequent}(x))_1} = 1 \land ((\fn{EndSequent}(x))_1)_0 =
-x$.  The left side of the end-sequent of $\pi$ is of course
-automatically finite, we just have to express that every sentence in
-it is in~$\Gamma$.  Thus we can define $\Prf[\Gamma](x, y)$ by
-\begin{align*}
+根据前一个命题，性质 $\fn{Deriv}(x)$ 是原始递归的，它成立当且仅当
+$x$ 是 $\Log{LK}$ 中一个正确推导~$\pi$ 的编码。
+若 $x$ 是这样的编码，则 $\fn{EndSequent}(x)$ 就是~$\pi$ 的末矢列的编码，
+于是 $(\fn{EndSequent}(x))_0$ 是该末矢列左部的编码，而 $(\fn{EndSequent}(x))_1$ 是其右部的编码。
+因此，我们可以将“$\pi$ 的末矢列的右部是~$!A$”表达为 $\len{(\fn{EndSequent}(x))_1} = 1 \land ((\fn{EndSequent}(x))_1)_0 =
+x$。
+$\pi$ 的末矢列的左部自然就是有限的，我们只需表达其中每个语句都属于~$\Gamma$。
+这样，我们就可以用 \begin{align*}
 \Prf[\Gamma](x, y) \defiff {}&
 \fn{Deriv}(x) \land {} \\
 & \bforall{i <
   \len{(\fn{EndSequent}(x))_0}}{R_\Gamma(((\fn{EndSequent}(x))_0)_i)} \land {}\\
 & \len{(\fn{EndSequent}(x))_1} = 1 \land ((\fn{EndSequent}(x))_1)_0 = y.
-\end{align*}
+\end{align*} 来定义 $\Prf[\Gamma](x, y)$。
 \end{proof}
 
 \end{document}

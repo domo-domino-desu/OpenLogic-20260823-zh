@@ -10,23 +10,16 @@
       {\olfileid{fol}{seq}{prv}}
       {\olfileid{pl}{seq}{prv}}
 
-\olsection{\usetoken{S}{derivability} and Consistency}
+\olsection{可推导性与一致性}
 
-We will now establish a number of properties of the !!{derivability}
-relation.  They are independently interesting, but each will play a
-role in the proof of the completeness theorem.
+我们现在来建立可推导性关系的若干性质。这些性质本身各有独立的意义，且每一个都将在完备性定理的证明中发挥作用。
 
 \begin{prop}\ollabel{prop:provability-contr}
-  If $\Gamma \Proves !A$ and $\Gamma \cup \{!A\}$ is
-  inconsistent, then $\Gamma$ is inconsistent.
+  若 $\Gamma \Proves !A$ 且 $\Gamma \cup \{!A\}$ 不一致，则 $\Gamma$ 不一致。
 \end{prop}
 
 \begin{proof}
-There are finite $\Gamma_0$ and $\Gamma_1 \subseteq \Gamma$ such that
-$\Log{LK}$ !!{derive}s $\Gamma_0 \Sequent !A$ and $!A, \Gamma_1
-\Sequent \quad$.  Let the $\Log{LK}$-!!{derivation} of $\Gamma_0 \Sequent
-!A$ be~$\pi_0$ and the $\Log{LK}$-!!{derivation} of $\Gamma_1, !A
-\Sequent \quad$ be~$\pi_1$. We can then !!{derive}
+存在 $\Gamma$ 的有限子集 $\Gamma_0$ 和 $\Gamma_1$，使得 $\Log{LK}$ 可推导出相继式 $\Gamma_0 \Sequent !A$ 与 $!A, \Gamma_1 \Sequent \quad$。设 $\Gamma_0 \Sequent !A$ 的 $\Log{LK}$-推导为~$\pi_0$，$!A, \Gamma_1 \Sequent \quad$ 的 $\Log{LK}$-推导为~$\pi_1$。那么我们可以推导出：
 \begin{prooftree}
 \AxiomC{}
 \RightLabel{$\pi_0$}
@@ -37,25 +30,18 @@ $\Log{LK}$ !!{derive}s $\Gamma_0 \Sequent !A$ and $!A, \Gamma_1
 \RightLabel{\Cut}
 \BinaryInf$ \Gamma_0,\Gamma_1 \fCenter $
 \end{prooftree}
-
-Since $\Gamma_0 \subseteq \Gamma$ and $\Gamma_1 \subseteq \Gamma$,
-$\Gamma_0 \cup \Gamma_1 \subseteq \Gamma$, hence $\Gamma$~is inconsistent.
+由于 $\Gamma_0 \subseteq \Gamma$ 且 $\Gamma_1 \subseteq \Gamma$，有 $\Gamma_0 \cup \Gamma_1 \subseteq \Gamma$，因此 $\Gamma$~不一致。
 \end{proof}
 
 \begin{prop}
 \ollabel{prop:prov-incons}
-$\Gamma \Proves !A$ iff $\Gamma \cup \{\lnot !A\}$ is inconsistent.
+$\Gamma \Proves !A$ 当且仅当 $\Gamma \cup \{\lnot !A\}$ 不一致。
 \end{prop}
 
 \begin{proof}
-First suppose $\Gamma \Proves !A$, i.e., there is
-!!a{derivation}~$\pi_0$ of $\Gamma \Sequent !A$. By adding a
-$\LeftR{\lnot}$ rule, we obtain !!a{derivation} of~$\lnot !A, \Gamma
-\Sequent \quad$, i.e., $\Gamma \cup \{\lnot !A\}$ is inconsistent.
+首先假设 $\Gamma \Proves !A$，即存在 $\Gamma \Sequent !A$ 的一个推导~$\pi_0$。通过添加一条 $\LeftR{\lnot}$ 规则，我们得到 $\lnot !A, \Gamma \Sequent \quad$ 的一个推导，亦即 $\Gamma \cup \{\lnot !A\}$ 不一致。
 
-If $\Gamma \cup \{\lnot !A\}$ is inconsistent, there is
-!!a{derivation}~$\pi_1$ of $\lnot !A, \Gamma \Sequent \quad$. The
-following is !!a{derivation} of $\Gamma \Sequent !A$:
+若 $\Gamma \cup \{\lnot !A\}$ 不一致，则存在 $\lnot !A, \Gamma \Sequent \quad$ 的一个推导~$\pi_1$。以下是 $\Gamma \Sequent !A$ 的一个推导：
 \begin{prooftree}
   \Axiom$!A \fCenter !A$
   \RightLabel{\RightR{\lnot}}
@@ -69,18 +55,15 @@ following is !!a{derivation} of $\Gamma \Sequent !A$:
 \end{proof}
 
 \begin{prob}
-Prove that $\Gamma \Proves \lnot !A$ iff $\Gamma \cup \{!A\}$ is inconsistent.
+证明：$\Gamma \Proves \lnot !A$ 当且仅当 $\Gamma \cup \{!A\}$ 不一致。
 \end{prob}
 
 \begin{prop}\ollabel{prop:explicit-inc}
-  If $\Gamma \Proves !A$ and $\lnot !A \in \Gamma$, then $\Gamma$ is
-  inconsistent.
+  若 $\Gamma \Proves !A$ 且 $\lnot !A \in \Gamma$，则 $\Gamma$ 不一致。
 \end{prop}
 
 \begin{proof}
-  Suppose $\Gamma \Proves !A$ and $\lnot !A \in \Gamma$.  Then there
-  is !!a{derivation}~$\pi$ of a sequent $\Gamma_0 \Sequent !A$. The
-  sequent $\lnot !A, \Gamma_0 \Sequent \quad$ is also !!{derivable}:
+  假设 $\Gamma \Proves !A$ 且 $\lnot !A \in \Gamma$。那么存在相继式 $\Gamma_0 \Sequent !A$ 的一个推导~$\pi$。相继式 $\lnot !A, \Gamma_0 \Sequent \quad$ 也是可推导的：
   \begin{prooftree}
     \AxiomC{}
     \RightLabel{$\pi$}
@@ -93,20 +76,15 @@ Prove that $\Gamma \Proves \lnot !A$ iff $\Gamma \cup \{!A\}$ is inconsistent.
     \RightLabel{\Cut}
     \BinaryInf$\Gamma_0, \lnot !A \fCenter$
   \end{prooftree}
-  Since $\lnot !A \in \Gamma$ and $\Gamma_0 \subseteq \Gamma$, this
-  shows that $\Gamma$ is inconsistent.
+  由于 $\lnot !A \in \Gamma$ 且 $\Gamma_0 \subseteq \Gamma$，这表明 $\Gamma$ 不一致。
 \end{proof}
 
 \begin{prop}\ollabel{prop:provability-exhaustive}
-  If $\Gamma \cup \{!A\}$ and $\Gamma \cup \{\lnot !A\}$ are both
-  inconsistent, then $\Gamma$ is inconsistent.
+  若 $\Gamma \cup \{!A\}$ 与 $\Gamma \cup \{\lnot !A\}$ 均不一致，则 $\Gamma$ 不一致。
 \end{prop}
 
 \begin{proof}
-There are finite sets $\Gamma_0 \subseteq \Gamma$ and $\Gamma_1
-\subseteq \Gamma$ and $\Log{LK}$-!!{derivation}s $\pi_0$ and $\pi_1$
-of $!A, \Gamma_0 \Sequent \quad$ and $\lnot !A, \Gamma_1 \Sequent
-\quad$, respectively. We can then !!{derive}
+存在 $\Gamma$ 的有限子集 $\Gamma_0$ 和 $\Gamma_1$，以及 $\Log{LK}$-推导 $\pi_0$ 和 $\pi_1$，分别推导出 $!A, \Gamma_0 \Sequent \quad$ 和 $\lnot !A, \Gamma_1 \Sequent \quad$。那么我们可以推导出：
 \begin{prooftree}
 \AxiomC{}
 \RightLabel{$\pi_0$}
@@ -119,9 +97,7 @@ of $!A, \Gamma_0 \Sequent \quad$ and $\lnot !A, \Gamma_1 \Sequent
 \RightLabel{\Cut}
 \BinaryInf$ \Gamma_0, \Gamma_1 \fCenter $
 \end{prooftree}
-Since $\Gamma_0 \subseteq \Gamma$ and $\Gamma_1 \subseteq \Gamma$,
-$\Gamma_0 \cup \Gamma_1 \subseteq \Gamma$. Hence $\Gamma$ is
-inconsistent.
+由于 $\Gamma_0 \subseteq \Gamma$ 且 $\Gamma_1 \subseteq \Gamma$，有 $\Gamma_0 \cup \Gamma_1 \subseteq \Gamma$。因此 $\Gamma$ 不一致。
 \end{proof}
 
 \end{document}

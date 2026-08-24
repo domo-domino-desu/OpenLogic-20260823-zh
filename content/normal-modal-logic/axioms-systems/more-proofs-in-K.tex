@@ -8,10 +8,9 @@
 
 \olfileid{nml}{prf}{mpr}
 
-\olsection{More Proofs in \Log{K}}
+\olsection{\Log{K} 中的更多证明}
 
-Let's see some more examples of !!{derivability} in~\Log{K}, now using
-the simplified method introduced in \olref[der]{sec}.
+现在我们运用 \olref[der]{sec} 节引入的简化方法，来看看 \Log{K} 中可推导性的更多例子。
 
 \begin{prop}
   $\Log{K} \Proves \Box (!A \lif !B) \lif (\Diamond !A \lif \Diamond
@@ -26,7 +25,7 @@ the simplified method introduced in \olref[der]{sec}.
 \Box\lnot!A \lif \lnot\Box\lnot!B)$ & \Taut\\
 4. & $\Log{K} \Proves \Box(!A \lif !B) \lif (\lnot
 \Box\lnot!A \lif \lnot\Box\lnot!B)$ & \PL, 2, 3 \\
-5. &  $\Log{K} \Proves \Box(!A \lif !B) \lif (\Diamond!A \lif \Diamond!B)$ & $\Diamond$ for $\lnot\Box\lnot$.
+5. &  $\Log{K} \Proves \Box(!A \lif !B) \lif (\Diamond!A \lif \Diamond!B)$ & 以 $\Diamond$ 代 $\lnot\Box\lnot$。
 \end{derivation}
 \end{proof}
   
@@ -43,7 +42,7 @@ $\Log{K}\Proves \Box!A \lif (\Diamond(!A \lif !B) \lif
   3. &  $\Log{K} \Proves \Box!A \lif (\lnot \Box\lnot (!A\lif !B) \lif \lnot
   \Box\lnot!B)$ & \PL, 2 \\
   4. & $\Log{K} \Proves \Box!A \lif (\Diamond(!A \lif !B) \lif
-  \Diamond !B)$ & $\Diamond$ for $\lnot\Box\lnot$.
+  \Diamond !B)$ & 以 $\Diamond$ 代 $\lnot\Box\lnot$。
   \end{derivation}
 \end{proof}
 
@@ -58,8 +57,8 @@ $\Log{K}\Proves \Box!A \lif (\Diamond(!A \lif !B) \lif
     3. & $\Log{K} \Proves \lnot\Box\lnot !A \lif \lnot\Box\lnot(!A \lor!B)$ &
     \PL, 2\\
     4. & $\Log{K} \Proves \Diamond!A \lif \Diamond(!A \lor !B)$ &
-    $\Diamond$ for $\lnot\Box\lnot$\\
-    5. & $\Log{K} \Proves \Diamond!B \lif \Diamond(!A \lor !B)$ & similarly\\
+    以 $\Diamond$ 代 $\lnot\Box\lnot$\\
+    5. & $\Log{K} \Proves \Diamond!B \lif \Diamond(!A \lor !B)$ & 同理\\
     6. & $\Log{K} \Proves (\Diamond!A \lor\Diamond!B) \lif \Diamond(!A \lor !B)$
     & \PL, 4, 5.
   \end{derivation}
@@ -81,20 +80,20 @@ $\Log{K}\Proves \Box!A \lif (\Diamond(!A \lif !B) \lif
     5. & $\Log{K} \Proves \lnot \Box \lnot(!A\lor!B) \lif (\lnot
     \lnot\Box\lnot!B \lif \lnot\Box\lnot!A)$ & \PL, 4\\
     6. & $\Log{K} \Proves \Diamond(!A \lor !B) \lif (\lnot
-    \Diamond!B \lif \Diamond!A)$ & $\Diamond$ for $\lnot\Box\lnot$\\
+    \Diamond!B \lif \Diamond!A)$ & 以 $\Diamond$ 代 $\lnot\Box\lnot$\\
     7. & $\Log{K} \Proves \Diamond(!A\lor!B) \lif (\Diamond!B \lor \Diamond!A)$ & \PL, 6. \\
   \end{derivation}
 \end{proof}
 
 \begin{prob}
-  Show that the following !!{derivability} claims hold:
+  证明以下可推导性命题成立：
   \begin{enumerate}
   \item $\Log{K} \Proves \Diamond \lnot \lfalse \lif (\Box !A \lif
-    \Diamond !A)$;
+    \Diamond !A)$；
   \item $\Log{K} \Proves \Box(!A \lor !B) \lif (\Diamond !A \lor \Box
-    !B)$;
+    !B)$；
   \item $\Log{K} \Proves (\Diamond !A \lif \Box !B) \lif \Box(!A \lif
-    !B)$.
+    !B)$。
   \end{enumerate}
 \end{prob}
 

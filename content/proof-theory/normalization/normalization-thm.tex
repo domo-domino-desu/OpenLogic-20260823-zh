@@ -8,50 +8,24 @@
 
 \olfileid{pt}{nor}{thm}
 
-\olsection{The Normalization Theorem}
+\olsection{正规化定理}
 
-!!^a{proof} is in \emph{normal} form if it has no cut segments.
-Clearly this is the case iff we can apply neither a permutation
-conversion nor a reduction conversion to it. To \emph{normalize}
-!!a{proof} means to transform it into a normal proof by applying
-permutation and reduction conversions until no cuts remain. That this
-is always possible is the \emph{normalization theorem}.
+如果一个推导没有切割段，则它处于\emph{正规}形式。显然，当且仅当既不能对一个推导应用置换转换，也不能应用约减转换时，它才是正规的。对一个推导进行\emph{正规化}，是指通过反复应用置换转换和约减转换，直至不再有切割存在，从而将其转化为一个正规证明。这种转化总是可能的，这就是\emph{正规化定理}。
 
-\begin{thm}\ollabel{thm:normalization} Any \Log{N1i}-!!{proof}
-$\delta$ normalizes, i.e., can be transformed into
-!!a{proof}~$\delta'$ without cuts.
+\begin{thm}\ollabel{thm:normalization} 任何 \Log{N1i} 推导 $\delta$ 都是可正规化的，即，它可以被转化为一个没有切割的推导~$\delta'$。
 \end{thm}
 
 \begin{proof}
-  By induction on the cut rank and length of~$\delta$. The induction
-  hypothesis is that any !!{proof} which either has lower cut rank, or
-  the same cut rank but lower cut length, normalizes.
+  对 $\delta$ 的切割秩和切割长度施归纳。归纳假设为：任何切割秩更低，或切割秩相同但切割长度更小的推导，都是可正规化的。
 
-  If the cut length is~$0$, there are no cuts, $\delta$ is already
-  normal. So assume that cut rank and cut length of~$\delta$ are~$>
-  0$. Pick a topmost, rightmost maximal cut segment. If the cut
-  segment has length $>1$, apply a permutation conversion. If the cut
-  segment has length~$1$, apply the corresponding reduction
-  conversion. This results in a new !!{proof} which either has the
-  same cut rank but a lower cut length, or a lower cut rank, and the
-  inductive hypothesis applies.
+  若切割长度为~$0$，则不存在切割，$\delta$ 已经是正规的。因此，设 $\delta$ 的切割秩和切割长度均~$> 0$。选取一个最上方、最右的极大切割段。若该切割段长度 $>1$，则应用置换转换。若该切割段长度为~$1$，则应用相应的约减转换。由此将得到一个新的推导，它要么切割秩相同但切割长度更小，要么切割秩更低。于是归纳假设适用。
 \end{proof}
 
-The strategy used in the above proof (always deal with a
-topmost rightmost maximal cut) suggests a specific order in which
-conversions must be applied to !!a{proof} in order to result in a
-normal !!{proof}. Surprisingly enough, the order actually does not
-matter. Applying permutation and reduction conversions in any order
-eventually results in a normal proof.
+上述证明中使用的策略（总是处理最上方、最右的极大切割段）提示了一种具体的转换顺序，必须按此顺序对推导应用转换才能得到正规推导。但令人惊讶的是，顺序其实无关紧要。以任意顺序应用置换转换和约减转换，最终都能得到一个正规证明。
 
-The definition of segment and cut can easily be formulated for
-\Log{N2i}, and the permutation and reduction conversions for \Log{N1i}
-directly translate to \Log{N2i}. Consequently, the normalization
-theorem also holds for \Log{N2i}.
+段和切割的定义很容易为 \Log{N2i} 给出表述，而且适用于 \Log{N1i} 的置换转换和约减转换可以直接转化为适用于 \Log{N2i} 的转换。因此，正规化定理对 \Log{N2i} 同样成立。
 
-\begin{thm}\ollabel{thm:normalization-N2i} Any \Log{N2i}-!!{proof}
-$\delta$ normalizes, i.e., can be transformed into
-!!a{proof}~$\delta'$ without cuts.
+\begin{thm}\ollabel{thm:normalization-N2i} 任何 \Log{N2i} 推导 $\delta$ 都是可正规化的，即，它可以被转化为一个没有切割的推导~$\delta'$。
 \end{thm}
 
 \end{document}

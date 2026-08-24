@@ -8,59 +8,38 @@
 
 \olfileid{nml}{prf}{nor}
 
-\olsection{Normal Modal Logics}
+\olsection{正规模态逻辑}
 
-Not every set of modal !!{formula}s can easily be characterized as
-those !!{formula}s derivable from a set of axioms. We want modal
-logics to be well-behaved. First of all, everything we can !!{derive}
-in classical propositional logic should still be !!{derivable}, of
-course taking into account that the !!{formula}s may now contain also
-\iftag{prvBox}{$\Box$\iftag{prvDiamond}{
-    and~}{}}{}\iftag{prvDiamond}{$\Diamond$}{}. To this end, we
-require that a modal logic contain all tautological instances and be
-closed under modus ponens.
+并非每个模态公式集都能轻易地刻画为从一组公理可推出的公式集。我们希望模态逻辑具有良好的性质。首先，我们在经典命题逻辑中能推出的一切应该仍然可推出，当然，此时要考虑到公式现在可能还包含 \iftag{prvBox}{$\Box$\iftag{prvDiamond}{ 和~}{}}{}\iftag{prvDiamond}{$\Diamond$}{}。为此，我们要求一个模态逻辑包含所有重言式实例，并且对肯定前件封闭。
 
 \begin{defn}
-  A \emph{modal logic} is a set~$\Sigma$ of modal !!{formula}s which
+  一个\emph{模态逻辑}是满足以下条件的模态公式集合~$\Sigma$：
   \begin{enumerate}
-  \item contains all tautologies, and
-  \item is closed under substitution, i.e., if $!A \in \Sigma$, and
-    $!D_1$, \dots, $!D_n$ are !!{formula}s, then
+  \item 包含所有重言式，并且
+  \item 对代入封闭，即如果 $!A \in \Sigma$，且 $!D_1$, \dots, $!D_n$ 是公式，则
     \[
     \SSubst{!A}{\subst{!D_1}{p_1}, \dots, \subst{!D_n}{p_n}} \in \Sigma,
     \]
-    \item is closed under \emph{modus ponens}, i.e., if $!A$ and $!A
-      \lif !B \in \Sigma$, then $!B \in \Sigma$.
+    \item 对\emph{肯定前件}封闭，即如果 $!A \in \Sigma$ 且 $!A \lif !B \in \Sigma$，则 $!B \in \Sigma$。
   \end{enumerate}
 \end{defn}
 
-In order to use the relational semantics for modal logics, we also
-have to require that all !!{formula}s valid in all modal models are
-included. It turns out that this requirement is met as soon as all
-instances of \Ax{K}\iftag{prvDiamond}{ and~\Dual{}}{} are
-!!{derivable}, and whenever !!a{formula}~$!A$ is !!{derivable}, so
-is~$\Box !A$. A modal logic that satisfies these conditions is called
-\emph{normal}. (Of course, there are also non-normal modal logics, but
-the usual relational models are not adequate for them.)
+为了将关系语义用于模态逻辑，我们还必须要求它包含所有在所有模态模型中都有效的公式。事实证明，只要 \Ax{K}\iftag{prvDiamond}{ 和~\Dual{}}{} 的所有实例都是可推出的，并且每当公式~$!A$ 可推出时~$\Box !A$ 也可推出，这一要求即可满足。满足这些条件的模态逻辑称为\emph{正规的}。（当然，也存在非正规的模态逻辑，但通常的关系模型并不适用于它们。）
 
 \begin{defn}
-  A modal logic $\Sigma$ is \emph{normal} if it contains
+  如果模态逻辑 $\Sigma$ 包含
   \begin{align*}
     \tag{\Ax{K}} & \Box(p \lif q) \lif (\Box p \lif \Box q),
     \iftag{prvDiamond}{\\
       \tag{\Dual} & \Diamond p \liff \lnot\Box\lnot p}{}
   \end{align*}
-  and is closed under \emph{necessitation}, i.e., if $!A \in
-  \Sigma$, then $\Box !A \in \Sigma$.
+  并且对\emph{必然化}封闭，即如果 $!A \in \Sigma$，则 $\Box !A \in \Sigma$，则称它是\emph{正规的}。
 \end{defn}
 
-Observe that while tautological implication is ``fine-grained'' enough
-to preserve \emph{truth at a world}, the rule \Nec{} only preserves
-\emph{truth in a model} (and hence also validity in a frame or in a
-class of frames).
+注意，虽然重言后承“足够精细”，能够保持\emph{世界中的真}，但规则 \Nec{} 仅保持\emph{模型中的真}（因而也保持框架或框架类中的有效性）。
 
 \begin{prop}\ollabel{prop:rk}
-  Every normal modal logic is closed under rule \RK,
+  每个正规模态逻辑都对规则 \RK 封闭：
   \begin{prooftree}
     \AxiomC{$!A_1 \lif (!A_2 \lif \cdots (!A_{n-1} \lif !A_n)\cdots)$}
     \RightLabel{\RK}
@@ -70,52 +49,43 @@ class of frames).
 \end{prop}
 
 \begin{proof}
-  By induction on~$n$: If $n = 1$, then the rule is just \Nec, and
-  every normal modal logic is closed under \Nec.
+  对~$n$ 进行归纳：若 $n = 1$，则该规则正是 \Nec，而每个正规模态逻辑都对 \Nec 封闭。
 
-  Now suppose the result holds for $n-1$; we show it holds for~$n$.
+  现在假设结论对 $n-1$ 成立；我们证明它对~$n$ 成立。
 
-  Assume
+  假设
   \begin{align*}
   & !A_1 \lif (!A_2 \lif \cdots (!A_{n-1} \lif !A_n)\cdots) \in \Sigma
-  \intertext{By the induction hypothesis, we have}
+  \intertext{由归纳假设，我们有}
   & \Box!A_1 \lif (\Box!A_2 \lif \cdots \Box(!A_{n-1} \lif !A_n)\cdots)
   \in \Sigma
-  \intertext{Since $\Sigma$ is a normal modal logic, it contains all
-    instances of~$\Ax{K}$, in particular}
+  \intertext{由于 $\Sigma$ 是正规模态逻辑，它包含~$\Ax{K}$ 的所有实例，特别地有}
   & \Box(!A_{n-1} \lif !A_n) \lif (\Box!A_{n-1} \lif \Box!A_n) \in \Sigma
-  \intertext{Using modus ponens and suitable tautological instances we get}
+  \intertext{利用肯定前件和适当的重言式实例，我们得到}
   & \Box!A_1 \lif (\Box!A_2 \lif \cdots (\Box!A_{n-1}
   \lif \Box!A_n)\cdots) \in \Sigma. 
   \end{align*}
 \end{proof}
 
 \begin{prop}\ollabel{prop:notDiamondBot}
-  Every normal modal logic $\Sigma$ contains~$\lnot\Diamond\lfalse$.
+  每个正规模态逻辑 $\Sigma$ 都包含~$\lnot\Diamond\lfalse$。
 \end{prop}
 
 \begin{prob}
-  Prove \olref[nml][prf][nor]{prop:notDiamondBot}.
+  证明\olref[nml][prf][nor]{prop:notDiamondBot}。
 \end{prob}
 
 \begin{prop}
-  Let $!A_1$, \dots, $!A_n$ be !!{formula}s. Then there is a
-  smallest modal logic $\Sigma$ containing all instances of
-  $!A_1$, \dots, $!A_n$.
+  设 $!A_1$, \dots, $!A_n$ 为公式。则存在包含 $!A_1$, \dots, $!A_n$ 的所有实例的最小模态逻辑 $\Sigma$。
 \end{prop}
 
 \begin{proof}
-  Given $!A_1$, \dots, $!A_n$, define $\Sigma$ as the
-  intersection of all normal modal logics containing all instances of
-  $!A_1$, \dots, $!A_n$. The intersection is non-empty as
-  $\Frm[L]$, the set of all !!{formula}s, is such a modal
-  logic.
+  给定 $!A_1$, \dots, $!A_n$，将 $\Sigma$ 定义为所有包含 $!A_1$, \dots, $!A_n$ 的所有实例的正规模态逻辑的交集。该交集非空，因为所有公式的集合 $\Frm[L]$ 本身就是这样一个模态逻辑。
 \end{proof}
 
 \begin{defn}
-The smallest normal modal logic containing $!A_1$, \dots, $!A_n$ is
-called a \emph{modal system} and denoted by $\Log{K} !A_1 \dots
-!A_n$. The smallest normal modal logic is denoted by~\Log{K}.
+包含 $!A_1$, \dots, $!A_n$ 的最小正规模态逻辑称为一个\emph{模态系统}，记作 $\Log{K} !A_1 \dots
+!A_n$。最小的正规模态逻辑记作~\Log{K}。
 \end{defn}
 
 \end{document}

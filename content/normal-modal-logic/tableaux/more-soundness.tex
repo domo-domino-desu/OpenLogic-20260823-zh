@@ -8,221 +8,139 @@
 
 \olfileid{nml}{tab}{msn}
       
-\olsection{Soundness for Additional Rules}
+\olsection{附加规则的可靠性}
 
-We say a rule is sound for a class of models if, whenever a branch in
-!!a{tableau} is satisfiable in a model from that class, the branch
-resulting from applying the rule is also satisfiable in a model from
-that class.
+我们称一个规则对一类模型是\emph{可靠的}，如果每当分析表中的一个分支在该类的某个模型中可满足，应用该规则后得到的分支在该类的某个模型中也可满足。
 
 \begin{prop}
-  \ollabel{prop:soundness-T} 
+  \ollabel{prop:soundness-T}
   \iftag{prvBox}{\Ax{T}$\Box$}{}%
-  \iftag{notprvBox,notprvDiamond}{}{ and }%
+  \iftag{notprvBox,notprvDiamond}{}{ 和 }%
   \iftag{prvDiamond}{\Ax{T}$\Diamond$}{}
-  \iftag{notprvBox,notprvDiamond}{is}{are}
-  sound for reflexive models.
+  对自反模型\iftag{notprvBox,notprvDiamond}{是}{都是}可靠的。
 \end{prop}
 
 \begin{proof}
 \begin{tagenumerate}{prvBox,prvDiamond}
-\tagitem{prvBox}{The branch is expanded by applying T$\Box$ to
-  $\sFmla{\True}{\Box !B}[\sigma] \in \Gamma$:
-  \iftag{probBox}{Exercise.}{This results in a new !!{signed
-      formula}~$\sFmla{\True}{!B}[\sigma]$ on the branch. Suppose
-    $\mSat{M}{\Gamma}[f]$, in particular, $\mSat{M}{\Box
-      !B}[f(\sigma)]$. Since $R$ is reflexive, we know that
-    $Rf(\sigma)f(\sigma)$.  Hence, $\mSat{M}{!B}[f(\sigma)]$, i.e.,
-    $\mModel{M}, f$ satisfies $\sFmla{\True}{!B}[\sigma]$.}}{}
-\tagitem{prvDiamond}{The branch is expanded by applying T$\Diamond$ to
-  $\sFmla{\False}{\Diamond !B}[\sigma] \in \Gamma$:
-  \iftag{probDiamond}{Exercise.}{This results in a new !!{signed
-      formula}~$\sFmla{\False}{!B}[\sigma]$ on the branch. Suppose
-    $\mSat{M}{\Gamma}[f]$, in particular, $\mSat/{M}{\Diamond
-      !B}[f(\sigma)]$. Since $R$ is reflexive, we know that
-    $Rf(\sigma)f(\sigma)$.  Hence, $\mSat/{M}{!B}[f(\sigma)]$, i.e.,
-    $\mModel{M}, f$ satisfies $\sFmla{\False}{!B}[\sigma]$.}}{}
+\tagitem{prvBox}{通过对 $\sFmla{\True}{\Box !B}[\sigma] \in \Gamma$ 应用 T$\Box$ 来扩展该分支：
+  \iftag{probBox}{练习。}{这会在分支上产生一个新的带号公式~$\sFmla{\True}{!B}[\sigma]$。假设 $\mSat{M}{\Gamma}[f]$，特别地，有 $\mSat{M}{\Box
+      !B}[f(\sigma)]$。由于 $R$ 是自反的，故 $Rf(\sigma)f(\sigma)$。因此，$\mSat{M}{!B}[f(\sigma)]$，即 $\mModel{M}, f$ 满足 $\sFmla{\True}{!B}[\sigma]$。}}{}
+\tagitem{prvDiamond}{通过对 $\sFmla{\False}{\Diamond !B}[\sigma] \in \Gamma$ 应用 T$\Diamond$ 来扩展该分支：
+  \iftag{probDiamond}{练习。}{这会在分支上产生一个新的带号公式~$\sFmla{\False}{!B}[\sigma]$。假设 $\mSat{M}{\Gamma}[f]$，特别地，有 $\mSat/{M}{\Diamond
+      !B}[f(\sigma)]$。由于 $R$ 是自反的，故 $Rf(\sigma)f(\sigma)$。因此，$\mSat/{M}{!B}[f(\sigma)]$，即 $\mModel{M}, f$ 满足 $\sFmla{\False}{!B}[\sigma]$。}}{}
 \end{tagenumerate}
 \end{proof}
 
 \tagprob{probBox,probDiamond}
 \begin{prob}
-  Complete the proof of \olref[nml][tab][msn]{prop:soundness-T}
+  完成 \olref[nml][tab][msn]{prop:soundness-T} 的证明。
 \end{prob}
 \tagendprob
 
 \begin{prop}
-  \ollabel{prop:soundness-D} 
+  \ollabel{prop:soundness-D}
   \iftag{prvBox}{\Ax{D}$\Box$}{}%
-  \iftag{notprvBox,notprvDiamond}{}{ and }%
+  \iftag{notprvBox,notprvDiamond}{}{ 和 }%
   \iftag{prvDiamond}{\Ax{D}$\Diamond$}{}
-  \iftag{notprvBox,notprvDiamond}{is}{are}
-  sound for serial models.
+  对序列模型\iftag{notprvBox,notprvDiamond}{是}{都是}可靠的。
 \end{prop}
 
 \begin{proof}
 \begin{tagenumerate}{prvBox,prvDiamond}
-\tagitem{prvBox}{The branch is expanded by applying D$\Box$ to
-  $\sFmla{\True}{\Box !B}[\sigma] \in \Gamma$:
-  \iftag{probBox}{Exercise.}{This results in a new !!{signed
-      formula}~$\sFmla{\True}{\Diamond !B}[\sigma]$ on the
-    branch. Suppose $\mSat{M}{\Gamma}[f]$, in particular,
-    $\mSat{M}{\Box !B}[f(\sigma)]$. Since $R$ is serial, there is a $w
-    \in W$ such that $Rf(\sigma)w$. Then $\mSat{M}{!B}[w]$, and hence
-    $\mSat{M}{\Diamond !B}[f(\sigma)]$.  So, $\mModel{M}, f$
-    satisfies $\sFmla{\True}{\Diamond!B}[\sigma]$.}}{}
-\tagitem{prvDiamond}{The branch is expanded by applying D$\Diamond$ to
-  $\sFmla{\False}{\Diamond !B}[\sigma] \in \Gamma$:
-  \iftag{probDiamond}{Exercise.}{This results in a new !!{signed
-      formula}~$\sFmla{\False}{\Box !B}[\sigma]$ on the
-    branch. Suppose $\mSat{M}{\Gamma}[f]$, in particular,
-    $\mSat/{M}{\Diamond !B}[f(\sigma)]$. Since $R$ is serial, there is a $w
-    \in W$ such that $Rf(\sigma)w$. Then $\mSat/{M}{!B}[w]$, and hence
-    $\mSat/{M}{\Box !B}[f(\sigma)]$.  So, $\mModel{M}, f$
-    satisfies $\sFmla{\False}{\Box!B}[\sigma]$.}}{}
+\tagitem{prvBox}{通过对 $\sFmla{\True}{\Box !B}[\sigma] \in \Gamma$ 应用 D$\Box$ 来扩展该分支：
+  \iftag{probBox}{练习。}{这会在分支上产生一个新的带号公式~$\sFmla{\True}{\Diamond !B}[\sigma]$。假设 $\mSat{M}{\Gamma}[f]$，特别地，有 $\mSat{M}{\Box !B}[f(\sigma)]$。由于 $R$ 是序列的，存在 $w
+    \in W$ 使得 $Rf(\sigma)w$。则 $\mSat{M}{!B}[w]$，故 $\mSat{M}{\Diamond !B}[f(\sigma)]$。所以，$\mModel{M}, f$ 满足 $\sFmla{\True}{\Diamond!B}[\sigma]$。}}{}
+\tagitem{prvDiamond}{通过对 $\sFmla{\False}{\Diamond !B}[\sigma] \in \Gamma$ 应用 D$\Diamond$ 来扩展该分支：
+  \iftag{probDiamond}{练习。}{这会在分支上产生一个新的带号公式~$\sFmla{\False}{\Box !B}[\sigma]$。假设 $\mSat{M}{\Gamma}[f]$，特别地，有 $\mSat/{M}{\Diamond !B}[f(\sigma)]$。由于 $R$ 是序列的，存在 $w
+    \in W$ 使得 $Rf(\sigma)w$。则 $\mSat/{M}{!B}[w]$，故 $\mSat/{M}{\Box !B}[f(\sigma)]$。所以，$\mModel{M}, f$ 满足 $\sFmla{\False}{\Box!B}[\sigma]$。}}{}
 \end{tagenumerate}
 \end{proof}
 
 \tagprob{probBox,probDiamond}
 \begin{prob}
-  Complete the proof of \olref[nml][tab][msn]{prop:soundness-D}
+  完成 \olref[nml][tab][msn]{prop:soundness-D} 的证明。
 \end{prob}
 \tagendprob
 
 \begin{prop}
-  \ollabel{prop:soundness-B} 
+  \ollabel{prop:soundness-B}
   \iftag{prvBox}{\Ax{B}$\Box$}{}%
-  \iftag{notprvBox,notprvDiamond}{}{ and }%
+  \iftag{notprvBox,notprvDiamond}{}{ 和 }%
   \iftag{prvDiamond}{\Ax{B}$\Diamond$}{}
-  \iftag{notprvBox,notprvDiamond}{is}{are}
-  sound for symmetric models.
+  对对称模型\iftag{notprvBox,notprvDiamond}{是}{都是}可靠的。
 \end{prop}
 
 \begin{proof}
 \begin{tagenumerate}{prvBox,prvDiamond}
-\tagitem{prvBox}{The branch is expanded by applying B$\Box$ to
-  $\sFmla{\True}{\Box !B}[\sigma.n] \in \Gamma$:
-  \iftag{probBox}{Exercise.}{This results in a new !!{signed
-      formula}~$\sFmla{\True}{!B}[\sigma]$ on the branch. Suppose
-    $\mSat{M}{\Gamma}[f]$, in particular, $\mSat{M}{\Box
-      !B}[f(\sigma.n)]$. Since $f$ is an interpretation of prefixes on
-    the branch into~$\mModel{M}$, we know that
-    $Rf(\sigma)f(\sigma.n)$.  Since $R$ is symmetric,
-    $Rf(\sigma.n)f(\sigma)$.  Since $\mSat{M}{\Box !B}[f(\sigma.n)]$,
-    $\mSat{M}{!B}[f(\sigma)]$. Hence, $\mModel{M}, f$ satisfies
-    $\sFmla{\True}{!B}[\sigma]$.}}{}
-\tagitem{prvDiamond}{The branch is expanded by applying B$\Diamond$ to
-  $\sFmla{\False}{\Diamond !B}[\sigma.n] \in \Gamma$:
-  \iftag{probDiamond}{Exercise.}{This results in a new !!{signed
-      formula}~$\sFmla{\False}{!B}[\sigma]$ on the branch. Suppose
-    $\mSat{M}{\Gamma}[f]$, in particular, $\mSat/{M}{\Diamond
-      !B}[f(\sigma.n)]$. Since $f$ is an interpretation of prefixes on
-    the branch into~$\mModel{M}$, we know that
-    $Rf(\sigma)f(\sigma.n)$.  Since $R$ is symmetric,
-    $Rf(\sigma.n)f(\sigma)$.  Since $\mSat/{M}{\Diamond !B}[f(\sigma.n)]$,
-    $\mSat/{M}{!B}[f(\sigma)]$. Hence, $\mModel{M}, f$ satisfies
-    $\sFmla{\False}{!B}[\sigma]$.}}{}
+\tagitem{prvBox}{通过对 $\sFmla{\True}{\Box !B}[\sigma.n] \in \Gamma$ 应用 B$\Box$ 来扩展该分支：
+  \iftag{probBox}{练习。}{这会在分支上产生一个新的带号公式~$\sFmla{\True}{!B}[\sigma]$。假设 $\mSat{M}{\Gamma}[f]$，特别地，有 $\mSat{M}{\Box
+      !B}[f(\sigma.n)]$。由于 $f$ 是分支上前缀在
+    $\mModel{M}$ 中的解释，故 $Rf(\sigma)f(\sigma.n)$。由于 $R$ 是对称的，
+    有 $Rf(\sigma.n)f(\sigma)$。由 $\mSat{M}{\Box !B}[f(\sigma.n)]$ 可得 $\mSat{M}{!B}[f(\sigma)]$。因此，$\mModel{M}, f$ 满足 $\sFmla{\True}{!B}[\sigma]$。}}{}
+\tagitem{prvDiamond}{通过对 $\sFmla{\False}{\Diamond !B}[\sigma.n] \in \Gamma$ 应用 B$\Diamond$ 来扩展该分支：
+  \iftag{probDiamond}{练习。}{这会在分支上产生一个新的带号公式~$\sFmla{\False}{!B}[\sigma]$。假设 $\mSat{M}{\Gamma}[f]$，特别地，有 $\mSat/{M}{\Diamond
+      !B}[f(\sigma.n)]$。由于 $f$ 是分支上前缀在
+    $\mModel{M}$ 中的解释，故 $Rf(\sigma)f(\sigma.n)$。由于 $R$ 是对称的，
+    有 $Rf(\sigma.n)f(\sigma)$。由 $\mSat/{M}{\Diamond !B}[f(\sigma.n)]$ 可得 $\mSat/{M}{!B}[f(\sigma)]$。因此，$\mModel{M}, f$ 满足 $\sFmla{\False}{!B}[\sigma]$。}}{}
 \end{tagenumerate}
 \end{proof}
 
 \tagprob{probBox,probDiamond}
 \begin{prob}
-  Complete the proof of \olref[nml][tab][msn]{prop:soundness-B}
+  完成 \olref[nml][tab][msn]{prop:soundness-B} 的证明。
 \end{prob}
 \tagendprob
 
 \begin{prop}
-  \ollabel{prop:soundness-4} 
+  \ollabel{prop:soundness-4}
   \iftag{prvBox}{\Ax{4}$\Box$}{}%
-  \iftag{notprvBox,notprvDiamond}{}{ and }%
+  \iftag{notprvBox,notprvDiamond}{}{ 和 }%
   \iftag{prvDiamond}{\Ax{4}$\Diamond$}{}
-  \iftag{notprvBox,notprvDiamond}{is}{are}
-  sound for transitive models.
+  对传递模型\iftag{notprvBox,notprvDiamond}{是}{都是}可靠的。
 \end{prop}
 
 \begin{proof}
 \begin{tagenumerate}{prvBox,prvDiamond}
-\tagitem{prvBox}{The branch is expanded by applying 4$\Box$ to
-  $\sFmla{\True}{\Box !B}[\sigma] \in \Gamma$:
-  \iftag{probBox}{Exercise.}{This results in a new !!{signed
-      formula}~$\sFmla{\True}{\Box!B}[\sigma.n]$ on the
-    branch. Suppose $\mSat{M}{\Gamma}[f]$, in particular,
-    $\mSat{M}{\Box !B}[f(\sigma)]$. Since $f$ is an interpretation of
-    prefixes on the branch into~$\mModel{M}$ and $\sigma.n$ must be
-    used, we know that $Rf(\sigma)f(\sigma.n)$. Now let $w$ be any
-    world such that $Rf(\sigma.n)w$.  Since $R$ is transitive,
-    $Rf(\sigma)w$.  Since $\mSat{M}{\Box !B}[f(\sigma)]$,
-    $\mSat{M}{!B}[w]$. Hence, $\mSat{M}{\Box !B}[f(\sigma.n)]$, and
-    $\mModel{M}, f$ satisfies $\sFmla{\True}{\Box !B}[\sigma.n]$.}}{}
-\tagitem{prvDiamond}{The branch is expanded by applying 4$\Diamond$ to
-  $\sFmla{\False}{\Diamond !B}[\sigma] \in \Gamma$:
-  \iftag{probDiamond}{Exercise.}{This results in a new !!{signed
-      formula}~$\sFmla{\False}{\Diamond!B}[\sigma.n]$ on the
-    branch. Suppose $\mSat{M}{\Gamma}[f]$, in particular,
-    $\mSat/{M}{\Diamond !B}[f(\sigma)]$. Since $f$ is an interpretation of
-    prefixes on the branch into~$\mModel{M}$ and $\sigma.n$ must be
-    used, we know that $Rf(\sigma)f(\sigma.n)$. Now let $w$ be any
-    world such that $Rf(\sigma.n)w$.  Since $R$ is transitive,
-    $Rf(\sigma)w$.  Since $\mSat/{M}{\Diamond !B}[f(\sigma)]$,
-    $\mSat/{M}{!B}[w]$. Hence, $\mSat/{M}{\Diamond !B}[f(\sigma.n)]$, and
-    $\mModel{M}, f$ satisfies $\sFmla{\False}{\Diamond !B}[\sigma.n]$.}}{}
+\tagitem{prvBox}{通过对 $\sFmla{\True}{\Box !B}[\sigma] \in \Gamma$ 应用 4$\Box$ 来扩展该分支：
+  \iftag{probBox}{练习。}{这会在分支上产生一个新的带号公式~$\sFmla{\True}{\Box!B}[\sigma.n]$。假设 $\mSat{M}{\Gamma}[f]$，特别地，有 $\mSat{M}{\Box !B}[f(\sigma)]$。由于 $f$ 是分支上前缀在~$\mModel{M}$ 中的解释，且 $\sigma.n$ 必被用到，故 $Rf(\sigma)f(\sigma.n)$。现任取世界 $w$ 使得 $Rf(\sigma.n)w$。由于 $R$ 是传递的，有 $Rf(\sigma)w$。由 $\mSat{M}{\Box !B}[f(\sigma)]$ 可得 $\mSat{M}{!B}[w]$。因此，$\mSat{M}{\Box !B}[f(\sigma.n)]$，且 $\mModel{M}, f$ 满足 $\sFmla{\True}{\Box !B}[\sigma.n]$。}}{}
+\tagitem{prvDiamond}{通过对 $\sFmla{\False}{\Diamond !B}[\sigma] \in \Gamma$ 应用 4$\Diamond$ 来扩展该分支：
+  \iftag{probDiamond}{练习。}{这会在分支上产生一个新的带号公式~$\sFmla{\False}{\Diamond!B}[\sigma.n]$。假设 $\mSat{M}{\Gamma}[f]$，特别地，有 $\mSat/{M}{\Diamond !B}[f(\sigma)]$。由于 $f$ 是分支上前缀在~$\mModel{M}$ 中的解释，且 $\sigma.n$ 必被用到，故 $Rf(\sigma)f(\sigma.n)$。现任取世界 $w$ 使得 $Rf(\sigma.n)w$。由于 $R$ 是传递的，有 $Rf(\sigma)w$。由 $\mSat/{M}{\Diamond !B}[f(\sigma)]$ 可得 $\mSat/{M}{!B}[w]$。因此，$\mSat/{M}{\Diamond !B}[f(\sigma.n)]$，且 $\mModel{M}, f$ 满足 $\sFmla{\False}{\Diamond !B}[\sigma.n]$。}}{}
 \end{tagenumerate}
 \end{proof}
 
 \tagprob{probBox,probDiamond}
 \begin{prob}
-  Complete the proof of \olref[nml][tab][msn]{prop:soundness-4}
+  完成 \olref[nml][tab][msn]{prop:soundness-4} 的证明。
 \end{prob}
 \tagendprob
 
 \begin{prop}
-  \ollabel{prop:soundness-4r} 
+  \ollabel{prop:soundness-4r}
   \iftag{prvBox}{\Ax{4r}$\Box$}{}%
-  \iftag{notprvBox,notprvDiamond}{}{ and }%
+  \iftag{notprvBox,notprvDiamond}{}{ 和 }%
   \iftag{prvDiamond}{\Ax{4r}$\Diamond$}{}
-  \iftag{notprvBox,notprvDiamond}{is}{are}
-  sound for euclidean models.
+  对欧几里得模型\iftag{notprvBox,notprvDiamond}{是}{都是}可靠的。
 \end{prop}
 
 \begin{proof}
 \begin{tagenumerate}{prvBox,prvDiamond}
-\tagitem{prvBox}{The branch is expanded by applying 4r$\Box$ to
-  $\sFmla{\True}{\Box !B}[\sigma.n] \in \Gamma$:
-  \iftag{probBox}{Exercise.}{This results in a new !!{signed
-      formula}~$\sFmla{\True}{\Box!B}[\sigma]$ on the branch. Suppose
-    $\mSat{M}{\Gamma}[f]$, in particular, $\mSat{M}{\Box
-      !B}[f(\sigma.n)]$. Since $f$ is an interpretation of prefixes on
-    the branch into~$\mModel{M}$, we know that
-    $Rf(\sigma)f(\sigma.n)$. Now let $w$ be any world such that
-    $Rf(\sigma)w$.  Since $R$ is euclidean, $Rf(\sigma.n)w$.  Since
-    $\mSat{M}{\Box !B}[f(\sigma).n]$, $\mSat{M}{!B}[w]$. Hence,
-    $\mSat{M}{\Box !B}[f(\sigma)]$, and $\mModel{M}, f$ satisfies
-    $\sFmla{\True}{\Box !B}[\sigma]$.}}{}
-\tagitem{prvDiamond}{The branch is expanded by applying 4r$\Diamond$ to
-  $\sFmla{\False}{\Diamond !B}[\sigma.n] \in \Gamma$:
-  \iftag{probDiamond}{Exercise.}{This results in a new !!{signed
-      formula}~$\sFmla{\True}{\Box!B}[\sigma]$ on the branch. Suppose
-    $\mSat{M}{\Gamma}[f]$, in particular, $\mSat/{M}{\Diamond
-      !B}[f(\sigma.n)]$. Since $f$ is an interpretation of prefixes on
-    the branch into~$\mModel{M}$, we know that
-    $Rf(\sigma)f(\sigma.n)$. Now let $w$ be any world such that
-    $Rf(\sigma)w$.  Since $R$ is euclidean, $Rf(\sigma.n)w$.  Since
-    $\mSat/{M}{\Diamond !B}[f(\sigma).n]$, $\mSat/{M}{!B}[w]$. Hence,
-    $\mSat/{M}{\Diamond !B}[f(\sigma)]$, and $\mModel{M}, f$ satisfies
-    $\sFmla{\False}{\Diamond !B}[\sigma]$.}}{}
+\tagitem{prvBox}{通过对 $\sFmla{\True}{\Box !B}[\sigma.n] \in \Gamma$ 应用 4r$\Box$ 来扩展该分支：
+  \iftag{probBox}{练习。}{这会在分支上产生一个新的带号公式~$\sFmla{\True}{\Box!B}[\sigma]$。假设 $\mSat{M}{\Gamma}[f]$，特别地，有 $\mSat{M}{\Box
+      !B}[f(\sigma.n)]$。由于 $f$ 是分支上前缀在~$\mModel{M}$ 中的解释，故 $Rf(\sigma)f(\sigma.n)$。现任取世界 $w$ 使得 $Rf(\sigma)w$。由于 $R$ 是欧几里得的，有 $Rf(\sigma.n)w$。由 $\mSat{M}{\Box !B}[f(\sigma).n]$ 可得 $\mSat{M}{!B}[w]$。因此，$\mSat{M}{\Box !B}[f(\sigma)]$，且 $\mModel{M}, f$ 满足 $\sFmla{\True}{\Box !B}[\sigma]$。}}{}
+\tagitem{prvDiamond}{通过对 $\sFmla{\False}{\Diamond !B}[\sigma.n] \in \Gamma$ 应用 4r$\Diamond$ 来扩展该分支：
+  \iftag{probDiamond}{练习。}{这会在分支上产生一个新的带号公式~$\sFmla{\True}{\Box!B}[\sigma]$。假设 $\mSat{M}{\Gamma}[f]$，特别地，有 $\mSat/{M}{\Diamond
+      !B}[f(\sigma.n)]$。由于 $f$ 是分支上前缀在~$\mModel{M}$ 中的解释，故 $Rf(\sigma)f(\sigma.n)$。现任取世界 $w$ 使得 $Rf(\sigma)w$。由于 $R$ 是欧几里得的，有 $Rf(\sigma.n)w$。由 $\mSat/{M}{\Diamond !B}[f(\sigma).n]$ 可得 $\mSat/{M}{!B}[w]$。因此，$\mSat/{M}{\Diamond !B}[f(\sigma)]$，且 $\mModel{M}, f$ 满足 $\sFmla{\False}{\Diamond !B}[\sigma]$。}}{}
 \end{tagenumerate}
 \end{proof}
 
 \tagprob{probBox,probDiamond}
 \begin{prob}
-  Complete the proof of \olref[nml][tab][msn]{prop:soundness-4r}
+  完成 \olref[nml][tab][msn]{prop:soundness-4r} 的证明。
 \end{prob}
 \tagendprob
 
 \begin{cor}
-\ollabel{cor:soundness-logics} The !!{tableau} systems given in
-\olref[mru]{tab:logics-rules} are sound for the respective classes of
-models.
+\ollabel{cor:soundness-logics} \olref[mru]{tab:logics-rules} 中给出的分析表系统对各自相应的模型类是可靠的。
 \end{cor}
 
 \end{document}

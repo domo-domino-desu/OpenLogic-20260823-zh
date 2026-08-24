@@ -8,40 +8,30 @@
 
 \olfileid{mvl}{syn}{val}
 
-\olsection{\usetoken{P}{valuation} and Satisfaction}
+\olsection{赋值与满足}
 
-\begin{defn}[!!^{valuation}s] 
-Let $V$ be a set of truth values. A \emph{!!{valuation}} for
-$\Lang{L}$ into~$V$ is a
-function~$\pAssign{v}$ assigning !!a{element} of~$V$ to the
-!!{propositional variable}s of the language, i.e., $\pAssign{v} \colon
-\PVar \to V$.
+\begin{defn}[赋值]
+设 $V$ 为真值集合。语言 $\Lang{L}$ 到 $V$ 的一个\emph{赋值}是一个函数~$\pAssign{v}$，它将 $V$ 中的元素指派给语言的命题变元，即 $\pAssign{v} \colon \PVar \to V$。
 \end{defn}
 
 \begin{defn}\ollabel{defn:pValue}
-  Given !!a{valuation}~$\pAssign{v}$ into the set of truth values~$V$ of a
-  many-valued logic~$\Log L$, define the evaluation function
-  $\pValue{v} \colon \Frm[L] \to V$ inductively by:
+  给定一个到多值逻辑~$\Log L$ 的真值集合 $V$ 中的赋值~$\pAssign{v}$，归纳地定义求值函数 $\pValue{v} \colon \Frm[L] \to V$ 如下：
   \begin{enumerate}
-    \item $\pValue{v}(\Obj p_n) = \pAssign{v}(\Obj p_n)$; 
-    \item If $\star$ is a $0$-place connective, then $\pValue{v}(\star)  = \tf{\star}[\Log L]$;
-    \item If $\star$ is an $n$-place connective, then 
-    \[
+    \item $\pValue{v}(\Obj p_n) = \pAssign{v}(\Obj p_n)$；
+    \item 若 $\star$ 是 $0$ 元联结词，则 $\pValue{v}(\star)  = \tf{\star}[\Log L]$；
+    \item 若 $\star$ 是 $n$ 元联结词，则 \[
       \pValue{v}(\star(!A_1, \dots, !A_n)) = \tf{\star}[\Log L]
       (\pValue{v}(!A_1), \dots, \pValue{v}(!A_n)).
     \]
   \end{enumerate}
 \end{defn}
 
-\begin{defn}[Satisfaction]
-\ollabel{defn:satisfaction} The !!{formula}~$!A$ is \emph{satisfied}
-  by !!a{valuation}~$\pAssign{v}$, $\pSat{v}{!A}[\Log L]$, iff
-  $\pValue{v}(!A)[\Log L] \in V^+$, where $V^+$ is the set of
-  designated truth values of~$\Log L$. 
-  
-  We write $\pSat/{v}{!A}[\Log L]$ to mean ``not $\pSat{v}{!A}[\Log
-  L]$.'' If $\Gamma$ is a set of !!{formula}s, $\pSat{v}{\Gamma}[\Log
-  L]$ iff $\pSat{v}{!A}[\Log L]$ for every~$!A \in \Gamma$.
+\begin{defn}[满足]
+\ollabel{defn:satisfaction} 公式~$!A$ 被赋值~$\pAssign{v}$\emph{满足}，记作 $\pSat{v}{!A}[\Log L]$，当且仅当 $\pValue{v}(!A)[\Log L] \in V^+$，其中 $V^+$ 是 $\Log L$ 的指定真值集合。
+
+我们记 $\pSat/{v}{!A}[\Log L]$ 表示“$\pSat{v}{!A}[\Log
+  L]$ 不成立”。若 $\Gamma$ 为公式集合，则 $\pSat{v}{\Gamma}[\Log
+  L]$ 当且仅当对每个 $!A \in \Gamma$，$\pSat{v}{!A}[\Log L]$ 均成立。
 \end{defn}
 
 \end{document}

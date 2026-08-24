@@ -8,73 +8,58 @@
 
 \olfileid{sol}{set}{cmp}
 
-\olsection{Comparing Sets}
+\olsection{比较集合}
 
 \begin{prop}
-The !!{formula} $\lforall[x][(X(x) \lif Y(x))]$ defines the subset
-relation, i.e., $\Sat{M}{\lforall[x][(X(x) \lif Y(x))]}[s]$ iff $s(X)
-\subseteq s(Y)$.
+公式 $\lforall[x][(X(x) \lif Y(x))]$ 定义了子集关系，即 $\Sat{M}{\lforall[x][(X(x) \lif Y(x))]}[s]$ 当且仅当 $s(X)
+\subseteq s(Y)$。
 \end{prop}
 
 \begin{prop}
-The !!{formula} $\lforall[x][(X(x) \liff Y(x))]$ defines the identity
-relation on sets, i.e., $\Sat{M}{\lforall[x][(X(x) \liff Y(x))]}[s]$
-iff $s(X) = s(Y)$.
+公式 $\lforall[x][(X(x) \liff Y(x))]$ 定义了集合上的恒等关系，即 $\Sat{M}{\lforall[x][(X(x) \liff Y(x))]}[s]$
+当且仅当 $s(X) = s(Y)$。
 \end{prop}
 
 \begin{prop}
-The !!{formula} $\lexists[x][X(x)]$ defines the property of being
-non-empty, i.e., $\Sat{M}{\lexists[x][X(x)]}[s]$ iff $s(X) \neq
-\emptyset$.
+公式 $\lexists[x][X(x)]$ 定义了非空性，即 $\Sat{M}{\lexists[x][X(x)]}[s]$ 当且仅当 $s(X) \neq
+\emptyset$。
 \end{prop}
 
-A set~$X$ is no larger than a set~$Y$, $\cardle{X}{Y}$, iff there is
-!!a{injective} function $f\colon X \to Y$.  Since we can express that
-a function is injective, and also that its values for arguments in~$X$
-are in~$Y$, we can also define the relation of being no larger than on
-subsets of the domain.
+一个集合~$X$ 不大于集合~$Y$，记作 $\cardle{X}{Y}$，当且仅当存在一个单射函数 $f\colon X \to Y$。由于我们可以表达一个函数是单射的，并且它在~$X$ 中的自变元上的取值都在~$Y$ 中，因此我们也能在论域的子集上定义“不大于”这一关系。
 
 \begin{prop}
-The formula
+公式
 \[
 \lexists[u][(\lforall[x][(X(x) \lif Y(u(x)))] \land \lforall[x][\lforall[y][(\eq[u(x)][u(y)] \lif
       \eq[x][y])]])]
 \]
-defines the relation of being no larger than.
+定义了“不大于”关系。
 \end{prop}
 
-Two sets are the same size, or ``equinumerous,'' $\cardeq{X}{Y}$, iff
-there is !!a{bijective} function~$f\colon X \to Y$.
+两个集合大小相同，或称“等势”，记作 $\cardeq{X}{Y}$，当且仅当存在一个双射函数~$f\colon X \to Y$。
 
 \begin{prop}
-The formula
+公式
 \begin{multline*}
   \lexists[u][(\lforall[x][(X(x) \lif Y(u(x)))] \land {}\\
     \lforall[x][\lforall[y][(\eq[u(x)][u(y)] \lif \eq[x][y])]]
   \land {} \\\lforall[y][(Y(y) \lif \lexists[x][(X(x)
       \land \eq[y][u(x)])])])]
 \end{multline*}
-defines the relation of being equinumerous with.
+定义了“与……等势”关系。
 \end{prop}
 
-We will abbreviate these !!{formula}s, respectively, as $X \subseteq Y$,
-$X = Y$, $X \neq \emptyset$, $\cardle{X}{Y}$, and
-$\cardeq{X}{Y}$. (This may be slightly confusing, since we use the
-same notation when we speak informally about sets $X$ and $Y$---but
-here the notation is an abbreviation for !!{formula}s in second-order
-logic involving one-place relation variables $X$ and~$Y$.)
+我们将这些公式分别缩写为 $X \subseteq Y$、
+$X = Y$、$X \neq \emptyset$、$\cardle{X}{Y}$ 和
+$\cardeq{X}{Y}$。（这可能会引起一些混淆，因为当我们非形式地谈论集合 $X$ 和 $Y$ 时也使用相同的记号——但在这里，这些记号是涉及一元关系变元 $X$ 和~$Y$ 的二阶逻辑公式的缩写。）
 
 \begin{prop}
-The !!{sentence} $\lforall[X][\lforall[Y][((\cardle{X}{Y} \land
-    \cardle{Y}{X}) \lif \cardeq{X}{Y})]]$ is valid.
+语句 $\lforall[X][\lforall[Y][((\cardle{X}{Y} \land
+    \cardle{Y}{X}) \lif \cardeq{X}{Y})]]$ 是有效的。
 \end{prop}
 
 \begin{proof}
-The !!{sentence} is satisfied in !!a{structure}~$\Struct{M}$ if, for
-any subsets $X \subseteq \Domain{M}$ and $Y \subseteq \Domain{M}$, if
-$\cardle{X}{Y}$ and $\cardle{Y}{X}$ then $\cardeq{X}{Y}$.  But this
-holds for \emph{any} sets $X$ and $Y$---it is the Schr\"oder-Bernstein
-Theorem.
+该语句在一个结构~$\Struct{M}$ 中被满足，如果对任意子集 $X \subseteq \Domain{M}$ 和 $Y \subseteq \Domain{M}$，若 $\cardle{X}{Y}$ 且 $\cardle{Y}{X}$，则 $\cardeq{X}{Y}$。但这对于\emph{任何}集合 $X$ 和 $Y$ 都成立——它正是 Schr\"oder-Bernstein 定理。
 \end{proof}
 
 

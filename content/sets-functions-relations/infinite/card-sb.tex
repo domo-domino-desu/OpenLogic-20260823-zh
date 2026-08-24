@@ -4,100 +4,74 @@
 
 \olfileid{sfr}{infinite}{card-sb}
 
-\olsection{Appendix: Proving Schr\"oder-Bernstein}
+\olsection{附录：证明 Schr\"oder-Bernstein 定理}
 
-Before we depart from na\"ive set theory, we have one last na\"ive
-(but sophisticated!) proof to consider. This is a proof of
-Schr\"oder-Bernstein (\olref[sfr][siz][sb]{thm:schroder-bernstein}): if
-$\cardle{A}{B}$ and $\cardle{B}{A}$ then $\cardeq{A}{B}$; i.e., given
-!!{injection}s $f \colon A \to B$ and $g \colon B \to A$ there is
-!!a{bijection} $h \colon A \to B$. 
+在我们告别朴素集合论之前，还要考虑一个朴素（却精巧的！）证明。这就是 Schr\"oder-Bernstein 定理（\olref[sfr][siz][sb]{thm:schroder-bernstein}）的证明：若 $\cardle{A}{B}$ 且 $\cardle{B}{A}$，则 $\cardeq{A}{B}$；换言之，给定单射 $f \colon A \to B$ 和 $g \colon B \to A$，存在一个双射 $h \colon A \to B$。
 
-In this chapter, we followed Dedekind's notion of \emph{closures}. In
-fact, Dedekind provided a lovely proof of Schr\"oder-Bernstein using this notion, and we
-will present it here. The proof closely follows
-\citet[pp.~157--8]{Potter2004}, if you want a slightly different but
-essentially similar treatment. A little googling will also convince
-you that this is a theorem---rather like the irrationality of
-$\sqrt{2}$---for which \emph{many} interesting and different proofs
-exist.
+在本章中，我们遵循了 Dedekind（戴德金）的\emph{闭包}概念。事实上，Dedekind 利用这个概念给出了 Schr\"oder-Bernstein 定理的一个优美证明，我们将在此介绍。该证明紧随 \citet[pp.~157--8]{Potter2004} 的论述；若你想要略有不同但本质相似的处理，可以参考该书。稍作搜索你也会发现，这个定理——很像 $\sqrt{2}$ 的无理性——有许多有趣且不同的证明。
 
-Using similar notation as \olref[sfr][infinite][dedekind]{Closure},
-let
+使用与 \olref[sfr][infinite][dedekind]{Closure} 类似的记号，对每个集合 $B$ 和函数~$f$，令
 \[
 \Closureofunder{f}{B} = \bigcap \Setabs{X}{B \subseteq X 
-\text{ and $X$ is $f$-closed}}
-\]
-for each set $B$ and function~$f$. Defined thus,
-$\Closureofunder{f}{B}$ is the smallest $f$-closed set containing~$B$,
-in that:
+\text{ 且 $X$ 是 $f$-闭的}}
+\]。
+这样定义的 $\Closureofunder{f}{B}$ 是包含~$B$ 的最小 $f$-闭集，即：
 
 \begin{lem}\ollabel{Closureprops}
-	For any function $f$, and any $B$:
+	对任意函数 $f$ 和任意 $B$：
 	\begin{enumerate}
-		\item\ollabel{Closurehaselem} $B \subseteq \Closureofunder{f}{B}$; and
-		\item\ollabel{Closureclosed} $\Closureofunder{f}{B}$ is $f$-closed; and
-		\item\ollabel{Closuresmallest} if $X$ is $f$-closed and $B
-		\subseteq X$, then $\Closureofunder{f}{B} \subseteq X$.
+		\item\ollabel{Closurehaselem} $B \subseteq \Closureofunder{f}{B}$；且
+		\item\ollabel{Closureclosed} $\Closureofunder{f}{B}$ 是 $f$-闭的；且
+		\item\ollabel{Closuresmallest} 若 $X$ 是 $f$-闭的且 $B \subseteq X$，则 $\Closureofunder{f}{B} \subseteq X$。
 	\end{enumerate}
 \end{lem}
 
 \begin{proof}
-Exactly as in \olref[sfr][infinite][dedekind]{closureproperties}.
+	与 \olref[sfr][infinite][dedekind]{closureproperties} 完全相同。
 \end{proof}
 
-We need one last fact to get to Schr\"oder-Bernstein:
+
+我们需要最后一个事实来得出 Schr\"oder-Bernstein 定理：
 
 \begin{prop}\ollabel{sbhelper}
-If $A \subseteq B \subseteq C$ and $\cardeq{A}{C}$, then $\cardeq{A}{B}$ and~$\cardeq{}{C}$.
+若 $A \subseteq B \subseteq C$ 且 $\cardeq{A}{C}$，则 $\cardeq{A}{B}$ 且~$\cardeq{B}{C}$。
 \end{prop}
 
 \begin{proof}
-Given !!a{bijection}  $f \colon C \to A$, let $F =
-\Closureofunder{f}{C \setminus B}$ and define a function $g$ with
-domain $C$ as follows:
-\[
+	给定一个双射 $f \colon C \to A$，令 $F =
+\Closureofunder{f}{C \setminus B}$ 并按如下方式定义函数 $g$，其定义域为 $C$：
+	\[
 	g(x) = 
 	\begin{cases}
-			f(x) &\text{if $x \in F$}\\
-			x & \text{otherwise}
+			f(x) &\text{若 $x \in F$}\\
+			x & \text{否则}
 		\end{cases}
 \]
-We'll show that $g$ is !!a{bijection} from $C \to B$ (i.e.,
-$\cardeq{B}{C}$). From this it will follow that $\comp{f^{-1}}{g}
-\colon A \to B$ is !!a{bijection}, completing the proof ($\cardeq{A}{B}$).
+	下面证明 $g$ 是从 $C$ 到 $B$ 的双射（即 $\cardeq{B}{C}$）。由此可知 $\comp{f^{-1}}{g}
+\colon A \to B$ 是双射，从而完成证明（$\cardeq{A}{B}$）。
 
-First we claim that if $x \in F$ but $y\notin F$ then $g(x) \neq
-g(y)$. For reductio suppose otherwise, so that $y = g(y) = g(x) =
-f(x)$. Since $x \in F$ and $F$ is $f$-closed by \olref{Closureprops},
-we have $y = f(x) \in F$, a contradiction. 
+	首先断言：若 $x \in F$ 但 $y \notin F$，则 $g(x) \neq g(y)$。反设不然，即 $y = g(y) = g(x) =
+f(x)$。由于 $x \in F$，且由 \olref{Closureprops} 知 $F$ 是 $f$-闭的，故 $y = f(x) \in F$，矛盾。
 
-Now suppose $g(x) = g(y)$. So, by the above, $x \in F$ iff $y \in F$.
-If $x, y \in F$, then $f(x) = g (x) = g(y) = f(y)$ so that $x = y$
-since $f$ is !!a{bijection}. If  $x, y \notin F$, then $x = g(x) =
-g(y) = y$. So $g$ is !!a{injection}.
+	现假设 $g(x) = g(y)$。那么，由上述断言，$x \in F$ 当且仅当 $y \in F$。
+	如果 $x, y \in F$，则 $f(x) = g (x) = g(y) = f(y)$，由于 $f$ 是双射，可得 $x = y$。
+	如果 $x, y \notin F$，则 $x = g(x) =
+g(y) = y$。所以 $g$ 是单射。
 
-It remains to show that $\ran{g} = B$. So fix $x \in B \subseteq C$.
-If $x \notin F$, then $g(x) = x$. If $x \in F$, then $x = f(y)$ for
-some $y \in F$, since otherwise $F \setminus \{x\}$ would be $f$-closed and extend $C\setminus B$, which is impossible by \olref{Closureprops}; now $g(y) = f(y) = x$.
+	还须证明 $\ran{g} = B$。取定 $x \in B \subseteq C$。
+	若 $x \notin F$，则 $g(x) = x$。若 $x \in F$，则存在某个 $y \in F$ 使得 $x = f(y)$，否则 $F \setminus \{x\}$ 将是 $f$-闭的且包含 $C\setminus B$，由 \olref{Closureprops} 可知这是不可能的；进而 $g(y) = f(y) = x$。
 \end{proof}
 
-Finally, here is the proof of the main result. Recall that given a
-function $h$ and set $D$, we define $\funimage{h}{D} = \Setabs{h(x)}{x
-\in D}$. 
 
-\begin{proof}[Proof of Schr\"oder-Bernstein] Let $f \colon A \to B$
-and $g \colon B \to A$ be !!{injection}s. Since $\funimage{f}{A}
-\subseteq B$ we have that $\funimage{g}{\funimage{f}{A}} \subseteq
-g[B] \subseteq A$. Also, $\comp{f}{g} \colon A \to
-\funimage{g}{\funimage{f}{A}}$ is an !!{injection} since both $g$ and
-$f$ are; and indeed $\comp{f}{g}$ is !!a{bijection}, just by the way
-we defined its codomain. So
-$\cardeq{\funimage{g}{\funimage{f}{A}}}{A}$, and hence by
-\olref{sbhelper} there is !!a{bijection} $h \colon A \to
-\funimage{g}{B}$. Moreover, $g^{-1}$ is !!a{bijection}
-$\funimage{g}{B} \to B$. So $\comp{h}{g^{-1}} \colon A \to B$ is
-!!a{bijection}. 
+最后，以下是主要结果的证明。回顾一下：给定函数 $h$ 和集合 $D$，我们定义 $\funimage{h}{D} = \Setabs{h(x)}{x
+\in D}$。
+
+\begin{proof}[Schr\"oder-Bernstein 定理的证明]
+	设 $f \colon A \to B$ 和 $g \colon B \to A$ 为单射。由于 $\funimage{f}{A} \subseteq B$，我们有 $\funimage{g}{\funimage{f}{A}} \subseteq
+g[B] \subseteq A$。此外，$\comp{f}{g} \colon A \to
+\funimage{g}{\funimage{f}{A}}$ 是单射，因为 $g$ 和 $f$ 都是单射；而且 $\comp{f}{g}$ 实际上是双射，这由我们对其陪域的定义即可看出。所以
+	$\cardeq{\funimage{g}{\funimage{f}{A}}}{A}$，从而根据 \olref{sbhelper}，存在一个双射 $h \colon A \to
+\funimage{g}{B}$。再者，$g^{-1}$ 是从 $\funimage{g}{B}$ 到 $B$ 的双射。因此 $\comp{h}{g^{-1}} \colon A \to B$ 是双射。
 \end{proof}
 
 \end{document}

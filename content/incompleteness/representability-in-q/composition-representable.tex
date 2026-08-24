@@ -7,81 +7,68 @@
 \begin{document}
 
 \olfileid{inc}{req}{cmp}
-\olsection{Composition is Representable in $\Th{Q}$}
+\olsection{函数复合在~$\Th{Q}$~中可表示}
 
-Suppose $h$ is defined by
+假设 $h$ 由下式定义：
 \[
 h(x_0,\dots,x_{l-1}) = f(g_0(x_0,\dots,x_{l-1}), \dots,
 g_{k-1}(x_0,\dots,x_{l-1})).
 \]
-where we have already found !!{formula}s $!A_f, !A_{g_0}, \dots,
-!A_{g_{k-1}}$ representing the functions $f$, and $g_0$,
-\dots,~$g_{k-1}$, respectively. We have to find !!a{formula}~$!A_h$
-representing $h$.
+其中我们已经找到了分别表示函数 $f$ 以及 $g_0$, \dots,~$g_{k-1}$ 的公式 $!A_f, !A_{g_0}, \dots,
+!A_{g_{k-1}}$。我们需要找到一个表示 $h$ 的公式~$!A_h$。
 
-Let's start with a simple case, where all functions are $1$-place,
-i.e., consider $h(x) = f(g(x))$. If $!A_f(y, z)$ represents~$f$, and
-$!A_g(x, y)$ represents~$g$, we need !!a{formula}~$!A_h(x, z)$ that
-represents~$h$.  Note that $h(x) = z$ iff there is a~$y$ such that
-both $z = f(y)$ and $y = g(x)$. (If $h(x) = z$, then $g(x)$ is such
-a~$y$; if such a $y$ exists, then since $y = g(x)$ and $z = f(y)$, $z
-= f(g(x))$.) This suggests that $\lexists[y][(!A_g(x, y) \land !A_f(y,
-  z))]$ is a good candidate for~$!A_h(x, z)$. We just have to verify
-that $\Th{Q}$ proves the relevant !!{formula}s.
+先考虑所有函数都是一元的简单情形，即考虑 $h(x) = f(g(x))$。如果 $!A_f(y, z)$ 表示~$f$，且 $!A_g(x, y)$ 表示~$g$，我们需要一个表示~$h$ 的公式~$!A_h(x, z)$。注意，$h(x) = z$ 当且仅当存在一个~$y$，使得 $z = f(y)$ 且 $y = g(x)$。（如果 $h(x) = z$，那么 $g(x)$ 就是这样的一个~$y$；如果这样的 $y$ 存在，那么由 $y = g(x)$ 和 $z = f(y)$，可得 $z = f(g(x))$。）这表明 $\lexists[y][(!A_g(x, y) \land !A_f(y,
+  z))]$ 是~$!A_h(x, z)$ 的一个很好的候选公式。我们只需验证 $\Th{Q}$ 能证明相关的公式。
 
 \begin{prop}
 \ollabel{prop:rep1}
-If $h(n) = m$, then $\Th{Q} \Proves !A_h(\num{n}, \num{m})$.
+如果 $h(n) = m$，则 $\Th{Q} \Proves !A_h(\num{n}, \num{m})$。
 \end{prop}
 
 \begin{proof}
-Suppose $h(n) = m$, i.e., $f(g(n)) = m$.  Let $k = g(n)$. Then
+假设 $h(n) = m$，即 $f(g(n)) = m$。令 $k = g(n)$。则
 \begin{align*}
   \Th{Q} & \Proves !A_g(\num{n}, \num{k})
-  \intertext{since $!A_g$ represents~$g$, and}
+  \intertext{由于 $!A_g$ 表示~$g$，且}
   \Th{Q} & \Proves !A_f(\num{k}, \num{m})
-  \intertext{since $!A_f$ represents~$f$. Thus,}
+  \intertext{由于 $!A_f$ 表示~$f$。因此，}
   \Th{Q} & \Proves !A_g(\num{n}, \num{k}) \land !A_f(\num{k}, \num{m})
-  \intertext{and consequently also}
+  \intertext{从而也有}
   \Th{Q} & \Proves \lexists[y][(!A_g(\num{n}, y) \land !A_f(y, \num{m}))],
 \end{align*}
-i.e., $\Th{Q} \Proves !A_h(\num{n}, \num{m})$.
+即 $\Th{Q} \Proves !A_h(\num{n}, \num{m})$。
 \end{proof}
 
 \begin{prop}
 \ollabel{prop:rep2}
-If $h(n) = m$, then $\Th{Q} \Proves \lforall[z][(!A_h(\num{n}, z) \lif
-  z = \num{m})]$.
+如果 $h(n) = m$，则 $\Th{Q} \Proves \lforall[z][(!A_h(\num{n}, z) \lif
+  z = \num{m})]$。
 \end{prop}
 
 \begin{proof}
-Suppose $h(n) = m$, i.e., $f(g(n)) = m$.  Let $k = g(n)$. Then
+假设 $h(n) = m$，即 $f(g(n)) = m$。令 $k = g(n)$。则
 \begin{align*}
   \Th{Q} & \Proves \lforall[y][(!A_g(\num{n}, y) \lif \eq[y][\num{k}])]
-  \intertext{since $!A_g$ represents~$g$, and}
+  \intertext{由于 $!A_g$ 表示~$g$，且}
   \Th{Q} & \Proves \lforall[z][(!A_f(\num{k}, z) \lif \eq[z][\num{m}])]
-  \intertext{since $!A_f$ represents~$f$. Using just a little bit of
-    logic, we can show that also}
+  \intertext{由于 $!A_f$ 表示~$f$。只需稍作逻辑推导，我们也能证明}
   \Th{Q} & \Proves \lforall[z][(\lexists[y][(!A_g(\num{n}, y) \land
       !A_f(y, z))] \lif \eq[z][\num{m}])].
 \end{align*}
-i.e., $\Th{Q} \Proves \lforall[y][(!A_h(\num n, y) \lif \eq[y][\num m])]$.
+即 $\Th{Q} \Proves \lforall[y][(!A_h(\num n, y) \lif \eq[y][\num m])]$。
 \end{proof}
 
-The same idea works in the more complex case where $f$ and~$g_i$ have
-arity greater than~$1$.
+同样的思想适用于 $f$ 和~$g_i$ 的元数大于~$1$ 的更复杂情形。
 
 \begin{prop}
 \ollabel{prop:rep-composition}
-If $!A_f(y_0, \dots, y_{k-1}, z)$ represents $f(y_0, \dots, y_{k-1})$
-in~$\Th{Q}$, and $!A_{g_i}(x_0, \dots, x_{l-1}, y)$ represents
-$g_i(x_0, \dots, x_{l-1})$ in~$\Th{Q}$, then
+如果 $!A_f(y_0, \dots, y_{k-1}, z)$ 在~$\Th{Q}$ 中表示 $f(y_0, \dots, y_{k-1})$，且 $!A_{g_i}(x_0, \dots, x_{l-1}, y)$ 在~$\Th{Q}$ 中表示 $g_i(x_0, \dots, x_{l-1})$，那么
 \begin{multline*}
   \lexists[y_0\dots][\lexists[y_{k-1}][(!A_{g_0}(x_0,\dots,x_{l-1},y_0) \land
       \dots \land {}]]\\
   !A_{g_{k-1}}(x_0,\dots,x_{l-1},y_{k-1}) \land !A_f(y_0,\dots,y_{k-1},z))
 \end{multline*}
-represents
+表示
 \[
 h(x_0, \dots, x_{l-1}) = f(g_0(x_0, \dots, x_{l-1}), \dots, g_{k-1}(x_0,
 \dots, x_{l-1})).
@@ -89,13 +76,11 @@ h(x_0, \dots, x_{l-1}) = f(g_0(x_0, \dots, x_{l-1}), \dots, g_{k-1}(x_0,
 \end{prop}
 
 \begin{proof}
-Exercise.
+练习。
 \end{proof}
 
-\begin{prob}
-Using the proofs of \olref[inc][req][cmp]{prop:rep2} and
-\olref[inc][req][cmp]{prop:rep2} as a guide, carry out the proof of
-\olref[inc][req][cmp]{prop:rep-composition} in detail.
+\begin{prob} % Problem added for students
+以 \olref[inc][req][cmp]{prop:rep2} 和 \olref[inc][req][cmp]{prop:rep2} 的证明为指引，详细写出 \olref[inc][req][cmp]{prop:rep-composition} 的证明。
 \end{prob}
 
 \end{document}

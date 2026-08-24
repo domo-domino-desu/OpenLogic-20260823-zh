@@ -8,43 +8,31 @@
 
 \olfileid{sol}{syn}{sat}
 
-\olsection{Satisfaction}
+\olsection{满足关系}
 
 \begin{explain}
-To define the satisfaction relation $\Sat{M}{!A}[s]$ for second-order
-!!{formula}s, we have to extend the definitions to cover second-order
-!!{variable}s.  The notion of !!a{structure} is the same for second-order
-logic as it is for first-order logic. There is only a difference for
-variable assignments~$s$: these now must not just provide values for
-the first-order !!{variable}s, but also for the second-order !!{variable}s.
+为了定义二阶公式的满足关系 $\Sat{M}{!A}[s]$，我们必须扩展定义以涵盖二阶变元。
+二阶逻辑中结构的概念与一阶逻辑中的相同。
+唯一的区别在于变元指派~$s$：它现在不仅需要为一阶变元提供值，还需要为二阶变元提供值。
 \end{explain}
 
-\begin{defn}[Variable Assignment]
-A \emph{variable assignment}~$s$ for !!a{structure}~$\Struct{M}$ is a
-function which maps each
+\begin{defn}[变元指派]
+结构~$\Struct{M}$ 的一个\emph{变元指派}~$s$ 是一个函数，它将每个
 \begin{enumerate}
-\item object !!{variable}~$\Obj{v_i}$ to an element of~$\Domain M$,
-  i.e., $s(\Obj{v_i}) \in \Domain{M}$
-\item $n$-place relation variable~$\Obj{V_i^n}$ to an $n$-place
-  relation on~$\Domain{M}$, i.e., $s(\Obj{V_i^n}) \subseteq \Domain{M}^n$;
-\item $n$-place function variable~$\Obj{u_i^n}$ to an $n$-place
-  function from $\Domain{M}$ to $\Domain{M}$, i.e.,
-  $s(\Obj{u_i^n})\colon \Domain{M}^n \to \Domain{M}$;
+\item 对象变元~$\Obj{v_i}$ 映射到~$\Domain M$ 的一个元素，即 $s(\Obj{v_i}) \in \Domain{M}$；
+\item $n$元关系变元~$\Obj{V_i^n}$ 映射到~$\Domain{M}$ 上的一个 $n$ 元关系，即 $s(\Obj{V_i^n}) \subseteq \Domain{M}^n$；
+\item $n$元函数变元~$\Obj{u_i^n}$ 映射为从 $\Domain{M}$ 到 $\Domain{M}$ 的一个 $n$ 元函数，即 $s(\Obj{u_i^n})\colon \Domain{M}^n \to \Domain{M}$。
 \end{enumerate}
 \end{defn}
 
 \begin{explain}
-!!^a{structure} assigns !!a{value} to each !!{constant} and
-!!{function}, and a second-order variable assignment assigns objects and
-functions to each object and function variable. Together, they let us
-assign a value to every term.
+结构为每个常项符号和函数符号指定一个值，而二阶变元指派则为每个对象变元和函数变元分别指派对象和函数。
+两者结合，使我们可以为每个项指派一个值。
 \end{explain}
 
-\begin{defn}[\usetoken{S}{value} of a Term]
-If $t$ is a term of the language~$\Lang L$, $\Struct M$ is
-!!a{structure} for~$\Lang L$, and $s$ is !!a{variable} assignment
-for~$\Struct M$, the \emph{!!{value}}~$\Value{t}{M}[s]$ is defined as
-for first-order terms, plus the following clause:
+\begin{defn}[项的值]
+如果 $t$ 是语言~$\Lang L$ 的一个项，$\Struct M$ 是~$\Lang L$ 的一个结构，且 $s$ 是~$\Struct M$ 的一个变元指派，
+则 \emph{值}~$\Value{t}{M}[s]$ 的定义与一阶项相同，但需增加以下子句：
 \begin{quote}
 \indcase{t}{\Atom{u}{t_1, \ldots, t_n}}{
 \[
@@ -54,156 +42,100 @@ for first-order terms, plus the following clause:
 \end{quote}
 \end{defn}
 
-\begin{defn}[$x$-Variant]
-If $s$ is !!a{variable} assignment for !!a{structure}~$\Struct M$,
-then any !!{variable} assignment $s'$ for $\Struct M$ which differs
-from $s$ at most in what it assigns to $x$ is called an
-\emph{$x$-variant} of~$s$.  If $s'$ is an $x$-variant of $s$ we write
-$\varAssign{s'}{s}{x}$. (Similarly for second-order variables $X$ or $u$.)
+\begin{defn}[$x$-变体]
+如果 $s$ 是结构~$\Struct M$ 的一个变元指派，那么任何与 $s$ 至多在对 $x$ 的赋值上有所不同的、$\Struct M$ 的变元指派 $s'$，称为 $s$ 的一个\emph{$x$-变体}。
+若 $s'$ 是 $s$ 的一个 $x$-变体，我们记作 $\varAssign{s'}{s}{x}$。（对二阶变元 $X$ 或 $u$ 类似。）
 \end{defn}
 
 \begin{defn}
-  If $s$ is !!a{variable} assignment for !!a{structure}~$\Struct M$
-  and $m \in \Domain{M}$, then the assignment~$\Subst{s}{m}{x}$ is the
-  !!{variable} assignment defined by
+  如果 $s$ 是结构~$\Struct M$ 的一个变元指派且 $m \in \Domain{M}$，
+  那么指派~$\Subst{s}{m}{x}$ 是如下定义的变元指派：
   \[\Subst{s}{m}{y} = \begin{cases}
-    m & \text{if } y \ident x\\
-    s(y) & \text{otherwise},
+    m & \text{若 } y \ident x\\
+    s(y) & \text{否则},
   \end{cases}\]
-  If $X$ is an $n$-place relation !!{variable} and $M \subseteq
-  \Domain{M}^n$, then $\Subst{s}{M}{X}$ is the !!{variable} assignment
-  defined by
+  如果 $X$ 是一个 $n$ 元关系变元且 $M \subseteq \Domain{M}^n$，那么 $\Subst{s}{M}{X}$ 是如下定义的变元指派：
   \[\Subst{s}{M}{y} = \begin{cases}
-    M & \text{if } y \ident X\\
-    s(y) & \text{otherwise}. 
+    M & \text{若 } y \ident X\\
+    s(y) & \text{否则}. 
   \end{cases}\]
-  If $u$ is an $n$-place function !!{variable} and $f\colon \Domain{M}^n
-  \to \Domain{M}$, then $\Subst{s}{f}{u}$ is the !!{variable} assignment
-  defined by
+  如果 $u$ 是一个 $n$ 元函数变元且 $f\colon \Domain{M}^n
+  \to \Domain{M}$，那么 $\Subst{s}{f}{u}$ 是如下定义的变元指派：
   \[\Subst{s}{f}{y} = \begin{cases}
-    f & \text{if } y \ident u\\
-    s(y) & \text{otherwise}.
+    f & \text{若 } y \ident u\\
+    s(y) & \text{否则}.
   \end{cases}\]
-  In each case, $y$ may be any first- or second-order !!{variable}.
+  在上述各情形中，$y$ 可以是任意一阶或二阶变元。
 \end{defn}
 
-\begin{defn}[Satisfaction]
-For second-order !!{formula}s~$!A$, the definition of satisfaction is
-like \olref[fol][syn][sat]{defn:satisfaction} with the addition of:
+\begin{defn}[满足]
+对于二阶公式~$!A$，满足的定义与 \olref[fol][syn][sat]{defn:satisfaction} 类似，但需补充：
 \begin{enumerate}
-\item \indcase{!A}{\Atom{X^n}{t_1, \dots, t_n}}{$\Sat{M}{\indfrm}[s]$
-  iff $\langle \Value{t_1}{M}[s], \dots, \Value{t_n}{M}[s] \rangle \in
-  s(X^n)$.}
+\item \indcase{!A}{\Atom{X^n}{t_1, \dots, t_n}}{$\Sat{M}{\indfrm}[s]$ 当且仅当 $\langle \Value{t_1}{M}[s], \dots, \Value{t_n}{M}[s] \rangle \in
+  s(X^n)$。}
 \tagitem{prvAll}{%
-  \indcase{!A}{\lforall[X][!B]}{$\Sat{M}{\indfrm}[s]$ iff for every $M
-  \subseteq \Domain{M}^n$, $\Sat{M}{!B}[\Subst{s}{M}{X}]$.}}{}
+  \indcase{!A}{\lforall[X][!B]}{$\Sat{M}{\indfrm}[s]$ 当且仅当对每个 $M \subseteq \Domain{M}^n$，$\Sat{M}{!B}[\Subst{s}{M}{X}]$。}}{}
 
 \tagitem{prvEx}{%
-  \indcase{!A}{\lexists[X][!B]}{$\Sat{M}{\indfrm}[s]$ iff for at least
-  one $M \subseteq \Domain{M}^n$ so that
-  $\Sat{M}{!B}[\Subst{s}{M}{X}]$.}}{}
+  \indcase{!A}{\lexists[X][!B]}{$\Sat{M}{\indfrm}[s]$ 当且仅当存在至少一个 $M \subseteq \Domain{M}^n$，使得 $\Sat{M}{!B}[\Subst{s}{M}{X}]$。}}{}
 
 \tagitem{prvAll}{%
-  \indcase{!A}{\lforall[u][!B]}{$\Sat{M}{\indfrm}[s]$ iff for every
-  $f\colon \Domain{M}^n \to \Domain{M}$,
-  $\Sat{M}{!B}[\Subst{s}{f}{u}]$.}}{}
+  \indcase{!A}{\lforall[u][!B]}{$\Sat{M}{\indfrm}[s]$ 当且仅当对每个 $f\colon \Domain{M}^n \to \Domain{M}$，
+  $\Sat{M}{!B}[\Subst{s}{f}{u}]$。}}{}
 
 \tagitem{prvEx}{%
-  \indcase{!A}{\lexists[u][!B]}{$\Sat{M}{\indfrm}[s]$ iff for at least
-  one $f\colon \Domain{M}^n \to \Domain{M}$ so that
-  $\Sat{M}{!B}[\Subst{s}{f}{u}]$.}}{}
+  \indcase{!A}{\lexists[u][!B]}{$\Sat{M}{\indfrm}[s]$ 当且仅当存在至少一个 $f\colon \Domain{M}^n \to \Domain{M}$，使得 $\Sat{M}{!B}[\Subst{s}{f}{u}]$。}}{}
 \end{enumerate}
 \end{defn}
 
 \begin{ex}
-  Consider the !!{formula} $\lforall[z][(\Atom{X}{z} \liff \lnot
-    \Atom{Y}{z})]$. It contains no second-order quantifiers, but does
-  contain the second-order !!{variable}s $X$ and~$Y$ (here understood to
-  be one-place). The corresponding first-order !!{sentence}
-  $\lforall[z][(\Atom{P}{z} \liff \lnot \Atom{R}{z})]$ says that
-  whatever falls under the interpretation of~$P$ does not fall under
-  the interpretation of~$R$ and vice versa. In !!a{structure}, the
-  interpretation of !!a{predicate}~$P$ is given by the
-  interpretation~$\Assign{P}{M}$. But for second-order !!{variable}s
-  like $X$ and~$Y$, the interpretation is provided, not by the
-  !!{structure} itself, but by !!a{variable} assignment. Since the
-  second-order !!{formula} is not !!a{sentence} (it includes free
-  !!{variable}s $X$ and~$Y$), it is only satisfied relative to
-  !!a{structure}~$\Struct{M}$ together with !!a{variable}
-  assignment~$s$.
+  考虑公式 $\lforall[z][(\Atom{X}{z} \liff \lnot
+    \Atom{Y}{z})]$。它不包含二阶量词，但包含二阶变元 $X$ 和~$Y$（这里视为一元的）。对应的一阶语句
+  $\lforall[z][(\Atom{P}{z} \liff \lnot \Atom{R}{z})]$ 说的是：任何归属于~$P$ 的解释的对象都不归属于~$R$ 的解释，反之亦然。在结构中，谓词符号~$P$ 的解释由解释函数~$\Assign{P}{M}$ 给出。但对于像 $X$ 和~$Y$ 这样的二阶变元，解释不是由结构本身，而是由一个变元指派提供的。由于该二阶公式不是语句（它包含自由变元 $X$ 和~$Y$），它只能相对于结构~$\Struct{M}$ 连同变元指派~$s$ 被满足。
 
-  $\Sat{M}{\lforall[z][(\Atom{X}{z} \liff \lnot \Atom{Y}{z})]}[s]$
-  whenever the !!{element}s of~$s(X)$ are not !!{element}s of~$s(Y)$,
-  and vice versa, i.e., iff $s(Y) = \Domain{M} \setminus s(X)$. For
-  instance, take $\Domain{M} = \{1, 2, 3\}$. Since no !!{predicate}s,
-  !!{function}s, or !!{constant}s are involved, the domain
-  of~$\Struct{M}$ is all that is relevant. Now for $s_1(X) = \{1, 2\}$
-  and $s_1(Y) = \{3\}$, we have $\Sat{M}{\lforall[z][(\Atom{X}{z}
-      \liff \lnot \Atom{Y}{z})]}[s_1]$.
+  $\Sat{M}{\lforall[z][(\Atom{X}{z} \liff \lnot \Atom{Y}{z})]}[s]$ 当且仅当~$s(X)$ 的元素都不是~$s(Y)$ 的元素，反之亦然，即 $s(Y) = \Domain{M} \setminus s(X)$。例如，考虑 $\Domain{M} = \{1, 2, 3\}$。由于不涉及谓词符号、函数符号或常项符号，~$\Struct{M}$ 的论域是唯一有关的因素。若令 $s_1(X) = \{1, 2\}$
+  和 $s_1(Y) = \{3\}$，我们有 $\Sat{M}{\lforall[z][(\Atom{X}{z}
+      \liff \lnot \Atom{Y}{z})]}[s_1]$。
 
-  By contrast, if we have $s_2(X) = \{1, 2\}$ and $s_2(Y) = \{2, 3\}$,
-  $\Sat/{M}{\lforall[z][(\Atom{X}{z} \liff \lnot
-      \Atom{Y}{z})]}[s_2]$. That's because 
-  $\Sat{M}{\Atom{X}{z}}[\Subst{s_2}{2}{z}]$ (since $2 \in \Subst{s_2}{2}{z}(X)$) but
-  $\Sat/{M}{\lnot \Atom{Y}{z}}[\Subst{s_2}{2}{z}]$ (since also $2 \in
-  \Subst{s_2}{2}{z}(Y)$).
+  相反，若 $s_2(X) = \{1, 2\}$ 且 $s_2(Y) = \{2, 3\}$，则 $\Sat/{M}{\lforall[z][(\Atom{X}{z} \liff \lnot
+      \Atom{Y}{z})]}[s_2]$。这是因为 $\Sat{M}{\Atom{X}{z}}[\Subst{s_2}{2}{z}]$（因为 $2 \in \Subst{s_2}{2}{z}(X)$），但 $\Sat/{M}{\lnot \Atom{Y}{z}}[\Subst{s_2}{2}{z}]$（因为 $2 \in
+  \Subst{s_2}{2}{z}(Y)$）。
 \end{ex}
 
 \begin{ex}
   $\Sat{M}{\lexists[Y][(\lexists[y][\Atom{Y}{y}] \land
-  \lforall[z][(\Atom{X}{z} \liff \lnot \Atom{Y}{z})])]}[s]$ if there
-  is an $N \subseteq \Domain{M}$ such that
-  $\Sat{M}{(\lexists[y][\Atom{Y}{y}] \land \lforall[z][(\Atom{X}{z}
-  \liff \lnot \Atom{Y}{z})])}[\Subst{s}{N}{Y}]$. And that is the case
-  for any $N \neq \emptyset$ (so that
-  $\Sat{M}{\lexists[y][\Atom{Y}{y}]}[\Subst{s}{N}{Y}]$) and, as in the
-  previous example, $N = \Domain{M} \setminus s(X)$. In other words,
-  $\Sat{M}{\lexists[Y][(\lexists[y][\Atom{Y}{y}] \land
-  \lforall[z][(\Atom{X}{z} \liff \lnot \Atom{Y}{z})])]}[s]$ iff
-  $\Domain{M} \setminus s(X)$ is non-empty, i.e., $s(X) \neq
-  \Domain{M}$. So, the !!{formula} is satisfied, e.g., if $\Domain{M}
-  = \{1, 2, 3\}$ and $s(X) = \{1, 2\}$, but not if $s(X) = \{1, 2, 3\}
-  = \Domain{M}$.
+  \lforall[z][(\Atom{X}{z} \liff \lnot \Atom{Y}{z})])]}[s]$ 当且仅当存在 $N \subseteq \Domain{M}$ 使得 $\Sat{M}{(\lexists[y][\Atom{Y}{y}] \land \lforall[z][(\Atom{X}{z}
+  \liff \lnot \Atom{Y}{z})])}[\Subst{s}{N}{Y}]$。且对任意 $N \neq \emptyset$（从而 $\Sat{M}{\lexists[y][\Atom{Y}{y}]}[\Subst{s}{N}{Y}]$）以及如前例那样 $N = \Domain{M} \setminus s(X)$，该情况均成立。换句话说，$\Sat{M}{\lexists[Y][(\lexists[y][\Atom{Y}{y}] \land
+  \lforall[z][(\Atom{X}{z} \liff \lnot \Atom{Y}{z})])]}[s]$ 当且仅当 $\Domain{M} \setminus s(X)$ 非空，即 $s(X) \neq \Domain{M}$。因此，例如当 $\Domain{M}
+  = \{1, 2, 3\}$ 且 $s(X) = \{1, 2\}$ 时，该公式被满足；但当 $s(X) = \{1, 2, 3\}
+  = \Domain{M}$ 时则不被满足。
 
-  Since the !!{formula} is not satisfied whenever $s(X) = \Domain{M}$,
-  the !!{sentence}
+  由于只要 $s(X) = \Domain{M}$ 该公式就不被满足，语句
   \[
   \lforall[X][\lexists[Y][(\lexists[y][\Atom{Y}{y}] \land
       \lforall[z][(\Atom{X}{z} \liff \lnot \Atom{Y}{z})])]]
   \]
-  is never satisfied: For any !!{structure}~$\Struct{M}$, the
-  assignment~$s(X) = \Domain{M}$ will make the !!{sentence} false. On
-  the other hand, the sentence
+  就永远不会被满足：对任何结构~$\Struct{M}$，指派~$s(X) = \Domain{M}$ 都将使该语句为假。另一方面，语句
   \[
   \lexists[X][\lexists[Y][(\lexists[y][\Atom{Y}{y}] \land
       \lforall[z][(\Atom{X}{z} \liff \lnot \Atom{Y}{z})])]]
   \]
-  is satisfied relative to any assignment~$s$, since we can always
-  find $M \subseteq \Domain{M}$ but $M \neq \Domain{M}$ (e.g., $M = \emptyset$).
+  相对于任何指派~$s$ 都被满足，因为我们总可以找到 $M \subseteq \Domain{M}$ 但 $M \neq \Domain{M}$（例如 $M = \emptyset$）。
 \end{ex}
 
 \begin{ex}
-  The second-order !!{sentence}~$\lforall[X][\lforall[y][X(y)]]$ says
-  that every $1$-place relation, i.e., every property, holds of every
-  object. That is clearly never true, since in every~$\Struct{M}$, for
-  a variable assignment~$s$ with $s(X) = \emptyset$, and $s(y) = a \in
-  \Domain{M}$ we have $\Sat/{M}{X(y)}[s]$. This means that $!A \lif
-  \lforall[X][\lforall[y][X(y)]]$ is equivalent in second-order logic
-  to $\lnot !A$, that is: $\Sat{M}{!A \lif
-  \lforall[X][\lforall[y][X(y)]]}$ iff $\Sat{M}{\lnot !A}$. In other
-  words, in second-order logic we can define $\lnot$ using $\lforall$
-  and~$\lif$.
+  二阶语句~$\lforall[X][\lforall[y][X(y)]]$ 说的是每个一元关系，即每个性质，对每个对象都成立。这显然永远不会为真，因为在每个~$\Struct{M}$ 中，对于满足 $s(X) = \emptyset$ 且 $s(y) = a \in
+  \Domain{M}$ 的变元指派~$s$，我们有 $\Sat/{M}{X(y)}[s]$。这意味着 $!A \lif
+  \lforall[X][\lforall[y][X(y)]]$ 在二阶逻辑中等价于 $\lnot !A$，即：$\Sat{M}{!A \lif
+  \lforall[X][\lforall[y][X(y)]]}$ 当且仅当 $\Sat{M}{\lnot !A}$。换言之，在二阶逻辑中，我们可以用 $\lforall$ 和~$\lif$ 来定义 $\lnot$。
 \end{ex}
 
 \begin{prob}
-  Show that in second-order logic $\lforall$ and~$\lif$ can define the other
-  connectives:
+  证明在二阶逻辑中，$\lforall$ 和~$\lif$ 可以定义其他联结词：
   \begin{enumerate}
-    \item Prove that in second-order logic $!A \land !B$ is equivalent
-    to $\lforall[X][(!A \lif (!B \lif \lforall[x][X(x)])\lif
-    \lforall[x][X(x)])]$.
-    \item Find a second-order formula using only $\lforall$ and $\lif$
-    equivalent to $!A \lor !B$.
+    \item 证明在二阶逻辑中，$!A \land !B$ 等价于 $\lforall[X][(!A \lif (!B \lif \lforall[x][X(x)])\lif
+    \lforall[x][X(x)])]$。
+    \item 找出一个仅使用 $\lforall$ 和 $\lif$ 的二阶公式，使其等价于 $!A \lor !B$。
   \end{enumerate}
 \end{prob}
 

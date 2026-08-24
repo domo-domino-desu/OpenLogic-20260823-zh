@@ -1,140 +1,117 @@
-% Part: incompleteness
-% Chapter: incompleteness-provability
-% Section: fixed-point-lemma
-
 \documentclass[../../../include/open-logic-section]{subfiles}
 
 \begin{document}
 
+% Part: incompleteness
+% Chapter: incompleteness-provability
+% Section: fixed-point-lemma
+
 \olfileid{inc}{inp}{fix}
 
-\olsection{The Fixed-Point Lemma}
+\olsection{不动点引理}
 
 \begin{explain}
-The fixed-point lemma says that for any !!{formula}~$!B(x)$, there is
-!!a{sentence}~$!A$ such that $\Th{T} \Proves !A \liff !B(\gn{!A})$,
-provided $\Th{T}$ extends~$\Th{Q}$.  In the case of the liar sentence,
-we'd want $!A$ to be equivalent (provably in~$\Th{T}$) to~``$\gn{!A}$
-is false,'' i.e., the statement that $\Gn{!A}$ is the G\"odel number
-of a false !!{sentence}. To understand the idea of the proof, it will
-be useful to compare it with Quine's informal gloss of~$!A$ as,
-``{}`yields a falsehood when preceded by its own quotation' yields a
-falsehood when preceded by its own quotation.''  The operation of
-taking an expression, and then forming a sentence by preceding this
-expression by its own quotation may be called \emph{diagonalizing} the
-expression, and the result its diagonalization. So, the
-diagonalization of `yields a falsehood when preceded by its own
-quotation' is ``{}`yields a falsehood when preceded by its own
-quotation' yields a falsehood when preceded by its own quotation.''
-Now note that Quine's liar sentence is not the diagonalization of
-`yields a falsehood' but of `yields a falsehood when preceded by its
-own quotation.' So the property being diagonalized to yield the liar
-sentence itself involves diagonalization!{}
+不动点引理表明，只要 $\Th{T}$ 扩张了~$\Th{Q}$，对于任意公式~$!B(x)$，都存在一个语句~$!A$ 使得 $\Th{T} \Proves !A \liff !B(\gn{!A})$。
+在说谎者语句的情形中，我们想要 $!A$（在~$\Th{T}$ 中可证地）等价于“$\gn{!A}$ 是假的”，
+也就是说，等价于“$\Gn{!A}$ 是一个假语句的哥德尔数”这一陈述。
+为了理解证明的思路，不妨将其与 Quine（奎因）对~$!A$ 的非形式解读作一比较：
+$!A$ 即“‘当冠以其自身的引述时产生假句’当冠以其自身的引述时产生假句”。
+取出一个表达式，然后将该表达式的自身引述冠于其前从而构成一个语句，
+这种操作可以称为对该表达式的\emph{对角化}，其结果称为它的对角化。
+所以，“当冠以其自身的引述时产生假句”的对角化就是
+“‘当冠以其自身的引述时产生假句’当冠以其自身的引述时产生假句”。
+请注意，Quine 的说谎者语句并不是“产生假句”的对角化，
+而是“当冠以其自身的引述时产生假句”的对角化。
+因此，被对角化以产生说谎者语句的那个性质本身就已经涉及对角化！
 
-In the language of arithmetic, we form quotations of !!a{formula} with
-one free variable by computing its G\"odel numbers and then
-substituting the standard numeral for that G\"odel number into the
-free variable. The diagonalization of~$!E(x)$ is $!E(\num{n})$, where
-$n = \Gn{!E(x)}$. (From now on, let's abbreviate $\num{\Gn{!E(x)}}$ as
-$\gn{!E(x)}$.)  So if $!B(x)$ is ``is a falsehood,'' then ``yields a
-falsehood if preceded by its own quotation,'' would be ``yields a
-falsehood when applied to the G\"odel number of its diagonalization.''
-If we had a symbol~$\Obj{diag}$ for the function $\fn{diag}(n)$ which
-computes the G\"odel number of the diagonalization of the !!{formula}
-with G\"odel number~$n$, we could write $!E(x)$ as
-$!B(\Obj{diag}(x))$. And Quine's version of the liar sentence would
-then be the diagonalization of it, i.e., $!E(\gn{!E(x)})$ or
-$!B(\Obj{diag}(\gn{!B(\Obj{diag}(x))}))$.  Of course, $!B(x)$ could
-now be any other property, and the same construction would work. For
-the incompleteness theorem, we'll take $!B(x)$ to be ``$x$~is not
-!!{derivable} in~$\Th{T}$.'' Then $!E(x)$ would be ``yields
-!!a{sentence} not !!{derivable} in~$\Th{T}$ when applied to the
-G\"odel number of its diagonalization.''
+在算术语言中，我们通过计算含一个自由变元的公式的哥德尔数，
+然后将代表该哥德尔数的标准数字代入自由变元，来形成该公式的引述。
+$!E(x)$ 的对角化是 $!E(\num{n})$，其中 $n = \Gn{!E(x)}$。
+（从现在起，我们把 $\num{\Gn{!E(x)}}$ 简写为 $\gn{!E(x)}$。）
+所以，如果 $!B(x)$ 是“是假句”，那么
+“当冠以其自身的引述时产生假句”就可以表达为
+“当应用于其对角化的哥德尔数时产生假句”。
+如果我们有一个符号~$\Obj{diag}$ 代表函数 $\fn{diag}(n)$
+——该函数计算哥德尔数为~$n$ 的公式的对角化的哥德尔数——那么我们就可以将 $!E(x)$ 写成
+$!B(\Obj{diag}(x))$。
+而 Quine 版本的说谎者语句就将是它的对角化，即 $!E(\gn{!E(x)})$ 或
+$!B(\Obj{diag}(\gn{!B(\Obj{diag}(x))}))$。
+当然，$!B(x)$ 可以是任何其他性质，同样的构造仍能奏效。
+对于不完全性定理，我们将取 $!B(x)$ 为“$x$ 在~$\Th{T}$ 中不可推导”。
+那么 $!E(x)$ 就是“当应用于其对角化的哥德尔数时，产生一个在~$\Th{T}$ 中不可推导的语句”。
 
-To formalize this in~$\Th{T}$, we have to find a way to formalize
-$\fn{diag}$. The function $\fn{diag}(n)$ is computable, in fact, it is
-primitive recursive: if $n$ is the G\"odel number of a
-formula~$!E(x)$, $\fn{diag}(n)$ returns the G\"odel number
-of~$!E(\gn{!E(x)})$. (Recall, $\gn{!E(x)}$ is the standard numeral of
-the G\"odel number of~$!E(x)$, i.e., $\num{\Gn{!E(x)}}$). If
-$\Obj{diag}$ were a function symbol in $\Th{T}$ representing the
-function $\fn{diag}$, we could take $!A$ to be the formula
-$!B(\Obj{diag}(\gn{!B(\Obj{diag}(x))}))$. Notice that
+为了在~$\Th{T}$ 中将此形式化，我们必须找到将 $\fn{diag}$ 形式化的方法。
+函数 $\fn{diag}(n)$ 是可计算的，事实上，它是原始递归的：
+如果 $n$ 是公式~$!E(x)$ 的哥德尔数，
+$\fn{diag}(n)$ 就返回 $!E(\gn{!E(x)})$ 的哥德尔数。
+（回想一下，$\gn{!E(x)}$ 是~$!E(x)$ 的哥德尔数的标准数字，即 $\num{\Gn{!E(x)}}$。）
+如果 $\Obj{diag}$ 是 $\Th{T}$ 中代表函数 $\fn{diag}$ 的函数符号，
+我们就可以取 $!A$ 为公式 $!B(\Obj{diag}(\gn{!B(\Obj{diag}(x))}))$。注意到
 \begin{align*}
 \fn{diag}(\Gn{!B(\Obj{diag}(x))}) & = 
 \Gn{!B(\Obj{diag}(\gn{!B(\Obj{diag}(x))}))} \\
 & = \Gn{!A}.
 \end{align*}
-Assuming $\Th{T}$ can !!{derive}
+假设 $\Th{T}$ 可以推导出
 \[
 \Obj{diag}(\gn{!B(\Obj{diag}(x))}) = \gn{!A},
 \]
-it can !!{derive} $!B(\Obj{diag}(\gn{!B(\Obj{diag}(x))}))
-\liff !B(\gn{!A})$. But the left hand side is, by
-definition,~$!A$.
+它就能推导出 $!B(\Obj{diag}(\gn{!B(\Obj{diag}(x))}))
+\liff !B(\gn{!A})$。而左边根据定义正是~$!A$。
 
-Of course, $\Obj{diag}$ will in general not be a function symbol of
-$\Th{T}$, and certainly is not one of~$\Th{Q}$. But, since $\fn{diag}$
-is computable, it is \emph{representable} in~$\Th{Q}$ by some formula
-$!D_{\fn{diag}}(x,y)$. So instead of writing $!B(\Obj{diag}(x))$ we
-can write $\lexists[y][(!D_{\fn{diag}}(x,y) \land !B(y))]$. Otherwise,
-the proof sketched above goes through, and in fact, it goes through
-already in~$\Th{Q}$.
+当然，$\Obj{diag}$ 一般不会是 $\Th{T}$ 的函数符号，更不是~$\Th{Q}$ 的。
+但是，既然 $\fn{diag}$ 是可计算的，它在~$\Th{Q}$ 中就是\emph{可表示的}，即可由某个公式
+$!D_{\fn{diag}}(x,y)$ 表示。
+因此，我们可以把 $!B(\Obj{diag}(x))$ 写成 $\lexists[y][(!D_{\fn{diag}}(x,y) \land !B(y))]$。
+其余部分，上面概述的证明依然成立，而且事实上，它在~$\Th{Q}$ 中就已经成立。
 \end{explain}
 
 \begin{lem}
-\ollabel{lem:fixed-point} Let $!B(x)$ be any formula with one free
-variable~$x$. Then there is a sentence~$!A$ such that $\Th{Q} \Proves
-!A \liff !B(\gn{!A})$.
+\ollabel{lem:fixed-point} 设 $!B(x)$ 是任意一个含一个自由变元~$x$ 的公式。
+则存在语句~$!A$，使得 $\Th{Q} \Proves
+!A \liff !B(\gn{!A})$。
 \end{lem}
 
 
 \begin{proof}
-Given $!B(x)$, let $!E(x)$ be the formula
-$\lexists[y][(!D_{\fn{diag}}(x,y) \land !B(y))]$ and let $!A$~be its
-diagonalization, i.e., the formula $!E(\gn{!E(x)})$.
+给定 $!B(x)$，令 $!E(x)$ 为公式
+$\lexists[y][(!D_{\fn{diag}}(x,y) \land !B(y))]$，并令 $!A$~为其对角化，即公式 $!E(\gn{!E(x)})$。
 
-Since $!D_{\fn{diag}}$ represents $\fn{diag}$, and
-$\fn{diag}(\Gn{!E(x)}) = \Gn{!A}$, $\Th{Q}$ can !!{derive}
+由于 $!D_{\fn{diag}}$ 表示 $\fn{diag}$，且
+$\fn{diag}(\Gn{!E(x)}) = \Gn{!A}$，$\Th{Q}$ 可以推导出
 \begin{align}
   & !D_{\fn{diag}}(\gn{!E(x)}, \gn{!A}) \ollabel{repdiag1} \\
   & \lforall[y][(!D_{\fn{diag}}(\gn{!E(x)},y) \lif
   \eq[y][\gn{!A}])]. \ollabel{repdiag2}
 \end{align}
-Now we show that $\Th{Q} \Proves !A \liff !B(\gn{!A})$. We argue
-informally, using just logic and facts !!{derivable} in~$\Th{Q}$.
+现在我们证明 $\Th{Q} \Proves !A \liff !B(\gn{!A})$。我们非形式地进行论证，仅使用逻辑和在~$\Th{Q}$ 中可推导的事实。
 
-First, suppose~$!A$, i.e., $!E(\gn{!E(x)})$. Going back to the
-definition of $!E(x)$, we see that $!E(\gn{!E(x)})$ just is
+首先，假设~$!A$，即 $!E(\gn{!E(x)})$。回到 $!E(x)$ 的定义，
+我们看到 $!E(\gn{!E(x)})$ 正好就是
 \[
 \lexists[y][(!D_{\fn{diag}}(\gn{!E(x)},y) \land !B(y))].
 \]
-Consider such a~$y$. Since $!D_{\fn{diag}}(\gn{!E(x)},y)$, by
-\olref{repdiag2}, $y = \gn{!A}$. So, from $!B(y)$ we
-have~$!B(\gn{!A})$.
+考虑这样一个~$y$。由于 $!D_{\fn{diag}}(\gn{!E(x)},y)$，根据
+\olref{repdiag2}，有 $y = \gn{!A}$。所以，从 $!B(y)$ 可得~$!B(\gn{!A})$。
 
-Now suppose $!B(\gn{!A})$. By \olref{repdiag1}, we have
+现在假设 $!B(\gn{!A})$。根据 \olref{repdiag1}，我们有
 \begin{align*}
 & !D_{\fn{diag}}(\gn{!E(x)}, \gn{!A}) \land !B(\gn{!A}).
-\intertext{It follows
-that}
+\intertext{由此可得}
 & \lexists[y][(!D_{\fn{diag}}(\gn{!E(x)},y) \land !B(y))].
 \end{align*}
-But that's just $!E(\gn{!E(x)})$, i.e.,~$!A$.
+但这正是 $!E(\gn{!E(x)})$，即~$!A$。
 \end{proof}
 
 \begin{digress}
-You should compare this to the proof of the fixed-point lemma in
-computability theory. The difference is that here we want to define a
-\emph{statement} in terms of itself, whereas there we wanted to define
-a \emph{function} in terms of itself; this difference aside, it is
-really the same idea.
+你应该将此与可计算性理论中不动点引理的证明作比较。
+区别在于，这里我们想用自身来定义一个\emph{语句}，而那里我们想用自身来定义一个\emph{函数}；
+撇开这一差异，两者的思想确实是一样的。
 \end{digress}
 
 \begin{prob} 
-  !!^a{formula}~$!A(x)$ is a \emph{truth definition} if $\Th{Q}
-  \Proves !B \liff !A(\gn{!B})$ for all !!{sentence}s~$!B$. Show that
-  no !!{formula} is a truth definition by using the fixed-point lemma.
+  如果 $\Th{Q}
+  \Proves !B \liff !A(\gn{!B})$ 对所有的语句~$!B$ 都成立，则称公式~$!A(x)$ 是一个\emph{真值定义}。试借助不动点引理证明，不存在真值定义公式。
 \end{prob}
 
 \end{document}

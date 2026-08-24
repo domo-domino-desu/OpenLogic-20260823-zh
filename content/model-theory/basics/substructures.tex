@@ -7,41 +7,38 @@
 \begin{document}
 
 \olfileid{mod}{bas}{sub}
-\olsection{Sub\printtoken{p}{structure}}
+\olsection{子\printtoken{p}{structure}}
 
-The !!{domain} of !!a{structure}~$\Struct{M}$ may be a subset of
-another~$\Struct{M'}$.  But we should obviously only consider
-$\Struct{M}$ a ``part'' of $\Struct{M'}$ if not only $\Domain{M}
-\subseteq \Domain{M'}$, but $\Struct{M}$ and $\Struct{M'}$ ``agree''
-in how they interpret the symbols of the language at least on the
-shared part~$\Domain{M}$.
+一个结构~$\Struct{M}$ 的论域可能是另一个结构~$\Struct{M'}$ 的子集。
+但显然，只有当 $\Domain{M} \subseteq \Domain{M'}$，
+且 $\Struct{M}$ 与 $\Struct{M'}$ 对语言符号的解释至少在共享部分~$\Domain{M}$ 上“一致”时，
+我们才应将 $\Struct{M}$ 视作 $\Struct{M'}$ 的“部分”。
 
 \begin{defn}
 \ollabel{defn:substructure}
-Given !!{structure}s $\Struct M$ and $\Struct M'$ for the same
-language~$\Lang L$, we say that $\Struct M$ is a \emph{sub!!{structure}}
-of $\Struct M'$, and $\Struct M'$ an \emph{extension} of $\Struct M$,
-written $\Struct M \substruct \Struct M'$, iff
+给定同一语言~$\Lang L$ 的两个结构 $\Struct M$ 和 $\Struct M'$，
+我们称 $\Struct M$ 是 $\Struct M'$ 的\emph{子结构}，
+而称 $\Struct M'$ 是 $\Struct M$ 的\emph{扩张}，
+记作 $\Struct M \substruct \Struct M'$，当且仅当
 \begin{enumerate}
-\item $\Domain{M} \subseteq \Domain{M'}$,
-\item For each constant $c \in \Lang L$, $\Assign{c}{M} =
-    \Assign{c}{M'}$;
-\item For each $n$-place !!{function} $f \in \Lang L$
+\item $\Domain{M} \subseteq \Domain{M'}$，
+\item 对每个常项符号 $c \in \Lang L$，$\Assign{c}{M} =
+    \Assign{c}{M'}$；
+\item 对每个 $n$ 元函数符号 $f \in \Lang L$
   $\Assign{f}{M}(a_1, \dots, a_n) = \Assign{f}{M'}(a_1, \dots, a_n)$
-  for all $a_1$, \dots, $a_n \in \Domain{M}$.
-\item For each $n$-place !!{predicate} $R \in \Lang L$, $\langle
-  a_1, \dots, a_n\rangle \in \Assign{R}{M}$ iff $\langle a_1, \dots,
-  a_n\rangle \in \Assign{R}{M'}$ for all $a_1$, \dots, $a_n \in
-  \Domain{M}$.
+  对所有 $a_1$、\ldots、$a_n \in \Domain{M}$ 成立。
+\item 对每个 $n$ 元谓词符号 $R \in \Lang L$，$\langle
+  a_1, \dots, a_n\rangle \in \Assign{R}{M}$ 当且仅当 $\langle a_1, \dots,
+  a_n\rangle \in \Assign{R}{M'}$ 对所有 $a_1$、\ldots、$a_n \in
+  \Domain{M}$ 成立。
 \end{enumerate}
 \end{defn}
 
 \begin{rem}
 \ollabel{rem:substructure}
-If the language contains no constant or !!{function}s, then any $N
-\subseteq \Domain{M}$ determines a sub!!{structure}~$\Struct{N}$ of
-$\Struct M$ with !!{domain}~$\Domain{N} = N$ by putting $\Assign{R}{N} =
-\Assign{R}{M} \cap N^n$.
+如果语言中没有常项符号或函数符号，那么对任意 $N
+\subseteq \Domain{M}$，令 $\Assign{R}{N} =
+\Assign{R}{M} \cap N^n$，就得到一个以 $N$ 为论域（$\Domain{N} = N$）的 $\Struct M$ 的子结构~$\Struct{N}$。
 \end{rem}
 
 % prove something about this? Examples?

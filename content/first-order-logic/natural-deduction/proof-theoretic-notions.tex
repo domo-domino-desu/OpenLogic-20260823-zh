@@ -10,80 +10,56 @@
       {\olfileid{fol}{ntd}{ptn}}
       {\olfileid{pl}{ntd}{ptn}}
 
-\olsection{Proof-Theoretic Notions}
+\olsection{证明论概念}
 
 \begin{editorial}
-This section collects the definitions the provability relation
-and consistency for natural deduction.
+本节汇集了自然演绎中可证性与一致性的定义。
 \end{editorial}
 
 \begin{explain}
-Just as we've defined a number of important semantic notions
-(validity, entailment, satisfiability), we now define corresponding
-\emph{proof-theoretic notions}.  These are not defined by appeal to
-satisfaction of !!{sentence}s in !!{structure}s, but by appeal to the
-!!{derivability} or !!{nonderivability} of certain !!{sentence}s from
-others.  It was an important discovery that these notions coincide.
-That they do is the content of the \emph{soundness} and
-\emph{completeness theorems}.
+正如我们已经定义了许多重要的语义概念（有效性、后承、可满足性）一样，我们现在来定义相应的\emph{证明论概念}。这些概念不是诉诸语句在结构中的满足性来定义的，而是诉诸某些语句能否从其他语句推导出来来定义的。这些概念是相吻合的，这是一项重要发现。它们确实相吻合，这正是\emph{可靠性}定理与\emph{完备性}定理的内容。
 \end{explain}
 
-
-\begin{defn}[Theorems]
-A !!{sentence}~$!A$ is a \emph{theorem} if there is !!a{derivation}
-of~$!A$ in natural deduction in which all assumptions are
-!!{discharged}.  We write $\Proves !A$ if $!A$ is a theorem and
-$\Proves/ !A$ if it is not.
+\begin{defn}[定理]
+语句~$!A$ 是\emph{定理}，如果自然演绎中存在~$!A$ 的一个推导，且其中所有假设均已被解除。若~$!A$ 是定理，则记作 $\Proves !A$；否则记作 $\Proves/ !A$。
 \end{defn}
 
-\begin{defn}[!!^{derivability}]
-!!^a{sentence} $!A$ is \emph{!!{derivable} from} a set of
-!!{sentence}s~$\Gamma$, $\Gamma \Proves !A$, if there is a
-!!{derivation} with conclusion~$!A$ and in which every assumption
-is either !!{discharged} or is in~$\Gamma$. If $!A$ is not
-!!{derivable} from $\Gamma$ we write $\Gamma \Proves/ !A$.
+\begin{defn}[可推导性]
+语句~$!A$ \emph{从}语句集~$\Gamma$ \emph{可推导}（记作 $\Gamma \Proves !A$），如果存在一个以~$!A$ 为结论的推导，且其中每个假设要么已被解除，要么属于~$\Gamma$。如果~$!A$ 从 $\Gamma$ 不可推导，则记作 $\Gamma \Proves/ !A$。
 \end{defn}
 
-\begin{defn}[Consistency]
-A set of !!{sentence}s~$\Gamma$ is \emph{inconsistent} iff $\Gamma
-\Proves \lfalse$.  If $\Gamma$ is not inconsistent, i.e., if
-$\Gamma \Proves/ \lfalse$, we say it is \emph{consistent}.
+\begin{defn}[一致性]
+语句集~$\Gamma$ 是\emph{不一致的}，当且仅当 $\Gamma \Proves \lfalse$。如果 $\Gamma$ 不是不一致的，即 $\Gamma \Proves/ \lfalse$，则称它是\emph{一致的}。
 \end{defn}
 
-\begin{prop}[Reflexivity]
+\begin{prop}[自反性]
 \ollabel{prop:reflexivity}
-If $!A \in \Gamma$, then $\Gamma \Proves !A$.
+若 $!A \in \Gamma$，则 $\Gamma \Proves !A$。
 \end{prop}
 
 \begin{proof}
-The assumption $!A$ by itself is !!a{derivation} of~$!A$ where every
-!!{undischarged} assumption (i.e., $!A$) is in~$\Gamma$.
+仅由假设 $!A$ 本身即构成 $!A$ 的一个推导，其中每个未被解除的假设（即 $!A$）都在~$\Gamma$ 中。
 \end{proof}
   
 
-\begin{prop}[Monotonicity]
+\begin{prop}[单调性]
 \ollabel{prop:monotonicity}
-If $\Gamma \subseteq \Delta$ and $\Gamma \Proves !A$, then $\Delta
-\Proves !A$.
+若 $\Gamma \subseteq \Delta$ 且 $\Gamma \Proves !A$，则 $\Delta \Proves !A$。
 \end{prop}
 
 \begin{proof}
-Any !!{derivation} of $!A$ from $\Gamma$ is also !!a{derivation} of
-$!A$ from~$\Delta$.
+任何从 $\Gamma$ 推出 $!A$ 的推导，同时也是从~$\Delta$ 推出 $!A$ 的推导。
 \end{proof}
 
-\begin{prop}[Transitivity]
+\begin{prop}[传递性]
 \ollabel{prop:transitivity}
-If $\Gamma \Proves !A$ and $\{!A\} \cup \Delta \Proves
-!B$, then $\Gamma \cup \Delta \Proves !B$.
+若 $\Gamma \Proves !A$ 且 $\{!A\} \cup \Delta \Proves
+!B$，则 $\Gamma \cup \Delta \Proves !B$。
 \end{prop}
 
 \begin{proof}
-If $\Gamma \Proves !A$, there is !!a{derivation}~$\delta_0$ of~$!A$
-with all !!{undischarged} assumptions in~$\Gamma$.  If $\{!A\} \cup
-\Delta \Proves !B$, then there is !!a{derivation}~$\delta_1$ of~$!B$
-with all !!{undischarged} assumptions in~$\{!A\} \cup \Delta$.
-Now consider:
+若 $\Gamma \Proves !A$，则存在 $!A$ 的一个推导~$\delta_0$，其所有未被解除的假设都在~$\Gamma$ 中。若 $\{!A\} \cup
+\Delta \Proves !B$，则存在 $!B$ 的一个推导~$\delta_1$，其所有未被解除的假设都在 $\{!A\} \cup \Delta$ 中。现在考虑：
 \begin{prooftree}
   \AxiomC{$\Delta, \Discharge{!A}{1}$}
   \RightLabel{$\delta_1$}
@@ -96,63 +72,52 @@ Now consider:
   \RightLabel{\Elim{\lif}}
   \BinaryInfC{$!B$}
 \end{prooftree}
-The !!{undischarged} assumptions are now all among $\Gamma \cup
-\Delta$, so this shows $\Gamma \cup \Delta \Proves !B$.
+此时，所有未被解除的假设都在 $\Gamma \cup \Delta$ 中，因此表明 $\Gamma \cup \Delta \Proves !B$。
 \end{proof}
 
-When $\Gamma = \{!A_1, !A_2, \ldots, !A_k\}$ is a finite set we may use the simplified notation $!A_1,!A_2,\ldots,!A_k \Proves !B$ for $\Gamma \Proves !B$, in particular $!A \Proves !B$ means that $\{!A\} \Proves !B$.
+当 $\Gamma = \{!A_1, !A_2, \ldots, !A_k\}$ 是有限集时，我们可以使用简化记号 $!A_1,!A_2,\ldots,!A_k \Proves !B$ 表示 $\Gamma \Proves !B$；特别地，$!A \Proves !B$ 表示 $\{!A\} \Proves !B$。
 
-Note that if $\Gamma \Proves !A$ and $!A
-\Proves !B$, then $\Gamma \Proves !B$. It follows also that if $!A_1,
-\dots, !A_n \Proves !B$ and $\Gamma \Proves !A_i$ for each~$i$, then
-$\Gamma \Proves !B$.
+注意，若 $\Gamma \Proves !A$ 且 $!A \Proves !B$，则 $\Gamma \Proves !B$。由此也可得，若 $!A_1,
+\dots, !A_n \Proves !B$ 且对每个~$i$ 有 $\Gamma \Proves !A_i$，则 $\Gamma \Proves !B$。
 
 \begin{prop}
 \ollabel{prop:incons}
-The following are equivalent. 
+以下命题等价。 
     \begin{enumerate}
-      \item \( \Gamma \) is inconsistent.
-      \item \( \Gamma \Proves {!A} \) for every !!{sentence}~\( {!A} \).
-      \item \( \Gamma \Proves {!A} \) and \( \Gamma \Proves \lnot {!A} \) for some !!{sentence}~\( {!A} \).
+      \item \( \Gamma \) 是不一致的。
+      \item \( \Gamma \Proves {!A} \) 对每个语句~\( {!A} \) 成立。
+      \item \( \Gamma \Proves {!A} \) 且 \( \Gamma \Proves \lnot {!A} \) 对某个语句~\( {!A} \) 成立。
     \end{enumerate}
 \end{prop}
 
 \begin{proof}
-Exercise.
+练习。
 \end{proof}
 
 \tagprob{FOL}
 \begin{prob}
-Prove \olref[fol][ntd][ptn]{prop:incons}
+证明 \olref[fol][ntd][ptn]{prop:incons}
 \end{prob}
 \tagendprob
 
 \tagprob{notFOL}
 \begin{prob}
-Prove \olref[pl][ntd][ptn]{prop:incons}
+证明 \olref[pl][ntd][ptn]{prop:incons}
 \end{prob}
 \tagendprob
 
-\begin{prop}[Compactness]
+\begin{prop}[紧致性]
   \ollabel{prop:proves-compact}
   \begin{enumerate}
-  \item If $\Gamma \Proves !A$ then there is a finite subset $\Gamma_0
-    \subseteq \Gamma$ such that $\Gamma_0 \Proves !A$.
-  \item If every finite subset of~$\Gamma$ is
-    consistent, then $\Gamma$ is consistent.
+  \item 若 $\Gamma \Proves !A$，则存在有限子集 $\Gamma_0 \subseteq \Gamma$ 使得 $\Gamma_0 \Proves !A$。
+  \item 若 $\Gamma$ 的每个有限子集都是一致的，则 $\Gamma$ 是一致的。
   \end{enumerate}
 \end{prop}
 
 \begin{proof}
   \begin{enumerate}
-    \item If $\Gamma \Proves !A$, then there is
-      !!a{derivation}~$\delta$ of~$!A$ from~$\Gamma$. Let $\Gamma_0$
-      be the set of !!{undischarged} assumptions of~$\delta$.  Since
-      any !!{derivation} is finite, $\Gamma_0$ can only contain
-      finitely many !!{sentence}s.  So, $\delta$ is !!a{derivation}
-      of~$!A$ from a finite~$\Gamma_0 \subseteq \Gamma$.
-    \item This is the contrapositive of (1) for the special case $!A
-      \ident \lfalse$.
+    \item 若 $\Gamma \Proves !A$，则存在一个从 $\Gamma$ 推出 $!A$ 的推导~$\delta$。令 $\Gamma_0$ 为 $\delta$ 中所有未被解除的假设组成的集合。由于任何推导都是有限的，$\Gamma_0$ 只能包含有限多个语句。因此，$\delta$ 就是从有限子集 $\Gamma_0 \subseteq \Gamma$ 推出 $!A$ 的推导。
+    \item 这是 (1) 在 $!A \ident \lfalse$ 这一特殊情况下的换质位命题。
   \end{enumerate}
 \end{proof}
 

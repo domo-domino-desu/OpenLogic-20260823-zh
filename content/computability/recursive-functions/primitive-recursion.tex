@@ -1,91 +1,45 @@
-% Part: computability
-% Chapter: recursive-functions
-% Section: primitive-recursion
-
 \documentclass[../../../include/open-logic-section]{subfiles}
 
 \begin{document}
 
 \olfileid{cmp}{rec}{pre}
-\olsection{Primitive Recursion}
+\olsection{原始递归}
 
-A characteristic of the natural numbers is that every natural number
-can be reached from~$0$ by applying the successor operation~$+1$
-finitely many times---any natural number is either~$0$ or the
-successor of \dots{} the successor of~$0$. One way to specify a
-function~$h\colon\Nat \to \Nat$ that makes use of this fact is this:
-(a)~specify what the value of $h$ is for argument~$0$, and (b)~also
-specify how to, given the value of $h(x)$, compute the value of
-$h(x+1)$. For (a) tells us directly what $h(0)$ is, so $h$~is defined
-for~$0$. Now, using the instruction given by (b) for $x=0$, we can
-compute $h(1) = h(0+1)$ from~$h(0)$. Using the same instructions for
-$x=1$, we compute $h(2) = h(1+1)$ from~$h(1)$, and so on. For every
-natural number~$x$, we'll eventually reach the step where we define
-$h(x)$ from $h(x+1)$, and so $h(x)$ is defined for all $x \in \Nat$.
+% Part: computability
+% Chapter: recursive-functions
+% Section: primitive-recursion
+自然数的一个典型特征是：每个自然数都可以从~$0$ 出发，通过有限次应用后继运算~$+1$ 而得到——任何自然数要么是~$0$，要么是~\dots{}~$0$ 的后继。利用这一事实定义函数~$h\colon\Nat \to \Nat$ 的一种方式是：(a)~指定 $h$ 在自变元~$0$ 处的值，并且 (b)~说明如何根据 $h(x)$ 的值去计算 $h(x+1)$ 的值。因为 (a) 直接告诉我们 $h(0)$ 是什么，所以 $h$ 在~$0$ 处有定义。现在，利用 (b) 对 $x=0$ 给出的指示，我们可以从~$h(0)$ 计算出 $h(1) = h(0+1)$。再对 $x=1$ 应用同样的指示，我们从~$h(1)$ 计算出 $h(2) = h(1+1)$，依此类推。对于每个自然数~$x$，我们最终都会到达从 $h(x+1)$ 定义 $h(x)$ 的那一步，因此 $h(x)$ 对所有的 $x \in \Nat$ 都有定义。
 
-For instance, suppose we specify $h\colon \Nat \to \Nat$ by the following
-two equations:
+例如，假设我们通过以下两个方程来指定 $h\colon \Nat \to \Nat$：
 \begin{align*}
 h(0) & =  1\\
 h(x+1) & =  2 \cdot h(x)
 \end{align*}
-If we already know how to multiply, then these equations give us the
-information required for (a) and~(b) above. By successively applying
-the second equation, we get that
+如果我们已经知道如何做乘法，那么这两个方程就给出了上面 (a) 和~(b) 所要求的信息。连续应用第二个方程，我们得到：
 \begin{align*}
   h(1) & = 2\cdot h(0) = 2,\\
   h(2) & = 2\cdot h(1) = 2\cdot 2,\\
   h(3) & = 2 \cdot h(2) = 2\cdot 2 \cdot 2,\\
   & \vdots
 \end{align*}
-We see that the function~$h$ we have specified is $h(x) = 2^x$.
+可以看出，我们所指定的函数~$h$ 就是 $h(x) = 2^x$。
 
-The characteristic feature of the natural numbers guarantees that
-there is only one function~$h$ that meets these two criteria.  A pair
-of equations like these is called a \emph{definition by primitive
-recursion} of the function~$h$. It is so-called because we define~$h$
-``recursively,'' i.e., the definition, specifically the second
-equation, involves $h$ itself on the right-hand-side. It is
-``primitive'' because in defining $h(x+1)$ we only use the
-value~$h(x)$, i.e., the immediately preceding value. This is the
-simplest way of defining a function on~$\Nat$ recursively.
+自然数的这一典型特征保证了只有一个函数~$h$ 满足这两条准则。像这样的一对方程称为函数~$h$ 的一个\emph{原始递归定义}。之所以这么称呼，是因为我们“递归地”定义~$h$，即定义式（具体是第二个方程）的右边涉及 $h$ 自身。称之为“原始”的，是因为在定义 $h(x+1)$ 时，我们只使用了值~$h(x)$，即紧邻的前一个值。这是在~$\Nat$ 上递归定义函数的最简单方式。
 
-We can define even more fundamental functions like addition and
-multiplication by primitive recursion. In these cases, however, the
-functions in question are $2$-place. We fix one of the argument
-places, and use the other for the recursion. E.g, to define
-$\Add(x, y)$ we can fix~$x$ and define the value first for $y=0$
-and then for $y+1$ in terms of~$y$. Since $x$ is fixed, it will appear
-on the left and on the right side of the defining equations.
+我们甚至可以用原始递归来定义更基本的函数，比如加法和乘法。不过在这些情况下，所讨论的函数是 $2$~元的。我们固定其中一个自变元的位置，用另一个位置进行递归。例如，要定义 $\Add(x, y)$，我们可以固定~$x$，先定义 $y=0$ 时的值，然后根据~$y$ 来定义 $y+1$ 时的值。由于 $x$ 是固定的，它会出现在定义方程的左边和右边。
 \begin{align*}
 \Add(x,0) & =  x\\
 \Add(x,y+1) & =  \Add(x,y)+1
 \end{align*}
-These equations specify the value of $\Add$ for all $x$
-\emph{and}~$y$. To find $\Add(2,3)$, for instance, we apply the
-defining equations for $x = 2$, using the first to find
-$\Add(2,0) = 2$, then using the second to successively find
-$\Add(2,1) = 2 + 1 = 3$, $\Add(2, 2) = 3 + 1 = 4$, $\Add(2,
-3) = 4 + 1 = 5$.
+这些方程指定了 $\Add$ 对所有 $x$ \emph{和}~$y$ 的值。例如，要计算 $\Add(2,3)$，我们就对 $x = 2$ 应用定义方程，先用第一个方程得到 $\Add(2,0) = 2$，然后用第二个方程依次求出 $\Add(2,1) = 2 + 1 = 3$、$\Add(2, 2) = 3 + 1 = 4$、$\Add(2,
+3) = 4 + 1 = 5$。
 
-In the definition of $\Add$ we used $+$ on the right-hand-side of
-the second equation, but only to add~$1$. In other words, we used the
-successor function $\Succ(z) = z+1$ and applied it to the previous value
-$\Add(x,y)$ to define $\Add(x,y+1)$. So we can think of the
-recursive definition as given in terms of a single function which we
-apply to the previous value. However, it doesn't hurt---and sometimes
-is necessary---to allow the function to depend not just on the previous
-value but also on $x$ and~$y$. Consider:
+在 $\Add$ 的定义中，我们在第二个方程的右侧用了 $+$，但只是为了加~$1$。换句话说，我们使用了后继函数 $\Succ(z) = z+1$，并将其应用于前一个值 $\Add(x,y)$ 来定义 $\Add(x,y+1)$。因此，我们可以认为该递归定义是通过一个单一的函数（我们将它应用于前一个值）来给出的。然而，允许该函数不仅依赖前一个值，还依赖 $x$ 和~$y$，这并无妨害——有时甚至是必要的。考虑：
 \begin{align*}
   \Mult(x,0) & =  0 \\
   \Mult(x,y+1) & =  \Add(\Mult(x,y),x)
 \end{align*}
-This is a primitive recursive definition of a function $\Mult$ by
-applying the function $\Add$ to both the preceding value
-$\Mult(x,y)$ and the first argument~$x$. It also defines the
-function~$\Mult(x,y)$ for all arguments $x$ and~$y$. For instance,
-$\Mult(2,3)$ is determined by successively computing $\Mult(2,0)$,
-$\Mult(2,1)$, $\Mult(2,2)$, and~$\Mult(2,3)$:
+这是函数 $\Mult$ 的一个原始递归定义，它是通过将函数 $\Add$ 同时应用于前一个值 $\Mult(x,y)$ 和第一个自变元~$x$ 而给出的。它同样为所有自变元 $x$ 和~$y$ 定义了函数~$\Mult(x,y)$。例如，$\Mult(2,3)$ 是通过依次计算 $\Mult(2,0)$、$\Mult(2,1)$、$\Mult(2,2)$ 和~$\Mult(2,3)$ 来确定的：
 \begin{align*}
   \Mult(2,0) & = 0\\
   \Mult(2,1) & = \Mult(2,0+1) =
@@ -96,33 +50,20 @@ $\Mult(2,1)$, $\Mult(2,2)$, and~$\Mult(2,3)$:
   \Add(\Mult(2,2), 2) = \Add(4, 2) = 6
 \end{align*}
 
-The general pattern then is this: to give a primitive recursive
-definition of a function~$h(x_0, \dots, x_{k-1}, y)$, we provide two
-equations. The first defines the value of $h(x_0, \dots, x_{k-1}, 0)$
-without reference to~$h$. The second defines the value of $h(x_0,
-\dots, x_{k-1}, y+1)$ in terms of $h(x_0, \dots, x_{k-1}, y)$, the
-other arguments $x_0$, \dots,~$x_{k-1}$, and~$y$. Only the immediately
-preceding value of~$h$ may be used in that second equation.  If we
-think of the operations given by the right-hand-sides of these two
-equations as themselves being functions $f$ and~$g$, then the general
-pattern to define a new function~$h$ by primitive recursion is this:
+因此，一般模式如下：要给出一个函数~$h(x_0, \dots, x_{k-1}, y)$ 的原始递归定义，我们提供两个方程。第一个方程不依赖于~$h$，定义了 $h(x_0, \dots, x_{k-1}, 0)$ 的值。第二个方程则根据 $h(x_0, \dots, x_{k-1}, y)$、其他自变元 $x_0$、\dots、$x_{k-1}$ 以及~$y$ 来定义 $h(x_0,
+\dots, x_{k-1}, y+1)$ 的值。在第二个方程中，只能使用~$h$ 的紧邻的前一个值。如果我们把这两个方程右边给出的运算本身看作函数 $f$ 和~$g$，那么通过原始递归定义新函数~$h$ 的一般模式就是：
 \begin{align*}
   h(x_0, \dots, x_{k-1}, 0) & = f(x_0, \dots, x_{k-1})\\
   h(x_0, \dots, x_{k-1}, y+1) & =
   g(x_0, \dots, x_{k-1}, y, h(x_0, \dots, x_{k-1}, y))
 \end{align*}  
-In the case of $\Add$, we have $k=1$ and $f(x_0) = x_0$ (the
-identity function), and $g(x_0, y, z) = z + 1$ (the $3$-place function
-that returns the successor of its third argument):
+在 $\Add$ 的情形，我们有 $k=1$，$f(x_0) = x_0$（恒等函数），以及 $g(x_0, y, z) = z + 1$（这个 $3$ 元函数返回其第三个自变元的后继）：
 \begin{align*}
   \Add(x_0, 0) & = f(x_0) = x_0\\
   \Add(x_0, y+1) & = g(x_0, y, \Add(x_0, y)) =
   \Succ(\Add(x_0, y))
 \end{align*}
-In the case of $\Mult$, we have $f(x_0) = 0$ (the constant
-function always returning~$0$) and $g(x_0, y, z) = \Add(z,x_0)$
-(the $3$-place function that returns the sum of its last and first
-argument):
+在 $\Mult$ 的情形，我们有 $f(x_0) = 0$（总是返回~$0$ 的常值函数）和 $g(x_0, y, z) = \Add(z,x_0)$（这个 $3$ 元函数返回其最后一个自变元与第一个自变元之和）：
 \begin{align*}
   \Mult(x_0,0) & =  f(x_0) = 0 \\
   \Mult(x_0,y+1) & =  g(x_0, y, \Mult(x_0,y)) =

@@ -10,43 +10,26 @@
       {\olfileid{fol}{ntd}{rul}}
       {\olfileid{pl}{ntd}{rul}}
 
-\olsection{Rules and \usetoken{P}{derivation}}
+\olsection{规则与\usetoken{P}{derivation}}
 
 \begin{explain}
-Natural deduction systems are meant to closely parallel the informal
-reasoning used in mathematical proof (hence it is somewhat
-``natural''). Natural deduction proofs begin with assumptions.
-Inference rules are then applied. Assumptions are ``!!{discharged}''
-by the \Intro{\lnot}, \Intro{\lif}, \iftag{FOL}{\Elim{\lor} and
-  \Elim{\lexists}}{ and \Elim{\lor}} inference rules, and the label of
-the !!{discharged} assumption is placed beside the inference for
-clarity.
+自然演绎系统的设计旨在紧密平行于数学证明中所使用的非形式推理（因此它多少有些“自然”）。
+自然演绎证明以假设为起点。
+随后应用推理规则。
+假设会被 \Intro{\lnot}、\Intro{\lif}、\iftag{FOL}{\Elim{\lor} 和
+  \Elim{\lexists}}{ 以及 \Elim{\lor}} 等推理规则所“解除”，
+并且为了清晰起见，被解除的假设的标签会标在相应的推理步骤旁边。
 \end{explain}
 
-\begin{defn}[Assumption]
-An \emph{assumption} is any !!{sentence}
-in the topmost position of any branch.
+\begin{defn}[假设]
+\emph{假设}是位于任何分支最顶端的任意语句。
 \end{defn}
 
-!!^{derivation}s in natural deduction are certain trees of
-!!{sentence}s, where the topmost !!{sentence}s are assumptions, and if
-!!a{sentence} stands below one, two, or three other sequents, it must
-follow correctly by a rule of inference. The !!{sentence}s at the top
-of the inference are called the \emph{premises} and the !!{sentence}
-below the \emph{conclusion} of the inference.  The rules come in
-pairs, an introduction and an elimination rule for each
-!!{operator}. They introduce !!a{operator} in the conclusion or
-remove !!a{operator} from a premise of the rule.  Some of the rules
-allow an assumption of a certain type to be \emph{!!{discharged}}. To
-indicate which assumption is !!{discharged} by which inference, we
-also assign labels to both the assumption and the inference.  This is
-indicated by writing the assumption as ``$\Discharge{!A}{n}$.''
+自然演绎中的推导是特定的语句树，其中最顶端的语句是假设；如果一个语句位于一个、两个或三个其他相继式的下方，它必定是由某条推理规则正确得出的。推理步骤顶部的语句称为该推理的\emph{前提}，而下方的语句称为该推理的\emph{结论}。规则是成对出现的，每个逻辑算子都有一条引入规则和一条消去规则。它们或者在结论中引入一个逻辑算子，或者从规则的前提中消去一个逻辑算子。某些规则允许解除特定类型的\emph{假设}。为了标明哪个推理解除了哪个假设，我们还要为假设和推理都指定标签。具体做法是将假设写作“$\Discharge{!A}{n}$”。
 
 % Only include this sentence is on of \land, lor, lif or lnot is defined.
 
 \iftag{notprvNot,notprvAnd,notprvOr,notprvIf}{}%
-	{It is customary to consider rules for all the !!{operator}s $\land$, $\lor$, $\lif$, $\lnot$, and $\lfalse$, even if some of those are defined.}
-
-
+	{通常会为所有逻辑算子 $\land$、$\lor$、$\lif$、$\lnot$ 和 $\lfalse$ 都考虑相应的规则，即使其中一些是定义出的。}
 
 \end{document}

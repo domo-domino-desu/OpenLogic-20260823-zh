@@ -8,10 +8,10 @@
 
 \begin{table}
 \begin{tabular}{@{}c@{}c@{}}
-\multicolumn{2}{@{}c@{}}{Axioms}\\[2ex]
+\multicolumn{2}{@{}c@{}}{公理}\\[2ex]
 $!A \Sequent !A$ & $\lfalse \Sequent \quad$
 \\[2ex]
-\multicolumn{2}{@{}c@{}}{Structural Rules}\\[2ex]
+\multicolumn{2}{@{}c@{}}{结构规则}\\[2ex]
 \Axiom$ \Gamma \fCenter \Delta $
 \RightLabel{\LeftR{\Weakening}}
 \UnaryInf$ !A, \Gamma \fCenter \Delta$
@@ -42,7 +42,7 @@ $!A \Sequent !A$ & $\lfalse \Sequent \quad$
 \UnaryInf$ \Gamma \fCenter \Delta, !B, !A, \Lambda$
 \DisplayProof
 \\[4ex]
-\multicolumn{2}{@{}c@{}}{Logical Rules}\\[2ex]
+\multicolumn{2}{@{}c@{}}{逻辑规则}\\[2ex]
 \Axiom$ \Gamma \fCenter \Delta, !A $
 \RightLabel{\LeftR{\lnot}}
 \UnaryInf$ \lnot !A, \Gamma \fCenter \Delta$
@@ -118,10 +118,8 @@ $!A \Sequent !A$ & $\lfalse \Sequent \quad$
 \UnaryInf$ \Gamma \fCenter \Delta, \lexists[x][!A(x)]$
 \DisplayProof
 \end{tabular}
-\caption{Rules of \Log{LK}. In $\RightR{\forall}$ and
-$\LeftR{\exists}$, the !!{constant}~$a$ must not occur in the
-conclusion sequent. $\Gamma$, $\Delta$, and~$\Pi$ are
-sequences of !!{formula}s.}
+\caption{\Log{LK} 的规则。在 $\RightR{\forall}$ 与
+$\LeftR{\exists}$ 中，常项符号~$a$ 不得在结论相继式中出现。$\Gamma$、$\Delta$ 与~$\Pi$ 是公式序列。}
 \ollabel{tab:G1c}
 \end{table}
 

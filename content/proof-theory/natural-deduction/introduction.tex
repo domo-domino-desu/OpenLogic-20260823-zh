@@ -8,52 +8,17 @@
 
 \olfileid{pt}{nat}{int}
 
-\olsection{Introduction}
+\olsection{引言}
 
-Natural deduction is a family of !!{proof} systems in which each
-logical connective or quantifier has a pair of inferences, one that
-``introduces'' the operator (!!a{introduction} rule) and one that
-``eliminates'' the operator (!!a{elimination} rule). For instance,
-\Intro{\lif} has !!{formula}s of the form~$!A \lif !B$ as conclusion,
-and \Elim{\lif} has !!{formula}s of the form~$!A \lif !B$ as premises.
+自然演绎是一类推导系统，其中每个逻辑联结词或量词都有一对推理规则：一个用于“引入”该算子（引入规则），另一个用于“消去”该算子（消去规则）。例如，\Intro{\lif} 的结论是形如~$!A \lif !B$ 的公式，而 \Elim{\lif} 的前提是形如~$!A \lif !B$ 的公式。
 
-The first two versions of natural deduction were introduced in the
-1930s by Gerhard Gentzen and Stanisław Jaśkowski. Gentzen's is the
-system proof theorists discuss mostly, and Jaśkowski gave rise to the
-systems most widely used in teaching. In both systems, one can start
-with \emph{assumptions}---!!{formula}s that don't need to be
-!!{prove}d, but that can be used in !!{proving} other !!{formula}s.
-An entire !!{proof} may depend on such assumptions, and since those
-are unproven, the !!{proof} does not establish its conclusion (its
-\emph{end-!!{formula}}), but only that its conclusion follows from the
-assumptions.
+自然演绎的前两个版本由 Gerhard Gentzen（根岑）和 Stanisław Jaśkowski（雅斯科夫斯基）于20世纪30年代引入。Gentzen 的系统是证明论学者主要讨论的对象，而 Jaśkowski 的系统则催生了教学中最广泛使用的系统。在这两种系统中，都可以从\emph{假设}出发——即不需要被推导、但可用于推导其他公式的公式。整个推导可能依赖于这些假设，但由于这些假设未被证明，该推导并不能确立其结论（其\emph{结束公式}），而只能表明该结论是这些假设的后承。
 
-Some inference rules are such that their conclusions no longer depend
-on some assumptions: they ``discharge'' assumptions. For instance, the
-\Intro{\lif} rule takes !!a{proof} of the conclusion~$!B$ from an
-assumption~$!A$, and has $!A \lif !B$ as its conclusion. The !!{proof}
-ending in $!A \lif !B$ no longer depends on~$!A$; the assumption $!A$
-is discharged. In Gentzen's systems, !!{proof}s are trees of
-!!{formula}s, the assumptions are the topmost !!{formula}s, and rules
-like~\Intro{\lif} carry labels that indicate which assumptions are
-discharged. In Jaśkowski's systems, parts of the !!{proof} that depend
-on an assumption are set off in some way, e.g, indented behind a
-vertical line or in a box, with the assumption~$!A$ discharged and the
-consequent $!B$ of the conditional the first and last line in the box,
-and the conclusion~$!A \lif !B$ of \Intro{\lif} outside the box.
+有些推理规则的特点是，它们的结论不再依赖于某些假设：它们“解除”了这些假设。例如，\Intro{\lif} 规则接受一个从假设~$!A$ 到结论~$!B$ 的推导，并以 $!A \lif !B$ 作为其结论。以 $!A \lif !B$ 结尾的推导不再依赖于~$!A$；假设 $!A$ 被解除了。在 Gentzen 的系统中，推导是公式的树，假设是最顶层的公式，而像~\Intro{\lif} 这样的规则带有标签，用以指示哪些假设被解除了。在 Jaśkowski 的系统中，推导中依赖于某个假设的部分会以某种方式隔开，例如，在一条竖线后缩进或放入一个方框中，方框的第一行是假设~$!A$，最后一行是条件句的后件 $!B$，此时假设~$!A$ 被解除，而 \Intro{\lif} 的结论~$!A \lif !B$ 则在方框之外。
 
-The systems are ``natural'' because the inference rules mirror how we
-(or mathematicians, at least) reason naturally. To establish a
-hypothetical result (a conditional), we assume the antecedent and use
-it to prove the consequent. That's~\Intro{\lif}. When we know a
-conditional $!A \lif !B$ and its antecedent~$!A$, we conclude~$!B$.
-That's~\Elim{\lif}. We use proof-by-cases to show that, assuming a
-disjunction~$!A \lor !B$, some conclusion holds. That's~\Elim{\lor}.
-To prove a general claim~$\lforall[x][!A(x)]$ we prove that $!A(c)$
-holds, for an arbitrary~$c$. That's~\Intro{\lforall}. And so on.
+这些系统之所以“自然”，是因为它们的推理规则反映了我们（或至少是数学家）自然的推理方式。为了确立一个假言结论（一个条件句），我们假设前件并用它来证明后件。这就是~\Intro{\lif}。当我们知道一个条件句 $!A \lif !B$ 及其前件~$!A$ 时，我们得出结论~$!B$。这就是~\Elim{\lif}。我们使用分情况证明来表明，在假设析取式~$!A \lor !B$ 成立的情况下，某个结论成立。这就是~\Elim{\lor}。为证明一个全称命题~$\lforall[x][!A(x)]$，我们对任意的~$c$ 证明 $!A(c)$ 成立。这就是~\Intro{\lforall}。诸如此类。
 
-For instance here's a simple !!{proof} of~$!A \lif (!A \lor !B)$ in
-Gentzen-style natural deduction:
+例如，以下是一个 Gentzen 风格自然演绎中~$!A \lif (!A \lor !B)$ 的简单推导：
 \[
 \AxiomC{$\Discharge{!A}{x}$}
 \RightLabel{\Intro{\lor}}
@@ -62,23 +27,9 @@ Gentzen-style natural deduction:
 \UnaryInfC{$!A \lif (!A \lor !B)$}
 \DisplayProof
 \]
-It starts with the assumption~$!A$, uses \Intro{\lor} to infer~$!A
-\lor !B$, and then \Intro{\lif} to infer~$!A \lif (!A \lor !B)$. The
-\Intro{\lif} inference discharges the assumption~$!A$; that's
-indicated by the label~$x$.
+它从假设~$!A$ 开始，使用 \Intro{\lor} 推导出~$!A \lor !B$，然后使用 \Intro{\lif} 推导出~$!A \lif (!A \lor !B)$。\Intro{\lif} 推理解除了假设~$!A$；这由标签~$x$ 标明。
 
-Proof theorists prefer Gentzen's original systems working with trees
-of !!{formula}s, although one variant is also important in proof
-theory. !!^a{proof} of~$!A$ from assumptions~$\Gamma$ shows that $!A$
-follows from~$\Gamma$, i.e., $\Gamma \Entails !A$. The inference rules
-of natural deduction can naturally be read as telling us something
-about such entailments, e.g., \Intro{\lif} says that if $\Gamma + !A
-\Entails !B$ then $\Gamma \Entails !B$. It is only natural to
-formulate the rules directly so that they operate on both the
-assumptions and the conclusion that follow from them in the premises
-and conclusion of the inference rule, i.e., they operate on sequents
-$\Gamma \Sequent !A$. The simple proof above would look like this in
-such a system:
+证明论学者更青睐 Gentzen 原本的、处理公式树的系统，尽管其中一个变体在证明论中也很重要。一个从假设集~$\Gamma$ 到~$!A$ 的推导表明 $!A$ 是~$\Gamma$ 的后承，即 $\Gamma \Entails !A$。自然演绎的推理规则可以很自然地解读为告诉我们关于这种后承关系的某些信息，例如，\Intro{\lif} 说如果 $\Gamma + !A \Entails !B$ 那么 $\Gamma \Entails !B$。自然地，我们可以直接将规则表述为同时对推理规则前提与结论中的假设及由其得出的结论进行操作，即它们操作在相继式 $\Gamma \Sequent !A$ 上。在这种系统下，前面的简单证明看起来是这样的：
 \[
 \Axiom$x:!A \fCenter !A$
 \RightLabel{\Intro{\lor}}
@@ -87,25 +38,10 @@ such a system:
 \UnaryInf$\fCenter !A \lif (!A \lor !B)$
 \DisplayProof
 \]
-As you see, the rules are the same: they work on the !!{formula} to
-the right of~$\Sequent$, the !!{formula}s on the left just list the
-assumptions they depend on at each step.
+如你所见，规则是相同的：它们作用于~$\Sequent$ 右侧的公式，左侧的公式只是列出了每一步所依赖的假设。
 
-The complete set of !!{introduction}/!!{elimination} rule pairs is not
-complete for classical logic by itself. We need to add two additional
-rules that have to do with~$\lfalse$. The first is the
-``intuitionistic absurdity rule''~\FalseInt, or ``explosion,'' which
-says that from $\lfalse$ we can infer anything. The second is the
-classical principle of indirect proof~\FalseCl{} (or the ``classical
-absurdity rule'') which says that if we can !!{prove}~$\lfalse$
-from~$\lnot !A$, we have !!{prove}d~$!A$. If we leave out~\FalseCl, we
-get a system appropriate for intuitionsitic logic. If we leave out
-both, we have what's known as ``minimal logic.''
+仅仅引入与消去规则对的完整集合，其本身对经典逻辑并不完备。我们需要添加两条与~$\lfalse$ 相关的额外规则。第一条是“直觉主义荒谬规则”~\FalseInt，或称“爆炸律”，它说从 $\lfalse$ 我们可以推出任何东西。第二条是经典的间接证明原则~\FalseCl{}（或称“经典荒谬规则”），它说如果我们能从~$\lnot !A$ 推出~$\lfalse$，那么我们就推出了~$!A$。如果我们去掉~\FalseCl，就能得到一个适用于直觉主义逻辑的系统。如果两者都去掉，我们就得到了所谓的“极小逻辑”。
 
-We will discuss Gentzen-style natural deduction for classical and
-intuitionsitic logic. These are the systems \Log{N1c} and \Log{N1i}.
-The systems \Log{N2c} and \Log{N2i} are the corresponding systems
-working on sequents $\Gamma \Sequent !A$ rather than single
-!!{formula}s~$!A$.
+我们将讨论经典逻辑和直觉主义逻辑的 Gentzen 风格自然演绎。这些是系统 \Log{N1c} 和 \Log{N1i}。系统 \Log{N2c} 和 \Log{N2i} 则是与之对应的、基于相继式 $\Gamma \Sequent !A$ 而不是单个公式~$!A$ 进行推理的系统。
 
 \end{document}

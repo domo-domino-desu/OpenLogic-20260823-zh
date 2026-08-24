@@ -10,50 +10,39 @@
       {\olfileid{fol}{tab}{rul}}
       {\olfileid{pl}{tab}{rul}}
 
-\olsection{Rules and \usetoken{P}{tableau}}
+\olsection{规则与分析表}
 
-!!^a{tableau} is a systematic survey of the possible ways
-!!a{sentence} can be true or false in !!a{structure}. The building
-blocks of a tableau are !!{signed formula}s: !!{sentence}s plus a
-truth value ``sign,'' either $\True$ or~$\False$. These signed
-!!{formula}s are arranged in a (downward growing) tree.
+分析表是对一个语句在一个结构中可能为真或为假的各种方式的系统考察。
+分析表的基本构件是带号公式：语句加上一个真值“标记”，即 $\True$ 或~$\False$。
+这些带号公式排列成一棵（向下生长的）树。
 
 \begin{defn}
-  A \emph{!!{signed formula}} is a pair consisting of a truth value
-  and !!a{sentence}, i.e., either:
+  一个\emph{带号公式}是由真值和语句组成的一个有序对，即要么是：
   \[
-  \sFmla{\True}{!A} \text{ or } \sFmla{\False}{!A}.
+  \sFmla{\True}{!A} \text{ 要么是 } \sFmla{\False}{!A}.
   \]
 \end{defn}
 
-Intuitively, we might read $\sFmla{\True}{!A}$ as ``$!A$ might be
-true'' and $\sFmla{\False}{!A}$ as ``$!A$ might be false'' (in some
-!!{structure}).
+直观上，我们可以把 $\sFmla{\True}{!A}$ 读作“$!A$ 可能为真”，把 $\sFmla{\False}{!A}$ 读作“$!A$ 可能为假”（在某个结构中）。
 
-Each !!{signed formula} in the tree is either an \emph{assumption}
-(which are listed at the very top of the tree), or it is obtained from
-!!a{signed formula} above it by one of a number of rules of
-inference. There are two rules for each possible !!{main operator} of
-the preceding !!{formula}, one for the case where the sign is~$\True$,
-and one for the case where the sign is~$\False$. Some rules allow the
-tree to branch, and some only add !!{signed formula}s to the branch.
-A rule may be (and often must be) applied not to the immediately
-preceding !!{signed formula}, but to any !!{signed formula} in the
-branch from the root to the place the rule is applied.
+树中的每个带号公式要么是一个\emph{假设}（列在树的最顶端），
+要么是上方的某个带号公式通过多条推理规则中的某一条得到的。
+对于上方公式的每种可能的主联结词，都有两条规则：
+一条用于标记为~$\True$ 的情况，另一条用于标记为~$\False$ 的情况。
+有些规则允许树分叉，有些则只在枝上添加带号公式。
+一条规则可以（而且常常必须）不是应用于紧邻其上的带号公式，
+而是应用于该枝中从根节点到规则应用位置之间的任意带号公式。
 
-A branch is \emph{closed} when it contains both $\sFmla{\True}{!A}$
-and $\sFmla{\False}{!A}$. A closed !!{tableau} is one where every branch
-is closed.  Under the intuitive interpretation, any branch describes a
-joint possibility, but $\sFmla{\True}{!A}$ and $\sFmla{\False}{!A}$
-are not jointly possible. In other words, if a branch is closed, the
-possibility it describes has been ruled out. In particular, that means
-that a closed !!{tableau} rules out all possibilities of simultaneously
-making every assumption of the form $\sFmla{\True}{!A}$ true and every
-assumption of the form~$\sFmla{\False}{!A}$ false.
+当一个枝同时包含 $\sFmla{\True}{!A}$ 和 $\sFmla{\False}{!A}$ 时，该枝是\emph{封闭的}。
+封闭的分析表是指每个枝都已封闭的分析表。
+在直观解释下，任何一个枝都描述了一种联合的可能性，
+但 $\sFmla{\True}{!A}$ 和 $\sFmla{\False}{!A}$ 是不可能联合出现的。
+换句话说，如果一个枝是封闭的，它所描述的可能性就被排除了。
+特别地，这意味着封闭的分析表排除了如下所有可能性：
+同时使得每个形如 $\sFmla{\True}{!A}$ 的假设为真，且每个形如~$\sFmla{\False}{!A}$ 的假设为假。
 
-A closed !!{tableau} \emph{for $!A$} is a closed !!{tableau} with
-root~$\sFmla{\False}{!A}$. If such a closed !!{tableau} exists, all
-possibilities for~$!A$ being false have been ruled out; i.e., $!A$
-must be true in every !!{structure}.
+\emph{针对 $!A$ 的封闭分析表}是以~$\sFmla{\False}{!A}$ 为根的封闭分析表。
+如果这样的封闭分析表存在，$!A$ 为假的所有可能性就都已被排除；
+也就是说，$!A$ 在每个结构中必然为真。
 
 \end{document}

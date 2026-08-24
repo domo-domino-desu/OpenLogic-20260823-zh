@@ -7,26 +7,19 @@
 \begin{document}
 
 \olfileid{lam}{ldf}{lst}
-\olsection{Lists}
+\olsection{列表}
 
-The list $[M_1, M_2, \ldots, M_n]$ can be defined to be:
+列表 $[M_1, M_2, \ldots, M_n]$ 可定义为：
 \[
   [M_1, M_2, \ldots, M_n] \ident \lambd[sz][s M_1 (s M_2 (\ldots (s M_n z)))]
 \]
-Informally speaking, the term representing a list is the
-``accumulator'' function of the list: a function that accepts two
-terms; the first is a function that receives accumulated value along
-with a new element and returns the new accumulated value; the second
-is the initial accumulated value; it accumulates elements one by one
-and finally returns the result.
+非形式地说，表示列表的项就是该列表的“累加器”函数：它接受两个项作为自变元；第一个自变元是一个函数，该函数接收当前的累加值和新元素，并返回新的累加值；第二个自变元是初始的累加值。该函数逐个累加元素，最终返回结果。
 
 \begin{digress}
-  If you are familiar with functional programming you will find the
-  definition similar to the \emph{right fold}: a list is defined as
-  the right fold function of the elements it contains.
+  如果你熟悉函数式编程，会发现此定义类似于\emph{右折叠}：列表被定义为其所含元素的右折叠函数。
 \end{digress}
 
-We can easily define some useful functions based on this encoding; 
+基于这种编码，我们很容易定义一些有用的函数；
 \begin{align*}
   \fn{Sum} & \ident
   \lambd[l][l \, (\lambd[xa][\fn{Add} \, x \, a])\,  \num{0}]\\
@@ -34,18 +27,13 @@ We can easily define some useful functions based on this encoding;
   \lambd[l][l \, (\lambd[xa][\fn{Add} \, a \, \num{1}]) \num{0}]
 \end{align*}
 
-$\fn{Sum}$ calculates the sum of a list of church numerals. It works
-by doing an accumulation on the list, where the initial value is
-$\num{0}$ and for each element, return $\fn{Add} \, x\, a$ as the new
-value (where $x$ is the current element and $a$ is the accumulated
-value). The result is the sum of all elements.
+$\fn{Sum}$ 计算邱奇数列表的和。它的工作方式是对列表进行累加，其中初始值为 $\num{0}$；对每个元素，将 $\fn{Add} \, x\, a$ 作为新值返回（$x$ 为当前元素，$a$ 为累加值）。最终结果即为所有元素的总和。
 
 \begin{prob}
-  What does $\fn{Len}$ do? Explain.
+  $\fn{Len}$ 的作用是什么？请解释。
 \end{prob}
 
 \begin{prob}
-  Define a function that reverses a list.
+  定义一个反转列表的函数。
 \end{prob}
 \end{document}
-

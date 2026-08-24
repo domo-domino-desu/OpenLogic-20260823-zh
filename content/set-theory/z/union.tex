@@ -3,24 +3,24 @@
 \begin{document}
 
 \olfileid{sth}{z}{union}
-\olsection{Union}
+\olsection{并集}
 
-\olref[sth][z][sep]{prop:intersectionsexist} gave us intersections.
-But if we want arbitrary unions to exist, we need to lay down another
-axiom:
+\olref[sth][z][sep]{prop:intersectionsexist} 给出了交集。
+但要使任意并集存在，我们就需要设定另一条公理：
 
-\begin{axiom}[Union] For any set $A$, the set $\bigcup A =
-\Setabs{x}{(\exists b \in A) x \in b}$ exists.
+\begin{axiom}[并集]
+对任意集合 $A$，集合 $\bigcup A =
+\Setabs{x}{(\exists b \in A) x \in b}$ 存在。
 \[
 	\forall A \exists U \forall x(x \in U \liff (\exists b \in A)x \in b)
 \]
 \end{axiom}
 
-This axiom is also justified by the cumulative-iterative conception.
-Let $A$ be a set, so $A$ is formed at some stage $S$ (by \stageshier).
-Every member of $A$ was formed \emph{before}  $S$ (by \stagesacc); so,
-reasoning similarly, every member of every member of $A$ was formed
-before $S$. Thus all of \emph{those} sets are available before $S$, to
-be formed into a set at $S$. And that set is just $\bigcup A$.
+这条公理同样可由累积迭代观得到辩护。
+设 $A$ 是一个集合，根据 \stageshier，$A$ 形成于某个阶段 $S$。
+根据 \stagesacc，$A$ 的每个成员都是在 $S$ \emph{之前}形成的；
+因此，同理可推，$A$ 的每个成员的每个成员也都形成于 $S$ 之前。
+于是，\emph{所有这些}集合在 $S$ 之前即已可用，从而可以在 $S$ 构成一个集合。
+而该集合正是 $\bigcup A$。
 
 \end{document}

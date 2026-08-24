@@ -8,83 +8,71 @@
 
 \olfileid{mvl}{syn}{sub}
 
-\olsection{Many-valued logics as sublogics of~$\LogCL$}
+\olsection{多值逻辑作为~$\LogCL$ 的子逻辑}
 
-The usual many-valued logics are all defined using matrices in which
-the value of a truth-function for arguments in $\{\True, \False\}$
-agrees with the classical truth functions. Specifically, in these
-logics, if $x \in \{\True, \False\}$, then $\tf{\lnot}[\Log L](x) =
-\tf{\lnot}[\LogCL](x)$, and for $\star$ any one of $\land$, $\lor$,
-$\lif$, if $x, y \in \{\True, \False\}$, then $\tf{\star}[\Log L](x,y) =
-\tf{\star}[\LogCL](x,y)$. In other words, the truth functions for
-$\lnot$, $\land$, $\lor$, $\lif$ restricted to $\{\True,\False\}$ are
-exactly the classical truth functions.
+通常的多值逻辑都是使用矩阵来定义的，在这些矩阵中，当自变元取自 $\{\True, \False\}$ 时，真值函数的值与经典真值函数一致。具体来说，在这些逻辑中，若 $x \in \{\True, \False\}$，则 $\tf{\lnot}[\Log L](x) =
+\tf{\lnot}[\LogCL](x)$，并且对于 $\land$、$\lor$、$\lif$ 中的任一 $\star$，若 $x, y \in \{\True, \False\}$，则 $\tf{\star}[\Log L](x,y) =
+\tf{\star}[\LogCL](x,y)$。换言之，$\lnot$、$\land$、$\lor$、$\lif$ 的真值函数限制在 $\{\True,\False\}$ 上时，即为经典真值函数。
 
 \begin{prop}\ollabel{prop:mvl-cl}
-  Suppose that a many-valued logic~$\Log L$ contains the connectives
-  $\lnot$, $\land$, $\lor$, $\lif$ in its language, $\True, \False \in
-  V$, and its truth
-  functions satisfy:
+  假设多值逻辑~$\Log L$ 的语言包含联结词
+  $\lnot$、$\land$、$\lor$、$\lif$，$\True, \False \in
+  V$，且其真值函数满足：
   \begin{enumerate}
-    \item\ollabel{prop:not} $\tf{\lnot}[\Log L](x) = \tf{\lnot}[\LogCL](x)$ if $x =
-    \True$ or $x = \False$;
-    \item\ollabel{prop:land} $\tf{\land}[\Log L](x,y) = \tf{\land}[\LogCL](x,y)$,
-    \item\ollabel{prop:lor} $\tf{\lor}[\Log L](x,y) = \tf{\lor}[\LogCL](x,y)$,
-    \item\ollabel{prop:lif} $\tf{\lif}[\Log L](x,y) = \tf{\lif}[\LogCL](x,y)$,
-    if $x, y \in \{\True, \False\}$.
+    \item\ollabel{prop:not} $\tf{\lnot}[\Log L](x) = \tf{\lnot}[\LogCL](x)$（若 $x =
+    \True$ 或 $x = \False$）；
+    \item\ollabel{prop:land} $\tf{\land}[\Log L](x,y) = \tf{\land}[\LogCL](x,y)$，
+    \item\ollabel{prop:lor} $\tf{\lor}[\Log L](x,y) = \tf{\lor}[\LogCL](x,y)$，
+    \item\ollabel{prop:lif} $\tf{\lif}[\Log L](x,y) = \tf{\lif}[\LogCL](x,y)$，
+    （若 $x, y \in \{\True, \False\}$）。
   \end{enumerate}
-  Then, for any valuation $\pAssign v$ into~$V$ such that $\pAssign
-  v(p) \in \{\True,\False\}$, $\pValue v[\Log L](!A) = \pValue
-  v[\LogCL](!A)$.
+  那么，对于任何到~$V$ 中的赋值 $\pAssign v$，若 $\pAssign
+  v(p) \in \{\True,\False\}$，便有 $\pValue v[\Log L](!A) = \pValue
+  v[\LogCL](!A)$。
 \end{prop}
 
 \begin{proof}
-  By induction on~$!A$.
+  对~$!A$ 施归纳。
   \begin{enumerate}
-  \item If $!A \ident p$ is atomic, we have $\pValue v[\Log L](!A) =
+  \item 若 $!A \ident p$ 为原子公式，则 $\pValue v[\Log L](!A) =
   \pAssign v(p) = \pValue
-  v[\LogCL](!A)$.
-  \item If $!A \ident \lnot B$, we have
+  v[\LogCL](!A)$。
+  \item 若 $!A \ident \lnot B$，则
   \begin{align*}
-    \pValue v[\Log L](!A) & = \tf{\lnot}[\Log L](\pValue v[\Log L](!B)) & &\text{by \olref[val]{defn:pValue}}\\
-    & = \tf{\lnot}[\Log L](\pValue v[\LogCL](!B)) && \text{by inductive hypothesis}\\
+    \pValue v[\Log L](!A) & = \tf{\lnot}[\Log L](\pValue v[\Log L](!B)) & &\text{根据 \olref[val]{defn:pValue}}\\
+    & = \tf{\lnot}[\Log L](\pValue v[\LogCL](!B)) && \text{由归纳假设}\\
     & = \tf{\lnot}[\LogCL](\pValue v[\LogCL](!B)) 
-&&\text{by assumption \olref{prop:not},}\\
-&&&\text{since $\pValue v[\LogCL](!B) \in \{\True, \False\}$,}\\
-& = \pValue v[\LogCL](!A) &&\text{by \olref[val]{defn:pValue}}.
+&&\text{由假设 \olref{prop:not}，}\\
+&&&\text{因为 $\pValue v[\LogCL](!B) \in \{\True, \False\}$，}\\
+& = \pValue v[\LogCL](!A) &&\text{根据 \olref[val]{defn:pValue}}.
 \end{align*}
-\item If $!A \ident (!B \land !C)$, we have
+\item 若 $!A \ident (!B \land !C)$，则
 \begin{align*}
-  \pValue v[\Log L](!A) & = \tf{\land}[\Log L](\pValue v[\Log L](!B), \pValue v[\Log L](!C)) & &\text{by \olref[val]{defn:pValue}}\\
-  & = \tf{\land}[\Log L](\pValue v[\LogCL](!B),\pValue v[\LogCL](!C)) && \text{by inductive hypothesis}\\
+  \pValue v[\Log L](!A) & = \tf{\land}[\Log L](\pValue v[\Log L](!B), \pValue v[\Log L](!C)) & &\text{根据 \olref[val]{defn:pValue}}\\
+  & = \tf{\land}[\Log L](\pValue v[\LogCL](!B),\pValue v[\LogCL](!C)) && \text{由归纳假设}\\
   & = \tf{\land}[\LogCL](\pValue v[\LogCL](!B),\pValue v[\LogCL](!C)) 
-&&\text{by assumption \olref{prop:land},}\\
-&&&\text{since $\pValue v[\LogCL](!B),\pValue v[\LogCL](!C) \in \{\True, \False\}$,}\\
-& = \pValue v[\LogCL](!A) &&\text{by \olref[val]{defn:pValue}}.
+&&\text{由假设 \olref{prop:land}，}\\
+&&&\text{因为 $\pValue v[\LogCL](!B),\pValue v[\LogCL](!C) \in \{\True, \False\}$，}\\
+& = \pValue v[\LogCL](!A) &&\text{根据 \olref[val]{defn:pValue}}.
 \end{align*}
 \end{enumerate}
-The cases where $!A \ident (!B \lor !C)$ and $!A \ident (!B \lif !C)$
-are similar.
+$!A \ident (!B \lor !C)$ 和 $!A \ident (!B \lif !C)$ 的情形类似。
 \end{proof}
 
 \begin{cor}
-  If a many-valued logic satisfies the conditions of
-  \olref{prop:mvl-cl}, $\True \in V^+$ and $\False \notin V^+$, then
-  ${\Entails[\Log L]} \subseteq {\Entails[\LogCL]}$, i.e., if $\Gamma
-  \Entails[\Log L] !B$ then $\Gamma \Entails[\LogCL] !B$. In
-  particular, every tautology of $\Log L$ is also a classical tautology.
+  若多值逻辑满足 \olref{prop:mvl-cl} 的条件，且 $\True \in V^+$ 而 $\False \notin V^+$，则 ${\Entails[\Log L]} \subseteq {\Entails[\LogCL]}$，即若 $\Gamma
+  \Entails[\Log L] !B$，则 $\Gamma \Entails[\LogCL] !B$。特别地，$\Log L$ 的每个重言式也是经典重言式。
 \end{cor}
 
 \begin{proof}
-  We prove the contrapositive. Suppose $\Gamma \Entails/[\LogCL] !B$.
-  Then there is some !!{valuation}~$\pAssign v\colon \PVar \to
-  \{\True, \False\}$ such that $\pValue v[\LogCL](!A) = \True$ for all
-  $!A \in \Gamma$ and $\pValue v[\LogCL](!B) = \False$. Since $\True,
-  \False \in V$, the !!{valuation}~$\pAssign v$ is also !!a{valuation}
-  for~$\Log L$. By \olref{prop:mvl-cl}, $\pValue v[\Log L](!A) =
-  \True$ for all $!A \in \Gamma$ and $\pValue v[\Log L](!B) = \False$.
-  Since $\True \in V^+$ and $\False \notin V^+$ that means $\pAssign v
-  \Entails[\Log L] \Gamma$ and $\pAssign v \Entails/[\Log L] !B$,
-  i.e., $\Gamma \Entails/[\Log L] !B$.
+  我们证明其逆否命题。设 $\Gamma \Entails/[\LogCL] !B$。
+  则存在赋值~$\pAssign v\colon \PVar \to
+  \{\True, \False\}$，使得对所有 $!A \in \Gamma$ 有 $\pValue v[\LogCL](!A) = \True$，且 $\pValue v[\LogCL](!B) = \False$。由于 $\True,
+  \False \in V$，赋值~$\pAssign v$ 也是~$\Log L$ 的赋值。
+  由 \olref{prop:mvl-cl}，对所有 $!A \in \Gamma$ 有 $\pValue v[\Log L](!A) =
+  \True$，且 $\pValue v[\Log L](!B) = \False$。
+  由于 $\True \in V^+$ 且 $\False \notin V^+$，这意味着 $\pAssign v
+  \Entails[\Log L] \Gamma$ 且 $\pAssign v \Entails/[\Log L] !B$，
+  即 $\Gamma \Entails/[\Log L] !B$。
 \end{proof}
 \end{document}

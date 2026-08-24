@@ -7,51 +7,28 @@
 \begin{document}
 
 \olfileid{tur}{mac}{dis}
-\olsection{Disciplined Machines}
+\olsection{规范的机器}
 
 \begin{explain}
-In section \olref[hal]{sec}, we considered Turing machines that have a
-single, designated halting state~$h$---such machines are guaranteed to
-halt, if they halt at all, in state~$h$.  In this way, machines with a
-single halting state are more ``disciplined'' than we allow Turing
-machines in general to be.  There are other restrictions we might
-impose on the behavior of Turing machines.  For instance, we also have
-not prohibited Turing machines from ever erasing the tape-end marker
-on square~$0$, or to attempt to move left from square~$0$. (Our
-definition states that the head simply stays on square~$0$ in this
-case; other definitions have the machine halt.) It is likewise
-sometimes desirable to be able to assume that a Turing machine, if
-it halts at all, halts on square~$1$.
+在 \olref[hal]{sec} 节，我们考察了具有唯一指定停机状态~$h$ 的图灵机——这类机器如果停机，必定在状态~$h$ 停机。因此，具有单一停机状态的机器比我们一般允许的图灵机更“守规矩”。我们还可以对图灵机的行为施加其他限制。例如，我们同样并未禁止图灵机擦除0号方格上的 $\TMendtape$ 标记，或试图从0号方格左移。（我们的定义规定，若试图从0号方格左移，读写头将停留在0号方格；其他定义则会让机器停机。）类似地，有时我们希望能约定：一台图灵机如果停机，就停在1号方格。
 \end{explain}
 
 \begin{defn}\ollabel{defn:disciplined}
-A Turing machine~$M$ is \emph{disciplined} iff
+一台图灵机~$M$ 是\emph{规范的}，当且仅当
 \begin{enumerate}
-    \item it has a designated single halting state~$h$,
-    \item it halts, if it halts at all, while scanning square~$1$,
-    \item it never erases the $\TMendtape$ symbol on square~$0$, and
-    \item it never attempts to move left from square~$0$.
+    \item 它具有唯一指定的停机状态~$h$，
+    \item 若它停机，则停机时正在扫描1号方格，
+    \item 它从不擦除0号方格上的 $\TMendtape$ 符号，且
+    \item 它从不试图从0号方格左移。
 \end{enumerate}
 \end{defn}
 
 \begin{explain}
-We have already discussed that any Turing machine can be changed into
-one with the same behavior but with a designated halting state. This is
-done simply by adding a new state~$h$, and adding an instruction
-$\delta(q, \sigma) = \tuple{h, \sigma, N}$ for any pair
-$\tuple{q,\sigma}$ where the original $\delta$~is undefined.  It is
-true, although tedious to prove, that any Turing machine~$M$ can be
-turned into a disciplined Turing machine~$M'$ which halts on the same
-inputs and produces the same output. For instance, if the Turing
-machine halts and is not on square~$1$, we can add some instructions
-to make the head move left until it finds the tape-end marker, then
-move one square to the right, then halt.  We'll leave you to think
-about how the other conditions can be dealt with.
+我们之前已经讨论过，任何图灵机都可以改造为行为相同但带有一个指定停机状态的图灵机。具体做法是添加一个新状态~$h$，并为原始转移函数~$\delta$ 无定义的每一对 $\tuple{q,\sigma}$ 添加一条指令 $\delta(q, \sigma) = \tuple{h, \sigma, N}$。尽管证明繁琐，但任何图灵机~$M$ 确实都可以改造为一个规范图灵机~$M'$，后者在相同的输入上停机并产生相同的输出。例如，如果原图灵机停机时读写头不在1号方格，我们可以添加一些指令，使读写头向左移动直至找到纸带端点标记，然后右移一格，再停机。其他条件如何满足，留给你思考。
 \end{explain}
 
 \begin{ex}
-    In \olref{fig:adder-disc}, we turn the addition machine
-    from \olref[una]{ex:adder} into a disciplined machine.
+在 \olref{fig:adder-disc} 中，我们将 \olref[una]{ex:adder} 中的加法机改造为一个规范机器。
     \begin{figure}\[
 \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
                     semithick]
@@ -71,26 +48,22 @@ about how the other conditions can be dealt with.
         (D) edge [loop above] node {\TMtrans{\TMstroke}{\TMstroke}{\TMleft}} (D)
         edge node {\TMtrans{\TMendtape}{\TMendtape}{\TMright}} (H);
 \end{tikzpicture}
-\]\caption{A disciplined addition machine}
+\]\caption{一个规范的加法机}
 \ollabel{fig:adder-disc}
 \end{figure}
 \end{ex}
 
-\begin{prop}\ollabel{prop:disciplined} For every Turing machine~$M$,
-there is a disciplined Turing machine~$M'$ which halts with output~$O$
-if $M$~halts with output~$O$, and does not halt if $M$~does not halt.
-In particular, any function $f\colon\Nat^n \to \Nat$ computable by a
-Turing machine is also computable by a disciplined Turing machine.
+\begin{prop}\ollabel{prop:disciplined}
+对于每个图灵机~$M$，都存在一个规范图灵机~$M'$，使得：若 $M$ 停机并输出~$O$，则 $M'$ 停机并输出~$O$；若 $M$ 不停机，则 $M'$ 也不停机。特别地，任何可由图灵机计算的函数 $f\colon\Nat^n \to \Nat$，亦可由某个规范图灵机计算。
 \end{prop}
 
 \begin{prob}\label{tur:mac:dis:prob:disc-succ}
-Give a disciplined machine that computes $f(x) = x+1$.
+给出一个计算 $f(x) = x+1$ 的规范机器。
 \end{prob}
 
 
 \begin{prob}\label{tur:mac:dis:prob:copier}
-Find a disciplined machine which, when started on input $\TMstroke^n$
-produces output $\TMstroke^n \concat \TMblank \concat \TMstroke^n$.
+找出一个规范机器，使得当以输入 $\TMstroke^n$ 启动时，它输出 $\TMstroke^n \concat \TMblank \concat \TMstroke^n$。
 \end{prob}
 
 \end{document}

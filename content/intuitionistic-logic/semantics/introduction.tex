@@ -8,66 +8,22 @@
 
 \olfileid{int}{sem}{int}
 
-\olsection{Introduction}
+\olsection{引言}
 
-No logic is satisfactorily described without a semantics, and
-intuitionistic logic is no exception. Whereas for classical logic, the
-semantics based on !!{valuation}s is canonical, there are several
-competing semantics for intuitionistic logic. None of them are
-completely satisfactory in the sense that they give an
-intuitionistically acceptable account of the meanings of the
-connectives.
+没有语义学，任何逻辑都无法得到令人满意的描述，直觉主义逻辑也不例外。对于经典逻辑，基于赋值的语义学是典范的；而直觉主义逻辑则有几种相互竞争的语义学。但它们都算不上彻底令人满意，因为它们都没能以直觉主义可接受的方式给出联结词含义的说明。
 
-The semantics based on !!{relational model}s, similar to the semantics
-for modal logics, is perhaps the most popular one.  In this semantics,
-!!{propositional variable}s are assigned to worlds, and these worlds
-are related by an accessibility relation. That relation is always a
-partial order, i.e., it is reflexive, antisymmetric, and
-transitive.
+基于关系模型的语义学或许是最流行的一种，它类似于模态逻辑的语义学。在这种语义学中，命题变元被指派给各个世界，而这些世界之间由一个可达关系相联系。该关系总是一个偏序，即它是自反的、反对称的和传递的。
 
-Intuitively, you might think of these worlds as states of knowledge or
-``evidentiary situations.''  A state~$w'$ is accessible from~$w$ iff,
-for all we know, $w'$ is a possible (future) state of knowledge, i.e.,
-one that is compatible with what's known at~$w$.  Once a proposition
-is known, it can't become un-known, i.e., whenever $!A$ is known at~$w$
-and~$Rww'$, $!A$ is known at~$w'$ as well. So ``knowledge'' is
-monotonic with respect to the accessibility relation.
+直观上，你可能会把这些世界理解为知识状态或“证据情境”。当且仅当就我们所知，$w'$ 是一个可能的（未来的）知识状态时，状态 $w'$ 从 $w$ 才是可达的，也就是说，$w'$ 与在 $w$ 处所知的内容相容。一旦一个命题被知道，它就不可能再变为未知，即如果在 $w$ 处知道 $!A$ 且 $Rww'$，那么在 $w'$ 处也知道 $!A$。因此，“知识”相对于可达关系是单调的。
 
-If we define ``$!A$ is known'' as in epistemic logic as ``true in all
-epistemic alternatives,'' then $!A \land !B$ is known at~$w$ if in all
-epistemic alternatives, both $!A$ and~$!B$ are known. But since
-knowledge is monotonic and $R$ is reflexive, that means that $!A \land
-!B$ is known at $w$ iff $!A$ and $!B$ are known at~$w$.  For the same
-reason, $!A \lor !B$ is known at $w$ iff at least one of them is
-known. So for $\land$ and $\lor$, the truth conditions of the
-connectives coincide with those in classical logic.
+如果我们像认知逻辑那样，将“知道 $!A$”定义为“在所有认知替代世界中都为真”，那么 $!A \land !B$ 在 $w$ 处被知道，当且仅当在所有认知替代世界中，$!A$ 和 $!B$ 都被知道。但由于知识是单调的且 $R$ 是自反的，这就意味着 $!A \land !B$ 在 $w$ 处被知道，当且仅当 $!A$ 和 $!B$ 在 $w$ 处被知道。出于同样的原因，$!A \lor !B$ 在 $w$ 处被知道，当且仅当至少有一个在 $w$ 处被知道。因此，对于 $\land$ 和 $\lor$，联结词的真值条件与经典逻辑中的相同。
 
-The truth conditions for the conditional, however, differ from
-classical logic. $!A \lif !B$ is known at~$w$ iff at no $w'$ with
-$Rww'$, $!A$ is known without $!B$ also being known. This is not the
-same as the condition that $!A$ is unknown or $!B$~is known
-at~$w$. For if we know neither $!A$ nor $!B$ at~$w$, there might be a
-future epistemic state~$w'$ with $Rww'$ such that at $w'$, $!A$ is
-known without also coming to know~$!B$.
+然而，条件句的真值条件不同于经典逻辑。$!A \lif !B$ 在 $w$ 处被知道，当且仅当不存在满足 $Rww'$ 的世界 $w'$，使得在 $w'$ 处 $!A$ 被知道而 $!B$ 不被知道。这不同于“$!A$ 未知或 $!B$ 在 $w$ 处被知道”这一条件。因为如果我们在 $w$ 处既不知道 $!A$ 也不知道 $!B$，那么可能存在一个未来的认知状态 $w'$（$Rww'$），使得在 $w'$ 处，我们知道了 $!A$ 而没有随之知道 $!B$。
 
-We know $\lnot !A$ only if there is no possible future epistemic state
-in which we know~$!A$. Here the idea is that if $!A$ were knowable,
-then in some possible future epistemic state~$!A$ becomes known. Since
-we can't know $\lfalse$, in that future epistemic state, we would know
-$!A$ but not know~$\lfalse$.
+我们知道 $\lnot !A$，仅当不存在任何可能的未来认知状态使我们在其中知道 $!A$。这里的想法是，如果 $!A$ 是可知的，那么在某个可能的未来认知状态中，$!A$ 就会变为已知的。由于我们不可能知道 $\lfalse$，在那个未来认知状态中，我们将知道 $!A$ 却不知道 $\lfalse$。
 
-On this interpretation the principle of excluded middle fails. For
-there are some $!A$ which we don't yet know, but which we might come
-to know. For such !!a{formula}~$!A$, both $!A$ and~$\lnot !A$ are unknown, so
-$!A \lor \lnot !A$ is not known. But we do know, e.g., that $\lnot(!A
-\land \lnot !A)$. For no future state in which we know both $!A$ and
-$\lnot !A$ is possible, and we know this independently of whether or
-not we know~$!A$ or $\lnot !A$.
+在这种解释下，排中律失效。因为存在一些我们尚不知道、但未来可能知道的 $!A$。对于这样的公式 $!A$，$!A$ 和 $\lnot !A$ 都是未知的，所以 $!A \lor \lnot !A$ 不被知道。但是，我们的确知道，例如 $\lnot(!A \land \lnot !A)$。因为不存在任何可能的未来状态能让我们同时知道 $!A$ 和 $\lnot !A$，而且这一点与我们是否知道 $!A$ 或 $\lnot !A$ 无关。
 
-!!^{relational model}s are not the only available semantics for
-intuitionistic logic. The topological semantics is another: here
-propositions are interpreted as open sets in a topological space, and
-the connectives are interpreted as operations on these sets (e.g.,
-$\land$ corresponds to intersection).
+关系模型并不是直觉主义逻辑唯一可用的语义学。拓扑语义学是另一种：在这里，命题被解释为拓扑空间中的开集，而联结词被解释为对这些集合的运算（例如，$\land$ 对应于交集）。
 
 \end{document}

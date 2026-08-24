@@ -7,34 +7,22 @@
 \begin{document}
 
 \olfileid{sfr}{arith}{real}
-\olsection{The Real Line}
+\olsection{实数线}
 
-The next step is to show how to construct the reals from the
-rationals. Before that, we need to understand what is
-\emph{distinctive} about the reals. 
+下一步是展示如何从有理数构造实数。在此之前，我们需要理解实数究竟有什么\emph{独特性}。
 
-The reals behave very much like the rationals. (Technically, both are
-examples of \emph{ordered fields}; for the definition of this, see
-\olref[check]{orderedfield}.) Now, if you worked through the exercises
-to \olref[sfr][siz][]{chap}, you will know that there are strictly
-more reals than rationals, i.e., that $\cardless{\Rat}{\Real}$. This
-was first proved by Cantor. But it's been known for about two and a
-half millennia that there are irrational numbers, i.e., reals which
-are not rational. Indeed:
+实数的表现与有理数非常相似。（从技术上讲，两者都是\emph{有序域}的例子；关于其定义，参见\olref[check]{orderedfield}。）如果完成了\olref[sfr][siz][]{chap}的练习，就会知道实数严格多于有理数，即$\cardless{\Rat}{\Real}$。这是Cantor首先证明的。但人们知道存在无理数（即非有理数的实数）已有两千五百多年了。事实上：
 %\footnote{Now: ``$\sqrt{2}$'' equally refers to both the positive and the negative roots; but in the next few pages, I'll forget about this, and consider only the positive root.}
+
 \begin{thm}\ollabel{root2irrational}
-$\sqrt{2}$ is not rational, i.e., $\sqrt{2} \notin \Rat$
+$\sqrt{2}$ 不是有理数，即 $\sqrt{2} \notin \Rat$。
 \end{thm}
 
 \begin{proof}
-Suppose, for reductio, that $\sqrt{2}$ is rational. So $\sqrt{2} =
-\nicefrac{m}{n}$ for some natural numbers $m$ and $n$. Indeed, we can
-choose $m$ and $n$ so that the fraction cannot be reduced any further.
-Re-organising, $m^{2} = 2n^{2}$. From here, we can complete the proof
-in two ways:
+反设$\sqrt{2}$是有理数。那么存在自然数$m$和$n$使得$\sqrt{2} =
+\nicefrac{m}{n}$。事实上，我们可以选择$m$和$n$使得该分数不可再约分。整理得，$m^{2} = 2n^{2}$。由此，我们可以用两种方式完成证明：
 
-\emph{First, geometrically} (following Tennenbaum).\footnote{This
-proof is reported by \cite{Conway2006}.} Consider these squares:
+\emph{其一，几何地}（遵循Tennenbaum）。\footnote{此证明由\cite{Conway2006}记载。}考虑以下正方形：
 \begin{center}	
 	\begin{tikzpicture}
 		\draw[thick] (0,0) rectangle (3,3);
@@ -47,38 +35,27 @@ proof is reported by \cite{Conway2006}.} Consider these squares:
 		\node at (5.25, 1.5) (m) {$m$};
 	\end{tikzpicture}
 \end{center}
-Since $m^2 = 2n^2$, the region where the two squares of side $n$
-overlap has the same area as the region which neither of the two
-squares cover; i.e., the area of the orange square equals the sum of
-the area of the two unshaded squares. So where the orange square has
-side $p$, and each unshaded square has side $q$, $p^2 = 2q^2$. But now
-$\sqrt{2} = \nicefrac{p}{q}$, with $p < m$ and $q < n$ and $p, q \in
-\Nat$. This contradicts the fact that $m$ and $n$ were chosen to be as
-small as possible.
+由于$m^2 = 2n^2$，两个边长为$n$的正方形重叠部分的面积，等于这两个正方形都未覆盖部分的面积；即橙色正方形的面积等于两个未着色正方形的面积之和。设橙色正方形边长为$p$，每个未着色正方形边长为$q$，则有$p^2 = 2q^2$。但现在$\sqrt{2} = \nicefrac{p}{q}$，其中$p < m$且$q < n$且$p, q \in \Nat$。这与$m$和$n$已被选为尽可能小相矛盾。
 		
-\emph{Second, formally.} Since $m^{2} = 2n^{2}$, it follows that $m$
-is even. (It is easy to show that, if $x$ is odd, then $x^2$ is odd.)
-So $m = 2r$, for some $r \in \Nat$. Rearranging, $2r^2 = n^2$, 
+\emph{其二，形式地。}既然$m^{2} = 2n^{2}$，那么$m$是偶数。（容易证明，若$x$是奇数，则$x^2$是奇数。）所以存在某个$r \in \Nat$使得$m = 2r$。重新整理得$2r^2 = n^2$， 
 		%				\begin{align*}
 		%					(2q)^{2} &= 2n^{2}\\
 		%					4q^{2} &= 2n^{2}\\
 		%					2q^{2} &= n^{2}
 		%				\end{align*}
-so $n$ is also even. So both $m$ and $n$ are even, and hence the
-fraction $\nicefrac{m}{n}$ \emph{can} be reduced further.
-Contradiction!
+于是$n$也是偶数。所以$m$和$n$都是偶数，因此分数$\nicefrac{m}{n}$\emph{可以}进一步约分。矛盾！
 \end{proof}
 
-In passing, this diagrammatic proof allows us to revisit the material from \olref[his][set][mythology]{sec}. Tennenbaum (1927--2006) was a thoroughly modern mathematician; but the proof is undeniably lovely, completely rigorous, and appeals to geometric intuition!
+顺带一提，借由这一图示证明，我们可以重温\olref[his][set][mythology]{sec}中的内容。Tennenbaum（1927--2006）是一位地道的现代数学家；但这个证明无疑十分优美，完全严谨，并且诉诸几何直觉！
 
-In any case: the reals are ``more expansive'' than the rationals. In some sense, there are ``gaps'' in the rationals, and these are filled by the reals. Weierstrass realised that this describes a single property of the real numbers, which distinguishes them from the rationals, namely the Completeness Property: \emph{Every non-empty set of real numbers with an upper bound has a least upper bound.} 
+不管怎样：实数比有理数“更广阔”。在某种意义上，有理数中存在“间隙”，而这些间隙被实数填补了。Weierstrass意识到，这刻画了实数的一个单一性质，正是该性质将实数与有理数区分开来，即完备性质：\emph{每个有上界的非空实数集都有一个最小上界。} 
 
-It is easy to see that the rationals do not have the Completeness Property. For example, consider the set of rationals less than $\sqrt{2}$, i.e.:
+容易看出有理数不具备完备性质。例如，考虑所有小于$\sqrt{2}$的有理数组成的集合，即：
 \[
-	\Setabs{p \in \Rat}{p^2 < 2 \text{ or }p < 0}
+	\Setabs{p \in \Rat}{p^2 < 2 \text{ 或 }p < 0}
 \]
-This has an upper bound in the rationals; its !!{element}s< are all  smaller than $3$, for example. But what is its least upper bound? We want to say `$\sqrt{2}$'; but we have just seen that $\sqrt{2}$ is \emph{not} rational. And there is no \emph{least} rational number greater than $\sqrt{2}$. So the set has an upper bound but no least upper bound. Hence the rationals lack the Completeness Property.
+这个集合在有理数中有上界；例如，它的所有元素都小于$3$。但它的最小上界是什么？我们想说“$\sqrt{2}$”；但我们刚刚看到$\sqrt{2}$\emph{不是}有理数。并且不存在大于$\sqrt{2}$的\emph{最小}有理数。所以该集合有上界但没有最小上界。因此有理数缺乏完备性质。
 
-By contrast, the continuum ``morally ought'' to have the Completeness Property. We do not just want $\sqrt{2}$ to be a real number; we want to fill all the ``gaps'' in the rational line. Indeed, we want the continuum itself to have no ``gaps'' in it. That is just what we will get via Completeness.
+相比之下，连续统“理应”具有完备性质。我们不仅仅希望$\sqrt{2}$是一个实数；我们更希望填补有理数线上的所有“间隙”。事实上，我们希望连续统本身内部也不存在“间隙”。而这正是完备性将带给我们的。
 
 \end{document}

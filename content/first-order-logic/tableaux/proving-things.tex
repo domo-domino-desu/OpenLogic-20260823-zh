@@ -10,23 +10,20 @@
       {\olfileid{fol}{tab}{pro}}
       {\olfileid{pl}{tab}{pro}}
 
-\olsection{Examples of \usetoken{P}{tableau}}
+\olsection{\usetoken{P}{tableau}示例}
 
 \begin{ex}
-Let's find a closed !!{tableau} for the !!{sentence} $(!A \land !B) \lif !A$.
+让我们为语句 $(!A \land !B) \lif !A$ 找一个闭分析表。
 
-We begin by writing the corresponding assumption at the top of the
-!!{tableau}.
+我们首先在分析表的顶部写下相应的假设。
 \begin{oltableau}
   [\sFmla{\False}{(\formula{A} \land \formula{B}) \lif \formula{A}},
     just = \TAss]
 \end{oltableau}
 
-There is only one assumption, so only one !!{signed formula} to which
-we can apply a rule. (For every !!{signed formula}, there is always at
-most one rule that can be applied: it's the rule for the corresponding
-sign and !!{main operator} of the !!{sentence}.) In this case, this
-means, we must apply $\TRule{\False}{\lif}$.
+这里只有一个假设，因此也只有一个带号公式可以应用规则。
+（对每个带号公式，总是至多只有一个规则可以应用：即对应于该语句符号和主联结词的规则。）
+此时，这意味着我们必须应用规则 $\TRule{\False}{\lif}$。
 \begin{oltableau}
   [\sFmla{\False}{(\formula{A} \land \formula{B}) \lif \formula{A}},
     checked, just = \TAss
@@ -36,19 +33,14 @@ means, we must apply $\TRule{\False}{\lif}$.
     ]
   ]
 \end{oltableau}
-To keep track of which !!{signed formula}s we have applied their
-corresponding rules to, we write a checkmark next to the
-sentence. However, \emph{only} write a checkmark if the rule has been
-applied to all open branches. Once !!a{signed formula} has had the
-corresponding rule applied in every open branch, we will not have to
-return to it and apply the rule again. In this case, there is only one
-branch, so the rule only has to be applied once. (Note that checkmarks
-are only a convenience for constructing tableaux and are not
-officially part of the syntax of tableaux.)
+为了记录哪些带号公式已应用了相应的规则，我们在该语句旁打上勾号。
+但是，\emph{只有}当规则已在所有开放分支上应用后，才打上勾号。
+一旦某个带号公式在所有开放分支上都应用了相应的规则，我们就不必再回头对它应用规则。
+此处只有一个分支，因此规则只需应用一次。
+（注意，打勾只是构建分析表时的便利手段，并非分析表语法的正式组成部分。）
 
-There is one new !!{signed formula} to which we can apply a rule: the
-$\sFmla{\True}{!A \land !B}$ on line~$2$. Applying the
-$\TRule{\True}{\land}$ rule results in:
+现在有一个可以应用规则的新的带号公式：第 $2$ 行的 $\sFmla{\True}{!A \land !B}$。
+应用规则 $\TRule{\True}{\land}$ 得到：
 \begin{oltableau}
   [\sFmla{\False}{(\formula{A} \land \formula{B}) \lif \formula{A}},
     checked, just = \TAss
@@ -63,24 +55,21 @@ $\TRule{\True}{\land}$ rule results in:
     ]
   ]
 \end{oltableau}
-Since the branch now contains both $\sFmla{\True}{!A}$ (on line~$4$)
-and $\sFmla{\False}{!A}$ (on line~$3$), the branch is closed. Since it
-is the only branch, the !!{tableau} is closed. We have found
-a closed !!{tableau} for~$(!A \land !B) \lif !A$.
+由于该分支现在既包含 $\sFmla{\True}{!A}$（第 $4$ 行）又包含 $\sFmla{\False}{!A}$（第 $3$ 行），该分支闭合。
+又因为它是唯一的分支，所以分析表闭合。
+我们已经为 $(!A \land !B) \lif !A$ 找到了一个闭分析表。
 \end{ex}
 
 \begin{ex}
-Now let's find a closed !!{tableau} for $(\lnot !A \lor !B) \lif (!A
-\lif !B)$.
+现在让我们为 $(\lnot !A \lor !B) \lif (!A
+\lif !B)$ 找一个闭分析表。
 
-We begin with the corresponding assumption:
+我们从相应的假设开始：
 \begin{oltableau}
   [\sFmla{\False}{(\lnot \formula{A} \lor \formula{B}) \lif
       (\formula{A} \lif \formula{B})}, just=\TAss]
 \end{oltableau}
-The one !!{signed formula} in this !!{tableau} has !!{main operator}~$\lif$
-and sign~$\False$, so we apply the $\TRule{\False}{\lif}$ rule to it
-to obtain:
+此分析表中唯一的带号公式主联结词为~$\lif$，符号为~$\False$，因此我们对它应用 $\TRule{\False}{\lif}$ 规则，得到：
 \begin{oltableau}
   [\sFmla{\False}{(\lnot \formula{A} \lor \formula{B})
       \lif (\formula{A} \lif \formula{B})}, just=\TAss, checked
@@ -92,13 +81,7 @@ to obtain:
     ]
   ]
 \end{oltableau}
-We now have a choice as to whether to apply~$\TRule{\True}{\lor}$ to
-line~$2$ or $\TRule{\False}{\lif}$ to line~$3$. It actually doesn't
-matter which order we pick, as long as each !!{signed formula} has its
-corresponding rule applied in every branch. So let's pick the first
-one. The $\TRule{\True}{\lor}$ rule allows the !!{tableau} to branch,
-and the two conclusions of the rule will be the new !!{signed formula}s
-added to the two new branches. This results in:
+现在我们有一个选择：是对第~$2$ 行应用~$\TRule{\True}{\lor}$ 规则，还是对第~$3$ 行应用~$\TRule{\False}{\lif}$ 规则。实际上，先选哪一个顺序并不重要，只要每个带号公式在每个分支上都应用了对应的规则。那么，我们先选第一个。$\TRule{\True}{\lor}$ 规则会使分析表产生分支，规则的两个结论将作为新的带号公式分别添加到两个新分支中。结果如下：
 \begin{oltableau}
   [\sFmla{\False}{(\lnot \formula{A} \lor \formula{B}) \lif
       (\formula{A} \lif \formula{B})}, just=\TAss, checked
@@ -112,13 +95,7 @@ added to the two new branches. This results in:
     ]
   ]
 \end{oltableau}
-We have not applied the $\TRule{\False}{\lif}$ rule to line~$3$ yet:
-let's do that now.  To save time, we apply it to both branches.
-Recall that we write a checkmark next to !!a{signed formula} only if
-we have applied the corresponding rule in every open branch. So it's a
-good idea to apply a rule at the end of every branch that contains the
-!!{signed formula} the rule applies to. That way we won't have to
-return to that !!{signed formula} lower down in the various branches.
+我们还没有对第~$3$ 行应用 $\TRule{\False}{\lif}$ 规则，现在来做这件事。为了节省时间，我们在两个分支上都应用它。回想一下，仅当某个带号公式的对应规则已在每个开放分支上应用后，我们才在该公式旁打勾。所以，一个很好的做法是：在包含该规则所适用之带号公式的每个分支末端应用该规则。这样我们就不必在后续的各种分支中再回头处理这个带号公式。
 \begin{oltableau}
   [\sFmla{\False}{(\lnot \formula{A} \lor \formula{B}) \lif
       (\formula{A} \lif \formula{B})}, just=\TAss, checked
@@ -140,9 +117,7 @@ return to that !!{signed formula} lower down in the various branches.
     ]
   ]
 \end{oltableau}
-The right branch is now closed. On the left branch, we can still apply
-the $\TRule{\True}{\lnot}$ rule to line~$4$. This results
-in~$\sFmla{\False}{!A}$ and closes the left branch:
+现在右分支已经闭合。在左分支上，我们还可以对第~$4$ 行应用 $\TRule{\True}{\lnot}$ 规则。这将得到~$\sFmla{\False}{!A}$ 并闭合左分支：
 \begin{oltableau}
   [\sFmla{\False}{(\lnot \formula{A} \lor \formula{B}) \lif
       (\formula{A} \lif \formula{B})}, just=\TAss, checked
@@ -171,13 +146,11 @@ in~$\sFmla{\False}{!A}$ and closes the left branch:
 \end{ex}
 
 \begin{ex}
-We can give !!{tableau}s for any number of !!{signed formula}s as
-assumptions.  Often it is also necessary to apply more than one rule
-that allows branching; and in general !!a{tableau} can have any number
-of branches. For instance, consider !!a{tableau} for
-$\{\sFmla{\True}{!A \lor (!B \land !C)}, \sFmla{\False}{(!A \lor !B) \land (!A
-  \lor !C)}\}$. We start by applying the $\TRule{\True}{\lor}$ to the
-first assumption:
+我们可以以任意数量的带号公式为假设来构建分析表。
+通常也需要应用不止一条分支规则；一般而言，一个分析表可以有任意多个分支。
+例如，考虑为 $\{\sFmla{\True}{!A \lor (!B \land !C)}, \sFmla{\False}{(!A \lor !B) \land (!A
+  \lor !C)}\}$ 构建一个分析表。
+我们首先对第一个假设应用 $\TRule{\True}{\lor}$ 规则：
 \begin{oltableau}
   [\sFmla{\True}{\formula{A} \lor (\formula{B} \land \formula{C})},
     just=\TAss, checked
@@ -189,9 +162,8 @@ first assumption:
     ]
   ]
 \end{oltableau}
-Now we can apply the $\TRule{\False}{\land}$ rule to line~$2$. We do
-this on both branches simultaneously, and can therefore check off
-line~$2$:
+现在我们可以对第$2$行应用 $\TRule{\False}{\land}$ 规则。
+我们在两个分支上同时进行这一操作，因此可以勾掉第$2$行：
 \begin{oltableau}
   [\sFmla{\True}{\formula{A} \lor (\formula{B} \land \formula{C})},
     just=\TAss, checked
@@ -213,8 +185,7 @@ line~$2$:
     ]
   ]
 \end{oltableau}
-Now we can apply $\TRule{\False}{\lor}$ to all the branches containing
-$!A \lor !B$:
+现在我们可以对所有包含 $!A \lor !B$ 的分支应用 $\TRule{\False}{\lor}$ 规则：
 \begin{oltableau}
   [\sFmla{\True}{\formula{A} \lor (\formula{B} \land \formula{C})},
     just=\TAss, checked
@@ -246,8 +217,7 @@ $!A \lor !B$:
     ]
   ]
 \end{oltableau}
-The leftmost branch is now closed. Let's now apply
-$\TRule{\False}{\lor}$ to $!A \lor !C$:
+最左侧的分支现已闭合。接下来我们对 $!A \lor !C$ 应用 $\TRule{\False}{\lor}$ 规则：
 \begin{oltableau}
   [\sFmla{\True}{\formula{A} \lor (\formula{B} \land \formula{C})},
     just=\TAss, checked
@@ -294,13 +264,11 @@ $\TRule{\False}{\lor}$ to $!A \lor !C$:
     ]
   ]
 \end{oltableau}
-Note that we moved the result of applying $\TRule{\False}{\lor}$ a
-second time below for clarity. In this instance it would not have been
-needed, since the justifications would have been the same.
+注意，为了清晰起见，我们将第二次应用 $\TRule{\False}{\lor}$ 规则的结果下移了。
+在这个例子中，这并非必需，因为推导依据本也会是相同的。
 
-Two branches remain open, and $\sFmla{\True}{!B \land !C}$ on line~$3$
-remains unchecked. We apply $\TRule{\True}{\land}$ to it to obtain a
-closed !!{tableau}:
+仍有两条分支是开放的，并且第$3$行上的 $\sFmla{\True}{!B \land !C}$ 尚未勾掉。
+我们对它应用 $\TRule{\True}{\land}$ 规则，得到一个闭合的分析表：
 \begin{oltableau}
   [\sFmla{\True}{\formula{A} \lor (\formula{B} \land \formula{C})},
     just=\TAss, checked
@@ -361,8 +329,7 @@ closed !!{tableau}:
   ]
 \end{oltableau}
 
-For comparison, here's a closed !!{tableau} for the same set of
-assumptions in which the rules are applied in a different order:
+作为对比，下面是一个为同一组假设构建的闭合分析表，其中规则的应用顺序不同：
 \begin{oltableau}
   [\sFmla{\True}{\formula{A} \lor (\formula{B} \land \formula{C})},
     just=\TAss, checked
@@ -416,7 +383,7 @@ assumptions in which the rules are applied in a different order:
 \end{ex}
 
 \begin{prob}
-Give closed !!{tableau}s of the following:
+为下列公式构造闭合的分析表：
 \begin{enumerate}
 \item $\sFmla{\True}{!A \land (!B \land !C)}, \sFmla{\False}{(!A \land !B) \land !C}$.
 \item $\sFmla{\True}{!A \lor (!B \lor !C)}, \sFmla{\False}{(!A \lor !B) \lor !C}$.
@@ -426,7 +393,7 @@ Give closed !!{tableau}s of the following:
 \end{prob}
 
 \begin{prob}
-Give closed !!{tableau}s of the following:
+为下列公式构造闭合的分析表：
 \begin{enumerate}
 \item $\sFmla{\True}{(!A \lor !B) \lif !C}, \sFmla{\False}{!A \lif !C}$.
 \item $\sFmla{\True}{(!A \lif !C) \land (!B \lif !C)}, \sFmla{\False}{(!A \lor !B) \lif !C}$.
@@ -444,7 +411,7 @@ Give closed !!{tableau}s of the following:
 \end{prob}
 
 \begin{prob}
-Give closed !!{tableau}s of the following:
+为下列公式构造闭合的分析表：
 \begin{enumerate}
 \item $\sFmla{\True}{\lnot(!A \lif !B)}, \sFmla{\False}{!A}$.
 \item $\sFmla{\True}{\lnot(!A \land !B)}, \sFmla{\False}{\lnot !A \lor \lnot !B}$.

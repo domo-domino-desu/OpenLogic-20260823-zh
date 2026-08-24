@@ -7,131 +7,82 @@
 \begin{document}
 
 \olfileid{mod}{lin}{alg}
-\olsection{Abstract Logics}
+\olsection{抽象逻辑}
 
 \begin{defn}
-An \emph{abstract logic} is a pair $\tuple{L, \models_L}$, where $L$
-is a function that assigns to each !!{language}~$\Lang{L}$ a set
-$L(\Lang{L})$ of !!{sentence}s, and $\models_L$ is a relation between
-!!{structure}s for the !!{language}~$\Lang{L}$ and !!{element}s of
-$L(\Lang{L})$. In particular, $\tuple{F, \models}$ is ordinary
-first-order logic, i.e., $F$ is the function assigning to the
-!!{language}~$\Lang{L}$ the set of first-order !!{sentence}s built from
-the constants in $\Lang{L}$, and $\models$ is the satisfaction relation
-of first-order logic.
+一个\emph{抽象逻辑}是一个序对 $\tuple{L, \models_L}$，其中 $L$
+是一个函数，它给每个语言~$\Lang{L}$ 指派一个语句集
+$L(\Lang{L})$，而 $\models_L$ 是 $\Lang{L}$ 的结构与
+$L(\Lang{L})$ 中元素间的关系。特别地，$\tuple{F, \models}$ 就是通常的
+一阶逻辑，也就是说，$F$ 是将语言~$\Lang{L}$ 映射到由 $\Lang{L}$ 中常项构成的一阶语句集合的函数，而 $\models$ 是一阶逻辑的满足关系。
 \end{defn}
 
-Notice that we are still employing the same notion of !!{structure}
-for a given !!{language} as for first-order logic, but we do not
-presuppose that !!{sentence}s are build up from the basic symbols in
-$\Lang{L}$ in the usual way, nor that the relation $\models_L$ is
-recursively defined in the same way as for first-order logic. So for
-instance the definition, being completely general, is intended to
-capture the case where !!{sentence}s in $\tuple{L,\models_L}$ contain
-infinitely long conjunctions or disjunction, or quantifiers other than
-$\lexists$ and $\lforall$ (e.g., ``there are infinitely many~$x$ such
-that \dots''), or perhaps infinitely long quantifier prefixes. To
-emphasize that ``!!{sentence}s'' in $L(\Lang{L})$ need not be ordinary
-!!{sentence}s of first-order logic, in this chapter we use !!{variable}s $!E$,
-$!F$,~\dots to range over them, and reserve $!A$, $!B$,~\dots for
-ordinary first-order !!{formula}s.
+注意，对给定的语言，我们仍采用与一阶逻辑相同的结构概念，
+但我们并不预设语句是由 $\Lang{L}$ 中的基本符号按通常方式构建的，
+也不预设关系 $\models_L$ 是以与一阶逻辑相同的方式递归定义的。
+因此，举例来说，这个完全一般的定义旨在涵盖以下情形：
+$\tuple{L,\models_L}$ 中的语句包含无限长的合取或析取，
+或者包含除 $\lexists$ 和 $\lforall$ 以外的量词（例如，“存在无穷多个 $x$ 使得……”），
+或者可能包含无限长的量词前缀。
+为了强调 $L(\Lang{L})$ 中的“语句”不必是通常的一阶逻辑语句，
+本章我们使用变元 $!E$、$!F$、~\dots 来遍历它们，
+而将 $!A$、$!B$、~\dots 保留给通常的一阶公式。
 
 \begin{defn}
-Let $\Mod(L){!E}$ denote the class $\Setabs{\Struct{M}}{\Struct{M}
-  \models_L !E}$. If the !!{language} needs to be made explicit, we
-write $\Mod[L](L){!E}$. Two !!{structure}s $\Struct{M}$ and
-$\Struct{N}$ for $\Lang{L}$ are \emph{elementarily equivalent in}
-$\tuple{L, \models_L}$, written $\Struct{M} \elemequiv[L] \Struct{N}$, if
-the same !!{sentence}s from $L(\Lang{L})$ are true in each.
+令 $\Mod(L){!E}$ 表示类 $\Setabs{\Struct{M}}{\Struct{M}
+  \models_L !E}$。如果需要显式标明语言，我们记作 $\Mod[L](L){!E}$。
+两个 $\Lang{L}$-结构 $\Struct{M}$ 和 $\Struct{N}$ 在 $\tuple{L, \models_L}$ 中是\emph{初等等价的}，记作 $\Struct{M} \elemequiv[L] \Struct{N}$，如果它们满足 $L(\Lang{L})$ 中相同的语句。
 \end{defn}
 
 \begin{defn}
-An abstract logic $\tuple{L,\models_L}$ for the !!{language} $\Lang{L}$
-is \emph{normal} if it satisfies the following properties:
+语言 $\Lang{L}$ 上的抽象逻辑 $\tuple{L,\models_L}$ 被称为\emph{正规的}，如果它满足下列性质：
 \begin{enumerate}
-\item (\emph{$L$-Monotonicity}) For !!{language}s $\Lang{L}$ and
-  $\Lang{L'}$, if $\Lang{L} \subseteq \Lang{L'}$, then
-  $L(\Lang{L}) \subseteq L(\Lang{L'})$.
-\item (\emph{Expansion Property}) For each $!E \in L(\Lang{L})$
-  there is a \emph{finite} subset $\Lang{L'}$ of $\Lang{L}$ such that
-  the relation $\Struct{M} \models_L !E$ depends only on the
-  reduct of $\Struct{M}$ to $\Lang{L'}$; i.e., if $\Struct{M}$ and
-  $\Struct{N}$ have the same reduct to $\Lang{L'}$ then $\Struct{M}
-  \models_L !E$ if and only if $\Struct{N} \models_L !E$.
-\item (\emph{Isomorphism Property}) If $\Struct{M} \models_L !E$
-  and $\Struct{M} \simeq \Struct{N}$ then also $\Struct{N} \models_L
-  !E$.
-\item (\emph{Renaming Property}) The relation $\models_L$ is preserved
-  under renaming: if the !!{language} $\Lang{L}'$ is obtained from
-  $\Lang{L}$ by replacing each symbol $P$ by a symbol $P'$ of the same
-  arity and each constant $c$ by a distinct constant $c'$, then for
-  each !!{structure}~$\Struct{M}$ and !!{sentence}~$!E$, $\Struct{M}
-  \models_L !E$ if and only if $\Struct{M}' \models_L !E'$,
-  where $\Struct{M}'$ is the $\Lang{L}'$-!!{structure} corresponding
-  to $\Lang{L}$ and $!E' \in L(\Lang{L}')$.
-\item (\emph{Boolean Property}) The abstract logic $\tuple{L,
-  \models_L}$ is closed under the Boolean connectives in the sense
-  that for each $!E \in L(\Lang{L})$ there is a~$!F \in
-  L(\Lang{L})$ such that $\Struct{M} \models_L !F$ if and only if
-  $\Struct{M} \not\models_L !E$, and for each $!E$ and $!F$
-  there is a $!G$ such that $\Mod(L){!G} = \Mod(L){!E} \cap
-  \Mod(L){!F}$.  Similarly for atomic !!{formula}s and the other
-  connectives.
-\item (\emph{Quantifier Property}) For each constant $c$ in $\Lang{L}$
-  and $!E \in L(\Lang{L})$ there is a $!F \in L(\Lang{L})$ such
-  that
+\item (\emph{$L$-单调性}) 对语言 $\Lang{L}$ 和 $\Lang{L'}$，若 $\Lang{L} \subseteq \Lang{L'}$，则 $L(\Lang{L}) \subseteq L(\Lang{L'})$。
+\item (\emph{扩张性质}) 对每个 $!E \in L(\Lang{L})$，存在 $\Lang{L}$ 的一个\emph{有限}子集 $\Lang{L'}$，使得关系 $\Struct{M} \models_L !E$ 仅依赖于 $\Struct{M}$ 在 $\Lang{L'}$ 上的归约；换言之，若 $\Struct{M}$ 和 $\Struct{N}$ 在 $\Lang{L'}$ 上的归约相同，则 $\Struct{M} \models_L !E$ 当且仅当 $\Struct{N} \models_L !E$。
+\item (\emph{同构性质}) 若 $\Struct{M} \models_L !E$ 且 $\Struct{M} \simeq \Struct{N}$，则亦有 $\Struct{N} \models_L !E$。
+\item (\emph{改名性质}) 关系 $\models_L$ 在符号改名下保持：若语言 $\Lang{L}'$ 是由 $\Lang{L}$ 将每个符号 $P$ 替换为同元数的符号 $P'$，且每个常项 $c$ 替换为互不相同的常项 $c'$ 而得到的，则对每个结构~$\Struct{M}$ 和语句~$!E$，$\Struct{M} \models_L !E$ 当且仅当 $\Struct{M}' \models_L !E'$，其中 $\Struct{M}'$ 是与 $\Lang{L}$ 对应的 $\Lang{L}'$-结构，且 $!E' \in L(\Lang{L}')$。
+\item (\emph{布尔性质}) 抽象逻辑 $\tuple{L, \models_L}$ 对布尔联结词封闭，意即：对每个 $!E \in L(\Lang{L})$，存在 $!F \in L(\Lang{L})$ 使得 $\Struct{M} \models_L !F$ 当且仅当 $\Struct{M} \not\models_L !E$；并且对任意 $!E$ 和 $!F$，存在 $!G$ 使得 $\Mod(L){!G} = \Mod(L){!E} \cap
+  \Mod(L){!F}$。对于原子公式和其他联结词也有类似的结论。
+\item (\emph{量词性质}) 对 $\Lang{L}$ 中的每个常项 $c$ 和每个 $!E \in L(\Lang{L})$，存在 $!F \in L(\Lang{L})$ 使得
   \[
   \Mod[L'](L){!F} = \Setabs{\Struct{M}}{\Expan{M}{a} \in
-  \Mod[L](L){!E} \text{ for some } a \in \Domain{M}},
+  \Mod[L](L){!E} \text{ 对某个 } a \in \Domain{M}},
   \]
-  where $\Lang{L'} = \Lang{L} \setminus \{c\}$ and $\Expan{M}{a}$
-  is the expansion of $\Struct{M}$ to $\Lang{L}$ assigning $a$
-  to~$c$.
-\item (\emph{Relativization Property}) Given !!a{sentence} $!E \in
-  L(\Lang{L})$ and symbols $R$, $c_1$, \dots, $c_n$ not in $\Lang{L}$,
-  there is !!a{sentence} $!F \in L(\Lang{L} \cup \{R,c_1,\ldots,c_n\})$
-  called the \emph{relativization} of $!E$ to $\Atom{R}{x, c_1, \dots c_n}$,
-  such that for each !!{structure}~$\Struct{M}$:
+  其中 $\Lang{L'} = \Lang{L} \setminus \{c\}$，且 $\Expan{M}{a}$ 是将 $a$ 指派给 $c$ 而得到的 $\Struct{M}$ 到 $\Lang{L}$ 的扩张。
+\item (\emph{相对化性质}) 给定一个语句 $!E \in L(\Lang{L})$ 以及不属于 $\Lang{L}$ 的符号 $R$、$c_1$、\dots、$c_n$，存在一个语句 $!F \in L(\Lang{L} \cup \{R,c_1,\ldots,c_n\})$，
+  称为 $!E$ 对 $\Atom{R}{x, c_1, \dots c_n}$ 的\emph{相对化}，使得对每个结构~$\Struct{M}$：
   \[
-  \Expan{M}{X, b_1, \ldots, b_n} \models_L !F \text{ if and
-    only if } \Struct{N} \models_L !E,
+  \Expan{M}{X, b_1, \ldots, b_n} \models_L !F \text{ 当且仅当 } \Struct{N} \models_L !E,
   \]
-  where $\Struct{N}$ is the substructure of $\Struct{M}$ with !!{domain}
-  $\Domain{N} = \Setabs{a\in \Domain{M}}{\Assign{R}{M}(a, b_1, \dots, b_n)}$
-  (see \olref[bas][sub]{rem:substructure}), and $\Expan{M}{X, b_1, \ldots,
-    b_n}$ is the expansion of $\Struct{M}$ interpreting $R$, $c_1$,
-  \dots, $c_n$ by $X$, $b_1,$ \dots, $b_n$, respectively (with $X
-  \subseteq M^{n+1}$).
+  其中 $\Struct{N}$ 是 $\Struct{M}$ 的以 $\Domain{N} = \Setabs{a\in \Domain{M}}{\Assign{R}{M}(a, b_1, \dots, b_n)}$ 为论域的子结构
+  （参见 \olref[bas][sub]{rem:substructure}），且 $\Expan{M}{X, b_1, \ldots,
+    b_n}$ 是将 $\Struct{M}$ 中 $R$， $c_1$，\dots，$c_n$ 分别解释为 $X$， $b_1$，\dots，$b_n$ 而得到的扩张（其中 $X \subseteq M^{n+1}$）。
 \end{enumerate}
 \end{defn}
  
 \begin{defn}
-Given two abstract logics $\tuple{L_1, \models_{L_1}}$ and
-$\tuple{L_2, \models_{L_2}}$ we say that the latter is \emph{at least
-  as expressive} as the former, written $\tuple{L_1, \models_{L_1}}
-\leq \tuple{L_2, \models_{L_2}}$, if for each !!{language} $\Lang{L}$
-and !!{sentence} $!E \in L_1(\Lang{L})$ there is !!a{sentence} $!F
-\in L_2(\Lang{L})$ such that $\Mod[L](L_1){!E} =
-\Mod[L](L_2){!F}$. The logics $\tuple{L_1, \models_{L_1}}$ and
-$\tuple{L_2, \models_{L_2}}$ are \emph{equivalent} if $\tuple{L_1,
-  \models_{L_1}} \leq \tuple{L_2, \models_{L_2}}$ and $\tuple{L_2,
-  \models_{L_2}} \leq \tuple{L_1, \models_{L_1}}$.
+给定两个抽象逻辑 $\tuple{L_1, \models_{L_1}}$ 与
+$\tuple{L_2, \models_{L_2}}$，若对每个语言 $\Lang{L}$
+及语句 $!E \in L_1(\Lang{L})$，都存在语句 $!F
+\in L_2(\Lang{L})$ 使得 $\Mod[L](L_1){!E} =
+\Mod[L](L_2){!F}$，则称后者的表达力至少与前者一样强，记作 $\tuple{L_1, \models_{L_1}}
+\leq \tuple{L_2, \models_{L_2}}$。
+若 $\tuple{L_1,
+  \models_{L_1}} \leq \tuple{L_2, \models_{L_2}}$ 且 $\tuple{L_2,
+  \models_{L_2}} \leq \tuple{L_1, \models_{L_1}}$，则称逻辑 $\tuple{L_1, \models_{L_1}}$ 与
+$\tuple{L_2, \models_{L_2}}$ 是\emph{等价的}。
 \end{defn}
 
 \begin{rem}
-  First-order logic, i.e., the abstract logic $\tuple{F, \models}$, is
-  normal. In fact, the above properties are mostly straightforward for
-  first-order logic. We just remark that the expansion property comes
-  down to extensionality, and that the relativization of
-  !!a{sentence} $!E$ to $\Atom{R}{x, c_1, \dots, c_n}$ is obtained by
-  replacing each !!{subformula} $\lforall[x][!F]$ by
-  $\lforall[x][(\Atom{R}{x, c_1, \dots, c_n} \lif \ !F)]$. Moreover,
-  if $\tuple{L, \models_L}$ is normal, then
-  $\tuple{F, \models} \leq \tuple{L, \models_{L}}$, as can be can
-  shown by induction on first-order !!{formula}s. Accordingly, with no
-  loss in generality, we can assume that every first-order
-  !!{sentence} belongs to every normal logic.
+  一阶逻辑，即抽象逻辑 $\tuple{F, \models}$，是
+  正规的。事实上，上述性质对一阶逻辑来说基本都是直接成立的。我们只须指出，扩张性质可归结为外延性，而将
+  语句 $!E$ 相对化到 $\Atom{R}{x, c_1, \dots, c_n}$，是通过
+  把其中每个形如 $\lforall[x][!F]$ 的子公式替换为
+  $\lforall[x][(\Atom{R}{x, c_1, \dots, c_n} \lif \ !F)]$ 来实现的。此外，
+  若 $\tuple{L, \models_L}$ 是正规的，则
+  $\tuple{F, \models} \leq \tuple{L, \models_{L}}$，这可以通过对一阶公式施归纳来证明。
+  因此，不失一般性，我们可以假设每个一阶
+  语句都属于每一个正规逻辑。
 \end{rem}
 
 \end{document}
-

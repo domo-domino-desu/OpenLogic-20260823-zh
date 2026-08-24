@@ -7,53 +7,39 @@
 \begin{document}
 
 \olfileid{lam}{syn}{fv}
-\olsection{Free Variables}
+\olsection{自由变元}
 
-Lambda calculus is about functions, and lambda abstraction is how
-functions arise. Intuitively, $\lambd[x][M]$ is the function with
-values given by~$M$ when the argument to the function is assigned
-to~$x$. But not every occurrence of~$x$ in~$M$ is relevant: if $M$
-contains another abstract $\lambd[x][N]$ then the occurrences of $x$
-in~$N$ are relevant to $\lambd[x][N]$ but not to $\lambd[x][M]$.  So,
-a lambda abstract $\lambd[x]$ inside $\lambd[x][M]$ \emph{binds} those
-occurrences of $x$ in~$M$ that are not already bound by another lambda
-abstract---the \emph{free} occurrences of~$x$ in~$M$.
+λ-演算是关于函数的理论，而函数是通过λ-抽象产生的。
+直观地说，$\lambd[x][M]$ 是这样的函数：当自变元被指派给~$x$ 时，其值由~$M$ 给出。
+但是，并非~$M$ 中~$x$ 的每一次出现都是相关的：如果 $M$ 包含另一个抽象 $\lambd[x][N]$，
+那么 $N$ 中~$x$ 的出现与 $\lambd[x][N]$ 相关，而与 $\lambd[x][M]$ 无关。
+因此，$\lambd[x][M]$ 内部的λ-抽象 $\lambd[x]$ \emph{约束}了~$M$ 中那些尚未被另一个λ-抽象约束的~$x$ 的出现——即~$M$ 中~$x$ 的\emph{自由}出现。
 
-\begin{defn}[Scope]
-If $\lambd[x][M]$ occurs inside a term~$N$, then the corresponding
-occurrence of~$N$ is the \emph{scope} of the~$\lambd[x]$.
+\begin{defn}[作用域]
+如果 $\lambd[x][M]$ 出现在项~$N$ 内部，则~$N$ 的相应出现即为该~$\lambd[x]$ 的\emph{作用域}。
 \end{defn}
 
 
-\begin{defn}[Free and bound occurrence]
-  An occurrence of variable $x$ in a term~$M$ is \emph{free} if it is
-  not in the scope of a $\lambd[x]$, and \emph{bound} otherwise. An
-  occurrence of a variable~$x$ in $\lambd[x][M]$ is bound by the initial
-  $\lambd[x]$ iff the occurrence of $x$ in~$M$ is free.
+\begin{defn}[自由出现与约束出现]
+  变元 $x$ 在项~$M$ 中的一次出现是\emph{自由的}，如果它不在任何 $\lambd[x]$ 的作用域内；否则就是\emph{约束的}。
+  变元~$x$ 在 $\lambd[x][M]$ 中的一次出现被开头的 $\lambd[x]$ \emph{约束}，当且仅当 $x$ 在~$M$ 中的这次出现是自由的。
 \end{defn}
 
 \begin{ex}
-  In $\lambd[x][x y]$, both $x$ and $y$ are in the scope of $\lambd[x]$,
-  so $x$ is bound by $\lambd[x]$. Since $y$ is not in the scope of
-  any $\lambd[y]$, it is free.  In $\lambd[x][x x]$, both occurrences
-  of $x$ are bound by~$\lambd[x]$, since both are free in $xx$.  In
-  $((\lambd[x][xx])x)$, the last occurrence of~$x$ is free, since it
-  is not in the scope of a $\lambd[x]$. In
-  $\lambd[x][(\lambd[x][x])x]$, the scope of the first $\lambd[x]$ is
-  $(\lambd[x][x])x$ and the scope of the second $\lambd[x]$ is the
-  second-to-last occurrence of~$x$. In $(\lambd[x][x])x$, the last
-  occurrence of $x$ is free, and the second-to-last is bound.  Thus,
-  the second-to-last occurrence of $x$ in $\lambd[x][(\lambd[x][x])x]$
-  is bound by the second $\lambd[x]$, and the last occurrence by the
-  first $\lambd[x]$.
+  在 $\lambd[x][x y]$ 中，$x$ 和 $y$ 都在 $\lambd[x]$ 的作用域内，因此 $x$ 被 $\lambd[x]$ 约束。
+  由于 $y$ 不在任何 $\lambd[y]$ 的作用域内，所以它是自由的。
+  在 $\lambd[x][x x]$ 中，$x$ 的两次出现都被~$\lambd[x]$ 约束，因为它们在 $xx$ 中都是自由的。
+  在$((\lambd[x][xx])x)$中，最后一次出现的~$x$ 是自由的，因为它不在任何 $\lambd[x]$ 的作用域内。
+  在$\lambd[x][(\lambd[x][x])x]$中，第一个 $\lambd[x]$ 的作用域是 $(\lambd[x][x])x$，第二个 $\lambd[x]$ 的作用域是倒数第二次出现的~$x$。
+  在 $(\lambd[x][x])x$ 中，最后一次出现的 $x$ 是自由的，倒数第二次出现的是约束的。
+  因此，在$\lambd[x][(\lambd[x][x])x]$中，倒数第二次出现的 $x$ 被第二个 $\lambd[x]$ 约束，而最后一次出现的被第一个 $\lambd[x]$ 约束。
 \end{ex}
 
-For a term $P$, we can check all variable occurrences in it and get a
-set of free variables. This set is denoted by $\FV{P}$ with a natural
-definition as follows:
+对于一个项 $P$，我们可以检查其中所有变元的出现，从而得到一个自由变元集合。
+这个集合记作 $\FV{P}$，其自然定义如下：
 
-\begin{defn}[Free variables of a term] \ollabel{def:fv}
-  The set of \emph{free variables} of a term is defined inductively by:
+\begin{defn}[项的自由变元] \ollabel{def:fv}
+  项的自由变元集归纳定义如下：
   \begin{enumerate}
     \item $\FV{x} = \{x\}$ \ollabel{def:fv1} 
     \item $\FV{\lambd[x][N]} = \FV{N} \setminus \{x\}$    \ollabel{def:fv2}
@@ -63,54 +49,44 @@ definition as follows:
 
 \begin{prob}
   \begin{enumerate}
-  \item Identify the scopes of $\lambd[g]$ and the two $\lambd[x]$ in
-    this term: $\lambd[g][(\lambd[x][g (x x)]) \lambd[x][g (x x)]]$.
-  \item In $\lambd[g][(\lambd[x][g (x x)]) \lambd[x][g (x x)]]$, are
-    all occurrences of variables bound? By which abstractions are they
-    bound respectively?
-    \item Give $\FV{\lambd[x][(\lambd[y][(\lambd[z][x y]) z]) y]}$
+  \item 指出此项中 $\lambd[g]$ 和两个 $\lambd[x]$ 的作用域：$\lambd[g][(\lambd[x][g (x x)]) \lambd[x][g (x x)]]$。
+  \item 在$\lambd[g][(\lambd[x][g (x x)]) \lambd[x][g (x x)]]$中，所有变元的出现都是被约束的吗？它们分别被哪些抽象约束？
+    \item 给出$\FV{\lambd[x][(\lambd[y][(\lambd[z][x y]) z]) y]}$
   \end{enumerate}
 \end{prob}
 
 \begin{explain}
-A free variable is like a reference to the outside world (the
-\emph{environment}), and a term containing free variables can be seen
-as a partially specified term, since its behaviour depends on how we
-set up the environment. For example, in the term $\lambd[x][f x]$, which
-accepts an argument~$x$ and returns $f$ of that argument, the
-variable~$f$ is free. This value of the term is dependent on the
-environment it is in, in particular the value of $f$ in that
-environment.
+自由变元就像是对外部世界（即\emph{环境}）的引用，
+一个包含自由变元的项可以看作是一个部分规定的项，
+因为它的行为取决于我们如何设置环境。
+例如，在项 $\lambd[x][f x]$ 中，它接受一个自变元~$x$ 并返回该自变元的 $f$ 值，
+此时变元~$f$ 是自由的。
+这个项的值依赖于它所处的环境，特别是该环境中 $f$ 的值。
 
-If we apply abstraction to this term, we get $\lambd[f][\lambd[x][f
-    x]]$. This term is no longer dependent on the environment variable
-$f$, because it now designates a function that accepts two arguments
-and returns the result of applying the first to the second. Changing
-$f$ in the environment won't have any effect on the behavior of this
-term, as the term will only use whatever is passed as an argument, and
-not the value of $f$ in the environment.
+如果我们对此项再作一次抽象，就得到$\lambd[f][\lambd[x][f
+    x]]$。
+这个项不再依赖于环境变元 $f$，因为它现在指称一个接受两个自变元并返回将第一个应用于第二个之结果的函数。
+改变环境中的 $f$ 不会对这个项的行为产生任何影响，因为这个项只会使用任何作为自变元传入的对象，而不会使用环境中 $f$ 的值。
 \end{explain}
 
-\begin{defn}[Closed term, combinator]
-  A term with no free variables is called a \emph{closed term}, or a
-  \emph{combinator}.
+\begin{defn}[闭项，组合子]
+  没有自由变元的项称为\emph{闭项}，或\emph{组合子}。
 \end{defn}
 
 \begin{lem}\ollabel{lem:fv}
   \begin{enumerate}
-    \item \ollabel{lem:fv-abs} If $y \neq x$, then $y \in
-      \FV{\lambd[x][N]}$ iff $y \in \FV{N}$.
-    \item \ollabel{lem:fv-app} $y \in \FV{PQ}$ iff $y \in \FV{P}$ or $y
-      \in \FV{Q}$.
+    \item \ollabel{lem:fv-abs} 若 $y \neq x$，则$y \in
+      \FV{\lambd[x][N]}$。
+    \item \ollabel{lem:fv-app} $y \in \FV{PQ}$ 当且仅当 $y \in \FV{P}$ 或 $y \in \FV{Q}$。
     \end{enumerate}
 \end{lem}
 
 \begin{proof}
-  Exercise.
+  练习。
 \end{proof}
 
 \begin{prob}
-  Prove \olref[lam][syn][fv]{lem:fv}.
+  证明 \olref[lam][syn][fv]{lem:fv}。
 \end{prob}
 
 \end{document}

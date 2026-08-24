@@ -10,161 +10,56 @@
       {\olfileid{fol}{com}{out}}
       {\olfileid{pl}{com}{out}}
 
-\olsection{Outline of the Proof}
+\olsection{证明概要}
 
-The proof of the completeness theorem is a bit complex, and upon first
-reading it, it is easy to get lost.  So let us outline the proof.  The
-first step is a shift of perspective, that allows us to see a route to
-a proof.  When completeness is thought of as ``whenever $\Gamma
-\Entails !A$ then $\Gamma \Proves !A$,'' it may be hard to even come
-up with an idea: for to show that $\Gamma \Proves !A$ we have to find
-!!a{derivation}, and it does not look like the hypothesis that
-$\Gamma \Entails !A$ helps us for this in any way.  For some proof
-systems it is possible to directly construct !!a{derivation}, but we
-will take a slightly different approach.  The shift in perspective
-required is this: completeness can also be formulated as: ``if
-$\Gamma$ is consistent, it is satisfiable.''  Perhaps we can use the
-information in~$\Gamma$ together with the hypothesis that it is
-consistent to construct \iftag{FOL}{!!a{structure}}{!!a{valuation}}
-that satisfies every \iftag{FOL}{!!{sentence}}{!!{formula}}
-in~$\Gamma$.  After all, we know
-what kind of \iftag{FOL}{!!{structure}}{!!{valuation}} we are looking
-for: one that is as $\Gamma$ describes it!{}
+完备性定理的证明有些复杂，初次阅读时很容易迷失方向。因此我们先概述该证明的思路。第一步是视角的转换，它使我们看到证明的途径。当我们将完备性理解为“每当 $\Gamma \Entails !A$ 时就有 $\Gamma \Proves !A$”时，甚至可能很难想出思路：因为要证明 $\Gamma \Proves !A$，我们必须找到一个推导，而假设 $\Gamma \Entails !A$ 看起来对此并无任何帮助。对于某些证明系统，或许可以直接构造出一个推导，但我们将采取一种略有不同的方法。所需的视角转换在于：完备性也可以表述为：“如果 $\Gamma$ 是一致的，那么它是可满足的。”也许我们可以利用 $\Gamma$ 中的信息，加上它是一致的这一假设，来构造一个满足 $\Gamma$ 中所有\iftag{FOL}{语句}{公式}的\iftag{FOL}{结构}{赋值}。毕竟，我们知道我们寻找的是何种\iftag{FOL}{结构}{赋值}：正是 $\Gamma$ 所描述的那种！
 
-If $\Gamma$ contains only \iftag{FOL}{atomic
-  !!{sentence}s}{!!{propositional variable}s}, it is easy to construct
-a model for it.\iftag{FOL}{ Suppose the atomic !!{sentence}s are all
-  of the form $\Atom{P}{a_1,\dots,a_n}$ where the $a_i$ are
-  !!{constant}s.}{} All we have to do is come up with
-\iftag{FOL}{%
-  !!a{domain}~$\Domain{M}$ and an assignment for~$P$ so that
-  $\Sat{M}{\Atom{P}{a_1,\ldots,a_n}}$. But that's not very hard:
-  put $\Domain{M} = \Nat$, $\Assign{\Obj c_i}{M} = i$, and for every
-  $\Atom{P}{a_1,\ldots,a_n} \in \Gamma$, put the tuple $\tuple{k_1,
-    \dots, k_n}$ into $\Assign{P}{M}$, where $k_i$ is the index of the
-  constant symbol~$a_i$ (i.e., $a_i \ident \Obj c_{k_i}$).}{%
-  !!a{valuation}~$\pAssign{v}$ such that $\pSat{v}{p}$ for all $p \in
-  \Gamma$. Well, let $\pAssign{v}(p) = \True$ iff $p \in \Gamma$.}
+如果 $\Gamma$ 只包含\iftag{FOL}{原子语句}{命题变元}，那么为它构造一个模型是容易的。\iftag{FOL}{假设原子语句都具有 $\Atom{P}{a_1,\dots,a_n}$ 的形式，其中 $a_i$ 是常项符号。}{}我们需要做的只是给出\iftag{FOL}{%
+  一个论域 $\Domain{M}$ 以及对 $P$ 的一个指派，使得 $\Sat{M}{\Atom{P}{a_1,\ldots,a_n}}$。但这并不难：
+  令 $\Domain{M} = \Nat$，$\Assign{\Obj c_i}{M} = i$，并且对于每个 $\Atom{P}{a_1,\ldots,a_n} \in \Gamma$，将有序组 $\tuple{k_1,
+    \dots, k_n}$ 放入 $\Assign{P}{M}$，其中 $k_i$ 是常项符号 $a_i$ 的指标（即 $a_i \ident \Obj c_{k_i}$）。}{%
+  一个赋值 $\pAssign{v}$，使得对所有 $p \in \Gamma$ 都有 $\pSat{v}{p}$。只需令 $\pAssign{v}(p) = \True$ 当且仅当 $p \in \Gamma$。}
 
-Now suppose $\Gamma$ contains some !!{formula}~$\lnot !B$, with $!B$
-atomic.  We might worry that the construction of
-$\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ interferes with the possibility
-of making $\lnot !B$ true.  But here's where the consistency
-of~$\Gamma$ comes in: if $\lnot !B \in \Gamma$, then $!B \notin
-\Gamma$, or else $\Gamma$ would be inconsistent.  And if $!B \notin
-\Gamma$, then according to our construction
-of~$\iftag{FOL}{\Struct{M}}{\pAssign{v}}$,
-$\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!B}$, so
-$\iftag{FOL}{\Sat{M}}{\pSat{v}}{\lnot !B}$.  So far so good.
+现在假设 $\Gamma$ 包含某个形如 $\lnot !B$ 的公式，其中 $!B$ 是原子公式。我们可能会担心，对 $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ 的构造会干扰使 $\lnot !B$ 为真的可能性。但此时 $\Gamma$ 的一致性便派上了用场：如果 $\lnot !B \in \Gamma$，那么 $!B \notin \Gamma$，否则 $\Gamma$ 就会不一致。而如果 $!B \notin \Gamma$，那么根据我们对 $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ 的构造，$\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!B}$，所以 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\lnot !B}$。至此并无问题。
 
-What if $\Gamma$ contains complex, non-atomic formulas? Say it
-contains $!A \land !B$. To make that true, we should proceed as if
-both $!A$ and $!B$ were in~$\Gamma$.  And if $!A \lor !B \in \Gamma$,
-then we will have to make at least one of them true, i.e., proceed as
-if one of them was in~$\Gamma$.
+如果 $\Gamma$ 包含复杂的非原子公式呢？比如说，它包含 $!A \land !B$。要使该公式为真，我们应当像 $!A$ 和 $!B$ 都属于 $\Gamma$ 那样继续构造。而如果 $!A \lor !B \in \Gamma$，那么我们必须使其中至少一个为真，即像其中之一属于 $\Gamma$ 那样继续构造。
 
-This suggests the following idea: we add additional !!{formula}s
-to~$\Gamma$ so as to (a)~keep the resulting set consistent and
-(b)~make sure that for every possible atomic !!{sentence}~$!A$, either
-$!A$ is in the resulting set, or $\lnot !A$ is, and (c)~such that,
-whenever $!A \land !B$ is in the set, so are both $!A$ and $!B$, if
-$!A \lor !B$ is in the set, at least one of $!A$ or $!B$ is also, etc.
-We keep doing this (potentially forever).  Call the set of all
-!!{formula}s so added~$\Gamma^*$.  Then our construction above would
-provide us with \iftag{FOL}{!!a{structure}~$\Struct{M}$}{!!a{valuation}~$\pAssign{v}$}
-for which we could prove, by induction, that it satisfies all sentences
-in~$\Gamma^*$, and hence also all sentence in~$\Gamma$
-since $\Gamma \subseteq \Gamma^*$.  It turns out that guaranteeing (a)
-and~(b) is enough. A set of sentences for which (b) holds is called
-\emph{complete}. So our task will be to extend the consistent
-set~$\Gamma$ to a consistent and complete set~$\Gamma^*$.
+这启示了如下思路：我们向 $\Gamma$ 中添加额外的公式，以使所得集合能够 保持一致； 确保对于每个可能的原子语句 $!A$，要么 $!A$，要么 $\lnot !A$ 属于该集合； 使得每当 $!A \land !B$ 属于该集合时，$!A$ 和 $!B$ 也均属于它，且当 $!A \lor !B$ 属于该集合时，$!A$ 或 $!B$ 中至少有一个也属于它，等等。我们持续进行这一过程（可能无限进行下去）。将如此添加的所有公式构成的集合称为 $\Gamma^*$。那么，我们上面的构造就会给出一个\iftag{FOL}{结构 $\Struct{M}$}{赋值 $\pAssign{v}$}，通过归纳法可证明它满足 $\Gamma^*$ 中的所有语句，从而由于 $\Gamma \subseteq \Gamma^*$，也满足 $\Gamma$ 中的所有语句。事实证明，保证和就足够了。一个满足的语句集合被称为\emph{完备的}。所以我们的任务将是把一致集合 $\Gamma$ 扩展成一个一致且完备的集合 $\Gamma^*$。
 
 \iftag{FOL}{%
-There is one wrinkle in this plan: if $\lexists[x][!A(x)] \in \Gamma$
-we would hope to be able to pick some !!{constant}~$c$ and add $!A(c)$
-in this process.  But how do we know we can always do that?  Perhaps we
-only have a few !!{constant}s in our language, and for each one of
-them we have $\lnot !A(c) \in \Gamma$.  We can't also add $!A(c)$,
-since this would make the set inconsistent, and we wouldn't know
-whether $\Struct{M}$ has to make $!A(c)$ or $\lnot !A(c)$ true.
-Moreover, it might happen that $\Gamma$ contains only sentences in a
-language that has no constant symbols at all (e.g., the language of
-set theory).
+这个计划中有一个难点：如果 $\lexists[x][!A(x)] \in \Gamma$，我们本希望能选取某个常项符号~$c$ 并在此过程中加入 $!A(c)$。但我们怎么知道总能这样做呢？也许我们的语言中只有极少数常项符号，并且对它们中的每一个，都有 $\lnot !A(c) \in \Gamma$。此时就不能再加入 $!A(c)$ 了，因为那会使集合不一致，且我们也无从判断 $\Struct{M}$ 究竟应该使 $!A(c)$ 为真还是使 $\lnot !A(c)$ 为真。此外，$\Gamma$ 包含的语句也可能属于一个根本没有常项符号的语言（例如集合论的语言）。
 
-The solution to this problem is to simply add infinitely many
-constants at the beginning, plus sentences that connect them with the
-quantifiers in the right way.  (Of course, we have to verify that this
-cannot introduce an inconsistency.)
+这个问题的解决方案是，一开始就直接加入无穷多个常项，并添加一些语句，以正确的方式将这些常项与量词联系起来。（当然，我们必须验证这样做不会引入不一致性。）
 
-Our original construction works well if we only have !!{constant}s in
-the atomic sentences.  But the language might also contain
-!!{function}s.  In that case, it might be tricky to find the right
-functions on~$\Nat$ to assign to these !!{function}s to make
-everything work.  So here's another trick: instead of using $i$ to
-interpret $\Obj c_i$, just take the set of !!{constant}s itself as the
-domain.  Then $\Struct M$ can assign every !!{constant} to itself:
-$\Assign{\Obj c_i}{M} = \Obj c_i$.  But why not go all the way: let
-$\Domain{M}$ be all \emph{terms} of the language!{} If we do this,
-there is an obvious assignment of functions (that take terms as
-arguments and have terms as values) to !!{function}s: we assign to the
-!!{function}~$\Obj f^n_i$ the function which, given $n$ terms $t_1$,
-\dots,~$t_n$ as input, produces the term $\Obj f^n_i(t_1, \dots, t_n)$
-as value.
+如果我们仅仅在原子语句中用到常项符号，那么原先的构造是可行的。但语言也可能包含函数符号。那样的话，要找到合适的、定义在~$\Nat$ 上的函数来指派给这些函数符号，以确保一切按预期运作，可能会很棘手。所以，这里还有另一个技巧：不再用 $i$ 来解释 $\Obj c_i$，而是直接把常项符号的集合当作论域。这样一来，$\Struct M$ 就可以把每个常项符号指派给它自身：$\Assign{\Obj c_i}{M} = \Obj c_i$。但为何不更彻底一些：让 $\Domain{M}$ 是语言中所有的\emph{项}呢！如果我们这样做，那么为函数符号指派函数（这些函数以项为自变元，值也是项）就有了一个显而易见的方式：我们指派给函数符号~$\Obj f^n_i$ 这样一个函数，它以 $n$ 个项 $t_1$，……，$t_n$ 为输入，输出项 $\Obj f^n_i(t_1, \dots, t_n)$ 作为值。
 
-The last piece of the puzzle is what to do with~$\eq$.  The
-!!{predicate}~$\eq$ has a fixed interpretation: $\Sat{M}{\eq[t][t']}$
-iff $\Value{t}{M} = \Value{t'}{M}$.  Now if we set things up so that the
-!!{value} of a term~$t$ is $t$ itself, then this !!{structure}
-will make \emph{no} sentence of the form $\eq[t][t']$ true
-unless $t$ and $t'$ are one and the same term.  And of
-course this is a problem, since basically every interesting theory in
-a language with !!{function}s will have as theorems sentences
-$\eq[t][t']$ where $t$ and $t'$ are not the same term (e.g., in
-theories of arithmetic: $\eq[(\Obj 0+ \Obj 0)][\Obj 0]$).  To solve
-this problem, we change the domain of~$\Struct M$: instead of using terms as
-the objects in~$\Domain{M}$, we use sets of terms, and each set is so
-that it contains all those terms which the sentences in~$\Gamma$
-require to be equal.  So, e.g., if $\Gamma$ is a theory of arithmetic,
-one of these sets will contain: $\Obj 0$, $(\Obj 0 + \Obj 0)$, $(\Obj
-0 \times \Obj 0)$, etc.  This will be the set we assign to $\Obj 0$,
-and it will turn out that this set is also the value of all the terms
-in it, e.g., also of $(\Obj 0 + \Obj 0)$.  Therefore, the sentence
-$\eq[(\Obj 0+ \Obj 0)][\Obj 0]$ will be true in this revised
-!!{structure}.}{}
+最后剩下的难题是如何处理~$\eq$。谓词符号~$\eq$ 有一个固定的解释：$\Sat{M}{\eq[t][t']}$ 当且仅当 $\Value{t}{M} = \Value{t'}{M}$。现在，如果我们让一个项~$t$ 的值就是 $t$ 本身，那么这种结构将使得形如 $\eq[t][t']$ 的语句\emph{无一}为真，除非 $t$ 和 $t'$ 是同一个项。这显然是个问题，因为基本上在带函数符号的语言中，任何有趣的理论都会把某些 $t$ 和 $t'$ 不是相同项的 $\eq[t][t']$ 当作定理（例如，在算术理论中：$\eq[(\Obj 0+ \Obj 0)][\Obj 0]$）。为了解决这个问题，我们修改~$\Struct M$ 的论域：不再用单个的项作为~$\Domain{M}$ 中的对象，而是用项的集合，并且每个集合都包含所有那些被~$\Gamma$ 中的语句要求相等的项。例如，如果 $\Gamma$ 是一个算术理论，那么这些集合中就会有一个包含：$\Obj 0$、$(\Obj 0 + \Obj 0)$、$(\Obj 0 \times \Obj 0)$，等等。这个集合就是我们将指派给 $\Obj 0$ 的集合，并且可以证明，这个集合同时也是其中所有项（例如也包括 $(\Obj 0 + \Obj 0)$）的值。因此，语句 $\eq[(\Obj 0+ \Obj 0)][\Obj 0]$ 在这个修改后的结构中将为真。}{}
 
-So here's what we'll do. First we investigate the properties of
-!!{complete} consistent sets, in particular we prove that
-!!a{complete} consistent set contains $!A \land !B$ iff it contains
-both $!A$ and~$!B$, $!A \lor !B$ iff it contains at least one of them,
-etc. (\olref[ccs]{prop:ccs}).\iftag{FOL}{ Then we define and
-  investigate ``saturated'' sets of sentences. A saturated set is one
-  which contains conditionals that link each quantified !!{sentence}
-  to instances of it (\olref[hen]{defn:henkin-exp}). We show that any
-  consistent set~$\Gamma$ can always be extended to a saturated
-  set~$\Gamma'$ (\olref[hen]{lem:henkin}). If a set is consistent,
-  saturated, and !!{complete} it also has the property that it
-  contains \iftag{prvEx}{$\lexists[x][!A(x)]$ iff it contains $!A(t)$
-    for some closed term~$t$}{}\iftag{defEx,defAll}{}{ and
-  }\iftag{prvAll}{$\lforall[x][!A(x)]$ iff it contains $!A(t)$ for all
-    closed terms~$t$}{} (\olref[hen]{prop:saturated-instances}).}{}
-We'll then take the\iftag{FOL}{ saturated}{} consistent
-set~$\iftag{FOL}{\Gamma'}{\Gamma}$ and show that it can be extended
-to a \iftag{FOL}{saturated, consistent, and}{consistent and}
-!!{complete} set~$\Gamma^*$ (\olref[lin]{lem:lindenbaum}). This set
-$\Gamma^*$ is what we'll use to define our \iftag{FOL}{term
-  model~$\Struct M(\Gamma^*)$}{!!{valuation}~$\pAssign v(\Gamma^*)$}.
-\iftag{FOL}{The term model has the set of closed terms as its domain,
-  and the interpretation of its !!{predicate}s is given by the atomic
-  !!{sentence}s}{The valuation is determined by the !!{propositional
-    variable}s} in~$\Gamma^*$ (\olref[mod]{defn:termmodel}).  We'll
-use the properties of\iftag{FOL}{ saturated,}{} complete consistent
-sets to show that indeed
-$\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{!A}$ iff $!A \in
-\Gamma^*$ (\olref[mod]{lem:truth}), and thus in particular,
-$\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{\Gamma}$.
-\iftag{FOL}{Finally, we'll consider how to define a term model if
-  $\Gamma$ contains~$\eq$ as well
-  (\olref[ide]{defn:term-model-factor}) and show that it
-  satisfies~$\Gamma^*$ (\olref[ide]{lem:truth}).}{}
+那么，我们要做的是：首先研究完备一致集的性质，
+特别地，我们将证明，一个完备一致集包含 $!A \land !B$ 当且仅当它同时包含
+$!A$ 和~$!B$，包含 $!A \lor !B$ 当且仅当它包含二者中至少一个，等等
+（\olref[ccs]{prop:ccs}）。\iftag{FOL}{接着我们定义并研究语句的“饱和”集。
+一个饱和集包含连接每个量化语句与其实例的条件句
+（\olref[hen]{defn:henkin-exp}）。
+我们证明任何一致集~$\Gamma$ 总可以扩充为一个饱和集~$\Gamma'$
+（\olref[hen]{lem:henkin}）。
+如果一个集合是一致的、饱和的并且是完备的，那么它还具有如下性质：
+它包含 \iftag{prvEx}{$\lexists[x][!A(x)]$ 当且仅当它包含某个闭项~$t$ 的 $!A(t)$}{}\iftag{defEx,defAll}{}{ 并且 }
+\iftag{prvAll}{$\lforall[x][!A(x)]$ 当且仅当它对所有闭项~$t$ 都包含 $!A(t)$}{}
+（\olref[hen]{prop:saturated-instances}）。}{}
+然后，我们取那个\iftag{FOL}{ 饱和}{}一致集~$\iftag{FOL}{\Gamma'}{\Gamma}$，并证明它可以扩充为
+一个\iftag{FOL}{ 饱和、一致且}{ 一致且}完备的集~$\Gamma^*$
+（\olref[lin]{lem:lindenbaum}）。
+这个集合 $\Gamma^*$ 将用来定义我们的
+\iftag{FOL}{项模型~$\Struct M(\Gamma^*)$}{赋值~$\pAssign v(\Gamma^*)$}。
+\iftag{FOL}{项模型以所有闭项的集合作为其论域，其谓词符号的解释由
+$\Gamma^*$ 中的原子语句给出}{赋值由 $\Gamma^*$ 中的命题变元确定}
+（\olref[mod]{defn:termmodel}）。
+我们将利用\iftag{FOL}{ 饱和、}{}完备一致集的性质来证明，
+确实有$\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{!A}$ 当且仅当 $!A \in \Gamma^*$（\olref[mod]{lem:truth}），
+因此特别地，$\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{\Gamma}$。
+\iftag{FOL}{最后，我们将考虑如果 $\Gamma$ 还包含~$\eq$，应如何定义项模型
+（\olref[ide]{defn:term-model-factor}），并证明它满足~$\Gamma^*$
+（\olref[ide]{lem:truth}）。}{}
 
 \end{document}

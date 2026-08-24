@@ -8,27 +8,27 @@
 
 \begin{table}
 \begin{tabular}{@{}c@{}c@{}}
-\multicolumn{2}{@{}c@{}}{Axioms}\\[2ex]
+\multicolumn{2}{@{}c@{}}{公理}\\[2ex]
 $!A \Sequent !A$ & $\lfalse \Sequent \quad$
 \\[2ex]
-\multicolumn{2}{@{}c@{}}{Structural Rules}\\[2ex]
+\multicolumn{2}{@{}c@{}}{结构规则}\\[2ex]
 \Axiom$ \Gamma \fCenter \Delta $
-\RightLabel{\LeftR{\Weakening}}
+\RightLabel{\LeftR{弱化}}
 \UnaryInf$ !A, \Gamma \fCenter \Delta$
 \DisplayProof
 &
 \Axiom$ \Gamma \fCenter $
-\RightLabel{\RightR{\Weakening}}
+\RightLabel{\RightR{弱化}}
 \UnaryInf$ \Gamma \fCenter !A$
 \DisplayProof
 \\[4ex]
 \Axiom$ !A, !A, \Gamma \fCenter \Delta $
-\RightLabel{\LeftR{\Contraction}}
+\RightLabel{\LeftR{收缩}}
 \UnaryInf$ !A, \Gamma \fCenter \Delta$
 \DisplayProof
 &
 \\[4ex]
-\multicolumn{2}{@{}c@{}}{Logical Rules}\\[2ex]
+\multicolumn{2}{@{}c@{}}{逻辑规则}\\[2ex]
 \Axiom$ \Gamma \fCenter !A $
 \RightLabel{\LeftR{\lnot}}
 \UnaryInf$ \lnot !A, \Gamma \fCenter $
@@ -104,13 +104,7 @@ $!A \Sequent !A$ & $\lfalse \Sequent \quad$
 \UnaryInf$ \Gamma \fCenter \lexists[x][!A(x)]$
 \DisplayProof
 \end{tabular}
-\caption{Rules of \Log{G1i} for intuitionistic logic. In
-$\RightR{\forall}$ and $\LeftR{\exists}$, the !!{constant}~$a$ must
-not occur in the conclusion sequent. $\Gamma$ is a multisets of
-!!{formula}s, and $\Delta$ may be empty or contain a single
-!!{formula}. There is no \RightR{\Contraction} rule. \Log{G1m} is
-\Log{G1i} without~\RightR{\Weakening} and without axioms $\lfalse,
-\Gamma \Sequent \Delta$.}
+\caption{直觉主义逻辑的 \Log{G1i} 规则。在 $\RightR{\forall}$ 和 $\LeftR{\exists}$ 规则中，常项符号~$a$ 不得出现在结论相继式中。$\Gamma$ 是公式的多重集，$\Delta$ 可以为空或包含单个公式。没有 \RightR{收缩} 规则。\Log{G1m} 是去掉 \RightR{弱化} 规则和形如 $\lfalse, \Gamma \Sequent \Delta$ 的公理的 \Log{G1i} 系统。}
 \ollabel{tab:G1i}
 \end{table}
 

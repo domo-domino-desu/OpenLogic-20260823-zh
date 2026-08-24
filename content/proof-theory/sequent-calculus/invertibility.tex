@@ -8,99 +8,62 @@
 
 \olfileid{pt}{seq}{inv}
 
-\olsection{Invertibility of Rules}
+\olsection{规则的可逆性}
 
 \begin{defn}
-A rule~$R$,
-\[
+规则~$R$\[
 \AxiomC{$S_1$}
 \AxiomC{$\dots$}
 \AxiomC{$S_n$}
 \RightLabel{$R$}
 \TrinaryInfC{$S$}
 \DisplayProof
-\]
-is \emph{invertible} in a system if, whenever $\Proves S$ then
-$\Proves[h_i] S_i$ for $i = 1$, \dots,~$n$. It is
-\emph{!!{height}-preserving invertible} (or \emph{!!{hp}-invertible})
-in a system if, whenever $\Proves_n S$ then $\Proves[n] S_i$ for $i =
-1$, \dots,~$n$.
+\]在系统中是\emph{可逆的}，若每当 $\Proves S$ 便有 $\Proves[h_i] S_i$（$i = 1$, \dots,~$n$）。它在系统中是\emph{高度保持可逆的}（或称\emph{hp-可逆的}），若每当 $\Proves_n S$ 便有 $\Proves[n] S_i$（$i = 1$, \dots,~$n$）。
 \end{defn}
 
 \begin{lem}\ollabel{lem:G3c-invert}
-The rules of~\Log{G3c} for $\lnot$, $\land$, $\lor$, and $\lif$ are
-!!{height}-preserving invertible, that is:
+对于 $\lnot$、$\land$、$\lor$ 和 $\lif$，\Log{G3c} 的规则是高度保持可逆的，即：
 \begin{enumerate}
-  \item \RightR{\lnot}: If $\Log{G3c} \Proves[n] \Gamma \Sequent
-  \Delta, \lnot !A$, then $\Log{G3c} \Proves[n] !A, \Gamma \Sequent
-  \Delta$.
-  \item \LeftR{\lnot}: If $\Log{G3c} \Proves[n] \Gamma, \lnot !A
-  \Sequent \Delta$, then $\Log{G3c} \Proves[n] \Gamma \Sequent \Delta,
-  !A$.
-  \item \RightR{\land}: If $\Log{G3c} \Proves[n] \Gamma \Sequent
-  \Delta, !A \land !B$, then $\Log{G3c} \Proves[n] \Gamma \Sequent
-  \Delta, !A$ and $\Log{G3c} \Proves[n] \Gamma \Sequent
-  \Delta, !B$.
-  \item \LeftR{\land}: If $\Log{G3c} \Proves[n] \Gamma, !A \land !B
-  \Sequent \Delta$, then $\Log{G3c} \Proves[n] !A, !B, \Gamma \Sequent
-  \Delta$.
-  \item \RightR{\lor}: If $\Log{G3c} \Proves[n] \Gamma \Sequent
-  \Delta, !A \lor !B$, then $\Log{G3c} \Proves[n] \Gamma \Sequent
-  \Delta, !A, !B$.
-  \item \LeftR{\lor}: If $\Log{G3c} \Proves[n] !A \lor !B, \Gamma \Sequent
-  \Delta$, then $\Log{G3c} \Proves[n] !A, \Gamma \Sequent
-  \Delta$ and $\Log{G3c} \Proves[n] !B, \Gamma \Sequent
-  \Delta$.
-  \item \RightR{\lif}: If $\Log{G3c} \Proves[n] \Gamma \Sequent
-  \Delta, !A \lif !B$, then $\Log{G3c} \Proves[n] !A, \Gamma \Sequent
-  \Delta, !B$.
-  \item \LeftR{\lif}: If $\Log{G3c} \Proves[n] !A \lif !B, \Gamma
-  \Sequent \Delta$, then $\Log{G3c} \Proves[n] \Gamma \Sequent \Delta,
-  !A$ and $\Log{G3c} \Proves[n] !B, \Gamma \Sequent \Delta$.
+  \item \RightR{\lnot}: 若 $\Log{G3c} \Proves[n] \Gamma \Sequent
+  \Delta, \lnot !A$，则 $\Log{G3c} \Proves[n] !A, \Gamma \Sequent
+  \Delta$。
+  \item \LeftR{\lnot}: 若 $\Log{G3c} \Proves[n] \Gamma, \lnot !A
+  \Sequent \Delta$，则 $\Log{G3c} \Proves[n] \Gamma \Sequent \Delta,
+  !A$。
+  \item \RightR{\land}: 若 $\Log{G3c} \Proves[n] \Gamma \Sequent
+  \Delta, !A \land !B$，则 $\Log{G3c} \Proves[n] \Gamma \Sequent
+  \Delta, !A$ 且 $\Log{G3c} \Proves[n] \Gamma \Sequent
+  \Delta, !B$。
+  \item \LeftR{\land}: 若 $\Log{G3c} \Proves[n] \Gamma, !A \land !B
+  \Sequent \Delta$，则 $\Log{G3c} \Proves[n] !A, !B, \Gamma \Sequent
+  \Delta$。
+  \item \RightR{\lor}: 若 $\Log{G3c} \Proves[n] \Gamma \Sequent
+  \Delta, !A \lor !B$，则 $\Log{G3c} \Proves[n] \Gamma \Sequent
+  \Delta, !A, !B$。
+  \item \LeftR{\lor}: 若 $\Log{G3c} \Proves[n] !A \lor !B, \Gamma \Sequent
+  \Delta$，则 $\Log{G3c} \Proves[n] !A, \Gamma \Sequent
+  \Delta$ 且 $\Log{G3c} \Proves[n] !B, \Gamma \Sequent
+  \Delta$。
+  \item \RightR{\lif}: 若 $\Log{G3c} \Proves[n] \Gamma \Sequent
+  \Delta, !A \lif !B$，则 $\Log{G3c} \Proves[n] !A, \Gamma \Sequent
+  \Delta, !B$。
+  \item \LeftR{\lif}: 若 $\Log{G3c} \Proves[n] !A \lif !B, \Gamma
+  \Sequent \Delta$，则 $\Log{G3c} \Proves[n] \Gamma \Sequent \Delta,
+  !A$ 且 $\Log{G3c} \Proves[n] !B, \Gamma \Sequent \Delta$。
 \end{enumerate}
 \end{lem}
 
 \begin{proof}
-We have to show that, for any rule~$R$ of~\Log{G3c}, if there is
-!!a{proof}~$\pi$ of the conclusion~$S$ of~$R$, then there are also
-!!{proof}s~$\pi_i$ of the premises $S_i$ of~$R$, with $\pheight{\pi_i}
-\le \pheight{\pi}$. Consider the rule \LeftR{\land}: suppose there is
-!!a{proof}~$\pi$ with end-sequent of the form $!A \land !B, \Gamma
-\Sequent \Delta$. We have to show that there is !!a{proof} $\pi'$ of
-$!A, !B, \Gamma \Sequent \Delta$ with $\pheight{\pi'} \le
-\pheight{\pi}$. We do this by induction on $n = \pheight{\pi}$.
+我们需要证明，对于 \Log{G3c} 的任一规则~$R$，若 $R$ 的结论~$S$ 存在一个推导~$\pi$，则 $R$ 的各前提 $S_i$ 也存在推导~$\pi_i$，且满足 $\pheight{\pi_i}
+\le \pheight{\pi}$。以规则 \LeftR{\land} 为例：假设存在推导~$\pi$，其末相继式形如 $!A \land !B, \Gamma \Sequent \Delta$。我们需证明存在一个推导 $\pi'$ 使得 $!A, !B, \Gamma \Sequent \Delta$ 且 $\pheight{\pi'} \le \pheight{\pi}$。我们对 $n = \pheight{\pi}$ 进行归纳。
 
-If $n = 0$, $\pi$ consists of just an axiom: $!A \land !B, \Gamma
-\Sequent \Delta$. In \Log{G3c}, axioms are of the form $!C, \Gamma
-\Sequent \Delta, !C$ with $!C$ atomic. In other words, $!C$ can't be
-$!A \land !B$. If $!A \land !B, \Gamma \Sequent \Delta$ is an axiom,
-then some atomic $!C$ must be !!a{element} of both $\Gamma$
-and~$\Delta$. But then $!A, !B, \Gamma \Sequent \Delta$ is also an
-axiom, and we have found our !!{proof}~$\pi'$ (which is also of
-!!{height}~$0$).
+若 $n = 0$，则 $\pi$ 仅由一条公理组成：$!A \land !B, \Gamma \Sequent \Delta$。在 \Log{G3c} 中，公理形如 $!C, \Gamma \Sequent \Delta, !C$，其中 $!C$ 是原子公式。换言之，$!C$ 不可能是 $!A \land !B$。若 $!A \land !B, \Gamma \Sequent \Delta$ 是公理，则某个原子公式 $!C$ 必定同时属于 $\Gamma$ 和~$\Delta$。那么 $!A, !B, \Gamma \Sequent \Delta$ 也是一个公理，于是我们找到了所需的推导~$\pi'$（其高度也为~$0$）。
 
-If $n>0$ it ends in an inference. We have to prove the claim for~$n$,
-but may assume that it is true for any !!{proof} of height~$<n$, even
-if the context is different. In other words, for any $k<n$ and any
-$\Pi$ and $\Lambda$, if $!A \land !B, \Pi \Sequent \Lambda$ has
-!!a{proof} of !!{height}~$k$, then there is !!a{proof} of
-!!{height}~$\le k$ of $!A, !B, \Pi \Sequent \Lambda$.
+若 $n>0$，则 $\pi$ 的最后一步是一个推理。我们要证明断言对~$n$ 成立，但可归纳假设它对任何高度 $<n$ 的推导成立，即使上下文不同。换句话说，对任意 $k<n$ 以及任意 $\Pi$ 和 $\Lambda$，若 $!A \land !B, \Pi \Sequent \Lambda$ 有一个高度为~$k$ 的推导，则 $!A, !B, \Pi \Sequent \Lambda$ 有一个高度 $\le k$ 的推导。
 
-We have two cases: either $!A \land
-!B$ on the left is principal, or it is not. If it is principal, the
-last inference is \LeftR{\land} and the immediate
-sub-!!{proof}~$\pi_1$ ends in $!A, !B, \Gamma \Sequent \Delta$. The
-result holds in this case as $\pheight{\pi_1} < \pheight{\pi}$.
+我们分两种情况考虑：要么左侧的 $!A \land !B$ 是主公式，要么不是。如果它是主公式，则最后一步推理是 \LeftR{\land}，且其直接子推导~$\pi_1$ 以 $!A, !B, \Gamma \Sequent \Delta$ 结束。此时结论成立，因为 $\pheight{\pi_1} < \pheight{\pi}$。
 
-If $!A \land !B$ is not principal, some other !!{formula} is and $!A
-\land !B$ belongs to the context of the last inference. Then the
-inductive hypothesis applies to the immediate sub-!!{proof}s of the
-last rule~$R$, which yields !!a{proof}~$\pi_1'$ or two
-!!{proof}s~$\pi_1'$ and~$\pi_2'$ of !!{height} no greater than the
-height(s) of the immediate sub-!!{proof}s of~$\pi$. The end-sequents
-of $\pi_1'$ and $\pi_2'$ contain $!A, !B$ in the context on the left
-instead of $!A \land !B$. Apply the rule~$R$ to obtain the
-proof~$\pi'$. For instance, suppose $\pi$ ends in~\LeftR{\lif}:
+如果 $!A \land !B$ 不是主公式，则必有其他某个公式是主公式，而 $!A \land !B$ 属于最后一步推理的上下文。那么归纳假设可应用于最后一条规则~$R$ 的直接子推导，从而得到一个推导~$\pi_1'$（或两个推导~$\pi_1'$ 和~$\pi_2'$），它们的高度不大于~$\pi$ 的直接子推导的高度。$\pi_1'$ 和 $\pi_2'$ 的末相继式中，左侧上下文包含的是 $!A, !B$ 而非 $!A \land !B$。应用规则~$R$ 即可得到推导~$\pi'$。例如，假设 $\pi$ 结束于 \LeftR{\lif}：
 \[
 \AxiomC{}
 \RightLabel{$\pi_1$}
@@ -112,12 +75,8 @@ proof~$\pi'$. For instance, suppose $\pi$ ends in~\LeftR{\lif}:
 \BinaryInf$!A \land !B, \Gamma', !C \lif !D \fCenter \Delta$
 \DisplayProof
 \]
-Here $!C \lif !D$ on the left is principal, and the context on the
-left is $!A \land !B, \Gamma'$ (i.e., $\Gamma = \Gamma', !C \lif !D$).
-The inductive hypothesis yields !!{proof}s $\pi_1'$ and $\pi_2'$ of 
-$!A \land !B, \Gamma' \Sequent \Delta, !C$ and $!A \land !B, \Gamma',
-!D \Sequent \Delta$, respectively. These two sequents can again
-serve as premises for the \LeftR{\lif} rule to get~$\pi'$:
+这里左侧的 $!C \lif !D$ 是主公式，且左侧上下文是 $!A \land !B, \Gamma'$（即 $\Gamma = \Gamma', !C \lif !D$）。归纳假设分别给出 $!A \land !B, \Gamma' \Sequent \Delta, !C$ 和 $!A \land !B, \Gamma',
+!D \Sequent \Delta$ 的推导 $\pi_1'$ 和 $\pi_2'$。这两个相继式可再次作为 \LeftR{\lif} 规则的前提，从而得到~$\pi'$：
 \[
 \AxiomC{}
 \RightLabel{$\pi_1'$}
@@ -129,55 +88,38 @@ serve as premises for the \LeftR{\lif} rule to get~$\pi'$:
 \BinaryInf$!A, !B, \Gamma', !C \lif !D \fCenter \Delta$
 \DisplayProof
 \]
-We have 
+我们有
 \begin{align*}
 \pheight{\pi} & = \max(\pheight{\pi_1}, \pheight{\pi_2}) + 1\\
 \pheight{\pi'} & = \max(\pheight{\pi_1'}, \pheight{\pi_2'}) + 1
-\intertext{by definition, and}
+\intertext{（根据定义），且}
 \pheight{\pi_1'} & \le \pheight{\pi_1}\\
 \pheight{\pi_2'} & \le \pheight{\pi_2}
-\intertext{by inductive hypothesis. So,}
+\intertext{（根据归纳假设）。因此，}
 \pheight{\pi'} & \le \pheight{\pi}.
 \end{align*}
 \end{proof}
 
 \begin{prob}
-Give the proof of \olref{lem:G3c-invert} for \RightR{\lif}.
+给出 \olref{lem:G3c-invert} 中关于 \RightR{\lif} 的证明。
 \end{prob}
 
 \begin{lem}\ollabel{lem:invert-quant}
-The rules \RightR{\lforall} and \LeftR{\lexists} are
-!!{height}-preserving invertible in the following sense:
+规则 \RightR{\lforall} 和 \LeftR{\lexists} 在如下意义下是高度保持可逆的：
 \begin{enumerate}
-  \item If $\Log{G3c} \Proves[n] \Gamma \Sequent \Delta,
-  \lforall[x][!A(x)]$ then $\Log{G3c} \Proves[n] \Gamma \Sequent
-  \Delta, !A(c)$, and
-  \item if $\Log{G3c} \Proves[n] \lexists[x][!A(x)], \Gamma \Sequent
-  \Delta$ then $\Log{G3c} \Proves[n] !A(c), \Gamma \Sequent \Delta$,
+  \item 若 $\Log{G3c} \Proves[n] \Gamma \Sequent \Delta,
+  \lforall[x][!A(x)]$，则 $\Log{G3c} \Proves[n] \Gamma \Sequent
+  \Delta, !A(c)$；且
+  \item 若 $\Log{G3c} \Proves[n] \lexists[x][!A(x)], \Gamma \Sequent
+  \Delta$，则 $\Log{G3c} \Proves[n] !A(c), \Gamma \Sequent \Delta$，
 \end{enumerate}
-for any $c$ not occuring in $\Gamma$, $\Delta$, and $\lforall[x][!A(x)]$
-or $\lexists[x][!A(x)]$, respectively.
+其中 $c$ 是任意不在 $\Gamma$、$\Delta$ 以及（分别对应）$\lforall[x][!A(x)]$ 或 $\lexists[x][!A(x)]$ 中出现的常项符号。
 \end{lem}
 
 \begin{proof}
-  We show (1) and leave (2) as an exercise. The argument is similar to
-  the proof of \olref{lem:G3c-invert}. In the inductive step, there
-  are again two cases. The case where $\lforall[x][!A(x)]$ is
-  principal again is quick: the premise of the last
-  $\RightR{\lforall}$ inference is of the required form $\Gamma
-  \Sequent \Delta, !A(a)$ and the immediate sub-!!{proof}~$\pi_1$
-  ending in it has $\pheight{\pi_1} < \pheight{\pi}$. Moreover, the
-  eigenvariable condition gives us that $a$ does not occur in
-  $\Gamma$, $\Delta$, or $\lforall[x][!A(x)]$. Since we may assume that
-  $\pi_1$ is regular, $\Subst{\pi_1}{c}{a}$ is !!a{proof} of the same
-  !!{height} of $\Gamma \Sequent \Delta, !A(c)$ by
-  \olref[qua]{lem:subst-regular}.
+  我们证明 (1)，将 (2) 留作练习。证明与 \olref{lem:G3c-invert} 类似。在归纳步骤中，同样有两种情形。第一种情形，即 $\lforall[x][!A(x)]$ 是主公式的情形，处理很简单：最后一个 $\RightR{\lforall}$ 推理的前提具有所需形式 $\Gamma \Sequent \Delta, !A(a)$，且结束于它的直接子推导~$\pi_1$ 满足 $\pheight{\pi_1} < \pheight{\pi}$。此外，本征变元条件告诉我们，$a$ 不在 $\Gamma$、$\Delta$ 或 $\lforall[x][!A(x)]$ 中出现。由于我们可以假设 $\pi_1$ 是正则的，那么根据 \olref[qua]{lem:subst-regular}，$\Subst{\pi_1}{c}{a}$ 是 $\Gamma \Sequent \Delta, !A(c)$ 的一个相同高度的推导。
 
-  In the second case, $\lforall[x][!A(x)]$ is not principal in the
-  last inference; some other formula is. We again consider a case by
-  way of example. Suppose the last inference is~\RightR{\land}. Some
-  !!{formula} in $\Delta$ is of the form~$!B \land !C$ and is principal.
-  The !!{proof}~$\pi$ ends in
+  在第二种情形中，$\lforall[x][!A(x)]$ 不是最后一个推理的主公式；主公式是其他某个公式。我们再次以一个情形为例进行说明。假设最后一个推理是~\RightR{\land}。$\Delta$ 中某个形如~$!B \land !C$ 的公式是主公式。推导~$\pi$ 结束于
   \[
 \AxiomC{}
 \RightLabel{$\pi_1$}
@@ -189,13 +131,8 @@ or $\lexists[x][!A(x)]$, respectively.
 \BinaryInf$\Gamma \fCenter \Delta', \lforall[x][!A(x)], !B \land !C$
 \DisplayProof
 \]
-where $\Delta = \Delta', !B \land !C$. Let $c$ be !!a{constant} that
-does not appear in $\Delta$; then clearly it also does not occur in
-$\Delta', !B$ or in $\Delta', !C$. So the inductive hypothesis applies
-to $\pi_1$ and~$\pi_2$; we have !!{proof}s~$\pi_1'$ and $\pi_2'$ with
-$\pheight{\pi_1'} \le \pheight{\pi_1}$ and $\pheight{\pi_2'} \le
-\pheight{\pi_2}$. The required !!{proof}~$\pi'$ of $\Gamma \Sequent
-\Delta, !A(c)$ is:
+其中 $\Delta = \Delta', !B \land !C$。设 $c$ 是一个不在 $\Delta$ 中出现的常项符号；那么显然它也不在 $\Delta', !B$ 或 $\Delta', !C$ 中出现。因此归纳假设可应用于 $\pi_1$ 和~$\pi_2$；我们得到满足 $\pheight{\pi_1'} \le \pheight{\pi_1}$ 和 $\pheight{\pi_2'} \le
+\pheight{\pi_2}$ 的推导~$\pi_1'$ 和 $\pi_2'$。所需的 $\Gamma \Sequent \Delta, !A(c)$ 的推导~$\pi'$ 为：
 \[
 \AxiomC{}
 \RightLabel{$\pi_1'$}
@@ -207,48 +144,23 @@ $\pheight{\pi_1'} \le \pheight{\pi_1}$ and $\pheight{\pi_2'} \le
 \BinaryInf$\Gamma \fCenter \Delta', !A(c), !B \land !C$
 \DisplayProof
 \]
-with $\pheight{\pi'} = \max(\pheight{\pi_1'}, \pheight{\pi_2'})+1 \le \pheight{\pi}$.
+它满足 $\pheight{\pi'} = \max(\pheight{\pi_1'}, \pheight{\pi_2'})+1 \le \pheight{\pi}$。
 \end{proof}
 
-\Olref{lem:G3c-invert} plays an important role in the proof of the
-cut-elimination theorem. But it can also be used to show the
-following:
+\Olref{lem:G3c-invert} 在切割消去定理的证明中起到重要作用。但它也可以用来证明以下命题：
 
 \begin{prop}\ollabel{prop:G3c-cont-adm}
-The contraction rules \LeftR{\Contraction} and \RightR{\Contraction}
-of~\Log{G1c} are !!{height}-preserving admissible in~\Log{G3c}.
+系统~\Log{G1c} 的收缩规则 \LeftR{\Contraction} 和 \RightR{\Contraction} 在系统~\Log{G3c} 中是高度保持可接纳的。
 \end{prop}
 
 \begin{proof}
-We give the argument for \RightR{\Contraction} and
-\LeftR{\Contraction} at the same time. Suppose $\pi$ is !!a{proof} of
-$\Gamma \Sequent \Delta, !A, !A$ or of $!A, !A, \Gamma \Sequent
-\Delta$ in~\Log{G3c}. We have to show that there is also a
-\Log{G3c}-!!{proof}~$\pi'$ of $\Gamma \Sequent \Delta, !A$ or $!A,
-\Gamma \Sequent \Delta$, respectively, with $\pheight{\pi'} \le
-\pheight{\pi}$. We do this by induction on $n = \pheight{\pi}$.
+我们同时给出 \RightR{\Contraction} 和 \LeftR{\Contraction} 的论证。假设 $\pi$ 是 \Log{G3c} 中 $\Gamma \Sequent \Delta, !A, !A$ 或 $!A, !A, \Gamma \Sequent \Delta$ 的一个推导。我们需要证明，相应地也存在 \Log{G3c}-推导~$\pi'$，使得 $\Gamma \Sequent \Delta, !A$ 或 $!A, \Gamma \Sequent \Delta$ 成立，且满足 $\pheight{\pi'} \le \pheight{\pi}$。我们通过对 $n = \pheight{\pi}$ 施加归纳来证明这一点。
 
-If $n=0$, $\pi$ is just an axiom. But if $\Gamma \Sequent \Delta, !A,
-!A$ is an axiom of~\Log{G3c}, so is $\Gamma \Sequent \Delta, !A$:
-either some atomic~$!C$ is !!a{element} of both $\Gamma$ and~$\Delta$,
-or $!A$ is atomic and !!a{element} of~$\Gamma$. The same reasoning
-applies if the end-sequent is $!A, !A, \Gamma \Sequent
-\Delta$.
+如果 $n=0$，则 $\pi$ 就是一条公理。但如果 $\Gamma \Sequent \Delta, !A, !A$ 是 \Log{G3c} 的公理，那么 $\Gamma \Sequent \Delta, !A$ 也是公理：要么某个原子公式~$!C$ 同时是 $\Gamma$ 和~$\Delta$ 的元素，要么 $!A$ 是原子的且是~$\Gamma$ 的元素。当末尾相继式为 $!A, !A, \Gamma \Sequent \Delta$ 时，同样的推理也适用。
 
-If $n>0$, $\pi$ ends in some rule~$R$. If $!A$ is not principal in
-this last inference, we can obtain !!a{proof}~$\pi'$ as in the proof
-of \olref{lem:G3c-invert} by applying the inductive hypothesis to the
-immediate sub-!!{proof}s of~$\pi$ and applying the same rule~$R$ to
-the resulting !!{proof}(s). The inductive hypothesis is that if there
-is !!a{proof} of !!{height}~$k<n$ of either $\Pi \Sequent \Lambda, !D,
-!D$ or $!D, !D, \Pi \Sequent \Lambda$, then there is !!a{proof} of
-!!{height}~$\le k$ of $\Pi \Sequent \Lambda, !D$ or $!D, \Pi \Sequent
-\Lambda$, respectively. (Note that the inductive hypothesis applies if
-the contexts or contracted !!{formula} are different from $\Gamma$,
-$\Delta$, or~$!A$!)
+如果 $n>0$，则 $\pi$ 以某条规则~$R$ 结束。如果 $!A$ 不是最后这个推理的主公式，我们可以像 \olref{lem:G3c-invert} 的证明中那样，将归纳假设应用于~$\pi$ 的直接子推导，再对所得推导应用同样的规则~$R$，从而得到推导~$\pi'$。归纳假设是：如果存在高度为~$k<n$ 的、形如 $\Pi \Sequent \Lambda, !D, !D$ 或 $!D, !D, \Pi \Sequent \Lambda$ 的推导，那么相应地也存在高度~$\le k$ 的、形如 $\Pi \Sequent \Lambda, !D$ 或 $!D, \Pi \Sequent \Lambda$ 的推导。（注意，即使上下文或被收缩的公式不同于 $\Gamma$、$\Delta$ 或~$!A$，归纳假设也是适用的！）
 
-For instance, suppose $R$ is $\RightR{\land}$
-and $\pi$~ends in
+例如，假设 $R$ 是 $\RightR{\land}$ 且 $\pi$~的结尾为
 \[
 \AxiomC{}
 \RightLabel{$\pi_1$}
@@ -260,11 +172,8 @@ and $\pi$~ends in
 \BinaryInf$\Gamma \fCenter \Delta', !B \land !C, !A, !A$
 \DisplayProof
 \]
-where $\Delta = \Delta', !B \land !C$. The inductive hypothesis yields
-!!{proof}s $\pi_1'$ and $\pi_2'$ of $\Gamma \fCenter \Delta', !B, !A$
-and $\Gamma \fCenter \Delta', !C, !A$, respectively, with
-$\pheight{\pi_1'} \le  \pheight{\pi_1}$ and $\pheight{\pi_2'} \le
-\pheight{\pi_2}$. The !!{proof}~$\pi'$ is:
+其中 $\Delta = \Delta', !B \land !C$。归纳假设分别给出 $\Gamma \fCenter \Delta', !B, !A$ 和 $\Gamma \fCenter \Delta', !C, !A$ 的推导~$\pi_1'$ 和~$\pi_2'$，且满足 $\pheight{\pi_1'} \le  \pheight{\pi_1}$ 和 $\pheight{\pi_2'} \le
+\pheight{\pi_2}$。则推导~$\pi'$ 为：
 \[
 \AxiomC{}
 \RightLabel{$\pi_1'$}
@@ -277,12 +186,7 @@ $\pheight{\pi_1'} \le  \pheight{\pi_1}$ and $\pheight{\pi_2'} \le
 \DisplayProof
 \]
 
-If $!A$ is principal in the last inference, we apply the inversion
-lemma (\olref{lem:G3c-invert}) to the immediate sub-!!{proof}s
-of~$\pi$, then the inductive hypothesis, and then rule~$R$ again. For
-instance, suppose $\pi$ proves $\Gamma \Sequent \Delta, !A, !A$, $!A
-\ident (!B \land !C)$ and principal in the last inference. Then $\pi$
-looks as follows:
+如果 $!A$ 是最后这个推理的主公式，我们先将反转引理（\olref{lem:G3c-invert}）应用于~$\pi$ 的直接子推导，然后应用归纳假设，最后再次应用规则~$R$。例如，假设 $\pi$ 证明了 $\Gamma \Sequent \Delta, !A, !A$，其中 $!A \ident (!B \land !C)$ 且是最后这个推理的主公式。那么 $\pi$ 形如下式：
 \[
 \AxiomC{}
 \RightLabel{$\pi_1$}
@@ -294,19 +198,9 @@ looks as follows:
 \BinaryInf$\Gamma \fCenter \Delta, !B \land !C, !B \land !C$
 \DisplayProof
 \]
-Apply \olref{lem:G3c-invert} to $\pi_1$ to get !!a{proof}~$\pi_1'$ of
-$\Gamma \Sequent \Delta, !B, !B$. (It also yields !!a{proof} of
-$\Gamma \Sequent \Delta, !C, !B$, but we don't need that.) Similarly,
-by applying \olref{lem:G3c-invert} to~$\pi_2$ we obtain
-!!a{proof}~$\pi_2'$ of $\Gamma \Sequent \Delta, !C, !C$. As the
-inversion of \RightR{\land} is !!{height}-preserving,
-$\pheight{\pi_1'} \le  \pheight{\pi_1} < \pheight{\pi}$ and
-$\pheight{\pi_2'} \le  \pheight{\pi_2} < \pheight{\pi}$. Thus, the
-inductive hypothesis applies to $\pi_1'$ and $\pi_2'$: there are
-!!{proof}s~$\pi_1''$ and $\pi_2''$ of $\Gamma \Sequent \Delta, !B$ and
-$\Gamma \Sequent \Delta, !C$, respectively, with $\pheight{\pi_1''}
-\le \pheight{\pi_1'} \le \pheight{\pi_1}$ and $\pheight{\pi_2''} \le
-\pheight{\pi_2'} \le \pheight{\pi_2}$. The !!{proof}~$\pi'$ then is:
+对 $\pi_1$ 应用 \olref{lem:G3c-invert}，得到 $\Gamma \Sequent \Delta, !B, !B$ 的推导~$\pi_1'$。（它同时也产生 $\Gamma \Sequent \Delta, !C, !B$ 的推导，但我们不需要。）类似地，对~$\pi_2$ 应用 \olref{lem:G3c-invert}，我们得到 $\Gamma \Sequent \Delta, !C, !C$ 的推导~$\pi_2'$。由于 \RightR{\land} 的反转是保持高度的，故 $\pheight{\pi_1'} \le  \pheight{\pi_1} < \pheight{\pi}$ 和 $\pheight{\pi_2'} \le  \pheight{\pi_2} < \pheight{\pi}$。于是，归纳假设可应用于 $\pi_1'$ 和 $\pi_2'$：分别存在 $\Gamma \Sequent \Delta, !B$ 和 $\Gamma \Sequent \Delta, !C$ 的推导~$\pi_1''$ 和~$\pi_2''$，且满足 $\pheight{\pi_1''}
+\le \pheight{\pi_1'} \le \pheight{\pi_1}$ 和 $\pheight{\pi_2''} \le
+\pheight{\pi_2'} \le \pheight{\pi_2}$。则推导~$\pi'$ 即为：
 \[
 \AxiomC{}
 \RightLabel{$\pi_1''$}
@@ -318,12 +212,11 @@ $\Gamma \Sequent \Delta, !C$, respectively, with $\pheight{\pi_1''}
 \BinaryInf$\Gamma \fCenter \Delta, !B \land !C$
 \DisplayProof
 \]
-with $\pheight{\pi'} \le \pheight{\pi}$.
+其中 $\pheight{\pi'} \le \pheight{\pi}$。
 
-We must take special care for the quantifier rules in the cases where
-the !!{formula} is principal.
+当公式为主公式时，对于量词规则的情形，我们必须特别小心处理。
 
-Suppose $!A \ident \lforall[x][!B(x)]$ is principal on the right. Then $\pi$ ends in
+假设 $!A \ident \lforall[x][!B(x)]$ 在右侧是主公式。那么 $\pi$ 以如下形式结束：
 \[
 \AxiomC{}
 \RightLabel{$\pi_1$}
@@ -332,16 +225,10 @@ Suppose $!A \ident \lforall[x][!B(x)]$ is principal on the right. Then $\pi$ end
 \UnaryInf$\Gamma \fCenter \Delta, \lforall[x][!B(x)], \lforall[x][!B(x)]$
 \DisplayProof
 \]
-By \olref{lem:invert-quant}, there is !!a{proof}~$\pi_1'$ with
-!!{height} $\le \pheight{\pi_1}$ of $\Gamma \fCenter \Delta, !B(c),
-!B(a)$ for any~$c$ not occuring in $\Gamma \fCenter \Delta,
-\lforall[x][!B(x)], !B(a)$. We may assume that $\pi_1'$ is regular; so
-by \olref[qua]{lem:subst-regular} the !!{proof} $\Subst{\pi_1'}{a}{c}$
-is !!a{proof} of $\Gamma \fCenter \Delta, !B(a),
-!B(a)$ also of !!{height} $\le \pheight{\pi_1}$. Now the inductive
-hypothesis applies and gives us !!a{proof}~$\pi_1''$ of $\Gamma
-\fCenter \Delta, !B(a)$. Apply the \RightR{\lforall} rule to
-get~$\pi'$:
+根据 \olref{lem:invert-quant}，对于任何不在 $\Gamma \fCenter \Delta,
+\lforall[x][!B(x)], !B(a)$ 中出现的~$c$，存在高度 $\le \pheight{\pi_1}$ 的推导~$\pi_1'$，其末端相继式为 $\Gamma \fCenter \Delta, !B(c),
+!B(a)$。我们可以假定 $\pi_1'$ 是正则的；因此根据 \olref[qua]{lem:subst-regular}，推导 $\Subst{\pi_1'}{a}{c}$ 也是 $\Gamma \fCenter \Delta, !B(a),
+!B(a)$ 的推导，其高度同样 $\le \pheight{\pi_1}$。现在应用归纳假设，得到 $\Gamma \fCenter \Delta, !B(a)$ 的推导~$\pi_1''$。再应用 \RightR{\lforall} 规则得到~$\pi'$：
 \[
 \AxiomC{}
 \RightLabel{$\pi_1''$}
@@ -350,10 +237,9 @@ get~$\pi'$:
 \UnaryInf$\Gamma \fCenter \Delta, \lforall[x][!B(x)]$
 \DisplayProof
 \]
-with $\pheight{\pi'} \le \pheight{\pi}$.
+其中 $\pheight{\pi'} \le \pheight{\pi}$。
 
-Now suppose $!A \ident \lexists[x][!B(x)]$
-and principal on the right. Then $\pi$ looks as follows:
+现在假设 $!A \ident \lexists[x][!B(x)]$ 且在右侧是主公式。那么 $\pi$ 形如下式：
 \[
 \AxiomC{}
 \RightLabel{$\pi_1$}
@@ -362,10 +248,8 @@ and principal on the right. Then $\pi$ looks as follows:
 \UnaryInf$\Gamma \fCenter \Delta, \lexists[x][!B(x)], \lexists[x][!B(x)]$
 \DisplayProof
 \]
-The inductive hypothesis applies to~$\pi_1$ and there is
-!!a{proof}s~$\pi_1'$ of $\Gamma \Sequent \Delta, \lexists[x][!B(x)],
-!B$. (Note that no inversion lemma is needed here!) The
-!!{proof}~$\pi'$ then is:
+归纳假设应用于~$\pi_1$，存在 $\Gamma \Sequent \Delta, \lexists[x][!B(x)],
+!B$ 的推导~$\pi_1'$。（注意这里不需要反转引理！）则推导~$\pi'$ 即为：
 \[
 \AxiomC{}
 \RightLabel{$\pi_1'$}
@@ -374,20 +258,16 @@ The inductive hypothesis applies to~$\pi_1$ and there is
 \UnaryInf$\Gamma \fCenter \Delta, \lexists[x][!B(x)]$
 \DisplayProof
 \]
-with $\pheight{\pi'} \le \pheight{\pi}$.
+其中 $\pheight{\pi'} \le \pheight{\pi}$。
 \end{proof}
 
 \begin{prob}
-Sketch the proof of \olref{prop:G3c-cont-adm} for \LeftR{\Contraction}.
-Describe the cases where $!A \ident (!B \land !C)$ and $!A \ident (!B
-\lif !C)$.
+概述 \olref{prop:G3c-cont-adm} 中关于 \LeftR{\Contraction} 的证明。描述 $!A \ident (!B \land !C)$ 和 $!A \ident (!B \lif !C)$ 的情形。
 \end{prob}
 
 \begin{prob}
-Sketch the proof of \olref{prop:G3c-cont-adm} for \LeftR{\Contraction}
-for the remaining quantifier cases, i.e., where $!A \ident
-\lforall[x][!B(x)]$ and $!A \ident \lexists[x][!B(x)]$.
+概述 \olref{prop:G3c-cont-adm} 中关于 \LeftR{\Contraction} 在其余量词情形下的证明，即当 $!A \ident
+\lforall[x][!B(x)]$ 和 $!A \ident \lexists[x][!B(x)]$ 时。
 \end{prob}
-
 
 \end{document}

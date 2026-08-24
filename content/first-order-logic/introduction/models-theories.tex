@@ -8,63 +8,37 @@
 
 \olfileid{fol}{int}{mod}
 
-\olsection{Models and Theories}
+\olsection{模型与理论}
 
-Once we've defined the syntax and semantics of first-order logic, we
-can get to work investigating the properties of !!{structure}s and the
-semantic notions. We can also define !!{derivation} systems, and
-investigate those.  For a set of !!{sentence}s, we can ask: what
-!!{structure}s make all the !!{sentence}s in that set true?  Given a
-set of !!{sentence}s~$\Gamma$, !!a{structure}~$\Struct{M}$ that
-satisfies them is called a \emph{model of~$\Gamma$}.  We might start
-from~$\Gamma$ and try to find its models---what do they look like? How
-big or small do they have to be? But we might also start with a single
-!!{structure} or collection of !!{structure}s and ask: what
-!!{sentence}s are true in them?  Are there !!{sentence}s that
-\emph{characterize} these !!{structure}s in the sense that they, and
-only they, are true in them? These kinds of questions are the domain
-of \emph{model theory}.  They also underlie the \emph{axiomatic
-  method}: describing a collection of !!{structure}s by a set of
-!!{sentence}s, the axioms of a theory. This is made possible by the
-observation that exactly those !!{sentence}s entailed in first-order
-logic by the axioms are true in all models of the axioms.
+一旦定义了一阶逻辑的语法和语义，我们就可以着手研究结构的性质和各种语义概念了。
+我们也可以定义推导系统并研究它们。
+对于一个语句集，我们可以提问：什么样的结构能使这个集合中的所有语句为真？
+给定语句集~$\Gamma$，满足其中所有语句的结构~$\Struct{M}$ 就称为~$\Gamma$ 的一个\emph{模型}。
+我们可能会从~$\Gamma$ 出发，试图找到它的模型——它们是什么样的？论域必须多大或多小？
+但我们也可能会从单个结构或一类结构出发，然后提问：哪些语句在它们中为真？
+是否存在一些语句能够\emph{刻画}这些结构，即这些语句在且仅在这些结构中为真？
+这类问题正是\emph{模型论}的研究领域。
+它们也是\emph{公理化方法}的基础：用一组语句——即一个理论的公理——来描述一类结构。
+这种方法之所以可行，是因为我们观察到：在一阶逻辑中，恰恰是公理所语义后承的语句，才在公理的所有模型中为真。
 
-As a very simple example, consider preorders. A preorder is a
-relation~$R$ on some set~$A$ which is both reflexive and transitive.
-A set~$A$ with a two-place relation $R \subseteq A \times A$ on it is
-exactly what we would need to give !!a{structure} for a first-order
-language with a single two-place relation symbol~$\Obj P$: we would
-set $\Domain{M} = A$ and $\Assign{\Obj P}{M} = R$.  Since $R$~is a
-preorder, it is reflexive and transitive, and we can find a
-set~$\Gamma$ of !!{sentence}s of first-order logic that say this:
+举一个非常简单的例子，考虑预序。预序是某个集合~$A$ 上的一种关系~$R$，它既是自反的又是传递的。
+一个带有一个二元关系 $R \subseteq A \times A$ 的集合~$A$，恰好足以给出仅含一个二元谓词符号~$\Obj P$ 的一阶语言的一个结构：我们令 $\Domain{M} = A$ 且 $\Assign{\Obj P}{M} = R$。
+既然 $R$~是预序，它是自反且传递的，我们可以找到一阶逻辑的一个语句集~$\Gamma$ 来表达这一点：
 \begin{align*}
   & \lforall[\Obj v_0][\Atom{\Obj P}{\Obj v_0,\Obj v_0}]\\
   & \lforall[\Obj v_0][\lforall[\Obj v_1][\lforall[\Obj v_2][((\Atom{\Obj P}{\Obj v_0,\Obj v_1} \land \Atom{\Obj P}{\Obj v_1,\Obj v_2}) \lif \Atom{\Obj P}{\Obj v_0,\Obj v_2})]]]
 \end{align*}
-These !!{sentence}s are just the symbolizations of ``for any~$x$,
-$Rxx$'' ($R$ is reflexive) and ``whenever $Rxy$ and $Ryz$ then also
-$Rxz$'' ($R$ is transitive). We see that !!a{structure}~$\Struct{M}$
-is a model of these two !!{sentence}s~$\Gamma$ iff $R$ (i.e.,
-$\Assign{\Obj P}{M}$), is a preorder on~$A$ (i.e., $\Domain{M}$). In
-other words, the models of $\Gamma$ are exactly the preorders. Any
-property of all preorders that can be expressed in the first-order
-language with just~$\Obj P$ as !!{predicate} (like reflexivity and
-transitivity above), is entailed by the two !!{sentence}s in~$\Gamma$
-and vice versa.  So anything we can prove about models of~$\Gamma$ we
-have proved about all preorders.
+这些语句正是“对任意~$x$，$Rxx$”（$R$ 是自反的）和“每当 $Rxy$ 且 $Ryz$，则也有 $Rxz$”（$R$ 是传递的）的符号化。
+我们看到，结构~$\Struct{M}$ 是这两个语句组成的集合~$\Gamma$ 的模型，当且仅当 $R$（即 $\Assign{\Obj P}{M}$）是 $A$（即 $\Domain{M}$）上的一个预序。
+换言之，$\Gamma$ 的模型恰好就是所有的预序。
+所有预序的任何性质，只要能用以~$\Obj P$ 为唯一谓词符号的一阶语言表达（如上文的自反性和传递性），都是~$\Gamma$ 中这两个语句的语义后承，反之亦然。
+因此，凡是我们能对~$\Gamma$ 的模型证明的结论，也就对所有预序得到了证明。
 
-For any particular theory and class of models (such as $\Gamma$ and
-all preorders), there will be interesting questions about what can be
-expressed in the corresponding first-order language, and what cannot
-be expressed. There are some properties of !!{structure}s that are
-interesting for all languages and classes of models, namely those
-concerning the size of the !!{domain}.  One can always express, for
-instance, that the !!{domain} contains exactly $n$~!!{element}s, for
-any~$n \in \PosInt$.  One can also express, using a set of infinitely
-many !!{sentence}s, that the !!{domain} is infinite.  But one cannot
-express that the domain is finite, or that the domain is
-!!{nonenumerable}. These results about the limitations of first-order
-languages are consequences of the compactness and L\"owenheim--Skolem
-theorems.
+对于任何特定的理论和模型类（例如 $\Gamma$ 和所有预序），都会存在有趣的问题：在相应的一阶语言中，什么可以表达，什么不可以表达。
+有一些结构的性质对于所有语言和模型类都是值得关注的，即那些关于论域大小的性质。
+例如，总可以表达论域恰好包含 $n$~个元素，其中~$n \in \PosInt$。
+也可以用无穷多条语句的集合来表达论域是无穷的。
+但是，无法表达论域是有穷的，或者论域是不可数的。
+这些关于一阶语言局限性的结果，是紧致性定理和 L\"owenheim（勒文海姆）--Skolem（斯科伦）定理的推论。
 
 \end{document}

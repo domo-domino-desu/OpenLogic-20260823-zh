@@ -5,44 +5,41 @@
 \documentclass[../../../include/open-logic-section]{subfiles}
 
 \begin{document}
-
 \olfileid{int}{sc}{cpl}
 
-\olsection{The Completeness Theorem}
+\olsection{完备性定理}
 
 \begin{thm}\ollabel{thm:completeness}
-  If $\Gamma \Entails !A$ then $\Gamma \Proves !A$.
+  若 $\Gamma \Entails !A$，则 $\Gamma \Proves !A$。
 \end{thm}
 
 \begin{proof}
-  We prove the contrapositive: Suppose $\Gamma \Proves/ !A$. Then by
-  \olref[lin]{lem:lindenbaum}, there is a prime set~$\Gamma^*
-  \supseteq \Gamma$ such that $\Gamma^* \Proves/ !A$. Consider the
-  canonical model~$\mModel{M(\Gamma^*)}$ for $\Gamma^*$ as defined in
-  \olref[mod]{defn:canonical-model}. For any $!B \in \Gamma$, $\Gamma^*
-  \Proves !B$. Note that $\Gamma^*(\emptyseq) = \Gamma^*$. By the Truth
-  Lemma (\olref[tru]{lem:truth}), we have
-  $\mSat{M(\Gamma^*)}{!B}[\emptyseq]$ for all $!B \in \Gamma$ and
-  $\mSat/{M(\Gamma^*)}{!A}[\emptyseq]$. This shows that $\Gamma
-  \Entails/ !A$.
+  我们证明逆否命题：假设 $\Gamma \Proves/ !A$。则由
+  \olref[lin]{lem:lindenbaum}，存在素集~$\Gamma^*
+  \supseteq \Gamma$ 使得 $\Gamma^* \Proves/ !A$。考虑如
+  \olref[mod]{defn:canonical-model} 所定义的 $\Gamma^*$ 的典范模型~$\mModel{M(\Gamma^*)}$。
+  对任意 $!B \in \Gamma$，有 $\Gamma^* \Proves !B$。
+  注意，$\Gamma^*(\emptyseq) = \Gamma^*$。由真值引理（\olref[tru]{lem:truth}），对所有 $!B \in \Gamma$ 有
+  $\mSat{M(\Gamma^*)}{!B}[\emptyseq]$，且
+  $\mSat/{M(\Gamma^*)}{!A}[\emptyseq]$。这表明 $\Gamma
+  \Entails/ !A$。
 \end{proof}
 
 \begin{prob}
-  Show that if $!A$ only contains !!{propositional variable}s, $\lor$,
-  and~$\land$, then $\Entails/ !A$. Use this to conclude that $\lif$ is
-  not definable in intuitionistic logic from $\lor$ and~$\land$. 
+  证明：如果 $!A$ 仅包含命题变元、$\lor$ 和~$\land$，则 $\Entails/ !A$。
+  利用此结论得出，在直觉主义逻辑中 $\lif$ 不能由 $\lor$ 和~$\land$ 定义。
 \end{prob}
   
 \begin{prob}
-  By using the completeness theorem prove that if $\Proves !A \lor !B$ then
-  $\Proves !A$ or $\Proves !B$. (Hint: Assume $\mSat/{M_1}{!A}$ and
-  $\mSat/{M_2}{!B}$ and construct a new model $\mModel{M}$ such that
-  $\mSat/{M}{!A \lor !B}$.)
+  利用完备性定理证明：如果 $\Proves !A \lor !B$，那么
+  $\Proves !A$ 或 $\Proves !B$。（提示：假定 $\mSat/{M_1}{!A}$ 且
+  $\mSat/{M_2}{!B}$，并构造一个新模型 $\mModel{M}$ 使得
+  $\mSat/{M}{!A \lor !B}$。）
 \end{prob}
   
 \begin{prob} 
-  Show that if $\mModel{M}$ is a relational model using a linear order then
-  $\mSat{M}{(!A \lif !B)\lor(!B \lif !A)}$.
+  证明：如果 $\mModel{M}$ 是带有线性序的关系模型，那么
+  $\mSat{M}{(!A \lif !B)\lor(!B \lif !A)}$。
 \end{prob}
 
 \end{document}

@@ -8,106 +8,82 @@
 
 \olfileid{lam}{ldf}{fp}
 
-\olsection{Fixpoints}
+\olsection{不动点}
 
-Suppose we wanted to define the factorial function by recursion as a
-term $\fn{Fac}$ with the following property:
+假设我们想通过递归将阶乘函数定义为一个满足以下性质的项 $\fn{Fac}$：
 \[
 \fn{Fac} \ident \lambd[n][\fn{IsZero}\, n\, \num 1 (\fn{Mult}\, n (\fn{Fac}(\fn{Pred} \, n)))]
 \]
-That is, the factorial of $n$ is $1$ if $n = 0$, and $n$ times the
-factorial of $n-1$ otherwise.  Of course, we cannot define the term
-$\fn{Fac}$ this way since $\fn{Fac}$ itself occurs in the right-hand
-side. Such recursive definitions involving self-reference
-are not part of the lambda calculus. Defining a term, e.g., by
+也就是说，如果 $n = 0$，则 $n$ 的阶乘是 $1$；否则就是 $n$ 乘以 $n-1$ 的阶乘。
+当然，我们不能这样定义项 $\fn{Fac}$，因为 $\fn{Fac}$ 本身出现在了等式右边。
+这种涉及自引用的递归定义，并不属于λ演算的一部分。
+例如，通过
 \[
 \fn{Mult} \ident \lambd[ab][a (\fn{Add}\, a) 0]
 \]
-only involves previously defined terms in the right-hand side, such as
-$\fn{Add}$. We can always remove $\fn{Add}$ by replacing it with its
-defining term.  This would give the term $\fn{Mult}$ as a pure lambda
-term; if $\fn{Add}$ itself involved defined terms (as, e.g.,
-$\fn{Add}'$ does), we could continue this process and finally arrive at
-a pure lambda term.
+来定义一个项时，等式右边只涉及先前定义的项，如 $\fn{Add}$。
+我们总可以通过将 $\fn{Add}$ 替换为定义它的项来消除它。
+这样就能将 $\fn{Mult}$ 表示为一个纯λ项；如果 $\fn{Add}$ 本身也包含已定义的项（如 $\fn{Add}'$ 那样），我们可以继续这个过程，最终得到一个纯λ项。
 
-However this is not true in the case of recursive definitions like the
-one of $\fn{Fac}$ above. If we replace the occurrence of $\fn{Fac}$ on
-the right-hand side with the definition of $\fn{Fac}$ itself, we get:
+然而，对于上面 $\fn{Fac}$ 这样的递归定义，情况并非如此。
+如果我们将右边出现的 $\fn{Fac}$ 替换为 $\fn{Fac}$ 本身的定义，会得到：
 \begin{align*}
   \fn{Fac} & \ident \lambd[n][\fn{IsZero}\, n\, \num{1}] \\
     & \qquad (\fn{Mult}\, n
   ((\lambd[n][\fn{IsZero} \, n \, \num 1\, (\fn{Mult}\, n\, (\fn{Fac}
     (\fn{Pred}\, n)))]) (\fn{Pred}\, n)))
 \end{align*}
-and we still haven't gotten rid of $\fn{Fac}$ on the right-hand
-side. Clearly, if we repeat this process, the definition keeps growing
-longer and the process never results in a pure lambda term. Thus this
-way of defining factorial (or more generally recursive functions)
-is not feasible.
+而我们依然没有消除掉右边的 $\fn{Fac}$。
+显然，如果我们重复这个过程，定义会变得越来越长，且该过程永远无法产生一个纯λ项。
+因此，这种定义阶乘（或者更一般的递归函数）的方法是行不通的。
 
-The recursive definition does tell us something, though: If $f$ were a
-term representing the factorial function, then the term
+不过，这个递归定义确实告诉了我们一些信息：如果 $f$ 是表示阶乘函数的项，那么将项
 \[
 \fn{Fac}' \ident \lambd[g][\lambd[n][\fn{IsZero} \, n \, \num 1\, (\fn{Mult} \, n\, (g (\fn{Pred} n)))]]
 \]
-applied to the term $f$, i.e., $\fn{Fac}'\,f$, also represents the
-factorial function.  That is, if we regard $\fn{Fac}'$ as a function
-accepting a function and returning a function, the value of
-$\fn{Fac'}\, f$ is just~$f$, provided $f$ is the factorial. A
-function~$f$ with the property that $\fn{Fac}' \, f \equal[\beta] f$ is called
-a \emph{fixpoint} of $\fn{Fac}'$. So, the factorial is a fixpoint of
-$\fn{Fac}'$.
+应用于项 $f$（即 $\fn{Fac}'\,f$），也表示阶乘函数。
+也就是说，如果我们把 $\fn{Fac}'$ 看作一个以函数为自变元并返回函数的函数，那么只要 $f$ 是阶乘函数，$\fn{Fac}'\, f$ 的值就是~$f$。
+一个满足 $\fn{Fac}' \, f \equal[\beta] f$ 的函数~$f$，称为 $\fn{Fac}'$ 的一个\emph{不动点}。所以，阶乘函数就是 $\fn{Fac}'$ 的一个不动点。
 
-There are terms in the lambda calculus that compute the fixpoints of a
-given term, and these terms can then be used to turn a term like
-$\fn{Fac}'$ into the definition of the factorial. 
+λ演算中存在一些项，它们能计算给定项的不动点，这些项可以用来由 $\fn{Fac}'$ 这样的项定义阶乘。
 
 \begin{defn}
   \ollabel{defn:Turing-Y}
-  The \emph{Y-combinator} is the term:
+  \emph{Y组合子}是如下项：
   \[
   Y \ident (\lambd[ux][x(uux)])(\lambd[ux][x(uux)]).
   \]
 \end{defn}
 
 \begin{thm}
-  $Y$ has the property that $Yg \red g(Yg)$ for any term $g$. Thus,
-  $Yg$ is always a fixpoint of~$g$.
+  对于任何项 $g$，$Y$ 都具有性质 $Yg \red g(Yg)$。因此，$Yg$ 总是~$g$ 的一个不动点。
 \end{thm}
 
 \begin{proof}
-  Let's abbreviate $(\lambd[ux][x(uux)])$ by~$U$, so that $Y \ident UU$. Then
+  用~$U$ 缩写 $(\lambd[ux][x(uux)])$，于是 $Y \ident UU$。那么
   \begin{align*}
     Y g &\ident (\lambd[ux][x(uux)])U\,g \\
     &\red (\lambd[x][x(UUx)])g\\
     & \red g(UUg) \ident g(Yg).
   \end{align*}
-  Since $g(Yg)$ and $Yg$ both reduce to $g(Yg)$, $g(Yg) \equal[\beta]
-  Yg$, so $Yg$ is a fixpoint of~$g$.
+  由于 $g(Yg)$ 和 $Yg$ 都可归约为 $g(Yg)$，故 $g(Yg) \equal[\beta] Yg$，所以 $Yg$ 是~$g$ 的一个不动点。
 \end{proof}
 
-Of course, since $Yg$ is a redex, the reduction can continue indefinitely:
+当然，由于 $Yg$ 是一个可约式，归约可以无限进行下去：
 \begin{align*}
   Y g &\red g (Y g) \\
     &\red g (g (Y g)) \\
     &\red g(g (g (Y g)))\\
     &\ldots
 \end{align*}
-So we can think of $Yg$ as $g$ applied to itself infinitely many
-times. If we apply~$g$ to it one additional time, we---so to
-speak---aren't doing anything extra; $g$~applied to~$g$ applied
-infinitely many times to~$Yg$ is still $g$~applied to~$Yg$ infinitely
-many times.
+所以我们可以把 $Yg$ 看作是 $g$ 无限次应用于自身的结果。
+如果我们再对它额外应用一次~$g$，打个比方说，并没有做任何额外的事情；将~$g$ 作用于已对~$Yg$ 无限次作用的~$g$，结果仍是对~$Yg$ 无限次作用~$g$。
 
-Note that the above sequence of $\beta$-reduction steps starting
-with~$Yg$ is infinite. So if we apply $Yg$ to some term, i.e.,
-consider $(Yg)N$, that term will also reduce to infinitely many
-different terms, namely $(g(Yg))N$, $(g(g(Yg)))N$, \dots. It is
-nevertheless possible that some \emph{other} sequence of reduction
-steps does terminate in a normal form.
+注意，从~$Yg$ 开始的上述β归约步骤序列是无限的。
+因此，如果我们把 $Yg$ 应用于某个项，即考虑 $(Yg)N$，那么这个项也会归约到无限多个不同的项，即 $(g(Yg))N$, $(g(g(Yg)))N$, ……。
+尽管如此，某些\emph{其他}的归约步骤序列还是有可能终止于一个范式。
 
-Take the factorial for instance. Define $\fn{Fac}$ as $Y\, \fn{Fac}'$
-(i.e., a fixpoint of $\fn{Fac'}$). Then:
+以阶乘为例。将 $\fn{Fac}$ 定义为 $Y\, \fn{Fac}'$（即 $\fn{Fac}'$ 的一个不动点）。那么：
 \begin{align*}
   \fn{Fac}\,\num 3
   &\red Y\, \fn{Fac}' \, \num 3 \\
@@ -117,12 +93,12 @@ Take the factorial for instance. Define $\fn{Fac}$ as $Y\, \fn{Fac}'$
   & \red \fn{IsZero} \, \num 3\, \num 1\,
       (\fn{Mult}\, \num 3\, (\fn{Fac} (\fn{Pred}\, \num 3))) \\
   &\red  \fn{Mult}\, \num 3 \, (\fn{Fac} \, \num 2).
-  \intertext{Similarly,}
+  \intertext{类似地，}
   \fn{Fac}\,\num 2
   &\red  \fn{Mult}\, \num 2 \, (\fn{Fac} \, \num 1) \\
   \fn{Fac}\,\num 1
   &\red  \fn{Mult}\, \num 1 \, (\fn{Fac} \, \num 0)
-  \intertext{but}
+  \intertext{但是}
   \fn{Fac}\,\num 0
   &\red \fn{Fac}' (Y \,\fn{Fac}') \, \num 0 \\
   &\ident (\lambd[x][\lambd[n][\fn{IsZero} \, n\, \num 1\,
@@ -130,47 +106,42 @@ Take the factorial for instance. Define $\fn{Fac}$ as $Y\, \fn{Fac}'$
   & \red \fn{IsZero} \, \num 0\, \num 1\,
       (\fn{Mult}\, \num 0\, (\fn{Fac} (\fn{Pred}\, \num 0))).\\
   &\red \num 1.
-  \intertext{So together}
+  \intertext{因此合起来}
   \fn{Fac}\,\num 3
   &\red  \fn{Mult}\, \num 3 \,
   (\fn{Mult} \, \num 2\, (\fn{Mult} \, \num 1\, \num 1)).
 \end{align*}
 
-What goes for $\fn{Fac'}$ goes for any recursive definition. Suppose we
-have a recursive equation
+适用于 $\fn{Fac}'$ 的情况同样适用于任何递归定义。
+假设我们有一个递归方程
 \begin{align*}
 g\,x_1\dots x_n & \equal[\beta] N
-\intertext{where $N$ may contain~$g$ and $x_1$, \dots,~$x_n$. Then there is
-always a term~$G \ident (Y \lambd[g][\lambd[x_1\dots x_n][N]])$ such
-that}
+\intertext{其中 $N$ 可能包含~$g$ 和 $x_1$, \dots,~$x_n$。那么总存在一个项~$G \ident (Y \lambd[g][\lambd[x_1\dots x_n][N]])$，使得}
 G\,x_1 \dots x_n & \equal[\beta] \Subst{N}{G}{g}.
-\intertext{For by the fixpoint theorem,}
+\intertext{因为根据不动点定理，}
 G \ident (Y \lambd[g][\lambd[x_1\dots x_n][N]]) & \red \lambd[g][\lambd[x_1\dots x_n][N]](Y \lambd[g][\lambd[x_1\dots x_n][N]])\\
 & \ident (\lambd[g][\lambd[x_1\dots x_n][N]])\,G
-\intertext{and consequently}
+\intertext{从而}
 G\,x_1 \dots x_n 
 & \red (\lambd[g][\lambd[x_1\dots x_n][N]])\,G\,x_1\dots x_n\\
 & \red (\lambd[x_1\dots x_n][\Subst{N}{G}{g}])\,x_1\dots x_n\\
   & \red \Subst{N}{G}{g}.
 \end{align*}
 
-The $Y$ combinator of \olref{defn:Turing-Y} is due to Alan
-Turing. Alonzo Church had proposed a different version which we'll
-call~$Y_C$:
+\olref{defn:Turing-Y} 中的 $Y$ 组合子归功于 Alan Turing。
+Alonzo Church 提出了一个不同的版本，我们称之为~$Y_C$：
 \[
 Y_C \ident \lambd[g][(\lambd[x][g(xx)])(\lambd[x][g(xx)])].
 \]
-Church's combinator is a bit weaker than Turing's in that $Yg
-\equal[\beta] g(Yg)$ but not $Yg \bred g(Yg)$. Let $V$ be the term
-$\lambd[x][g(xx)]$, so that $Y_C \ident \lambd[g][VV]$. Then
+Church 的组合子比 Turing 的稍弱一些，因为 $Yg \equal[\beta] g(Yg)$ 但并非 $Yg \bred g(Yg)$。
+令 $V$ 为项 $\lambd[x][g(xx)]$，使得 $Y_C \ident \lambd[g][VV]$。那么
 \begin{align*}
   VV & \ident (\lambd[x][g(xx)])V \red g(VV)
-  \text{ and thus}\\
-  Y_C g & \ident (\lambd[g][VV])g \red VV \red g(VV), \text{ but also}\\
+  \text{ 因此}\\
+  Y_C g & \ident (\lambd[g][VV])g \red VV \red g(VV), \text{ 但也有}\\
   g(Y_C g) & \ident g((\lambd[g][VV])g) \red g(VV).
 \end{align*}
-In other words, $Y_Cg$ and $g(Y_Cg)$ reduce to a common term $g(VV)$; so $Y_Cg
-\equal[\beta] g(Y_Cg)$. This is often enough for applications.
+换言之，$Y_Cg$ 和 $g(Y_Cg)$ 都归约到同一个项 $g(VV)$；因此 $Y_Cg
+\equal[\beta] g(Y_Cg)$。这对于许多应用来说已经足够了。
 
 \end{document}
-

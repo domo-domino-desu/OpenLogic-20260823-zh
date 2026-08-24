@@ -8,110 +8,78 @@
 
 \olfileid{inc}{inp}{tar}
 
-\olsection{The Undefinability of Truth}
+\olsection{真理的不可定义性}
 
-The notion of \emph{definability} depends on having a formal semantics
-for the language of arithmetic.  We have described a set of formulas
-and sentences in the language of arithmetic. The ``intended
-interpretation'' is to read such sentences as making assertions about
-the natural numbers, and such an assertion can be true or false. Let
-$\Struct{N}$ be the !!{structure} with domain $\Nat$ and the standard
-interpretation for the symbols in the language of arithmetic.  Then
-$\Sat{N}{!A}$ means ``$!A$ is true in the standard interpretation.''
+\emph{可定义性}的概念依赖于为算术语言给出的形式语义。
+我们已经描述过算术语言中的一组公式和语句。
+“预期解释”即是将这样的语句读作关于自然数的断言，而该断言可真可假。
+令 $\Struct{N}$ 为以 $\Nat$ 为论域、并对算术语言中的符号作标准解释的结构。
+那么 $\Sat{N}{!A}$ 就意味着“$!A$ 在标准解释下为真”。
 
 \begin{defn}
-A relation $R(x_1,\dots,x_k)$ of natural numbers is \emph{definable}
-in $\Struct{N}$ if and only if there is a formula $!A(x_1,\dots,x_k)$
-in the language of arithmetic such that for every $n_1,\dots,n_k$,
-$R(n_1,\dots,n_k)$ if and only if $\Sat{N}{!A(\num n_1,\dots,\num
-  n_k)}$.
+自然数上的一个关系$R(x_1,\dots,x_k)$在 $\Struct{N}$ 中是\emph{可定义的}，
+当且仅当在算术语言中存在一个公式$!A(x_1,\dots,x_k)$，
+使得对所有 $n_1,\dots,n_k$，
+$R(n_1,\dots,n_k)$当且仅当$\Sat{N}{!A(\num n_1,\dots,\num
+  n_k)}$。
 \end{defn}
 
-Put differently, a relation is definable in $\Struct{N}$ if and
-only if it is representable in the theory $\Th{TA}$, where $\Th{TA} =
-\Setabs{!A}{\Sat{N}{!A}}$ is the set of true sentences of
-arithmetic. (If this is not immediately clear to you, you should go
-back and check the definitions and convince yourself that this is the
-case.)
+换句话说，一个关系在 $\Struct{N}$ 中可定义，
+当且仅当它在理论 $\Th{TA}$ 中是可表示的，其中$\Th{TA} =
+\Setabs{!A}{\Sat{N}{!A}}$是算术真语句的集合。（如果你不能立刻明白这一点，应当回顾相关定义并说服自己事实正是如此。）
 
 \begin{lem}
-Every computable relation is definable in~$\Struct{N}$.
+每个可计算关系都在~$\Struct{N}$ 中可定义。
 \end{lem}
 
 \begin{proof}
-It is easy to check that the formula representing a relation in
-$\Th{Q}$ defines the same relation in $\Struct{N}$. 
+容易验证，在 $\Th{Q}$ 中表示某关系的公式，也在 $\Struct{N}$ 中定义同一个关系。 
 \end{proof}
 
-Now one can ask, is the converse also true?  That is, is every
-relation definable in~$\Struct{N}$ computable? The answer is no. For
-example:
+现在自然要问，反之亦然吗？即，每个在~$\Struct{N}$ 中可定义的关系都是可计算的吗？答案是否定的。例如：
 
 \begin{lem}
-The halting relation is definable in $\Struct{N}$.
+停机关系在 $\Struct{N}$ 中可定义。
 \end{lem}
 
 \begin{proof}
-Recall that the Kleene normal form theorem states that every partial
-computable function~$f$ has an index~$e$ such that $f(x) =
-U(\umin{s}{T(e,x,s)})$ for all $x \in \Nat$, where $U$ and $T$ are
-primitive recursive and therefore total. Thus, $f(x)$ is defined
-(i.e., the computation halts) iff there is an~$s$ such that $T(e,x,s)$
-holds.
+回忆 Kleene 范式定理，它断言每个部分可计算函数~$f$ 都有一个指标~$e$，使得 $f(x) =
+U(\umin{s}{T(e,x,s)})$ 对所有 $x \in \Nat$ 成立，其中 $U$ 和 $T$ 是原始递归的，因而是全函数。因此，$f(x)$ 有定义（即计算停机）当且仅当存在某个~$s$ 使得 $T(e,x,s)$ 成立。
 
-Now let $H$ be the halting relation, i.e.,
+现在令 $H$ 为停机关系，即
 \[
 H = \Setabs{\tuple{e,x}}{\lexists[s][T(e, x, s)]}.
 \]
-Let $!D_T$ define $T$ in $\Struct{N}$. Then
+设 $!D_T$ 在 $\Struct{N}$ 中定义 $T$。则
 \[
 H = \Setabs{\tuple{e,x}}{\Sat{N}{\lexists[s][!D_T(\num e, \num x, s)]}},
 \]
-so $\lexists[s][!D_T(z, x, s)]$ defines~$H$ in $\Struct{N}$. 
+因此 $\lexists[s][!D_T(z, x, s)]$ 就在 $\Struct{N}$ 中定义了~$H$。 
 \end{proof}
 
 \begin{prob}
-Show that $Q(n) \defiff n \in \Setabs{\Gn{!A}}{\Th{Q} \Proves !A}$ is
-  definable in arithmetic.
+证明 $Q(n) \defiff n \in \Setabs{\Gn{!A}}{\Th{Q} \Proves !A}$ 在算术中是可定义的。
 \end{prob}
 
-What about $\Th{TA}$ itself? Is it definable in arithmetic? That
-is: is the set $\Setabs{\Gn{!A}}{\Sat{N}{!A}}$ definable in
-arithmetic? Tarski's theorem answers this in the negative.
+那么 $\Th{TA}$ 本身呢？它在算术中是可定义的吗？也就是说，集合 $\Setabs{\Gn{!A}}{\Sat{N}{!A}}$ 在算术中是可定义的吗？Tarski（塔斯基）定理对此给出了否定的回答。
 
 \begin{thm}
 \ollabel{thm:tarski}
-The set of true !!{sentence}s of arithmetic is not definable in arithmetic.
+算术真语句的集合在算术中是不可定义的。
 \end{thm}
 
 \begin{proof} 
-Suppose $!D(x)$ defined it, i.e., $\Sat{N}{!A}$ iff
-$\Sat{N}{!D(\gn{!A})}$. By the fixed-point lemma, there is a formula
-$!A$ such that $\Th{Q} \Proves !A \liff \lnot !D(\gn{!A})$, and hence
-$\Sat{N}{!A \liff \lnot !D(\gn{!A})}$. But then $\Sat{N}{!A}$ if and
-only if $\Sat{N}{\lnot !D(\gn{!A})}$, which contradicts the fact that
-$!D(y)$ is supposed to define the set of true statements of
-arithmetic.  
+假设 $!D(x)$ 定义了该集合，即 $\Sat{N}{!A}$ 当且仅当 $\Sat{N}{!D(\gn{!A})}$。根据不动点引理，存在一个公式 $!A$ 使得 $\Th{Q} \Proves !A \liff \lnot !D(\gn{!A})$，从而 $\Sat{N}{!A \liff \lnot !D(\gn{!A})}$。但这样一来，$\Sat{N}{!A}$ 当且仅当 $\Sat{N}{\lnot !D(\gn{!A})}$，这与 $!D(y)$ 本应定义算术真语句集合的事实相矛盾。  
 \end{proof}
 
-Tarski applied this analysis to a more general philosophical notion of
-truth. Given any language $L$, Tarski argued that an adequate notion
-of truth for $L$ would have to satisfy, for each sentence $X$,
+Tarski 将这一分析应用到关于真理的更一般的哲学概念上。对于任何语言 $L$，Tarski 认为，一个关于 $L$ 的充分的真理概念必须对每个语句 $X$ 满足
 \begin{quote}
-`$X$' is true if and only if $X$.
+``$X$'' 是真的当且仅当 $X$。
 \end{quote}
-Tarski's oft-quoted example, for English, is the sentence
+Tarski 常被引用的以英语为例的句子是：
 \begin{quote}
-`Snow is white' is true if and only if snow is white.
+``雪是白的''是真的当且仅当雪是白的。
 \end{quote}
-However, for any language strong enough to represent the diagonal
-function, and any linguistic predicate $T(x)$, we can construct a
-sentence $X$ satisfying ``$X$ if and only if not $T(\text{`$X$'})$.''
-Given that we do not want a truth predicate to declare some sentences
-to be both true and false, Tarski concluded that one cannot specify a
-truth predicate for all sentences in a language without, somehow,
-stepping outside the bounds of the language. In other words, a the
-truth predicate for a language cannot be defined in the language
-itself.
+然而，对于任何强到足以表示对角函数的语言，以及该语言中的任何谓词 $T(x)$，我们都能构造出一个满足``$X$ 当且仅当并非 $T(\text{`$X$'})$''的语句 $X$。考虑到我们不会希望一个真理谓词判定某些语句既真又假，Tarski 得出结论：除非以某种方式超出该语言的界限，否则我们无法为该语言中的所有语句规定一个真理谓词。换言之，一个语言的真理谓词无法在该语言自身内被定义。
 
 \end{document}

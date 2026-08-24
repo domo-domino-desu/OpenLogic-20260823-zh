@@ -7,97 +7,56 @@
 \begin{document}
 
 \olfileid{sfr}{set}{bas}
-\olsection{Extensionality}
+\olsection{外延性}
 
-A \emph{set} is a collection of objects, considered {as} a single
-object. The objects making up the set are called \emph{elements} or
-\emph{members} of the set. If $x$ is !!a{element} of a set~$A$, we
-write $x \in A$; if not, we write $x \notin A$. The set which has no
-!!{element}s is called the \emph{empty} set and
-denoted~``$\emptyset$''.
+一个\emph{集合}是对象的汇集，被视作单个对象。构成集合的对象称为该集合的\emph{元素}或\emph{成员}。若 $x$ 是集合~$A$ 的元素，则写作 $x \in A$；否则写作 $x \notin A$。没有元素的集合称为\emph{空集}，记作 ``$\emptyset$''。
 
 \begin{explain}
-It does not matter how we \emph{specify} the set, or how we
-\emph{order} its !!{element}s, or indeed how \emph{many times} we
-count its !!{element}s. All that matters are what its !!{element}s
-are. We codify this in the following principle.
+我们如何\emph{指定}集合，如何\emph{排列}其元素，乃至将其元素\emph{计数}多少次，都无关紧要。唯一重要的是它的元素是什么。我们将此概括为以下原理。
 \end{explain}
 
-\begin{defn}[Extensionality]
-  If $A$ and $B$ are sets, then $A = B$ iff
-  every !!{element} of~$A$ is also !!a{element} of~$B$, and vice
-  versa.
+\begin{defn}[外延性]
+  若 $A$ 和 $B$ 是集合，则 $A = B$ 当且仅当 $A$ 的每个元素也都是 $B$ 的元素，反之亦然。
 \end{defn}
 
-Extensionality licenses some notation. In general, when we have some
-objects $a_{1}$, \dots, $a_{n}$, then $\{a_{1}, \dots, a_{n}\}$ is
-\emph{the} set whose !!{element}s are $a_1, \ldots, a_n$. We emphasise
-the word ``\emph{the}'', since extensionality tells us that there can
-be only \emph{one} such set. Indeed, extensionality also licenses the
-following:
+外延性为某些记法提供了依据。一般来说，当我们有一些对象 $a_{1}$, \dots, $a_{n}$ 时，$\{a_{1}, \dots, a_{n}\}$ 就是\emph{那个}以 $a_1, \ldots, a_n$ 为元素的集合。我们强调“\emph{那个}”一词，因为外延性告诉我们这样的集合只能有\emph{一个}。事实上，外延性也为下式提供了依据：
   \[
     \{a, a, b\} = \{a, b\} = \{b,a\}.
-  \] 
-This delivers on the point that, when we consider sets, we don't care
-about the order of their !!{element}s, or how many times they are
-specified.
+  \]
+这就说明了：当我们考虑集合时，我们并不关心其元素的顺序，也不关心它们被指定了多少次。
 
 \begin{tagblock}{novice}
 \begin{ex}
-Whenever you have a bunch of objects, you can collect them together in
-a set. The set of Richard's siblings, for instance, is a set that
-contains one person, and we could write it as $S=\{\textrm{Ruth}\}$.
-The set of positive integers less than $4$ is $\{1, 2, 3\}$, but it
-can also be written as $\{3, 2, 1\}$ or even as $\{1, 2, 1, 2, 3\}$.
-These are all the same set, by extensionality. For every !!{element}
-of $\{1, 2, 3\}$ is also !!a{element} of $\{3, 2, 1\}$ (and of $\{1,
-2, 1, 2, 3\}$), and vice versa.
-\end{ex} 
+任何时候，只要有一堆对象，就可以把它们收集在一个集合里。例如，Richard（理查德）的兄弟姐妹构成的集合是一个只包含一个人的集合，我们可以把它写成 $S=\{\textrm{Ruth}\}$。小于 $4$ 的正整数集合是 $\{1, 2, 3\}$，但它也可以写成 $\{3, 2, 1\}$，甚至写成 $\{1, 2, 1, 2, 3\}$。根据外延性，这些都是同一个集合。因为 $\{1, 2, 3\}$ 的每个元素也都是 $\{3, 2, 1\}$（以及 $\{1,
+2, 1, 2, 3\}$）的元素，反之亦然。
+\end{ex}
 \end{tagblock}
 
-Frequently we'll specify a set by some property that its !!{element}s
-share. We'll use the following shorthand notation for that:
-$\Setabs{x}{\phi(x)}$, where the $\phi(x)$ stands for the property
-that~$x$ has to have in order to be counted among the !!{element}s of
-the set. 
+我们常常通过其元素共有的某个性质来指定一个集合。为此我们将使用以下简记：$\Setabs{x}{\phi(x)}$，其中 $\phi(x)$ 代表 $x$ 要成为该集合元素所必须具有的性质。
 
 \begin{tagblock}{novice}
 \begin{ex}
-In our example, we could have specified $S$ also as
+在我们的例子中，我们也可以将 $S$ 指定为
 \[
-S = \Setabs{x}{x \text{ is a sibling of Richard}}.
+S = \Setabs{x}{x \text{ 是 Richard 的兄弟姐妹}}.
 \]
 \end{ex}
 \end{tagblock}
 
 \begin{tagblock}{math}
 \begin{ex}
-A number is called \emph{perfect} iff it is equal to the sum of its
-proper divisors (i.e., numbers that evenly divide it but aren't
-identical to the number). For instance, $6$ is perfect because its
-proper divisors are $1$, $2$, and~$3$, and $6 = 1 + 2 + 3$. In fact,
-$6$ is the only positive integer less than $10$ that is perfect. So,
-using extensionality, we can say:
+一个数被称为\emph{完全数}，当且仅当它等于其真因子（即能整除它但不等于它自身的数）之和。例如，$6$ 是完全数，因为它的真因子是 $1$、$2$ 和~$3$，且 $6 = 1 + 2 + 3$。事实上，$6$ 是小于 $10$ 的正整数中唯一的完全数。因此，利用外延性，我们可以说：
 \[
-	\{6\} = \Setabs{x}{x\text{ is perfect and }0 \leq x \leq 10}
+	\{6\} = \Setabs{x}{x\text{ 是完全数且 }0 \leq x \leq 10}
 \]
-We read the notation on the right as ``the set of $x$'s such that $x$
-is perfect and $0 \leq x \leq 10$''. The identity here confirms that,
-when we consider sets, we don't care about how they are specified.
-And, more generally, extensionality guarantees that there is always
-only one set of $x$'s such that $\phi(x)$.
-So, extensionality justifies calling 
-$\Setabs{x}{\phi(x)}$ \emph{the} set of $x$'s such that~$\phi(x)$.
+我们将右边的记法读作“满足‘$x$ 是完全数且 $0 \leq x \leq 10$’的所有 $x$ 的集合”。此处的等式确认了，当我们考虑集合时，我们并不关心它们是如何被指定的。更一般地，外延性保证了使得 $\phi(x)$ 成立的 $x$ 的集合总是唯一的。因此，外延性为我们把 $\Setabs{x}{\phi(x)}$ 称为使得~$\phi(x)$ 成立的 $x$ 的\emph{那个}集合提供了依据。
 \end{ex}
 \end{tagblock}
 
-Extensionality gives us a way for showing that sets are identical: to
-show that $A = B$, show that whenever $x \in A$ then also $x \in B$,
-and whenever $y \in B$ then also $y \in A$.
+外延性为我们提供了一种证明集合相等的方法：要证明 $A = B$，就要证明只要 $x \in A$ 则 $x \in B$，并且只要 $y \in B$ 则 $y \in A$。
 
 \begin{prob}
-Prove that there is at most one empty set, i.e., show that if $A$ and $B$
-are sets without !!{element}s, then $A = B$.
+证明最多只存在一个空集，即证明：如果 $A$ 和 $B$ 都是没有元素的集合，那么 $A = B$。
 \end{prob}
 
 \end{document}

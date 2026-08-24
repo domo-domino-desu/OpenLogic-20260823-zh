@@ -7,61 +7,37 @@
 \begin{document}
 
 \olfileid{sfr}{fun}{cmp}
-\olsection{Composition of Functions}
+\olsection{函数的复合}
 
 \begin{explain}
-\oliflabeldef{sfr:fun:inv:sec}{We saw in \olref[inv]{sec} that the
-inverse~$f^{-1}$ of !!a{bijection}~$f$ is itself a function. Another
-operation on functions is composition: w}{W}e can define a new
-function by composing two functions, $f$ and~$g$, i.e., by first
-applying $f$ and then~$g$. Of course, this is only possible if the
-ranges and domains match, i.e., the range of~$f$ must be a subset of
-the domain of~$g$. \oliflabeldef{sfr:rel:ops:sec}{This operation on
-functions is the analogue of the operation of relative product on
-relations from \olref[rel][ops]{sec}.}{}
+\oliflabeldef{sfr:fun:inv:sec}{我们在\olref[inv]{sec}节看到，双射~$f$ 的逆~$f^{-1}$ 本身也是一个函数。函数的另一种运算是复合：}{}我们可以通过复合两个函数~$f$ 和~$g$ 来定义新函数，即先应用~$f$ 再应用~$g$。当然，这只有在值域与定义域匹配时才有可能，也就是说，$f$ 的值域必须是~$g$ 的定义域的一个子集。\oliflabeldef{sfr:rel:ops:sec}{函数的这一运算，类似于\olref[rel][ops]{sec}节中关系的相对积运算。}{}
 
-A diagram might help to explain the idea of composition. In
-\olref{fig:composition}, we depict two functions $f \colon A \to B$
-and $g \colon B \to C$ and their composition~$(\comp{f}{g})$. The
-function $(\comp{f}{g}) \colon A \to C$ pairs each !!{element} of~$A$
-with !!a{element} of~$C$. We specify which !!{element} of~$C$
-!!a{element} of $A$ is paired with as follows: given an input $x \in
-A$, first apply the function $f$ to~$x$, which will output some $f(x)
-= y \in B$, then apply the function $g$ to~$y$, which will output some
-$g(f(x)) = g(y) = z \in C$.
+图示可能有助于解释复合的概念。在\olref{fig:composition}中，我们描绘了两个函数~$f \colon A \to B$ 和~$g \colon B \to C$ 以及它们的复合~$(\comp{f}{g})$。函数$(\comp{f}{g}) \colon A \to C$将~$A$ 中的每个元素与~$C$ 中的一个元素配对。我们如下规定~$A$ 中的元素与~$C$ 中的哪个元素配对：给定输入~$x \in A$，首先对~$x$ 应用函数~$f$，它将输出某个~$y \in B$（记作~$f(x) = y$）；然后对~$y$ 应用函数~$g$，它将输出某个$g(f(x)) = g(y) = z \in C$。
 \begin{figure}
   \olasset[2\olphotowidth]{assets/diagrams/composition.tikz}
-  \caption{The composition $g \circ f$ of two functions $f$ and~$g$.}
+  \caption{函数~$f$ 与~$g$ 的复合~$g \circ f$。}
   \ollabel{fig:composition}
 \end{figure}
 \end{explain}
 
-\begin{defn}[Composition]
-Let $f\colon A \to B$ and $g\colon B \to C$ be functions. The
-\emph{composition} of $f$ with~$g$ is $\comp{f}{g} \colon A \to C$,
-where $(\comp{f}{g})(x) = g(f(x))$.
+\begin{defn}[复合]
+设~$f\colon A \to B$ 和~$g\colon B \to C$ 为函数。$f$ 与~$g$ 的\emph{复合}是$\comp{f}{g} \colon A \to C$，其中$(\comp{f}{g})(x) = g(f(x))$。
 \end{defn}
 
 \begin{ex}
-Consider the functions $f(x) = x + 1$, and $g(x) = 2x$. Since
-$(\comp{f}{g})(x) = g(f(x))$, for each input~$x$ you must first take
-its successor, then multiply the result by two. So their composition
-is given by $(\comp{f}{g})(x) = 2(x+1)$.
+考虑函数~$f(x) = x + 1$ 和~$g(x) = 2x$。由于$(\comp{f}{g})(x) = g(f(x))$，对每个输入~$x$，需要先取其后继，再将结果乘以二。因此，它们的复合由 $(\comp{f}{g})(x) = 2(x+1)$ 给出。
 \end{ex}
 
 \begin{prob}
-Show that if $f \colon A \to B$ and $g \colon B \to C$ are both
-!!{injective}, then $\comp{f}{g}\colon A \to C$ is !!{injective}.
+证明：若~$f \colon A \to B$ 和~$g \colon B \to C$ 都是单射的，则 $\comp{f}{g}\colon A \to C$ 是单射的。
 \end{prob}
 
 \begin{prob}
-Show that if $f \colon A \to B$ and $g \colon B \to C$ are both
-!!{surjective}, then $\comp{f}{g}\colon A \to C$ is !!{surjective}.
+证明：若~$f \colon A \to B$ 和~$g \colon B \to C$ 都是满射的，则 $\comp{f}{g}\colon A \to C$ 是满射的。
 \end{prob}
 
 \begin{prob}
-Suppose $f \colon A \to B$ and $g \colon B \to C$. Show that the graph
-of $\comp{f}{g}$ is $R_f \mid R_g$.
+设~$f \colon A \to B$ 和~$g \colon B \to C$。证明：$\comp{f}{g}$ 的图象是~$R_f \mid R_g$。
 \end{prob}
 
 \end{document}

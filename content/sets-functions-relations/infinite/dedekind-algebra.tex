@@ -7,112 +7,98 @@
 \begin{document}
 
 \olfileid{sfr}{infinite}{dedekind}
-\olsection{Dedekind Algebras}
+\olsection{Dedekind 代数}
 
-We not only want natural numbers to be infinite; we want them to have
-certain (algebraic) properties: they need to behave well under
-addition, multiplication, and so forth. 
+我们不仅希望自然数是无限的；还希望它们具有特定的（代数）性质：它们需要在加法、乘法等运算下表现良好。
 
-Dedekind's idea was to take the idea of the \emph{successor function}
-as basic, and then characterise the numbers as those with the
-following properties:
+Dedekind 的想法是将\emph{后继函数}的概念视为基础，然后用以下性质来刻画这些数：
 \begin{enumerate}
-	\item There is a number, $0$, which is not the successor of any number
-	\\i.e., $0 \notin \ran{s}$
-	\\i.e., $\forall x\ s(x) \neq 0$
-	\item Distinct numbers have distinct successors 
-	\\i.e., $s$ is !!a{injection}
-	\\i.e., $\forall x \forall y (s(x) = s(y) \lif x = y)$
-	\item\ollabel{repeatedapplication} Every number is obtained from
-	$0$ by repeated applications of the successor function.
+	\item 存在一个数 $0$，它不是任何数的后继，
+	\\即 $0 \notin \ran{s}$
+	\\即 $\forall x\ s(x) \neq 0$
+	\item 不同的数有不同的后继，
+	\\即 $s$ 是单射
+	\\即 $\forall x \forall y (s(x) = s(y) \lif x = y)$
+	\item\ollabel{repeatedapplication} 每个数都是通过对 $0$ 反复应用后继函数得到的。
 \end{enumerate}
-The first two conditions are easy to deal with using first-order logic
-(see above). But we cannot deal with \olref{repeatedapplication} just
-using first-order logic. Dedekind's breakthrough was to reformulate
-condition \olref{repeatedapplication}, set-theoretically, as follows:
+前两个条件用一阶逻辑很容易处理（见上文）。但我们无法仅用一阶逻辑处理 \olref{repeatedapplication}。Dedekind 的突破在于以集合论的方式将条件 \olref{repeatedapplication} 重新表述如下：
 \begin{enumerate}
-	\item[3$'$.] The natural numbers are the smallest set that is
-	\emph{closed under the successor function}: that is, if we apply
-	$s$ to any !!{element} of the set, we obtain another !!{element}
-	of the set.
+	\item[3$'$.] 自然数是最小的\emph{对后继函数封闭的}集合：也就是说，如果我们对集合中的任何元素应用 $s$，就会得到该集合中的另一个元素，
 \end{enumerate}
-But we shall need to spell this out slowly.
+
+但我们需要仔细阐明这一点。
 
 \begin{defn}\ollabel{Closure}
-	For any function $f$, the set $X$ is $f$-\emph{closed} {iff}
-	$(\forall x \in X)f(x) \in X$. Now define, for any $o$:
+	对于任意函数 $f$，集合 $X$ 是 $f$-\emph{封闭的}，当且仅当
+	$(\forall x \in X)f(x) \in X$。现对任意 $o$ 定义：
 	$$\closureofunder{f}{o} = \bigcap\Setabs{X}{o \in X\text{ and }X
 \text{ is $f$-closed}}$$
 \end{defn}
 
-So $\closureofunder{f}{o}$ is the intersection of all the $f$-closed
-sets with $o$ as !!a{element}. Intuitively, then,
-$\closureofunder{f}{o}$ is the \emph{smallest} $f$-closed set with $o$
-as !!a{element}. This next result makes that intuitive thought
-precise;
+
+所以 $\closureofunder{f}{o}$ 就是所有以 $o$ 为元素的 $f$-封闭集合的交集。因此直观上，
+$\closureofunder{f}{o}$ 就是以 $o$ 为元素的\emph{最小} $f$-封闭集合。下面的结果将这一直观想法精确化：
 \begin{lem}\ollabel{closureproperties}
-	For any function $f$ and any $o \in A$:
+	对于任意函数 $f$ 和任意 $o \in A$：
 	\begin{enumerate}
-		\item\ollabel{closurehaselem} $o \in \closureofunder{f}{o}$; and
-		\item\ollabel{closureclosed} $\closureofunder{f}{o}$ is $f$-closed; and
-		\item\ollabel{closuresmallest} if $X$ is $f$-closed and $o \in
-		X$, then $\closureofunder{f}{o} \subseteq X$
+		\item\ollabel{closurehaselem} $o \in \closureofunder{f}{o}$；且
+		\item\ollabel{closureclosed} $\closureofunder{f}{o}$ 是 $f$-封闭的；且
+		\item\ollabel{closuresmallest} 若 $X$ 是 $f$-封闭的且 $o \in
+		X$，则 $\closureofunder{f}{o} \subseteq X$。
 	\end{enumerate}
 \end{lem}
 
 \begin{proof}
-Note that there is at least one $f$-closed set with $o$ as !!a{element}, namely $\ran{f}\cup
-\{o\}$. So $\closureofunder{f}{o}$, the intersection of \emph{all}
-such sets, exists. We must now check
-\olref{closurehaselem}--\olref{closuresmallest}.
+注意到至少存在一个以 $o$ 为元素的 $f$-封闭集合，即 $\ran{f}\cup
+\{o\}$。所以 $\closureofunder{f}{o}$，即\emph{所有}此类集合的交集，是存在的。
+现在我们需要逐一验证
+\olref{closurehaselem}--\olref{closuresmallest}。
 
-Concerning \olref{closurehaselem}: $o \in \closureofunder{f}{o}$ as it is an
-intersection of sets which all have $o$ as !!a{element}. 
+关于 \olref{closurehaselem}：$o \in \closureofunder{f}{o}$，因为它是若干均包含 $o$ 的集合的交集。
 
-Concerning \olref{closureclosed}: suppose $x \in \closureofunder{f}{o}$. So if $o \in X$ and $X$ is $f$-closed, then $x \in X$, and now $f(x) \in X$ as $X$ is
-$f$-closed. So $f(x) \in \closureofunder{f}{o}$.
+关于 \olref{closureclosed}：假设 $x \in \closureofunder{f}{o}$。那么对于任意满足 $o \in X$ 且 $X$ 是 $f$-封闭的 $X$，都有 $x \in X$；而由于 $X$ 是
+$f$-封闭的，从而 $f(x) \in X$。所以 $f(x) \in \closureofunder{f}{o}$。
 
-Concerning \olref{closuresmallest}: quite generally, if $X
-\in C$ then $\bigcap C \subseteq X$.
+关于 \olref{closuresmallest}：一般地，若 $X
+\in C$，则 $\bigcap C \subseteq X$。
 \end{proof}
 
-Using this, we can say:
+利用上述结果，我们可以说：
 
 \begin{defn}
-A \emph{Dedekind algebra} is a set $A$ together with a function $f
-\colon A \to A$ and some $o \in A$  such that:
+一个 \emph{Dedekind 代数} 是一个集合 $A$，连同一个函数 $f
+\colon A \to A$ 和某个 $o \in A$，满足：
 	\begin{enumerate}
 		\item \ollabel{ded:proper} $o \notin \ran{f}$
-		\item \ollabel{ded:injection} $f$ is !!a{injection}
+		\item \ollabel{ded:injection} $f$ 是单射
 		\item \ollabel{ded:closure} $A = \closureofunder{f}{o}$
 	\end{enumerate}
 \end{defn}
 
-Since $A = \closureofunder{f}{o}$, our earlier result tells us that
-$A$ is the smallest $f$-closed set with $o$ as !!a{element}. Clearly a
-Dedekind algebra is Dedekind infinite; just look at clauses
-\olref{ded:proper} and \olref{ded:injection} of the definition. But
-the more exciting fact is that any Dedekind infinite set can be turned
-into a Dedekind algebra. 
+由于 $A = \closureofunder{f}{o}$，我们前面的结果告诉我们，
+$A$ 是包含 $o$ 的最小 $f$-封闭集合。显然，一个
+Dedekind 代数是 Dedekind 无限的；只需看定义中的条目
+\olref{ded:proper} 和 \olref{ded:injection}。但
+更令人兴奋的事实是，任何 Dedekind 无限集合都可以转化为一个 Dedekind 代数。
 
 \begin{thm}\ollabel{thm:DedekindInfiniteAlgebra}
-If there is a Dedekind infinite set, then there is a Dedekind algebra.
+如果存在 Dedekind 无限集合，那么就存在 Dedekind 代数。
 \end{thm}
 
 \begin{proof}
-Let $D$ be Dedekind infinite. So there is an injection $g \colon D \to
-D$ and an element $o  \in D \setminus \ran{g}$. Now let $A =
-\closureofunder{g}{o}$; by \olref{closureproperties}, $A$ exists and $o \in A$. Let $f =
-\funrestrictionto{g}{A}$. We will show that $A, f, o$ comprise a Dedekind
-algebra. 
+设 $D$ 是 Dedekind 无限的。于是存在一个单射 $g \colon D \to
+D$ 和一个元素 $o  \in D \setminus \ran{g}$。现在令 $A =
+\closureofunder{g}{o}$；由 \olref{closureproperties}，$A$ 存在且 $o \in A$。令 $f =
+\funrestrictionto{g}{A}$。我们将证明 $A$、$f$、$o$ 构成一个 Dedekind
+代数。
 
-Concerning \olref{ded:proper}: $o \notin \ran{g}$ and $\ran{f}
-\subseteq \ran{g}$ so $o\notin \ran{f}$.
+关于 \olref{ded:proper}：$o \notin \ran{g}$ 且 $\ran{f}
+\subseteq \ran{g}$，因此 $o\notin \ran{f}$。
 
-Concerning \olref{ded:injection}: $g$ is an injection on $D$; so $f
-\subseteq g$ must be an injection.
+关于 \olref{ded:injection}：$g$ 是 $D$ 上的单射；所以 $f
+\subseteq g$ 必定也是单射。
 
-Concerning \olref{ded:closure}: by \olref{closureproperties}, $A$ is $g$-closed; a fortiori, $A$ is $f$-closed. So $\closureofunder{f}{o} \subseteq A$ by \olref{closureproperties}. Since also $\closureofunder{f}{o}$ is $f$-closed and $f = \funrestrictionto{g}{A}$, it follows that $\closureofunder{f}{o}$ is $g$-closed. So $A \subseteq \closureofunder{f}{o}$ by \olref{closureproperties}.
+关于 \olref{ded:closure}：由 \olref{closureproperties}，$A$ 是对 $g$ 封闭的；显然，$A$ 也是对 $f$ 封闭的。因此根据 \olref{closureproperties}，有 $\closureofunder{f}{o} \subseteq A$。由于 $\closureofunder{f}{o}$ 也是对 $f$ 封闭的，且 $f = \funrestrictionto{g}{A}$，可知 $\closureofunder{f}{o}$ 也是对 $g$ 封闭的。于是再由 \olref{closureproperties}，得到 $A \subseteq \closureofunder{f}{o}$。
 \end{proof}
 
 \end{document}

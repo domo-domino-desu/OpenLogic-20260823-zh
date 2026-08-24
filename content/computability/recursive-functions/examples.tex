@@ -7,108 +7,95 @@
 \begin{document}
 
 \olfileid{cmp}{rec}{exa}
-\olsection{Examples of Primitive Recursive Functions}
+\olsection{原始递归函数的例子}
 
-
-We already have some examples of primitive recursive functions: the
-addition and multiplication functions~$\Add$ and $\Mult$.  The
-identity function $\fn{id}(x) = x$ is primitive recursive, since it is
-just~$\Proj{1}{0}$. The constant functions $\fn{const}_n(x) = n$ are
-primitive recursive since they can be defined from $\Zero$ and $\Succ$
-by successive composition. This is useful when we want to use
-constants in primitive recursive definitions, e.g., if we want to
-define the function $f(x) = 2 \cdot x$ can obtain it by composition
-from $\fn{const}_n(x)$ and multiplication as $f(x) =
-\Mult(\fn{const}_2(x), \Proj{1}{0}(x))$. We'll make use of this trick
-from now on.
+我们已经知道一些原始递归函数的例子：加法函数~$\Add$ 和乘法函数~$\Mult$。
+恒等函数 $\fn{id}(x) = x$ 是原始递归的，因为它就是~$\Proj{1}{0}$。
+常数函数 $\fn{const}_n(x) = n$ 也是原始递归的，因为它们可以由 $\Zero$ 和 $\Succ$ 通过反复复合定义出来。
+当我们在原始递归定义中需要使用常数时，这会很有用。例如，若要定义函数 $f(x) = 2 \cdot x$，可以通过将常数函数 $\fn{const}_n(x)$ 与乘法函数复合来得到，即 $f(x) =
+\Mult(\fn{const}_2(x), \Proj{1}{0}(x))$。
+今后我们将经常使用这一技巧。
 
 \begin{prop}
-  The exponentiation function $\fn{exp}(x, y) = x^y$ is primitive recursive.
+  指数函数 $\fn{exp}(x, y) = x^y$ 是原始递归的。
 \end{prop}
 
 \begin{proof}
-  We can define $\fn{exp}$ primitive recursively as
+  我们可以将 $\fn{exp}$ 原始递归地定义为
   \begin{align*}
     \fn{exp}(x, 0) & = 1\\
     \fn{exp}(x, y+1) & = \Mult(x, \fn{exp}(x,y)).
-    \intertext{Strictly speaking, this is not a recursive definition
-      from primitive recursive functions. Officially, though, we
-      have:}
+    \intertext{严格来说，这并不是一个由原始递归函数出发的递归定义。
+      不过，严格按定义来说，我们有：}
     \fn{exp}(x, 0) & = f(x)\\
     \fn{exp}(x, y+1) & = g(x, y, \fn{exp}(x,y)).
-    \intertext{where}
+    \intertext{其中}
     f(x) & = \Succ(\Zero(x)) = 1\\
     g(x, y, z) & = \Mult(\Proj{3}{0}(x, y, z), \Proj{3}{2}(x, y, z)) = x \cdot z
   \end{align*}
-  and so $f$ and $g$ are defined from primitive recursive functions by
-  composition.
+  因此 $f$ 和 $g$ 是由原始递归函数通过复合定义的。
 \end{proof}
 
 \begin{prop}
-  The predecessor function $\fn{pred}(y)$ defined by
+  由
   \[
   \fn{pred}(y) = \begin{cases}
-    0 & \text{if $y=0$}\\
-    y-1 & \text{otherwise}
+    0 & \text{若 $y=0$}\\
+    y-1 & \text{否则}
   \end{cases}
   \]
-  is primitive recursive.
+  定义的前驱函数 $\fn{pred}(y)$ 是原始递归的。
 \end{prop}
 
 \begin{proof}
- Note that 
- \begin{align*}
-   \fn{pred}(0) & = 0 \text{ and}\\
+  注意到
+  \begin{align*}
+   \fn{pred}(0) & = 0 \text{ 且}\\
    \fn{pred}(y+1) & = y.
  \end{align*}
- This is almost a primitive recursive definition.  It does not,
- strictly speaking, fit into the pattern of definition by primitive
- recursion, since that pattern requires at least one extra
- argument~$x$. It is also odd in that it does not actually use
- $\fn{pred}(y)$ in the definition of $\fn{pred}(y+1)$. But we can
- first define $\fn{pred}'(x, y)$ by
- \begin{align*}
+  这几乎就是一个原始递归定义。严格地说，它并不完全符合原始递归的定义模式，因为该模式要求至少有一个额外的自变元~$x$。此外，它也有些反常，因为在定义 $\fn{pred}(y+1)$ 时实际上并没有用到 $\fn{pred}(y)$。但我们可以先通过
+  \begin{align*}
    \fn{pred}'(x, 0) & = \Zero(x) = 0,\\
    \fn{pred}'(x, y+1) & = \Proj{3}{1}(x, y, \fn{pred'}(x, y)) = y.
  \end{align*}
-and then define $\fn{pred}$ from it by composition, e.g., as
-$\fn{pred}(x) = \fn{pred}'(\Zero(x), \Proj{1}{0}(x))$.
+定义 $\fn{pred}'(x, y)$，
+然后再通过复合由它定义 $\fn{pred}$，例如，定义为
+$\fn{pred}(x) = \fn{pred}'(\Zero(x), \Proj{1}{0}(x))$。
 \end{proof}
 
 \begin{prop}
-  The factorial function $\fn{fac}(x) = \fact{x} = 1 \cdot 2 \cdot 3
-  \cdot \dots \cdot x$ is primitive recursive.
+  阶乘函数 $\fn{fac}(x) = \fact{x} = 1 \cdot 2 \cdot 3
+  \cdot \dots \cdot x$ 是原始递归的。
 \end{prop}
 
 \begin{proof}
-  The obvious primitive recursive definition is
+  最直接的原始递归定义是
   \begin{align*}
     \fn{fac}(0) &= 1\\
     \fn{fac}(y+1) & = \fn{fac}(y) \cdot (y+1).
-    \intertext{Officially, we have to first define a two-place function $h$}
+    \intertext{严格形式地，我们必须先定义一个二元函数 $h$，}
     h(x, 0) & = \fn{const}_1(x)\\
     h(x, y+1) & = g(x, y, h(x, y))
-    \intertext{where $g(x, y, z) = \Mult(\Proj{3}{2}(x, y, z),
-      \Succ(\Proj{3}{1}(x, y, z)))$ and then let}
+    \intertext{其中 $g(x, y, z) = \Mult(\Proj{3}{2}(x, y, z),
+      \Succ(\Proj{3}{1}(x, y, z)))$，然后令}
     \fn{fac}(y) & = h(\Proj{1}{0}(y), \Proj{1}{0}(y)) = h(y,y).
   \end{align*}
-  From now on we'll be a bit more laissez-faire and not give the official
-  definitions by composition and primitive recursion.
+  从现在开始我们会更随意一些，不再详细给出通过复合和原始递归的严格形式定义。
 \end{proof}
 
 \begin{prop}
-  Truncated subtraction, $x \tsub y$, defined by
+  由
   \[
   x \tsub y = \begin{cases}
-    0 & \text{if $x < y$}\\
-    x-y & \text{otherwise}
+    0 & \text{若 $x < y$}\\
+    x-y & \text{否则}
   \end{cases}
   \]
-  is primitive recursive.
+  定义的截断减法 $x \tsub y$ 是原始递归的。
 \end{prop}
 
 \begin{proof}
-  We have:
+  我们有：
   \begin{align*}
     x \tsub 0 & = x\\
     x \tsub (y+1) & = \fn{pred}(x \tsub y) 
@@ -116,76 +103,68 @@ $\fn{pred}(x) = \fn{pred}'(\Zero(x), \Proj{1}{0}(x))$.
 \end{proof}
 
 \begin{prop}
- The distance between $x$ and $y$, $\left|x-y\right|$, is primitive recursive.
+ $x$ 与 $y$ 之间的距离 $\left|x-y\right|$ 是原始递归的。
 \end{prop}
 
 \begin{proof}
-  We have $\left| x-y \right| = (x \tsub y) + (y \tsub x)$, so
-  the distance can be defined by composition from $+$ and $\tsub$,
-  which are primitive recursive.
+  我们有 $\left| x-y \right| = (x \tsub y) + (y \tsub x)$，因此距离函数可以由 $+$ 和 $\tsub$ 复合定义得到，而 $+$ 和 $\tsub$ 都是原始递归的。
 \end{proof}
 
 \begin{prop}
-  The maximum of $x$ and $y$, $\fn{max}(x,y)$, is primitive recursive.
+ $x$ 与 $y$ 的最大值 $\fn{max}(x,y)$ 是原始递归的。
 \end{prop}
 
 \begin{proof}
-  We can define $\fn{max}(x,y)$ by composition from $+$ and $\tsub$ by
+  我们可以通过将 $+$ 和 $\tsub$ 复合来定义 $\fn{max}(x,y)$：
   \[
   \fn{max}(x,y) \defis x + (y \tsub x).
   \]
-  If $x$ is the maximum, i.e., $x \ge y$, then $y \tsub x = 0$, so $x
-  + (y \tsub x) = x + 0 = x$. If $y$ is the maximum, then $y \tsub x =
-  y - x$, and so $x + (y \tsub x) = x + (y - x) = y$.
+  若 $x$ 是最大值，即 $x \ge y$，则 $y \tsub x = 0$，因此 $x
+  + (y \tsub x) = x + 0 = x$。若 $y$ 是最大值，则 $y \tsub x = y - x$，于是 $x + (y \tsub x) = x + (y - x) = y$。
 \end{proof}
 
 \begin{prop}
-  \ollabel{prop:min-pr}
-  The minimum of $x$ and $y$, $\fn{min}(x,y)$, is primitive recursive.
+\ollabel{prop:min-pr}
+ $x$ 与 $y$ 的最小值 $\fn{min}(x,y)$ 是原始递归的。
 \end{prop}
 
 \begin{proof}
-  Exercise.
+  练习。
 \end{proof}
 
 \begin{prob}
-  Prove \olref[cmp][rec][exa]{prop:min-pr}.
+证明 \olref[cmp][rec][exa]{prop:min-pr}。
 \end{prob}
 
 \begin{prob}
-Show that \[
+证明 \[
 f(x, y) =
 2^{(2^{\iddots^{2^{x}}})}\raisebox{1ex}{\bigg\rbrace}
-\raisebox{1ex}{\text {$y$ $2$'s}}\] is primitive recursive.
+\raisebox{1ex}{\text {$y$ $2$'s}}\] 是原始递归的。
 \end{prob}
 
 \begin{prob}
-Show that integer division $d(x, y) = \lfloor x/y \rfloor$ (i.e.,
-division, where you disregard everything after the decimal point) is
-primitive recursive. When $y = 0$, we stipulate $d(x, y) = 0$. Give an
-explicit definition of~$d$ using primitive recursion and
-composition.
+证明整数除法 $d(x, y) = \lfloor x/y \rfloor$（即舍去小数点后所有部分的除法）是原始递归的。当 $y = 0$ 时，我们规定 $d(x, y) = 0$。请使用原始递归与复合给出 $d$ 的一个显式定义。
 \end{prob}
 
 \begin{prop}
-The set of primitive recursive functions is closed under the
-following two operations:
+原始递归函数集在以下两种运算下封闭：
 \begin{enumerate}
-\item Finite sums: if $f(\vec x, z)$ is primitive recursive, then so
-is the function
+\item 有限和：若 $f(\vec x, z)$ 是原始递归的，则函数
 \[
 g(\vec x, y) \defis \sum_{z = 0}^y f(\vec x, z).
 \]
-\item Finite products: if $f(\vec x, z)$ is primitive recursive, then
-so is the function
+也是原始递归的。
+\item 有限积：若 $f(\vec x, z)$ 是原始递归的，则函数
 \[
 h(\vec x, y) \defis \prod_{z = 0}^y f(\vec x, z).
 \]
+也是原始递归的。
 \end{enumerate}
 \end{prop}
 
 \begin{proof}
-For example, finite sums are defined recursively by the equations
+例如，有限和可通过下列递归方程定义：
 \begin{align*}
   g(\vec x, 0) & = f(\vec x, 0)\\
   g(\vec x, y+1) & = g(\vec x, y) + f(\vec x, y+1).

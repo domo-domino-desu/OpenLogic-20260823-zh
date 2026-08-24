@@ -7,48 +7,39 @@
 \begin{document}
 
 \olfileid{cmp}{rec}{prr}
-\olsection{Primitive Recursive Relations}
+\olsection{原始递归关系}
 
 
 \begin{defn}
-A relation $R(\vec x)$ is said to be primitive recursive if its characteristic
-function,
+称关系 $R(\vec x)$ 是\emph{原始递归}的，如果其特征函数
 \[
 \Char{R}(\vec x) = \left\{
   \begin{array}{ll}
-  1 & \mbox{if $R(\vec x)$} \\
-  0 & \mbox{otherwise}
+  1 & \mbox{若 $R(\vec x)$} \\
+  0 & \mbox{否则}
   \end{array}
 \right.
 \]
-is primitive recursive.
+是原始递归的。
 \end{defn}
 
-In other words, when one speaks of a primitive recursive relation
-$R(\vec x)$, one is referring to a relation of the form $\Char{R}(\vec
-x) = 1$, where $\Char{R}$ is a primitive recursive function which, on
-any input, returns either 1 or 0. For example, the relation
-$\fn{IsZero}(x)$, which holds if and only if $x = 0$, corresponds to the
-function $\Char{\fn{IsZero}}$, defined using primitive recursion by
+换言之，所谓原始递归关系 $R(\vec x)$，指的是形如 $\Char{R}(\vec x) = 1$ 的关系，其中 $\Char{R}$ 是一个在任何输入下均返回 1 或 0 的原始递归函数。例如，关系 $\fn{IsZero}(x)$ 成立当且仅当 $x = 0$，它对应于函数 $\Char{\fn{IsZero}}$，该函数由原始递归定义为
 \begin{align*}
 \Char{\fn{IsZero}}(0) & = 1,\\
 \Char{\fn{IsZero}}(x+1) & = 0.
 \end{align*}
 
-It should be clear that one can compose relations with other primitive
-recursive functions. So the following are also primitive recursive:
+显然，关系可以与其他原始递归函数复合。因此，以下关系也是原始递归的：
 \begin{enumerate}
-\item The equality relation, $x = y$, defined by $\fn{IsZero}(\left|x -
+\item 相等关系 $x = y$，定义为 $\fn{IsZero}(\left|x -
   y\right|)$
-\item The less-than relation, $x \leq y$, defined by $\fn{IsZero}(x
-  \tsub y)$
+\item 小于等于关系 $x \leq y$，定义为 $\fn{IsZero}(x \tsub y)$
 \end{enumerate}
 
 
 \begin{prop}
-  The set of primitive recursive relations is closed under Boolean
-  operations, that is, 
-  if $P(\vec x)$ and $Q(\vec x)$ are primitive recursive, so are
+  原始递归关系的集合对布尔运算封闭，即，
+  若 $P(\vec x)$ 和 $Q(\vec x)$ 是原始递归的，则以下也是原始递归的：
   \begin{enumerate}
   \item $\lnot P(\vec x)$
   \item $P(\vec x) \land Q(\vec x)$
@@ -58,110 +49,89 @@ recursive functions. So the following are also primitive recursive:
 \end{prop}
 
 \begin{proof}
-  Suppose $P(\vec x)$ and $Q(\vec x)$ are primitive recursive, i.e.,
-  their characteristic functions $\Char{P}$ and $\Char{Q}$ are.  We
-  have to show that the characteristic functions of $\lnot P(\vec x)$,
-  etc., are also primitive recursive.
+  假设 $P(\vec x)$ 和 $Q(\vec x)$ 是原始递归的，即它们的特征函数 $\Char{P}$ 和 $\Char{Q}$ 是原始递归的。我们只需证明 $\lnot P(\vec x)$ 等关系的特征函数也是原始递归的。
   \[
   \Char{\lnot P}(\vec x) = \begin{cases}
-    0 & \text{if $\Char{P}(\vec x) = 1$}\\
-    1 & \text{otherwise}
+    0 & \text{若 $\Char{P}(\vec x) = 1$}\\
+    1 & \text{否则}
   \end{cases}
   \]
-  We can define $\Char{\lnot P}(\vec x)$ as $1 \tsub \Char{P}(\vec x)$.
+  我们可以将 $\Char{\lnot P}(\vec x)$ 定义为 $1 \tsub \Char{P}(\vec x)$。
   \[
   \Char{P \land Q}(\vec x) = \begin{cases}
-    1 & \text{if $\Char{P}(\vec x) = \Char{Q}(\vec x) = 1$}\\
-    0 & \text{otherwise}
+    1 & \text{若 $\Char{P}(\vec x) = \Char{Q}(\vec x) = 1$}\\
+    0 & \text{否则}
   \end{cases}
   \]
-  We can define $\Char{P \land Q}(\vec x)$ as $\Char{P}(\vec x) \cdot
-  \Char{Q}(\vec x)$ or as $\fn{min}(\Char{P}(\vec x), \Char{Q}(\vec
-  x))$. Similarly, 
+  我们可以将 $\Char{P \land Q}(\vec x)$ 定义为 $\Char{P}(\vec x) \cdot
+  \Char{Q}(\vec x)$，或定义为 $\fn{min}(\Char{P}(\vec x), \Char{Q}(\vec
+  x))$。类似地，
   \begin{align*}
-    \Char{P \lor Q}(\vec x) & = \fn{max}(\Char{P}(\vec x), \Char{Q}(\vec x)) \text{ and}\\
+    \Char{P \lor Q}(\vec x) & = \fn{max}(\Char{P}(\vec x), \Char{Q}(\vec x)) \text{ 与}\\
     \Char{P \lif Q}(\vec x) & = \fn{max}(1 \tsub
   \Char{P}(\vec x), \Char{Q}(\vec x)).
   \end{align*}
 \end{proof}
 
 \begin{prop}
-  The set of primitive recursive relations is closed under bounded
-  quantification, i.e., if $R(\vec x, z)$ is a primitive recursive
-  relation, then so are the relations
+  原始递归关系的集合对有界量词封闭，即如果 $R(\vec x, z)$ 是原始递归关系，那么关系
   \begin{align*}
-    & \bforall{z < y}{R(\vec x, z)} \text{ and}\\
+    & \bforall{z < y}{R(\vec x, z)} \text{ 与}\\
     & \bexists{z < y}{R(\vec x, z)}.
   \end{align*}
-  $\bforall{z < y}{R(\vec x, z)}$ holds of $\vec x$ and $y$ if and
-  only if $R(\vec x, z)$ holds for every~$z$ less than~$y$, and
-  similarly for $\bexists{z < y}{R(\vec x, z)}$.
+  也是原始递归的。
+  $\bforall{z < y}{R(\vec x, z)}$ 对 $\vec x$ 和 $y$ 成立当且仅当 $R(\vec x, z)$ 对每个小于 $y$ 的 $z$ 都成立，对 $\bexists{z < y}{R(\vec x, z)}$ 亦然。
 \end{prop}
 
 \begin{proof}
-  By convention, we take $\bforall{z < 0}{R(\vec x, z)}$ to be true
-  (for the trivial reason that there are no $z$ less than~$0$) and
-  $\bexists{z < 0}{R(\vec x, z)}$ to be false. A bounded
-  universal quantifier functions just like a finite product or
-  iterated minimum, i.e., if $P(\vec x, y) \defiff \bforall{z <
-  y}{R(\vec x, z)}$ then $\Char{P}(\vec x, y)$ can be defined by
+  按约定，我们取 $\bforall{z < 0}{R(\vec x, z)}$ 为真（出于不存在小于 $0$ 的 $z$ 这一平凡理由），而取 $\bexists{z < 0}{R(\vec x, z)}$ 为假。有界全称量词的作用相当于有限积或迭代最小值，即如果 $P(\vec x, y) \defiff \bforall{z <
+  y}{R(\vec x, z)}$，那么 $\Char{P}(\vec x, y)$ 可由下式定义：
   \begin{align*}
     \Char{P}(\vec x, 0) & = 1\\
     \Char{P}(\vec x, y+1) & =
     \fn{min}(\Char{P}(\vec x, y), \Char{R}(\vec x, y)).
   \end{align*}
-  Bounded existential quantification can similarly be defined using
-  $\fn{max}$. Alternatively, it can be defined from bounded universal
-  quantification, using the equivalence $\bexists{z < y}{R(\vec x, z)}
-  \liff \lnot \bforall{z < y}{\lnot R(\vec x, z)}$. Note that, for
-  example, a bounded quantifier of the form $\bexists{x \leq y}{\dots
-  x\dots}$ is equivalent to $\bexists{x < y+1}{\dots x \dots}$.
+  有界存在量词可以类似地用 $\fn{max}$ 来定义。或者，也可以利用等价式 $\bexists{z < y}{R(\vec x, z)}
+  \liff \lnot \bforall{z < y}{\lnot R(\vec x, z)}$ 通过有界全称量词来定义。注意，例如，形式为 $\bexists{x \leq y}{\dots
+  x\dots}$ 的有界量词等价于 $\bexists{x < y+1}{\dots x \dots}$。
 \end{proof}
 
 \begin{prob}
-  Show that the three place relation $x \equiv y \mod n$ (congruence
-  modulo~$n$) is primitive recursive.
+  证明三元关系 $x \equiv y \mod n$（模 $n$ 同余）是原始递归的。
 \end{prob}
 
-Another useful primitive recursive function is the conditional
-function, $\fn{cond}(x,y,z)$, defined by
+另一个有用的原始递归函数是条件函数 $\fn{cond}(x,y,z)$，其定义为
 \begin{align*}
   \fn{cond}(x,y,z) & = \begin{cases}
-  y & \text{if $x = 0$} \\
-  z & \text{otherwise}.
+  y & \text{若 $x = 0$} \\
+  z & \text{否则}.
 \end{cases}
-\intertext{This is defined recursively by}
+\intertext{其递归定义为}
 \fn{cond}(0,y,z) & = y,\\
 \fn{cond}(x+1,y,z) & = z.
 \end{align*}
-One can use this to justify definitions of primitive recursive functions
-by cases from primitive recursive relations:
+我们可以利用它来论证由原始递归关系分情况定义的函数仍是原始递归的：
 
 \begin{prop}
-If $g_0(\vec x)$, \dots,~$g_m(\vec x)$ are primitive recursive functions, and $R_0(\vec
-x)$, \dots, $R_{m-1}(\vec x)$ are primitive recursive relations, then
-the function $f$ defined by
+如果 $g_0(\vec x)$, \dots,~$g_m(\vec x)$ 是原始递归函数，而 $R_0(\vec x)$, \dots, $R_{m-1}(\vec x)$ 是原始递归关系，那么由下式定义的函数 $f$
 \[
 f(\vec x) = \begin{cases}
-    g_0(\vec x) & \text{if $R_0(\vec{x})$} \\
-    g_1(\vec x) & \text{if $R_1(\vec{x})$ and not $R_0(\vec{x})$} \\
+    g_0(\vec x) & \text{若 $R_0(\vec{x})$} \\
+    g_1(\vec x) & \text{若 $R_1(\vec{x})$ 且非 $R_0(\vec{x})$} \\
     \vdots & \\
-    g_{m-1}(\vec x) & \text{if $R_{m-1}(\vec{x})$ and none of the
-      previous hold}
+    g_{m-1}(\vec x) & \text{若 $R_{m-1}(\vec{x})$ 且前面的条件均不满足}
     \\
-    g_m(\vec x) & \mbox{otherwise}
+    g_m(\vec x) & \mbox{否则}
 \end{cases}
 \]
-is also primitive recursive.
+也是原始递归的。
 \end{prop}
 
 \begin{proof}
-  When $m = 1$, this is just the function defined by
-  \[
+  当 $m = 1$ 时，这就是由 \[
   f(\vec x) = \fn{cond}(\Char{\lnot R_0}(\vec x),g_0(\vec x),g_1(\vec
   x)).
-  \]
-  For $m$ greater than $1$, one can just compose definitions of this
-  form.
+  \] 定义的函数。
+  当 $m > 1$ 时，只需复合这种形式的定义即可。
 \end{proof}
 \end{document}

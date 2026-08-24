@@ -8,42 +8,27 @@
 
 \olfileid{fol}{seq}{prq}
 
-\olsection{\usetoken{P}{derivation} with Quantifiers}
+\olsection{\usetoken{P}{derivation}}
 
 \begin{ex}
-Give an $\Log{LK}$-!!{derivation} of the sequent $\lexists[x][\lnot !A(x)]
-\Sequent \lnot \lforall[x][!A(x)]$.
+给出后承式 $\lexists[x][\lnot !A(x)]
+\Sequent \lnot \lforall[x][!A(x)]$ 的一个 $\Log{LK}$-推导。
 
-When dealing with quantifiers, we have to make sure not to violate the
-eigenvariable condition, and sometimes this requires us to play around
-with the order of carrying out certain inferences. In general, it
-helps to try and take care of rules subject to the eigenvariable
-condition first (they will be lower down in the finished proof). Also,
-it is a good idea to try and look ahead and try to guess what the
-initial sequent might look like. In our case, it will have to be
-something like $!A(a) \Sequent !A(a)$. That means that when we are
-``reversing'' the quantifier rules, we will have to pick the same
-term---what we will call $a$---for both the $\lforall$ and the
-$\lexists$ rule. If we picked different terms for each rule, we would
-end up with something like $!A(a) \Sequent !A(b)$, which, of course,
-is not derivable.
+在处理量词时，我们必须确保不违反本征变元条件，有时这要求我们调整某些推理的进行顺序。一般来说，先处理受本征变元条件约束的规则会有所帮助（在完成的证明中，它们会出现在更靠近结论的位置）。另外，往前看，猜测一下初始后承式可能是什么样子，也是一个好办法。在我们的例子中，它必须形如 $!A(a) \Sequent !A(a)$。这意味着，当我们“反向”应用量词规则时，必须为 $\lforall$ 规则和 $\lexists$ 规则选择同一个项——我们称之为 $a$。如果我们为每个规则选择不同的项，最终会得到像 $!A(a) \Sequent !A(b)$ 这样的结果，这当然是不可推导的。
 
-Starting as usual, we write
+像往常一样，我们先写下：
 \begin{prooftree}
 \AxiomC{}
 \UnaryInf$\lexists[x][\lnot !A(x)] \fCenter \lnot \lforall[x][!A(x)]$
 \end{prooftree}
-We could either carry out the \LeftR{\exists} rule or the \RightR{\lnot}
-rule. Since the \LeftR{\exists} rule is subject to the eigenvariable
-condition, it's a good idea to take care of it sooner rather than
-later, so we'll do that one first.
+我们可以选择应用 \LeftR{\exists} 规则或 \RightR{\lnot} 规则。由于 \LeftR{\exists} 规则受本征变元条件约束，宜尽早处理它，所以我们先做这一步。
 \begin{prooftree}
 \AxiomC{}
 \UnaryInf$ \lnot !A(a) \fCenter \lnot \lforall[x][!A(x)]$
 \RightLabel{\LeftR{\lexists}}
 \UnaryInf$ \lexists[x][\lnot !A(x)] \fCenter \lnot \lforall[x][!A(x)]$
 \end{prooftree}
-Applying the \LeftR{\lnot} and \RightR{\lnot} rules backwards, we get
+反向应用 \LeftR{\lnot} 和 \RightR{\lnot} 规则，我们得到
 \begin{prooftree}
 \AxiomC{}
 \UnaryInf$\lforall[x][!A(x)] \fCenter !A(a)$
@@ -56,11 +41,7 @@ Applying the \LeftR{\lnot} and \RightR{\lnot} rules backwards, we get
 \RightLabel{\LeftR{\lexists}}
 \UnaryInf$ \lexists[x] \lnot !A(x) \fCenter \lnot \lforall[x] !A(x)$
 \end{prooftree}
-At this point, our only option is to carry out the \LeftR{\forall}
-rule. Since this rule is not subject to the eigenvariable restriction,
-we're in the clear. Remember, we want to try and obtain an initial
-sequent (of the form $!A(a) \Sequent !A(a)$), so we should choose $a$
-as our argument for $!A$ when we apply the rule.
+此时，我们唯一的选择是应用 \LeftR{\forall} 规则。由于该规则不受本征变元条件的限制，我们就没有这个顾虑了。记住，我们希望最终得到一个初始后承式（形如 $!A(a) \Sequent !A(a)$），所以在应用规则时，我们应该选择 $a$ 作为 $!A$ 的自变元。
 \begin{prooftree}
 \Axiom$!A(a) \fCenter !A(a)$
 \RightLabel{\LeftR{\lforall}}
@@ -74,37 +55,32 @@ as our argument for $!A$ when we apply the rule.
 \RightLabel{\LeftR{\lexists}}
 \UnaryInf$ \lexists[x][ \lnot !A(x)] \fCenter \lnot \lforall[x][!A(x)]$
 \end{prooftree}
-It is important, especially when dealing with quantifiers, to double
-check at this point that the eigenvariable condition has not been
-violated. Since the only rule we applied that is subject to the
-eigenvariable condition was \LeftR{\exists}, and the eigenvariable~$a$
-does not occur in its lower sequent (the end-sequent), this is a
-correct !!{derivation}.
+特别是在处理量词时，此时反复检查是否违反了本征变元条件是很重要的。由于我们应用的唯一受本征变元条件约束的规则是 \LeftR{\exists}，且本征变元 $a$ 未出现在它的下后承式（即末位后承式）中，因此这是一个正确的推导。
 \end{ex}
 
 \begin{prob}
-Give !!{derivation}s of the following sequents:
+给出下列后承式的推导：
 \begin{enumerate}
 \item $\Sequent (\lforall[x][!A(x)] \land \lforall[y][!B(y)]) \lif
-\lforall[z][(!A(z) \land !B(z))]$.
+\lforall[z][(!A(z) \land !B(z))]$。
 \item $\Sequent (\lexists[x][!A(x)] \lor \lexists[y][!B(y)]) \lif
-\lexists[z][(!A(z) \lor !B(z))]$.
-\item $\lforall[x][(!A(x) \lif !B)] \Sequent \lexists[y][!A(y)] \lif !B$.
-\item $\lforall[x][\lnot !A(x)] \Sequent \lnot\lexists[x][!A(x)]$.
-\item $\Sequent \lnot\lexists[x][!A(x)] \lif \lforall[x][\lnot !A(x)]$.
+\lexists[z][(!A(z) \lor !B(z))]$。
+\item $\lforall[x][(!A(x) \lif !B)] \Sequent \lexists[y][!A(y)] \lif !B$。
+\item $\lforall[x][\lnot !A(x)] \Sequent \lnot\lexists[x][!A(x)]$。
+\item $\Sequent \lnot\lexists[x][!A(x)] \lif \lforall[x][\lnot !A(x)]$。
 \item $\Sequent \lnot\lexists[x][\lforall[y][((!A(x,y) \lif \lnot
-!A(y,y)) \land (\lnot !A(y,y) \lif !A(x,y)))]]$.
+!A(y,y)) \land (\lnot !A(y,y) \lif !A(x,y)))]]$。
 \end{enumerate}
 \end{prob}
 
 \begin{prob}
-Give !!{derivation}s of the following sequents:
+给出下列后承式的推导：
 \begin{enumerate}
-\item $\Sequent \lnot\lforall[x][!A(x)] \lif \lexists[x][\lnot!A(x)]$.
-\item $(\lforall[x][!A(x)] \lif !B) \Sequent \lexists[y][(!A(y) \lif !B)]$.
-\item $\Sequent \lexists[x][(!A(x) \lif \lforall[y][!A(y)])]$.
+\item $\Sequent \lnot\lforall[x][!A(x)] \lif \lexists[x][\lnot!A(x)]$。
+\item $(\lforall[x][!A(x)] \lif !B) \Sequent \lexists[y][(!A(y) \lif !B)]$。
+\item $\Sequent \lexists[x][(!A(x) \lif \lforall[y][!A(y)])]$。
 \end{enumerate}
-(These all require the $\RightR{\Contraction}$~rule.)
+（这些都需要用到 $\RightR{\Contraction}$ 规则。）
 \end{prob}
 
 \end{document}

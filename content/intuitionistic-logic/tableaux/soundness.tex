@@ -8,206 +8,140 @@
 
 \olfileid{int}{tab}{sou}
 
-\olsection{Soundness for Intuitionistic \usetoken{P}{tableau}}
+\olsection{直觉主义 \usetoken{P}{tableau} 的可靠性}
 
 \begin{explain}
-  In order to show that intuitionistic !!{tableau}s are sound, we have to
-  show that if
+  为了证明直觉主义分析表是可靠的，我们必须证明：如果
   \[
   \sFmla{\True}{!B_1}[1], \dots, \sFmla{\True}{!B_n}[1], \sFmla{\False}{!A}[1]
   \]
-  has a closed !!{tableau} then $!B_1, \dots, !B_n \Entails !A$. It is
-  easier to prove the contrapositive: if for some $\mModel{M}$ and
-  world~$w$, $\mSat{M}{!B_i}[w]$ for all $i=1$, \dots,~$n$ but
-  $\mSat{M}{!A}[w]$, then no !!{tableau} can close. Such a
-  countermodel shows that the initial assumptions of the !!{tableau}
-  are satisfiable. The strategy of the proof is to show that whenever
-  all the prefixed !!{formula}s on !!a{tableau} branch are
-  satisfiable, any application of a rule results in at least one
-  extended branch that is also satisfiable. Since closed branches are
-  unsatisfiable, any !!{tableau} for a satisfiable set of prefixed
-  !!{formula}s must have at least one open branch.
+  有一个封闭的分析表，那么 $!B_1, \dots, !B_n \Entails !A$。
+  证明其逆否命题更容易：如果存在某个 $\mModel{M}$ 和世界~$w$，使得对所有 $i=1$, \dots,~$n$ 均有 $\mSat{M}{!B_i}[w]$，但 $\mSat{M}{!A}[w]$，那么任何分析表都无法封闭。
+  这样的反模型表明该分析表的初始假设是可满足的。
+  证明策略是证明：只要分析表某个分支上的所有带号公式是可满足的，那么任何规则的应用都会产生至少一个可满足的扩展分支。
+  由于封闭分支是不可满足的，可满足的带号公式集的任何分析表必然至少有一条开放分支。
 
-  In order to apply this strategy in the modal case, we have to extend
-  our definition of ``satisfiable'' to relational and prefixes. With
-  that in hand, however, the proof is straightforward.
+  为了在模态（直觉主义）情形下应用这一策略，我们必须将“可满足的”定义扩展到关系与前缀上。
+  然而，有了这个定义，证明便是直接的。
 \end{explain}
 
 \begin{defn}
-  Let $P$ be some set of prefixes, i.e., $P \subseteq (\PosInt)^*
-  \setminus \{\emptyseq\}$ and let $\mModel{M}$ be a model.  A
-  function~$f\colon P \to W$ is an \emph{interpretation of}~$P$
-  in~$\mModel{M}$ if, whenever $\sigma$ and $\sigma.n$ are both
-  in~$P$, then $Rf(\sigma)f(\sigma.n)$.
+  设 $P$ 是某个前缀集，即 $P \subseteq (\PosInt)^*
+  \setminus \{\emptyseq\}$，并设 $\mModel{M}$ 是一个模型。
+  如果每当 $\sigma$ 和 $\sigma.n$ 均在~$P$ 中时，都有 $Rf(\sigma)f(\sigma.n)$，则称函数~$f\colon P \to W$ 是~$P$ 在~$\mModel{M}$ 中的一个\emph{解释}。
 
-  Relative to an interpretation of prefixes~$P$ we can define:
+  相对于前缀集~$P$ 的解释，我们可以定义：
   \begin{enumerate}
-  \item $\mModel{M}$ satisfies $\sFmla{\True}{!A}[\sigma]$ iff
-    $\mSat{M}{!A}[f(\sigma)]$.
-  \item $\mModel{M}$ satisfies $\sFmla{\False}{!A}[\sigma]$ iff
-    $\mSat/{M}{!A}[f(\sigma)]$.
+  \item $\mModel{M}$ 满足 $\sFmla{\True}{!A}[\sigma]$ 当且仅当
+    $\mSat{M}{!A}[f(\sigma)]$。
+  \item $\mModel{M}$ 满足 $\sFmla{\False}{!A}[\sigma]$ 当且仅当
+    $\mSat/{M}{!A}[f(\sigma)]$。
   \end{enumerate}
 \end{defn}
 
-Note that since $R$ is reflexive and transitive and $\sigma.{*}$
-denotes, $\sigma$, $\sigma.n_1$, $\sigma.n_1.n_2$, \dots, we also have
-that $Rf(\sigma)f(\sigma.{*})$. 
+注意，由于 $R$ 是自反且传递的，并且 $\sigma.{*}$ 表示 $\sigma$, $\sigma.n_1$, $\sigma.n_1.n_2$, \dots，我们也有 $Rf(\sigma)f(\sigma.{*})$。 
 
 \begin{defn}
-  Let $\Gamma$ be a set of prefixed !!{formula}s, and let $P(\Gamma)$
-  be the set of prefixes that occur in it. If $f$ is an interpretation
-  of~$P(\Gamma)$ in $\mModel{M}$, we say that $\mModel{M}$ satisfies
-  $\Gamma$ with respect to~$f$, $\mSat{M}{\Gamma}[f]$, if $\mModel{M}$
-  satisfies every prefixed !!{formula} in~$\Gamma$ with respect
-  to~$f$. $\Gamma$ is \emph{satisfiable} iff there is a
-  model~$\mModel{M}$ and interpretation~$f$ of $P(\Gamma)$ such that
-  $\mSat{M}{\Gamma}[f]$.
+  设 $\Gamma$ 是一个带号公式集，并令 $P(\Gamma)$ 为其中出现的所有前缀构成的集合。
+  如果 $f$ 是 $P(\Gamma)$ 在 $\mModel{M}$ 中的一个解释，且 $\mModel{M}$ 相对于~$f$ 满足~$\Gamma$ 中的每一个带号公式，我们就说 $\mModel{M}$ 相对于~$f$ 满足 $\Gamma$，记作 $\mSat{M}{\Gamma}[f]$。
+  $\Gamma$ 是\emph{可满足的}，当且仅当存在模型~$\mModel{M}$ 和 $P(\Gamma)$ 的解释~$f$，使得 $\mSat{M}{\Gamma}[f]$。
 \end{defn}
 
 \begin{prop}
-  If $\Gamma$ contains both $\sFmla{\True}{!A}[\sigma]$ and
-  $\sFmla{\False}{!A}[\sigma.{*}]$ for some !!{formula}~$!A$ and
-  prefix~$\sigma$, or it contains $\sFmla{\True}{\lfalse}[\sigma]$, then $\Gamma$ is unsatisfiable.
+  如果 $\Gamma$ 包含 $\sFmla{\True}{!A}[\sigma]$ 和 $\sFmla{\False}{!A}[\sigma.{*}]$（对某个公式~$!A$ 和前缀~$\sigma$），或者包含 $\sFmla{\True}{\lfalse}[\sigma]$，那么 $\Gamma$ 是不可满足的。
 \end{prop}
 
 \begin{proof}
-  Since always $\mSat/{M}{\lfalse}[f(\sigma)]$, a $\Gamma$ that
-  contains $\sFmla{\True}{\lfalse}$ is unsatisfiable.
+  由于总有 $\mSat/{M}{\lfalse}[f(\sigma)]$，包含 $\sFmla{\True}{\lfalse}$ 的 $\Gamma$ 是不可满足的。
 
-  There also cannot be a model~$\mModel{M}$ and interpretation~$f$ of
-  $P(\Gamma)$ such that both If $\mSat{M}{!A}[f(\sigma)]$, then by
-  \olref[sem][rel]{prop:true-monotonic}, since
-  $Rf(\sigma)(\sigma.{*})$, $\mSat{M}{!A}[f(\sigma)]$. So we cannot
-  have both $\mSat{M}{!A}[f(\sigma)]$ and
-  $\mSat/{M}{!A}[f(\sigma.{*})]$.
+  也不可能存在模型~$\mModel{M}$ 和 $P(\Gamma)$ 的解释~$f$ 同时满足这两者。如果 $\mSat{M}{!A}[f(\sigma)]$，那么根据
+  \olref[sem][rel]{prop:true-monotonic}，由于
+  $Rf(\sigma)(\sigma.{*})$，可得 $\mSat{M}{!A}[f(\sigma)]$。因此我们不可能同时有 $\mSat{M}{!A}[f(\sigma)]$ 和
+  $\mSat/{M}{!A}[f(\sigma.{*})]$。
 \end{proof}
 
-\begin{thm}[Soundness]
+\begin{thm}[可靠性]
   \ollabel{thm:tableau-soundness}
-  If $\Gamma$ has a closed !!{tableau}, $\Gamma$ is unsatisfiable.
+  如果 $\Gamma$ 有一个封闭的分析表，那么 $\Gamma$ 是不可满足的。
 \end{thm}
 
 \begin{proof}
-We call a branch of !!a{tableau} satisfiable iff the set of
-!!{signed formula}s on it is satisfiable, and let's call !!a{tableau}
-satisfiable if it contains at least one satisfiable branch.
+我们称分析表的一个分支是可满足的，当且仅当其上的带号公式集是可满足的；称一个分析表是可满足的，如果它包含至少一条可满足分支。
 
-We show the following: Extending a satisfiable !!{tableau} by one of
-the rules of inference always results in a satisfiable !!{tableau}.
-This will prove the theorem: any closed !!{tableau} results by
-applying rules of inference to the !!{tableau} consisting only of
-assumptions from~$\Gamma$. So if $\Gamma$ were satisfiable, any
-!!{tableau} for it would be satisfiable. A closed !!{tableau},
-however, is clearly not satisfiable, since all its branches are closed
-and closed branches are unsatisfiable.
+我们证明如下事实：将一个可满足的分析表用任意一条推理规则进行扩展，其结果总是一个可满足的分析表。
+这将证明该定理：任何封闭的分析表都是通过对仅由~$\Gamma$ 中的假设构成的分析表应用推理规则而得到的。
+因此，如果 $\Gamma$ 是可满足的，那么它的任何分析表都将是可满足的。
+然而，封闭的分析表显然不是可满足的，因为它的所有分支都是封闭的，而封闭分支是不可满足的。
 
-Suppose we have a satisfiable !!{tableau}, i.e., !!a{tableau} with at
-least one satisfiable branch. Applying a rule of inference either adds
-!!{signed formula}s to a branch, or splits a branch in two. If the
-!!{tableau} has a satisfiable branch which is not extended by the rule
-application in question, it remains a satisfiable branch in the
-extended !!{tableau}, so the extended tableau is satisfiable. So we
-only have to consider the case where a rule is applied to a
-satisfiable branch.
+假设我们有一个可满足的分析表，即一个包含至少一条可满足分支的分析表。
+应用一条推理规则，要么给分支添加带号公式，要么将一个分支分裂成两个。
+如果分析表有一条可满足分支未受当前规则应用所扩展，那么它在扩展后的分析表中仍然是可满足分支，因此扩展后的分析表是可满足的。
+因此，我们只需考虑规则应用于一条可满足分支的情形。
 
-Let $\Gamma$ be the set of !!{signed formula}s on that branch, and let
-$\sFmla{S}{!A}[\sigma] \in \Gamma$ be the !!{signed formula} to which
-the rule is applied. If the rule does not result in a split branch, we
-have to show that the extended branch, i.e., $\Gamma$ together with
-the conclusions of the rule, is still satisfiable. If the rule results
-in split branch, we have to show that at least one of the two
-resulting branches is satisfiable.
+令 $\Gamma$ 为该分支上的带号公式集，并令 $\sFmla{S}{!A}[\sigma] \in \Gamma$ 为应用规则的对象带号公式。
+如果该规则没有导致分支分裂，我们需要证明扩展后的分支，即 $\Gamma$ 加上规则的结论，仍然是可满足的。
+如果该规则导致分支分裂，我们需要证明两个结果分支中至少有一个是可满足的。
 \begin{enumerate}
-\item The branch is expanded by applying $\TRule{\True}{\lnot}$ to
-  $\sFmla{\True}{\lnot !B}[\sigma] \in \Gamma$. Then the extended
-  branch contains the !!{signed formula}s $\Gamma \cup
-  \{\sFmla{\False}{!B}[\sigma.{*}]\}$. Suppose $\mSat{M}{\Gamma}[f]$.
-  In particular, $\mSat{M}{\lnot !B}[f(\sigma)]$. Thus,
-  $\mSat/{M}{!B}[w]$ for any $w$ such that $Rf(\sigma)w$, and that
-  includes $f(\sigma.{*})$. So, $\mModel{M}$ satisfies
-  $\sFmla{\False}{!B}[\sigma.{*}]$ with respect to~$f$.
-\item The branch is expanded by applying $\TRule{\False}{\lnot}$ to
-  $\sFmla{\False}{\lnot !B}[\sigma] \in \Gamma$: Exercise.
-\item The branch is expanded by applying $\TRule{\True}{\land}$ to
-  $\sFmla{\True}{!B \land !C}[\sigma] \in \Gamma$, which results in
-  two new !!{signed formula}s on the branch:
-  $\sFmla{\True}{!B}[\sigma]$ and $\sFmla{\True}{!C}[\sigma]$. Suppose
-  $\mSat{M}{\Gamma}[f]$, in particular $\mSat{M}{!B \land
-    !C}[f(\sigma)]$. Then $\mSat{M}{!B}[f(\sigma)]$ and
-  $\mSat{M}{!C}[f(\sigma)]$. This means that $\mModel{M}$ satisfies
-  both $\sFmla{\True}{!B}[\sigma]$ and $\sFmla{\True}{!C}[\sigma]$
-  with respect to~$f$.
-\item The branch is expanded by applying $\TRule{\False}{\lor}$ to
-  $\sFmla{\False}{!B \lor !C} \in \Gamma$: Exercise.
-\item The branch is expanded by applying $\TRule{\False}{\lif}$ to
-  $\sFmla{\False}{!B \lif !C}[\sigma] \in \Gamma$: This results in two
-  new !!{signed formula}s on the branch: $\sFmla{\True}{!B}[\sigma.n]$ and
-  $\sFmla{\False}{!C}[\sigma.n]$, where $\sigma.n$ is a
-  new prefix on the branch, i.e., $\sigma.n \notin P(\Gamma)$. 
+\item 该分支通过将 $\TRule{\True}{\lnot}$ 应用于 $\sFmla{\True}{\lnot !B}[\sigma] \in \Gamma$ 而扩展。
+  那么扩展后的分支包含带号公式 $\Gamma \cup
+  \{\sFmla{\False}{!B}[\sigma.{*}]\}$。假设 $\mSat{M}{\Gamma}[f]$，
+  特别地，$\mSat{M}{\lnot !B}[f(\sigma)]$。
+  因此，对于任何满足 $Rf(\sigma)w$ 的 $w$，都有 $\mSat/{M}{!B}[w]$，其中包括 $f(\sigma.{*})$。
+  所以，$\mModel{M}$ 相对于~$f$ 满足 $\sFmla{\False}{!B}[\sigma.{*}]$。
+\item 该分支通过将 $\TRule{\False}{\lnot}$ 应用于 $\sFmla{\False}{\lnot !B}[\sigma] \in \Gamma$ 而扩展：练习。
+\item 该分支通过将 $\TRule{\True}{\land}$ 应用于 $\sFmla{\True}{!B \land !C}[\sigma] \in \Gamma$ 而扩展，这在该分支上产生两个新的带号公式：
+  $\sFmla{\True}{!B}[\sigma]$ 和 $\sFmla{\True}{!C}[\sigma]$。
+  假设 $\mSat{M}{\Gamma}[f]$，特别地 $\mSat{M}{!B \land
+    !C}[f(\sigma)]$。那么 $\mSat{M}{!B}[f(\sigma)]$ 且 $\mSat{M}{!C}[f(\sigma)]$。
+  这意味着 $\mModel{M}$ 相对于~$f$ 同时满足 $\sFmla{\True}{!B}[\sigma]$ 和 $\sFmla{\True}{!C}[\sigma]$。
+\item 该分支通过将 $\TRule{\False}{\lor}$ 应用于 $\sFmla{\False}{!B \lor !C} \in \Gamma$ 而扩展：练习。
+\item 该分支通过将 $\TRule{\False}{\lif}$ 应用于 $\sFmla{\False}{!B \lif !C}[\sigma] \in \Gamma$ 而扩展：这在该分支上产生两个新的带号公式：$\sFmla{\True}{!B}[\sigma.n]$ 和 $\sFmla{\False}{!C}[\sigma.n]$，其中 $\sigma.n$ 是该分支上的一个新前缀，即 $\sigma.n \notin P(\Gamma)$。
   
-  Since $\Gamma$ is satisfiable, there is a $\mModel{M}$ and
-  interpretation~$f$ of $P(\Gamma)$ such that $\mSat{M}{\Gamma}[f]$, in
-  particular $\mSat/{M}{!B \lif !C}[f(\sigma)]$. We have to show that
-  $\Gamma \cup \{\sFmla{\False}{!B \lif !C}[\sigma.n]\}$ is
-  satisfiable. To do this, we define an interpretation of $P(\Gamma)
-  \cup \{\sigma.n\}$ as follows:
+  由于 $\Gamma$ 是可满足的，存在 $\mModel{M}$ 和 $P(\Gamma)$ 的解释~$f$，使得 $\mSat{M}{\Gamma}[f]$，特别地 $\mSat/{M}{!B \lif !C}[f(\sigma)]$。
+  我们需要证明 $\Gamma \cup \{\sFmla{\False}{!B \lif !C}[\sigma.n]\}$ 是可满足的。
+  为此，我们如下定义 $P(\Gamma)
+  \cup \{\sigma.n\}$ 的一个解释：
   
-  Since $\mSat/{M}{!B \lif !C}[f(\sigma)]$, there is a $w \in W$ such
-  that $Rf(\sigma)w$ such that $\mSat{M}{!B}[w]$ and
-  $\mSat/{M}{!C}[w]$. Let $f'$ be like $f$, except that $f'(\sigma.n)
-  = w$. Since $f'(\sigma) = f(\sigma)$ and $Rf(\sigma)w$, we have
-  $Rf'(\sigma)f'(\sigma.n)$, so $f'$ is an interpretation of
-  $P(\Gamma) \cup \{\sigma.n\}$. Obviously
-  $\mSat{M}{!B}[f'(\sigma.n)]$ and $\mSat/{M}{!C}[f'(\sigma.n)]$.
-  Since $f(\sigma') = f'(\sigma')$ for all prefixes $\sigma' \in
-  P(\Gamma)$, $\mSat{M}{\Gamma}[f']$.  So, $\mModel{M}, f'$ satisfies
-  $\Gamma \cup \{\sFmla{\False}{!B \lif !C}[\sigma.n]\}$
+  由于 $\mSat/{M}{!B \lif !C}[f(\sigma)]$，存在 $w \in W$ 使得 $Rf(\sigma)w$、$\mSat{M}{!B}[w]$ 以及 $\mSat/{M}{!C}[w]$。
+  令 $f'$ 除 $f'(\sigma.n) = w$ 外与 $f$ 相同。
+  由于 $f'(\sigma) = f(\sigma)$ 且 $Rf(\sigma)w$，我们有 $Rf'(\sigma)f'(\sigma.n)$，所以 $f'$ 是 $P(\Gamma) \cup \{\sigma.n\}$ 的一个解释。
+  显然 $\mSat{M}{!B}[f'(\sigma.n)]$ 且 $\mSat/{M}{!C}[f'(\sigma.n)]$。
+  由于对所有前缀 $\sigma' \in P(\Gamma)$ 均有 $f(\sigma') = f'(\sigma')$，故 $\mSat{M}{\Gamma}[f']$。
+  因此，$\mModel{M}, f'$ 满足 $\Gamma \cup \{\sFmla{\False}{!B \lif !C}[\sigma.n]\}$。
 \end{enumerate}
-Now let's consider the possible inferences with two premises.
+现在考虑双前提的可能推理。
 \begin{enumerate}
-\item The branch is expanded by applying $\TRule{\False}{\land}$ to
-  $\sFmla{\False}{!B \land !C}[\sigma] \in \Gamma$, which results in
-  two branches, a left one continuing through
-  $\sFmla{\False}{!B}[\sigma]$ and a right one through
-  $\sFmla{\False}{!C}[\sigma]$. Suppose $\mSat{M}{\Gamma}[f]$, in
-  particular $\mSat/{M}{!B \land !C}[f(\sigma)]$.  Then
-  $\mSat/{M}{!B}[f(\sigma)]$ or $\mSat/{M}{!C}[f(\sigma)]$. In the
-  former case, $\mModel{M}, f$ satisfies $\sFmla{\False}{!B}[\sigma]$,
-  i.e., the left branch is satisfiable. In the latter, $\mModel{M}, f$
-  satisfies $\sFmla{\False}{!C}[\sigma]$, i.e., the right branch is
-  satisfiable.
-\item The branch is expanded by applying $\TRule{\True}{\lor}$ to
-    $\sFmla{\True}{!B \lor !C}[\sigma] \in \Gamma$: Exercise.
-\item The branch is expanded by applying $\TRule{\True}{\lif}$ to
-    $\sFmla{\True}{!B \lif !C}[\sigma] \in \Gamma$: Exercise.
+\item 该分支通过将 $\TRule{\False}{\land}$ 应用于 $\sFmla{\False}{!B \land !C}[\sigma] \in \Gamma$ 而扩展，产生两个分支：左分支包含 $\sFmla{\False}{!B}[\sigma]$，右分支包含 $\sFmla{\False}{!C}[\sigma]$。
+  假设 $\mSat{M}{\Gamma}[f]$，特别地 $\mSat/{M}{!B \land !C}[f(\sigma)]$。
+  那么 $\mSat/{M}{!B}[f(\sigma)]$ 或 $\mSat/{M}{!C}[f(\sigma)]$。
+  在前一情形下，$\mModel{M}, f$ 满足 $\sFmla{\False}{!B}[\sigma]$，即左分支是可满足的。
+  在后一情形下，$\mModel{M}, f$ 满足 $\sFmla{\False}{!C}[\sigma]$，即右分支是可满足的。
+\item 该分支通过将 $\TRule{\True}{\lor}$ 应用于 $\sFmla{\True}{!B \lor !C}[\sigma] \in \Gamma$ 而扩展：练习。
+\item 该分支通过将 $\TRule{\True}{\lif}$ 应用于 $\sFmla{\True}{!B \lif !C}[\sigma] \in \Gamma$ 而扩展：练习。
 \end{enumerate}
 \end{proof}
 
 \begin{prob}
-Complete the proof of \olref[int][tab][sou]{thm:tableau-soundness}.
+完成 \olref[int][tab][sou]{thm:tableau-soundness} 的证明。
 \end{prob}
 
 \begin{cor}
 \ollabel{cor:entailment-soundness}
-If $\Gamma \Proves !A$ then $\Gamma \Entails !A$.
+如果 $\Gamma \Proves !A$ 则 $\Gamma \Entails !A$。
 \end{cor}
 
 \begin{proof}
-  If $\Gamma \Proves !A$ then for some $!B_1$, \dots, $!B_n \in
-  \Gamma$, $\Delta = \{\sFmla{\False}{!A}[1], \sFmla{\True}{!B_1}[1],
-  \dots, \sFmla{\True}{!B_n}[1]\}$ has a closed !!{tableau}. We want
-  to show that $\Gamma \Entails !A$. Suppose not, so for some
-  $\mModel{M}$ and $w$, $\mSat{M}{!B_i}[w]$ for $i=1$, \dots,~$n$, but
-  $\mSat/{M}{!A}[w]$. Let $f(1) = w$; then $f$ is an interpretation
-  of~$P(\Delta)$ into~$\mModel{M}$, and $\mModel{M}$ satisfies~$\Delta$ with
-  respect to~$f$. But by \olref{thm:tableau-soundness}, $\Delta$ is
-  unsatisfiable since it has a closed !!{tableau}, a
-  contradiction. So we must have $\Gamma \Proves !A$ after all.
+  若 $\Gamma \Proves !A$，则存在 $!B_1$, \dots, $!B_n \in \Gamma$，使得 $\Delta = \{\sFmla{\False}{!A}[1], \sFmla{\True}{!B_1}[1],
+  \dots, \sFmla{\True}{!B_n}[1]\}$ 有一个封闭的分析表。
+  我们欲证 $\Gamma \Entails !A$。假设不然，则存在某个 $\mModel{M}$ 和 $w$，使得对 $i=1$, \dots,~$n$，有 $\mSat{M}{!B_i}[w]$，但 $\mSat/{M}{!A}[w]$。
+  令 $f(1) = w$；则 $f$ 是~$P(\Delta)$ 到~$\mModel{M}$ 的解释，且 $\mModel{M}$ 相对于~$f$ 满足~$\Delta$。
+  但根据 \olref{thm:tableau-soundness}，由于 $\Delta$ 有封闭的分析表，它是不可满足的，矛盾。
+  因此，必有 $\Gamma \Proves !A$。
 \end{proof}
 
 \begin{cor}
 \ollabel{cor:weak-soundness}
-If $\Proves !A$ then $!A$ is true in all models.
+若 $\Proves !A$，则 $!A$ 在所有模型中为真。
 \end{cor}
 
 \end{document}

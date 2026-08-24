@@ -8,141 +8,80 @@
 
 \olfileid{sfr}{siz}{enm}
 
-\olsection{Enumerations and \usetoken{S}{enumerable} Sets}
+\olsection{可数集与枚举}
 
 \begin{editorial}
-  This section discusses enumerations of sets, defining them as
-  surjections from $\PosInt$. It does things slowly, for readers with
-  little mathematical background. An alternative, terser
-  version is given in \olref[enm-alt]{sec}, which defines enumerations
-  differently: as bijections with $\Nat$ (or an initial segment).
+  本节讨论集合的枚举，将其定义为以 $\PosInt$ 为定义域的满射。讲解较为缓慢，适合数学背景较浅的读者。在 \olref[enm-alt]{sec} 中给出了一个更简洁的替代版本，该版本以不同方式定义了枚举：即与 $\Nat$（或其初始段）的双射。
 \end{editorial}
 
 \begin{explain}
-We've already given examples of sets by listing their !!{element}s.
-Let's discuss in more general terms how and when we can list the
-!!{element}s of a set, even if that set is infinite.
+我们已经通过列出元素的方式给出过一些集合的例子。让我们更一般地讨论，即便集合是无限的，我们如何以及何时能够列出它的元素。
 \end{explain}
 
-\begin{defn}[Enumeration, informally]
-Informally, an \emph{enumeration} of a set~$A$ is a list (possibly
-infinite) of !!{element}s of~$A$ such that every !!{element} of $A$
-appears on the list at some finite position. If $A$ has an
-enumeration, then $A$ is said to be \emph{!!{enumerable}}.
+\begin{defn}[枚举，非正式定义]
+非正式地，集合~$A$ 的一个\emph{枚举}是一个由~$A$ 的元素构成的（可能无限的）列表，使得 $A$ 的每一个元素都在该列表的某个有限位置出现。如果 $A$ 有一个枚举，则称 $A$ 是\emph{可数的}。
 \end{defn}
 
 \begin{explain}
-A couple of points about enumerations:
+关于枚举的几点说明：
 \begin{enumerate}
-\item We count as enumerations only lists which have a beginning and
-  in which every !!{element} other than the first has a single
-  !!{element} immediately preceding it.  In other words, there are
-  only finitely many elements between the first !!{element} of the
-  list and any other !!{element}. In particular, this means that every
-  !!{element} of an enumeration has a finite position: the first
-  !!{element} has position~$1$, the second position~$2$, etc.
-\item We can have different enumerations of the same set~$A$ which
-  differ by the order in which the !!{element}s appear: $4$, $1$,
-  $25$, $16$,~$9$ enumerates the (set of the) first five square
-  numbers just as well as $1$, $4$, $9$, $16$,~$25$ does.
-\item Redundant enumerations are still enumerations: $1$, $1$, $2$,
-  $2$, $3$, $3$,~\dots{} enumerates the same set as $1$, $2$,
-  $3$,~\dots{} does.
-\item Order and redundancy \emph{do} matter when we specify an
-  enumeration: we can enumerate the positive integers beginning with
-  $1$, $2$, $3$, $1$, \dots{}, but the pattern is easier to see when
-  enumerated in the standard way as $1$, $2$, $3$, $4$,~\dots
-\item Enumerations must have a beginning: \dots, $3$, $2$, $1$ is not
-  an enumeration of the positive integers because it has no first
-  !!{element}. To see how this follows from the informal definition,
-  ask yourself, ``at what position in the list does the number 76
-  appear?''
-\item The following is not an enumeration of the positive integers:
-  $1$, $3$, $5$, \dots, $2$, $4$, $6$, \dots\@ The problem is that the
-  even numbers occur at places $\infty + 1$, $\infty + 2$, $\infty +
-  3$, rather than at finite positions.
-\item The empty set is enumerable: it is enumerated by the empty list!{}
+\item 我们只将有开头、且除第一个元素外每个元素都恰好有一个直接前趋的列表视为枚举。换言之，在列表的第一个元素与任何其他元素之间，只有有限多个元素。特别地，这意味着枚举中的每个元素都有一个有限的位置：第一个元素占据位置~$1$，第二个占据位置~$2$，依此类推。
+\item 对于同一个集合~$A$，我们可以有不同的枚举，它们按元素出现的顺序不同而不同：$4$, $1$, $25$, $16$,~$9$ 和 $1$, $4$, $9$, $16$,~$25$ 一样，都枚举了前五个平方数（的集合）。
+\item 冗余的枚举仍然是枚举：$1$, $1$, $2$, $2$, $3$, $3$,~\dots{} 所枚举的集合与 $1$, $2$, $3$,~\dots{} 所枚举的相同。
+\item 在具体指定一个枚举时，顺序和冗余\emph{确实}有影响：我们可以从 $1$, $2$, $3$, $1$, \dots{} 开始枚举正整数，但当按照标准方式 $1$, $2$, $3$, $4$,~\dots{} 枚举时，其模式更容易看清。
+\item 枚举必须有开始：\dots, $3$, $2$, $1$ 不是正整数的枚举，因为它没有第一个元素。要理解这如何从非正式定义得出，不妨问问自己：“数字 76 在这个列表的什么位置出现？”
+\item 下面这个不是正整数的枚举：$1$, $3$, $5$, \dots, $2$, $4$, $6$, \dots\@ 问题在于，偶数出现在位置 $\infty + 1$、$\infty + 2$、$\infty + 3$，而不是有限的位置上。
+\item 空集是可数的：空列表便枚举了它！
 \end{enumerate}
 \end{explain}
 
 \begin{prop}
-  If $A$ has an enumeration, it has an enumeration without
-  repetitions.
+如果 $A$ 有一个枚举，那么它有一个无重复的枚举。
 \end{prop}
 
 \begin{proof}
-  Suppose $A$ has an enumeration $x_1$, $x_2$, \dots{} in which each
-  $x_i$ is an !!{element} of~$A$.  We can remove repetitions from an
-  enumeration by removing repeated !!{element}s. For instance, we can
-  turn the enumeration into a new one in which we list $x_i$ if
-  it is !!a{element} of~$A$ that is not among $x_1$, \dots,
-  $x_{i-1}$ or remove $x_i$ from the list if it already appears among
-  $x_1$, \dots,~$x_{i-1}$.
+假设 $A$ 有一个枚举 $x_1$, $x_2$, \dots{}，其中每个 $x_i$ 都是~$A$ 的一个元素。我们可以通过移除重复元素来得到一个没有重复的枚举。例如，我们可以将其转化为一个新的枚举：如果 $x_i$ 是不在 $x_1$, \dots, $x_{i-1}$ 之中的 $A$ 的元素，我们就将其列入；如果它已经出现在 $x_1$, \dots,~$x_{i-1}$ 之中，我们便将其跳过。
 \end{proof}
 
-The last argument shows that in order to get a good handle on
-enumerations and !!{enumerable} sets and to prove things about them,
-we need a more precise definition.  The following provides it.
+上述论证表明，为了能很好地处理枚举和可数集并证明关于它们的性质，我们需要一个更精确的定义。下面给出这个定义。
 
-\begin{defn}[Enumeration, formally] 
-An \emph{enumeration} of a set $A \neq \emptyset$ is any
-!!{surjective} function $f \colon \PosInt \to A$.
+\begin{defn}[枚举，形式化定义]
+集合 $A \neq \emptyset$ 的一个\emph{枚举}是任意满射函数 $f \colon \PosInt \to A$。
 \end{defn}
 
 \begin{explain}
-Let's convince ourselves that the formal definition and the informal
-definition using a possibly infinite list are equivalent. First, any
-!!{surjective} function from $\PosInt$ to a set~$A$ enumerates~$A$.
-Such a function determines an enumeration as defined informally above:
-the list $f(1)$, $f(2)$, $f(3)$, \dots. Since $f$ is !!{surjective},
-every !!{element} of~$A$ is guaranteed to be the value of~$f(n)$ for
-some~$n \in \PosInt$. Hence, every !!{element} of $A$ appears at some
-finite position in the list. Since the function may not be
-!!{injective}, the list may be redundant, but that is acceptable (as
-noted above).
+让我们来确认，上述形式定义与使用（可能无限的）列表的非形式定义是等价的。首先，任何从 $\PosInt$ 到集合~$A$ 的满射函数都枚举了~$A$。这样的函数决定了上文非形式定义的枚举：列表 $f(1)$, $f(2)$, $f(3)$, \dots。由于 $f$ 是满射的，$A$ 的每个元素必定是某个 $n \in \PosInt$ 对应的 $f(n)$ 的值。因此，$A$ 的每个元素都会在该列表的某个有限位置出现。由于该函数可能不是单射的，列表可能有重复，但这是可以接受的（如上所述）。
 
-On the other hand, given a list that enumerates all !!{element}s
-of~$A$, we can define !!a{surjective} function $f\colon \PosInt \to A$
-by letting $f(n)$ be the $n$th !!{element} of the list, or the final
-!!{element} of the list if there is no $n$th !!{element}. The only
-case where this does not produce !!a{surjective} function is when $A$ is
-empty, and hence the list is empty. So, every non-empty list
-determines !!a{surjective} function $f\colon \PosInt \to A$.
+另一方面，给定一个枚举了~$A$ 所有元素的列表，我们可以定义一个满射函数 $f\colon \PosInt \to A$，令 $f(n)$ 为列表的第 $n$ 个元素（如果列表没有第 $n$ 个元素，则令其为列表的最后一个元素）。唯一无法通过此法产生满射函数的情况是 $A$ 为空集（从而列表也为空）。因此，每个非空列表都决定了一个满射函数 $f\colon \PosInt \to A$。
 \end{explain}
 
 \begin{defn}
   \ollabel{defn:enumerable}
-  A set~$A$ is !!{enumerable} iff it is empty or has an enumeration.
+  集合~$A$ 是\emph{可数的}，当且仅当 $A$ 是空集或者存在一个 $A$ 的枚举。
 \end{defn}
 
 \begin{ex}
-A function enumerating the positive integers ($\PosInt$) is simply the
-identity function given by $f(n) = n$. A function enumerating the
-natural numbers $\Nat$ is the function $g(n) = n - 1$.
+枚举正整数（$\PosInt$）的函数很简单，就是由 $f(n) = n$ 给出的恒等函数。枚举自然数 $\Nat$ 的函数是 $g(n) = n - 1$。
 \end{ex}
 
 \begin{ex}
-The functions $f\colon \PosInt \to \PosInt$ and $g \colon \PosInt \to
-\PosInt$ given by
+由
 \begin{align*}
-f(n) & = 2n \text{ and}\\
+f(n) & = 2n \text{ 与}\\
 g(n) & = 2n - 1
 \end{align*}
-enumerate the even positive integers and the odd positive integers,
-respectively. However, neither function is an enumeration of
-$\PosInt$, since neither is !!{surjective}.
+给出的函数 $f\colon \PosInt \to \PosInt$ 和 $g \colon \PosInt \to
+\PosInt$ 分别枚举了正偶整数和正奇整数。然而，这两个函数都不是 $\PosInt$ 的枚举，因为它们都不是满射的。
 \end{ex}
 
 \begin{prob}
-Define an enumeration of the positive squares $1$, $4$, $9$, $16$, \dots
+定义正整数的平方 $1$, $4$, $9$, $16$, \dots 所构成的集合的枚举。
 \end{prob}
 
 \begin{ex}
-The function $f(n) = (-1)^{n} \lceil \frac{(n-1)}{2}\rceil$ (where
-$\lceil x \rceil$ denotes the \emph{ceiling} function, which rounds
-$x$ up to the nearest integer) enumerates the set of
-integers~$\Int$. Notice how $f$ generates the values of $\Int$ by
-``hopping'' back and forth between positive and negative integers:
+函数 $f(n) = (-1)^{n} \lceil \frac{(n-1)}{2}\rceil$（其中
+$\lceil x \rceil$ 表示\emph{上取整}函数，即将
+$x$ 向上舍入到最近的整数）枚举了整数集~$\Int$。注意 $f$ 是如何通过在正整数和负整数之间“来回跳跃”来生成 $\Int$ 的值的：
 \[
 \begin{array}{c c c c c c c c}
 f(1) & f(2) & f(3) & f(4) & f(5) & f(6) & f(7) & \dots \\ \\
@@ -151,129 +90,72 @@ f(1) & f(2) & f(3) & f(4) & f(5) & f(6) & f(7) & \dots \\ \\
 0 & 1 & -1 & 2 & -2 & 3 & \dots
 \end{array}
 \]
-You can also think of $f$ as defined by cases as follows:
+你也可以将 $f$ 看作是如下分段定义的：
 \[
 f(n) = \begin{cases}
-  0 & \text{if $n = 1$}\\
-  n/2 & \text{if $n$ is even}\\
-  -(n-1)/2 & \text{if $n$ is odd and $>1$}
+  0 & \text{若 $n = 1$}\\
+  n/2 & \text{若 $n$ 为偶数}\\
+  -(n-1)/2 & \text{若 $n$ 为奇数且 $>1$}
   \end{cases}
 \]
 \end{ex}
 
 \begin{prob}
-  Show that if $A$ and $B$ are !!{enumerable}, so is $A \cup B$. To do
-  this, suppose there are !!{surjective} functions $f\colon \PosInt \to
-  A$ and $g\colon \PosInt \to B$, and define !!a{surjective}
-  function~$h\colon \PosInt \to A \cup B$ and prove that it is
-  !!{surjective}. Also consider the cases where $A$ or~$B = \emptyset$.
-\end{prob}
-  
-\begin{prob}
-  Show that if $B \subseteq A$ and $A$ is !!{enumerable}, so is~$B$. To
-  do this, suppose there is !!a{surjective} function $f\colon \PosInt \to
-  A$. Define !!a{surjective} function~$g\colon \PosInt \to B$ and prove
-  that it is !!{surjective}. What happens if $B = \emptyset$?
-\end{prob}
-    
-\begin{prob}
-  Show by induction on $n$ that if $A_1$, $A_2$, \dots, $A_n$ are all
-  !!{enumerable}, so is $A_1 \cup \dots \cup A_n$. You may assume the
-  fact that if two sets $A$ and~$B$ are !!{enumerable}, so is~$A \cup
-  B$. 
+  证明：如果 $A$ 和 $B$ 是可数的，那么 $A \cup B$ 也是可数的。为此，假设存在满射函数 $f\colon \PosInt \to
+  A$ 和 $g\colon \PosInt \to B$，然后定义一个满射
+  函数~$h\colon \PosInt \to A \cup B$ 并证明它是满射的。同时考虑 $A$ 或~$B = \emptyset$ 的情况。
 \end{prob}
 
-Although it is perhaps more natural when listing the !!{element}s of a
-set to start counting from the $1$st !!{element}, mathematicians like
-to use the natural numbers~$\Nat$ for counting things. They
-talk about the $0$th, $1$st, $2$nd, and so on, !!{element}s of a list.
-Correspondingly, we can define an enumeration as !!a{surjective}
-function from $\Nat$ to~$A$. Of course, the two definitions are
-equivalent.
+\begin{prob}
+  证明：如果 $B \subseteq A$ 且 $A$ 是可数的，那么~$B$ 也是可数的。为此，假设存在一个满射函数 $f\colon \PosInt \to
+  A$。定义一个满射函数~$g\colon \PosInt \to B$ 并证明它是满射的。如果 $B = \emptyset$，情况如何？
+\end{prob}
+
+\begin{prob}
+  通过对 $n$ 进行归纳，证明：如果 $A_1$, $A_2$, \dots, $A_n$ 都是可数的，那么 $A_1 \cup \dots \cup A_n$ 也是可数的。你可以使用如下事实：如果两个集合 $A$ 和~$B$ 是可数的，那么~$A \cup
+  B$ 也是可数的。
+\end{prob}
+
+虽然列举集合元素时从第 $1$ 个元素开始计数可能更自然，但数学家们喜欢用自然数~$\Nat$ 来计数。他们谈论列表的第 $0$ 个、第 $1$ 个、第 $2$ 个等元素。相应地，我们可以将枚举定义为一个从 $\Nat$ 到~$A$ 的满射函数。当然，这两种定义是等价的。
 
 \begin{prop}\ollabel{prop:enum-shift}
-  There is !!a{surjection} $f\colon \PosInt \to A$ iff there is
-  !!a{surjection} $g\colon \Nat \to A$.
+  存在满射 $f\colon \PosInt \to A$ 当且仅当存在满射 $g\colon \Nat \to A$。
 \end{prop}
 
 \begin{proof}
-  Given !!a{surjection} $f\colon \PosInt \to A$, we can define $g(n) =
-  f(n+1)$ for all $n \in \Nat$. It is easy to see that $g\colon \Nat
-  \to A$ is !!{surjective}. Conversely, given !!a{surjection} $g\colon
-  \Nat \to A$, define $f(n) = g(n-1)$.
+  给定一个满射 $f\colon \PosInt \to A$，我们可以对所有的 $n \in \Nat$ 定义 $g(n) =
+  f(n+1)$。容易看出 $g\colon \Nat
+  \to A$ 是满射的。反之，给定一个满射 $g\colon
+  \Nat \to A$，定义 $f(n) = g(n-1)$。
 \end{proof}
 
-This gives us the following result:
+由此我们得到以下推论：
 
 \begin{cor}\ollabel{cor:enum-nat}
-A set $A$ is !!{enumerable} iff it is empty or there is
-!!a{surjective} function $f\colon \Nat \to A$.
+集合 $A$ 是可数的，当且仅当 $A$ 是空集或者存在一个满射函数 $f\colon \Nat \to A$。
 \end{cor}
 
-We discussed above that a list of !!{element}s of a set~$A$ can be
-turned into a list without repetitions. This is also true for
-enumerations, but a bit harder to formulate and prove rigorously. Any
-function $f\colon \PosInt \to A$ must be defined for all $n \in
-\PosInt$. If there are only finitely many !!{element}s in~$A$ then we
-clearly cannot have a function defined on the infinitely many
-!!{element}s of~$\PosInt$ that takes as values all the !!{element}s
-of~$A$ but never takes the same value twice. In that case, i.e., in
-the case where the list without repetitions is finite, we must choose
-a different domain for~$f$, one with only finitely many !!{element}s.
-Not having repetitions means that $f$ must be !!{injective}. Since it
-is also !!{surjective}, we are looking for !!a{bijection} between some
-finite set $\{1, \dots, n\}$ or $\PosInt$ and~$A$.
+我们上面讨论过，一个集合~$A$ 的元素列表可以转化为一个无重复列表。枚举也是如此，只是要严格地加以形式化与证明会稍微困难一些。任何函数 $f\colon \PosInt \to A$ 都必须在所有 $n \in \PosInt$ 上有定义。若~$A$ 中只有有限多个元素，则我们显然不可能有一个定义在~$\PosInt$ 的无穷多个元素上、以~$A$ 的所有元素为值且绝不取同一个值两次的函数。在这种情况下，即无重复列表为有限时，我们必须为~$f$ 选择一个不同的定义域，一个仅含有限多个元素的定义域。无重复意味着 $f$ 必须是单射的。既然它同时也是满射的，我们实际上是在寻找某个有限集 $\{1, \dots, n\}$ 或 $\PosInt$ 与~$A$ 之间的一个双射。
 
 \begin{prop}\ollabel{prop:enum-bij}
-If $f\colon \PosInt \to A$ is !!{surjective} (i.e., an enumeration
-of~$A$), there is !!a{bijection} $g\colon Z \to A$ where $Z$ is
-either~$\PosInt$ or $\{1, \dots, n\}$ for some~$n \in \PosInt$.
+若 $f\colon \PosInt \to A$ 是满射（即~$A$ 的一个枚举），则存在一个双射 $g\colon Z \to A$，其中 $Z$ 是~$\PosInt$ 或对于某个~$n \in \PosInt$ 为 $\{1, \dots, n\}$。
 \end{prop}
 
 \begin{proof}
-  We define the function $g$ recursively: Let $g(1) = f(1)$. If $g(i)$
-  has already been defined, let $g(i+1)$ be the first value of $f(1)$,
-  $f(2)$, \dots{} not already among $g(1)$, \dots, $g(i)$, if there is
-  one. If $A$ has just $n$ !!{element}s, then $g(1)$, \dots, $g(n)$ are all
-  defined, and so we have defined a function $g\colon \{1, \dots, n\}
-  \to A$. If $A$ has infinitely many !!{element}s, then for any $i$
-  there must be !!a{element} of~$A$ in the enumeration $f(1)$, $f(2)$,
-  \dots, which is not already among $g(1)$, \dots, $g(i)$. In this
-  case we have defined a function $g\colon \PosInt \to A$.
+  我们递归地定义函数 $g$：令 $g(1) = f(1)$。若 $g(i)$ 已有定义，则令 $g(i+1)$ 为 $f(1)$, $f(2)$, \dots{} 中第一个不在 $g(1)$, \dots, $g(i)$ 之中的值（若存在这样的值）。若 $A$ 刚好有 $n$ 个元素，则 $g(1)$, \dots, $g(n)$ 就都有定义，于是我们就定义了一个函数 $g\colon \{1, \dots, n\}
+  \to A$。若 $A$ 有无穷多个元素，则对于任意 $i$，在枚举 $f(1)$, $f(2)$, \dots 中必定有一个尚未出现在 $g(1)$, \dots, $g(i)$ 中的~$A$ 的元素。在这种情况下，我们就定义了一个函数 $g\colon \PosInt \to A$。
   
-  The function $g$ is !!{surjective}, since any element of~$A$ is
-  among $f(1)$, $f(2)$, \dots{} (since $f$ is !!{surjective}) and so
-  will eventually be a value of~$g(i)$ for some~$i$. It is also
-  !!{injective}, since if there were $j < i$ such that $g(j) = g(i)$,
-  then $g(i)$ would already be among $g(1)$, \dots, $g(i-1)$, contrary
-  to how we defined~$g$.
+  函数 $g$ 是满射的，因为~$A$ 的任何元素都在 $f(1)$, $f(2)$, \dots{} 之中（由于 $f$ 是满射），因此最终总会成为某个 $g(i)$ 的值。它也是单射的，因为若有 $j < i$ 使得 $g(j) = g(i)$，则 $g(i)$ 就已经出现在 $g(1)$, \dots, $g(i-1)$ 之中，这与我们定义~$g$ 的方式相矛盾。
 \end{proof}
 
 \begin{cor}\ollabel{cor:enum-nat-bij}
-A set $A$ is !!{enumerable} iff it is empty or there is !!a{bijection}
-$f\colon N \to A$ where either $N = \Nat$ or $N = \{0, \dots, n\}$ for
-some $n \in \Nat$.
+集合 $A$ 是可数的，当且仅当 $A$ 是空集，或存在一个双射 $f\colon N \to A$，其中 $N = \Nat$ 或对于某个 $n \in \Nat$ 为 $N = \{0, \dots, n\}$。
 \end{cor}
 
 \begin{proof}
-$A$ is !!{enumerable} iff $A$ is empty or there is !!a{surjective}
-$f\colon \PosInt \to A$. By \olref{prop:enum-bij}, the latter holds
-iff there is !!a{bijective} function~$f\colon Z \to A$ where $Z =
-\PosInt$ or $Z = \{1, \dots, n\}$ for some $n \in \PosInt$. By the
-same argument as in the proof of \olref{prop:enum-shift}, that in turn
-is the case iff there is !!a{bijection} $g\colon N \to A$ where either
-$N = \Nat$ or $N = \{0, \dots, n-1\}$.
+$A$ 是可数的，当且仅当 $A$ 是空集，或存在一个满射 $f\colon \PosInt \to A$。根据 \olref{prop:enum-bij}，后者成立当且仅当存在一个双射函数~$f\colon Z \to A$，其中 $Z = \PosInt$ 或对于某个 $n \in \PosInt$ 为 $Z = \{1, \dots, n\}$。根据与 \olref{prop:enum-shift} 的证明中相同的论证，这又等价于存在一个双射 $g\colon N \to A$，其中 $N = \Nat$ 或 $N = \{0, \dots, n-1\}$。
 \end{proof}
 
 \begin{prob}
-  According to \olref[sfr][siz][enm]{defn:enumerable}, a set $A$ is
-  enumerable iff $A = \emptyset$ or there is !!a{surjective} $f\colon
-  \PosInt \to A$.  It is also possible to define ``!!{enumerable} set''
-  precisely by: a set is enumerable iff there is !!a{injective}
-  function $g\colon A \to \PosInt$.  Show that the definitions are
-  equivalent, i.e., show that there is !!a{injective} function
-  $g\colon A \to \PosInt$ iff either $A = \emptyset$ or there is
-  !!a{surjective} $f\colon \PosInt \to A$.
+  根据 \olref[sfr][siz][enm]{defn:enumerable}，集合 $A$ 是可数的，当且仅当 $A = \emptyset$ 或存在一个满射 $f\colon \PosInt \to A$。也可以用如下方式精确定义“可数集”：一个集合是可数的，当且仅当存在单射函数 $g\colon A \to \PosInt$。请证明这两个定义是等价的，即证明：存在单射函数 $g\colon A \to \PosInt$，当且仅当 $A = \emptyset$ 或存在满射 $f\colon \PosInt \to A$。
 \end{prob}
-
-\end{document}

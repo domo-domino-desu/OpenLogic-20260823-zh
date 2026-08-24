@@ -8,17 +8,11 @@
 
 \olfileid{int}{pty}{red}
 
-\olsection{Reduction}
+\olsection{归约}
 
-In natural deduction !!{derivation}s, !!a{introduction} rule that is
-followed by !!a{elimination} rule is a detour that can be ``reduced''.
-For instance, an $\Intro{\land}$ followed by $\Elim{\land}$ ``cancel
-out,'' since the conclusion of $\Elim{\land}$ is always one of the
-conjuncts of the conjunction that \Intro{\land} produces, and the
-premises of $\Intro{\land}$ are both conjuncts. Thus if we need
-!!a{derivation} of either conjunct, we can simply use that
-!!{derivation} without introducing the conjunction followed by
-eliminating it. We have
+在自然演绎推导中，一个引入规则后紧跟着一个消去规则，就构成了一条可被“归约”的绕路。
+例如，一个 $\Intro{\land}$ 后接 $\Elim{\land}$ 会“抵消”，因为 $\Elim{\land}$ 的结论总是 $\Intro{\land}$ 所得合取式的一个合取支，而 $\Intro{\land}$ 的两个前提即为这两个合取支。
+因此，如果我们需要其中一个合取支的推导，可以直接使用那个推导，而不必先引入合取式再将其消去。我们有
 \begin{gather*}
   \bottomAlignProof
   \AxiomC{}
@@ -41,28 +35,18 @@ eliminating it. We have
   \DisplayProof
 \end{gather*}
 
-We can consider a similar relation of reduction on the associated
-proof terms suggested by this simplification. If $N_1$ is the proof
-term for~$\delta_1$ and $N_2$ the one for~$\delta_2$, then we can say
-the proof term for the proof on the left reduces (in one step) to the
-proof term for the proof on the right:
+由这种简化启发，我们可以在相应的证明项上考虑类似的归约关系。
+如果 $N_1$ 是 $\delta_1$ 的证明项，而 $N_2$ 是 $\delta_2$ 的证明项，那么可以说，左侧推导的证明项（一步）归约到右侧推导的证明项：
 \[
   \proj{i}{\pair{N_1, N_2}} \redone N_i
 \]
-In the typed lambda calculus, this is the \emph{beta reduction} rule for
-the product type.
+在类型λ演算中，这就是积类型的 \emph{β-归约}规则。
 
-In natural deduction, a pair of inferences such as a \Intro{\land}
-folloed by \Elim{\land}, i.e., a pair that is subject to reduction, is
-called a \emph{cut}. In the typed lambda calculus the term on the left
-of $\redone$ is called a \emph{redex}, and the term to the right is
-called the \emph{reductum}. Unlike untyped lambda calculus, where only
-$(\lambd[x][N])Q$ is considered to be redex, in the typed lambda
-calculus the syntax is extended to terms involving $\pair{N}{M}$,
-$\proj{i}{N}$, $\inj{i}{!A}{N}$, $\dcase{N}{x_1}{M_1}{x_2}{M_2}$, and
-$\abort{!A}{N}$, with corresponding redexes.
+在自然演绎中，像 \Intro{\land} 后接 \Elim{\land} 这样的一对推理（即可进行归约的一对推理）称为一个\emph{切割}。
+在类型λ演算中，$\redone$ 左侧的项称为\emph{可约式}，右侧的项称为\emph{约化式}。
+与无类型λ演算（其中只有 $(\lambd[x][N])Q$ 被视为可约式）不同，在类型λ演算中，语法扩展至包含 $\pair{N}{M}$、$\proj{i}{N}$、$\inj{i}{!A}{N}$、$\dcase{N}{x_1}{M_1}{x_2}{M_2}$ 和 $\abort{!A}{N}$ 的项，并具有相应的可约式。
 
-Similarly we have reduction for disjunction:
+类似地，我们有析取的归约：
 \begin{gather*}
   \bottomAlignProof
   \AxiomC{}
@@ -89,17 +73,14 @@ Similarly we have reduction for disjunction:
   \DeduceC{$!C$}
   \DisplayProof
 \end{gather*}
-This corresponds to a reduction on proof terms:
+这对应于证明项上的归约：
 \begin{gather*}
   \dcase{\inj[!A_i]{i}{M}}{x_1}{N_1}{x_2}{N_2} \redone \Subst{N_i}{M}{x_i}
 \end{gather*}
-where $M$ is the proof term of~$\delta$, and $N_i$ is the proof term
-of~$\delta_i$. This is the beta reduction rule of for sum types.
-Here, $\Subst{M}{N_i}{x}$ means replacing all free occurrences of the
-variable~$x$ in $M$ by~$N_i$.
+其中 $M$ 是 $\delta$ 的证明项，而 $N_i$ 是 $\delta_i$ 的证明项。这是和类型的 β-归约规则。
+这里，$\Subst{M}{N_i}{x}$ 意味着将 $M$ 中变元~$x$ 的所有自由出现替换为~$N_i$。
 
-The reduction of the function type corresponds to removal of
-a detour of $\Intro\lif$ followed by a $\Elim\lif$.
+函数类型的归约对应于消除 $\Intro\lif$ 后接 $\Elim\lif$ 的绕路。
 \begin{gather*}
   \bottomAlignProof
   \AxiomC{$\Discharge{!A}{x}$}
@@ -123,15 +104,14 @@ a detour of $\Intro\lif$ followed by a $\Elim\lif$.
   \DeduceC{$!B$}
   \DisplayProof
 \end{gather*}
-For proof terms, this amounts to ordinary beta reduction:
+对于证明项而言，这等价于普通的 β-归约：
 \begin{gather*}
   (\lambd[\typeof{x}{!A}][N]M)
   \redone \Subst{N}{M}{x}
 \end{gather*}
 
-In addition to reduction conversions on !!{proof}s, we can consider
-permutation conversions. These apply to (sub)!!{proof}s that end in a
-\Elim{\lor} followed by another !!{elimination} rule, e.g.:
+除了推导上的归约变换，我们还可以考虑置换变换。
+它们适用于以 \Elim{\lor} 后接另一消去规则结尾的（子）推导，例如：
 \begin{multline*}
   \bottomAlignProof
   \AxiomC{}
@@ -172,26 +152,21 @@ permutation conversions. These apply to (sub)!!{proof}s that end in a
   \TrinaryInfC{$!C_i$}
   \DisplayProof
 \end{multline*}
-If the proof terms of $\delta$, $\delta_1$, and $\delta_2$ are $M$,
-$N_1$, and $N_2$, respectively, the corresponding reduction rule for
-proof terms, i.e., $\lambd$ terms, is:
+如果 $\delta$、$\delta_1$ 和 $\delta_2$ 的证明项分别是 $M$、$N_1$ 和 $N_2$，则证明项（即 $\lambd$ 项）相应的归约规则为：
 \[
   \proj{i}{\dcase{M}{x_1}{N_1}{x_2}{N_2}} \redone 
 \dcase{M}{x_1}{\proj{i}{N_1}}{x_2}{\proj{i}{N_2}}
 \]
 
-Of course we can eliminate detours not just at the ends of !!{proof}s,
-but also within !!{proof}s, by applying the reduction conversion to a
-sub-!!{proof} ending in a detour. Similarly, $\beta$-reduction applies
-to subterms of $\lambd$-terms. If $N$ is a subterm of $M$, $N \redone
-N'$, we can replace the subterm $N$ in~$M$ by $N'$ to obtain $M'$. In
-that case we also write $M \redone M'$. If there is a sequence $M = M_1
-\redone M_2 \redone M_2 \redone \dots \redone M_k = M'$ (including
-where $k=1$, i.e., $M = M'$) we write $M \red M'$.
+当然，我们不仅可以消除推导末端的绕路，也可以将归约变换应用于以绕路结尾的子推导，从而消除推导内部的绕路。
+类似地，$\beta$-归约可应用于 $\lambd$-项的子项。
+如果 $N$ 是 $M$ 的一个子项，且 $N \redone N'$，我们可以用 $N'$ 替换 $M$ 中的子项 $N$ 以得到 $M'$。
+在这种情况下，我们也记作 $M \redone M'$。
+如果存在一个序列 $M = M_1
+\redone M_2 \redone M_2 \redone \dots \redone M_k = M'$（包括 $k=1$ 即 $M = M'$ 的情形），我们记作 $M \red M'$。
 
-A !!{proof} where no conversion can be applied to any sub-!!{proof}
-is called \emph{normal}. Similarly, a $\lambd$-term where no
-conversion can be applied (to any sub-term) is called \emph{normal}. A
-normal $\lambd$-term is also called a \emph{normal form}.
+无法对其任何子推导应用变换的推导称为\emph{正规的}。
+类似地，无法（对其任何子项）应用变换的 $\lambd$-项也称为\emph{正规的}。
+正规的 $\lambd$-项也称为\emph{范式}。
 
 \end{document}

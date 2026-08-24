@@ -4,102 +4,73 @@
 
 \olfileid{sth}{spine}{foundation}
 
-\olsection{Foundation}
+\olsection{基础公理}
 
-We are only \emph{almost} done---and not \emph{quite} finished---because nothing in
-$\ZFminus$ guarantees that \emph{every} set is in some $V_\alpha$,
-i.e., that every set is formed at some stage. 
+我们只算\emph{几乎}完成——而非\emph{彻底}完成——因为 $\ZFminus$ 中没有任何内容能保证\emph{每个}集合都在某个 $V_\alpha$ 中，即每个集合都在某个阶段形成。
 
-Now, there is a fairly straightforward (mathematical) sense in which
-we don't \emph{care} whether there are sets outside the hierarchy. (If
-there are any there, we can simply ignore them.) But we have motivated
-our \emph{concept} of set with the thought that every set is formed at
-some stage (see \stageshier{} in \olref[z][story]{sec}). So
-we will want to preclude the possibility of sets which fall outside of
-the hierarchy. Accordingly, we must add a new axiom, which ensures
-that every set occurs somewhere in the hierarchy. 
+现在，从（数学上）相当直接的意义来看，我们并不\emph{在乎}是否存在层级之外的集合。（如果真有这种集合，我们直接忽略它们即可。）但我们正是通过“每个集合都在某个阶段形成”这一想法来确立我们的集合\emph{概念}的（参见 \olref[z][story]{sec} 中的 \stageshier{}）。因此，我们希望排除集合落在层级之外的可能性。相应地，我们必须添加一条新公理，以确保每个集合都出现在层级中的某处。
 
-Since the $V_\alpha$s are our stages, we might simply consider adding
-the following as an axiom:
+既然 $V_\alpha$ 就是我们的阶段，我们或许会考虑直接将以下内容作为公理加入：
 
 \begin{defish}
-\emph{Regularity.} $\forall A \exists \alpha\, A \subseteq V_\alpha$
+\emph{正则性公理。} $\forall A \exists \alpha\, A \subseteq V_\alpha$
 \end{defish}
 
-This would be a perfectly reasonable approach. However, for reasons
-that will be explained in the next section, we will instead adopt an
-alternative axiom:
+这将是一种完全合理的做法。然而，由于下一节将说明的原因，我们将转而采用另一条公理：
 
-\begin{axiom}[Foundation]
-$(\forall A \neq \emptyset)(\exists B \in A)A \cap B = \emptyset$.
+\begin{axiom}[基础公理]
+$(\forall A \neq \emptyset)(\exists B \in A)A \cap B = \emptyset$。
 \end{axiom}
 
-With some effort, we can show (in $\ZFminus$) that Foundation entails Regularity:
+经过一番努力，我们可以（在 $\ZFminus$ 中）证明基础公理蕴涵正则性公理：
 \begin{defn}
-For each set $A$, let:
+对每个集合 $A$，令：
 \begin{align*}
 	\text{cl}_0(A) &= A,\\
 	\text{cl}_{n+1}(A) &= \bigcup \text{cl}_n(A),\\
 	\text{trcl}(A) &= \bigcup_{n < \omega} \text{cl}_{n}(A).
 \end{align*}
-We call $\text{trcl}(A)$ the \emph{transitive closure} of $A$.
+我们称 $\text{trcl}(A)$ 为 $A$ 的\emph{传递闭包}。
 \end{defn}
 \noindent
-The name ``transitive closure'' is apt:
+“传递闭包”这一名称是恰当的：
 \begin{prop}\ollabel{subsetoftrcl}
-$A \subseteq \trcl{A}$ and $\trcl{A}$ is a transitive set. 
+$A \subseteq \trcl{A}$，并且 $\trcl{A}$ 是一个传递集。
 \end{prop}
 
 \begin{proof}
-Evidently $A = \text{cl}_0(A) \subseteq \text{trcl}(A)$. And if $x
-\in b \in \trcl{A}$,  then $b \in \text{cl}_n(A)$ for some $n$, so $x
-\in \text{cl}_{n+1}(A) \subseteq \text{trcl}(A)$. 
+显然 $A = \text{cl}_0(A) \subseteq \text{trcl}(A)$。并且，如果 $x \in b \in \trcl{A}$，那么对某个 $n$ 有 $b \in \text{cl}_n(A)$，因此 $x
+\in \text{cl}_{n+1}(A) \subseteq \text{trcl}(A)$。
 \end{proof}
 
 \begin{lem}\ollabel{lem:TransitiveWellFounded}
-If $A$ is a transitive set, then there is some $\alpha$ such that $A
-\subseteq V_\alpha$.
+如果 $A$ 是一个传递集，则存在某个 $\alpha$ 使得 $A \subseteq V_\alpha$。
 \end{lem}
 
 \begin{proof}
-Recalling the definition of ``$\supstrict(X)$'' from
-\olref[ordinals][opps]{defsupstrict}, define two sets:
+回顾 \olref[ordinals][opps]{defsupstrict} 中“$\supstrict(X)$”的定义，定义两个集合：
 \begin{align*}
 	D  &= \Setabs{x \in A}{\forall \delta\ x \nsubseteq V_\delta}\\
 	\alpha &= \supstrict\Setabs{\delta}{(\exists x \in A)
 	(x \subseteq V_\delta \land (\forall \gamma \in \delta)x \nsubseteq V_\gamma)}
 \end{align*}
-Suppose $D = \emptyset$. So if $x \in A$, then there is some $\delta$ such that $x \subseteq V_\delta$ and, by the well-ordering of the ordinals, $(\forall \gamma \in \delta)x \nsubseteq V_\gamma$; hence $\delta \in \alpha$ and so $x \in V_\alpha$ by
-\olref[spine][Valphabasic]{Valphabasicprops}. Hence $A \subseteq
-V_{\alpha}$, as required. 
+假设 $D = \emptyset$。那么，若 $x \in A$，则存在某个 $\delta$ 使得 $x \subseteq V_\delta$，并且根据序数的良序性，$(\forall \gamma \in \delta)x \nsubseteq V_\gamma$；因此 $\delta \in \alpha$，从而由 \olref[spine][Valphabasic]{Valphabasicprops} 知 $x \in V_\alpha$。于是 $A \subseteq V_{\alpha}$ 得证。
 
-So it suffices to show that $D = \emptyset$. For reductio, suppose
-otherwise. By Foundation, there is some $B \in D \subseteq A$ such that $D \cap B
-= \emptyset$. If $x \in B$ then $x \in A$, since $A$ is transitive,
-and since $x \notin D$, it follows that $\exists \delta\ x \subseteq
-V_\delta$. So now let
+因此，只需证明 $D = \emptyset$。用归谬法，假设不然。由基础公理，存在某个 $B \in D \subseteq A$ 使得 $D \cap B = \emptyset$。若 $x \in B$，则由于 $A$ 是传递的，有 $x \in A$；又因 $x \notin D$，可知 $\exists \delta\ x \subseteq V_\delta$。现在令
 \[
 	\beta = \supstrict\Setabs{\delta}{(\exists x \in b)(x \subseteq V_\delta \land (\forall \gamma < \delta)x \nsubseteq V_\gamma)}.
 \]
-As before, $B \subseteq V_\beta$, contradicting the claim that $B \in
-D$.	
+同前，$B \subseteq V_\beta$，这与 $B \in D$ 矛盾。
 \end{proof}
 
 \begin{thm}\ollabel{zfentailsregularity}
-Regularity holds.
+正则性公理成立。
 \end{thm}
 
 \begin{proof}
-Fix $A$; now $A \subseteq \trcl{A}$ by \olref{subsetoftrcl}, which is transitive. So there is some $\alpha$ such that $A \subseteq \trcl{A} \subseteq V_\alpha$ by \olref{lem:TransitiveWellFounded}
+固定 $A$；由 \olref{subsetoftrcl} 知 $A \subseteq \trcl{A}$，且 $\trcl{A}$ 是传递集。于是根据 \olref{lem:TransitiveWellFounded}，存在某个 $\alpha$ 使得 $A \subseteq \trcl{A} \subseteq V_\alpha$。
 \end{proof}
 
-These results show that $\ZFminus$ proves the conditional
-$\emph{Foundation}\Rightarrow\emph{Regularity}$. In
-\olref[spine][rank]{zfminusregularityfoundation}, we will show that
-$\ZFminus$ proves $\emph{Regularity}\Rightarrow\emph{Foundation}$. As
-such, Foundation and Regularity are \emph{equivalent} (modulo
-$\ZFminus$). But this means that, given $\ZFminus$, we can justify
-Foundation by noting that it is equivalent to Regularity. And we can
-justify Regularity immediately on the basis of \stageshier{}. 
+这些结果表明，$\ZFminus$ 可以证明条件式 $\emph{基础公理}\Rightarrow\emph{正则性公理}$。在 \olref[spine][rank]{zfminusregularityfoundation} 中，我们将证明 $\ZFminus$ 可以证明 $\emph{正则性公理}\Rightarrow\emph{基础公理}$。这样一来，在 $\ZFminus$ 下，基础公理与正则性公理是\emph{等价}的。但这就意味着，给定 $\ZFminus$，我们可以通过指出基础公理等价于正则性公理来证成基础公理。而我们又能依据 \stageshier{} 直接证成正则性公理。
 
 \end{document}

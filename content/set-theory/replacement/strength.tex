@@ -3,51 +3,26 @@
 \begin{document}
 
 \olfileid{sth}{replacement}{strength}
-\olsection{The Strength of Replacement}
+\olsection{替换公理模式的力量}
 
-We begin with a simple observation about the strength of Replacement: unless we go beyond $\Z$, we cannot prove the existence of any von Neumann
-ordinal greater than or equal to $\omega + \omega$. 
+关于替换公理模式的力量，我们先看一个简单的观察：除非超出 $\Z$，否则我们无法证明任何大于等于 $\omega + \omega$ 的 von Neumann（冯·诺伊曼）序数的存在。
 
-Here is a sketch of
-why. Working in~$\ZF$, consider the set $V_{\omega+\omega}$. This set acts
-as the domain for a \emph{model} for~$\Z$. To see this, we introduce some notation for the \emph{relativization} of a formula: 
+以下是原因的简要说明。在~$\ZF$ 中，考虑集合 $V_{\omega+\omega}$。这个集合可以作为~$\Z$ 的一个\emph{模型}的论域。为了说明这一点，我们先为公式的\emph{相对化}引入一些记号：
 \begin{defn}\ollabel{formularelativization}
-	For any set $M$, and any formula $\phi$, let $\phi^M$ be the formula which results by restricting all of $\phi$'s quantifiers to $M$. That is, replace ``$\lexists[x]$'' with ``$(\lexists[x \in M])$'', and
-	replace ``$\lforall[x]$'' with ``$(\lforall[x \in M])$''. 
+	对于任意集合 $M$ 和任意公式 $\phi$，令 $\phi^M$ 表示将 $\phi$ 中所有量词限制到 $M$ 上所得出的公式。也就是说，把“$\lexists[x]$”替换为“$(\lexists[x \in M])$”，并把“$\lforall[x]$”替换为“$(\lforall[x \in M])$”。
 \end{defn}\noindent
-It can be shown that, for every axiom $\phi$ of~$\Z$, we have that $\ZF \vdash
-\phi^{V_{\omega+\omega}}$. But $\omega+\omega$ is not \emph{in}
-$V_{\omega+\omega}$, by  \olref[spine][rank]{ordsetrankalpha}. So $\Z$ is
-consistent with the non-existence of $\omega+\omega$.
+可以证明，对于~$\Z$ 的每个公理 $\phi$，都有 $\ZF \vdash
+\phi^{V_{\omega+\omega}}$。但是，根据 \olref[spine][rank]{ordsetrankalpha}，$\omega+\omega$ 并不\emph{在} $V_{\omega+\omega}$ 中。所以，$\Z$ 与“$\omega+\omega$ 不存在”是一致的。
 
-This is why we said, in \olref[ordinals][replacement]{sec}, that
-\olref[ordinals][ordtype]{thmOrdinalRepresentation} cannot be proved
-without Replacement. For it is easy, within~$\Z$, to define an
-explicit well-ordering which intuitively \emph{should} have order-type
-$\omega+\omega$. Indeed, we gave an informal example of this in
-\olref[ordinals][idea]{sec}, when we presented the ordering on the
-natural numbers given by:
+这就是为什么我们在 \olref[ordinals][replacement]{sec} 中说，没有替换公理模式就无法证明 \olref[ordinals][ordtype]{thmOrdinalRepresentation}。因为很容易在~$\ZF$ 内定义一个显式的良序，它在直觉上\emph{应该}具有序型 $\omega+\omega$。事实上，我们在 \olref[ordinals][idea]{sec} 中已经给出了一个非正式的例子，当时我们给出了自然数上的如下排序：
 \begin{align*}
-	n \lessdot m \text{ iff }&\text{either }n < m\text{ and }m-n\text{ is even,}\\
-	& \text{or $n$ is even and $m$ is odd.}
+	n \lessdot m \text{ 当且仅当 }&\text{要么 }n < m\text{ 且 }m-n\text{ 是偶数，}\\
+	& \text{要么 $n$ 是偶数且 $m$ 是奇数。}
 \end{align*}
-But if $\omega+\omega$ does not exist, this well-ordering is not
-isomorphic to any ordinal. So $\Z$ does \emph{not} prove
-\olref[ordinals][ordtype]{thmOrdinalRepresentation}. 
+但如果 $\omega+\omega$ 不存在，这个良序就不与任何序数同构。因此，$\Z$ \emph{不能}证明 \olref[ordinals][ordtype]{thmOrdinalRepresentation}。
 
-Flipping things around: Replacement allows us to prove the existence
-of $\omega+\omega$, and hence must allow us to prove the existence of
-$V_{\omega+\omega}$. And not just that. For \emph{any} well-ordering
-we can define, \olref[ordinals][ordtype]{thmOrdinalRepresentation}
-tells us that there is some $\alpha$ isomorphic with that
-well-ordering, and hence that $V_\alpha$ exists. In a straightforward
-way, then, Replacement guarantees that the hierarchy of sets must be
-\emph{very tall}. 
+反过来说：替换公理模式使我们能够证明 $\omega+\omega$ 的存在，因此也必然使我们能够证明 $V_{\omega+\omega}$ 的存在。不仅如此。对于我们可以定义的\emph{任何}良序，\olref[ordinals][ordtype]{thmOrdinalRepresentation} 都告诉我们，存在某个与之同构的 $\alpha$，从而 $V_\alpha$ 存在。于是，替换公理模式以一种直接的方式保证了集合层级必定\emph{非常高}。
 
-Over the next few sections, and then again in
-\olref[card-arithmetic][fix]{sec}, we'll get a better sense of better
-just \emph{how} tall Replacement forces the hierarchy to be. The
-simple point, for now, is that Replacement really \emph{does} stand in
-need of justification!
+在接下来的几节以及 \olref[card-arithmetic][fix]{sec} 中，我们将更好地体会替换公理模式究竟迫使集合层级变得\emph{多}高。目前简单的要点是：替换公理模式确实\emph{需要}证立！
 
 \end{document}

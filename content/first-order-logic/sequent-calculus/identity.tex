@@ -10,14 +10,13 @@
 
 \olsection{\usetoken{P}{derivation} with \usetoken{S}{identity}}
 
-!!^{derivation}s with !!{identity} require additional initial sequents
-and inference rules.
+包含等词的推导需要额外的初始矢列和推理规则。
 
-\begin{defn}[Initial sequents for $\eq$]
-If $t$ is a closed term, then ${} \Sequent \eq[t][t]$ is an initial sequent.
+\begin{defn}[$\eq$ 的初始矢列]
+若 $t$ 是闭项，则 ${} \Sequent \eq[t][t]$ 是初始矢列。
 \end{defn}
 
-The rules for $\eq$ are ($t_1$ and $t_2$ are closed terms):
+$\eq$ 的规则如下（$t_1$ 和 $t_2$ 是闭项）：
 
 \begin{defish}
 \Axiom$ \eq[t_1][t_2], \Gamma \fCenter \Delta, !A(t_1) $
@@ -32,8 +31,8 @@ The rules for $\eq$ are ($t_1$ and $t_2$ are closed terms):
 \end{defish}
 
 \begin{ex}
-If $s$ and $t$ are closed terms, then $\eq[s][t], !A(s)
-\Proves !A(t)$:
+若 $s$ 和 $t$ 是闭项，则 $\eq[s][t], !A(s)
+\Proves !A(t)$：
 \begin{prooftree}
 \Axiom$ !A(s) \fCenter !A(s)$
 \RightLabel{\LeftR{\Weakening}}
@@ -41,10 +40,9 @@ If $s$ and $t$ are closed terms, then $\eq[s][t], !A(s)
 \RightLabel{$\eq$}
 \UnaryInf$\eq[s][t], !A(s)  \fCenter !A(t)$
 \end{prooftree}
-This may be familiar as the principle of substitutability of
-identicals, or Leibniz' Law.
+这或许就是大家所熟悉的同一物的可替换性原理，即 Leibniz 律。
 
-$\Log{LK}$ proves that $\eq$ is symmetric and transitive:
+$\Log{LK}$ 可证明 $\eq$ 是对称且传递的：
 \begin{prooftree}
 \Axiom$ \fCenter \eq[t_1][t_1] $
 \RightLabel{\LeftR{\Weakening}}
@@ -60,12 +58,11 @@ $\Log{LK}$ proves that $\eq$ is symmetric and transitive:
 \RightLabel{\LeftR{\Exchange}}
 \UnaryInf$\eq[t_1][t_2], \eq[t_2][t_3]  \fCenter \eq[t_1][t_3]$
 \end{prooftree}
-In the !!{derivation} on the left, the !!{formula}~$\eq[x][t_1]$ is our
-$!A(x)$. On the right, we take $!A(x)$ to be~$\eq[t_1][x]$.
+在左边的推导中，公式~$\eq[x][t_1]$ 就是我们的 $!A(x)$。在右边，我们取 $!A(x)$ 为~$\eq[t_1][x]$。
 \end{ex}
 
 \begin{prob}
-Give !!{derivation}s of the following sequents:
+给出下列矢列的推导：
 \begin{enumerate}
 \item $\Sequent \lforall[x][\lforall[y][((x = y \land !A(x)) \lif !A(y))]]$
 \item $\lexists[x][!A(x)] \land \lforall[y][\lforall[z][((!A(y) \land

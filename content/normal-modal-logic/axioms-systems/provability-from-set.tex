@@ -8,18 +8,16 @@
 
 \olfileid{nml}{prf}{prg}
 
-\olsection{\usetoken{S}{derivability} from a Set of \usetoken{P}{formula}}
+\olsection{从\usetoken{S}{derivability}集合出发的\usetoken{P}{formula}}
 
-In \olref[prf][prs]{sec} we defined a notion of provability
-of !!a{formula} in a system~$\Sigma$. We now extend this notion to
-provability in $\Sigma$ from !!{formula}s in a set~$\Gamma$.
+在 \olref[prf][prs]{sec} 节中我们定义了公式在系统~$\Sigma$ 中的可证性概念。
+现在我们将此概念推广为从公式集合~$\Gamma$ 出发在 $\Sigma$ 中的可推导性。
 
 \begin{defn}\ollabel{defn:Gammaproves}
-  !!^a{formula}~$!A$ is !!{derivable} in a system~$\Sigma$ from a set of
-  !!{formula}s $\Gamma$, written $\Gamma \Proves[\Sigma] !A$ if and
-  only if there are $!B_1$, \dots, $!B_n \in \Gamma$ such that
+  公式~$!A$ 在系统~$\Sigma$ 中可由公式集合 $\Gamma$ 推导出，记作 $\Gamma \Proves[\Sigma] !A$，
+  当且仅当存在 $!B_1$, \dots, $!B_n \in \Gamma$ 使得
   $\Sigma \Proves !B_1 \lif (!B_2 \lif \cdots (!B_n \lif !A)
-  \cdots)$. 
+  \cdots)$。
 \end{defn}
 
 \end{document}

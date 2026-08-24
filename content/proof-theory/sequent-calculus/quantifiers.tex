@@ -8,48 +8,31 @@
 
 \olfileid{pt}{seq}{qua}
 
-\olsection{Regular Proofs and Substitution}
+\olsection{正则证明与代入}
 
-The rules for the quantifiers introduce some complications owing to
-the ``eigenvariable conditions'' that apply to the \LeftR{\lexists}
-and~\RightR{\lforall} rules. Most of these complications can be dealt
-with by ensuring that the !!{constant}~$a$ in these inferences is
-never reused. Let's introduce the following definition.
+量词规则由于适用于 \LeftR{\lexists} 和~\RightR{\lforall} 规则的“本征变元条件”而引入了一些复杂性。大部分复杂性可以通过确保这些推理中的常项符号~$a$ 不被重复使用来化解。我们引入以下定义。
 
 \begin{defn}
-!!^a{proof}~$\pi$ in \Log{G1c} or \Log{G3c} is \emph{regular} if
+在 \Log{G1c} 或 \Log{G3c} 中，推导~$\pi$ 是\emph{正则的}，如果
 \begin{enumerate}
-  \item no eigenvariable~$a$ is used as the eigenvariable of more than
-  one \LeftR{\lexists} or~\RightR{\lforall} inference, and
-  \item if $a$ is the eigenvariable of a \LeftR{\lexists}
-  or~\RightR{\lforall} inference, it only occurs above that inference
-  in~$\pi$.
+  \item 没有任何本征变元~$a$ 被用作不止一个 \LeftR{\lexists} 或~\RightR{\lforall} 推理的本征变元，且
+  \item 如果 $a$ 是 \LeftR{\lexists} 或~\RightR{\lforall} 推理的本征变元，则它在~$\pi$ 中只出现在该推理上方。
 \end{enumerate}
 \end{defn}
 
-\begin{lem}\ollabel{lem:subst-regular} If $\pi$ is regular, ends in
-$\Gamma \Sequent \Delta$, $c$ is !!a{constant} not used as an
-eigenvariable in~$\pi$, and $t$~is a term not containing any
-eigenvariables of~$\pi$, then $\Subst{\pi}{t}{c}$ resulting from~$\pi$
-by replacing every occurrence of~$c$ by~$t$ is a regular !!{proof}.
-The end-sequent of $\Subst{\pi}{t}{c}$ is $\Subst{\Gamma}{t}{c}
-\Sequent \Subst{\Delta}{t}{c}$, where $\Subst{\Gamma}{t}{c} =
-\Setabs{!A(t)}{!A(c) \in \Gamma}$.
+\begin{lem}\ollabel{lem:subst-regular} 如果 $\pi$ 是正则的，其末尾相继式为
+$\Gamma \Sequent \Delta$，$c$ 是在~$\pi$ 中未被用作本征变元的常项符号，且 $t$~是不包含~$\pi$ 的任何本征变元的项，那么将~$\pi$ 中 $c$ 的每次出现替换为~$t$ 所得的 $\Subst{\pi}{t}{c}$ 是一个正则推导。
+$\Subst{\pi}{t}{c}$ 的末尾相继式是 $\Subst{\Gamma}{t}{c}
+\Sequent \Subst{\Delta}{t}{c}$，其中 $\Subst{\Gamma}{t}{c} =
+\Setabs{!A(t)}{!A(c) \in \Gamma}$。
 \end{lem}
 
 \begin{proof}
-  By induction on $\pheight{\pi}$. If $\pheight{\pi} = 0$, it consists
-  simply of an axiom. Then $\Subst{\pi}{t}{c}$ is also an axiom, since
-  any !!{formula}~$!A(c)$ in it turns into $!A(t)$.
+  对 $\pheight{\pi}$ 进行归纳。如果 $\pheight{\pi} = 0$，则 $\pi$ 仅由一条公理组成。那么 $\Subst{\pi}{t}{c}$ 也是一条公理，因为其中的任何公式~$!A(c)$ 都变成了 $!A(t)$。
 
-  If $\pheight{\pi} > 0$ we distinguish cases according to the last
-  inference in~$\pi$. The cases for structural rules (in \Log{G1c})
-  and logical rules for propositional connectives are easy and left as
-  exercises. We consider the cases where $\pi$ ends in a quantifier
-  inference.
+  如果 $\pheight{\pi} > 0$，我们根据~$\pi$ 的最后一个推理来区分情况。结构规则（在 \Log{G1c} 中）和命题联结词的逻辑规则的情况很简单，留作练习。我们考虑 $\pi$ 以量词推理结尾的情况。
   \begin{enumerate}
-    \item If the last inference is $\RightR{\lforall}$, $\pi$ is of
-    the form
+    \item 如果最后一个推理是 $\RightR{\lforall}$，则 $\pi$ 具有形式
     \[
     \AxiomC{}
     \RightLabel{$\pi'$}
@@ -58,10 +41,9 @@ The end-sequent of $\Subst{\pi}{t}{c}$ is $\Subst{\Gamma}{t}{c}
     \UnaryInf$\Gamma(c) \fCenter \Delta'(c), \lforall[x][!A(x,c)]$
     \DisplayProof
     \]
-    By induction hypothesis, $\Subst{\pi'}{t}{c}$ is a regular
-    !!{proof} of $\Gamma(t) \fCenter \Delta'(t), !A(a,t)$. Since $a$
-    is an eigenvariable of~$\pi$, $a$~does not occur in~$t$.
-    Therefore, the last inference in $\Subst{\pi}{t}{c}$,
+    根据归纳假设，$\Subst{\pi'}{t}{c}$ 是 $\Gamma(t) \fCenter \Delta'(t), !A(a,t)$ 的一个正则推导。由于 $a$
+    是~$\pi$ 的一个本征变元，$a$~不在~$t$ 中出现。
+    因此，$\Subst{\pi}{t}{c}$ 中的最后一个推理，
     \[
     \AxiomC{}
     \RightLabel{$\Subst{\pi'}{t}{c}$}
@@ -70,9 +52,9 @@ The end-sequent of $\Subst{\pi}{t}{c}$ is $\Subst{\Gamma}{t}{c}
     \UnaryInf$\Gamma(t) \fCenter \Delta'(t), \lforall[x][!A(x,t)]$
     \DisplayProof
     \]
-    is correct: the conclusion does not contain~$a$. 
-    \item If the last inference is $\LeftR{\lforall}$ in \Log{G3c},
-    $\pi$ is of the form
+    是合法的：结论不包含~$a$。 
+    \item 如果最后一个推理是 \Log{G3c} 中的 $\LeftR{\lforall}$，
+    则 $\pi$ 具有形式
     \[
     \AxiomC{}
     \RightLabel{$\pi'$}
@@ -81,10 +63,9 @@ The end-sequent of $\Subst{\pi}{t}{c}$ is $\Subst{\Gamma}{t}{c}
     \UnaryInf$\lforall[x][!A(x,c)], \Gamma(c) \fCenter \Delta'(c)$
     \DisplayProof
     \]
-    By induction hypothesis, $\Subst{\pi'}{t}{c}$ is a regular
-    !!{proof} of $!A(s(t),t), \lforall[x][!A(x,t)], \Gamma(t) \fCenter
-    \Delta'(t)$. The last inference in
-    $\Subst{\pi}{t}{c}$,
+    根据归纳假设，$\Subst{\pi'}{t}{c}$ 是 $!A(s(t),t), \lforall[x][!A(x,t)], \Gamma(t) \fCenter
+    \Delta'(t)$ 的一个正则推导。
+    $\Subst{\pi}{t}{c}$ 中的最后一个推理，
     \[
     \AxiomC{}
     \RightLabel{$\Subst{\pi'}{t}{c}$}
@@ -93,39 +74,20 @@ The end-sequent of $\Subst{\pi}{t}{c}$ is $\Subst{\Gamma}{t}{c}
     \UnaryInf$\lforall[x][!A(x,t)], \Gamma(t) \fCenter \Delta'(t)$
     \DisplayProof
     \]
-    is correct. The case for \LeftR{\lforall} in~\Log{G1c} is similar,
-    but slightly less complicated.
-    \item The last inference is \RightR{\lexists} or \LeftR{\lexists}: exercise.
+    是合法的。\Log{G1c} 中 $\LeftR{\lforall}$ 的情况类似，
+    但稍微简单一些。
+    \item 最后一个推理是 $\RightR{\lexists}$ 或 $\LeftR{\lexists}$：留作练习。
   \end{enumerate}
-  In each case, we added a sequent to the end of a regular !!{proof}
-  (or two regular !!{proof}s in the case of two-premise rules). The
-  new sequent differs from the end-sequent of $\pi$ only in that $c$
-  was replaced by the term~$t$. Moreover, the eigenvariables of $\pi$
-  and Since $t$ was assumed not to contain an eigenvariable of~$\pi$
-  and $\Subst{\pi}{t}{c}$ are the same, the new end-sequent does not
-  contain an eigenvariable of $\Subst{\pi}{t}{c}$. Consequently,
-  $\Subst{\pi}{t}{c}$ is regular.
+  在每种情况下，我们都在一个正则推导（或在双前提规则下，两个正则推导）的末尾添加了一个相继式。新的相继式与 $\pi$ 的末尾相继式的区别仅在于将 $c$ 替换为了项~$t$。此外，$\pi$ 与 $\Subst{\pi}{t}{c}$ 的本征变元相同。既然假设 $t$ 不包含~$\pi$ 的本征变元，新的末尾相继式也就不包含 $\Subst{\pi}{t}{c}$ 的本征变元。因此，$\Subst{\pi}{t}{c}$ 是正则的。
 \end{proof}
 
 \begin{prop}
-If $\pi$ is !!a{proof} in \Log{G1c} or \Log{G3c}, then there is a
-regular !!{proof}~$\pi'$ with the same structure (in particular, the
-same !!{height}) which differs from $\pi$ only by replacing
-eigenvariables.
+如果 $\pi$ 是 \Log{G1c} 或 \Log{G3c} 中的一个推导，那么存在一个正则推导~$\pi'$，它具有相同的结构（特别是相同的高度），且仅通过替换本征变元而与 $\pi$ 不同。
 \end{prop}
 
 \begin{proof}
-For the purpose of the proof only, call an eigenvariable inference
-of~$\pi$ \emph{clean} if its eigenvariable is not the eigenvariable of
-another inference nor does it occur anywhere in~$\pi$ except the
-immediate sub-!!{proof} of the inference, and \emph{dirty} otherwise.
-Let $n$ be the number of dirty eigenvariable inferences in~$\pi$. We
-show, by induction on~$n$, that $\pi$~can be transformed into the
-required regular !!{proof}~$\pi'$. If $n=0$, all eigenvariable
-inferences in~$\pi$ are clean, so and $\pi$ is regular, and there is
-nothing to prove. Otherwise, pick a highest eigenvariable inference,
-say \RightR{\lforall}. The sub-!!{proof}~$\pi_1$ of~$\pi$ ending in it
-is of the form
+仅出于证明的目的，我们称~$\pi$ 中的一个本征变元推理是\emph{干净的}，如果其本征变元不是其他推理的本征变元，且除该推理的直接子推导外，不出现在~$\pi$ 的任何其他地方；否则称其为\emph{脏的}。
+设 $n$ 是~$\pi$ 中脏的本征变元推理的数量。我们将通过对~$n$ 进行归纳来证明，$\pi$ 可以转化为所需的正则推导~$\pi'$。如果 $n=0$，则 $\pi$ 中所有本征变元推理都是干净的，因此 $\pi$ 是正则的，无需再证。否则，选取一个最上方的本征变元推理，假设是 \RightR{\lforall}。以该推理结尾的~$\pi$ 的子推导~$\pi_1$ 具有如下形式：
     \[
     \AxiomC{}
     \RightLabel{$\pi_2$}
@@ -134,12 +96,8 @@ is of the form
     \UnaryInf$\Gamma \fCenter \Delta, \lforall[x][!A(x)]$
     \DisplayProof
     \]
-Note that as $c$ is an eigenvariable, it does not occur in~$\Gamma$,
-$\Delta$, or $\lforall[x][!A(x)]$. The proof $\pi_2$ is regular, since
-it contains no eigenvariable inferences at all. Let $a$ be
-!!a{constant} not occuring in~$\pi$. By \olref{lem:subst-regular},
-$\Subst{\pi_2}{a}{c}$ is a regular proof of $\Gamma \fCenter \Delta,
-!A(a)$, to which we can apply~$\RightR{\lforall}$. If we replace $\pi_1$ in~$\pi$ by the proof $\pi_1'$,
+注意，由于 $c$ 是一个本征变元，它不出现在~$\Gamma$、$\Delta$ 或 $\lforall[x][!A(x)]$ 中。推导 $\pi_2$ 是正则的，因为它根本不包含任何本征变元推理。令 $a$ 为一个不在~$\pi$ 中出现的常项符号。根据 \olref{lem:subst-regular}，$\Subst{\pi_2}{a}{c}$ 是 $\Gamma \fCenter \Delta,
+!A(a)$ 的一个正则推导，我们可以对其应用~$\RightR{\lforall}$。如果我们在~$\pi$ 中用推导 $\pi_1'$ 替换 $\pi_1$，
     \[
     \AxiomC{}
     \RightLabel{$\Subst{\pi_2}{a}{c}$}
@@ -148,14 +106,9 @@ $\Subst{\pi_2}{a}{c}$ is a regular proof of $\Gamma \fCenter \Delta,
     \UnaryInf$\Gamma \fCenter \Delta, \lforall[x][!A(x)]$
     \DisplayProof
     \]
-we have replaced a dirty eigenvariable inference by a clean one, and
-the only difference is the replacement of the eigenvariable $c$
-by~$a$. The resulting proof has $n-1$ dirty eigenvariable inferences,
-and the result follows from the inductive hypothesis.
+我们就将一个脏的本征变元推理替换成了一个干净的，唯一的区别是将本征变元 $c$ 替换为~$a$。所得推导具有 $n-1$ 个脏的本征变元推理，根据归纳假设即得结论。
 \end{proof}
 
-We will not appeal to the proposition just proved explicitly, but we
-will assume that all !!{proof}s considered are regular---if they are
-not, we can always replace eigenvariables to make them regular.
+我们不会显式地引用刚才证明的命题，但将假定所有被考虑的推导都是正则的——如果它们不是，我们总可以通过替换本征变元使其正则。
 
 \end{document}

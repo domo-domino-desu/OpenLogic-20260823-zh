@@ -7,93 +7,54 @@
 \begin{document}
 
 \olfileid{cmp}{thy}{nfm}
-\olsection{The Normal Form Theorem}
+\olsection{范式定理}
 
-Suppose we can describe definitions of computable functions, and test if
-some putative description of the complete record of the computation of
-that function on some input is correct. Then it stands to reason that
-independently of the model of computation, we can determine the value
-of any computable function~$f$ on any input~$x$ as follows:
+假设我们能够描述可计算函数的定义，并且能够检验某个声称是该函数在特定输入上的完整计算记录是否正确。那么顺理成章的是，不依赖于具体的计算模型，我们也能如下确定任意可计算函数~$f$ 在任意输入~$x$ 上的值：
 \begin{enumerate}
-  \item Search through all possible descriptions of records of
-  computation.
-  \item Test if a given record is the record of a computation of~$f(x)$.
-  \item Extract the value of~$f(x)$ from the correct record if we have
-  found it.
+  \item 搜索所有可能的计算记录描述。
+  \item 检验一个给定的记录是否是~$f(x)$ 的计算记录。
+  \item 如果找到了正确的记录，则从中提取~$f(x)$ 的值。
 \end{enumerate}
-That this is in fact true is the content of Kleene's normal form
-theorem.
 
-\begin{thm}[Kleene's Normal Form Theorem]
+上述想法事实上是正确的，这正是 Kleene（克林）范式定理的内容。
+
+\begin{thm}[Kleene 范式定理]
 \ollabel{thm:normal-form}
-There is a primitive recursive relation~$T(e, x, s)$ and a primitive
-recursive function~$U(s)$, with the following property: if $f$ is any
-partial computable function, then for some~$e$,
+存在一个原始递归关系~$T(e, x, s)$ 和一个原始递归函数~$U(s)$，满足以下性质：若 $f$ 是任意部分可计算函数，则对某个~$e$，
 \[
 f(x) \simeq U(\umin{s}{T(e, x, s)})
 \]
-for every~$x$.
+对每个~$x$ 成立。
 \end{thm}
 
-\begin{proof}[Proof Sketch]
-For any model of computation one can rigorously define a description
-of the computable function~$f$ and code such description using a
-natural number~$e$.  One can also rigorously define a notion of
-``computation sequence'' which records the process of computing the
-function with index~$e$ for input~$x$.  Such a computation sequence can
-likewise be coded as a number~$s$.  This can be done in such a way
-that
+\begin{proof}[证明概要]
+对于任何计算模型，我们都可以严格地定义可计算函数~$f$ 的一种描述，并用一个自然数~$e$ 对这种描述进行编码。我们也可以严格地定义“计算序列”这一概念，用以记录指标为~$e$ 的函数在输入~$x$ 上的计算过程。这样的计算序列同样可以编码为一个数~$s$。我们可以做到：
 \begin{enumerate}
-  \item the relation $T(e, x, s)$, which holds iff a number~$s$ codes the computation
-  sequence of the function with index~$e$ on input~$x$, and
-  \item the function $U(s)$ which maps a computation sequence coded
-  by~$s$ to the end result of that computation
+  \item 关系 $T(e, x, s)$（它成立当且仅当数~$s$ 编码了指标为~$e$ 的函数在输入~$x$ 上的计算序列），以及
+  \item 函数 $U(s)$（它将由~$s$ 编码的计算序列映射到该计算的最终结果）
 \end{enumerate}
-are both computable. In fact, the relation~$T$ and the function~$U$
-are primitive recursive.
+两者都是可计算的。事实上，关系~$T$ 和函数~$U$ 是原始递归的。
 \end{proof}
 
 \begin{explain}
-In order to give a rigorous proof of the Normal Form Theorem, we would
-have to fix a model of computation and carry out the coding of
-descriptions of computable functions and of computation sequences in
-detail, and verify that the relation~$T$ and function~$U$ are
-primitive recursive.  For most applications, it suffices that $T$
-and~$U$ are computable and that $U$~is total.
+为了给出范式定理的严格证明，我们必须选定一个具体的计算模型，并详细实现可计算函数描述和计算序列的编码，然后验证关系~$T$ 和函数~$U$ 确实是原始递归的。对于大多数应用而言，只要 $T$ 和~$U$ 是可计算的并且 $U$~是全函数，通常就足够了。
 
-It is probably best to remember the proof of the normal form theorem
-in slogan form: $\umin{s}{T(e, x, s)}$ searches for a computation
-sequence of the function with index~$e$ on input~$x$, and $U$ returns
-the output of the computation sequence if one can be found.
+记住范式定理证明的最好方式，或许是用一句口号：$\umin{s}{T(e, x, s)}$ 搜索指标为~$e$ 的函数在输入~$x$ 上的计算序列，而 $U$ 则在找到计算序列后返回该计算的输出。
 \end{explain}
 
-If the model of computation is the partial recursive functions (which
-is what Kleene originally used), it shows that only a single use of
-unbounded search, i.e., a single $\umin{y}{f(\vec x, y)}$ operator is
-necessary for the definition of any function. In this sense it shows
-that any partial recursive function has a normal form.
+如果计算模型是部分递归函数（这正是 Kleene 最初使用的模型），该定理表明，在定义任何函数时，仅需使用一次无界搜索，即一个 $\umin{y}{f(\vec x, y)}$ 算子。在这个意义上，它表明任何部分递归函数都有一个范式。
 
-$T$ and $U$ can be used to define the enumeration $\cfind{0}$,
-$\cfind{1}$, $\cfind{2}$, \dots.  From now on, we will assume that we
-have fixed a suitable choice of $T$ and~$U$, and take the equation
-\[
+$T$ 和 $U$ 可以用来定义枚举 $\cfind{0}$、$\cfind{1}$、$\cfind{2}$…… 从现在起，我们将假定已选定了一组合适的 $T$ 和~$U$，并将等式 \[
 \cfind{e}(x) \simeq U(\umin{s}{T(e,x,s)})
 \]
-to be the \emph{definition} of $\cfind{e}$.
+作为 $\cfind{e}$ 的\emph{定义}。
 
-Here is another useful fact:
+这里还有一个有用的事实：
 
 \begin{thm}
-Every partial computable function has infinitely many indices.
+每个部分可计算函数都有无穷多个指标。
 \end{thm}
 
-Again, this is intuitively clear.  Given any (description of) a
-computable function, one can come up with a different description
-which computes the same function (input-output pair) but does so,
-e.g., by first doing something that has no effect on the computation
-(say, test if $0 = 0$, or count to $5$, etc.).  The index of the
-altered description will always be different from the original
-index.  Both are indices of the same function, just computed slightly
-differently.
+这直观上也很清楚。给定任意可计算函数（或其描述），我们总能想出另一个不同的描述来计算相同的函数（即相同的输入-输出对），不过计算过程不同（例如，先做些不影响计算的操作，比如检验 $0 = 0$，或者数到 $5$ 等等）。修改后描述的指标总会不同于原来的指标。两者都是同一个函数的指标，只是计算方式略有不同。
 
 \end{document}

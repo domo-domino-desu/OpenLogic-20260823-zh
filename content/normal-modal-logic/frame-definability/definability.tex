@@ -1,167 +1,115 @@
-% Part: normal-modal-logic
-% Chapter: frame-definability
-% Section: definability
-
 \documentclass[../../../include/open-logic-section]{subfiles}
 
 \begin{document}
 
 \olfileid{nml}{frd}{def}
+% Part: normal-modal-logic
+所谓\textit{正规系统}，是由一个公理化系统和一个关系语义共同组成的，二者通过可靠性和完备性定理联系起来——在这个意义上，一个公式在公理系统中可证，当且仅当它在关系语义的所有模型中有效。
 
-\olsection{Frame Definability}
+% Chapter: frame-definability
+一个正规系统的公理部分是经典逻辑的保守扩张，而其关系模型是经典一阶结构的保守扩张（增加了一个可达关系）。这意味着，如果我们只考虑不涉及模态算子和可达关系的公式，那么可证关系就与经典一阶逻辑中的相同；如果我们从模型中去掉可达关系，那么剩下的就是一个经典的一阶结构。
 
-Even though the converse implications of \olref[acc]{thm:soundschemas}
-fail, they hold if we replace ``model'' by ``frame'': for the
-properties considered in \olref[acc]{thm:soundschemas}, it \emph{is}
-true that if !!a{formula} is valid in a \emph{frame} then the
-accessibility relation of that frame has the corresponding
-property. So, the !!{formula}s considered \emph{define} the classes of
-frames that have the corresponding property.
-
-\begin{defn}
-  If $\mClass{F}$ is a class of frames, we say $!A$
-  \emph{defines}~$\mClass{F}$ iff $\mModel{F} \Entails !A$ for all and only
-  frames~$\mModel{F} \in \mClass{F}$.
+% Section: definability
+\begin{defn}[正规系统]
+称一个模态证明系统~$\Sigma$ 与一个关系框架类~$\mClass C$ 一起构成了一个\textit{正规模态逻辑}，如果下列条件成立：
+\begin{enumerate}
+\item $\Sigma$ 相对于 $\mClass C$ 是可靠且完备的，即 $\Sigma \Proves !A$ 当且仅当 $\mClass C \Entails !A$。
+\item $\Sigma$ 包含必然化规则：由 $!A$ 可推出 $\Box !A$。
+\item $\Sigma$ 至少能证明以下公理模式（或其等价形式）之一：
+\begin{align*}
+& \Box !A \lif \Box \Box !A && \text{(4)}\\
+& \Box !A \lif !A && \text{(T)}\\
+& \Diamond !A \lif \Box \Diamond !A && \text{(5)}
+\end{align*}
+\end{enumerate}
 \end{defn}
 
-We now proceed to establish the full definability results for
-frames.
+\olsection{框架可定义性}
+
+尽管 \olref[acc]{thm:soundschemas} 的逆蕴涵不成立，
+但若将“模型”替换为“框架”，它们便成立了：
+对于 \olref[acc]{thm:soundschemas} 中所考虑的性质，若一个公式在一个\emph{框架}中有效，
+则该框架的可达关系确实具有对应的性质。
+因此，所考虑的公式\emph{定义}了具有相应性质的框架类。
+
+\begin{defn}
+  若 $\mClass{F}$ 是一个框架类，
+  则称 $!A$ \emph{定义} $\mClass{F}$，
+  当且仅当 $\mModel{F} \Entails !A$ 对所有且仅对属于 $\mClass{F}$ 的框架 $\mModel{F}$ 成立。
+\end{defn}
+
+现在我们来确立框架的完全可定义性结果。
 
 \begin{thm}\ollabel{thm:fullCorrespondence}
-If the !!{formula} on the right side of \olref[acc]{tab:five} is valid in a
-frame~$\mModel{F}$, then $\mModel{F}$ has the property on the left
-side.
+如果 \olref[acc]{tab:five} 右侧的公式在框架~$\mModel{F}$ 中有效，则 $\mModel{F}$ 具有左侧的性质。
 \end{thm}
 
 \begin{proof}
   \begin{enumerate}
-  \item Suppose \Ax{D} is valid in $\mModel{F} = \tuple{W, R}$, i.e.,
-    $\mModel{F} \Entails \Box p \lif \Diamond p$. Let $\mModel{M} =
-    \tuple{W, R, V}$ be a model based on~$\mModel{F}$, and $w \in
-    W$. We have to show that there is a $v$ such that~$Rwv$.  Suppose
-    not: then both $\mSat{M}{\Box !A}$ and $\mSat/{M}{\Diamond !A}[w]$
-    for any~$!A$, including~$p$. But then $\mSat/{M}{\Box p \lif
-      \Diamond p}[w]$, contradicting the assumption that $\mModel{F}
-    \Entails \Box p \lif \Diamond p$.
-  \item Suppose \Ax{T} is valid in $\mModel{F}$, i.e., $\mModel{F} \Entails \Box
-    p \lif p$. Let $w \in W$ be an arbitrary world; we need to show
-    $Rww$. Let $u \in V(p)$ if and only if $Rwu$ (when $q$ is other
-    than $p$, $V(q)$ is arbitrary, say $V(q) = \emptyset)$. Let
-    $\mModel{M} = \tuple{W, R, V}$. By construction, for all $u$ such
-    that $Rwu$: $\mSat{M}{p}[u]$, and hence $\mSat{M}{\Box p}[w]$. But
-    by hypothesis $\Box p \lif p$ is true at~$w$, so that
-    $\mSat{M}{p}[w]$, but by definition of $V$ this is possible only
-    if~$Rww$.
-  \item We prove the contrapositive: Suppose $\mModel{F}$ is not
-    symmetric, we show that \Ax{B}, i.e., $p \lif \Box\Diamond p$ is
-    not valid in $\mModel{F}= \tuple{W, R}$. If $\mModel{F}$ is not
-    symmetric, there are $u$, $v \in W$ such that $Ruv$ but not
-    $Rvu$. Define $V$ such that $w \in V(p)$ if and only if not $Rvw$
-    (and $V$ is arbitrary otherwise). Let $\mModel{M} =\tuple{W, R,
-      V}$.  Now, by definition of $V$, $\mSat{M}{p}[w]$ for all $w$
-    such that not $Rvw$, in particular, $\mSat{M}{p}[u]$ since
-    not~$Rvu$. Also, since $Rvw$ iff $w \notin V(p)$, there is no~$w$
-    such that $Rvw$ and $\mSat{M}{p}[w]$, and hence
-    $\mSat/{M}{\Diamond p}[v]$. Since~$Ruv$, also
-    $\mSat/{M}{\Box\Diamond p}[u]$. It follows that $\mSat/{M}{p \lif
-      \Box\Diamond p}[u]$, and so $\Ax{B}$ is not valid
-    in~$\mModel{F}$.
-  \item Suppose \Ax{4} is valid in $\mModel{F} = \tuple{W,R}$, i.e.,
-    $\mModel{F} \Entails \Box p \lif \Box\Box p$, and let $u$, $v$, $w \in W$ be
-    arbitrary worlds such that $Ruv$ and $Rvw$; we need to show that
-    $Ruw$. Define $V$ such that $z \in V(p)$ if and only if $Ruz$ (and
-    $V$ is arbitrary otherwise). Let $\mModel{M} =\tuple{W, R, V}$. By
-    definition of $V$, $\mSat{M}{p}[z]$ for all $z$ such that $Ruz$,
-    and hence $\mSat{M}{\Box p}[u]$. But by hypothesis \Ax{4}, $\Box p
-    \lif \Box \Box p$, is true at $u$, so that $\mSat{M}{\Box \Box
-      p}[u]$. Since $Ruv$ and $Rvw$, we have $\mSat{M}{p}[w]$, but by
-    definition of~$V$ this is possible only if $Ruw$, as desired.
-  \item We proceed contrapositively, assuming that the frame
-    $\mModel{F} = \tuple{W, R}$ is not euclidean, and show that it
-    falsifies~\Ax{5}, i.e., $\mModel{F} \Entails/ \Diamond p \lif
-      \Box\Diamond p$. Suppose there are worlds $u$, $v$, $w \in W$
-    such that $Rwu$ and $Rwv$ but not~$Ruv$. Define $V$ such that for
-    all worlds $z$, $z \in V(p)$ if and only if it is \emph{not} the
-    case that~$Ruz$. Let $\mModel{M} =\tuple{W, R, V}$. Then by
-    hypothesis $\mSat{M}{p}[v]$ and since $Rwv$ also
-    $\mSat{M}{\Diamond p}[w]$. However, there is no world $y$ such
-    that $Ruy$ and $\mSat{M}{p}[y]$ so $\mSat/{M}{\Diamond
-      p}[u]$. Since $Rwu$, it follows that $\mSat/{M}{\Box\Diamond
-      p}[w]$, so that \Ax{5}, $\Diamond p \lif \Box\Diamond p$, fails
-    at~$w$.
+  \item 假设 \Ax{D} 在 $\mModel{F} = \tuple{W, R}$ 中有效，即 $\mModel{F} \Entails \Box p \lif \Diamond p$。设 $\mModel{M} =
+    \tuple{W, R, V}$ 是一个基于~$\mModel{F}$ 的模型，且 $w \in W$。我们需证明存在 $v$ 使得~$Rwv$。假设并非如此：则对任意公式~$!A$（包括~$p$），$\mSat{M}{\Box !A}$ 与 $\mSat/{M}{\Diamond !A}[w]$ 同时成立。但这样一来 $\mSat/{M}{\Box p \lif
+      \Diamond p}[w]$，与 $\mModel{F} \Entails \Box p \lif \Diamond p$ 的假设矛盾。
+  \item 假设 \Ax{T} 在 $\mModel{F}$ 中有效，即 $\mModel{F} \Entails \Box p \lif p$。设 $w \in W$ 为任意世界；需证明 $Rww$。令 $u \in V(p)$ 当且仅当 $Rwu$（当 $q \neq p$ 时，$V(q)$ 可任意指定，例如令 $V(q) = \emptyset$）。设 $\mModel{M} = \tuple{W, R, V}$。根据构造，对所有满足 $Rwu$ 的 $u$：$\mSat{M}{p}[u]$，因此 $\mSat{M}{\Box p}[w]$。但根据假设 $\Box p \lif p$ 在~$w$ 为真，故 $\mSat{M}{p}[w]$，而根据 $V$ 的定义，这只有当~$Rww$ 时才可能。
+  \item 我们证明其逆否命题：假设 $\mModel{F}$ 不对称，则 \Ax{B}（即 $p \lif \Box\Diamond p$）在 $\mModel{F}= \tuple{W, R}$ 中不有效。若 $\mModel{F}$ 不对称，则存在 $u, v \in W$ 使得 $Ruv$ 但非 $Rvu$。定义 $V$ 使得 $w \in V(p)$ 当且仅当不满足 $Rvw$（其余情况 $V$ 任意）。设 $\mModel{M} =\tuple{W, R,
+      V}$。现在，根据 $V$ 的定义，对所有不满足 $Rvw$ 的 $w$，有 $\mSat{M}{p}[w]$；特别地，由于非~$Rvu$，有 $\mSat{M}{p}[u]$。此外，因为 $Rvw$ 当且仅当 $w \notin V(p)$，所以不存在 $w$ 使得 $Rvw$ 且 $\mSat{M}{p}[w]$，从而 $\mSat/{M}{\Diamond p}[v]$。由于~$Ruv$，又有 $\mSat/{M}{\Box\Diamond p}[u]$。由此可得 $\mSat/{M}{p \lif
+      \Box\Diamond p}[u]$，因此 $\Ax{B}$ 在~$\mModel{F}$ 中不有效。
+  \item 假设 \Ax{4} 在 $\mModel{F} = \tuple{W,R}$ 中有效，即 $\mModel{F} \Entails \Box p \lif \Box\Box p$，并设 $u, v, w \in W$ 为满足 $Ruv$ 和 $Rvw$ 的任意世界；需证明 $Ruw$。定义 $V$ 使得 $z \in V(p)$ 当且仅当 $Ruz$（其余情况 $V$ 任意）。设 $\mModel{M} =\tuple{W, R, V}$。根据 $V$ 的定义，对所有满足 $Ruz$ 的 $z$，有 $\mSat{M}{p}[z]$，因此 $\mSat{M}{\Box p}[u]$。但根据假设 \Ax{4}（即 $\Box p \lif \Box \Box p$）在 $u$ 为真，故 $\mSat{M}{\Box \Box
+      p}[u]$。由于 $Ruv$ 和 $Rvw$，我们有 $\mSat{M}{p}[w]$，而根据~$V$ 的定义，这只有当 $Ruw$ 时才可能，这正是所要证明的。
+  \item 我们采用逆否证法，假设框架 $\mModel{F} = \tuple{W, R}$ 不是欧几里得的，并证明它不满足~\Ax{5}（即 $\mModel{F} \Entails/ \Diamond p \lif
+      \Box\Diamond p$）。假设存在世界 $u, v, w \in W$ 使得 $Rwu$ 和 $Rwv$ 但非~$Ruv$。定义 $V$ 使得对所有世界 $z$，$z \in V(p)$ 当且仅当 $Ruz$ \emph{不}成立。设 $\mModel{M} =\tuple{W, R, V}$。那么根据假设 $\mSat{M}{p}[v]$，且由于 $Rwv$，也有 $\mSat{M}{\Diamond p}[w]$。然而，不存在世界 $y$ 使得 $Ruy$ 且 $\mSat{M}{p}[y]$，所以 $\mSat/{M}{\Diamond
+      p}[u]$。由于 $Rwu$，可得 $\mSat/{M}{\Box\Diamond
+      p}[w]$，因此 \Ax{5}（即 $\Diamond p \lif \Box\Diamond p$）在~$w$ 处不成立。
   \end{enumerate}
 \end{proof}
 
-You'll notice a difference between the proof for \Ax{D} and the other
-cases: no mention was made of the valuation~$V$. In effect, we proved
-that if $\mSat{M}{\Ax{D}}$ then $\mModel{M}$ is serial. So \Ax{D}
-defines the class of serial \emph{models}, not just frames.
+你会注意到 \Ax{D} 的证明与其他情况有所不同：其中并未提及赋值~$V$。实际上，我们证明了如果 $\mSat{M}{\Ax{D}}$，则 $\mModel{M}$ 是持续的。所以 \Ax{D} 定义的是持续\emph{模型}的类，而不仅仅是框架。
 
 \begin{cor}\ollabel{prop:D-serial}
-  Any model where \Ax{D} is true is serial.
+  任何满足 \Ax{D} 的模型都是持续的。
 \end{cor}
 
 \begin{cor}
-Each !!{formula} on the right side of \olref[acc]{tab:five} defines
-the class of frames which have the property on the left side.
+\olref[acc]{tab:five} 右侧的每个公式都定义了具有左侧性质的框架类。
 \end{cor}
 
 \begin{proof}
-  In \olref[acc]{thm:soundschemas}, we proved that if a model has the
-  property on the left, the !!{formula} on the right is true in
-  it. Thus, if a frame~$\mModel{F}$ has the property on the left, the
-  !!{formula} on the right is valid in~$\mModel{F}$. In
-  \olref{thm:fullCorrespondence}, we proved the converse implications:
-  if !!a{formula} on the right is valid in~$\mModel{F}$, $\mModel{F}$
-  has the property on the left.
+在 \olref[acc]{thm:soundschemas} 中，我们证明了如果某个模型具备左侧的性质，那么右侧的公式在该模型中为真。
+因此，如果一个框架~$\mModel{F}$ 具备左侧的性质，那么右侧的公式在~$\mModel{F}$ 中是有效的。
+在 \olref{thm:fullCorrespondence} 中，我们证明了逆向的蕴涵关系：如果右侧的公式在~$\mModel{F}$ 中有效，那么~$\mModel{F}$ 就具备左侧的性质。
 \end{proof}
 
 \begin{prob}
-Show that if the !!{formula} on the right side of
-\olref[nml][frd][acc]{tab:anotherfive} is valid in a frame~$\mModel{F}$, then
-$\mModel{F}$ has the property on the left side. To do this, consider a
-frame that does \emph{not} satisfy the property on the left, and
-define a suitable~$V$ such that the !!{formula} on the right is false
-at some world.
+证明：如果 \olref[nml][frd][acc]{tab:anotherfive} 右侧的公式在框架~$\mModel{F}$ 中有效，
+那么~$\mModel{F}$ 就具备左侧的性质。
+为此，考虑一个\emph{不}满足左侧性质的框架，并定义一个合适的赋值~$V$，
+使得右侧的公式在某个世界上为假。
 \end{prob}
 
-\olref{thm:fullCorrespondence} also shows that the properties can be
-combined: for instance if both \Ax{B} and \Ax{4} are valid
-in~$\mModel{F}$ then the frame is both symmetric and transitive,
-etc. Many important modal logics are characterized as the set of
-!!{formula}s valid in all frames that combine some frame properties,
-and so we can characterize them as the set of !!{formula}s valid in
-all frames in which the corresponding defining !!{formula}s are valid.
-For instance, the classical system \Log{S4} is the set of all
-!!{formula}s valid in all reflexive and transitive frames, i.e., in
-all those where both \Ax{T} and~\Ax{4} are valid.  \Log{S5} is the set
-of all formulas valid in all reflexive, symmetric, and euclidean
-frames, i.e., all those where all of \Ax{T}, \Ax{B}, and \Ax{5} are
-valid.
+\olref{thm:fullCorrespondence}也表明这些性质可以组合：例如，如果 \Ax{B} 和 \Ax{4} 在~$\mModel{F}$ 中都有效，
+那么该框架既是对称的又是传递的，等等。
+许多重要的模态逻辑都可以被刻画为在某些框架性质组合下的所有框架中有效的公式集合，
+因此我们也可以将它们刻画为在所有使得对应定义公式有效的框架中有效的公式集合。
+例如，经典系统 \Log{S4} 就是在所有自反且传递的框架中有效的公式集合，也就是在所有 \Ax{T} 和~\Ax{4} 都有效的框架中有效的公式集合。
+\Log{S5} 则是在所有自反、对称且欧几里得的框架中有效的公式集合，也就是在所有 \Ax{T}、\Ax{B} 和 \Ax{5} 都有效的框架中有效的公式集合。
 
-Logical relationships between properties of $R$ in general correspond
-to relationships between the corresponding defining !!{formula}s. For
-instance, every reflexive relation is serial; hence, whenever \Ax{T}
-is valid in a frame, so is~\Ax{D}. (Note that this relationship is
-\emph{not} that of entailment. It is not the case that whenever
-$\mSat{M}{\Ax{T}}[w]$ then $\mSat{M}{\Ax{D}}[w]$.) We record some such
-relationships.
+一般而言，$R$ 的性质之间的逻辑关系对应于其定义公式之间的关系。
+例如，每个自反关系都是持续的；因此，只要 \Ax{T} 在一个框架中有效，那么~\Ax{D} 也有效。
+（注意，这种关系\emph{并非}语义后承关系。并非只要 $\mSat{M}{\Ax{T}}[w]$ 成立，$\mSat{M}{\Ax{D}}[w]$ 就成立。）
+我们记录一些这样的关系。
 
 \begin{prop}\ollabel{prop:relation-facts}
-  Let $R$ be a binary relation on a set $W$; then:
+  设 $R$ 是集合 $W$ 上的一个二元关系；那么：
   \begin{enumerate}
-  \item If $R$ is reflexive, then it is serial.
-  \item If $R$ is symmetric, then it is transitive if and only if it
-    is euclidean.
-  \item If $R$ is symmetric or euclidean then it is weakly directed
-    (it has the ``diamond property'').
-  \item If $R$ is euclidean then it is weakly connected.
-  \item If $R$ is functional then it is serial.  
+  \item 如果 $R$ 是自反的，那么它是持续的。
+  \item 如果 $R$ 是对称的，那么它是传递的当且仅当它是欧几里得的。
+  \item 如果 $R$ 是对称的或欧几里得的，那么它是弱定向的（具有“菱形性质”）。
+  \item 如果 $R$ 是欧几里得的，那么它是弱连通的。
+  \item 如果 $R$ 是函数的，那么它是持续的。
   \end{enumerate}
 \end{prop}
 
 \begin{prob}
-  Prove \olref[nml][frd][def]{prop:relation-facts}.
+  证明 \olref[nml][frd][def]{prop:relation-facts}。
 \end{prob}
 
 \end{document}

@@ -8,17 +8,14 @@
 
 \olfileid{sfr}{siz}{zigzag}
 
-\olsection{Cantor's Zig-Zag Method}
+\olsection{Cantor 之字形方法}
 
 \begin{explain}
-We've already considered some ``easy'' enumerations. Now we will
-consider something a bit harder. Consider the set of pairs of natural
-numbers\oliflabeldef{sfr:set:pai:sec}{, which we defined in
-\olref[set][pai]{sec} thus:}{defined by:}
+我们已经考虑了一些“简单”的枚举。现在我们要考虑稍难一些的情况。考虑自然数对的集合\oliflabeldef{sfr:set:pai:sec}{，我们在\olref[set][pai]{sec}中如此定义：}{，其定义如下：}
 \[
 \Nat \times \Nat = \Setabs{\tuple{n,m}}{n,m \in \Nat}
 \]
-We can organize these ordered pairs into an \emph{array}, like so:
+我们可以将这些有序对组织成一个\emph{阵列}，如下所示：
 \[
 \begin{array}{ c | c | c | c | c | c}
 & \mathbf 0 & \mathbf 1 & \mathbf 2 & \mathbf 3 & \dots \\
@@ -34,11 +31,7 @@ We can organize these ordered pairs into an \emph{array}, like so:
 \vdots & \vdots & \vdots & \vdots & \vdots & \ddots\\
 \end{array}
 \]
-Clearly, every ordered pair in $\Nat \times \Nat$ will appear
-exactly once in the array. In particular, $\tuple{n,m}$ will appear in
-the $n$th row and $m$th column. But how do we organize the elements of
-such an array into a ``one-dimensional'' list? The pattern in the array below
-demonstrates one way to do this (although of course there are many other options):
+显然，$\Nat \times \Nat$ 中的每个有序对都会在这个阵列中恰好出现一次。确切地说，$\tuple{n,m}$ 将出现在第 $n$ 行第 $m$ 列。但是，我们如何将这样一个阵列的元素组织成一个“一维”列表呢？下面阵列中的模式展示了其中一种方法（当然，还有许多其他选择）：
 \[
 \begin{array}{ c | c | c | c | c | c | c}
 & \mathbf 0 & \mathbf 1 & \mathbf 2 & \mathbf 3 & \mathbf 4 &\dots \\
@@ -56,41 +49,34 @@ demonstrates one way to do this (although of course there are many other options
 \vdots & \vdots & \vdots & \vdots & \vdots&\ldots & \ddots\\
 \end{array}
 \]\noindent
-This pattern is called \emph{Cantor's zig-zag method}. It  enumerates
-$\Nat \times \Nat$ as follows:
+这种模式称为\emph{Cantor 之字形方法}。它按如下方式枚举 $\Nat \times \Nat$：
 \[
 \tuple{0,0}, \tuple{0,1}, \tuple{1,0}, \tuple{0,2}, \tuple{1,1},
 \tuple{2,0}, \tuple{0,3}, \tuple{1,2}, \tuple{2,1}, \tuple{3,0}, \dots
 \]
-And this establishes the following:
+由此我们得到如下结论：
 \end{explain}
 
 \begin{prop}\ollabel{natsquaredenumerable}
-$\Nat \times \Nat$ is !!{enumerable}.
+$\Nat \times \Nat$ 是可枚举的。
 \end{prop}
 
 \begin{proof}
-Let $f \colon \Nat \to \Nat\times\Nat$ take each $k \in \Nat$ to the
-tuple $\tuple{n,m} \in \Nat \times \Nat$ such that $k$ is the value of
-the $n$th row and $m$th column in Cantor's zig-zag array. 
+令 $f \colon \Nat \to \Nat\times\Nat$ 将每个 $k \in \Nat$ 映射到有序对 $\tuple{n,m} \in \Nat \times \Nat$，其中 $k$ 是 Cantor 之字形阵列中第 $n$ 行第 $m$ 列的值。
 \end{proof}
 
 \begin{explain}
-This technique also generalises rather nicely. For example, we can use
-it to enumerate the set of ordered triples of natural numbers, i.e.:
+这个技巧可以很好地推广。例如，我们可以用它来枚举自然数有序三元组的集合，即：
 \[
 \Nat \times \Nat \times \Nat = \Setabs{\tuple{n,m,k}}{n,m,k \in \Nat}
 \]
-We think of $\Nat \times \Nat \times \Nat$ as the Cartesian
-product of $\Nat \times \Nat$ with $\Nat$, that is,
+我们可以将 $\Nat \times \Nat \times \Nat$ 视为 $\Nat \times \Nat$ 与 $\Nat$ 的笛卡尔积，也就是说，
 \[
 \Nat^3 = (\Nat \times \Nat) \times \Nat =
 \Setabs{\tuple{\tuple{n,m},k}}{n, m, k
   \in \Nat }
 \]
-and thus we can enumerate $\Nat^3$ with an array by labelling one
-axis with the enumeration of $\Nat$, and the other axis with the
-enumeration of $\Nat^2$:
+因此，我们可以用一个阵列来枚举 $\Nat^3$，方法是在一个轴上标出 $\Nat$ 的枚举，在另一个轴上标出 $\Nat^2$ 的枚举：
 \[
 \begin{array}{ c | c | c | c | c | c}
 & \mathbf 0 & \mathbf 1 & \mathbf 2 & \mathbf 3 & \dots \\
@@ -106,21 +92,19 @@ enumeration of $\Nat^2$:
 \vdots & \vdots & \vdots & \vdots & \vdots & \ddots \\
 \end{array}
 \]
-Thus, by using a method like Cantor's zig-zag method, we may similarly
-obtain an enumeration of~$\Nat^3$. And we can keep going, obtaining
-enumerations of $\Nat^n$ for any natural number $n$. So, we have:
+这样，通过使用与 Cantor 之字形方法类似的方法，我们同样可以得到~$\Nat^3$ 的一个枚举。我们可以继续这个过程，对于任意自然数 $n$，得到 $\Nat^n$ 的枚举。所以，我们有：
 \end{explain}
 
 \begin{prop}
-$\Nat^n$ is !!{enumerable}, for every $n \in \Nat$.
+对于每个 $n \in \Nat$，$\Nat^n$ 是可枚举的。
 \end{prop}
 
 \begin{prob}\label{sfr:siz:zigzag:prob:posint-n}
-Show that $(\PosInt)^n$ is !!{enumerable}, for every $n \in \Nat$.
+证明对于每个 $n \in \Nat$，$(\PosInt)^n$ 是可枚举的。
 \end{prob}
 
 \begin{prob}\label{sfr:siz:zigzag:prob:posint-star}
-  Show that $(\PosInt)^*$ is !!{enumerable}. You may assume \cref{sfr:siz:zigzag:prob:posint-n}.
+  证明 $(\PosInt)^*$ 是可枚举的。你可以假设 \cref{sfr:siz:zigzag:prob:posint-n}。
 \end{prob}
 
 \end{document}

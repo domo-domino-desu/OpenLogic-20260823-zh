@@ -10,87 +10,61 @@
       {\olfileid{fol}{axd}{rul}}
       {\olfileid{pl}{axd}{rul}}
 
-\olsection{Rules and \usetoken{P}{derivation}}
+\olsection{规则与\usetoken{P}{derivation}}
 
 \begin{explain}
-  Axiomatic !!{derivation}s are perhaps the simplest !!{derivation} system for
-  logic. !!^a{derivation} is just a sequence of !!{formula}s.  To
-  count as !!a{derivation}, every !!{formula} in the sequence must
-  either be an instance of an axiom, or must follow from one or more
-  !!{formula}s that precede it in the sequence by a rule of inference.
-  !!^a{derivation} !!{derive}s its last !!{formula}.
+  公理化推导或许是逻辑学中最简单的推导系统。推导只是一个公式序列。但要算作推导，序列中的每个公式要么是某条公理的实例，要么是应用某条推理规则，从序列中排在它前面的一个或多个公式推出的。推导得出的是其最后一个公式。
 \end{explain}
 
-\begin{defn}[!!^{derivability}]
-If $\Gamma$ is a set of !!{formula}s of $\Lang L$ then a
-\emph{!!{derivation}} from~$\Gamma$ is a finite sequence $!A_1$,
-\dots,~$!A_n$ of !!{formula}s where for each $i \le n$ one of the
-following holds:
+\begin{defn}[推导]
+如果 $\Gamma$ 是语言 $\Lang L$ 的一个公式集，那么从~$\Gamma$ 出发的一个\emph{推导}就是一个公式的有限序列 $!A_1$, \dots, $!A_n$，其中对每个 $i \le n$，以下条件之一成立：
 \begin{enumerate}
-\item $!A_i \in \Gamma$; or
-\item $!A_i$ is an axiom; or
-\item $!A_i$ follows from some $!A_j$ (and $!A_k$) with $j < i$ (and
-  $k < i$) by a rule of inference.
+\item $!A_i \in \Gamma$；或者
+\item $!A_i$ 是一条公理；或者
+\item $!A_i$ 是应用某条推理规则，由满足 $j < i$ 的某个 $!A_j$（以及满足 $k < i$ 的某个 $!A_k$）推出的。
 \end{enumerate}
 \end{defn}
 
-What counts as a correct !!{derivation} depends on which inference
-rules we allow (and of course what we take to be axioms).  And an
-inference rule is an if-then statement that tells us that, under
-certain conditions, a step~$A_i$ in !!a{derivation} is a correct
-inference step.
+什么算作正确的推导，取决于我们允许哪些推理规则（当然，也取决于我们把什么当作公理）。而推理规则是一个“如果–那么”陈述，它告诉我们在某些条件下，推导中某一步~$!A_i$ 是一个正确的推理步骤。
 
-\begin{defn}[Rule of inference]
-A \emph{rule of inference} gives a sufficient condition for what
-counts as a correct inference step in !!a{derivation} from~$\Gamma$.
+\begin{defn}[推理规则]
+一条\emph{推理规则}给出了从~$\Gamma$ 出发的推导中，什么算作正确推理步骤的一个充分条件。
 \end{defn}
 
-For instance, since any one-element sequence $!A$ with $!A \in \Gamma$
-trivially counts as !!a{derivation}, the following might be a very
-simple rule of inference:
+例如，只要 $!A \in \Gamma$，任何单元素序列 $!A$ 都平凡地算作一个推导，因此下面这条可以是一条非常简单的推理规则：
+
 \begin{quote}
-  If $!A \in \Gamma$, then $!A$ is always a correct inference step in
-  any !!{derivation} from~$\Gamma$.
+  若 $!A \in \Gamma$，则 $!A$ 在任何从~$\Gamma$ 出发的推导中总是一个正确的推理步骤。
 \end{quote}
-Similarly, if $!A$ is one of the axioms, then $!A$ by itself is
-!!a{derivation}, and so this is also a rule of inference:
+
+类似地，如果 $!A$ 是一条公理，那么 $!A$ 本身就是一个推导，因此这也是一条推理规则：
+
 \begin{quote}
-  If $!A$ is an axiom, then $!A$ is a correct inference step.
+  若 $!A$ 是一条公理，则 $!A$ 是一个正确的推理步骤。
 \end{quote}
-It gets more interesting if the rule of inference appeals to
-!!{formula}s that appear before the step considered. The following
-rule is called \emph{modus ponens:}
+
+当推理规则依赖于所考虑步骤之前出现的公式时，事情就变得更有趣了。下面这条规则被称为\emph{肯定前件式}：
+
 \begin{quote}
-  If $!B \lif !A$ and $!B$ occur higher up in the !!{derivation},
-  then~$!A$ is a correct inference step.
+  若 $!B \lif !A$ 和 $!B$ 出现在推导中更高处（即更早），则 $!A$ 是一个正确的推理步骤。
 \end{quote}
-If this is the only rule of inference, then our definition of
-!!{derivation} above amounts to this: $!A_1$, \dots,~$!A_n$ is
-!!a{derivation} iff for each $i \le n$ one of the following holds:
+
+如果这是唯一的推理规则，那么我们上面给出的推导定义就等价于：$!A_1$, \dots, $!A_n$ 是一个推导，当且仅当对每个 $i \le n$，以下条件之一成立：
+
 \begin{enumerate}
-\item $!A_i \in \Gamma$; or
-\item $!A_i$ is an axiom; or
-\item for some $j < i$, $!A_j$ is $!B \lif !A_i$, and for some $k < i$,
-  $!A_k$ is~$!B$.
+\item $!A_i \in \Gamma$；或者
+\item $!A_i$ 是一条公理；或者
+\item 对某个 $j < i$，$!A_j$ 是 $!B \lif !A_i$，并且对某个 $k < i$，$!A_k$ 是 $!B$。
 \end{enumerate}
-The last clause says that $!A_i$ follows from~$!A_j$ ($!B \lif !A_i$) and $!A_k$
-($!B$) by modus ponens. If we can go from $1$ to~$n$, and
-each time we find !!a{formula}~$!A_i$ that is either in~$\Gamma$, an
-axiom, or which a rule of inference tells us that it is a correct
-inference step, then the entire sequence counts as a correct
-!!{derivation}.
 
-\begin{defn}[!!^{derivability}]
-A !!{formula}~$!A$ is \emph{!!{derivable}} from $\Gamma$, written
-$\Gamma \Proves !A$, if there is !!a{derivation} from $\Gamma$ ending
-in $!A$.
+最后一个条款说的是：$!A_i$ 由 $!A_j$（即 $!B \lif !A_i$）和 $!A_k$（即 $!B$）通过肯定前件式得到。如果我们从 $1$ 逐步检查到 $n$，每次都发现公式 $!A_i$ 要么属于 $\Gamma$，要么是公理，要么根据某条推理规则是一个正确的推理步骤，那么整个序列就可以算作一个正确的推导。
+
+\begin{defn}[可推导性]
+公式~$!A$ 是\emph{可从 $\Gamma$ 推导的}，记作 $\Gamma \Proves !A$，如果存在一个从 $\Gamma$ 出发、以 $!A$ 结尾的推导。
 \end{defn}
 
-\begin{defn}[Theorems]
-!!^a{formula}~$!A$ is a \emph{theorem} if there is !!a{derivation}
-of~$!A$ from the empty set.  We write $\Proves !A$ if $!A$ is a
-theorem and $\Proves/ !A$ if it is not.
+\begin{defn}[定理]
+公式~$!A$ 是一个\emph{定理}，如果存在从空集出发到 $!A$ 的推导。若 $!A$ 是定理，则记作 $\Proves !A$；否则记作 $\Proves/ !A$。
 \end{defn}
-
 
 \end{document}

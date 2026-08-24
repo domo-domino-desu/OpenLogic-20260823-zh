@@ -8,174 +8,120 @@
 
 \olfileid{mth}{ind}{rel}
 
-\olsection{Relations and Functions}
+\olsection{关系与函数}
 
-When we have defined a set of objects (such as the natural numbers or
-the nice terms) inductively, we can also define \emph{relations on}
-these objects by induction.  For instance, consider the following
-idea: a nice term~$t_1$ is a subterm of a nice term~$t_2$ if it occurs as
-a part of it.  Let's use a symbol for it: $t_1 \sqsubseteq t_2$. Every
-nice term is a subterm of itself, of course: $t \sqsubseteq t$. We can
-give an inductive definition of this relation as follows:
+当我们归纳地定义了一类对象（比如自然数或者良构项）之后，我们也能够归纳地定义关于这些对象的\emph{关系}。例如，考虑这样的想法：如果一个良构项~$t_1$ 作为另一个良构项~$t_2$ 的一部分出现，则称 $t_1$ 是 $t_2$ 的\textit{子项}。为此引入一个符号：$t_1 \sqsubseteq t_2$。当然，每个良构项都是自身的子项：$t \sqsubseteq t$。我们可以如下归纳地定义这个关系：
 
 \begin{defn}
-  The relation of a nice term~$t_1$ being a subterm of~$t_2$, $t_1
-  \sqsubseteq t_2$, is defined by induction on~$t_2$ as follows:
+  良构项~$t_1$ 作为~$t_2$ 的子项的关系 $t_1 \sqsubseteq t_2$，通过对~$t_2$ 归纳定义如下：
   \begin{enumerate}
-  \item If $t_2$ is a letter, then $t_1 \sqsubseteq t_2$ iff $t_1 = t_2$.
-  \item If $t_2$ is $[s_1 \circ s_2]$, then $t_1 \sqsubseteq t_2$ iff $t_1 =
-    t_2$, $t_1 \sqsubseteq s_1$, or $t_1 \sqsubseteq s_2$.
+  \item 若 $t_2$ 是一个字母，则 $t_1 \sqsubseteq t_2$ 当且仅当 $t_1 = t_2$。
+  \item 若 $t_2$ 是 $[s_1 \circ s_2]$，则 $t_1 \sqsubseteq t_2$ 当且仅当 $t_1 = t_2$，$t_1 \sqsubseteq s_1$，或 $t_1 \sqsubseteq s_2$。
   \end{enumerate}
 \end{defn}
 
-This definition, for instance, will tell us that $\mathrm{a}
-\sqsubseteq [\mathrm{b} \circ \mathrm{a}]$. For (2) says that
-$\mathrm{a} \sqsubseteq [\mathrm{b} \circ \mathrm{a}]$ iff $\mathrm{a}
-= [\mathrm{b} \circ \mathrm{a}]$, or $\mathrm{a} \sqsubseteq b$, or
-$\mathrm{a} \sqsubseteq \mathrm{a}$. The first two are false:
-$\mathrm{a}$ clearly isn't identical to $[\mathrm{b} \circ
-  \mathrm{a}]$, and by~(1), $\mathrm{a} \sqsubseteq \mathrm{b}$ iff
-$\mathrm{a} = \mathrm{b}$, which is also false. However, also by~(1),
-$\mathrm{a} \sqsubseteq \mathrm{a}$ iff $\mathrm{a} = \mathrm{a}$,
-which is true.
+例如，这个定义将告诉我们 $\mathrm{a}
+\sqsubseteq [\mathrm{b} \circ \mathrm{a}]$。根据 (2)，$\mathrm{a} \sqsubseteq [\mathrm{b} \circ \mathrm{a}]$ 当且仅当 $\mathrm{a}
+= [\mathrm{b} \circ \mathrm{a}]$，或 $\mathrm{a} \sqsubseteq b$，或 $\mathrm{a} \sqsubseteq \mathrm{a}$。前两个为假：$\mathrm{a}$ 显然不等于 $[\mathrm{b} \circ
+  \mathrm{a}]$，而根据 (1)，$\mathrm{a} \sqsubseteq \mathrm{b}$ 当且仅当 $\mathrm{a} = \mathrm{b}$，这也是假的。然而，同样根据 (1)，$\mathrm{a} \sqsubseteq \mathrm{a}$ 当且仅当 $\mathrm{a} = \mathrm{a}$，这是真的。
 
-It's important to note that the success of this definition depends on
-a fact that we haven't proved yet: every nice term~$t$ is either a
-letter by itself, or there are \emph{uniquely determined} nice terms
-$s_1$ and $s_2$ such that $t = [s_1 \circ s_2]$.  ``Uniquely
-determined'' here means that if $t = [s_1 \circ s_2]$ it isn't
-\emph{also} $= [r_1 \circ r_2]$ with $s_1 \neq r_1$ or $s_2 \neq r_2$.
-If this were the case, then clause~(2) may come in conflict with
-itself: reading $t_2$ as $[s_1 \circ s_2]$ we might get $t_1
-\sqsubseteq t_2$, but if we read $t_2$ as $[r_1 \circ r_2]$ we might
-get not $t_1 \sqsubseteq t_2$.  Before we prove that this can't
-happen, let's look at an example where it \emph{can} happen.
+值得注意的是，这个定义的成功依赖于一个我们尚未证明的事实：每个良构项~$t$ 要么是一个字母，要么存在\emph{唯一确定}的良构项 $s_1$ 和 $s_2$，使得 $t = [s_1 \circ s_2]$。这里的“唯一确定”意味着，如果 $t = [s_1 \circ s_2]$，它就不会\emph{同时也}等于某个满足 $s_1 \neq r_1$ 或 $s_2 \neq r_2$ 的 $[r_1 \circ r_2]$。如果出现这种情况，那么第 (2) 条可能会自相矛盾：将 $t_2$ 读作 $[s_1 \circ s_2]$ 时我们可能得到 $t_1 \sqsubseteq t_2$，但如果将 $t_2$ 读作 $[r_1 \circ r_2]$ 我们可能得到并非 $t_1 \sqsubseteq t_2$。在我们证明这不可能发生之前，先看一个它\emph{可能}发生的例子。
 
 \begin{defn}
-  Define \emph{bracketless terms} inductively by
+  按如下方式归纳地定义\emph{无括号项}：
   \begin{enumerate}
-  \item Every letter is a bracketless term.
-    \item If $s_1$ and $s_2$ are bracketless terms, then $s_1 \circ s_2$ is
-      a bracketless term.
-    \item Nothing else is a bracketless term.
+  \item 每个字母都是一个无括号项。
+    \item 如果 $s_1$ 和 $s_2$ 是无括号项，那么 $s_1 \circ s_2$ 也是一个无括号项。
+    \item 除此之外都不是无括号项。
   \end{enumerate}
 \end{defn}
 
-Bracketless terms are, e.g., $\mathrm{a}$, $\mathrm{b} \circ
-\mathrm{d}$, $\mathrm{b} \circ \mathrm{a} \circ \mathrm{b}$. Now if we
-defined ``subterm'' for bracketless terms the way we did above, the
-second clause would read
+无括号项的例子有：$\mathrm{a}$，$\mathrm{b} \circ \mathrm{d}$，$\mathrm{b} \circ \mathrm{a} \circ \mathrm{b}$。现在，如果我们像上面那样为无括号项定义“子项”，第二条将变为：
+
 \begin{center}
-  If $t_2 = s_1 \circ s_2$, then $t_1 \sqsubseteq t_2$ iff $t_1 = t_2$, $t_1
-  \sqsubseteq s_1$, or $t_1 \sqsubseteq s_2$.
+  如果 $t_2 = s_1 \circ s_2$，则 $t_1 \sqsubseteq t_2$ 当且仅当 $t_1 = t_2$, $t_1 \sqsubseteq s_1$，或 $t_1 \sqsubseteq s_2$。
 \end{center}
 
-Now $\mathrm{b} \circ \mathrm{a} \circ \mathrm{b}$ is of the form $s_1
-\circ s_2$ with 
+现在，$\mathrm{b} \circ \mathrm{a} \circ \mathrm{b}$ 具有 $s_1 \circ s_2$ 的形式，其中
 \begin{align*}
-  s_1 & = \mathrm{b} \text{ and} & s_2 & = \mathrm{a} \circ \mathrm{b}.
-\intertext{It is also of the form $r_1 \circ r_2$ with}
-  r_1 & = \mathrm{b} \circ \mathrm{a} \text{ and} & r_2 &= \mathrm{b}.
+  s_1 & = \mathrm{b} \text{ 且} & s_2 & = \mathrm{a} \circ \mathrm{b}.
+\intertext{它也具有 $r_1 \circ r_2$ 的形式，其中}
+  r_1 & = \mathrm{b} \circ \mathrm{a} \text{ 且} & r_2 &= \mathrm{b}.
 \end{align*}
-Now is $\mathrm{a} \circ \mathrm{b}$ a subterm of $\mathrm{b} \circ
-\mathrm{a} \circ \mathrm{b}$?  The answer is yes if we go by the first
-reading, and no if we go by the second.
+那么 $\mathrm{a} \circ \mathrm{b}$ 是 $\mathrm{b} \circ
+\mathrm{a} \circ \mathrm{b}$ 的子项吗？按第一种解读，答案是“是”；按第二种解读，答案则是“否”。
 
-The property that the way a nice term is built up from other nice
-terms is unique is called \emph{unique readability}. Since inductive
-definitions of relations for such inductively defined objects are
-important, we have to prove that it holds.
+良构项由其他良构项构建的方式是唯一的，这一性质称为\emph{唯一可读性}。由于在这类归纳定义的对象上归纳地定义关系很重要，我们必须证明它成立。
 
 \begin{prop}
-  Suppose $t$ is a nice term. Then either $t$ is a letter by itself,
-  or there are uniquely determined nice terms $s_1$, $s_2$ such that~$t =
-  [s_1 \circ s_2]$.
+  假设 $t$ 是一个良构项。那么 $t$ 要么是一个字母，要么存在唯一确定的良构项 $s_1$, $s_2$，使得~$t =
+  [s_1 \circ s_2]$。
 \end{prop}
 
 \begin{proof}
-  If $t$ is a letter by itself, the condition is satisfied. So assume
-  $t$ isn't a letter by itself. We can tell from the inductive
-  definition that then $t$ must be of the form $[s_1 \circ s_2]$ for some
-  nice terms $s_1$ and~$s_2$. It remains to show that these are uniquely
-  determined, i.e., if $t = [r_1 \circ r_2]$, then $s_1 = r_1$ and $s_2 = r_2$.
+  如果 $t$ 是一个字母，则条件已满足。因此假设 $t$ 不是一个字母。从归纳定义我们可以看出，此时 $t$ 必定具有 $[s_1 \circ s_2]$ 的形式，其中 $s_1$ 和 $s_2$ 是某些良构项。剩下的就是要证明它们是唯一确定的，即如果 $t = [r_1 \circ r_2]$，那么 $s_1 = r_1$ 且 $s_2 = r_2$。
 
-  So suppose $t = [s_1 \circ s_2]$ and also $t = [r_1 \circ r_2]$ for nice terms
-  $s_1$, $s_2$, $r_1$, $r_2$. We have to show that $s_1 = r_1$ and $s_2 = r_2$.
-  First, $s_1$ and $r_1$ must be identical, for otherwise one is a proper
-  initial segment of the other. But by \olref[sti]{prop:initial}, that
-  is impossible if $s_1$ and~$r_1$ are both nice terms.  But if $s_1 = r_1$,
-  then clearly also $s_2 = r_2$.
+  于是假设 $t = [s_1 \circ s_2]$ 并且对于良构项 $s_1$, $s_2$, $r_1$, $r_2$ 也有 $t = [r_1 \circ r_2]$。我们需要证明 $s_1 = r_1$ 且 $s_2 = r_2$。
+  首先，$s_1$ 和 $r_1$ 必须相等，否则其中一个将是另一个的真初始段。但根据 \olref[sti]{prop:initial}，如果 $s_1$ 和 $r_1$ 都是良构项，这是不可能的。而如果 $s_1 = r_1$，那么显然也有 $s_2 = r_2$。
 \end{proof}
 
-We can also define functions inductively: e.g., we can define the
-function~$f$ that maps any nice term to the maximum depth of nested
-$[\dots]$ in it as follows:
+我们也可以归纳地定义函数：例如，我们可以定义函数~$f$，它将任意良构项映射到其中嵌套 $[\dots]$ 的最大深度，定义如下：
 
 \begin{defn}
-  \ollabel{defn:depth} The \emph{depth} of a nice term, $f(t)$, is
-  defined inductively as follows:
+  \ollabel{defn:depth} 良构项的\emph{深度} $f(t)$ 归纳定义如下：
   \[
   f(t) = \begin{cases}
-    0 & \text{ if $t$ is a letter}\\
-    \max(f(s_1), f(s_2)) + 1 & \text{ if $t = [s_1 \circ s_2]$.}
+    0 & \text{ 若 $t$ 是一个字母}\\
+    \max(f(s_1), f(s_2)) + 1 & \text{ 若 $t = [s_1 \circ s_2]$。}
   \end{cases}
   \]
 \end{defn}
 
-For instance
+例如
 \begin{align*}
   f([\mathrm{a} \circ \mathrm{b}]) & = 
     \max(f(\mathrm{a}),f(\mathrm{b})) + 1 = \\ 
-  &= \max(0, 0) + 1 = 1, \text{ and}\\
+  &= \max(0, 0) + 1 = 1, \text{ 及}\\
   f([[\mathrm{a} \circ \mathrm{b}] \circ \mathrm{c}]) & = 
     \max(f([\mathrm{a} \circ \mathrm{b}]), f(\mathrm{c})) + 1 = \\ 
   & = \max(1,0) + 1 = 2.
 \end{align*}
 
-Here, of course, we assume that $s_1$ an $s_2$ are nice terms, and make
-use of the fact that every nice term is either a letter or of the form
-$[s_1 \circ s_2]$. It is again important that it can be of this form in
-only one way. To see why, consider again the bracketless terms we
-defined earlier. The corresponding ``definition'' would be:
+这里，我们当然假设 $s_1$ 和 $s_2$ 是良构项，并且利用了以下事实：每个良构项要么是一个字母，要么具有 $[s_1 \circ s_2]$ 的形式。同样重要的是，它只能以一种方式具有这种形式。为了明白为什么，再次考虑我们之前定义的无括号项。对应的“定义”会是：
 \[
   g(t) = 
   \begin{cases}
-    0 & \text{ if $t$ is a letter}\\
-   \max(g(s_1), g(s_2)) + 1 & \text{ if $t = s_1 \circ s_2$.}
+    0 & \text{ 若 $t$ 是字母}\\
+   \max(g(s_1), g(s_2)) + 1 & \text{ 若 $t = s_1 \circ s_2$。}
   \end{cases}
 \]
-Now consider the bracketless term $\mathrm{a} \circ \mathrm{b} \circ
-\mathrm{c} \circ \mathrm{d}$. It can be read in more than one way,
-e.g., as $s_1 \circ s_2$ with 
+现在考虑无括号项 $\mathrm{a} \circ \mathrm{b} \circ
+\mathrm{c} \circ \mathrm{d}$。它可以以不止一种方式解读，例如，解读为 $s_1 \circ s_2$，其中
 \begin{align*}
-  s_1 & = \mathrm{a} \text{ and} & 
+  s_1 & = \mathrm{a} \text{ 与} & 
   s_2 & = \mathrm{b} \circ \mathrm{c} \circ \mathrm{d},
-\intertext{or as $r_1 \circ r_2$ with}
-  r_1 & = \mathrm{a} \circ b \text{ and} & 
+\intertext{或解读为 $r_1 \circ r_2$，其中}
+  r_1 & = \mathrm{a} \circ b \text{ 与} & 
   r_2 &= \mathrm{c} \circ \mathrm{d}.
 \end{align*}
-Calculating $g$ according to the first way of reading it would give
+按第一种解读计算 $g$ 会得到
 \begin{align*}
   g(s_1 \circ s_2) & =
   \max(g(\mathrm{a}), g(\mathrm{b} \circ \mathrm{c} \circ \mathrm{d})) + 1 =\\ & =
   \max(0,2) + 1 = 3
-  \intertext{while according to the other reading we get}
+  \intertext{而按照另一种解读我们得到}
   g(r_1 \circ r_2) & =
   \max(g(\mathrm{a} \circ \mathrm{b}), g(\mathrm{c} \circ \mathrm{d})) + 1=\\ &
   = \max(1,1) + 1 = 2
 \end{align*}
-But a function must always yield a unique value; so our ``definition''
-of~$g$ doesn't define a function at all.
+但是一个函数必须总是给出唯一的值；因此我们对~$g$ 的“定义”根本没有定义出一个函数。
 
 \begin{prob}
-  Give an inductive definition of the function $l$, where $l(t)$ is
-  the number of symbols in the nice term~$t$.
+  给出函数 $l$ 的归纳定义，其中 $l(t)$ 是良构项~$t$ 中的符号个数。
 \end{prob}
 
 \begin{prob}
-  Prove by structural induction on nice terms $t$ that $f(t) < l(t)$ (where
-  $l(t)$ is the number of symbols in~$t$ and $f(t)$ is the depth of
-  $t$ as defined in \olref[mth][ind][rel]{defn:depth}).
+  对良构项 $t$ 进行结构归纳，证明 $f(t) < l(t)$（其中 $l(t)$ 是~$t$ 中的符号个数，而 $f(t)$ 是 $t$ 的深度，定义见 \olref[mth][ind][rel]{defn:depth}）。
 \end{prob}
 
 \end{document}

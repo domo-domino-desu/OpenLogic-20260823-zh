@@ -12,6 +12,14 @@
   \AtBeginDocument{\selectlanguage{english}}
 \fi
 
+% 中译本正文含大量中文字符，接入 CJK 排版支持（要求 lualatex/xelatex，见
+% open-logic-cjk.sty 里的说明）。放在 babel 之后，其余正文用到的包（tikz、
+% bussproofs 等）之前，这样中文断行/标点规则从一开始就生效。跟本文件下面
+% 加载 open-logic-referencing.sty 等项目自有 sty 文件一样，用 \input 加显式
+% 相对路径，不用 \RequirePackage——sty/ 不在 kpathsea 默认搜索路径里，项目
+% 自己的 sty 文件全部走这个约定，不是只有这一个特例。
+\input{\olpath/sty/open-logic-cjk.sty}
+
 \RequirePackage{amsmath}
 \RequirePackage{amssymb}
 \RequirePackage{extarrows}

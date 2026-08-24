@@ -8,69 +8,51 @@
 
 \olfileid{sol}{syn}{siz}
 
-\olsection{Describing Infinite and \usetoken{S}{enumerable}
-  \usetoken{P}{domain}}
+\olsection{描述无穷与\usetoken{S}{enumerable}\usetoken{P}{domain}}
 
-A set~$M$ is (Dedekind) infinite iff there is !!a{injective} function~$f\colon M
-\to M$ which is not !!{surjective}, i.e., with $\ran{f} \neq M$. In
-first-order logic, we can consider a one-place !!{function}~$f$ and
-say that the function~$\Assign{f}{M}$ assigned to it in
-!!a{structure}~$\Struct{M}$ is !!{injective} and $\ran{f} \neq
-\Domain{M}$:
+一个集合~$M$ 是（戴德金）无穷的，当且仅当存在一个单射函数~$f\colon M \to M$，它不是满射的，即满足 $\ran{f} \neq M$。
+在一阶逻辑中，我们可以考虑一个一元函数符号~$f$，
+并说在结构~$\Struct{M}$ 中指派给它的函数~$\Assign{f}{M}$ 是单射的且 $\ran{f} \neq \Domain{M}$：
 \[
 \lforall[x][\lforall[y][(\eq[f(x)][f(y)] \to \eq[x][y])]] \land
 \lexists[y][\lforall[x][\eq/[y][f(x)]]].
 \]
-If $\Struct{M}$ satisfies this !!{sentence}, $\Assign{f}{M}:
-\Domain{M} \to \Domain{M}$ is !!{injective}, and so $\Domain{M}$ must
-be infinite. If $\Domain{M}$ is infinite, and hence such a function
-exists, we can let $\Assign{f}{M}$ be that function and $\Struct{M}$
-will satisfy the !!{sentence}.  However, this requires that our language
-contains the non-logical symbol~$f$ which we use for this purpose. In
-second-order logic, we can simply say that such a function
-\emph{exists}. This no-longer requires~$f$, and we obtain the
-!!{sentence} in pure second-order logic
+如果 $\Struct{M}$ 满足这个语句，$\Assign{f}{M}:
+\Domain{M} \to \Domain{M}$ 是单射的，从而 $\Domain{M}$ 必定是无穷的。
+如果 $\Domain{M}$ 是无穷的，因而这样的函数存在，我们可以令 $\Assign{f}{M}$ 为该函数，那么 $\Struct{M}$ 将满足该语句。
+然而，这要求我们的语言包含我们用于此目的的非逻辑符号~$f$。
+在二阶逻辑中，我们可以简单地断言这样的函数\emph{存在}。
+这样就不需要~$f$了，从而得到纯二阶逻辑中的语句
 \[
 \fn{Inf} \ident \lexists[u][(\lforall[x][\lforall[y][(\eq[u(x)][u(y)]
       \lif \eq[x][y])]] \land \lexists[y][\lforall[x][\eq/[y][u(x)]]])].
 \]
-$\Sat{M}{\fn{Inf}}$ iff $\Domain{M}$ is infinite.  We can then define
-$\fn{Fin} \ident \lnot \fn{Inf}$; $\Sat{M}{\fn{Fin}}$ iff $\Domain{M}$
-is finite. No single !!{sentence} of pure first-order logic can
-express that the !!{domain} is infinite although an infinite set of
-them can. There is no set of !!{sentence}s of pure first-order logic
-that is satisfied in !!a{structure} iff its domain is finite.
+$\Sat{M}{\fn{Inf}}$ 当且仅当 $\Domain{M}$ 是无穷的。
+于是我们可以定义 $\fn{Fin} \ident \lnot \fn{Inf}$；$\Sat{M}{\fn{Fin}}$ 当且仅当 $\Domain{M}$ 是有穷的。
+没有任何一个纯一阶逻辑的单个语句能表达论域是无穷的，尽管一个无穷的语句集可以做到。
+也不存在这样的纯一阶逻辑语句集：一个结构满足它当且仅当其论域是有穷的。
 
 \begin{prop}
-$\Sat{M}{\fn{Inf}}$ iff $\Domain{M}$ is infinite.
+$\Sat{M}{\fn{Inf}}$ 当且仅当 $\Domain{M}$ 是无穷的。
 \end{prop}
 
 \begin{proof}
-$\Sat{M}{\fn{Inf}}$ iff
+$\Sat{M}{\fn{Inf}}$ 当且仅当
   $\Sat{M}{\lforall[x][\lforall[y][(\eq[u(x)][u(y)] \lif \eq[x][y])]]
-    \land \lexists[y][\lforall[x][\eq/[y][u(x)]]]}[s]$ for
-  some~$s$. If it does, $s(u)$ is !!a{injective} function, and some $y
-  \in \Domain{M}$ is not in the range of~$s(u)$. Conversely, if there
-  is !!a{injective} $f\colon \Domain{M} \to \Domain{M}$ with $\ran{f}
-  \neq \Domain{M}$, then $s(u) = f$ is such a variable
-  assignment.
+    \land \lexists[y][\lforall[x][\eq/[y][u(x)]]]}[s]$ 对
+  某个变元指派~$s$ 成立。若它成立，则 $s(u)$ 是一个单射函数，并且存在某个 $y
+  \in \Domain{M}$ 不在~$s(u)$ 的值域中。反之，如果存在一个单射 $f\colon \Domain{M} \to \Domain{M}$ 且其值域 $\ran{f}
+  \neq \Domain{M}$，那么 $s(u) = f$ 就是这样一个变元
+  指派。
 \end{proof}
 
-A set $M$ is !!{enumerable} if there is an enumeration
+一个集合 $M$ 是可数的，如果存在其元素的一个枚举
 \[
 m_0, m_1, m_2, \dots
 \]
-of its !!{element}s (without repetitions but possibly finite).  Such an enumeration exists
-iff there is !!a{element} $z \in M$ and a function $f\colon M \to M$
-such that $z$, $f(z)$, $f(f(z))$, \dots, are all the !!{element}s of~$M$. For
-if the enumeration exists, $z = m_0$ and $f(m_k) = m_{k+1}$ (or
-$f(m_k) = m_k$ if $m_k$ is the last !!{element} of the enumeration)
-are the requisite !!{element} and function. On the other hand, if such
-a $z$ and $f$ exist, then $z$, $f(z)$, $f(f(z))$, \dots, is an
-enumeration of~$M$, and $M$ is !!{enumerable}.  We can express the
-existence of $z$ and~$f$ in second-order logic to produce a
-!!{sentence} true in !!a{structure} iff the !!{structure} is
-!!{enumerable}:
+（无重复但可能是有穷的）。这样的枚举存在，当且仅当存在一个元素 $z \in M$ 和一个函数 $f\colon M \to M$，
+使得 $z$, $f(z)$, $f(f(z))$, …… 就是~$M$ 的所有元素。因为如果枚举存在，令 $z = m_0$ 并令 $f(m_k) = m_{k+1}$ （或者若 $m_k$ 是枚举的最后一个元素，则令 $f(m_k) = m_k$）
+即为所需的元素和函数。另一方面，如果这样的 $z$ 和 $f$ 存在，那么 $z$, $f(z)$, $f(f(z))$, …… 就是~$M$ 的一个枚举，从而 $M$ 是可数的。我们可以用二阶逻辑来表达 $z$ 和~$f$ 的存在性，从而构造一个语句，它在一个结构中为真当且仅当该结构是可数的：
 \[
 \fn{Count} \ident
 \lexists[z][\lexists[u][\lforall[X][((X(z) \land
@@ -78,56 +60,44 @@ existence of $z$ and~$f$ in second-order logic to produce a
 \]
 
 \begin{prop}
-$\Sat{M}{\fn{Count}}$ iff $\Domain{M}$ is !!{enumerable}.
+$\Sat{M}{\fn{Count}}$ 当且仅当 $\Domain{M}$ 是可数的。
 \end{prop}
 
 \begin{proof}
-Suppose $\Domain{M}$ is !!{enumerable}, and let $m_0$, $m_1$, \dots, be an
-enumeration. By removing repetitions we can guarantee that no $m_k$
-appears twice. Define $f(m_k) = m_{k+1}$ and let $s(z) = m_0$ and
-$s(u) = f$. We show that
+假设 $\Domain{M}$ 是可数的，并设 $m_0$, $m_1$, …… 是一个枚举。通过去除重复项，我们可以保证没有 $m_k$ 出现两次。定义 $f(m_k) = m_{k+1}$ 并令 $s(z) = m_0$ 和 $s(u) = f$。我们证明
 \[
 \Sat{M}{\lforall[X][((X(z) \land \lforall[x][(X(x) \lif X(u(x)))])
     \lif \lforall[x][X(x)])]}[s]
 \]
-Suppose $M \subseteq \Domain{M}$ is arbitrary. Suppose further that
+取任意的 $M \subseteq \Domain{M}$。进一步假设
 $\Sat{M}{(X(z) \land \lforall[x][(X(x) \lif
-X(u(x)))])}[\Subst{s}{M}{X}]$. Then $\Subst{s}{M}{X}(z) \in M$ and
-whenever $x \in M$, also $(\Subst{s}{M}{X}(u))(x) \in M$. In other
-words, since $\varAssign{\Subst{s}{M}{X}}{s}{X}$, $m_0 \in M$ and if
-$x \in M$ then $f(x) \in M$, so $m_0 \in M$, $m_1 = f(m_0) \in M$,
-$m_2 = f(f(m_0)) \in M$, etc. Thus, $M = \Domain{M}$, and so
-$\Sat{M}{\lforall[x][X(x)]}[\Subst{s}{M}{X}]$. Since $M \subseteq
-\Domain{M}$ was arbitrary, we are done:
-$\Sat{M}{\fn{Count}}$.
+X(u(x)))])}[\Subst{s}{M}{X}]$。那么 $\Subst{s}{M}{X}(z) \in M$ 并且
+只要 $x \in M$，就有 $(\Subst{s}{M}{X}(u))(x) \in M$。换句话说，由于 $\varAssign{\Subst{s}{M}{X}}{s}{X}$，$m_0 \in M$ 并且若
+$x \in M$ 则 $f(x) \in M$，因此 $m_0 \in M$, $m_1 = f(m_0) \in M$,
+$m_2 = f(f(m_0)) \in M$，等等。于是，$M = \Domain{M}$，所以
+$\Sat{M}{\lforall[x][X(x)]}[\Subst{s}{M}{X}]$。由于 $M$ 是 $\Domain{M}$ 的任意子集，由此得证：
+$\Sat{M}{\fn{Count}}$。
 
-Now assume that $\Sat{M}{\fn{Count}}$, i.e., 
+现在假设 $\Sat{M}{\fn{Count}}$，即
 \[
 \Sat{M}{\lforall[X][((X(z) \land \lforall[x][(X(x) \lif X(u(x)))])
     \lif \lforall[x][X(x)])]}[s]
 \]
-for some~$s$. Let $m = s(z)$ and $f = s(u)$ and consider $M = \{m,
-f(m), f(f(m)), \dots\}$. $M$ so defined is clearly !!{enumerable}.
-Then
+对某个变元指派~$s$ 成立。令 $m = s(z)$ 且 $f = s(u)$，并考虑 $M = \{m,
+f(m), f(f(m)), \dots\}$。这样定义的 $M$ 显然是可数的。那么由假设，
 \[
 \Sat{M}{(X(z) \land \lforall[x][(X(x) \lif X(u(x)))])
     \lif \lforall[x][X(x)]}[\Subst{s}{M}{X}]
 \]
-by assumption. Also, $\Sat{M}{X(z)}[\Subst{s}{M}{X}]$ since $M \ni m =
-\Subst{s}{M}{X}(z)$, and also $\Sat{M}{\lforall[x][(X(x) \lif
-X(u(x)))]}[\Subst{s}{M}{X}]$ since whenever $x \in M$ also $f(x) \in
-M$. So, since both antecedent and conditional are satisfied, the
-consequent must also be: $\Sat{M}{\lforall[x][X(x)]}[\Subst{s}{M}{X}]$. But that
-means that $M = \Domain{M}$, and so $\Domain{M}$ is !!{enumerable}
-since $M$ is, by definition.
+此外，$\Sat{M}{X(z)}[\Subst{s}{M}{X}]$，因为 $M \ni m =
+\Subst{s}{M}{X}(z)$；并且也有 $\Sat{M}{\lforall[x][(X(x) \lif
+X(u(x)))]}[\Subst{s}{M}{X}]$，因为只要 $x \in M$ 就有 $f(x) \in
+M$。所以，既然前件和条件句均被满足了，后件也必定被满足：$\Sat{M}{\lforall[x][X(x)]}[\Subst{s}{M}{X}]$。但这
+意味着 $M = \Domain{M}$，而根据定义 $M$ 是可数的，因此 $\Domain{M}$ 是可数的。
 \end{proof}
 
 \begin{prob}
-The !!{sentence} $\fn{Inf} \land \fn{Count}$ is true in all and only
-!!{denumerable} domains.  Adjust the definition of $\fn{Count}$ so
-that it becomes a different !!{sentence} that directly expresses that
-the domain is !!{denumerable}, and prove that it does.
+语句 $\fn{Inf} \land \fn{Count}$ 在且仅在可数无穷的论域中为真。调整 $\fn{Count}$ 的定义，使其成为另一个直接表达论域是可数无穷的不同语句，并证明它确实如此。
 \end{prob}
 
 \end{document}
-

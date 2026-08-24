@@ -8,19 +8,17 @@
 
 \olfileid{fol}{syn}{cov}
 
-\olsection{Covered \printtoken{P}{structure} for First-order Languages}
+\olsection{一阶语言的覆盖结构}
 
 \begin{explain}
-Recall that a term is \emph{closed} if it contains no !!{variable}s.
+回想一下，如果一个项不包含任何变元，则称其为\emph{闭项}。
 \end{explain}
 
-\begin{defn}[!!^{value} of closed terms]
-If $t$ is a closed term of the language~$\Lang L$ and $\Struct M$ is a
-!!{structure} for~$\Lang L$, the \emph{!!{value}}~$\Value{t}{M}$ is
-defined as follows:
+\begin{defn}[闭项的值]
+若 $t$ 是语言~$\Lang L$ 的闭项，且 $\Struct M$ 是~$\Lang L$ 的结构，则 $t$ 的\emph{值}~$\Value{t}{M}$ 定义如下：
 \begin{enumerate}
-\item If $t$ is just the !!{constant}~$c$, then $\Value{c}{M} = \Assign{c}{M}$.
-\item If $t$ is of the form $\Atom{f}{t_1, \ldots, t_n}$, then
+\item 若 $t$ 仅为常项符号~$c$，则 $\Value{c}{M} = \Assign{c}{M}$。
+\item 若 $t$ 形如 $\Atom{f}{t_1, \ldots, t_n}$，则
   \[
   \Value{t}{M} = \Assign{f}{M}(\Value{t_1}{M}, \ldots,
   \Value{t_n}{M}).
@@ -28,29 +26,24 @@ defined as follows:
 \end{enumerate}
 \end{defn}
 
-\begin{defn}[Covered !!{structure}]
-A !!{structure} is \emph{covered} if every element of the domain is the
-!!{value} of some closed term.
+\begin{defn}[覆盖结构]
+\ollabel{defn:covered-structure}
+如果一个结构的论域中的每个元素都是某个闭项的值，则称该结构为\emph{覆盖结构}。
 \end{defn}
 
 \begin{ex}
-Let ~$\Lang L$ be the language with !!{constant}s $\Obj{zero}$,
-$\Obj{one}$, $\Obj{two}$, \dots, the binary !!{predicate}~$<$, and the
-binary !!{function}s $+$ and $\times$. Then !!a{structure}~$\Struct
-M$ for~$\Lang L$ is the one with domain $\Domain M = \{0, 1, 2, \ldots
-\}$ and assignments $\Assign{\Obj{zero}}{M} = 0$,
-$\Assign{\Obj{one}}{M} = 1$, $\Assign{\Obj{two}}{M} = 2$, and so
-forth. For the binary relation symbol $<$, the set $\Assign{<}{M}$ is
-the set of all pairs $\tuple{c_1, c_2} \in \Domain{M}^2$ such that
-$c_1$ is less than~$c_2$: for example, $\tuple{1, 3} \in
-\Assign{<}{M}$ but $\tuple{2, 2} \notin \Assign{<}{M}$. For the binary
-!!{function} $+$, define $\Assign{+}{M}$ in the usual way---for
-example, $\Assign{+}{M}(2,3)$ maps to~$5$, and similarly for the
-binary !!{function}~$\times$. Hence, the !!{value} of $\Obj{four}$ is
-just~$4$, and the !!{value} of $\times(\Obj{two},
-+(\Obj{three},\Obj{zero}))$ (or in infix notation, $\Obj{two} \times
-(\Obj{three} + \Obj{zero})$) is
-\begin{multline*}
+设语言~$\Lang L$ 包含常项符号 $\Obj{zero}$、$\Obj{one}$、$\Obj{two}$、……，
+二元谓词符号~$<$，以及二元函数符号 $+$ 和 $\times$。
+则 $\Lang L$ 的一个结构~$\Struct M$ 具有论域 $\Domain M = \{0, 1, 2, \ldots
+\}$
+及赋值 $\Assign{\Obj{zero}}{M} = 0$、$\Assign{\Obj{one}}{M} = 1$、$\Assign{\Obj{two}}{M} = 2$ 等。
+对于二元关系符号 $<$，集合 $\Assign{<}{M}$ 是所有满足 $c_1$ 小于~$c_2$ 的有序对 $\tuple{c_1, c_2} \in \Domain{M}^2$ 的集合：
+例如，$\tuple{1, 3} \in
+\Assign{<}{M}$ 在其中，但 $\tuple{2, 2} \notin \Assign{<}{M}$ 不在。
+对于二元函数符号 $+$，按通常方式定义 $\Assign{+}{M}$——例如，$\Assign{+}{M}(2,3)$ 映到~$5$；对二元函数符号~$\times$ 也类似定义。
+因此，$\Obj{four}$ 的值就是~$4$，而 $\times(\Obj{two},
++(\Obj{three},\Obj{zero}))$（或用中缀记法，$\Obj{two} \times
+(\Obj{three} + \Obj{zero})$）的值是 \begin{multline*}
 \Value{\times(\Obj{two}, +(\Obj{three},\Obj{zero}))}{M} =\\
 \begin{aligned}
 & =\Assign{\times}{M}(\Value{\Obj{two}}{M}, \Value{+(\Obj{three}, \Obj{zero})}{M})\\
@@ -62,11 +55,11 @@ just~$4$, and the !!{value} of $\times(\Obj{two},
 & = \Assign{\times}{M}(2, 3) \\
 & = 6
 \end{aligned}
-\end{multline*}
+\end{multline*}。
 \end{ex}
 
 \begin{prob}
-Is $\Struct N$, the standard model of arithmetic, covered? Explain.
+算术的标准模型 $\Struct N$ 是覆盖结构吗？请解释。
 \end{prob}
 
 \end{document}

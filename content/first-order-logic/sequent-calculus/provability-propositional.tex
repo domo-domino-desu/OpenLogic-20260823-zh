@@ -13,29 +13,26 @@
       {\olfileid{fol}{seq}{ppr}}
       {\olfileid{pl}{seq}{ppr}}
 
-\olsection{\usetoken{S}{derivability} and the Propositional Connectives}
+\olsection{可推导性与命题联结词}
 
 \begin{explain}
-  We establish that the !!{derivability} relation~$\Proves$ of the
-  sequent calculus is strong enough to establish some basic facts
-  involving the propositional connectives, such as that $!A \land !B
-  \Proves !A$ and $!A, !A \lif !B \Proves !B$ (modus ponens). These
-  facts are needed for the proof of the completeness theorem.
+我们将证明，相继式演算的可推导关系~$\Proves$
+足够强，能够确立涉及命题联结词的一些基本事实，
+例如 $!A \land !B \Proves !A$ 和 $!A, !A \lif !B \Proves !B$（假言推理）。
+证明完备性定理需要用到这些事实。
 \end{explain}
 
 \begin{prop}\ollabel{prop:provability-land}
   \begin{enumerate}
-  \item \ollabel{prop:provability-land-left} Both $!A \land !B \Proves
-    !A$ and $!A \land !B \Proves !B$.
+  \item \ollabel{prop:provability-land-left} $!A \land !B \Proves !A$ 且 $!A \land !B \Proves !B$。
   \item \ollabel{prop:provability-land-right} $!A, !B \Proves !A \land
-    !B$.
+    !B$。
   \end{enumerate}
 \end{prop}
 
 \begin{proof}
   \begin{enumerate}
-  \item Both sequents $!A \land !B \Sequent !A$ and $!A \land !B \Sequent
-    !B$ are !!{derivable}:
+  \item 相继式 $!A \land !B \Sequent !A$ 与 $!A \land !B \Sequent !B$ 均可推导：
     \begin{prooftree}
       \Axiom$!A \fCenter !A$
       \RightLabel{\LeftR{\land}}
@@ -45,7 +42,7 @@
       \RightLabel{\LeftR{\land}}
       \UnaryInf$!A \land !B \fCenter !B$
     \end{prooftree}
-    \item Here is !!a{derivation} of the sequent $!A, !B \Sequent !A \land !B$:
+    \item 相继式 $!A, !B \Sequent !A \land !B$ 的推导如下：
     \begin{prooftree}
       \Axiom$!A \fCenter !A$
       \Axiom$!B \fCenter !B$
@@ -57,15 +54,15 @@
 
 \begin{prop}\ollabel{prop:provability-lor}
   \begin{enumerate}
-  \item $!A \lor !B, \lnot !A, \lnot !B$ is inconsistent.
-  \item Both $!A \Proves !A \lor !B$ and $!B \Proves !A \lor !B$.
+  \item $!A \lor !B, \lnot !A, \lnot !B$ 是不一致的。
+  \item $!A \Proves !A \lor !B$ 且 $!B \Proves !A \lor !B$。
   \end{enumerate}
 \end{prop}
 
 \begin{proof}
   \begin{enumerate}
-  \item We give !!a{derivation} of the sequent $!A \lor !B, \lnot !A,
-    \lnot !B \Sequent$:
+  \item 我们给出相继式 $!A \lor !B, \lnot !A,
+    \lnot !B \Sequent$ 的一个推导：
     \begin{prooftree}
       \Axiom$!A \fCenter !A$
       \RightLabel{\LeftR{\lnot}}
@@ -80,10 +77,8 @@
       \RightLabel{\LeftR{\lor}}
       \BinaryInf$ !A \lor !B, \lnot !A, \lnot !B \fCenter $
     \end{prooftree}
-    (Recall that double inference lines indicate several weakening,
-    contraction, and exchange inferences.)
-  \item   Both sequents $!A \Sequent !A \lor !B$ and $!B \Sequent !A
-    \lor !B$ have !!{derivation}s:
+    （注意，双推理线表示多次弱化、收缩和交换推步。）
+  \item   相继式 $!A \Sequent !A \lor !B$ 与 $!B \Sequent !A \lor !B$ 均可推导：
     \begin{prooftree}
       \Axiom$!A \fCenter !A$
       \RightLabel{\RightR{\lor}}
@@ -98,23 +93,22 @@
 
 \begin{prop}\ollabel{prop:provability-lif}
   \begin{enumerate}
-  \item \ollabel{prop:provability-lif-left}  $!A, !A \lif !B \Proves !B$.
+  \item \ollabel{prop:provability-lif-left}  $!A, !A \lif !B \Proves !B$。
   \item \ollabel{prop:provability-lif-right}
-    Both $\lnot !A \Proves !A \lif !B$ and $!B \Proves !A \lif !B$.
+    $\lnot !A \Proves !A \lif !B$ 且 $!B \Proves !A \lif !B$。
   \end{enumerate}
 \end{prop}
 
 \begin{proof}
   \begin{enumerate}
-    \item The sequent $!A \lif !B, !A \Sequent !B$ is !!{derivable}:
+    \item 相继式 $!A \lif !B, !A \Sequent !B$ 可推导：
       \begin{prooftree}
         \Axiom$!A \fCenter !A$
         \Axiom$!B \fCenter !B$
         \RightLabel{\LeftR{\lif}}
         \BinaryInf$!A \lif !B, !A  \fCenter !B$
       \end{prooftree}
-    \item Both sequents $\lnot !A \Sequent !A \lif !B$ and $!B
-      \Sequent !A \lif !B$ are !!{derivable}:
+    \item 相继式 $\lnot !A \Sequent !A \lif !B$ 与 $!B \Sequent !A \lif !B$ 均可推导：
       \begin{prooftree}
         \Axiom$!A \fCenter !A$
         \RightLabel{\LeftR{\lnot}}

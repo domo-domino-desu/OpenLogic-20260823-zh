@@ -1,167 +1,123 @@
-% Part: first-order-logic
-% Chapter: completeness
-% Section: maximally-consistent-sets
-
-% Definition of maximally consistent sets. Properties of mcs required
-% for completeness proved are in maximally-consistent-sets.tex in the
-% chapter on the proof system used.
-
 \documentclass[../../../include/open-logic-section]{subfiles}
 
 \begin{document}
 
 \olfileid{fol}{com}{mcs}
-\olsection{Maximally Consistent Sets of \usetoken{P}{sentence}}
+\olsection{语句的极大一致集}
 
-\begin{defn}[Maximally consistent set]
+% Part: first-order-logic
+对每个一致的理论 $G$，
+都存在一个极大一致的理论 $G^* \supseteq G$。% Chapter: completeness
+如果 $G$ 还是完备的，那么它本身就已经是极大一致的了。% Section: maximally-consistent-sets
+
+假设 $G$ 是完备的。% Definition of maximally consistent sets. Properties of mcs required
+若 $G$ 不是极大一致的，则存在某个语句 $A$ 使得 $A \notin G$ 且 $\lnot A \notin G$。% for completeness proved are in maximally-consistent-sets.tex in the
+但根据完备性定义，$A \in G$ 或 $\lnot A \in G$，矛盾。% chapter on the proof system used.
+反之，假设 $G$ 是极大一致的。我们要证 $G$ 是完备的。设 $A$ 是任意语句。若 $A \notin G$，则根据极大一致性，$G \cup \{A\}$ 不一致。由于 $G$ 对可推导性封闭，可得 $G \Proves \lnot A$，因此 $\lnot A \in G$。所以，对任意语句 $A$，有 $A \in G$ 或 $\lnot A \in G$，即 $G$ 是完备的。
+
+因此，极大一致集恰好就是那些一致且完备的集合。
+
+\begin{defn}[极大一致集]
 \ollabel{mcs}
-A set~$\Gamma$ of !!{sentence}s is \emph{maximally consistent} iff
+语句集~$\Gamma$ 是\emph{极大一致的}，当且仅当
 \begin{enumerate}
-\item $\Gamma$ is consistent, and
-\item if $\Gamma \subsetneq \Gamma'$, then $\Gamma'$ is inconsistent.
+\item $\Gamma$ 是一致的，并且
+\item 如果 $\Gamma \subsetneq \Gamma'$，那么 $\Gamma'$ 不一致。
 \end{enumerate}
 \end{defn}
 
 \begin{explain}
-An alternate definition equivalent to the above is: a set $\Gamma$ of
-sentences is \emph{maximally consistent} iff
+与上述定义等价的另一种定义是：语句集 $\Gamma$ 是\emph{极大一致的}，当且仅当
 \begin{enumerate}
-\item $\Gamma$ is consistent, and
-\item If $\Gamma \cup \{ !A \}$ is consistent, then $!A \in \Gamma$.
+\item $\Gamma$ 是一致的，并且
+\item 如果 $\Gamma \cup \{ !A \}$ 是一致的，那么 $!A \in \Gamma$。
 \end{enumerate}
-In other words, one cannot add !!{sentence}s not already in~$\Gamma$
-to a maximally consistent set~$\Gamma$ without making the resulting
-larger set inconsistent.
+换句话说，向极大一致集~$\Gamma$ 中添加任何不在~$\Gamma$ 中的语句，都会使所得的更大集合变得不一致。
 \end{explain}
 
 \begin{explain}
-Maximally consistent sets are important in the completeness proof
-since we can guarantee that every consistent set of !!{sentence}s~$\Gamma$
-is contained in a maximally consistent set~$\Gamma^*$, and a maximally
-consistent set contains, for each !!{sentence}~$!A$, either $!A$ or its
-negation $\lnot !A$. This is true in particular for atomic !!{sentence}s,
-so from a maximally consistent set in a language suitably expanded by
-!!{constant}s, we can construct !!a{structure} where the
-interpretation of !!{predicate}s is defined according to which atomic
-!!{sentence}s are in~$\Gamma^*$. This !!{structure} can then be shown to
-make all !!{sentence}s in~$\Gamma^*$ (and hence also in $\Gamma$)
-true. The proof of this latter fact requires that $\lnot !A \in
-\Gamma^*$ iff $!A \notin \Gamma^*$, $(!A \lor !B) \in \Gamma^*$ iff $!A
-\in \Gamma^*$ or $!B \in \Gamma^*$, etc.
+极大一致集在完备性证明中很重要，因为我们可以保证每个一致的语句集~$\Gamma$ 都包含于某个极大一致集~$\Gamma^*$ 之中，并且极大一致集对于每个语句~$!A$，都包含 $!A$ 或其否定 $\lnot !A$。
+这一点尤其对原子语句成立。因此，对于一个在通过常项符号适当扩张的语言中的极大一致集，我们可以构造一个结构，其中谓词符号的解释是根据哪些原子语句属于~$\Gamma^*$ 来定义的。
+然后可以证明，这个结构使得~$\Gamma^*$（进而使得~$\Gamma$）中的所有语句为真。
+后一事实的证明需要用到以下性质：$\lnot !A \in \Gamma^*$ 当且仅当 $!A \notin \Gamma^*$，$(!A \lor !B) \in \Gamma^*$ 当且仅当 $!A \in \Gamma^*$ 或 $!B \in \Gamma^*$，等等。
 \end{explain}
 
 \begin{prop}
 \ollabel{prop:mcs}
-Suppose $\Gamma$ is maximally consistent. Then:
+设 $\Gamma$ 是极大一致的，则：
 \begin{enumerate}
-\item \ollabel{prop:mcs-prov-in} If $\Gamma \Proves !A$, then $!A \in
-  \Gamma$.
+\item \ollabel{prop:mcs-prov-in} 若 $\Gamma \Proves !A$，则 $!A \in \Gamma$。
 
-\item \ollabel{prop:mcs-either-or} For any $!A$, either $!A \in
-  \Gamma$ or $\lnot !A \in \Gamma$.
+\item \ollabel{prop:mcs-either-or} 对任意 $!A$，要么 $!A \in \Gamma$，要么 $\lnot !A \in \Gamma$。
 
-\tagitem{prvAnd}{\ollabel{prop:mcs-and} $(!A \land !B) \in \Gamma$
-  iff both $!A \in \Gamma$ and $!B \in \Gamma$.}{}
+\tagitem{prvAnd}{\ollabel{prop:mcs-and} $(!A \land !B) \in \Gamma$ 当且仅当 $!A \in \Gamma$ 且 $!B \in \Gamma$。}{}
 
-\tagitem{prvOr}{\ollabel{prop:mcs-or} $(!A \lor !B) \in \Gamma$ iff
-  either $!A \in \Gamma$ or $!B \in \Gamma$.}{}
+\tagitem{prvOr}{\ollabel{prop:mcs-or} $(!A \lor !B) \in \Gamma$ 当且仅当 $!A \in \Gamma$ 或 $!B \in \Gamma$。}{}
 
-\tagitem{prvIf}{\ollabel{prop:mcs-if} $(!A \lif !B) \in \Gamma$ iff
-  either $!A \notin \Gamma$ or $!B \in \Gamma$.}{}
+\tagitem{prvIf}{\ollabel{prop:mcs-if} $(!A \lif !B) \in \Gamma$ 当且仅当 $!A \notin \Gamma$ 或 $!B \in \Gamma$。}{}
 \end{enumerate}
 \end{prop}
 
 \begin{proof}
-Let us suppose for all of the following that $\Gamma$ is maximally
-consistent.
+在以下证明中，设 $\Gamma$ 是极大一致的。
 \begin{enumerate}
-\item If $\Gamma \Proves !A$, then $!A \in \Gamma$.
+\item 若 $\Gamma \Proves !A$，则 $!A \in \Gamma$。
 
-Suppose that $\Gamma \Proves !A$. Suppose to the contrary that $!A
-\notin \Gamma$: then since $\Gamma$ is maximally consistent, $\Gamma
-\cup \{!A\}$ is inconsistent, hence $\Gamma \cup \{!A\} \Proves
-\lfalse$. By
-\tagrefs{prfSC/{fol:seq:prv:prop:provability-contr},prfND/{fol:ntd:prv:prop:provability-contr}},
-$\Gamma$ is inconsistent. This contradicts the assumption that
-$\Gamma$ is consistent. Hence, it cannot be the case that $!A \notin
-\Gamma$, so $!A \in \Gamma$.
+假设 $\Gamma \Proves !A$。反设 $!A \notin \Gamma$：由于 $\Gamma$ 是极大一致的，$\Gamma \cup \{!A\}$ 不一致，因而 $\Gamma \cup \{!A\} \Proves \lfalse$。根据
+\tagrefs{prfSC/{fol:seq:prv:prop:provability-contr},prfND/{fol:ntd:prv:prop:provability-contr}}，
+$\Gamma$ 不一致。这与 $\Gamma$ 一致的假设矛盾。因此，不可能出现 $!A \notin \Gamma$ 的情况，故 $!A \in \Gamma$。
 
-\item For any $!A$, either $!A \in \Gamma$ or $\lnot !A \in \Gamma$.
+\item 对任意 $!A$，要么 $!A \in \Gamma$，要么 $\lnot !A \in \Gamma$。
 
-Suppose to the contrary that for some~$!A$ both $!A \notin \Gamma$ and
-$\lnot !A \notin \Gamma$. Since $\Gamma$ is maximally consistent,
-$\Gamma \cup \{!A\}$ and $\Gamma \cup \{\lnot !A\}$ are both
-inconsistent, so $\Gamma \cup \{!A\} \Proves \lfalse$ and $\Gamma \cup
-\{\lnot !A\} \Proves \lfalse$. By
-\tagrefs{prfSC/{fol:seq:prv:prop:provability-exhaustive},prfND/{fol:ntd:prv:prop:provability-exhaustive}},
-$\Gamma$ is inconsistent, a contradiction. Hence there cannot be such
-!!a{sentence}~$!A$ and, for every $!A$, $!A \in \Gamma$ or $\lnot !A
-\in \Gamma$.
+反设存在某个~$!A$，使得 $!A \notin \Gamma$ 且 $\lnot !A \notin \Gamma$。由于 $\Gamma$ 是极大一致的，$\Gamma \cup \{!A\}$ 和 $\Gamma \cup \{\lnot !A\}$ 均不一致，故 $\Gamma \cup \{!A\} \Proves \lfalse$ 且 $\Gamma \cup
+\{\lnot !A\} \Proves \lfalse$。根据
+\tagrefs{prfSC/{fol:seq:prv:prop:provability-exhaustive},prfND/{fol:ntd:prv:prop:provability-exhaustive}}，
+$\Gamma$ 不一致，产生矛盾。因此不存在这样的语句~$!A$，即对每个 $!A$，要么 $!A \in \Gamma$，要么 $\lnot !A \in \Gamma$。
 
 \tagitem{defAnd}{}{%
-\iftag{probAnd}{Exercise.}{%
-$(!A \land !B) \in \Gamma$ iff both $!A \in \Gamma$ and $!B \in \Gamma$:
+\iftag{probAnd}{练习。}{%
+$(!A \land !B) \in \Gamma$ 当且仅当 $!A \in \Gamma$ 且 $!B \in \Gamma$：
 
-For the forward direction, suppose $(!A \land !B) \in \Gamma$. Then
-$\Gamma \Proves !A \land !B$. By
-\tagrefs{prfSC/{fol:seq:prv:prop:provability-land-left},prfND/{fol:ntd:prv:prop:provability-land-left}},
-$\Gamma \Proves !A$ and $\Gamma \Proves !B$. By
-\olref{prop:mcs-prov-in}, $!A \in \Gamma$ and $!B \in \Gamma$, as
-required.
+正向：假设 $(!A \land !B) \in \Gamma$。则 $\Gamma \Proves !A \land !B$。由
+\tagrefs{prfSC/{fol:seq:prv:prop:provability-land-left},prfND/{fol:ntd:prv:prop:provability-land-left}}，
+可得 $\Gamma \Proves !A$ 且 $\Gamma \Proves !B$。根据 \olref{prop:mcs-prov-in}，$!A \in \Gamma$ 且 $!B \in \Gamma$，得证。
 
-For the reverse direction, let $!A \in \Gamma$ and $!B \in
-\Gamma$. Then $\Gamma \Proves !A$ and $\Gamma \Proves !B$. By
-\tagrefs{prfSC/{fol:seq:prv:prop:provability-land-right},prfND/{fol:ntd:prv:prop:provability-land-right}},
-$\Gamma \Proves !A \land !B$. By \olref{prop:mcs-prov-in}, $(!A \land
-!B) \in \Gamma$.}}
+反向：设 $!A \in \Gamma$ 且 $!B \in \Gamma$。则 $\Gamma \Proves !A$ 且 $\Gamma \Proves !B$。由
+\tagrefs{prfSC/{fol:seq:prv:prop:provability-land-right},prfND/{fol:ntd:prv:prop:provability-land-right}}，
+有 $\Gamma \Proves !A \land !B$。再根据 \olref{prop:mcs-prov-in}，得 $(!A \land !B) \in \Gamma$。}}
 
 \tagitem{defOr}{}{%
-\iftag{probOr}{Exercise.}{%
-$(!A \lor !B) \in \Gamma$ iff either $!A \in \Gamma$ or $!B \in \Gamma$.
+\iftag{probOr}{练习。}{%
+$(!A \lor !B) \in \Gamma$ 当且仅当 $!A \in \Gamma$ 或 $!B \in \Gamma$。
 
-For the contrapositive of the forward direction, suppose that $!A
-\notin \Gamma$ and $!B \notin \Gamma$. We want to show that $(!A \lor
-!B) \notin \Gamma$. Since $\Gamma$ is maximally consistent, $\Gamma
-\cup \{!A\} \Proves \lfalse$ and $\Gamma \cup \{!B\} \Proves \lfalse$.
-By
-\tagrefs{prfSC/{fol:seq:prv:prop:provability-lor-left},prfND/{fol:ntd:prv:prop:provability-lor-left}},
-$\Gamma \cup \{(!A \lor !B)\}$ is inconsistent. Hence, $(!A \lor !B)
-\notin \Gamma$, as required.
+正向的逆否命题：假设 $!A \notin \Gamma$ 且 $!B \notin \Gamma$。我们要证 $(!A \lor !B) \notin \Gamma$。由于 $\Gamma$ 是极大一致的，$\Gamma \cup \{!A\} \Proves \lfalse$ 且 $\Gamma \cup \{!B\} \Proves \lfalse$。根据
+\tagrefs{prfSC/{fol:seq:prv:prop:provability-lor-left},prfND/{fol:ntd:prv:prop:provability-lor-left}}，
+$\Gamma \cup \{(!A \lor !B)\}$ 不一致。因此，$(!A \lor !B) \notin \Gamma$，得证。
 
-For the reverse direction, suppose that $!A \in \Gamma$ or $!B \in
-\Gamma$. Then $\Gamma \Proves !A$ or $\Gamma \Proves !B$. By
-\tagrefs{prfSC/{fol:seq:prv:prop:provability-lor-right},prfND/{fol:ntd:prv:prop:provability-lor-right}},
-$\Gamma \Proves !A \lor !B$. By \olref{prop:mcs-prov-in}, $(!A \lor
-!B) \in \Gamma$, as required.}}
+反向：假设 $!A \in \Gamma$ 或 $!B \in \Gamma$。则 $\Gamma \Proves !A$ 或 $\Gamma \Proves !B$。由
+\tagrefs{prfSC/{fol:seq:prv:prop:provability-lor-right},prfND/{fol:ntd:prv:prop:provability-lor-right}}，
+有 $\Gamma \Proves !A \lor !B$。再根据 \olref{prop:mcs-prov-in}，得 $(!A \lor !B) \in \Gamma$，得证。}}
 
 \tagitem{defIf}{}{%
-\iftag{probIf}{Exercise.}{%
-$(!A \lif !B) \in \Gamma$ iff either $!A \notin \Gamma$ or $!B \in \Gamma$:
+\iftag{probIf}{练习。}{%
+$(!A \lif !B) \in \Gamma$ 当且仅当 $!A \notin \Gamma$ 或 $!B \in \Gamma$：
 
-For the forward direction, let $(!A \lif !B) \in \Gamma$, and suppose
-to the contrary that $!A \in \Gamma$ and $!B \notin \Gamma$. On these
-assumptions, $\Gamma \Proves !A \lif !B$ and $\Gamma \Proves !A$. By
-\tagrefs{prfSC/{fol:seq:prv:prop:provability-mp},prfND/{fol:ntd:prv:prop:provability-mp}},
-$\Gamma \Proves !B$. But then by \olref{prop:mcs-prov-in}, $!B \in
-\Gamma$, contradicting the assumption that $!B \notin \Gamma$.
+正向：设 $(!A \lif !B) \in \Gamma$，并反设 $!A \in \Gamma$ 且 $!B \notin \Gamma$。在此假设下，$\Gamma \Proves !A \lif !B$ 且 $\Gamma \Proves !A$。由
+\tagrefs{prfSC/{fol:seq:prv:prop:provability-mp},prfND/{fol:ntd:prv:prop:provability-mp}}，
+得 $\Gamma \Proves !B$。但根据 \olref{prop:mcs-prov-in}，应有 $!B \in \Gamma$，与 $!B \notin \Gamma$ 的假设矛盾。
 
-For the reverse direction, first consider the case where $!A \notin
-\Gamma$. By \olref{prop:mcs-either-or}, $\lnot !A \in \Gamma$ and
-hence $\Gamma \Proves \lnot !A$. By
-\tagrefs{prfSC/{fol:seq:prv:prop:provability-lif},prfND/{fol:ntd:prv:prop:provability-lif}},
-$\Gamma \Proves !A \lif !B$. Again by \olref{prop:mcs-prov-in}, we get
-that $(!A \lif !B) \in \Gamma$, as required.
+反向：首先考虑 $!A \notin \Gamma$ 的情形。由 \olref{prop:mcs-either-or}，有 $\lnot !A \in \Gamma$，因而 $\Gamma \Proves \lnot !A$。根据
+\tagrefs{prfSC/{fol:seq:prv:prop:provability-lif},prfND/{fol:ntd:prv:prop:provability-lif}}，
+有 $\Gamma \Proves !A \lif !B$。再次由 \olref{prop:mcs-prov-in}，得 $(!A \lif !B) \in \Gamma$，得证。
 
-Now consider the case where $!B \in \Gamma$. Then $\Gamma \Proves !B$
-and by
-\tagrefs{prfSC/{fol:seq:prv:prop:provability-lif},prfND/{fol:ntd:prv:prop:provability-lif}},
-$\Gamma \Proves !A \lif !B$. By \olref{prop:mcs-prov-in}, $(!A \lif
-!B) \in \Gamma$.}}
+再考虑 $!B \in \Gamma$ 的情形。则 $\Gamma \Proves !B$，且根据
+\tagrefs{prfSC/{fol:seq:prv:prop:provability-lif},prfND/{fol:ntd:prv:prop:provability-lif}}，
+有 $\Gamma \Proves !A \lif !B$。再由 \olref{prop:mcs-prov-in}，得 $(!A \lif !B) \in \Gamma$。}}
 \end{enumerate}
 \end{proof}
 
 \begin{prob}
-Complete the proof of \olref[fol][com][mcs]{prop:mcs}.
+完成 \olref[fol][com][mcs]{prop:mcs} 的证明。
 \end{prob}
 
 \end{document}

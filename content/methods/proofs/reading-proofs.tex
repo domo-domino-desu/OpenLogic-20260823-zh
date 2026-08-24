@@ -7,104 +7,90 @@
 \begin{document}
 
 \olfileid{mth}{prf}{rea}
-\olsection{Reading Proofs}
+\olsection{阅读证明}
 
-Proofs you find in textbooks and articles very seldom give all the
-details we have so far included in our examples. Authors often do not
-draw attention to when they distinguish cases, when they give an
-indirect proof, or don't mention that they use a definition.  So when
-you read a proof in a textbook, you will often have to fill in those
-details for yourself in order to understand the proof. Doing this is
-also good practice to get the hang of the various moves you have to
-make in a proof. Let's look at an example.
+你在教科书和论文中看到的证明，很少会像我们前面的例子那样给出所有细节。
+作者通常不会特意说明何时进行了分情况讨论、何时使用了间接证明，
+也不会每次都提到用到了哪个定义。
+因此，在阅读教科书中的证明时，你往往需要自己补充这些细节才能理解。
+这样做也是掌握证明中各种手法的好练习。
+让我们来看一个例子。
 
-\begin{prop}[Absorption]
-For all sets $A$, $B$,
+\begin{prop}[吸收律]
+对任意集合 $A$, $B$，
 \[
 A \cap (A \cup B) = A
 \]
 \end{prop}
 
 \begin{proof}
-If $z \in A \cap (A \cup B)$, then $z \in A$, so $A \cap (A \cup B)
-\subseteq A$. Now suppose $z \in A$. Then also $z \in A \cup B$, and
-therefore also $z \in A \cap (A \cup B)$.
+如果 $z \in A \cap (A \cup B)$，那么 $z \in A$，所以 $A \cap (A \cup B)
+\subseteq A$。现在假设 $z \in A$。那么也有 $z \in A \cup B$，
+因此也有 $z \in A \cap (A \cup B)$。
 \end{proof}
 
-The preceding proof of the absorption law is very condensed. There is
-no mention of any definitions used, no ``we have to prove that''
-before we prove it, etc. Let's unpack it.  The proposition proved is a
-general claim about any sets $A$ and $B$, and when the proof mentions
-$A$ or $B$, these are variables for arbitrary sets.  The general
-claims the proof establishes is what's required to prove identity of
-sets, i.e., that every !!{element} of the left side of the identity is
-!!a{element} of the right and vice versa.  
+前面这个吸收律的证明非常浓缩。它没有提到任何用到的定义，没有在正式证明前先声明
+“我们要证明……”，等等。我们来拆解它。
+被证明的命题是一个关于任意集合 $A$ 和 $B$ 的一般性断言，
+当证明中提到 $A$ 或 $B$ 时，它们都是代表任意集合的变元。
+证明所建立的一般性断言，正是证明集合相等所需要的内容，
+即等式左边的每个元素也都是右边的元素，反之亦然。
 
 \begin{quote}
-``If $z \in A \cap (A \cup B)$, then $z \in A$, so $A \cap (A \cup B)
-  \subseteq A$.''
+“如果 $z \in A \cap (A \cup B)$，那么 $z \in A$，所以 $A \cap (A \cup B)
+  \subseteq A$。”
 \end{quote}
 
-This is the first half of the proof of the identity: it establishes
-that if an arbitrary~$z$ is !!a{element} of the left side, it is also
-!!a{element} of the right, i.e., $A \cap (A \cup B) \subseteq A$.
-Assume that $z \in A \cap (A \cup B)$. Since $z$ is an !!{element} of
-the intersection of two sets iff it is an !!{element} of both sets, we
-can conclude that $z \in A$ and also $z \in A \cup B$. In particular,
-$z \in A$, which is what we wanted to show.  Since that's all that has
-to be done for the first half, we know that the rest of the proof must
-be a proof of the second half, i.e., a proof that $A \subseteq A \cap
-(A \cup B)$.
+这是证明等式的第一部分：它确立了如果任意~$z$ 是左边的元素，
+那么它也是右边的元素，即 $A \cap (A \cup B) \subseteq A$。
+假设 $z \in A \cap (A \cup B)$。由于 $z$ 是两个集合交集的元素当且仅当
+它是这两个集合各自的元素，我们可以得出结论：$z \in A$ 并且 $z \in A \cup B$。
+特别地，$z \in A$，这正是我们想要证明的。
+由于这就是第一部分需要完成的全部工作，我们知道证明的其余部分必定是
+第二部分的证明，即证明 $A \subseteq A \cap (A \cup B)$。
 
 \begin{quote}
-``Now suppose $z \in A$. Then also $z \in A \cup B$, and
-therefore also $z \in A \cap (A \cup B)$.''
+“现在假设 $z \in A$。那么也有 $z \in A \cup B$，并且
+因此也有 $z \in A \cap (A \cup B)$。”
 \end{quote}
 
-We start by assuming that $z \in A$, since we are showing that, for
-any~$z$, if $z \in A$ then $z \in A \cap (A \cup B)$.  To show that $z
-\in A \cap (A \cup B)$, we have to show (by definition of ``$\cap$'')
-that (i) $z \in A$ and also (ii) $z \in A \cup B$. Here (i) is just
-our assumption, so there is nothing further to prove, and that's why
-the proof does not mention it again. For (ii), recall that $z$ is
-!!a{element} of a union of sets iff it is an !!{element} of at least
-one of those sets. Since $z \in A$, and $A \cup B$ is the union of $A$
-and $B$, this is the case here. So $z \in A \cup B$. We've shown both
-(i) $z \in A$ and (ii) $z \in A \cup B$, hence, by definition of
-``$\cap$,'' $z \in A \cap (A \cup B)$.  The proof doesn't mention
-those definitions; it's assumed the reader has already internalized
-them.  If you haven't, you'll have to go back and remind yourself what
-they are. Then you'll also have to recognize why it follows from $z
-\in A$ that $z \in A \cup B$, and from $z \in A$ and $z \in A \cup B$
-that $z \in A \cap (A \cup B)$.
+我们从假设 $z \in A$ 开始，因为我们要证明的是：对任意~$z$，
+如果 $z \in A$ 那么 $z \in A \cap (A \cup B)$。
+要证明 $z \in A \cap (A \cup B)$，我们必须证明（根据“$\cap$”的定义）
+ $z \in A$ 并且 $z \in A \cup B$。这里 就是我们的假设，
+所以无需再证，因此证明中不再提及它。
+对于，回想一下：$z$ 是若干集合之并的元素当且仅当它至少是这些集合中
+某一个的元素。由于 $z \in A$，且 $A \cup B$ 是 $A$ 和 $B$ 的并，因此这一条件成立。
+所以 $z \in A \cup B$。我们已经证明了 $z \in A$ 和 $z \in A \cup B$，
+因此，根据“$\cap$”的定义，$z \in A \cap (A \cup B)$。
+证明没有提及这些定义；它假设读者已经掌握了它们。
+如果你还没有掌握，你就需要回头复习一下它们的定义。
+然后你还需要认识到，为什么从 $z \in A$ 能推出 $z \in A \cup B$，
+以及从 $z \in A$ 和 $z \in A \cup B$ 能推出 $z \in A \cap (A \cup B)$。
 
-Here's another version of the proof above, with everything made
-explicit:
+下面是上面证明的另一个版本，其中所有细节都被显式地给出：
 \begin{proof}{}
-[By definition of $=$ for sets, $A \cap (A \cup B) = A$ we have to
-  show (a) $A \cap (A \cup B) \subseteq A$ and (b) $A \cap (A \cup B)
-  \subseteq A$. (a): By definition of $\subseteq$, we have to show
-  that if $z \in A \cap (A \cup B)$, then $z \in A$.]  If $z \in A
-\cap (A \cup B)$, then $z \in A$ [since by definition of $\cap$, $z
-  \in A \cap (A \cup B)$ iff $z \in A$ and $z \in A \cup B$], so $A
-\cap (A \cup B) \subseteq A$. [(b): By definition of $\subseteq$, we
-  have to show that if $z \in A$, then $z \in A \cap (A \cup B)$.] Now
-suppose [(1)] $z \in A$. Then also [(2)] $z \in A \cup B$ [since by
-  (1) $z \in A$ or $z \in B$, which by definition of $\cup$ means $z
-  \in A \cup B$], and therefore also $z \in A \cap (A \cup B)$ [since
-  the definition of $\cap$ requires that $z \in A$, i.e., (1), and $z
-  \in A \cup B)$, i.e., (2)].
+[根据集合相等的定义，要证明 $A \cap (A \cup B) = A$，我们需要证明
+  (a) $A \cap (A \cup B) \subseteq A$ 和 (b) $A \subseteq A \cap (A \cup B)$。
+  (a): 根据 $\subseteq$ 的定义，我们需要证明如果 $z \in A \cap (A \cup B)$，
+  那么 $z \in A$。] 如果 $z \in A \cap (A \cup B)$，那么 $z \in A$
+  [因为根据 $\cap$ 的定义，$z \in A \cap (A \cup B)$ 当且仅当 $z \in A$ 且 $z \in A \cup B$]，
+  所以 $A \cap (A \cup B) \subseteq A$。
+  [(b): 根据 $\subseteq$ 的定义，我们需要证明如果 $z \in A$，
+  那么 $z \in A \cap (A \cup B)$。] 现在假设 [(1)] $z \in A$。
+  那么也有 [(2)] $z \in A \cup B$ [因为由 (1) 得 $z \in A$ 或 $z \in B$，
+  根据 $\cup$ 的定义，这意味着 $z \in A \cup B$]，
+  因此也有 $z \in A \cap (A \cup B)$ [因为 $\cap$ 的定义要求 $z \in A$，即 (1)，
+  且 $z \in A \cup B$，即 (2)]。
 \end{proof}
 
 \begin{prob}
-Expand the following proof of $A \cup (A \cap B) = A$, where you
-mention all the inference patterns used, why each step follows from
-assumptions or claims established before it, and where we have to
-appeal to which definitions.
+展开以下 $A \cup (A \cap B) = A$ 的证明，要求你指明所用到的所有推理模式，
+说明每一步为何能从之前的假设或已确立的论断推出，以及我们需要在何处诉诸哪个定义。
 \begin{proof}
-  If $z \in A \cup (A \cap B)$ then $z \in A$ or $z \in A \cap B$. If
-  $z \in A \cap B$, $z \in A$. Any $z \in A$ is also $\in A \cup (A
-  \cap B)$.
+  若 $z \in A \cup (A \cap B)$，则 $z \in A$ 或 $z \in A \cap B$。
+  若 $z \in A \cap B$，则 $z \in A$。
+  任何 $z \in A$ 也属于 $A \cup (A \cap B)$。
 \end{proof}
 \end{prob}
 

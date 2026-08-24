@@ -8,119 +8,85 @@
 
 \olfileid{fol}{syn}{sub}
 
-\olsection{Substitution}
+\olsection{代入}
 
-\begin{defn}[Substitution in a term]
-We define $\Subst{s}{t}{x}$, the result of \emph{substituting} $t$
-for every occurrence of~$x$ in $s$, recursively:
+\begin{defn}[项中的代入]
+我们递归地定义 $\Subst{s}{t}{x}$，即将 $t$ \emph{代入} $s$ 中 $x$ 的每一处出现所得的结果：
 \begin{enumerate}
-\item \indcase{s}{c}{$\Subst{\indfrm}{t}{x}$ is just $s$.}
+\item \indcase{s}{c}{$\Subst{\indfrm}{t}{x}$ 即为 $s$。}
 
-\item \indcase{s}{y}{$\Subst{\indfrm}{t}{x}$ is also just~$s$,
-  provided $y$ is a variable and $y \not\ident x$.}
+\item \indcase{s}{y}{若 $y$ 为变元且 $y \not\ident x$，则 $\Subst{\indfrm}{t}{x}$ 亦为~$s$。}
 
-\item \indcase{s}{x}{$\Subst{\indfrm}{t}{x}$ is~$t$.}
+\item \indcase{s}{x}{$\Subst{\indfrm}{t}{x}$ 即为~$t$。}
 
-\item\indcase{s}{\Atom{f}{t_1, \dots, t_n}}{$\Subst{\indfrmp}{t}{x}$ is
-  $\Atom{f}{\Subst{t_1}{t}{x}, \dots, \Subst{t_n}{t}{x}}$.}
+\item\indcase{s}{\Atom{f}{t_1, \dots, t_n}}{$\Subst{\indfrmp}{t}{x}$ 即为
+  $\Atom{f}{\Subst{t_1}{t}{x}, \dots, \Subst{t_n}{t}{x}}$。}
 \end{enumerate}
 \end{defn}
 
 \begin{defn}
-A term~$t$ is \emph{!!{free for}} $x$ in $!A$ if none of the free
-occurrences of~$x$ in $!A$ occur in the scope of a quantifier that
-binds a variable in~$t$.
+若 $x$ 在公式~$!A$ 中的所有自由出现均不在约束 $t$ 中变元的量词的辖域内，则称项~$t$ 在 $!A$ 中对 $x$ 是\emph{自由}的。
 \end{defn}
 
 \begin{ex} ~
 \begin{enumerate}
-\item $\Obj v_8$ is free for $\Obj v_1$ in $\lexists[\Obj
-  v_3]\Atom{\Obj A^2_4}{\Obj v_3,\Obj v_1}$
+\item $\Obj v_8$ 在 $\lexists[\Obj
+  v_3]\Atom{\Obj A^2_4}{\Obj v_3,\Obj v_1}$ 中对 $\Obj v_1$ 自由。
 
-\item $\Obj f^2_1(\Obj v_1, \Obj v_2)$ is \emph{not} free for $\Obj
-  v_0$ in $\lforall[\Obj v_2]\Atom{\Obj A^2_4}{\Obj v_0,\Obj v_2}$
+\item $\Obj f^2_1(\Obj v_1, \Obj v_2)$ 在 $\lforall[\Obj v_2]\Atom{\Obj A^2_4}{\Obj v_0,\Obj v_2}$ 中对 $\Obj v_0$ \emph{不}自由。
 \end{enumerate}
 \end{ex}
 
-\begin{defn}[Substitution in !!a{formula}]
-If $!A$ is !!a{formula}, $x$~is !!a{variable}, and $t$~is a term
-!!{free for}~$x$ in~$!A$, then $\Subst{!A}{t}{x}$ is the result of
-substituting $t$ for all free occurrences of~$x$ in~$!A$.
+\begin{defn}[公式中的代入]
+设 $!A$ 为一公式，$x$ 为一变元，且 $t$ 是在 $!A$ 中对 $x$ 自由的项，则 $\Subst{!A}{t}{x}$ 表示将 $t$ 代入 $!A$ 中 $x$ 的所有自由出现所得的结果。
 \begin{enumerate}
-\tagitem{prvFalse}{\indcase{!A}{\lfalse}{$\Subst{\indfrm}{t}{x}$ is
-    $\lfalse$.}}{}
+\tagitem{prvFalse}{\indcase{!A}{\lfalse}{$\Subst{\indfrm}{t}{x}$ 即为 $\lfalse$。}}{}
 
-\tagitem{prvTrue}{\indcase{!A}{\ltrue}{$\Subst{\indfrm}{t}{x}$ is
-    $\ltrue$.}}{}
+\tagitem{prvTrue}{\indcase{!A}{\ltrue}{$\Subst{\indfrm}{t}{x}$ 即为 $\ltrue$。}}{}
 
 \item \indcase{!A}{\Atom{P}{t_1,\dots,
-    t_n}}{$\Subst{\indfrm}{t}{x}$ is $\Atom{P}{\Subst{t_1}{t}{x},
-    \dots, \Subst{t_n}{t}{x}}$.}
+    t_n}}{$\Subst{\indfrm}{t}{x}$ 即为 $\Atom{P}{\Subst{t_1}{t}{x},
+    \dots, \Subst{t_n}{t}{x}}$。}
 
-\item \indcase{!A}{\eq[t_1][t_2]}{$\Subst{\indfrmp}{t}{x}$ is
-  $\Subst{t_1}{t}{x} = \Subst{t_2}{t}{x}$.}
+\item \indcase{!A}{\eq[t_1][t_2]}{$\Subst{\indfrmp}{t}{x}$ 即为
+  $\Subst{t_1}{t}{x} = \Subst{t_2}{t}{x}$。}
 
-\tagitem{prvNot}{\indcase{!A}{\lnot !B}{$\Subst{\indfrmp}{t}{x}$ is
-    $\lnot \Subst{!B}{t}{x}$.}}{}
+\tagitem{prvNot}{\indcase{!A}{\lnot !B}{$\Subst{\indfrmp}{t}{x}$ 即为
+    $\lnot \Subst{!B}{t}{x}$。}}{}
 
 \tagitem{prvAnd}{\indcase{!A}{(!B \land
-    !C)}{$\Subst{\indfrmp}{t}{x}$ is $(\Subst{!B}{t}{x} \land
-    \Subst{!C}{t}{x})$.}}{}
+    !C)}{$\Subst{\indfrmp}{t}{x}$ 即为 $(\Subst{!B}{t}{x} \land
+    \Subst{!C}{t}{x})$。}}{}
 
 \tagitem{prvOr}{\indcase{!A}{(!B \lor
-    !C)}{$\Subst{\indfrmp}{t}{x}$ is $(\Subst{!B}{t}{x} \lor
-    \Subst{!C}{t}{x})$.}}{}
+    !C)}{$\Subst{\indfrmp}{t}{x}$ 即为 $(\Subst{!B}{t}{x} \lor
+    \Subst{!C}{t}{x})$。}}{}
 
 \tagitem{prvIf}{\indcase{!A}{(!B \lif
-    !C)}{$\Subst{\indfrmp}{t}{x}$ is $(\Subst{!B}{t}{x} \lif
-    \Subst{!C}{t}{x})$.}}{}
+    !C)}{$\Subst{\indfrmp}{t}{x}$ 即为 $(\Subst{!B}{t}{x} \lif
+    \Subst{!C}{t}{x})$。}}{}
 
 \tagitem{prvIff}{\indcase{!A}{(!B \liff
-    !C)}{$\Subst{\indfrmp}{t}{x}$ is $(\Subst{!B}{t}{x} \liff
-    \Subst{!C}{t}{x})$.}}{}
+    !C)}{$\Subst{\indfrmp}{t}{x}$ 即为 $(\Subst{!B}{t}{x} \liff
+    \Subst{!C}{t}{x})$。}}{}
 
 \tagitem{prvAll}{
 \indcase{!A}{\lforall[y][!B]}{$\Subst{\indfrmp}{t}{x}$
-    is $\lforall[y][\Subst{!B}{t}{x}]$, provided $y$ is a variable
-    other than $x$; otherwise $\Subst{\indfrmp}{t}{x}$
-    is just $\indfrm$.}}{}
+    即为 $\lforall[y][\Subst{!B}{t}{x}]$，若 $y$ 为不同于 $x$ 的变元；
+    否则 $\Subst{\indfrmp}{t}{x}$ 即为 $\indfrm$。}}{}
 
 \tagitem{prvEx}{
 \indcase{!A}{\lexists[y][!B]}{$\Subst{\indfrmp}{t}{x}$
-    is $\lexists[y][\Subst{!B}{t}{x}]$, provided $y$ is a variable
-    other than $x$; otherwise $\Subst{\indfrmp}{t}{x}$
-    is just $\indfrm$.}}{}
+    即为 $\lexists[y][\Subst{!B}{t}{x}]$，若 $y$ 为不同于 $x$ 的变元；
+    否则 $\Subst{\indfrmp}{t}{x}$ 即为 $\indfrm$。}}{}
 \end{enumerate}
 \end{defn}
 
 \begin{explain}
-Note that substitution may be vacuous: If $x$ does not occur in $!A$
-at all, then $\Subst{!A}{t}{x}$ is just~$!A$.
+注意代入可能是空代入：如果 $x$ 根本不在 $!A$ 中出现，那么 $\Subst{!A}{t}{x}$ 即为~$!A$。
 
-The restriction that $t$ must be !!{free for}~$x$ in~$!A$ is necessary to
-exclude cases like the following. If $!A \ident \lexists[y][x < y]$
-and $t \ident y$, then $\Subst{!A}{t}{x}$ would be $\lexists[y][y <
-  y]$. In this case the free variable $y$ is ``captured'' by the
-quantifier $\lexists[y]$ upon substitution, and that is undesirable.
-For instance, we would like it to be the case that whenever
-$\lforall[x][!B]$ holds, so does $\Subst{!B}{t}{x}$. But consider
-$\lforall[x][\lexists[y][x < y]]$ (here $!B$ is $\lexists[y][x <
-  y]$). It is a sentence that is true about, e.g., the natural numbers:
-for every number~$x$ there is a number~$y$ greater than it. If we
-allowed $y$ as a possible substitution for~$x$, we would end up with
-$\Subst{!B}{y}{x} \ident \lexists[y][y < y]$, which is false. We
-prevent this by requiring that none of the free variables in~$t$ would
-end up being bound by a quantifier in~$!A$.
+要求 $t$ 必须在 $!A$ 中对 $x$ 自由，这一限制是必要的，它可以排除以下情况。若 $!A \ident \lexists[y][x < y]$ 且 $t \ident y$，则 $\Subst{!A}{t}{x}$ 将为 $\lexists[y][y < y]$。此时，自由变元 $y$ 在代入后被量词 $\lexists[y]$ “捕获”了，这是不可取的。例如，我们希望若 $\lforall[x][!B]$ 成立，则 $\Subst{!B}{t}{x}$ 亦成立。但考虑 $\lforall[x][\lexists[y][x < y]]$（这里 $!B$ 是 $\lexists[y][x < y]$）。这是一个语句，例如，它在自然数中为真：对每个数 $x$，都存在大于它的数 $y$。若我们允许用 $y$ 代入 $x$，就会得到 $\Subst{!B}{y}{x} \ident \lexists[y][y < y]$，而这是假的。我们通过要求 $t$ 中的自由变元在代入 $!A$ 后不会被 $!A$ 中的量词所约束，来避免这种情况。
 \end{explain}
 
-We often use the following convention to avoid cumbersome notation: If
-$!A$ is !!a{formula} which may contain the !!{variable}~$x$ free, we
-also write~$!A(x)$ to indicate this. When it is clear which $!A$
-and~$x$ we have in mind, and $t$ is a term (assumed to be free for $x$
-in $!A(x)$), then we write $!A(t)$ as short for $\Subst{!A}{t}{x}$. So
-for instance, we might say, ``we call $!A(t)$ an instance
-of~$\lforall[x][!A(x)]$.'' By this we mean that if $!A$~is any
-!!{formula}, $x$~!!a{variable}, and $t$~a term that's free for~$x$
-in~$!A$, then $\Subst{!A}{t}{x}$ is an instance of~$\lforall[x][!A]$.
-
+我们常常使用下述约定来避免繁琐的记法：如果公式 $!A$ 可能含有自由变元 $x$，我们也将其写作 $!A(x)$ 以作标识。当我们明确所讨论的 $!A$ 和 $x$ 为何，且 $t$ 是一个项（假定其在 $!A(x)$ 中对 $x$ 自由）时，我们便用 $!A(t)$ 作为 $\Subst{!A}{t}{x}$ 的简写。因此，例如我们可能会说，“称 $!A(t)$ 为 $\lforall[x][!A(x)]$ 的一个\emph{实例}。” 我们的意思是，若 $!A$ 为任意公式，$x$ 为变元，且 $t$ 是在 $!A$ 中对 $x$ 自由的项，那么 $\Subst{!A}{t}{x}$ 就是 $\lforall[x][!A]$ 的一个实例。
 \end{document}

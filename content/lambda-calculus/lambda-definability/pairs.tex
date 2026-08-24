@@ -7,46 +7,42 @@
 \begin{document}
 
 \olfileid{lam}{ldf}{pai}
-\olsection{Pairs and Predecessor}
+\olsection{序对与前驱}
 
 \begin{defn}
-The pair of $M$ and $N$ (written $\tuple{M,N}$) is defined as follows:
+$M$ 与 $N$ 的序对（记作 $\tuple{M,N}$）定义如下：
 \[
 \tuple{M,N} \ident \lambd[f][fMN].
 \]
 \end{defn}
   
-Intuitively it is a function that accepts a function, and applies that
-function to the two elements of the pair. Following this idea we have
-this constructor, which takes two terms and returns the pair containing
-them:
+直观上，它是一个接受函数作为输入，并将该函数作用于序对的两个元素的函数。
+顺着这个思路，我们便有了如下的构造子，它接受两个项并返回包含它们的序对：
 \[
   \fn{Pair} \ident \lambd[mn][\lambd[f][fmn]]
 \]
-Given a pair, we also want to recover its elements.
-For this we need two access functions, which accept a pair as argument and
-return the first or second elements in it:
+给定一个序对，我们也希望能提取其中的元素。
+为此我们需要两个访问函数，它们接受一个序对作为自变元，并返回其中的第一个或第二个元素：
 \begin{align*}
   \fn{Fst} & \ident \lambd[p][p(\lambd[mn][m])]\\
   \fn{Snd} & \ident \lambd[p][p(\lambd[mn][n])]
 \end{align*}
 
 \begin{prob}
-  Explain why the access functions $\fn{Fst}$ and $\fn{Snd}$ work.
+  解释为什么访问函数 $\fn{Fst}$ 和 $\fn{Snd}$ 是有效的。
 \end{prob}
 
-Now with pairs we can !!{lambda define} the predecessor function:
+现在，有了序对我们便可以 $\lambd$-定义前驱函数：
 \[
   \fn{Pred} \ident \lambd[n][\fn{Fst}(n (\lambd[p][\tuple{\fn{Snd}\, {p}, \fn{Succ}(\fn{Snd}\, {p})}]) \tuple{\num 0, \num 0})]
 \]
-Remember that $\num n\, f x$ reduces to $f^{n}(x)$; in this
-case $f$ is a function that accepts a pair $p$ and returns a new
-pair containing the second component of $p$ and the successor of the
-second component; $x$ is the pair $\tuple{0,0}$. Thus, the
-result is $\tuple{0,0}$ for $n=0$, and $\tuple{\num{n-1}, \num n}$
-otherwise. $\fn{Pred}$ then returns the first component of the result.
+回想一下，$\num n\, f x$ 归约到 $f^{n}(x)$；
+在这里，$f$ 是一个接受序对 $p$ 作为自变元并返回一个新序对的函数，新序对包含 $p$ 的第二个分量以及该分量的后继；
+$x$ 是序对 $\tuple{0,0}$。
+因此，当 $n=0$ 时结果为 $\tuple{0,0}$，否则为 $\tuple{\num{n-1}, \num n}$。
+接着，$\fn{Pred}$ 返回结果的第一个分量。
 
-Subtraction can be defined as $\fn{Pred}$ applied to $a$, $b$ times:
+减法可以定义为将 $\fn{Pred}$ 对 $a$ 作用 $b$ 次：
 \[
 \fn{Sub} \ident \lambd[ab][b \fn{Pred}\, a].
 \]

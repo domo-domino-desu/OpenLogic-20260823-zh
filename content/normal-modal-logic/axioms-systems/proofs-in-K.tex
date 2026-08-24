@@ -8,12 +8,10 @@
 
 \olfileid{nml}{prf}{prk}
 
-\olsection{Proofs in \Log{K}}
+\olsection{\Log{K} 中的证明}
 
-In order to practice proofs in the smallest modal system, we show the
-valid !!{formula}s on the left-hand side of
-\olref[syn][sch]{tab:valid-invalidSchemas} can all be given
-\Log{K}-proofs.
+为了在最小的模态系统中练习证明，我们将展示
+\olref[syn][sch]{tab:valid-invalidSchemas} 左侧的有效公式均可在 \Log{K} 中给出证明。
 
 \begin{prop}
   $\Log{K} \Proves \Box!A \lif \Box (!B\lif !A)$
@@ -52,10 +50,11 @@ valid !!{formula}s on the left-hand side of
   & \qquad $(\Box(!A \land !B) \lif (\Box !A \land \Box!B))$ & \MP, 4, 9\\
   11. & $\Box(!A \land !B) \lif (\Box !A \land \Box!B)$ & \MP, 8, 10.
 \end{derivation}
-Note that the !!{formula} on line~$9$ is an instance of the tautology
+注意第 $9$ 行的公式是重言式
 \[
 (p \lif q) \lif ((p \lif r) \lif (p \lif (q \land r))).
 \]
+的一个实例。
 \end{proof}
 
 \begin{prop}
@@ -79,11 +78,12 @@ Note that the !!{formula} on line~$9$ is an instance of the tautology
     & \qquad $((\Box!A \land \Box!B) \lif \Box(!A \land !B))$ & \Taut\\
     10. & $(\Box!A \land \Box!B) \lif \Box(!A \land !B)$ & \MP, 8, 9
   \end{derivation}
-  The !!{formula}s on lines $6$ and $9$ are instances of the tautologies
+  第 $6$ 行和第 $9$ 行的公式分别是重言式
   \begin{align*}
     (p \lif q) & \lif ((q \lif r) \lif (p \lif r)) \\
     (p \lif (q \lif r)) & \lif ((p \land q) \lif r)
   \end{align*}
+  的实例。
 \end{proof}
 
 \begin{prop}
@@ -109,11 +109,12 @@ Note that the !!{formula} on line~$9$ is an instance of the tautology
     11. & $(\lnot \Box \lnot\lnot p \lif \Diamond \lnot p) \lif (\lnot \Box p \lif \Diamond\lnot p)$ & \MP, 9, 10\\
     12. & $\lnot\Box p \lif \Diamond \lnot p$ & \MP, 3, 11\\
   \end{derivation}
-  The !!{formula}s on lines $8$ and $10$ are instances of the tautologies
+  第 $8$ 行和第 $10$ 行的公式分别是重言式
   \begin{align*}
     & (p \lif q) \lif (\lnot q \lif \lnot p) \\
     & (p \lif q) \lif ((q \lif r) \lif (p \lif r)).
   \end{align*}
+  的实例。
   }{% Diamond is defined
   \begin{derivation}
     1. & $\lnot\lnot p \lif p$ & \Taut\\
@@ -124,12 +125,11 @@ Note that the !!{formula} on line~$9$ is an instance of the tautology
     6. & $\lnot \Box p \lif \lnot\Box\lnot\lnot p$ & \MP, 4, 5\\
     & $\lnot\Box p \lif \Diamond \lnot p$
   \end{derivation}
-  The last line is $\lnot \Box p \lif \Diamond\lnot p$, since
-  $\Diamond$ is defined as $\lnot\Box\lnot$.  The !!{formula} on
-  line~$5$ is an instance of the tautology
+  最后一行即 $\lnot \Box p \lif \Diamond\lnot p$，因为 $\Diamond$ 定义为 $\lnot\Box\lnot$。第 $5$ 行的公式是重言式
   \[
     (p \lif q) \lif (\lnot q \lif \lnot p).
   \]
+  的一个实例。
   }}{% Box is defined
   \begin{derivation}
     1. & $\Diamond  p \liff \lnot\Box\lnot p$ & \Dual\\
@@ -139,16 +139,16 @@ Note that the !!{formula} on line~$9$ is an instance of the tautology
     4. & $(\Diamond p \lif \lnot \Box \lnot p) \lif (\Box\lnot p \lif \lnot\Diamond p)$ & \Taut\\
     5. & $\Box\lnot p \lif \lnot\Diamond p$ & \MP, 3, 4
   \end{derivation}
-  The !!{formula} on
-  line~$4$ is an instance of the tautology
+  第 $4$ 行的公式是重言式
   \begin{align*}
     & (p \lif \lnot q) \lif (q \lif \lnot p).
   \end{align*}
+  的一个实例。
 }
 \end{proof}
 
 \begin{prob}
-  Find !!{derivation}s in~$\Log{K}$ for the following !!{formula}s:
+  在~$\Log{K}$ 中找出下列公式的推导：
   \begin{enumerate}
     \item $\Box \lnot p \lif \Box(p \lif q)$
     \item $(\Box p \lor \Box q) \lif \Box(p \lor q)$

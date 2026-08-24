@@ -8,9 +8,9 @@
 
 \begin{table}
 \begin{tabular}{@{}c@{}c@{}}
-\multicolumn{2}{l}{\textbf{Axioms:}}\\
-\multicolumn{2}{c}{$\Gamma \Sequent x:!A$ if $x:!A \in \Gamma$}\\[3ex]
-\multicolumn{2}{l}{\textbf{Inference Rules:}}\\[3ex]
+\multicolumn{2}{l}{\textbf{公理：}}\\
+\multicolumn{2}{c}{若 $x:!A \in \Gamma$，则 $\Gamma \Sequent x:!A$}\\[3ex]
+\multicolumn{2}{l}{\textbf{推理规则：}}\\[3ex]
 \multicolumn{2}{c}{\Axiom$x: !A, \Gamma \fCenter N:!B$
 \RightLabel{\Intro{\lif}}
 \UnaryInf$\Gamma \fCenter \lambd[\typeof{x}{!A}][N] : !A \lif !B $
@@ -64,9 +64,7 @@
 \UnaryInf$\Gamma \fCenter \abort{!A}{N} : !A$
 \DisplayProof}
 \end{tabular}
-\caption{Rules of the propositional term-labelled intuitionistic
-natural deduction system \Log{tN3ip} serving as a type assignment
-system.}
+\caption{作为类型指派系统的带项标记的命题直觉主义自然演绎系统 \Log{tN3ip} 的规则。}
 \ollabel{tab:tN3ip}
 \end{table}
 

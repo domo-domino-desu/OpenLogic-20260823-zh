@@ -8,83 +8,46 @@
 
 \olfileid{nml}{axs}{int}
 
-\olsection{Introduction}
+\olsection{引言}
 
-We have a semantics for the basic modal language in terms of modal
-models, and a notion of !!a{formula} being valid---true at all worlds
-in all models---or valid with respect to some class of models or
-frames---true at all worlds in all models in the class, or based on
-the frame. Logic usually connects such semantic characterizations of
-validity with a proof-theoretic notion of !!{derivability}. The aim is
-to define a notion of !!{derivability} in some system such that
-!!a{formula} is !!{derivable} iff it is valid.
+我们已经有了基于模态模型的基本模态语言语义，以及公式有效性的概念——即在所有模型的所有世界中为真；或者是相对于某个模型类或框架类的有效性——即在该类中所有模型的所有世界中为真，或基于该框架为真。逻辑学通常将这种有效性的语义刻画与证明论的可推导性概念联系起来。其目标是：在某个系统中定义可推导性的概念，使得公式可推导当且仅当其有效。
 
-The simplest and historically oldest !!{derivation} systems are
-so-called Hilbert-type or axiomatic !!{derivation} systems.
-Hilbert-type !!{derivation} systems for many modal logics are
-relatively easy to construct: they are simple as objects of
-metatheoretical study (e.g., to prove soundness and
-completeness). However, they are much harder to use to prove
-!!{formula}s in than, say, natural deduction systems.
+最简单且历史上最古老的推导系统是所谓的希尔伯特式或公理化推导系统。对于许多模态逻辑而言，希尔伯特式推导系统相对容易构造：作为元理论研究的对象，它们十分简单（例如，用于证明可靠性和完备性）。然而，与自然演绎系统相比，用它们来实际推导公式要困难得多。
 
-In Hilbert-type !!{derivation} systems, !!a{derivation} of !!a{formula}
-is a sequence of !!{formula}s leading from certain axioms, via a
-handful of inference rules, to the !!{formula} in question.  Since we
-want the !!{derivation} system to match the semantics, we have to
-guarantee that the set of !!{derivable} formulas are true in all
-models (or true in all models in which all axioms are true). We'll
-first isolate some properties of modal logics that are necessary for
-this to work: the ``normal'' modal logics. For normal modal logics,
-there are only two inference rules that need to be assumed: modus
-ponens and necessitation.  As axioms we take all (substitution
-instances) of tautologies, and, depending on the modal logic we deal
-with, a number of modal axioms. Even if we are just interested in the
-class of all models, we must also count all substitution instances
-of~$\Ax{K}$\iftag{notprvDiamond}{}{ and~$\Ax{Dual}$} as axioms. This
-alone generates the minimal normal modal logic~$\Log K$.
+在希尔伯特式推导系统中，公式的推导是一个公式序列，它从某些公理出发，经由少数几条推理规则，最终推出该公式。由于我们希望推导系统与语义相匹配，必须保证所有可推导公式在所有模型中都为真（或者在所有公理皆真的模型中都为真）。我们首先分离出模态逻辑中为此所必需的一些性质，即“正规的”模态逻辑。对于正规模态逻辑，只需假设两条推理规则：肯定前件和必然化。作为公理，我们取所有重言式（的代入实例），并视所处理的模态逻辑而定，加上若干模态公理。即便我们只关注由所有模型构成的类，也必须将所有~$\Ax{K}$\iftag{notprvDiamond}{}{和~$\Ax{Dual}$}的代入实例算作公理。仅凭这些就生成了最小的正规模态逻辑~$\Log K$。
 
 \begin{defn}
-The rule of \emph{modus ponens} is the inference schema
+\emph{肯定前件}规则是如下推理图式：
 \begin{prooftree}
 \AxiomC{$!A$}
 \AxiomC{$!A \lif !B$}
 \RightLabel{\MP}
 \BinaryInfC{$!B$}
 \end{prooftree}
-We say !!a{formula}~$!B$ \emph{follows from}~!!{formula}s $!A$, $!C$
-by modus ponens iff $!C \ident !A \lif !B$.
+我们称公式~$!B$ \emph{由}公式 $!A$、$!C$ 通过肯定前件得到，当且仅当 $!C \ident !A \lif !B$。
 \end{defn}
 
 \begin{defn}
-The rule of \emph{necessitation} is the inference schema
+\emph{必然化}规则是如下推理图式：
 \begin{prooftree}
 \AxiomC{$!A$}
 \RightLabel{\Nec}
 \UnaryInfC{$\Box !A$}
 \end{prooftree}
-We say the !!{formula}~$!B$ follows from the !!{formula}s $!A$ by
-necessitation iff $!B \ident \Box !A$.
+我们称公式~$!B$ \emph{由}公式 $!A$ 通过必然化得到，当且仅当 $!B \ident \Box !A$。
 \end{defn}
 
 \begin{defn}
-A \emph{!!{derivation}} from a set of axioms~$\Sigma$ is a sequence of
-!!{formula}s $!B_1$, $!B_2$, \dots, $!B_n$, where each $!B_i$ is
-either
+从公理集~$\Sigma$ 出发的一个\emph{推导}是一个公式序列 $!B_1$, $!B_2$, \dots, $!B_n$，其中每个 $!B_i$ 要么
 \begin{enumerate}
-\item a substitution instance of a tautology, or
-\item a substitution instance of !!a{formula} in~$\Sigma$, or
-\item follows from two !!{formula}s $!B_j$, $!B_k$ with $j$, $k < i$
-  by modus ponens, or
-\item follows from !!a{formula}~$!B_j$ with $j < i$ by necessitation.
+\item 是某个重言式的代入实例，要么
+\item 是~$\Sigma$ 中某个公式的代入实例，要么
+\item 由两个满足 $j$, $k < i$ 的公式 $!B_j$, $!B_k$ 通过肯定前件得到，要么
+\item 由一个满足 $j < i$ 的公式~$!B_j$ 通过必然化得到。
 \end{enumerate}
-If there is such !!a{derivation} with $!B_n \ident !A$, we say that
-$!A$ is \emph{!!{derivable} from $\Sigma$}, in symbols $\Sigma \Proves !A$.
+如果存在这样一个推导且 $!B_n \ident !A$，则称 $!A$ \emph{可由 $\Sigma$ 推导}，记作 $\Sigma \Proves !A$。
 \end{defn}
 
-With this definition, it will turn out that the set of !!{derivable}
-formulas forms a normal modal logic, and that any !!{derivable}
-!!{formula} is true in every model in which every axiom is true. This
-property of !!{derivation}s is called \emph{soundness}. The converse,
-\emph{completeness}, is harder to prove.
+根据此定义，结果表明：所有可推导公式的集合构成一个正规模态逻辑，且任何可推导公式在所有公理皆真的每个模型中都为真。推导的这一性质称为\emph{可靠性}。其逆命题，即\emph{完备性}，则更难证明。
 
 \end{document}

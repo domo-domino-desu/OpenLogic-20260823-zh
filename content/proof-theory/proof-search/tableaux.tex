@@ -8,45 +8,23 @@
 
 \olfileid{pt}{ps}{tab}
 
-\olsection{Tableaux}
+\olsection{分析表}
 
-Tableaux systems are !!{proof} systems closely related to sequent
-calculi that are particularly well-suited for proof search, both by
-hand and implemented in software. Rather than build trees of sequents,
-in tableaux !!a{proof} is a tree of !!{formula}s. But unlike natural
-deduction, the rules mirror those of the sequent calculus. A tableau
-!!{proof} is essentially an explicit search for a model. Hence they
-are sometimes called \emph{semantic} tableaux or also \emph{truth
-trees}.
+分析表系统是与相继式演算密切相关的推导系统，特别适合于证明搜索，无论手动进行还是由软件实现。在分析表中，推导是一棵公式树，而非相继式树。但与自然演绎不同，这里的规则对应于相继式演算的规则。分析表推导本质上是对模型的显式搜索。因此它们有时被称为\emph{语义}分析表，或者也叫\emph{真值树}。
 
-A \emph{signed} tableau is a tree of signed !!{formula}s, which can be
-of the form $\sFmla{\True}{!A}$ or $\sFmla{\False}{!A}$. Trees grow
-downwards. They begin with !!{formula}s that specify what we want to
-!!{prove}. E.g., to !!{prove} a sequent $!A, !B \Sequent !C, !D$ it
-would begin with $\sFmla{\True}{!A}, \sFmla{\True}{!B},
-\sFmla{\False}{!C}, \sFmla{\False}{!D}$. !!^a{structure} that makes
-$!A$ and~$!B$ true and $!C$ and~$!D$ false is !!a{structure} that
-shows that would show that $!A, !B \Sequent !C, !D$ is not valid. 
+\emph{带号}分析表是带号公式的树，带号公式可以是 $\sFmla{\True}{!A}$ 或 $\sFmla{\False}{!A}$ 的形式。树向下生长。它们以指定待推导内容的公式作为起点。例如，要推导相继式 $!A, !B \Sequent !C, !D$，它将以 $\sFmla{\True}{!A}, \sFmla{\True}{!B},
+\sFmla{\False}{!C}, \sFmla{\False}{!D}$ 开始。使 $!A$ 和 $!B$ 为真且使 $!C$ 和 $!D$ 为假的结构，就表明 $!A, !B \Sequent !C, !D$ 不是有效的。
 
-A leaf (bottommost) node of the tableau can be extended by branch
-extension rules which add additional nodes to the same branch or add
-two sibling nodes below, splitting the branch into two new branches.
-The rules can be applied to any signed !!{formula} above it in the
-same branch. The branch extension rules for the classical tableaux
-system \Log{Tc} are given in \olref{tab:Tc}.
+分析表的叶节点（最底端节点）可以通过分支扩展规则进行延伸，这些规则向同一分支添加额外的节点，或在下方添加两个兄弟节点从而将该分支分裂为两个新分支。规则可以应用到同一分支中位于它上方的任何带号公式。经典分析表系统 \Log{Tc} 的分支扩展规则在 \olref{tab:Tc} 中给出。
 
 \subfile{rules-Tc}
 
-As you can see, the rules are just those of \Log{G3c} upside-down, and
-the signs $\True$ and $\False$ indicate whether !!a{formula} is
-principal on the left or right side of a sequent, respectively.
+如你所见，这些规则就是 \Log{G3c} 的规则倒转过来，而符号 $\True$ 和 $\False$ 分别表示一个公式是相继式左边还是右边的主公式。
 
-A branch of a tableau is \emph{closed} if it contains both
-$\sFmla{\True}{!A}$ and $\sFmla{\False}{!A}$. If every branch is
-closed, we say the entire tableaux is closed. For instance, here is a
-clause tableau for $!A \lor (!B \land !C) \Sequent (!A \lor !B) \land
-(!A \lor !C)$, i.e., starting with $\sFmla{\True}{!A \lor (!B \land
-!C)}$ and $\sFmla{\False}{(!A \lor !B) \land (!A \lor !C)}$:
+如果一个分析表的分支同时包含 $\sFmla{\True}{!A}$ 和 $\sFmla{\False}{!A}$，则该分支是\emph{封闭}的。如果每个分支都封闭，我们就说整个分析表是封闭的。例如，下面是一个针对 $!A \lor (!B \land !C) \Sequent (!A \lor !B) \land
+(!A \lor !C)$ 的分析表，即从 $\sFmla{\True}{!A \lor (!B \land
+!C)}$ 和 $\sFmla{\False}{(!A \lor !B) \land (!A \lor !C)}$ 开始：
+
 \begin{maxwidth}
   \begin{tableau}{}
   [\sFmla{\True}{\formula{A} \lor (\formula{B} \land \formula{C})},
@@ -109,62 +87,37 @@ clause tableau for $!A \lor (!B \land !C) \Sequent (!A \lor !B) \land
 \end{tableau}
 \end{maxwidth}
 
-The checkmarks indicate that the corresponding rule has been applied
-to !!a{formula} on all branches below it. The $\otimes$ symbol
-indicates that a branch is closed. The line numbers after the rules
-serve as indications which signed !!{formula}s the rule is applied to
-(namely the !!{formula} in the same branch on the line indicated).
+对勾号表示相应的规则已在下方所有分支上应用于该公式。符号 $\otimes$ 表示一个分支是封闭的。规则后面的行号用于指示该规则应用到哪些带号公式（即所指行上且位于同一分支中的公式）。
 
-Proof search is easy in tableaux. We generate a tableau in stages. At
-stage $0$, simply write down the starting !!{formula}s at the top. At
-stage $n+1$, do the following for each leaf node: Find the first
-(top-most) signed formula not yet checked off. Apply the branch
-extension rule to that formula. Once the rule has been applied in
-every branch that includes the signed formula in question, check it
-off. (The example above is generated using this algorithm.)
+在分析表中进行证明搜索是容易的。我们分阶段生成一个分析表。
+在第 $0$ 阶段，只需将起始公式写在顶部。
+在第 $n+1$ 阶段，对每个叶节点进行如下操作：找出第一个（最上方的）尚未勾除的带号公式。
+对该公式应用分支扩展规则。
+一旦该规则在包含该带号公式的每个分支中都已被应用，就将其勾除。
+（上面的例子就是用这个算法生成的。）
 
-Signed !!{formula}s of the form $\sFmla{\True}{\lforall}$ and
-$\sFmla{\False}{\lexists}$ are never checked off, so must be treated
-specially. If they are present, we must ensure that the
-$\TRule{\True}{\forall}$ and $\TRule{\False}{\lexists}$ rules are
-eventually applied for all applicable terms. This can be guaranteed,
-for instance, by applying them at every stage to all such formulas on
-every branch (after dealing with the topmost signed !!{formula} not of
-this form). The term $t$ to use is the first term~$t$ that can be
-built from the !!{constant}s already occurring on the branch (or $\Obj
-c_0$ if no !!{constant} occurs) and the !!{function}s occurring in the
-starting !!{formula}s, and such that the corresponding signed
-!!{formula} $\sFmla{\True}{!B(t)}$ or~$\sFmla{\False}{!B(t)}$ does not
-already occur on the branch.
+形式为 $\sFmla{\True}{\lforall}$ 和 $\sFmla{\False}{\lexists}$ 的带号公式永远不会被勾除，因此必须特殊处理。
+若分支上存在这类公式，我们必须确保 $\TRule{\True}{\forall}$ 和 $\TRule{\False}{\lexists}$ 规则最终对所有适用的项都被应用。
+例如，可以在处理完最上方非此形式的带号公式之后，在每个阶段对每个分支上的所有此类公式应用这些规则，以此来保证这一点。
+所使用的项~$t$，是第一个能由该分支上已出现的常项符号（若无常项符号出现，则用 $\Obj c_0$）以及起始公式中出现的函数符号构造出的项，且需满足相应的带号公式 $\sFmla{\True}{!B(t)}$ 或~$\sFmla{\False}{!B(t)}$ 尚未出现在该分支上。
 
-If this proof search does not produce a closed tableau, it either
-contains a finite open branch where all non-atomic !!{formula}s are
-checked off, or the search produces an infinite, finitely branching
-tree, which must contain an infinite branch. Just like in
-\olref[cpl]{sec}, we can define !!a{structure}~$\Struct{M}$ such that
-if $\sFmla{\True}{!A}$ occurs on the branch, then $\Sat{M}{!A}$ and if
-$\sFmla{\False}{!A}$ occurs, then $\Sat/{M}{!A}$. (Take $\Theta =
-\Setabs{!A}{\sFmla{\True}{!A} \text{ on the branch}}$ and $\Xi =
-\Setabs{!A}{\sFmla{\False}{!A} \text{ on the branch}}$.)
+如果这个证明搜索没有产生封闭的分析表，那么它要么包含一个有限的开分支，其中所有非原子公式都已被勾除，
+要么搜索产生一棵无限且有限分叉的树，而该树必然包含一个无限分支。
+就像在 \olref[cpl]{sec} 中一样，我们可以定义一个结构~$\Struct{M}$，使得若分支上出现 $\sFmla{\True}{!A}$，则 $\Sat{M}{!A}$；
+若出现 $\sFmla{\False}{!A}$，则 $\Sat/{M}{!A}$。（取 $\Theta =
+\Setabs{!A}{\sFmla{\True}{!A} \text{ on the branch}}$ 和 $\Xi =
+\Setabs{!A}{\sFmla{\False}{!A} \text{ on the branch}}$。）
 
-Tableaux generated by this proof search method can easily be
-translated into \Log{G3c} proofs by assigning a sequent to every node.
-If the starting formulas correspond to a sequent $\Gamma \Sequent
-\Delta$, label each of the starting formulas by $\Gamma \Sequent
-\Delta$. If a branch is extended by applying a branch extension rule
-to a signed !!{formula} $\sFmla{\True}{!A}$, then the leaf is
-labelled $!A, \Pi \Sequent \Lambda$, and if it is applied to a signed
-!!{formula} $\sFmla{\False}{!A}$, the leaf is labelled $\Pi \Sequent
-\Lambda, !A$. Where the tableau applies a \TRule{\True}{\star} rule,
-apply the \LeftR{\star} rule to the sequent (with $!A$ principal);
-where it applies a \TRule{\False}{\star} rule, apply the \RightR{\star}
-rule. The premises of the rule are the sequents that label the
-corresponding nodes added to the tableau. Once a tableau closes with
-$\sFmla{\True}{!A}$ and $\sFmla{\False}{!A}$, the label of the final
-leaf node will be a sequent of the form $!A, \Pi \Sequent \Lambda,
-!A$. Some successive nodes in the tableau will be assigned the same
-sequent; delete duplicates. For instance, the tableau above translates
-into the !!{proof}:
+通过这种证明搜索方法生成的分析表，只需为每个节点指派一个相继式，即可轻松转换为 \Log{G3c} 证明。
+如果起始公式对应一个相继式 $\Gamma \Sequent \Delta$，那么将每个起始公式标注为 $\Gamma \Sequent \Delta$。
+如果通过对带号公式 $\sFmla{\True}{!A}$ 应用分支扩展规则来延伸分支，那么该叶节点标注为 $!A, \Pi \Sequent \Lambda$；
+如果是对带号公式 $\sFmla{\False}{!A}$ 应用，则标注为 $\Pi \Sequent \Lambda, !A$。
+在分析表应用 \TRule{\True}{\star} 规则之处，就对相继式应用 \LeftR{\star} 规则（以 $!A$ 为主公式）；
+在应用 \TRule{\False}{\star} 规则之处，就应用 \RightR{\star} 规则。
+该规则的前提就是添加到分析表中的相应节点上所标注的相继式。
+一旦分析表因 $\sFmla{\True}{!A}$ 和 $\sFmla{\False}{!A}$ 而封闭，最终叶节点的标注将是形如 $!A, \Pi \Sequent \Lambda, !A$ 的相继式。
+分析表中某些相邻的节点会被指派相同的相继式；删去重复的标注即可。
+例如，上面的分析表可转换为下面的推导：
 
 \begin{maxwidth}
 $

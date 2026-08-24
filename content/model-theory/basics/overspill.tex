@@ -7,36 +7,26 @@
 \begin{document}
 
 \olfileid{mod}{bas}{ove}
-\olsection{Overspill}
+\olsection{上溢}
 
 \begin{thm}
-\ollabel{overspill} If a set $\Gamma$ of sentences has arbitrarily
-large finite models, then it has an infinite model.
+\ollabel{overspill} 若语句集合 $\Gamma$ 具有任意大的有限模型，则它也具有一个无穷模型。
 \end{thm}
 
 \begin{proof}
-Expand the language of $\Gamma$ by adding countably many new constants
-$c_0$, $c_1$, \dots and consider the set $\Gamma \cup \{c_i \neq c_j :
-i \neq j\}$. To say that $\Gamma$ has arbitrarily large finite models
-means that for every $m >0$ there is $n\ge m$ such that $\Gamma$ has a
-model of cardinality~$n$. This implies that $\Gamma \cup \{c_i \neq
-c_j : i \neq j\}$ is finitely satisfiable. By compactness, $\Gamma
-\cup \{c_i \neq c_j : i \neq j\}$ has a model $\Struct M$ whose domain
-must be infinite, since it satisfies all inequalities $c_i \neq c_j$.
+将 $\Gamma$ 的语言扩张，添加可数无穷多个新常项 $c_0$, $c_1$, \dots，并考虑集合 $\Gamma \cup \{c_i \neq c_j :
+i \neq j\}$。$\Gamma$ 具有任意大的有限模型，是指对任意 $m >0$，存在 $n\ge m$ 使得 $\Gamma$ 有一个势为~$n$ 的模型。这意味着 $\Gamma \cup \{c_i \neq
+c_j : i \neq j\}$ 是有限可满足的。根据紧致性，$\Gamma
+\cup \{c_i \neq c_j : i \neq j\}$ 有一个模型 $\Struct M$，其论域必为无穷，因为它满足所有不等式 $c_i \neq c_j$。
 \end{proof}
 
 \begin{prop}
 \ollabel{inf-not-fo} 
-There is no sentence $!A$ of any first-order language that is true in
-!!a{structure}~$\Struct M$ if and only if the domain $\Domain{M}$ of
-the !!{structure} is infinite.
+不存在一阶语言的语句 $!A$，使得它在结构~$\Struct M$ 中为真当且仅当该结构的论域 $\Domain{M}$ 是无穷的。
 \end{prop}
 
 \begin{proof}
-If there were such a $!A$, its negation $\lnot !A$ would be true in
-all and only the finite !!{structure}s, and it would therefore have
-arbitrarily large finite models but it would lack an infinite model,
-contradicting \olref{overspill}.
+如果存在这样的 $!A$，其否定 $\lnot !A$ 将在且仅在所有有限结构中为真，因此它将具有任意大的有限模型但不具有无穷模型，这与 \olref{overspill} 矛盾。
 \end{proof}
 
 \end{document}

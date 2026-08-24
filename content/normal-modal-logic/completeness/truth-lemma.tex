@@ -1,147 +1,132 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
 % Part: normal-modal-logic
 % Chapter: completeness
 % Section: truth-lemma
-
-\documentclass[../../../include/open-logic-section]{subfiles}
 
 \begin{document}
 
 \olfileid{nml}{com}{tru}
 
-\olsection{The Truth Lemma}
+\olsection{真值引理}
 
-The canonical model~$\mModel{M^\Sigma}$ is defined in such a way that
-$\mSat{M^\Sigma}{!A}[\Delta]$ iff $!A \in \Delta$. For !!{propositional
-variable}s, the definition of $V^\Sigma$ yields this directly. We have
-to verify that the equivalence holds for all !!{formula}s, however. We
-do this by induction. The inductive step involves proving the
-equivalence for !!{formula}s involving propositional operators (where
-we have to use \olref[ccs]{prop:ccs-properties}) and the modal
-operators (where we invoke the results of \olref[mod]{sec}).
+典范模型~$\mModel{M^\Sigma}$ 的定义方式使得
+$\mSat{M^\Sigma}{!A}[\Delta]$ 当且仅当 $!A \in \Delta$。
+对于命题变元，这由 $V^\Sigma$ 的定义直接得出。
+然而，我们需要验证该等价关系对所有公式均成立。
+我们通过归纳法来验证。
+归纳步骤涉及为包含命题算子（此时须用到 \olref[ccs]{prop:ccs-properties}）
+和模态算子（此时须援引 \olref[mod]{sec} 的结果）的公式证明该等价关系。
 
-\begin{prop}[Truth Lemma]
+\begin{prop}[真值引理]
   \ollabel{prop:truthlemma}
-  For every !!{formula}~$!A$, $\mSat{M^\Sigma}{!A}[\Delta]$ if and only if
-  $!A \in \Delta$.
+  对每个公式~$!A$，$\mSat{M^\Sigma}{!A}[\Delta]$ 当且仅当
+  $!A \in \Delta$。
 \end{prop}
 
 \begin{proof}
-  By induction on~$!A$.
+  对~$!A$ 施归纳。
   \begin{enumerate}
     \tagitem{prvFalse}{\indcase{!A}{\lfalse}{$\mSat/{M^\Sigma}{\lfalse}[\Delta]$
-        by \olref[syn][trw]{defn:mmodels}, and $\lfalse \notin \Delta$
-        by
-        \olref[ccs]{prop:ccs-properties}\olref[ccs]{prop:ccs-lfalse}.}}{}
+        （根据 \olref[syn][trw]{defn:mmodels}），且 $\lfalse \notin \Delta$
+        （根据
+        \olref[ccs]{prop:ccs-properties}\olref[ccs]{prop:ccs-lfalse}）。}}{}
 
     \tagitem{prvTrue}{\indcase{!A}{\ltrue}{$\mSat{M^\Sigma}{\ltrue}[\Delta]$
-        by \olref[syn][trw]{defn:mmodels}, and $\ltrue \in \Delta$ by
-        \olref[ccs]{prop:ccs-properties}\olref[ccs]{prop:ccs-ltrue}.}}{}
+        （根据 \olref[syn][trw]{defn:mmodels}），且 $\ltrue \in \Delta$（根据
+        \olref[ccs]{prop:ccs-properties}\olref[ccs]{prop:ccs-ltrue}）。}}{}
 
-    \item \indcase{!A}{p}{$\mSat{M^\Sigma}{p}[\Delta]$ iff $\Delta \in
-      V^\Sigma(p)$ by \olref[syn][trw]{defn:mmodels}.  Also, $\Delta
-      \in V^\Sigma(p)$ iff $p \in \Delta$ by definition
-      of~$V^\Sigma$.}
+    \item \indcase{!A}{p}{$\mSat{M^\Sigma}{p}[\Delta]$ 当且仅当 $\Delta \in
+      V^\Sigma(p)$（根据 \olref[syn][trw]{defn:mmodels}）。又，根据~$V^\Sigma$ 的定义，$\Delta
+      \in V^\Sigma(p)$ 当且仅当 $p \in \Delta$。}
 
     \tagitem{prvNot}{\indcase{!A}{\lnot !B}{%
-        \iftag{probNot}{Exercise.}{$\mSat{M^\Sigma}{\lnot !B}[\Delta]$
-          iff $\mSat/{M^\Sigma}{!B}[\Delta]$
-          (\olref[syn][trw]{defn:mmodels}) iff $!B \notin \Delta$ (by
-          inductive hypothesis) iff $\lnot !B \in \Delta$ (by
-          \olref[ccs]{prop:ccs-properties}\olref[ccs]{prop:ccs-lnot}).}}}{}
+        \iftag{probNot}{练习。}{$\mSat{M^\Sigma}{\lnot !B}[\Delta]$
+          当且仅当 $\mSat/{M^\Sigma}{!B}[\Delta]$
+          （\olref[syn][trw]{defn:mmodels}），当且仅当 $!B \notin \Delta$（由
+          归纳假设），当且仅当 $\lnot !B \in \Delta$（根据
+          \olref[ccs]{prop:ccs-properties}\olref[ccs]{prop:ccs-lnot}）。}}}{}
 
     \tagitem{prvAnd}{\indcase{!A}{!B \land !C}{%
-        \iftag{probAnd}{Exercise.}{$\mSat{M^\Sigma}{!B \land
-            !C}[\Delta]$ iff $\mSat{M^\Sigma}{!B}[\Delta]$ and
-          $\mSat{M^\Sigma}{!C}[\Delta]$ (by
-          \olref[syn][trw]{defn:mmodels}) iff $!B \in \Delta$ and $!C
-          \in \Delta$ (by inductive hypothesis) iff $!B \land !C \in
-          \Delta$ (by
-          \olref[ccs]{prop:ccs-properties}\olref[ccs]{prop:ccs-land}).}}}{}
+        \iftag{probAnd}{练习。}{$\mSat{M^\Sigma}{!B \land
+            !C}[\Delta]$ 当且仅当 $\mSat{M^\Sigma}{!B}[\Delta]$ 且
+          $\mSat{M^\Sigma}{!C}[\Delta]$（根据
+          \olref[syn][trw]{defn:mmodels}），当且仅当 $!B \in \Delta$ 且 $!C
+          \in \Delta$（由归纳假设），当且仅当 $!B \land !C \in
+          \Delta$（根据
+          \olref[ccs]{prop:ccs-properties}\olref[ccs]{prop:ccs-land}）。}}}{}
 
     \tagitem{prvOr}{\indcase{!A}{!B \lor !C}{%
-        \iftag{probOr}{Exercise.}{$\mSat{M^\Sigma}{!B \lor
-            !C}[\Delta]$ iff $\mSat{M^\Sigma}{!B}[\Delta]$ or
-          $\mSat{M^\Sigma}{!C}[\Delta]$ (by
-          \olref[syn][trw]{defn:mmodels}) iff $!B \in \Delta$ or $!C
-          \in \Delta$ (by inductive hypothesis) iff $!B \lor !C \in
-          \Delta$ (by
-          \olref[ccs]{prop:ccs-properties}\olref[ccs]{prop:ccs-lor}).}}}{}
+        \iftag{probOr}{练习。}{$\mSat{M^\Sigma}{!B \lor
+            !C}[\Delta]$ 当且仅当 $\mSat{M^\Sigma}{!B}[\Delta]$ 或
+          $\mSat{M^\Sigma}{!C}[\Delta]$（根据
+          \olref[syn][trw]{defn:mmodels}），当且仅当 $!B \in \Delta$ 或 $!C
+          \in \Delta$（由归纳假设），当且仅当 $!B \lor !C \in
+          \Delta$（根据
+          \olref[ccs]{prop:ccs-properties}\olref[ccs]{prop:ccs-lor}）。}}}{}
 
     \tagitem{prvIf}{\indcase{!A}{!B \lif !C}{%
-        \iftag{probIf}{Exercise.}{$\mSat{M^\Sigma}{!B \lif
-            !C}[\Delta]$ iff $\mSat/{M^\Sigma}{!B}[\Delta]$ or
-          $\mSat{M^\Sigma}{!C}[\Delta]$ (by
-          \olref[syn][trw]{defn:mmodels}) iff $!B \notin \Delta$ or
-          $!C \in \Delta$ (by inductive hypothesis) iff $!B \lif !C
-          \in \Delta$ (by
-          \olref[ccs]{prop:ccs-properties}\olref[ccs]{prop:ccs-lif}).}}}{}
+        \iftag{probIf}{练习。}{$\mSat{M^\Sigma}{!B \lif
+            !C}[\Delta]$ 当且仅当 $\mSat/{M^\Sigma}{!B}[\Delta]$ 或
+          $\mSat{M^\Sigma}{!C}[\Delta]$（根据
+          \olref[syn][trw]{defn:mmodels}），当且仅当 $!B \notin \Delta$ 或
+          $!C \in \Delta$（由归纳假设），当且仅当 $!B \lif !C
+          \in \Delta$（根据
+          \olref[ccs]{prop:ccs-properties}\olref[ccs]{prop:ccs-lif}）。}}}{}
 
     \tagitem{prvIff}{\indcase{!A}{!B \liff !C}{%
-        \iftag{probIff}{Exercise.}{$\mSat{M^\Sigma}{!B \liff
-            !C}[\Delta]$ iff either $\mSat{M^\Sigma}{!B}[\Delta]$ and
-          $\mSat{M^\Sigma}{!C}[\Delta]$ or
-          $\mSat/{M^\Sigma}{!B}[\Delta]$ and
-          $\mSat/{M^\Sigma}{!C}[\Delta]$ (by
-          \olref[syn][trw]{defn:mmodels}) iff either $!B \in \Delta$
-          and $!C \in \Delta$ or $!B \notin \Delta$ and $!C \notin
-          \Delta$ (by inductive hypothesis) iff $!B \liff !C \in
-          \Delta$ (by
-          \olref[ccs]{prop:ccs-properties}\olref[ccs]{prop:ccs-liff}).}}}{}
+        \iftag{probIff}{练习。}{$\mSat{M^\Sigma}{!B \liff
+            !C}[\Delta]$ 当且仅当（$\mSat{M^\Sigma}{!B}[\Delta]$ 且
+          $\mSat{M^\Sigma}{!C}[\Delta]$）或（$\mSat/{M^\Sigma}{!B}[\Delta]$ 且
+          $\mSat/{M^\Sigma}{!C}[\Delta]$）（根据
+          \olref[syn][trw]{defn:mmodels}），当且仅当（$!B \in \Delta$
+          且 $!C \in \Delta$）或（$!B \notin \Delta$ 且 $!C \notin
+          \Delta$）（由归纳假设），当且仅当 $!B \liff !C \in
+          \Delta$（根据
+          \olref[ccs]{prop:ccs-properties}\olref[ccs]{prop:ccs-liff}）。}}}{}
 
     \tagitem{prvBox}{\indcase{!A}{\Box !B}{%
-        \iftag{probBox}{Exercise.}{First suppose that
-          $\mSat{M^\Sigma}{\Box !B}[\Delta]$. By
-          \olref[syn][trw]{defn:mmodels}, for every $\Delta'$ such
-          that $R^\Sigma \Delta\Delta'$,
-          $\mSat{M^\Sigma}{!B}[\Delta']$. By inductive hypothesis, for
-          every $\Delta'$ such that $R^\Sigma \Delta\Delta'$, $!B \in
-          \Delta'$. By definition of $R^\Sigma$, for every $\Delta'$
-          such that $\Box^{-1} \Delta \subseteq \Delta'$, $!B \in
-          \Delta'$. By \olref[mod]{prop:box}, $\Box !B \in
-          \Delta$.
+        \iftag{probBox}{练习。}{首先假设
+          $\mSat{M^\Sigma}{\Box !B}[\Delta]$。根据
+          \olref[syn][trw]{defn:mmodels}，对每个满足 $R^\Sigma \Delta\Delta'$ 的 $\Delta'$，
+          有 $\mSat{M^\Sigma}{!B}[\Delta']$。由归纳假设，对每个满足 $R^\Sigma \Delta\Delta'$ 的 $\Delta'$，有 $!B \in
+          \Delta'$。根据 $R^\Sigma$ 的定义，对每个满足 $\Box^{-1} \Delta \subseteq \Delta'$ 的 $\Delta'$，有 $!B \in
+          \Delta'$。根据 \olref[mod]{prop:box}，$\Box !B \in
+          \Delta$。
 
-          Now assume $\Box !B \in \Delta$. Let $\Delta' \in W^\Sigma$
-          be such that $R^\Sigma \Delta\Delta'$, i.e., $\Box^{-1}\Delta
-          \subseteq \Delta'$. Since $\Box !B \in \Delta$, $!B \in
-          \Box^{-1} \Delta$. Consequently, $!B \in \Delta'$. By
-          inductive hypothesis, $\mSat{M^\Sigma}{!B}[\Delta']$. Since
-          $\Delta'$ is arbitrary with $R^\Sigma \Delta\Delta'$, for
-          all $\Delta' \in W^\Sigma$ such that $R^\Sigma
-          \Delta\Delta'$, $\mSat{M^\Sigma}{!B}[\Delta']$. By
-          \olref[syn][trw]{defn:mmodels}, $\mSat{M^\Sigma}{\Box
-            !B}[\Delta]$.}}}{}
+          现在假设 $\Box !B \in \Delta$。设 $\Delta' \in W^\Sigma$ 满足 $R^\Sigma \Delta\Delta'$，即 $\Box^{-1}\Delta
+          \subseteq \Delta'$。由于 $\Box !B \in \Delta$，故 $!B \in
+          \Box^{-1} \Delta$。因此 $!B \in \Delta'$。由
+          归纳假设，$\mSat{M^\Sigma}{!B}[\Delta']$。由于 $\Delta'$ 是满足 $R^\Sigma \Delta\Delta'$ 的任意元素，故对所有满足 $R^\Sigma
+          \Delta\Delta'$ 的 $\Delta' \in W^\Sigma$，有 $\mSat{M^\Sigma}{!B}[\Delta']$。根据
+          \olref[syn][trw]{defn:mmodels}，$\mSat{M^\Sigma}{\Box
+            !B}[\Delta]$。}}}{}
 
     \tagitem{prvDiamond}{\indcase{!A}{\Diamond !B}{%
-        \iftag{probDiamond}{Exercise.}{First suppose that
-          $\mSat{M^\Sigma}{\Diamond !B}[\Delta]$.  By
-          \olref[syn][trw]{defn:mmodels}, for some $\Delta'$ such that
-          $R^\Sigma \Delta\Delta'$, $\mSat{M^\Sigma}{!B}[\Delta']$.
-          By inductive hypothesis, for some $\Delta'$ such that
-          $R^\Sigma \Delta\Delta'$, $!B \in \Delta'$. By definition of
-          $R^\Sigma$,\iftag{prvBox}{ for some $\Delta'$ such that
-            $\Box^{-1} \Delta \subseteq \Delta'$, $!B \in \Delta'$.
-            By \olref[mod]{prop:diamond},}{} for some $\Delta'$ such
-          that $\Diamond \Delta' \subseteq \Delta$, $!B \in
-          \Delta'$. Since $!B \in \Delta'$, $\Diamond !B \in \Diamond
-          \Delta'$, so $\Diamond !B \in \Delta$.
+        \iftag{probDiamond}{练习。}{首先假设
+          $\mSat{M^\Sigma}{\Diamond !B}[\Delta]$。根据
+          \olref[syn][trw]{defn:mmodels}，存在某个满足 $R^\Sigma \Delta\Delta'$ 的 $\Delta'$，使得 $\mSat{M^\Sigma}{!B}[\Delta']$。
+          由归纳假设，存在某个满足 $R^\Sigma \Delta\Delta'$ 的 $\Delta'$，使得 $!B \in \Delta'$。根据 $R^\Sigma$ 的定义，\iftag{prvBox}{存在某个满足
+            $\Box^{-1} \Delta \subseteq \Delta'$ 的 $\Delta'$，使得 $!B \in \Delta'$。
+            根据 \olref[mod]{prop:diamond}，}{}存在某个满足 $\Diamond \Delta' \subseteq \Delta$ 的 $\Delta'$，使得 $!B \in
+          \Delta'$。由于 $!B \in \Delta'$，故 $\Diamond !B \in \Diamond
+          \Delta'$，从而 $\Diamond !B \in \Delta$。
 
-          Now assume $\Diamond !B \in \Delta$. By
-          \olref[mod]{prop:diamond}, there is a complete
-          $\Sigma$-consistent $\Delta' \in W^\Sigma$ such that
-          $\Diamond \Delta' \subseteq \Delta$ and $!B \in
-          \Delta'$.\iftag{prvBox}{ By \olref[mod]{lem:box-iff-diamond},
-            there is a $\Delta' \in W^\Sigma$ such that $\Box^{-1}
-            \Delta \subseteq \Delta'$, and $!B \in \Delta'$.}{} By
-          definition of $R^\Sigma$, $R^\Sigma \Delta\Delta'$, so there
-          is a $\Delta' \in W^\Sigma$ such that $R^\Sigma
-          \Delta\Delta'$ and $!B \in \Delta'$. By
-          \olref[syn][trw]{defn:mmodels}, $\mSat{M^\Sigma}{\Diamond
-            !B}[\Delta]$.}}}{}
+          现在假设 $\Diamond !B \in \Delta$。根据
+          \olref[mod]{prop:diamond}，存在一个完备的
+          $\Sigma$-一致集 $\Delta' \in W^\Sigma$，使得
+          $\Diamond \Delta' \subseteq \Delta$ 且 $!B \in
+          \Delta'$。\iftag{prvBox}{ 根据 \olref[mod]{lem:box-iff-diamond}，
+            存在 $\Delta' \in W^\Sigma$ 使得 $\Box^{-1}
+            \Delta \subseteq \Delta'$ 且 $!B \in \Delta'$。}{} 根据
+          $R^\Sigma$ 的定义，有 $R^\Sigma \Delta\Delta'$，故存在 $\Delta' \in W^\Sigma$ 使得 $R^\Sigma
+          \Delta\Delta'$ 且 $!B \in \Delta'$。根据
+          \olref[syn][trw]{defn:mmodels}，$\mSat{M^\Sigma}{\Diamond
+            !B}[\Delta]$。}}}{}
   \end{enumerate}
 \end{proof}
 
 \begin{probtag}{probFalse,probTrue,probNot,proband,probOr,probIf,probIff,probBox,probDiamond}
-  Complete the proof of \olref[nml][com][tru]{prop:truthlemma}.
+  完成 \olref[nml][com][tru]{prop:truthlemma} 的证明。
 \end{probtag}
 
 \end{document}

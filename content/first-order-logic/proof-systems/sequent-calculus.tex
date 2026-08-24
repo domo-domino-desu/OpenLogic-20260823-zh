@@ -10,37 +10,24 @@
       {\olfileid{fol}{prf}{seq}}
       {\olfileid{pl}{prf}{seq}}
 
-\olsection{The Sequent Calculus}
+\olsection{相继式演算}
 
-While many !!{derivation} systems operate with arrangements of
-!!{sentence}s, the sequent calculus operates with \emph{sequents}. A
-sequent is an expression of the form
+虽然许多推导系统以语句的排列为操作对象，但相继式演算以\emph{相继式}为操作对象。
+相继式是形如
 \[
 !A_1, \dots, !A_m \Sequent !B_1, \dots, !B_m,
 \]
-that is a pair of sequences of !!{sentence}s, separated by the sequent
-symbol~$\Sequent$. Either sequence may be empty.  !!^a{derivation} in
-the sequent calculus is a tree of sequents, where the topmost sequents
-are of a special form (they are called ``initial sequents'' or
-``axioms'') and every other sequent follows from the sequents
-immediately above it by one of the rules of inference. The rules of
-inference either manipulate the !!{sentence}s in the sequents (adding,
-removing, or rearranging them on either the left or the right), or
-they introduce a complex !!{formula} in the conclusion of the rule.
-For instance, the $\LeftR{\land}$ rule allows the inference from $!A,
-\Gamma \Sequent \Delta$ to $!A \land !B, \Gamma \Sequent \Delta$, and
-the $\RightR{\lif}$ allows the inference from $!A, \Gamma \Sequent
-\Delta, !B$ to $\Gamma \Sequent \Delta, !A \lif !B$, for any $\Gamma$,
-$\Delta$, $!A$, and~$!B$. (In particular, $\Gamma$ and~$\Delta$ may be
-empty.)
+的表达式，即由相继式符号~$\Sequent$ 分隔的一对语句序列。
+两个序列都可以是空的。
+相继式演算中的推导是由相继式构成的树，其中最顶端的相继式具有特殊形式（称为“初始相继式”或“公理”），其余每个相继式都由其正上方的相继式通过某条推理规则得出。
+推理规则要么处理相继式中的语句（在左边或右边添加、删除或重排它们），要么在规则的结论中引入一个复杂公式。
+例如，对于任意的 $\Gamma$、$\Delta$、$!A$ 和~$!B$，$\LeftR{\land}$ 规则允许从 $!A, \Gamma \Sequent \Delta$ 推出 $!A \land !B, \Gamma \Sequent \Delta$，而 $\RightR{\lif}$ 规则允许从 $!A, \Gamma \Sequent \Delta, !B$ 推出 $\Gamma \Sequent \Delta, !A \lif !B$。
+（特别地，$\Gamma$ 和~$\Delta$ 可以是空的。）
 
-The $\Proves$ relation based on the sequent calculus is defined as
-follows: $\Gamma \Proves !A$ iff there is some sequence $\Gamma_0$
-such that every $!A$ in $\Gamma_0$ is in~$\Gamma$ and there is a
-!!{derivation} with the sequent~$\Gamma_0 \Sequent !A$ at its root.
-$!A$ is a theorem in the sequent calculus if the sequent~$\Sequent !A$
-has !!a{derivation}. For instance, here is !!a{derivation} that shows
-that $\Proves (!A \land !B) \lif !A$:
+基于相继式演算的 $\Proves$ 关系定义如下：$\Gamma \Proves !A$ 当且仅当存在某个序列 $\Gamma_0$，使得 $\Gamma_0$ 中的每个 $!A$ 都在~$\Gamma$ 中，并且存在一个以相继式~$\Gamma_0 \Sequent !A$ 为根的推导。
+如果相继式~$\Sequent !A$ 有一个推导，则 $!A$ 是相继式演算中的定理。
+例如，下面的推导表明 $\Proves (!A \land !B) \lif !A$：
+
 \begin{prooftree}
   \Axiom$!A \fCenter !A$
   \RightLabel{\LeftR{\land}}
@@ -49,19 +36,12 @@ that $\Proves (!A \land !B) \lif !A$:
   \UnaryInf$\fCenter (!A \land !B) \lif !A$
 \end{prooftree}
 
-A set $\Gamma$ is inconsistent in the sequent calculus if there is
-!!a{derivation} of $\Gamma_0 \Sequent$ (where every $!A \in \Gamma_0$
-is in~$\Gamma$ and the right side of the sequent is empty).  Using the
-rule \RightR{\Weakening}, any !!{sentence} can be !!{derive}d from an
-inconsistent set.
+在相继式演算中，如果存在 $\Gamma_0 \Sequent$ 的推导（其中每个 $!A \in \Gamma_0$ 都在~$\Gamma$ 中，且相继式的右边为空），则集合 $\Gamma$ 是\emph{不一致的}。
+利用规则 \RightR{\Weakening}，任何语句都可以从一个不一致的集合中推导出来。
 
-The sequent calculus was invented in the 1930s by Gerhard Gentzen.
-Because of its systematic and symmetric design, it is a very useful
-formalism for developing a theory of !!{derivation}s. It is relatively
-easy to find !!{derivation}s in the sequent calculus, but these
-!!{derivation}s are often hard to read and their connection to proofs
-are sometimes not easy to see. It has proved to be a very elegant
-approach to !!{derivation} systems, however, and many logics have
-sequent calculus systems.
+相继式演算由 Gerhard Gentzen（格哈德·根岑）于20世纪30年代发明。
+由于其系统化且对称的设计，它是一种非常有用的形式化方法，可用于发展推导理论。
+在相继式演算中寻找推导相对容易，但这些推导往往难以阅读，且它们与证明的联系有时不易看出。
+然而，事实证明它是一种非常优雅的处理推导系统的方法，并且许多逻辑都具有相应的相继式演算系统。
 
 \end{document}

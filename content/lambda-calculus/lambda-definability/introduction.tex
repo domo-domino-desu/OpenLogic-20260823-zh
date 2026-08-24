@@ -7,77 +7,42 @@
 \begin{document}
 
 \olfileid{lam}{ldf}{int}
-\olsection{Introduction}
+\olsection{引言}
 
-At first glance, the lambda calculus is just a very abstract calculus
-of expressions that represent functions and applications of them to
-others. Nothing in the syntax of the lambda calculus suggests that
-these are functions of particular kinds of objects, in particular, the
-syntax includes no mention of natural numbers. Its basic
-operations---application and lambda abstractions---are operations that
-apply to any function, not just functions on natural
-numbers.
+乍看之下，λ-演算仅仅是一个极其抽象的表达式演算，其中的表达式表示函数以及函数对其他函数的应用。λ-演算的语法丝毫未暗示这些是作用于特定种类对象的函数；特别是，其语法完全没有提及自然数。它的基本操作——应用与λ抽象——是适用于任意函数的操作，而不仅限于自然数上的函数。
 
-Nevertheless, with some ingenuity, it is possible to define
-arithmetical functions, i.e., functions on the natural numbers, in the
-lambda calculus. To do this, we define, for each natural number~$n \in
-\Nat$, a special $\lambd$-term~$\num n$, the \emph{Church numeral}
-for~$n$. (Church numerals are named for Alonzo Church.)
+然而，只要稍加巧思，便有可能在λ-演算中定义算术函数，即自然数上的函数。为此，对于每个自然数~$n \in \Nat$，我们定义一个特殊的λ-项~$\num n$，即~$n$ 的\emph{丘奇数}。（丘奇数得名于 Alonzo Church（阿隆佐·丘奇）。）
 
 \begin{defn}
-  If $n \in \Nat$, the corresponding \emph{Church numeral} $\num{n}$
-  represents~$n$:
+  若 $n \in \Nat$，则对应的\emph{丘奇数} $\num{n}$ 表示~$n$：
   \[
     \num{n} \ident \lambd[fx][f^n(x)]
   \]
-  Here, $f^n(x)$ stands for the result of applying $f$ to~$x$ $n$
-  times. For example, $\num{0}$ is $\lambd[fx][x]$, and $\num{3}$ is
-  $\lambd[fx][f(f(f\,x))]$.
+  这里，$f^n(x)$ 表示将 $f$ 对~$x$ 应用 $n$ 次所得的结果。
+  例如，$\num{0}$ 是 $\lambd[fx][x]$，而 $\num{3}$ 是
+  $\lambd[fx][f(f(f\,x))]$。
 \end{defn}
   
-The Church numeral $\num n$ is encoded as a lambda term which
-represents a function accepting two arguments $f$ and $x$, and
-returns $f^n(x)$. Church numerals are evidently in normal form.
+丘奇数 $\num n$ 被编码为一个λ-项，该项表示一个接受两个参数 $f$ 和 $x$ 并返回 $f^n(x)$ 的函数。丘奇数显然均处于范式。
 
-A representation of natural numbers in the lambda calculus is only
-useful, of course, if we can compute with them.  Computing with Church
-numerals in the lambda calculus means applying a $\lambd$-term~$F$ to
-such a Church numeral, and reducing the combined term~$F\, \num n$ to
-a normal form. If it always reduces to a normal form, and the normal
-form is always a Church numeral~$\num m$, we can think of the output
-of the computation as being the number~$m$. We can then think of~$F$
-as defining a function $f\colon \Nat \to \Nat$, namely the function
-such that $f(n) = m$ iff $F\, \num n \red \num m$. Because of the
-Church--Rosser property, normal forms are unique if they exist. So if
-$F\, \num n \red \num m$, there can be no other term in normal form,
-in particular no other Church numeral, that $F \, \num n$ reduces to.
+当然，只有能在λ-演算中用自然数的这种表示进行计算，它才是有用的。在λ-演算中用丘奇数进行计算，是指将一个λ-项~$F$ 应用于这样一个丘奇数，并将组合项~$F\, \num n$ 归约为范式。如果该组合项总能归约为范式，且该范式总是一个丘奇数~$\num m$，我们就可以认为该计算的输出为数~$m$。于是，我们可以将~$F$ 视作定义了一个函数 $f\colon \Nat \to \Nat$，即满足 $f(n) = m$ 当且仅当 $F\, \num n \red \num m$ 的函数。根据 Church--Rosser 性质，范式若存在则唯一。因此，如果 $F\, \num n \red \num m$，$F \, \num n$ 便不可能归约到其他任何范式，尤其不可能归约到另一个丘奇数。
 
-Conversely, given a function $f\colon \Nat \to \Nat$,
-we can ask if there is a term $F$ that defines~$f$ in this way. In
-that case we say that $F$ \emph{!!{lambda define}s}~$f$, and that $f$ is
-!!{lambda definable}. We can generalize this to many-place and partial
-functions.
+反之，给定一个函数 $f\colon \Nat \to \Nat$，我们可以问是否存在一个λ-项 $F$ 以这种方式定义~$f$。若存在这样的项，我们便称 $F$ \emph{λ-定义}了~$f$，并称 $f$ 是λ-可定义的。我们可将此概念推广至多元函数与部分函数。
 
 \begin{defn}
-Suppose $f\colon \Nat^k \to \Nat$. We say that a lambda term~$F$
-\emph{!!{lambda define}s} $f$ if for all 
-$n_0$, \dots,~$n_{k-1}$,
+设 $f\colon \Nat^k \to \Nat$。我们称一个λ-项~$F$ \emph{λ-定义}了 $f$，如果对所有 
+$n_0$, \dots,~$n_{k-1}$，
 \[
 F \, \num{n_0} \, \num{n_1} \dots \num{n_{k-1}} \red \num{f(n_0, n_1, \dots,
   n_{k-1})}
 \]
-if $f(n_0, \dots, n_{k-1})$ is defined, and $F \, \num{n_0} \,
-\num{n_1} \dots \num{n_{k-1}}$ has no normal form otherwise.
+若 $f(n_0, \dots, n_{k-1})$ 有定义，否则 $F \, \num{n_0} \,
+\num{n_1} \dots \num{n_{k-1}}$ 无范式。
 \end{defn}
 
-A very simple example are the constant functions. The term $C_k \ident
-\lambd[x][\num{k}]$ !!{lambda define}s the function $c_k\colon \Nat \to
-\Nat$ such that $c(n) = k$. For $C_k \, \num n \ident
-(\lambd[x][\num{k}])\num n \redone \num{k}$ for any~$n$. The identity
-function is !!{lambda defined} by $\lambd[x][x]$. More complex
-functions are of course harder to define, and often require a lot of
-ingenuity. So it is perhaps surprising that every computable function
-is !!{lambda definable}. The converse is also true: if a function is
-!!{lambda definable}, it is computable.
+常数函数是很简单的例子。项 $C_k \ident
+\lambd[x][\num{k}]$ λ-定义了函数 $c_k\colon \Nat \to
+\Nat$，使得 $c(n) = k$。因为对任意~$n$，有 $C_k \, \num n \ident
+(\lambd[x][\num{k}])\num n \redone \num{k}$。恒等函数由 $\lambd[x][x]$ λ-定义。当然，更复杂的函数更难定义，通常需要极大的巧思。因此，每个可计算函数都是λ-可定义的，这或许令人惊讶。反之亦然：如果一个函数是λ-可定义的，则它是可计算的。
 
 \end{document}

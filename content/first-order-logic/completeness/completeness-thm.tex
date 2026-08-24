@@ -10,64 +10,51 @@
       {\olfileid{fol}{com}{cth}}
       {\olfileid{pl}{com}{cth}}
 
-\olsection{The Completeness Theorem}
+\olsection{完全性定理}
 
 \begin{explain}
-Let's combine our results: we arrive at the completeness theorem.
+综合上述结果，我们就得到了完全性定理。
 \end{explain}
 
-\begin{thm}[Completeness Theorem]
+\begin{thm}[完全性定理]
 \ollabel{thm:completeness}
-Let $\Gamma$ be a set of !!{sentence}s.  If $\Gamma$ is consistent, it
-is satisfiable.
+设 $\Gamma$ 为一个语句集。若 $\Gamma$ 是一致的，则它是可满足的。
 \end{thm}
 
 \begin{proof}
-Suppose $\Gamma$ is consistent.\iftag{FOL}{ By
-  \olref[hen]{lem:henkin}, there is a saturated consistent set
-  $\Gamma' \supseteq \Gamma$.}{} By \olref[lin]{lem:lindenbaum}, there
-is a $\Gamma^* \supseteq \iftag{FOL}{\Gamma'}{\Gamma}$ which is
-consistent and !!{complete}.
+假设 $\Gamma$ 是一致的。\iftag{FOL}{ 根据
+  \olref[hen]{lem:henkin}，存在一个饱和的一致集 $\Gamma' \supseteq \Gamma$。}{} 根据 \olref[lin]{lem:lindenbaum}，存在一个一致且完全的 $\Gamma^* \supseteq \iftag{FOL}{\Gamma'}{\Gamma}$。
 \iftag{FOL}{
-  Since $\Gamma' \subseteq \Gamma^*$, for each
-  !!{formula}~$!A(x)$, $\Gamma^*$ contains !!a{sentence} of the form
+  由于 $\Gamma' \subseteq \Gamma^*$，对于每个
+  公式~$!A(x)$，$\Gamma^*$ 都包含一个形如
   \iftag{prvEx}
         {$\lexists[x][!A(x)] \lif !A(c)$}
         {$\lnot\lforall[x][!A(x)] \lif \lnot !A(c)$}
-  and so $\Gamma^*$ is saturated.  If $\Gamma$
-  does not contain~$\eq$, then by}{By}
-\olref[mod]{lem:truth},
-$\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{!A}$ iff $!A \in
-\Gamma^*$.  From this it follows in particular that for all $!A \in
-\Gamma$, $\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{!A}$, so
-$\Gamma$ is satisfiable.\iftag{FOL}{
-  If $\Gamma$ does contain~$\eq$,
-  then by \olref[ide]{lem:truth}, for all !!{sentence}s~$!A$,
-  $\Sat{\equivclass{M}{\approx}}{!A}$ iff $!A \in \Gamma^*$.  In
-  particular, $\Sat{\equivclass{M}{\approx}}{!A}$ for all $!A \in
-  \Gamma$, so $\Gamma$ is satisfiable.}{}
+  的语句，因此 $\Gamma^*$ 是饱和的。如果 $\Gamma$
+  不包含~$\eq$，则由}{由}
+\olref[mod]{lem:truth} 可知，
+$\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{!A}$ 当且仅当 $!A \in
+\Gamma^*$。由此特别地，对于所有 $!A \in
+\Gamma$，$\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{!A}$，所以
+$\Gamma$ 是可满足的。\iftag{FOL}{
+  如果 $\Gamma$ 包含~$\eq$，
+  则根据 \olref[ide]{lem:truth}，对于所有语句~$!A$，
+  $\Sat{\equivclass{M}{\approx}}{!A}$ 当且仅当 $!A \in \Gamma^*$。特别地，
+  对于所有 $!A \in
+  \Gamma$，$\Sat{\equivclass{M}{\approx}}{!A}$，所以 $\Gamma$ 是可满足的。}{}
 \end{proof}
 
-\begin{cor}[Completeness Theorem, Second Version]
+\begin{cor}[完全性定理，第二形式]
 \ollabel{cor:completeness}
-For all $\Gamma$ and !!{sentence}s~$!A$: if $\Gamma \Entails !A$ then
-$\Gamma \Proves !A$.
+对于所有 $\Gamma$ 和语句~$!A$：若 $\Gamma \Entails !A$，则
+$\Gamma \Proves !A$。
 \end{cor}
 
 \begin{proof}
-Note that the $\Gamma$'s in \olref{cor:completeness} and
-\olref{thm:completeness} are universally quantified.  To make sure we
-do not confuse ourselves, let us restate \olref{thm:completeness}
-using a different variable: for any set of !!{sentence}s~$\Delta$, if
-$\Delta$ is consistent, it is satisfiable.  By contraposition, if
-$\Delta$ is not satisfiable, then $\Delta$ is inconsistent.  We will
-use this to prove the corollary.
+请注意 \olref{cor:completeness} 和 \olref{thm:completeness} 中的 $\Gamma$ 都是全称量化的。为避免混淆，我们用另一个变元来重述 \olref{thm:completeness}：对于任何语句集~$\Delta$，若 $\Delta$ 是一致的，则它是可满足的。其逆否命题为：若 $\Delta$ 不可满足，则 $\Delta$ 是不一致的。我们将据此证明该推论。
 
-Suppose that $\Gamma \Entails !A$.  Then $\Gamma \cup \{\lnot !A\}$ is
-unsatisfiable by \olref[syn][sem]{prop:entails-unsat}.  Taking $\Gamma
-\cup \{\lnot !A\}$ as our $\Delta$, the previous version of
-\olref{thm:completeness} gives us that $\Gamma \cup \{\lnot !A\}$ is
-inconsistent.  By
+假设 $\Gamma \Entails !A$。那么根据 \olref[syn][sem]{prop:entails-unsat}，$\Gamma \cup \{\lnot !A\}$ 是不可满足的。以 $\Gamma
+\cup \{\lnot !A\}$ 作为 $\Delta$，由 \olref{thm:completeness} 的前一形式可得 $\Gamma \cup \{\lnot !A\}$ 是不一致的。根据
 \iftag{FOL}{%
   \tagrefs{prfAX/{fol:axd:prv:prop:prov-incons},
     prfSC/{fol:seq:prv:prop:prov-incons},
@@ -76,49 +63,33 @@ inconsistent.  By
   \tagrefs{prfAX/{pl:axd:prv:prop:prov-incons},
     prfSC/{pl:seq:prv:prop:prov-incons},
     prfND/{pl:ntd:prv:prop:prov-incons},
-    prfTab/{pl:tab:prv:prop:prov-incons}}},
-$\Gamma \Proves !A$.
+    prfTab/{pl:tab:prv:prop:prov-incons}}}，
+有 $\Gamma \Proves !A$。
 \end{proof}
 
 \tagprob{FOL}
 \begin{prob}
-Use \olref[fol][com][cth]{cor:completeness} to prove
-\olref[fol][com][cth]{thm:completeness}, thus showing that the two
-formulations of the completeness theorem are equivalent.
+利用 \olref[fol][com][cth]{cor:completeness} 来证明
+\olref[fol][com][cth]{thm:completeness}，从而表明完全性定理的两种表述是等价的。
 \end{prob}
 \tagendprob
 
 \tagprob{notFOL}
 \begin{prob}
-Use \olref[pl][com][cth]{cor:completeness} to prove
-\olref[pl][com][cth]{thm:completeness}, thus showing that the two
-formulations of the completeness theorem are equivalent.
+利用 \olref[pl][com][cth]{cor:completeness} 来证明
+\olref[pl][com][cth]{thm:completeness}，从而表明完全性定理的两种表述是等价的。
 \end{prob}
 \tagendprob
 
 \tagprob{FOL}
 \begin{prob}
-In order for !!a{derivation} system to be complete, its rules must be
-strong enough to prove every unsatisfiable set inconsistent.  Which of
-the rules of !!{derivation} were necessary to prove completeness?  Are any
-of these rules not used anywhere in the proof?  In order to answer
-these questions, make a list or diagram that shows which of the rules
-of !!{derivation} were used in which results that lead up to the proof of
-\olref[fol][com][cth]{thm:completeness}.  Be sure to note any tacit
-uses of rules in these proofs.
+要使推导系统具有完全性，其规则必须足够强，以证明每个不可满足的集合都是不一致的。证明完全性时，哪些推导规则是必要的？是否有某些规则在整个证明中完全未被用到？为了回答这些问题，请列一个表或画一个图，说明在导向 \olref[fol][com][cth]{thm:completeness} 证明的各个结果中，分别使用了哪些推导规则。务必留意这些证明中对规则的隐含使用。
 \end{prob}
 \tagendprob
 
 \tagprob{notFOL}
 \begin{prob}
-In order for !!a{derivation} system to be complete, its rules must be
-strong enough to prove every unsatisfiable set inconsistent.  Which of
-the rules of !!{derivation} were necessary to prove completeness?  Are any
-of these rules not used anywhere in the proof?  In order to answer
-these questions, make a list or diagram that shows which of the rules
-of !!{derivation} were used in which results that lead up to the proof of
-\olref[pl][com][cth]{thm:completeness}.  Be sure to note any tacit
-uses of rules in these proofs.
+要使推导系统具有完全性，其规则必须足够强，以证明每个不可满足的集合都是不一致的。证明完全性时，哪些推导规则是必要的？是否有某些规则在整个证明中完全未被用到？为了回答这些问题，请列一个表或画一个图，说明在导向 \olref[pl][com][cth]{thm:completeness} 证明的各个结果中，分别使用了哪些推导规则。务必留意这些证明中对规则的隐含使用。
 \end{prob}
 \tagendprob
 

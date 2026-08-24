@@ -8,32 +8,30 @@
 
 \olfileid{inc}{tcp}{cdc}
 
-\olsection{\printtoken{S}{axiomatizable} Complete Theories are Decidable}
+\olsection{\printtoken{S}{axiomatizable}完备理论是可判定的}
 
-A theory is said to be {\em complete} if for every sentence $!A$,
-either $!A$ or $\lnot !A$ is provable.
+如果对于每个语句 $!A$，$!A$ 或 $\lnot !A$ 可证，则称理论是{\em 完备的}。
 
 \begin{lem}
-Suppose a theory $\Th{T}$ is complete and !!{axiomatizable}. Then
-$\Th{T}$ is decidable.
+设理论 $\Th{T}$ 是完备的且可公理化的，则 $\Th{T}$ 是可判定的。
 \end{lem}
 
 \begin{proof}
-Suppose $\Th{T}$ is complete and $A$ is a computable set of axioms.
-If $\Th{T}$ is inconsistent, it is clearly computable. (Algorithm: ``just
-say yes.'') So we can assume that $\Th{T}$ is also consistent.
+假设 $\Th{T}$ 是完备的，且 $A$ 是可计算的公理集合。
+如果 $\Th{T}$ 是不一致的，则它显然是可计算的。（算法：“直接回答是。”）
+因此我们可以假定 $\Th{T}$ 也是一致的。
 
-To decide whether or not a sentence $!A$ is in~$\Th{T}$,
-simultaneously search for !!a{derivation} of~$!A$ from~$\Th{T}$ and
-!!a{derivation} of~$\lnot !A$. Since $\Th{T}$ is complete, you are
-bound to find one or the other; and since $\Th{T}$ is consistent, if you
-find !!a{derivation} of~$\lnot !A$, there is no !!{derivation} of~$!A$.
+要判定语句 $!A$ 是否属于~$\Th{T}$，
+同时搜索~$!A$ 与~$\lnot !A$ 从~$\Th{T}$ 的推导。
+由于 $\Th{T}$ 是完备的，总能找到其中之一；
+又由于 $\Th{T}$ 是一致的，如果找到了~$\lnot !A$ 的推导，
+则不存在~$!A$ 的推导。
 
-Put in different terms, we already know that $\Th{T}$ is !!{c.e.}; so
-by a theorem we proved before, it suffices to show that the complement
-of~$\Th{T}$ is !!{c.e.} also. But !!a{formula}~$!A$ is in~$\Th{\bar
-T}$ if and only if $\lnot !A$ is in~$\Th{T}$; so $\Th{\bar T} \leq_m
-\Th{T}$.
+换句话说，我们已经知道 $\Th{T}$ 是 c.e.；
+所以根据之前证明过的一个定理，只需证明~$\Th{T}$ 的补集也是 c.e. 即可。
+而公式~$!A$ 属于~$\Th{\bar T}$ 当且仅当 $\lnot !A$ 属于~$\Th{T}$；
+因此 $\Th{\bar T} \leq_m
+\Th{T}$。
 \end{proof}
 
 \end{document}

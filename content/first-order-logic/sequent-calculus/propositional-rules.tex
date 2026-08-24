@@ -10,77 +10,77 @@
       {\olfileid{fol}{seq}{prl}}
       {\olfileid{pl}{seq}{prl}}
 
-\olsection{Propositional Rules}
+\olsection{命题规则}
 
-\subsection{Rules for $\lnot$}
+\subsection{$\lnot$ 规则}
 
 \begin{defish}
 \Axiom$ \Gamma \fCenter \Delta, !A $
-\RightLabel{\LeftR{\lnot}}
+\RightLabel{$\lnot$ 左规则}
 \UnaryInf$ \lnot !A, \Gamma \fCenter \Delta$
 \DisplayProof
 \hfill
 \Axiom$!A, \Gamma \fCenter \Delta$
-\RightLabel{\RightR{\lnot}}
+\RightLabel{$\lnot$ 右规则}
 \UnaryInf$ \Gamma \fCenter \Delta, \lnot !A $
 \DisplayProof
 \end{defish}
 
-\subsection{Rules for $\land$}
+\subsection{$\land$ 规则}
 
 \begin{defish}\noindent
 \begin{tabular}{l}
 \Axiom$ !A, \Gamma \fCenter \Delta$
-\RightLabel{\LeftR{\land}}
+\RightLabel{$\land$ 左规则}
 \UnaryInf$ !A \land !B, \Gamma \fCenter \Delta$
 \DisplayProof
 \\[3ex]
 \Axiom$!B, \Gamma \fCenter \Delta$
-\RightLabel{\LeftR{\land}}
+\RightLabel{$\land$ 左规则}
 \UnaryInf$!A \land !B, \Gamma \fCenter \Delta$
 \DisplayProof
 \end{tabular}
 \hfill
 \Axiom$\Gamma \fCenter \Delta, !A$
 \Axiom$ \Gamma \fCenter \Delta, !B$
-\RightLabel{\RightR{\land}}
+\RightLabel{$\land$ 右规则}
 \BinaryInf$ \Gamma \fCenter \Delta, !A \land !B $
 \DisplayProof
 \end{defish}
 
-\subsection{Rules for $\lor$}
+\subsection{$\lor$ 规则}
 
 \begin{defish}
 \Axiom$!A, \Gamma \fCenter \Delta$
 \Axiom$!B, \Gamma \fCenter \Delta$
-\RightLabel{\LeftR{\lor}}
+\RightLabel{$\lor$ 左规则}
 \BinaryInf$!A \lor !B, \Gamma \fCenter \Delta$
 \DisplayProof
 \hfill
 \begin{tabular}{r}
 \Axiom$\Gamma \fCenter \Delta, !A$
-\RightLabel{\RightR{\lor}}
+\RightLabel{$\lor$ 右规则}
 \UnaryInf$ \Gamma \fCenter \Delta, !A \lor !B$
 \DisplayProof
 \\[3ex]
 \Axiom$ \Gamma \fCenter \Delta, !B$
-\RightLabel{\RightR{\lor}}
+\RightLabel{$\lor$ 右规则}
 \UnaryInf$ \Gamma \fCenter \Delta, !A \lor !B$
 \DisplayProof
 \end{tabular}
 \end{defish}
 
-\subsection{Rules for $\lif$}
+\subsection{$\lif$ 规则}
 
 \begin{defish}
 \Axiom$ \Gamma \fCenter \Delta, !A$
 \Axiom$ !B, \Pi \fCenter \Lambda$
-\RightLabel{\LeftR{\lif}}
+\RightLabel{$\lif$ 左规则}
 \BinaryInf$ !A \lif !B, \Gamma, \Pi \fCenter \Delta, \Lambda$
 \DisplayProof
 \hfill
 \Axiom$ !A, \Gamma \fCenter \Delta, !B$
-\RightLabel{\RightR{\lif}}
+\RightLabel{$\lif$ 右规则}
 \UnaryInf$ \Gamma \fCenter \Delta, !A \lif !B $
 \DisplayProof
 \end{defish}

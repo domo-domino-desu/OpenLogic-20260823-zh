@@ -8,49 +8,36 @@
 
 \olfileid{sol}{met}{lst}
 
-\olsection{The L\"owenheim--Skolem Theorem Fails for Second-order Logic}
+\olsection{勒文海姆–斯科伦定理对二阶逻辑不成立}
 
 \begin{explain}
-The (Downward) L\"owenheim--Skolem Theorem states that every set of
-!!{sentence}s with an infinite model has !!a{enumerable} model.  It,
-too, is a consequence of the completeness theorem: the proof of
-completeness generates a model for any consistent set of
-!!{sentence}s, and that model is !!{enumerable}.  There is also an
-Upward L\"owenheim--Skolem Theorem, which guarantees that if a set of
-!!{sentence}s has !!a{denumerable} model it also has
-!!a{nonenumerable} model.  Both theorems fail in second-order logic.
+（向下）勒文海姆–斯科伦定理断言，每个有无限模型的语句集都有一个可数模型。
+它也是完备性定理的一个推论：完备性证明为任何一致的语句集构造出一个模型，而那个模型是可数的。
+还有一个向上勒文海姆–斯科伦定理，它保证如果一个语句集有一个可数无穷模型，那么它也有一个不可数模型。
+这两个定理在二阶逻辑中都不成立。
 \end{explain}
 
-
 \begin{thm}
-\ollabel{thm:sol-no-ls} The L\"owenheim--Skolem Theorem fails for
-second-order logic: There are !!{sentence}s with infinite models but
-no !!{enumerable} models.
+\ollabel{thm:sol-no-ls} 勒文海姆–斯科伦定理对二阶逻辑不成立：存在具有无限模型但无可数模型的语句。
 \end{thm}
 
 \begin{proof}
-Recall that 
+回想一下，
 \[
 \fn{Count} \ident \lexists[z][\lexists[u][\lforall[X][((X(z) \land
       \lforall[x][(X(x) \lif X(u(x)))]) \lif \lforall[x][X(x)])]]]
 \]
-is true in !!a{structure}~$\Struct{M}$ iff $\Domain{M}$ is
-!!{enumerable}, so $\lnot\fn{Count}$ is true in~$\Struct{M}$
-iff $\Domain{M}$ is !!{nonenumerable}.  There are
-such !!{structure}s---take any !!{nonenumerable} set as the
-!!{domain}, e.g., $\Pow{\Nat}$ or~$\Real$. So $\lnot \fn{Count}$ 
-has infinite models but no !!{enumerable} models.
+在一个结构~$\Struct{M}$ 中为真当且仅当 $\Domain{M}$ 是可数的，因此 $\lnot\fn{Count}$
+在~$\Struct{M}$ 中为真当且仅当 $\Domain{M}$ 是不可数的。存在这样的结构——取任意不可数集合作为论域，例如 $\Pow{\Nat}$ 或~$\Real$。所以 $\lnot \fn{Count}$
+有无限模型但没有可数模型。
 \end{proof}
 
 \begin{thm}
-There are !!{sentence}s with !!{denumerable} but no
-!!{nonenumerable} models.
+存在具有可数无穷模型但无不可数模型的语句。
 \end{thm}
 
 \begin{proof}
-$\fn{Count} \land \fn{Inf}$ is true in $\Nat$ but not in any
-  !!{structure}~$\Struct{M}$ with $\Domain{M}$ !!{nonenumerable}.
+$\fn{Count} \land \fn{Inf}$ 在 $\Nat$ 中为真，但在任何论域 $\Domain{M}$ 不可数的结构~$\Struct{M}$ 中不为真。
 \end{proof}
-
 
 \end{document}

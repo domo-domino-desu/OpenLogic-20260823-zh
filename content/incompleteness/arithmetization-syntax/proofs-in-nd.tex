@@ -7,61 +7,55 @@
 \begin{document}
 
 \olfileid{inc}{art}{pnd}
-\olsection{\usetoken{P}{derivation} in Natural Deduction}
+\olsection{自然演绎中的推导}
 
 \begin{explain}
-In order to arithmetize !!{derivation}s, we must represent
-!!{derivation}s as numbers. Since !!{derivation}s are trees of
-!!{formula}s where each inference carries one or two labels, a
-recursive representation is the most obvious approach: we represent a
-!!{derivation} as a tuple, the components of which are the number of
-immediate sub-!!{derivation}s leading to the premises of the last
-inference, the representations of these sub-!!{derivation}s, and the
-end-!!{formula}, the discharge label of the last inference, and a
-number indicating the type of the last inference.
+为了将推导算术化，我们需要把推导表示为数字。
+由于推导是以公式为节点、每个推理带有一个或两个标签的树，
+递归表示是最自然的方法：
+我们将一个推导表示为一个元组，其分量包括：
+得出最后一个推理之各前提的直接子推导的个数、
+这些子推导的表示、末端公式、最后一个推理的解除标签，
+以及一个指示最后一个推理类型的数字。
 \end{explain}
 
 \begin{defn}
-  If $\delta$ is !!a{derivation} in natural deduction, then $\Gn{\delta}$ is
-  defined inductively as follows:
+  若 $\delta$ 是自然演绎中的一个推导，则 $\Gn{\delta}$ 归纳定义如下：
   \begin{enumerate}
   \item 
-    If $\delta$ consists only of the assumption~$!A$, then $\Gn{\delta}$
-    is $\tuple{0, \Gn{!A}, n}$. The number~$n$ is~$0$ if it is an
-    !!{undischarged} assumption, and the numerical label otherwise.
+    若 $\delta$ 仅由假设~$!A$ 组成，则 $\Gn{\delta}$
+    是 $\tuple{0, \Gn{!A}, n}$。其中数~$n$：若该假设未被解除，则取~$0$；否则取其数值标签。
   \item 
-    If $\delta$ ends in an inference with zero, one, two, or three premises,
-    then $\Gn{\delta}$ is
+    若 $\delta$ 以一个有零个、一个、两个或三个前提的推理结束，
+    则 $\Gn{\delta}$ 分别为
     \begin{align*}
       & \tuple{0, \Gn{!A}, n, k}, \\
       & \tuple{1, \Gn{\delta_1}, \Gn{!A}, n, k}, \\
-      & \tuple{2, \Gn{\delta_1}, \Gn{\delta_2}, \Gn{!A}, n, k}, \text{ or}\\
+      & \tuple{2, \Gn{\delta_1}, \Gn{\delta_2}, \Gn{!A}, n, k}, \text{ 或}\\
       & \tuple{3, \Gn{\delta_1}, \Gn{\delta_2}, \Gn{\delta_3}, \Gn{!A}, n,
         k},
-    \end{align*}
-    respectively.  Here $\delta_1$, $\delta_2$, $\delta_3$ are the
-    sub-!!{derivation}s ending in the premise(s) of the last inference
-    in $\delta$, $!A$ is the conclusion of the last inference
-    in~$\delta$, $n$ is the discharge label of the last inference ($0$
-    if the inference does not discharge any assumptions), and $k$~is
-    given by the following table according to which rule was used in the
-    last inference.
+    \end{align*}。
+    这里 $\delta_1$、$\delta_2$、$\delta_3$ 是以 $\delta$
+    中最后一个推理的各前提为末端的子推导，
+    $!A$ 是 $\delta$ 中最后一个推理的结论，
+    $n$ 是最后一个推理的解除标签（若该推理不解除任何假设，则 $n=0$），
+    而 $k$ 则根据最后一个推理所用的规则，由下表给出：
   
     \begin{tabular}{lccccccc}
-      \text{Rule:} & \Intro{\land} & \Elim{\land} & \Intro{\lor} & \Elim{\lor} \\
-      $k$: & 1 & 2 & 3 & 4  \\[1.5ex]
-      \text{Rule:} &  \Intro{\lif} & \Elim{\lif} & \Intro{\lnot} & \Elim{\lnot} \\
-      $k$: & 5 & 6 & 7 & 8 \\[1.5ex]
-      \text{Rule:}  &  \FalseInt & \FalseCl & \Intro{\lforall} & \Elim{\lforall} \\
-      $k$: & 9 & 10 & 11 & 12 \\[1.5ex]
-      \text{Rule:} & \Intro{\lexists} & \Elim{\lexists} & \Intro{\eq} & \Elim{\eq} \\
-      $k$: & 13 & 14 & 15 & 16 
+      \text{规则：} & \Intro{\land} & \Elim{\land} & \Intro{\lor} & \Elim{\lor} \\
+      $k$： & 1 & 2 & 3 & 4  \\[1.5ex]
+      \text{规则：} &  \Intro{\lif} & \Elim{\lif} & \Intro{\lnot} & \Elim{\lnot} \\
+      $k$： & 5 & 6 & 7 & 8 \\[1.5ex]
+      \text{规则：}  &  \FalseInt & \FalseCl & \Intro{\lforall} & \Elim{\lforall} \\
+      $k$： & 9 & 10 & 11 & 12 \\[1.5ex]
+      \text{规则：} & \Intro{\lexists} & \Elim{\lexists} & \Intro{\eq} & \Elim{\eq} \\
+      $k$： & 13 & 14 & 15 & 16 
     \end{tabular}
   \end{enumerate}
 \end{defn}
 
 \begin{ex}
-  Consider the very simple !!{derivation}
+  考虑那个非常简单的推导：
   \begin{prooftree}
     \AxiomC{$\Discharge{!A \land !B}{1}$}
     \RightLabel{\Elim{\land}}
@@ -69,90 +63,64 @@ number indicating the type of the last inference.
     \DischargeRule{\Intro{\lif}}{1}
     \UnaryInfC{$(!A \land !B) \lif !A$}
   \end{prooftree}
-  The G\"odel number of the assumption would be $d_0 = \tuple{0,
-    \Gn{!A \land !B}, 1}$.  The G\"odel number of the !!{derivation}
-  ending in the conclusion of~$\Elim{\land}$ would be $d_1 = \tuple{1,
-     d_0, \Gn{!A}, 0, 2}$ ($1$ since $\Elim{\land}$ has one premise,
-  the G\"odel number of conclusion~$!A$, $0$ because no assumption is
-  discharged, and $2$ is the number coding $\Elim{\land}$). The G\"odel
-  number of the entire !!{derivation} then is
+  该假设的哥德尔数将是 $d_0 = \tuple{0,
+    \Gn{!A \land !B}, 1}$。
+  以~$\Elim{\land}$ 的结论为末端的子推导的哥德尔数将是 $d_1 = \tuple{1,
+     d_0, \Gn{!A}, 0, 2}$（其中 $1$ 是因为 $\Elim{\land}$ 有一个前提，
+  接着是结论 $!A$ 的哥德尔数，$0$ 表示没有解除任何假设，而 $2$ 是编码 $\Elim{\land}$ 的数字）。
+  于是整个推导的哥德尔数是
   $\tuple{1, d_1, \Gn{((!A \land !B) \lif
-      !A)}, 1, 5}$, i.e.,
+      !A)}, 1, 5}$，即
   \[
   \tuple{1, \tuple{1, \tuple{0, \Gn{(!A \land !B)}, 1}, \Gn{!A}, 0, 2},
     \Gn{((!A \land !B) \lif !A)}, 1, 5}.
-  \]
+  \]。
 \end{ex}
 
 \begin{explain}
-Having settled on a representation of !!{derivation}s, we must also
-show that we can manipulate G\"odel numbers of such !!{derivation}s
-primitive recursively, and express their essential properties and
-relations.  Some operations are simple: e.g., given a G\"odel
-number~$d$ of !!a{derivation}, $\fn{EndFmla}(d) = (d)_{(d)_0+1}$
-gives us the G\"odel number of its end-!!{formula},
-$\fn{DischargeLabel}(d) = (d)_{(d)_0 + 2}$ gives us the discharge
-label and $\fn{LastRule}(d) = (d)_{(d)_0 + 3}$ the number indicating
-the type of the last inference.  Some are much harder.  We'll at least
-sketch how to do this.  The goal is to show that the relation
-``$\delta$ is !!a{derivation} of~$!A$ from~$\Gamma$'' is a primitive
-recursive relation of the G\"odel numbers of $\delta$ and~$!A$.
+在确定了推导的一种表示方法之后，我们还必须证明可以原始递归地操作此类推导的哥德尔数，并表达其本质属性与关系。
+有些运算很简单：例如，给定一个推导的哥德尔数~$d$，$\fn{EndFmla}(d) = (d)_{(d)_0+1}$
+给出其末端公式的哥德尔数，
+$\fn{DischargeLabel}(d) = (d)_{(d)_0 + 2}$ 给出其解除标签，
+而 $\fn{LastRule}(d) = (d)_{(d)_0 + 3}$ 给出指示最后一个推理类型的数字。
+有些运算则要困难得多。我们至少会概述如何做到这一点。目标是证明“$\delta$ 是从 $\Gamma$ 到~$!A$ 的推导”这一关系（关于 $\delta$ 和~$!A$ 的哥德尔数）是原始递归的。
 \end{explain}
 
 \begin{prop}
-  The following relations are primitive recursive:
+  下列关系是原始递归的：
   \begin{enumerate}
-  \item $!A$ occurs as an assumption in~$\delta$ with label~$n$.
-  \item All assumptions in $\delta$ with label~$n$ are of the form~$!A$
-    (i.e., we can !!{discharge} the assumption~$!A$ using label~$n$
-    in~$\delta$).
+  \item $!A$ 作为标签为~$n$ 的假设出现在~$\delta$ 中。
+  \item $\delta$ 中标签为~$n$ 的所有假设都是~$!A$ 的形式（即，可以在~$\delta$ 中用标签~$n$ 解除假设~$!A$）。
   \end{enumerate}
 \end{prop}
 
 \begin{proof}
-  We have to show that the corresponding relations between G\"odel
-  numbers of !!{formula}s and G\"odel numbers of !!{derivation}s are
-  primitive recursive.
+  我们必须证明，公式的哥德尔数与推导的哥德尔数之间的相应关系是原始递归的。
   \begin{enumerate}
-  \item We want to show that $\fn{Assum}(x, d, n)$, which holds if $x$
-    is the G\"odel number of an assumption of the !!{derivation} with
-    G\"odel number~$d$ labelled~$n$, is primitive recursive.  This is
-    the case if the !!{derivation} with G\"odel number~$\tuple{0, x,
-      n}$ is a sub-!!{derivation} of~$d$. Note that the way we code
-    !!{derivation}s is a special case of the coding of trees introduced in
-    \olref[cmp][rec][tre]{sec}, so the primitive recursive function
-    $\fn{SubtreeSeq}(d)$ gives a sequence of G\"odel numbers of all
-    sub-!!{derivation}s of~$d$ (of length at most $d$). So we can
-    define
+  \item 我们想证明 $\fn{Assum}(x, d, n)$ 是原始递归的，该关系成立当且仅当 $x$
+    是哥德尔数为~$d$ 的推导中标签为~$n$ 的某个假设的哥德尔数。当哥德尔数为 $\tuple{0, x,
+      n}$ 的推导是 $d$ 的一个子推导时，便是这种情况。注意，我们对推导的编码方式是
+    \olref[cmp][rec][tre]{sec} 中引入的树的编码的一个特例，因此原始递归函数
+    $\fn{SubtreeSeq}(d)$ 给出了 $d$ 的所有子推导的哥德尔数序列（长度至多为 $d$）。所以我们可以定义
     \[
     \fn{Assum}(x, d, n) \defiff \bexists{i<d}{(\fn{SubtreeSeq}(d))_i =
       \tuple{0, x, n}}.
     \]
-  \item We want to show that $\fn{Discharge}(x, d, n)$, which holds if
-    all assumptions with label~$n$ in the !!{derivation} with G\"odel
-    number~$d$ all are the !!{formula} with G\"odel number~$x$.  But
-    this relation holds iff $\bforall{y<d}{(\fn{Assum}(y, d, n) \lif y
-      = x)}$.
+  \item 我们想证明 $\fn{Discharge}(x, d, n)$ 是原始递归的，该关系成立当且仅当
+    哥德尔数为~$d$ 的推导中所有标签为~$n$ 的假设都是哥德尔数为~$x$ 的公式。但这个关系成立当且仅当 $\bforall{y<d}{(\fn{Assum}(y, d, n) \lif y
+      = x)}$。
   \end{enumerate}
 \end{proof}
 
 \begin{prop}
   \ollabel{prop:followsby}
-  The property $\fn{Correct}(d)$ which holds iff the last inference in
-  the !!{derivation}~$\delta$ with G\"odel number~$d$ is correct, is
-  primitive recursive.
+  性质 $\fn{Correct}(d)$ 是原始递归的，它成立当且仅当哥德尔数为 $d$ 的推导 $\delta$ 的最后一个推理是正确的。
 \end{prop}
 
 \begin{proof}
-  Here we have to show that for each rule of inference~$R$ the
-  relation $\fn{FollowsBy}_R(d)$ is primitive recursive, where
-  $\fn{FollowsBy}_R(d)$ holds iff $d$ is the G\"odel number of
-  !!{derivation}~$\delta$, and the end-!!{formula} of~$\delta$ follows
-  by a correct application of~$R$ from the immediate
-  sub-!!{derivation}s of~$\delta$.
+  此处我们需要证明，对每条推理规则 $R$，关系 $\fn{FollowsBy}_R(d)$ 都是原始递归的，其中 $\fn{FollowsBy}_R(d)$ 成立当且仅当 $d$ 是某个推导 $\delta$ 的哥德尔数，且 $\delta$ 的末端公式是由 $\delta$ 的各直接子推导通过对规则 $R$ 的正确应用得出的。
 
-  A simple case is that of the \Intro{\land} rule. If $\delta$ ends in
-  a correct $\Intro{\land}$ inference, it looks like this:
+  一个简单的例子是 $\Intro{\land}$ 规则。如果 $\delta$ 以一个正确的 $\Intro{\land}$ 推理结束，它看起来是这样的：
   \begin{prooftree}
     \AxiomC{}
     \RightLabel{$\delta_1$}
@@ -165,10 +133,8 @@ recursive relation of the G\"odel numbers of $\delta$ and~$!A$.
     \RightLabel{\Intro\land}
     \BinaryInfC{$!A \land !B$}
   \end{prooftree}
-  Then the G\"odel number~$d$ of~$\delta$ is $\tuple{2, d_1, d_2,
-    \Gn{(!A \land !B)}, 0, k}$ where $\fn{EndFmla}(d_1) = \Gn{!A}$,
-  $\fn{EndFmla}(d_2) = \Gn{!B}$, $n=0$, and $k=1$. So we can define
-  $\fn{FollowsBy}_{\Intro\land}(d)$ as
+  那么 $\delta$ 的哥德尔数 $d$ 是 $\tuple{2, d_1, d_2,
+    \Gn{(!A \land !B)}, 0, k}$，其中 $\fn{EndFmla}(d_1) = \Gn{!A}$，$\fn{EndFmla}(d_2) = \Gn{!B}$，$n=0$，且 $k=1$。因此我们可以将 $\fn{FollowsBy}_{\Intro\land}(d)$ 定义为
   \begin{multline*}
     (d)_0 = 2 \land \fn{DischargeLabel}(d) = 0 \land \fn{LastRule}(d) = 1 \land {}\\
     \fn{EndFmla}(d) = {}\\
@@ -176,10 +142,7 @@ recursive relation of the G\"odel numbers of $\delta$ and~$!A$.
     \concat \fn{EndFmla}((d)_2) \concat \Gn{)}.
   \end{multline*}
 
-  Another simple example is the $\Intro\eq$ rule. This has no premises,
-  so $(d)_0 = 0$, like assumptions. It also has no discharge label,
-  i.e., $n=0$.  However, $!A$ must be of the form $\eq[t][t]$, for a
-  closed term~$t$. Here, a primitive recursive definition is
+  另一个简单的例子是 $\Intro\eq$ 规则。该规则没有前提，所以 $(d)_0 = 0$，与假设的情况类似。它也没有解除标签，即 $n=0$。然而，$!A$ 必须具有 $\eq[t][t]$ 的形式，其中 $t$ 是闭项。这里，一个原始递归的定义是
   \begin{multline*}
     (d)_0 = 0 \land \fn{DischargeLabel}(d) = 0 \land {}\\
     \bexists{t<d}{(\fn{ClTerm}(t) \land 
@@ -187,25 +150,17 @@ recursive relation of the G\"odel numbers of $\delta$ and~$!A$.
       \Gn{{\eq}(} \concat t \concat \Gn{,} \concat t \concat \Gn{)})}.
   \end{multline*}
 
-  For a more complicated example, $\fn{FollowsBy}_{\Intro{\lif}}(d)$
-  holds iff the end-!!{formula} of~$\delta$ is of the form $(!A \lif
-  !B)$, where the end-!!{formula} of $\delta_1$ is~$!B$, and any
-  assumption in~$\delta$ labelled~$n$ is of the form~$!A$.  We can
-  express this primitive recursively by
+  对于一个更复杂的例子，$\fn{FollowsBy}_{\Intro{\lif}}(d)$ 成立当且仅当 $\delta$ 的末端公式具有 $(!A \lif
+  !B)$ 的形式，其中 $\delta_1$ 的末端公式是 $!B$，且 $\delta$ 中任何标签为 $n$ 的假设都具有 $!A$ 的形式。我们可以用原始递归的方式将其表达为
   \begin{multline*}
     (d)_0 = 1 \land {}\\
     \bexists{a<d}{(\fn{Discharge}(a, (d)_1, \fn{DischargeLabel}(d)) \land {}}\\
       \fn{EndFmla}(d) = (\Gn{(} \concat a \concat \Gn{\lif}
       \concat \fn{EndFmla}((d)_1) \concat \Gn{)}))
   \end{multline*}
-  (Think of $a$ as the G\"odel number of~$!A$).
+  （可将 $a$ 视为 $!A$ 的哥德尔数）。
 
-  For another example, consider \Intro{\lexists}.  Here, the last
-  inference in~$\delta$ is correct iff there is !!a{formula}~$!A$, a
-  closed term~$t$ and !!a{variable}~$x$ such that $\Subst{!A}{t}{x}$
-  is the end-!!{formula} of the !!{derivation}~$\delta_1$ and
-  $\lexists[x][!A]$ is the conclusion of the last inference.  So,
-  $\fn{FollowsBy}_{\Intro{\lexists}}(d)$ holds iff
+  再考虑另一个例子，$\Intro{\lexists}$ 规则。这里，$\delta$ 的最后一个推理是正确的，当且仅当存在公式 $!A$、闭项 $t$ 和变元 $x$，使得 $\Subst{!A}{t}{x}$ 是推导 $\delta_1$ 的末端公式，并且 $\lexists[x][!A]$ 是最后一个推理的结论。所以，$\fn{FollowsBy}_{\Intro{\lexists}}(d)$ 成立当且仅当
   \begin{multline*}
     (d)_0 = 1 \land \fn{DischargeLabel}(d) = 0 \land {} \\
     \bexists{a < d}{\bexists{x<d}{\bexists{t<d}{
@@ -214,7 +169,7 @@ recursive relation of the G\"odel numbers of $\delta$ and~$!A$.
     \fn{EndFmla}(d) = (\Gn{\lexists} \concat x \concat a)).
   \end{multline*}
 
-  We then define $\fn{Correct}(d)$ as
+  然后我们将 $\fn{Correct}(d)$ 定义为
   \begin{multline*}
     \fn{Sent}(\fn{EndFmla}(d)) \land {}\\
     (\fn{LastRule}(d) = 1 \land
@@ -222,77 +177,52 @@ recursive relation of the G\"odel numbers of $\delta$ and~$!A$.
     (\fn{LastRule}(d) = 16 \land \fn{FollowsBy}_{\Elim\eq}(d)) \lor {}\\
     \bexists{n<d}{\bexists{x<d}{(d = \tuple{0, x, n})}}.
   \end{multline*}
-  The first line ensures that the end-!!{formula} of~$d$ is a
-  sentence. The last line covers the case where $d$ is just an
-  assumption.
+  第一行确保 $d$ 的末端公式是一个语句。最后一行涵盖了 $d$ 仅仅是一个假设的情况。
 \end{proof}
 
 \begin{prob}
-  Define the following properties as in
-  \olref[inc][art][pnd]{prop:followsby}:
+  仿照 \olref[inc][art][pnd]{prop:followsby} 定义以下性质：
   \begin{enumerate}
-  \item $\fn{FollowsBy}_{\Elim{\lif}}(d)$,
-  \item $\fn{FollowsBy}_{\Elim{\eq}}(d)$,
-  \item $\fn{FollowsBy}_{\Elim{\lor}}(d)$,
-  \item $\fn{FollowsBy}_{\Intro{\lforall}}(d)$.
+  \item $\fn{FollowsBy}_{\Elim{\lif}}(d)$，
+  \item $\fn{FollowsBy}_{\Elim{\eq}}(d)$，
+  \item $\fn{FollowsBy}_{\Elim{\lor}}(d)$，
+  \item $\fn{FollowsBy}_{\Intro{\lforall}}(d)$。
   \end{enumerate}
-  For the last one, you will have to also show that you can test
-  primitive recursively if the last inference of the
-  !!{derivation} with G\"odel number~$d$ satisfies the eigenvariable
-  condition, i.e., the eigenvariable~$a$ of the $\Intro{\lforall}$
-  inference occurs neither in the end-!!{formula} of~$d$ nor in an
-  open assumption of~$d$. You may use the primitive recursive
-  predicate $\fn{OpenAssum}$ from
-  \olref[inc][art][pnd]{prop:openassum} for this.
+  对于最后一个，你还需要证明可以原始递归地测试哥德尔数为 $d$ 的推导的最后一个推理是否满足本征变元条件，即 $\Intro{\lforall}$ 推理的本征变元 $a$ 既不出现在 $d$ 的末端公式中，也不出现在 $d$ 的任何未解除假设中。为此，你可以使用来自
+  \olref[inc][art][pnd]{prop:openassum} 的原始递归谓词 $\fn{OpenAssum}$。
 \end{prob}
 
 \begin{prop}
   \ollabel{prop:deriv}
-  The relation $\fn{Deriv}(d)$ which holds if $d$ is the G\"odel
-  number of a correct !!{derivation}~$\delta$, is primitive recursive.
+  关系 $\fn{Deriv}(d)$ 是原始递归的，它成立当且仅当 $d$ 是某个正确推导 $\delta$ 的哥德尔数。
 \end{prop}
 
 \begin{proof}
-  !!^a{derivation}~$\delta$ is correct if every one of its inferences
-  is a correct application of a rule, i.e., if every one of its
-  sub-!!{derivation}s ends in a correct inference. So, $\fn{Deriv}(d)$
-  iff
+  一个推导 $\delta$ 是正确的，当且仅当它的每一个推理都是对某条规则的正确应用，即当且仅当它的每一个子推导都以一个正确的推理结束。因此，$\fn{Deriv}(d)$ 成立当且仅当
   \[
   \bforall{i<\len{\fn{SubtreeSeq}(d)}}{\fn{Correct}((\fn{SubtreeSeq}(d))_i)}
   \]
 \end{proof}
 
 \begin{prop}
-  \ollabel{prop:openassum} The relation $\fn{OpenAssum}(z, d)$ that
-  holds if $z$ is the G\"odel number of !!a{undischarged} assumption~$!A$
-  of the !!{derivation}~$\delta$ with G\"odel number~$d$, is primitive
-  recursive.
+  \ollabel{prop:openassum} 关系 $\fn{OpenAssum}(z, d)$ 是原始递归的，它成立当且仅当 $z$ 是哥德尔数为 $d$ 的推导 $\delta$ 中某个未解除的假设 $!A$ 的哥德尔数。
 \end{prop}
 
 \begin{proof}
-  An occurrence of an assumption is !!{discharged} if it occurs with
-  label~$n$ in a sub-!!{derivation} of~$\delta$ that ends in a rule
-  with discharge label~$n$. So $!A$ is !!a{undischarged} assumption
-  of~$\delta$ if at least one of its occurrences is not !!{discharged}
-  in~$\delta$. We must be careful: $\delta$ may contain both
-  !!{discharged} and !!{undischarged} occurrences of~$!A$.
+  如果假设的一次出现在~$\delta$ 的某个子推导中带有标号~$n$，且该子推导结束于一条带有解除标号~$n$ 的规则，则该出现是\emph{解除}的。
+  因此，如果 $!A$ 在~$\delta$ 中的至少一次出现未被解除，$!A$ 就是~$\delta$ 的一个\emph{未解除假设}。
+  这里必须小心：$\delta$ 可能同时包含 $!A$ 被解除的出现和未被解除的出现。
 
-  Consider a sequence $\delta_0$, \dots, $\delta_k$ where $\delta_0 =
-  \delta$, $\delta_k$ is the assumption $\Discharge{!A}{n}$
-  (for some~$n$), and $\delta_{i+1}$ is an immediate sub-!!{derivation}
-  of~$\delta_i$. If such a sequence exists in which no $\delta_i$
-  ends in an inference with discharge label~$n$, then $!A$ is
-  !!a{undischarged} assumption of~$\delta$.
+  考虑序列 $\delta_0$, \dots, $\delta_k$，其中 $\delta_0 = \delta$，$\delta_k$ 是假设 $\Discharge{!A}{n}$（对某个~$n$），且 $\delta_{i+1}$ 是 $\delta_i$ 的一个直接子推导。
+  如果存在这样一个序列，其中没有任何 $\delta_i$ 结束于带有解除标号~$n$ 的推理，那么 $!A$ 就是 $\delta$ 的一个未解除假设。
 
-  The primitive recursive function $\fn{SubtreeSeq}(d)$ provides us
-  with a sequence of G\"odel numbers of all sub-!!{derivation}s
-  of~$\delta$. Any sequence of G\"odel numbers of sub-!!{derivation}s
-  of~$\delta$ is a subsequence of it. Being a subsequence of is a
-  primitive recursive relation: $\fn{Subseq}(s, s')$ holds iff
-  $\bforall{i<\len{s}}{\lexists[j<\len{s'}][(s)_i = (s')_j]}$. Being an
-  immediate sub-!!{derivation} is as well: $\fn{Subderiv}(d, d')$ iff
-  $\bexists{j<(d')_0}{d = (d')_j}$. So we can define
-  $\fn{OpenAssum}(z, d)$ by
+  原始递归函数 $\fn{SubtreeSeq}(d)$ 给出了~$\delta$ 的所有子推导的哥德尔编码序列。
+  $\delta$ 的任何子推导的哥德尔编码序列都是该序列的子序列。
+  “作为……的子序列”是一个原始递归关系：$\fn{Subseq}(s, s')$ 成立当且仅当
+  $\bforall{i<\len{s}}{\lexists[j<\len{s'}][(s)_i = (s')_j]}$。
+  “作为直接子推导”也是原始递归的：$\fn{Subderiv}(d, d')$ 成立当且仅当
+  $\bexists{j<(d')_0}{d = (d')_j}$。
+  因此我们可以如下定义 $\fn{OpenAssum}(z, d)$：
   \begin{multline*}
     \bexists{s<\fn{SubtreeSeq}(d)}{(\fn{Subseq}(s, \fn{SubtreeSeq}(d))
       \land (s)_0 = d \land {}} \\
@@ -304,25 +234,17 @@ recursive relation of the G\"odel numbers of $\delta$ and~$!A$.
 
 \begin{prop}
   \ollabel{prop:prf-prim-rec}
-  Suppose $\Gamma$ is a primitive recursive set of !!{sentence}s.
-  Then the relation $\Prf[\Gamma](x, y)$ expressing ``$x$ is the code
-  of !!a{derivation}~$\delta$ of $!A$ from !!{undischarged}
-  assumptions in~$\Gamma$ and $y$ is the G\"odel number of~$!A$'' is
-  primitive recursive.
+  设 $\Gamma$ 是一个原始递归的语句集。
+  那么，表达“$x$ 是从 $\Gamma$ 中的未解除假设推出 $!A$ 的推导~$\delta$ 的编码，且 $y$ 是 $!A$ 的哥德尔编码”的关系 $\Prf[\Gamma](x, y)$ 是原始递归的。
 \end{prop}
 
 \begin{proof}
-  Suppose ``$y \in \Gamma$'' is given by the primitive recursive
-  predicate~$R_\Gamma(y)$.  We have to show that $\Prf[\Gamma](x, y)$
-  which holds iff $y$ is the G\"odel number of a sentence~$!A$ and
-  $x$~is the code of a natural deduction !!{derivation} with end
-  !!{formula}~$!A$ and all !!{undischarged} assumptions in~$\Gamma$ is
-  primitive recursive.
+  设“$y \in \Gamma$”由原始递归谓词~$R_\Gamma(y)$ 给出。
+  我们需要证明 $\Prf[\Gamma](x, y)$ 是原始递归的。
+  该关系成立当且仅当 $y$ 是某个语句~$!A$ 的哥德尔编码，且 $x$ 是以 $!A$ 为结束公式、所有未解除假设都在 $\Gamma$ 中的自然演绎推导的编码。
 
-  By \olref{prop:deriv}, the property $\fn{Deriv}(x)$ which holds iff
-  $x$ is the G\"odel number of a correct !!{derivation}~$\delta$ in
-  natural deduction is primitive recursive. Thus we can define
-  $\Prf[\Gamma](x, y)$ by
+  根据 \olref{prop:deriv}，性质 $\fn{Deriv}(x)$（当且仅当 $x$ 是一个正确的自然演绎推导~$\delta$ 的哥德尔编码时成立）是原始递归的。
+  因此，我们可以如下定义 $\Prf[\Gamma](x, y)$：
   \begin{align*}
     \Prf[\Gamma](x, y) \defiff {}
     & \fn{Deriv}(x) \land \fn{EndFmla}(x) = y \land {} \\

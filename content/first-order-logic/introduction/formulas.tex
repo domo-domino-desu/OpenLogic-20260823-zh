@@ -1,7 +1,3 @@
-% Part: first-order-logic
-% Chapter: introduction
-% Section: formulas
-
 \documentclass[../../../include/open-logic-section]{subfiles}
 
 \begin{document}
@@ -10,80 +6,35 @@
 
 \section{\usetoken{P}{formula}}
 
-Here is the approach we will use to rigorously specify !!{sentence}s
-of first-order logic and to deal with the issues arising from the use
-of !!{variable}s. We first define a \emph{different} set of
-expressions: !!{formula}s. Once we've done that, we can consider the
-role !!{variable}s play in them---and on the basis of some other
-ideas, namely those of ``free'' and ``bound'' !!{variable}s, we can
-define what !!a{sentence} is (namely, !!a{formula} without free
-!!{variable}s). We do this not just because it makes the definition of
-``!!{sentence}'' more manageable, but also because it will be crucial
-to the way we define the semantic notion of satisfaction.
+% Part: first-order-logic
+% Chapter: introduction
+% Section: formulas
 
-Let's define ``!!{formula}'' for a simple first-order language, one
-containing only a single !!{predicate}~$\Obj P$ and a single
-!!{constant}~$\Obj a$, and only the logical symbols $\lnot$, $\land$,
-and~$\lexists$. Our full definitions will be much more general:
-we'll allow infinitely many !!{predicate}s and !!{constant}s. In fact,
-we will also consider !!{function}s which can be combined with
-!!{constant}s and !!{variable}s to form ``terms.'' For now, $\Obj a$
-and the variables will be our only terms.  We do need infinitely many
-!!{variable}s.  We'll officially use the symbols $\Obj v_0$, $\Obj
-v_1$, \dots, as variables.
+下面是我们用来严格定义一阶逻辑的语句并处理使用变元所产生问题的方法。我们首先定义另一种表达式：公式。在此基础上，我们考察变元在公式中所起的作用——并借助其他一些概念，即“自由”变元和“约束”变元的概念，来定义什么是语句（即不含自由变元的公式）。这样做不仅使得“语句”的定义更易于处理，而且对我们定义“满足”这一语义概念的方式也至关重要。
+
+我们先为一个简单的一阶语言定义“公式”，该语言仅包含一个谓词符号~$\Obj P$ 和一个常项符号~$\Obj a$，且仅含逻辑符号 $\lnot$、$\land$ 和~$\lexists$。完整的定义将更具一般性：我们将允许无穷多个谓词符号和常项符号。事实上，我们还会考虑函数符号，它们可以与常项符号和变元组合形成“项”。目前，$\Obj a$ 和变元是我们仅有的项。我们需要无穷多个变元。我们将正式以符号 $\Obj v_0$、$\Obj v_1$、……作为变元。
 
 \begin{defn}
-The set of \emph{!!{formula}s}~$\Frm$ is defined as follows:
+\emph{公式}的集合~$\Frm$ 定义如下：
 \begin{enumerate}
-\item\ollabel{fmls-atom} $\Atom{\Obj P}{\Obj a}$ and $\Atom{\Obj
-  P}{\Obj v_i}$ are !!{formula}s ($i \in \Nat$).
+\item\ollabel{fmls-atom} $\Atom{\Obj P}{\Obj a}$ 和 $\Atom{\Obj
+  P}{\Obj v_i}$ 是公式（$i \in \Nat$）。
 
-\tagitem{prvNot}{\ollabel{fmls-not}If $!A$ is !!a{formula}, then $\lnot !A$ is
-  !!{formula}.}{}
+\tagitem{prvNot}{\ollabel{fmls-not}若 $!A$ 是公式，则 $\lnot !A$ 是公式。}{}
 
-\tagitem{prvAnd}{If $!A$ and $!B$ are !!{formula}s, then $(!A \land
-  !B)$ is !!a{formula}.}{}
+\tagitem{prvAnd}{若 $!A$ 和 $!B$ 是公式，则 $(!A \land !B)$ 是公式。}{}
 
-\tagitem{prvEx}{\ollabel{fmls-ex}If $!A$ is !!a{formula} and $x$ is !!a{variable},
-  then $\lexists[x][!A]$ is !!a{formula}.}{}
+\tagitem{prvEx}{\ollabel{fmls-ex}若 $!A$ 是公式且 $x$ 是变元，则 $\lexists[x][!A]$ 是公式。}{}
 
-\tagitem{limitClause}{\ollabel{fmls-limit}Nothing else is !!a{formula}.}{}
+\tagitem{limitClause}{\ollabel{fmls-limit}除此之外皆非公式。}{}
 \end{enumerate}
 \end{defn}
 
-\olref{fmls-atom} tells us that $\Atom{\Obj P}{\Obj a}$ and
-$\Atom{\Obj P}{\Obj v_i}$ are !!{formula}s, for any $i \in
-\Nat$. These are the so-called \emph{atomic} !!{formula}s. They give
-us something to start from.  The other clauses give us ways of forming
-new !!{formula}s from ones we have already formed. So for instance, by
-\olref{fmls-not}, we get that $\lnot \Atom{\Obj P}{\Obj v_2}$ is
-!!a{formula}, since $\Atom{\Obj P}{\Obj v_2}$ is already !!a{formula}
-by \olref{fmls-atom}. Then, by \olref{fmls-ex}, we get that
-$\lexists[\Obj v_2][\lnot \Atom{\Obj P}{\Obj v_2}]$ is another
-!!{formula}, and so on.  \olref{fmls-limit} tells us that \emph{only}
-strings we can form in this way count as !!{formula}s. In particular,
-$\lexists[\Obj v_0][\Atom{\Obj P}{\Obj a}]$ and $\lexists[\Obj
-  v_0][\lexists[\Obj v_0][\Atom{\Obj P}{\Obj a}]]$ \emph{do} count as
-!!{formula}s, and $(\lnot \Atom{\Obj P}{\Obj a})$ does not, because of
-the extraneous outer parentheses.
+\olref{fmls-atom} 表明，对于任意 $i \in \Nat$，$\Atom{\Obj P}{\Obj a}$ 和 $\Atom{\Obj P}{\Obj v_i}$ 都是公式。这些就是所谓的\emph{原子}公式。它们提供了起点。其他子句则给出了从已形成的公式构造新公式的方法。例如，根据 \olref{fmls-not}，可知 $\lnot \Atom{\Obj P}{\Obj v_2}$ 是公式，因为根据 \olref{fmls-atom}，$\Atom{\Obj P}{\Obj v_2}$ 已是公式。进而，根据 \olref{fmls-ex}，可知 $\lexists[\Obj v_2][\lnot \Atom{\Obj P}{\Obj v_2}]$ 也是公式，依此类推。\olref{fmls-limit} 表明，\emph{只有}能以这种方式形成的符号串才算作公式。特别地，$\lexists[\Obj v_0][\Atom{\Obj P}{\Obj a}]$ 和 $\lexists[\Obj
+  v_0][\lexists[\Obj v_0][\Atom{\Obj P}{\Obj a}]]$ \emph{确实}算作公式，而 $(\lnot \Atom{\Obj P}{\Obj a})$ 则不算，因为它含有多余的外层括号。
 
-This way of defining !!{formula}s is called an \emph{inductive
-definition}, and it allows us to prove things about !!{formula}s using
-a version of proof by induction called \emph{structural induction}.
-These are discussed in a general way in \olref[mth][ind][idf]{sec} and
-\olref[mth][ind][sti]{sec}, which you should review before delving
-into the proofs later on. Basically, the idea is that if you want to
-give a proof that something is true for all !!{formula}s, you show
-first that it is true for the atomic !!{formula}s, and then that
-\emph{if} it's true for any !!{formula}~$!A$ (and~$!B$), it's
-\emph{also} true for $\lnot !A$, $(!A \land !B)$, and
-$\lexists[x][!A]$. For instance, this proves that it's true for
-$\lexists[\Obj v_2][\lnot \Atom{\Obj P}{\Obj v_2}]$: from the first
-part you know that it's true for the atomic !!{formula}~$\Atom{\Obj
-P}{\Obj v_2}$. Then you get that it's true for $\lnot \Atom{\Obj
-P}{\Obj v_2}$ by the second part, and then again that it's true for
-$\lexists[\Obj v_2][\lnot \Atom{\Obj P}{\Obj v_2}]$ itself. Since all
-!!{formula}s are inductively generated from atomic !!{formula}s, this
-works for any of them.
+这种定义公式的方法被称为\emph{归纳定义}，它使我们能够使用一种称为\emph{结构归纳法}的归纳证明方法来证明关于公式的性质。这些内容在 \olref[mth][ind][idf]{sec} 和 \olref[mth][ind][sti]{sec} 中有一般性讨论，在深入学习后面的证明之前应当先予以复习。基本思想是，若要证明某个性质对所有公式都成立，首先要证明它对原子公式成立，然后证明\emph{如果}它对任意公式~$!A$（及~$!B$）成立，那么它对 $\lnot !A$、$(!A \land !B)$ 和 $\lexists[x][!A]$ 也成立。例如，由此可证该性质对 $\lexists[\Obj v_2][\lnot \Atom{\Obj P}{\Obj v_2}]$ 成立：由第一部分可知它对原子公式~$\Atom{\Obj
+P}{\Obj v_2}$ 成立。然后由第二部分可得它对 $\lnot \Atom{\Obj
+P}{\Obj v_2}$ 成立，进而再次应用第二部分可得它对 $\lexists[\Obj v_2][\lnot \Atom{\Obj P}{\Obj v_2}]$ 本身也成立。由于所有公式都是从原子公式归纳生成的，因此该方法适用于任何公式。
 
 \end{document}

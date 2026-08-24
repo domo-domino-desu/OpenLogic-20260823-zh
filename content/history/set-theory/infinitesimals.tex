@@ -3,16 +3,11 @@
 \begin{document}
 
 \olfileid{his}{set}{infinitesimals}
-\olsection{Infinitesimals and Differentiation}
+\olsection{无穷小与微分}
 
-Newton and Leibniz discovered the calculus (independently) at the end
-of the 17th century. A particularly important application of the
-calculus was \emph{differentiation}. Roughly speaking, differentiation
-aims to give a notion of the ``rate of change'', or gradient, of a
-function at a point. 
+Newton 和 Leibniz 在 17 世纪末各自独立地发现了微积分。微积分的一个特别重要的应用是\emph{微分}。粗略地说，微分旨在给出函数在某一点上的“变化率”或梯度的概念。
 
-Here is a vivid way to illustrate the idea.  Consider the function
-$f(x) = \nicefrac{x^2}{4} + \nicefrac{1}{2}$, depicted in black below:
+我们可以用一种直观的方式来解释这个想法。考虑函数 $f(x) = \nicefrac{x^2}{4} + \nicefrac{1}{2}$，如下图中黑色曲线所示：
 \begin{center}
 	\begin{tikzpicture}[scale=1]
 	\draw[->, gray] (-1,0) -- (4.25,0) node[right] {$x$};
@@ -30,65 +25,31 @@ $f(x) = \nicefrac{x^2}{4} + \nicefrac{1}{2}$, depicted in black below:
 	\draw[thick] (-1,.75) parabola bend (0,0.5) (4,4.5);
 	\end{tikzpicture}
 \end{center}
-Suppose we want to find the gradient of the function at $c =
-\nicefrac{1}{2}$. We start by drawing a triangle whose hypotenuse
-approximates the gradient at that point, perhaps the red triangle
-above. When $\beta$ is the base length of our triangle, its height is
-$f(\nicefrac{1}{2}+\beta) - f(\nicefrac{1}{2})$, so that the gradient
-of the hypotenuse is:
+假设我们想求函数在 $c = \nicefrac{1}{2}$ 处的梯度。我们可以先画一个斜边近似于该点梯度的三角形，比如上图中的红色三角形。当三角形的底边长度为 $\beta$ 时，它的高是 $f(\nicefrac{1}{2}+\beta) - f(\nicefrac{1}{2})$，因此斜边的梯度为：
 \[
 \frac{f(\nicefrac{1}{2}+\beta) - f(\nicefrac{1}{2})}{\beta}.
 \]
-So the gradient of our !!{colorC} triangle, with base length~$3$, is
-exactly~$1$. The hypotenuse of a smaller triangle, the !!{colorD}
-triangle with base length~$2$, gives a better approximation; its
-gradient is $\nicefrac{3}{4}$. A yet smaller triangle, the !!{colorE}
-triangle with base length~$1$, gives a yet better approximation; with
-gradient $\nicefrac{1}{2}$. 
+因此，底边长为~$3$ 的红色三角形，其梯度恰好为~$1$。底边长为~$2$ 的蓝色三角形更小，其斜边给出了一个更好的近似；它的梯度是 $\nicefrac{3}{4}$。底边长为~$1$ 的绿色三角形更小，给出的近似更优；其梯度为 $\nicefrac{1}{2}$。
 
-Ever-smaller triangles give us ever-better approximations. So we might
-say something like this: the hypotenuse of a triangle with an
-\emph{infinitesimal} base length gives us the gradient at $c =
-\nicefrac{1}{2}$ itself. In this way, we would obtain a formula for
-the (first) derivative of the function $f$ at the point $c$:
+越来越小的三角形给出越来越好的近似。因此我们或许可以这样说：底边长度为\emph{无穷小}的三角形的斜边，给出了 $c = \nicefrac{1}{2}$ 处的梯度本身。这样一来，我们将得到函数 $f$ 在点 $c$ 处的（一阶）导数公式：
 \[
-{f'}(c) = \frac{f(c+\beta) - f(c)}{\beta} \text{ where $\beta$ is infinitesimal.}
+{f'}(c) = \frac{f(c+\beta) - f(c)}{\beta} \text{ 其中 $\beta$ 是无穷小。}
 \]
-And, roughly, this is what Newton and Leibniz said. 
+而这大致就是 Newton 和 Leibniz 所说的。
 
-However, since they have said this, we must ask them: what is an
-\emph{infinitesimal}? A serious dilemma arises. If $\beta = 0$, then
-$f'$ is ill-defined, for it involves dividing by $0$. But if $\beta >
-0$, then we just get an \emph{approximation} to the gradient, and not
-the gradient itself. 
+然而，既然他们这样说了，我们就必须问他们：\emph{无穷小}究竟是什么？这引发了一个严重的两难困境。如果 $\beta = 0$，那么 $f'$ 就无法定义了，因为它涉及除以 $0$。但如果 $\beta > 0$，那么我们得到的只是对梯度的\emph{近似}，而非梯度本身。
 
-This is not an anachronistic concern. Here is Berkeley, criticizing
-Newton's followers:
+这并非一种时代错置的担忧。以下是 Berkeley 对 Newton 追随者的批评：
 \begin{quote}
-I admit that signs may be made to denote either any thing or nothing:
-and consequently that in the original notation $c + \beta$, $\beta$
-might have signified either an increment or nothing. But then which of
-these soever you make it signify, you must argue consistently with
-such its signification, and not proceed upon a double meaning: Which
-to do were a manifest sophism. (\citealt[\S{}XIII]{Berkeley1734},
-variables changed to match preceding text)
+我承认，符号可以被用来指代任何事物或者空无：因此，在最初的记法 $c + \beta$ 中，$\beta$ 可能意指一个增量，也可能意指空无。但无论你让它表示哪一种，你的论证就必须与该含义保持一致，而不能基于双重含义推进：那样做显然是诡辩。(\citealt[\S{}XIII]{Berkeley1734}，变量已改为与上文匹配)
 \end{quote}
-To defend the infinitesimal calculus against Berkeley, one might reply
-that the talk of ``infinitesimals'' is merely figurative. One might
-say that, so long as we take a \emph{really small} triangle, we will
-get a \emph{good enough} approximation to the tangent. Berkeley had a
-reply to this too: whilst that might be good enough for engineering,
-it undermines the \emph{status} of mathematics,  for
+为了替无穷小微积分辩护以回应 Berkeley，有人可能会辩称，关于“无穷小”的说法仅仅是一种比喻。或许会说，只要取一个\emph{极小}的三角形，就能得到切线的一个\emph{足够好}的近似。Berkeley 对此也有反驳：虽然这对工程学来说可能足够好，但它损害了数学的\emph{地位}，因为
 \begin{quote}
-we are told that \emph{in rebus mathematicis errores qu\`{a}m minimi
-non sunt contemnendi}. [In the case of mathematics, the smallest
-errors are not to be neglected.] \citep[\S{}IX]{Berkeley1734}
+我们被告知：\emph{in rebus mathematicis errores qu\`{a}m minimi non sunt contemnendi}. [在数学中，最微小的误差也不容忽视。] \citep[\S{}IX]{Berkeley1734}
 \end{quote}
-The italicised passage is a near-verbatim quote from Newton's own
-\emph{Quadrature of Curves} (1704). 
 
-Berkeley's philosophical objections are deeply incisive. Nevertheless,
-the calculus was a massively successful enterprise, and mathematicians
-continued to use it without falling into error.
+这段斜体字几乎是逐字引用自 Newton 本人的《曲线求积术》(1704)。
+
+Berkeley 的哲学反驳极为犀利。尽管如此，微积分是一项极为成功的事业，数学家们在继续使用它的过程中并未因此出错。
 
 \end{document}

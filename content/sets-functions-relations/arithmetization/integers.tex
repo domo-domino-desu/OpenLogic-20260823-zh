@@ -1,76 +1,70 @@
-% Part: sets-functions-relations
-% Chapter: arithmetization
-% Section: From N to Z
-
 \documentclass[../../../include/open-logic-section]{subfiles}
 
 
 \begin{document}
 
 \olfileid{sfr}{arith}{int}
-\olsection{From $\Nat$ to $\Int$}
+\olsection{从 $\Nat$ 到 $\Int$}
 
-Here are two basic realisations:
-	\begin{enumerate}
-		\item Every integer can be written in the form $n - m$, with $n, m \in\Nat$.
-		\item The information encoded in an expression $n - m$ can equally be encoded by an ordered pair $\tuple{n, m}$.
+我们有两个基本认识：
+% Part: sets-functions-relations
+% Chapter: arithmetization
+% Section: From N to Z
+
+\begin{enumerate}
+		\item 每个整数都可以写成 $n - m$ 的形式，其中 $n, m \in\Nat$。
+		\item 表达式 $n - m$ 所编码的信息，同样可以用一个有序对 $\tuple{n, m}$ 来编码。
 	\end{enumerate}
-We already know that the ordered pairs of natural numbers are the !!{element}s of $\Nat^2$. And we are assuming that we understand $\Nat$. So here is a na\"{i}ve suggestion, based on the two realisations we have had: \emph{let's treat integers as ordered pairs of natural numbers}.
 
-In fact, this suggestion is too na\"{i}ve. Obviously we want it to be the case that $0- 2 = 4 - 6$. But evidently $\tuple{0, 2 }\neq \tuple{4, 6}$. So we cannot simply say that $\Nat^2$ is the set of integers. 
+我们已经知道，自然数的有序对是 $\Nat^2$ 的元素。且我们假定对 $\Nat$ 已有充分理解。于是，基于上述两个认识，这里有一个朴素的建议：\emph{让我们把整数看作自然数的有序对}。
 
-Generalising from the preceding problem, what we want is the following:
+事实上，这个建议过于朴素。显然，我们希望 $0 - 2 = 4 - 6$ 成立，但显然 $\tuple{0, 2 }\neq \tuple{4, 6}$。因此我们不能简单地说 $\Nat^2$ 就是整数的集合。
+
+将前述问题加以推广，我们需要的是以下性质：
 	$$a - b = c - d \text{ iff }a + d = c + b$$
-(It should be obvious that this is how integers are \emph{meant} to behave: just add $b$ and $d$ to both sides.) And the easy way to guarantee this behaviour is just to define an equivalence relation between ordered pairs, $\Intequiv$, as follows:
-$$\tuple{ a, b } \Intequiv \tuple{c, d}\text{ iff }a + d = c + b$$  
-We now have to show that this is an equivalence relation.
-\begin{prop} $\Intequiv$ is an equivalence relation.
+（显然，这就是整数所\emph{应有}的性质：只需将 $b$ 和 $d$ 同时加到等式两边即可。）而要保证这种性质，一个简单的方法就是在有序对之间定义一个等价关系 $\Intequiv$，如下：
+$$\tuple{ a, b } \Intequiv \tuple{c, d}\text{ iff }a + d = c + b$$
+现在我们必须证明这是一个等价关系。
+
+\begin{prop}
+$\Intequiv$ 是一个等价关系。
 \end{prop}
-	\begin{proof}
-	We must show that $\Intequiv$ is reflexive, symmetric, and transitive. 
-	
-	\emph{Reflexivity:} Evidently $\tuple{a, b} \Intequiv \tuple{a, b}$, since $a + b = b + a$.
-	
-	\emph{Symmetry:} Suppose $\tuple{a, b} \Intequiv \tuple{c, d}$, so $a + d = c + b$. Then $c + b = a + d$, so that $\tuple{c, d} \Intequiv \tuple{a, b}$.
-	
-	\emph{Transitivity:} Suppose $\tuple{a, b} \Intequiv \tuple{c, d}\Intequiv \tuple{m, n}$. So $a + d = c + b$ and $c + n = m + d$. So $a + d + c + n = c + b + m + d$, and so $a + n = m + b$. Hence $\tuple{a, b } \Intequiv \tuple{m, n}$.		
+
+\begin{proof}
+我们必须证明 $\Intequiv$ 是自反的、对称的且传递的。
+
+\emph{自反性：} 显然 $\tuple{a, b} \Intequiv \tuple{a, b}$，因为 $a + b = b + a$。
+
+\emph{对称性：} 设 $\tuple{a, b} \Intequiv \tuple{c, d}$，于是有 $a + d = c + b$。则 $c + b = a + d$，因此 $\tuple{c, d} \Intequiv \tuple{a, b}$。
+
+\emph{传递性：} 设 $\tuple{a, b} \Intequiv \tuple{c, d}\Intequiv \tuple{m, n}$。于是 $a + d = c + b$ 且 $c + n = m + d$。所以 $a + d + c + n = c + b + m + d$，于是 $a + n = m + b$。因此 $\tuple{a, b } \Intequiv \tuple{m, n}$。
 \end{proof}
 
-Now we can use this equivalence relation to take equivalence classes:
+现在我们可以用这个等价关系来取等价类：
 
 \begin{defn}
-		The integers are the equivalence classes, under $\Intequiv$, of  ordered pairs of natural numbers; that is, $\Int = \equivclass{\Nat^2}{\Intequiv}$.
+    整数就是自然数有序对在 $\Intequiv$ 下的等价类；即，$\Int = \equivclass{\Nat^2}{\Intequiv}$。
 \end{defn}
 
-Now, one might have plenty of different \emph{philosophical} reactions to this stipulative definition. Before we consider those reactions, though, it is worth continuing with some of the technicalities. 
+对此规定性定义，可能会有许多不同的\emph{哲学}反应。不过，在考虑这些反应之前，值得先继续处理一些技术细节。
 
-Having said what the integers are, we shall need to define basic functions and relations on them. Let's write $\equivrep{m, n}{\Intequiv}$ for the equivalence class under $\Intequiv$ with $\tuple{m, n}$ as !!a{element}.\footnote{Note: using the notation introduced in \olref[sfr][rel][eqv]{def:equivalenceclass}, we would have written $\equivrep{\tuple{m,n}}{\Intequiv}$ for the same thing. But that's just a bit harder to read.} That is: 
-	$$\equivrep{m, n}{\Intequiv} = \Setabs{\tuple{a, b} \in \Nat^2}{\tuple{a, b}\Intequiv \tuple{m, n}}$$
-So now we offer some definitions:
-	\begin{align*}
+既然已经定义了整数是什么，我们就需要定义其上的基本函数和关系。让我们用 $\equivrep{m, n}{\Intequiv}$ 来表示在 $\Intequiv$ 下包含元素 $\tuple{m, n}$ 的等价类。\footnote{注：如果使用 \olref[sfr][rel][eqv]{def:equivalenceclass} 引入的记号，同样的东西我们会写成 $\equivrep{\tuple{m,n}}{\Intequiv}$。但那样读起来稍微费劲一些。}也就是说：
+    $$\equivrep{m, n}{\Intequiv} = \Setabs{\tuple{a, b} \in \Nat^2}{\tuple{a, b}\Intequiv \tuple{m, n}}$$
+现在，我们给出一些定义：
+    \begin{align*}
 		\equivrep{a, b}{\Intequiv} + \equivrep{c, d}{\Intequiv} &= \equivrep{a + c, b + d}{\Intequiv}\\
 		\equivrep{a, b}{\Intequiv} \times \equivrep{c, d}{\Intequiv} &= \equivrep{a c + b  d, a  d + b c}{\Intequiv}\\
-		\equivrep{a, b}{\Intequiv} \leq \equivrep{c, d}{\Intequiv} &\text{ iff }a + d \leq b + c
-	\end{align*}	
-(As is common, I'm using `$ab$' stand for `$(a \times b)$', just to make the axioms easier to read.) Now, we need to make sure that these definitions behave as they \emph{ought} to. Spelling out what this means, and checking it through, is rather laborious; we relegate the details to \olref[check]{sec}. But the short point is: everything works! 
+		\equivrep{a, b}{\Intequiv} \leq \equivrep{c, d}{\Intequiv} &\text{ 当且仅当 }a + d \leq b + c
+	\end{align*}
+（按照惯例，我用 `$ab$' 表示 `$(a \times b)$'，仅是为了让这些定义式更易读。）现在，我们需要确保这些定义具有它们\emph{应有}的性质。详细阐明这意味着什么并进行验证相当繁琐；我们把细节放到 \olref[check]{sec}。但简而言之就是：一切正常！
 
-One final thing remains. We have constructed the integers using
-natural numbers. But this will mean that the natural numbers \emph{are
-not themselves integers}. We will return to the philosophical
-significance of this in \olref[ref]{sec}. On a purely technical front,
-though, we will need some way to be able to treat natural numbers
-\emph{as} integers. The idea is quite easy: for each $n \in \Nat$, we
-just stipulate that $n_\Int = \equivrep{n, 0}{\Intequiv}$. We need to
-confirm that this definition is well-behaved, i.e., that for any $m, n
-\in \Nat$
+还有最后一件事。我们用自然数构造了整数。但这意味着自然数\emph{本身并不是整数}。我们将在 \olref[ref]{sec} 回到这一点的哲学意义。不过，纯粹从技术角度看，我们需要某种方式能够将自然数\emph{当作}整数来处理。想法非常简单：对于每个 $n \in \Nat$，我们直接规定 $n_\Int = \equivrep{n, 0}{\Intequiv}$。我们需要确认这个定义是表现良好的；也就是说，对于任意 $m, n \in \Nat$，
 \begin{align*}
 	(m + n)_\Int &= m_\Int + n_\Int\\
 	(m \times n)_\Int &= m_\Int \times n_\Int\\
 	m \leq n &\liff m_\Int \leq n_\Int
 \end{align*}
-But this is all pretty straightforward. For example, to show that the
-second of these obtains, we can simply help ourselves to the behaviour
-of the natural numbers and reason as follows:
+但这都相当简单。例如，为了证明其中第二个条件成立，我们可以直接利用自然数的性质进行如下推理：
 %\begin{proof}
 %	Helping myself to the behaviour of the natural numbers, evidently:
 	\begin{align*}
@@ -81,8 +75,9 @@ of the natural numbers and reason as follows:
 		&= m_\Int \times n_\Int
 	\end{align*}
 %\end{proof}
-We leave it as an exercise to confirm that the other two conditions hold.
+我们将其余两个条件成立的验证留作练习。
+
 \begin{prob}
-	Show that $(m + n)_\Int = m_\Int + n_\Int$ and $m \leq n \liff m_\Int \leq n_\Int$, for any $m, n \in \Nat$.
+	证明对任意 $m, n \in \Nat$，有 $(m + n)_\Int = m_\Int + n_\Int$ 和 $m \leq n \liff m_\Int \leq n_\Int$。
 \end{prob}
 \end{document}

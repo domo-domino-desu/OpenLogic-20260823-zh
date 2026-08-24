@@ -8,196 +8,164 @@
 
 \olfileid{fol}{syn}{unq}
 
-\olsection{Unique Readability}
+\olsection{唯一可读性}
 
 \begin{explain}
-The way we defined !!{formula}s guarantees that every !!{formula} has
-a \emph{unique reading}, i.e., there is essentially only one way of
-constructing it according to our formation rules for !!{formula}s and
-only one way of ``interpreting'' it.  If this were not so, we would
-have ambiguous !!{formula}s, i.e., !!{formula}s that have more than
-one reading or intepretation---and that is clearly something we want
-to avoid.  But more importantly, without this property, most of the
-definitions and proofs we are going to give will not go through.
+公式的定义方式保证了每个公式都有\emph{唯一的读法}；
+也就是说，根据公式的形成规则，本质上只有唯一一种构造它的方式，
+也只有唯一一种“解释”它的方式。
+若非如此，我们就会得到有歧义的公式，
+即具有不止一种读法或解释的公式——这显然是我们想要避免的。
+但更重要的是，若没有这个性质，我们将要给出的大多数定义和证明都无法进行。
 
-Perhaps the best way to make this clear is to see what would happen if
-we had given bad rules for forming !!{formula}s that would not
-guarantee unique readability.  For instance, we could have forgotten
-the parentheses in the formation rules for connectives, e.g., we might
-have allowed this:
+或许阐明这一点最好的办法，是看看如果我们给出了不当的公式形成规则、
+从而不能保证唯一可读性，会发生什么。
+例如，我们可能忘了在联结词的形成规则中加括号，
+比如，也许会允许这样：
 \begin{quote}
-If $!A$ and $!B$ are !!{formula}s, then so is $!A \lif !B$.
+如果 $!A$ 和 $!B$ 是公式，那么 $!A \lif !B$ 也是公式。
 \end{quote}
-Starting from an atomic formula $!D$, this would allow us to form $!D
-\lif !D$. From this, together with $!D$, we would get $!D \lif !D
-\lif !D$.  But there are two ways to do this:
+从一个原子公式 $!D$ 出发，这将允许我们形成 $!D \lif !D$。
+结合 $!D$，由此又可得到 $!D \lif !D \lif !D$。
+但有两种方式可以做到这一点：
 \begin{enumerate}
-\item We take $!D$ to be $!A$ and $!D \lif !D$ to be $!B$.
-\item We take $!A$ to be $!D \lif !D$ and $!B$ is~$!D$.  
+\item 令 $!A$ 为 $!D$，令 $!B$ 为 $!D \lif !D$。
+\item 令 $!A$ 为 $!D \lif !D$，令 $!B$ 为~$!D$。
 \end{enumerate}
-Correspondingly, there are two ways to
-``read'' the !!{formula}~$!D \lif !D \lif !D$. It is of the form $!B
-\lif !C$ where $!B$ is $!D$ and $!C$ is $!D \lif !D$, but \emph{it is
-  also} of the form $!B \lif !C$ with $!B$ being $!D \lif !D$ and $!C$
-being~$!D$.
+相应地，公式~$!D \lif !D \lif !D$ 就有两种“读法”。
+它既可看作形式为 $!B \lif !C$（其中 $!B$ 为 $!D$，$!C$ 为 $!D \lif !D$），
+\emph{也可}看作形式为 $!B \lif !C$（其中 $!B$ 为 $!D \lif !D$，$!C$ 为~$!D$）的公式。
 
-If this happens, our definitions will not always work. For instance,
-when we define the !!{main operator} of a formula, we say: in a
-formula of the form $!B \lif !C$, the !!{main operator} is the
-indicated occurrence of~$\lif$. But if we can match the formula $!D
-\lif !D \lif !D$ with $!B \lif !C$ in the two different ways mentioned
-above, then in one case we get the first occurrence of $\lif$ as the
-!!{main operator}, and in the second case the second occurrence.  But
-we intend the !!{main operator} to be a \emph{function} of the
-!!{formula}, i.e., every !!{formula} must have exactly one !!{main
-  operator} occurrence.
+如果出现这种情况，我们的定义有时就会失效。
+例如，在定义公式的主联结词时，我们会说：
+在形如 $!B \lif !C$ 的公式中，主联结词是指明的那一个~$\lif$ 的出现。
+但如果我们能用上述两种不同方式将公式 $!D \lif !D \lif !D$ 与 $!B \lif !C$ 匹配，
+那么在第一种情况下，第一个 $\lif$ 的出现是主联结词，
+而在第二种情况下，第二个 $\lif$ 的出现是主联结词。
+然而，我们希望主联结词是公式的\emph{函数}，
+即每个公式必须有且仅有一个主联结词出现。
 \end{explain}
 
 \begin{lem}
-The number of left and right parentheses in !!a{formula}~$!A$ are
-equal.
+公式~$!A$ 中左括号和右括号的数量相等。
 \end{lem}
 
 \begin{proof}
-We prove this by induction on the way $!A$ is constructed. This
-requires two things: (a) We have to prove first that all atomic
-formulas have the property in question (the induction basis). (b) Then
-we have to prove that when we construct new formulas out of given
-formulas, the new formulas have the property provided the old ones do.
+我们通过对 $!A$ 的构造方式进行归纳来证明这一点。
+这需要两步： 首先证明所有原子公式都具有所述性质（归纳基础）；
+然后证明，在由已知公式构造新公式时，若已知公式满足该性质，则新公式也满足。
 
-Let $l(!A)$ be the number of left parentheses, and $r(!A)$ the number
-of right parentheses in~$!A$, and $l(t)$ and $r(t)$ similarly the
-number of left and right parentheses in a term~$t$.
+令 $l(!A)$ 为 $!A$ 中左括号的数量，$r(!A)$ 为 $!A$ 中右括号的数量；
+$l(t)$ 与 $r(t)$ 分别表示项~$t$ 中左、右括号的数量。
 
 \begin{prob}
-    Prove that for any term~$t$, $l(t) = r(t)$.
+    证明对任意项~$t$，$l(t) = r(t)$。
 \end{prob}
 
 \begin{enumerate}
-\tagitem{prvFalse}{\indcase{!A}{\lfalse}{$\indfrm$ has $0$ left and $0$
-    right parentheses.}}{}
+\tagitem{prvFalse}{\indcase{!A}{\lfalse}{$\indfrm$ 的左括号数和右括号数均为 $0$。}}{}
 
-\tagitem{prvTrue}{\indcase{!A}{\ltrue}{$\indfrm$ has $0$ left and $0$
-    right parentheses.}}{}
+\tagitem{prvTrue}{\indcase{!A}{\ltrue}{$\indfrm$ 的左括号数和右括号数均为 $0$。}}{}
 
 \item \indcase{!A}{\Atom{R}{t_1,\dots,t_n}}{$l(\indfrm) = 1 + l(t_1) +
-  \dots + l(t_n) = 1 + r(t_1) + \dots + r(t_n) = r(\indfrm)$. Here we
-  make use of the fact, left as an exercise, that $l(t) = r(t)$ for
-  any term~$t$.}
+  \dots + l(t_n) = 1 + r(t_1) + \dots + r(t_n) = r(\indfrm)$。这里我们利用了这一事实（留作练习）：对任意项~$t$，$l(t) = r(t)$。}
 
 \item \indcase{!A}{\eq[t_1][t_2]}{$l(\indfrm) = l(t_1) + l(t_2) =
-  r(t_1) + r(t_2) = r(\indfrm)$.}
+  r(t_1) + r(t_2) = r(\indfrm)$。}
 
-\tagitem{prvNot}{\indcase{!A}{\lnot !B}{By induction hypothesis,
-    $l(!B) = r(!B)$. Thus $l(\indfrm) = l(!B) = r(!B) =
-    r(\indfrm)$.}}{}
+\tagitem{prvNot}{\indcase{!A}{\lnot !B}{由归纳假设，$l(!B) = r(!B)$。因此，$l(\indfrm) = l(!B) = r(!B) =
+    r(\indfrm)$。}}{}
 
-\item \indcase{!A}{(!B \ast !C)}{By induction hypothesis, $l(!B) =
-  r(!B)$ and $l(!C) = r(!C)$.  Thus $l(\indfrm) = 1 + l(!B) + l(!C) =
-  1 + r(!B) + r(!C) = r(\indfrm)$.}
+\item \indcase{!A}{(!B \ast !C)}{由归纳假设，$l(!B) =
+  r(!B)$ 且 $l(!C) = r(!C)$。因此，$l(\indfrm) = 1 + l(!B) + l(!C) =
+  1 + r(!B) + r(!C) = r(\indfrm)$。}
 
-\tagitem{prvAll}{\indcase{!A}{\lforall[x][!B]}{By induction
-    hypothesis, $l(!B) = r(!B)$. Thus, $l(\indfrm) = l(!B) = r(!B) =
-    r(\indfrm)$.}}{}
+\tagitem{prvAll}{\indcase{!A}{\lforall[x][!B]}{由归纳假设，$l(!B) = r(!B)$。因此，$l(\indfrm) = l(!B) = r(!B) =
+    r(\indfrm)$。}}{}
 
 % Print case for \lexists if prvEx and not prvAll
-\tagitem{prvAll,notprvEx}{}{\indcase{!A}{\lexists[x][!B]}{By induction
-    hypothesis, $l(!B) = r(!B)$. Thus, $l(\indfrm) = l(!B) = r(!B) =
-    r(\indfrm)$.}}
+\tagitem{prvAll,notprvEx}{}{\indcase{!A}{\lexists[x][!B]}{由归纳假设，$l(!B) = r(!B)$。因此，$l(\indfrm) = l(!B) = r(!B) =
+    r(\indfrm)$。}}
 
 % Just say similarly if prvEx and prvAll
-\tagitem{notprvAll,notprvEx}{}{\indcase{!A}{\lexists[x][!B]}{Similarly.}}
+\tagitem{notprvAll,notprvEx}{}{\indcase{!A}{\lexists[x][!B]}{类似可证。}}
 \end{enumerate}
 \end{proof}
 
-\begin{defn}[Proper prefix]
-A string of symbols $!B$ is a \emph{proper prefix} of a string of symbols~$!A$ if
-concatenating $!B$ and a non-empty string of symbols yields~$!A$.
+\begin{defn}[真前缀]
+若将符号串 $!B$ 与一个非空符号串拼接即可得到符号串~$!A$，则称 $!B$ 为 $!A$ 的\emph{真前缀}。
 \end{defn}
 
 \begin{lem}\ollabel{lem:no-prefix}
-If $!A$ is !!a{formula}, and $!B$ is a proper prefix of $!A$, then
-$!B$ is not !!a{formula}.
+如果 $!A$ 是公式，且 $!B$ 是 $!A$ 的真前缀，那么 $!B$ 不是公式。
 \end{lem}
 
 \begin{proof}
-Exercise.
+练习。
 \end{proof}
 
 \begin{prob}
-Prove \olref[fol][syn][unq]{lem:no-prefix}.
+证明 \olref[fol][syn][unq]{lem:no-prefix}。
 \end{prob}
 
 \begin{prop}
 \ollabel{prop:unique-atomic}
-If $!A$ is an atomic !!{formula}, then it satisfies one, and only one
-of the following conditions.
+若 $!A$ 是原子公式，则它满足以下条件中的一个，且仅满足一个。
 \begin{enumerate}
 \tagitem{prvFalse}{$!A \ident \lfalse$.}{}
 \tagitem{prvTrue}{$!A \ident \ltrue$.}{}
-\item $!A \ident \Atom{R}{t_1,\dots,t_n}$ where $R$ is an $n$-place
-  !!{predicate}, $t_1$, \dots, $t_n$ are terms, and each of $R$,
-  $t_1$, \dots, $t_n$ is uniquely determined.
-\item $!A \ident \eq[t_1][t_2]$ where $t_1$ and $t_2$ are uniquely
-  determined terms.
+\item $!A \ident \Atom{R}{t_1,\dots,t_n}$ 其中 $R$ 为 $n$ 元谓词符号，$t_1$，\dots，$t_n$ 为项，且 $R$、$t_1$、\dots、$t_n$ 均被唯一确定。
+\item $!A \ident \eq[t_1][t_2]$ 其中 $t_1$ 和 $t_2$ 为唯一确定的项。
 \end{enumerate}
 \end{prop}
 
 \begin{proof}
-Exercise.
+（留作）练习。
 \end{proof}
 
 \begin{prob}
-Prove \olref[fol][syn][unq]{prop:unique-atomic} (Hint: Formulate and
-prove a version of \olref[fol][syn][unq]{lem:no-prefix} for terms.)
+证明 \olref[fol][syn][unq]{prop:unique-atomic}（提示：针对项来表述并证明 \olref[fol][syn][unq]{lem:no-prefix} 的一个对应版本。）
 \end{prob}
 
-\begin{prop}[Unique Readability]
-Every !!{formula} satisfies one, and only one of the following conditions.
+\begin{prop}[唯一可读性]
+每个公式都满足以下条件中的一个，且仅满足一个。
 \begin{enumerate}
-\item $!A$ is atomic.
+\item $!A$ 是原子公式。
 
-\tagitem{prvNot}{$!A$ is of the form $\lnot !B$.}{}
+\tagitem{prvNot}{$!A$ 具有形式 $\lnot !B$.}{}
 
-\tagitem{prvAnd}{$!A$ is of the form $(!B \land !C)$.}{}
+\tagitem{prvAnd}{$!A$ 具有形式 $(!B \land !C)$.}{}
 
-\tagitem{prvOr}{$!A$ is of the form $(!B \lor !C)$.}{}
+\tagitem{prvOr}{$!A$ 具有形式 $(!B \lor !C)$.}{}
 
-\tagitem{prvIf}{$!A$ is of the form $(!B \lif !C)$.}{}
+\tagitem{prvIf}{$!A$ 具有形式 $(!B \lif !C)$.}{}
 
-\tagitem{prvIff}{$!A$ is of the form $(!B \liff !C)$.}{}
+\tagitem{prvIff}{$!A$ 具有形式 $(!B \liff !C)$.}{}
 
-\tagitem{prvAll}{$!A$ is of the form $\lforall[x][!B]$.}{}
+\tagitem{prvAll}{$!A$ 具有形式 $\lforall[x][!B]$.}{}
 
-\tagitem{prvEx}{$!A$ is of the form $\lexists[x][!B]$.}{}
+\tagitem{prvEx}{$!A$ 具有形式 $\lexists[x][!B]$.}{}
 \end{enumerate}
-Moreover, in each case $!B$, or $!B$ and $!C$, are uniquely
-determined.  This means that, e.g., there are no different pairs $!B$,
-$!C$ and $!B'$, $!C'$ so that $!A$ is both of the form 
-\iftag{prvIf}{$(!B \lif !C)$ and $(!B' \lif !C')$.}{
-    \iftag{prvOr}{$(!B \lor !C)$ and $(!B' \lor !C')$.}{
-      \iftag{prvAnd}{$(!B \land !C)$ and $(!B' \land !C')$.}{}}}
+此外，在每种情形下，$!B$（或 $!B$ 与 $!C$）均是唯一确定的。
+这意味着，例如，不存在两组不同的 $!B, !C$ 与 $!B', !C'$，使得 $!A$ 同时具有形式
+\iftag{prvIf}{$(!B \lif !C)$ 和 $(!B' \lif !C')$.}{
+    \iftag{prvOr}{$(!B \lor !C)$ 和 $(!B' \lor !C')$.}{
+      \iftag{prvAnd}{$(!B \land !C)$ 和 $(!B' \land !C')$.}{}}}
 \end{prop}
 
 \begin{proof}
-The formation rules require that if !!a{formula} is not atomic, it
-must start with an opening parenthesis~(, \iftag{prvNot}{$\lnot$,}{}
-or a quantifier. On the other hand, every !!{formula} that starts with
-one of the following symbols must be atomic: !!a{predicate}, !!a{function}, !!a{constant}\iftag{prvFalse}{, $\lfalse$}{}\iftag{prvTrue}{, $\ltrue$}{}.
+形成规则要求：如果公式不是原子的，则它必须以左括号 (、\iftag{prvNot}{$\lnot$,}{}或量词开头。
+另一方面，以谓词符号、函数符号、常项符号\iftag{prvFalse}{, $\lfalse$}{}\iftag{prvTrue}{, $\ltrue$}{}之一开头的公式必为原子公式。
 
-So we really only have to show that if $!A$ is of the form $(!B \ast
-!C)$ and also of the form $(!B' \mathbin{\ast'} !C')$, then $!B \ident
-!B'$, $!C \ident !C'$, and $\ast = {\ast'}$.
+因此，我们实际上只需证明：如果 $!A$ 具有形式 $(!B \ast !C)$ 并且也具有形式 $(!B' \mathbin{\ast'} !C')$，那么 $!B \ident !B'$、$!C \ident !C'$，且 $\ast = {\ast'}$。
 
-So suppose both $!A \ident (!B \ast !C)$ and $!A \ident (!B'
-\mathbin{\ast'} !C')$.  Then either $!B \ident !B'$ or not.  If it is,
-clearly $\ast = {\ast'}$ and $!C \ident !C'$, since they then are
-substrings of $!A$ that begin in the same place and are of the same
-length.  The other case is $!B \not\ident !B'$.  Since $!B$ and
-$!B'$ are both substrings of $!A$ that begin at the same place, one
-must be a proper prefix of the other.  But this is impossible by
-\olref{lem:no-prefix}.
+假设 $!A \ident (!B \ast !C)$ 且 $!A \ident (!B'
+\mathbin{\ast'} !C')$ 同时成立。
+那么要么 $!B \ident !B'$，要么 $!B \not\ident !B'$。
+若是前者，显然 $\ast = {\ast'}$ 且 $!C \ident !C'$，因为此时 $!B$ 与 $!B'$ 是 $!A$ 中从同一位置开始且长度相同的子串。
+另一种情况是 $!B \not\ident !B'$。
+既然 $!B$ 和 $!B'$ 同为 $!A$ 中起始于同一位置的子串，则其中一个必为另一个的真前缀。
+但由 \olref{lem:no-prefix} 可知，这是不可能的。
 \end{proof}
-
 
 \end{document}

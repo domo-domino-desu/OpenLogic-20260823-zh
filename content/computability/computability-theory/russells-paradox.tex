@@ -1,75 +1,54 @@
-% Part: computability
-% Chapter: computability-theory
-% Section: russells-paradox
-
 \documentclass[../../../include/open-logic-section]{subfiles}
 
 \begin{document}
 
 \olfileid{cmp}{thy}{rus}
-\olsection{Comparison with Russell's Paradox}
+\olsection{与Russell（罗素）悖论的比较}
 
-It is instructive to compare and contrast the arguments in
-this section with Russell's paradox:
+将本节的论证与Russell悖论加以比较和对照，颇具启发性：
+% Part: computability
+% Chapter: computability-theory
+% Section: russells-paradox
+
 \begin{enumerate}
-\item Russell's paradox: let $S = \Setabs{x}{x \notin x}$. Then $S
-  \in S$ if and only if $S \notin S$, a contradiction.
+\item Russell悖论：令 $S = \Setabs{x}{x \notin x}$。则 $S \in S$ 当且仅当 $S \notin S$，矛盾。
 
-  \emph{Conclusion:} There is no such set~$S$. Assuming the existence of a
-  ``set of all sets'' is inconsistent with the other axioms of set
-  theory.
+  \emph{结论：}不存在这样的集合~$S$。假设“所有集合的集合”存在，会与集合论的其他公理不一致。
 
-\item A modification of Russell's paradox: let $F$ be the ``function''
-  from the set of all functions to $\{ 0, 1 \}$, defined by
+\item Russell悖论的一个变体：令 $F$ 为从所有函数的集合到 $\{ 0, 1 \}$ 的一个“函数”，定义为
   \[
   F(f) =
   \begin{cases}
-    1 & \text{if $f$ is in the domain of $f$, and $f(f) = 0$} \\
-    0 & \text{otherwise}
+    1 & \text{若 $f$ 在 $f$ 的定义域内，且 $f(f) = 0$} \\
+    0 & \text{否则}
   \end{cases}
   \]
-  A similar argument shows that $F(F) = 0$ if and only if $F(F) = 1$,
-  a contradiction.
+  类似的论证表明 $F(F) = 0$ 当且仅当 $F(F) = 1$，矛盾。
 
-  \emph{Conclusion:} $F$ is not a function. The ``set of all
-  functions'' is too big to be the domain of a function.
+  \emph{结论：}$F$ 不是一个函数。“所有函数的集合”太大，无法作为函数的定义域。
 
-\item The diagonalization argument: let $f_0$, $f_1$, \dots be the
-  enumeration of the partial computable functions, and let $G \colon \Nat \to
-  \{ 0, 1 \}$ be defined by
+\item 对角线论证：令 $f_0$, $f_1$, \dots 是部分可计算函数的枚举，并令 $G \colon \Nat \to
+  \{ 0, 1 \}$ 定义为
   \[
   G(x) =
   \begin{cases}
-    1 & \text{if $f_x(x)\downarrow = 0$} \\
-    0 & \text{otherwise}
+    1 & \text{若 $f_x(x)\downarrow = 0$} \\
+    0 & \text{否则}
   \end{cases}
   \]
-  If $G$ is computable, then it is the function $f_k$ for some
-  $k$. But then $G(k) = 1$ if and only if $G(k) = 0$, a contradiction.
+  若 $G$ 是可计算的，则对某个 $k$，它是函数 $f_k$。但如此一来 $G(k) = 1$ 当且仅当 $G(k) = 0$，矛盾。
 
-  \emph{Conclusion:} $G$ is not computable. Note that according to the
-  axioms of set theory, $G$ is still a function; there is no paradox
-  here, just a clarification.
+  \emph{结论：}$G$ 不可计算。注意，根据集合论的公理，$G$ 仍然是一个函数；这里并无悖论，只是一点澄清。
 \end{enumerate}
 
-That talk of partial functions, computable functions,
-partial computable functions, and so on can be confusing. The set of
-all partial functions from $\Nat$ to $\Nat$ is a big collection of
-objects. Some of them are total, some of them are computable, some are
-both total and computable, and some are neither. Keep in mind that
-when we say ``function,'' by default, we mean a total function. Thus we
-have:
+关于偏函数、可计算函数、部分可计算函数等的讨论可能会令人困惑。从 $\Nat$ 到 $\Nat$ 的所有偏函数构成一个庞大的对象集。其中有些是全函数，有些是可计算的，有些既是全函数又是可计算的，还有些两者都不是。请注意，当我们说“函数”时，默认指的是全函数。因此我们有：
 \begin{enumerate}
-\item computable functions
-\item partial computable functions that are not total
-\item functions that are not computable
-\item partial functions that are neither total nor computable
+\item 可计算函数
+\item 非全的部分可计算函数
+\item 不可计算的全函数
+\item 既不全也不可计算的偏函数
 \end{enumerate}
-To sort this out, it might help to draw a big square representing all
-the partial functions from $\Nat$ to $\Nat$, and then mark off two
-overlapping regions, corresponding to the total functions and the
-computable partial functions, respectively. It is a good exercise to
-see if you can describe an object in each of the resulting regions in
-the diagram.
+
+为了理清这些概念，不妨画一个大正方形来代表所有从 $\Nat$ 到 $\Nat$ 的偏函数，然后标出两个互相重叠的区域，分别对应全函数和可计算的偏函数。这是一个很好的练习：试着在图中每一个最终形成的区域里描述出一个对象。
 
 \end{document}

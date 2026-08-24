@@ -7,24 +7,20 @@
 \begin{document}
 
 \olfileid{tur}{und}{enu}
-\olsection{Enumerating Turing Machines}
+\olsection{枚举图灵机}
 
 \begin{explain}
-We can show that the set of all Turing machines is !!{enumerable}.
-This follows from the fact that each Turing machine can be finitely
-described.  The set of states and the tape vocabulary are finite sets.
-The transition function is a partial function from $Q \times \Sigma$
-to $Q \times \Sigma \times \{\TMleft, \TMright, \TMstay\}$, and so
-likewise can be specified by listing its values for the finitely many
-argument pairs for which it is defined.
+我们可以证明所有图灵机的集合是可数的。
+这是因为每台图灵机都可以有穷地描述。
+状态集和带字母表是有穷集。
+转移函数是从 $Q \times \Sigma$ 到 $Q \times \Sigma \times \{\TMleft, \TMright, \TMstay\}$ 的偏函数，
+因此同样可以通过列出其在有定义的那些有穷多组自变元上的值来确定。
 
-This is true as far as it goes, but there is a subtle difference. The
-definition of Turing machines made no restriction on what !!{element}s
-the set of states and tape alphabet can have. So, e.g., for every real
-number, there technically is a Turing machine that uses that number as
-a state. However, the \emph{behavior} of the Turing machine is
-independent of which objects serve as states and vocabulary. Consider
-the two Turing machines in \olref{fig:variants}.
+这样说固然没错，但存在一个微妙的区别。
+图灵机的定义并没有限制状态集和带字母表由哪些元素组成。
+因此，严格来说，对于每一个实数，都存在一台以该数为状态的图灵机。
+然而，图灵机的\emph{行为}与用哪些对象作为状态和带字母表符号无关。
+考虑\olref{fig:variants}中的两台图灵机。
 \begin{figure}
 \begin{center}
 \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
@@ -50,24 +46,16 @@ the two Turing machines in \olref{fig:variants}.
 edge [bend left] node {\TMtrans{A}{A}{\TMright}} (A);
 \end{tikzpicture}
 \end{center}
-\caption{Variants of the \emph{Even} machine}
+\caption{\emph{偶数}机器的两种变体}
 \ollabel{fig:variants}
 \end{figure}
-These two diagrams correspond to two machines, $M$ with the tape
-alphabet $\Sigma = \{\TMendtape,\TMblank,\TMstroke\}$ and set of
-states $\{q_0,q_1\}$, and $M'$ with alphabet $\Sigma' =
-\{\TMendtape,\TMblank,A\}$ and states $\{s,h\}$. But their
-instructions are otherwise the same: $M$ will halt on a sequence of
-$n$ $\TMstroke$'s iff $n$ is even, and $M'$ will halt on a sequence of
-$n$ $A$'s iff $n$ is even. All we've done is rename $\TMstroke$
-to~$A$, $q_0$ to~$s$, and $q_1$ to~$h$. This example generalizes: we
-can think of Turing machines as the same as long as one results from
-the other by such a renaming of symbols and states.  In fact, we can
-simply think of the symbols and states of a Turing machine as positive
-integers: instead of $\sigma_0$ think~$1$, instead of $\sigma_1$
-think~$2$, etc.; $\TMendtape$ is~$1$, $\TMblank$ is~$2$, etc. In this
-way, the \emph{Even} machine becomes the machine depicted in
-\olref{fig:standard-even}.
+这两个图对应两台机器：$M$ 的带字母表为 $\Sigma = \{\TMendtape,\TMblank,\TMstroke\}$，状态集为 $\{q_0,q_1\}$；而 $M'$ 的字母表为 $\Sigma' =
+\{\TMendtape,\TMblank,A\}$，状态集为 $\{s,h\}$。
+但除此之外，它们的指令是一样的：$M$ 在 $n$ 个 $\TMstroke$ 的序列上停机当且仅当 $n$ 是偶数，$M'$ 在 $n$ 个 $A$ 的序列上停机当且仅当 $n$ 是偶数。
+我们所做的只是将 $\TMstroke$ 重命名为~$A$，$q_0$ 重命名为~$s$，$q_1$ 重命名为~$h$。
+这个例子可以推广：只要一台图灵机是通过对符号和状态进行这样的重命名从另一台得到的，我们就可以将它们视为同一台图灵机。
+事实上，我们可以直接把图灵机的符号和状态看作正整数：用~$1$ 代替 $\sigma_0$，用~$2$ 代替 $\sigma_1$，依此类推；$\TMendtape$ 是~$1$，$\TMblank$ 是~$2$，等等。
+这样一来，\emph{偶数}机器就变成了\olref{fig:standard-even}中描绘的机器。
 \begin{figure}
 \[\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
   semithick]
@@ -81,73 +69,50 @@ way, the \emph{Even} machine becomes the machine depicted in
 edge [bend left] node {\TMtrans{3}{3}{\TMright}} (A);
 \end{tikzpicture}
 \]
-\caption{A standard \emph{Even} machine}
+\caption{一台标准的\emph{偶数}机器}
 \ollabel{fig:standard-even}
 \end{figure}
-We might call a Turing machine with states and symbols that are
-positive integers a \emph{standard} machine, and only consider
-standard machines from now on.\footnote{The terminology ``standard
-machine'' is not standard.}
+我们可以把状态和符号都是正整数的图灵机称为\emph{标准的}机器，并且从现在起只考虑标准机器。\footnote{“标准机器”这一术语本身并不标准。}
 
-We wanted to show that the set of Turing machines is !!{enumerable},
-and with the above considerations in mind, it is enough to show that
-the set of standard Turing machines is !!{enumerable}. Suppose we are
-given a standard Turing machine $M = \tuple{Q, \Sigma, q_0, \delta}$.
-How could we describe it using a finite string of positive integers?
-We'll first list the number of states, the states themselves, the
-number of symbols, the symbols themselves, and the starting state.
-(Remember, all of these are positive integers, since $M$ is a standard
-machine.)  What about~$\delta$? The set of possible arguments, i.e.,
-pairs $\tuple{q,\sigma}$, is finite, since $Q$ and~$\Sigma$ are
-finite. So the information in~$\delta$ is simply the finite list of
-all $5$-tuples $\tuple{q, \sigma, q', \sigma', d}$ where
-$\delta(q,\sigma) = \tuple{q', \sigma', D}$, and $d$ is a number that
-codes the direction~$D$ (say, $1$ for~$\TMleft$, $2$ for~$\TMright$,
-and $3$ for~$\TMstay$).
+我们要证明图灵机的集合是可数的，考虑到以上讨论，只需证明标准图灵机的集合是可数的即可。
+假设给定了标准图灵机 $M = \tuple{Q, \Sigma, q_0, \delta}$。
+我们如何用一个正整数的有限序列来描述它呢？
+我们先列出状态的数量、状态本身、符号的数量、符号本身以及起始状态。
+（记住，由于 $M$ 是标准机器，所有这些都是正整数。）
+那么~$\delta$ 呢？
+可能的自变元集合，即有序对 $\tuple{q,\sigma}$，是有穷的，因为 $Q$ 和~$\Sigma$ 是有穷的。
+所以~$\delta$ 中的信息就是所有 $5$ 元组 $\tuple{q, \sigma, q', \sigma', d}$ 的有穷列表，其中 $\delta(q,\sigma) = \tuple{q', \sigma', D}$，并且 $d$ 是对方向~$D$ 编码的数（比方说，$1$ 表示~$\TMleft$，$2$ 表示~$\TMright$，$3$ 表示~$\TMstay$）。
 
-In this way, every standard Turing machine can be described by a
-finite list of positive integers, i.e., as a sequence $s_M \in
-(\PosInt)^*$. For instance, the standard \emph{Even} machine is coded
-by the sequence
+这样，每台标准图灵机都可以用一个正整数的有限列表来描述，即作为一个序列 $s_M \in
+(\PosInt)^*$。
+例如，标准\emph{偶数}机器由序列
 \[
 2, \underbrace{1, 2}_Q, 3, \overbrace{1, 2, 3}^\Sigma, 1, \underbrace{1, 3, 2, 3, 2}_{\delta(1,3) = \tuple{2,3,R}}, 
 \overbrace{2, 2, 2, 2, 2}^{\delta(2,2) = \tuple{2,2,R}},
 \underbrace{2, 3, 1, 3, 2}_{\delta(2,3) = \tuple{1,3,R}}.
 \]
+编码。
 \end{explain}
 
 \begin{thm}
-There are functions from $\Nat$ to~$\Nat$ which are not Turing
-computable.
+存在从 $\Nat$ 到~$\Nat$ 的不可图灵计算的函数。
 \end{thm}
 
 \begin{proof}
-We know that the set of finite sequences of positive
-integers~$(\PosInt)^*$ is !!{enumerable}
-(\cref{sfr:siz:zigzag:prob:posint-star}). This gives us that the set
-of descriptions of standard Turing machines, as a subset
-of~$(\PosInt)^*$, is itself enumerable.  Every Turing computable
-function $\Nat$ to~$\Nat$ is computed by some (in fact, many) Turing
-machines. By renaming its states and symbols to positive integers (in
-particular, $\TMendtape$ as~$1$, $\TMblank$ as~$2$, and $\TMstroke$
-as~$3$) we can see that every Turing computable function is computed
-by a standard Turing machine. This means that the set of all Turing
-computable functions from $\Nat$ to~$\Nat$ is also enumerable.
+我们知道正整数的有限序列集合~$(\PosInt)^*$ 是可数的（\cref{sfr:siz:zigzag:prob:posint-star}）。
+由此可得，作为~$(\PosInt)^*$ 子集的标准图灵机的描述集合本身也是可数的。
+每一个从 $\Nat$ 到~$\Nat$ 的图灵可计算函数都由某台（实际上有很多台）图灵机计算。
+通过将其状态和符号重命名为正整数（特别是将 $\TMendtape$ 重命名为~$1$，$\TMblank$ 重命名为~$2$，$\TMstroke$ 重命名为~$3$），我们可以看出，每个图灵可计算函数都由一台标准图灵机计算。
+这意味着所有从 $\Nat$ 到~$\Nat$ 的图灵可计算函数组成的集合也是可数的。
 
-On the other hand, the set of all functions from $\Nat$ to~$\Nat$ is
-not !!{enumerable} (\cref{sfr:siz:red:prob:nat-nat}). If all functions
-were computable by some Turing machine, we could enumerate the set of
-all functions by listing all the descriptions of Turing machines that
-compute them. So there are some functions that are not Turing
-computable. 
+另一方面，所有从 $\Nat$ 到~$\Nat$ 的函数组成的集合是不可数的（\cref{sfr:siz:red:prob:nat-nat}）。
+如果所有函数都能被某台图灵机计算，那么我们就能通过列出计算这些函数的图灵机的描述来枚举所有函数。
+因此，存在一些不是图灵可计算的函数。
 \end{proof}
 
 \begin{prob}
-  Can you think of a way to describe Turing machines that does not
-  require that the states and alphabet symbols are explicitly listed?
-  You may define your own notion of ``standard'' machine, but say
-  something about why every Turing machine can be computed by a
-  ``standard'' machine in your new sense.
+  你能想出一种描述图灵机的方法，而不需要显式列出其状态和字母表符号吗？
+  你可以定义你自己的“标准”机的概念，但要说明为什么在你新的意义下，每一台图灵机都能被一台“标准”机计算。
 \end{prob}
 
 \end{document}

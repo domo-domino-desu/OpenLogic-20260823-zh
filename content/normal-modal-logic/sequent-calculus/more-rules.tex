@@ -8,10 +8,9 @@
 
 \olfileid{nml}{seq}{mru}
 
-\olsection{Rules for Other Accessibility Relations}
+\olsection{针对其他可达关系的规则}
 
-In order to deal with logics determined by special accessibility
-relations, we consider the additional rules in \olref{tab:more-rules}.
+为了处理由特殊可达关系所确定的逻辑，我们考虑\olref{tab:more-rules}中的附加规则。
 
 \iftag{prvBox}{\iftag{prvDiamond}{% [] and <> primitive
 \begin{table}
@@ -74,7 +73,7 @@ relations, we consider the additional rules in \olref{tab:more-rules}.
     \hline
     \end{tabular}
   \end{center}
-  \caption{More modal rules.}
+  \caption{更多模态规则。}
   \ollabel{tab:more-rules}
 \end{table}
 }{ % only [] primitive
@@ -115,7 +114,7 @@ relations, we consider the additional rules in \olref{tab:more-rules}.
     \hline
     \end{tabular}
   \end{center}
-  \caption{More modal rules.}
+  \caption{更多模态规则。}
   \ollabel{tab:more-rules}
 \end{table}
 }}{% only <> primitive
@@ -157,72 +156,71 @@ relations, we consider the additional rules in \olref{tab:more-rules}.
     \hline
     \end{tabular}
   \end{center}
-  \caption{More modal rules.}
+  \caption{更多模态规则。}
   \ollabel{tab:more-rules}
 \end{table}
 }
 
-Adding these rules results in systems that are sound and complete for
-the logics given in \olref{tab:logics-rules}.
+添加这些规则后，所得的系统对于 \olref{tab:logics-rules} 中给出的逻辑是可靠且完备的。
 
 \begin{table}
   \begin{center}
     \begin{tabular}{lll}
       \hline
-      Logic & $R$ is \dots & Rules\\
+      逻辑 & $R$ 是\dots & 规则\\
       \hline
-      $\Log{T} = \Log{KT}$ & reflexive & $\Box$,
+      $\Log{T} = \Log{KT}$ & 自反的 & $\Box$,
       \iftag{prvBox}{T$\Box$}{}%
       \iftag{notprvBox,notprvDiamond}{}{, }%
       \iftag{prvDiamond}{T$\Diamond$}{}
       \\ \hline
-      $\Log{D} = \Log{KD}$ & serial & $\Box$,
+      $\Log{D} = \Log{KD}$ & 持续的 & $\Box$,
       \iftag{prvBox}{%
         \iftag{prvDiamond}{D}{D$\Box$}}{D$\Diamond$}
       \\ \hline
-      $\Log{K4}$ & transitive & $\Box$,
+      $\Log{K4}$ & 传递的 & $\Box$,
       \iftag{prvBox}{4$\Box$}{}% 
       \iftag{notprvBox,notprvDiamond}{}{, }%
       \iftag{prvDiamond}{4$\Diamond$}{}
       \\ \hline
-      $\Log{B} = \Log{KTB}$ & reflexive, & $\Box$,
+      $\Log{B} = \Log{KTB}$ & 自反的, & $\Box$,
       \iftag{prvBox}{T$\Box$}{}%
       \iftag{notprvBox,notprvDiamond}{}{, }%
       \iftag{prvDiamond}{T$\Diamond$}{}\\
-      & symmetric &
+      & 对称的 &
       \iftag{prvBox}{B$\Box$}{}%
       \iftag{notprvBox,notprvDiamond}{}{, }%
       \iftag{prvDiamond}{B$\Diamond$}{}
       \\ \hline
-      $\Log{S4} = \Log{KT4}$ & reflexive, & $\Box$,
+      $\Log{S4} = \Log{KT4}$ & 自反的, & $\Box$,
       \iftag{prvBox}{T$\Box$}{}%
       \iftag{notprvBox,notprvDiamond}{}{, }%
       \iftag{prvDiamond}{T$\Diamond$}{}\\
-      & transitive &
+      & 传递的 &
       \iftag{prvBox}{4$\Box$}{}%
       \iftag{notprvBox,notprvDiamond}{}{, }%
       \iftag{prvDiamond}{4$\Diamond$}{}
       \\ \hline
-      $\Log{S5} = \Log{KT5}$ & reflexive, & $\Box$,
+      $\Log{S5} = \Log{KT5}$ & 自反的, & $\Box$,
       \iftag{prvBox}{T$\Box$}{}%
       \iftag{notprvBox,notprvDiamond}{}{, }%
       \iftag{prvDiamond}{T$\Diamond$}{}\\
-      & transitive, &
+      & 传递的, &
       \iftag{prvBox}{5$\Box$}{}%
       \iftag{notprvBox,notprvDiamond}{}{, }%
       \iftag{prvDiamond}{5$\Diamond$}{}\\
-      &  euclidean &
+      &  欧几里得的 &
       \\ \hline
     \end{tabular}
   \end{center}
-  \caption{Sequent rules for various modal logics.}
+  \caption{各类模态逻辑的相继式规则。}
   \ollabel{tab:logics-rules}
 \end{table}
 
 \iftag{prvBox}{
 \begin{ex}
-  We give a sequent !!{derivation} that shows $\Log{K4} \Proves \Ax{4}$, i.e.,
-  $\Box!A \lif \Box\Box!A$.
+  我们给出一个相继式推导，证明 $\Log{K4} \Proves \Ax{4}$，即
+  $\Box!A \lif \Box\Box!A$。
   \begin{prooftree}
     \Axiom$\Box!A \fCenter \Box!A$
     \RightLabel{4$\Box$}
@@ -233,8 +231,8 @@ the logics given in \olref{tab:logics-rules}.
 \end{ex}
 }{\iftag{prvDiamond}{
 \begin{ex}
-  We give a sequent !!{derivation} that shows $\Log{K4} \Proves \Ax{4}$, i.e.,
-  $\Diamond\Diamond!A \lif \Diamond!A$.
+  我们给出一个相继式推导，证明 $\Log{K4} \Proves \Ax{4}$，即
+  $\Diamond\Diamond!A \lif \Diamond!A$。
   \begin{prooftree}
     \Axiom$\Diamond!A \fCenter \Diamond!A$
     \RightLabel{4$\Diamond$}
@@ -247,8 +245,8 @@ the logics given in \olref{tab:logics-rules}.
 
 \iftag{prvBox}{\iftag{prvDiamond}{% <> and [] primitive
 \begin{ex}
-  We give a sequent !!{derivation} that shows $\Log{S5} \Proves \Ax{5}$, i.e.,
-  $\Diamond!A \lif \Box\Diamond!A$.
+  我们给出一个相继式推导，证明 $\Log{S5} \Proves \Ax{5}$，即
+  $\Diamond!A \lif \Box\Diamond!A$。
   \begin{prooftree}
     \Axiom$\Diamond!A \fCenter \Diamond!A$
     \RightLabel{5$\Box$}
@@ -259,8 +257,8 @@ the logics given in \olref{tab:logics-rules}.
 \end{ex}
 }{% only Box primitive
 \begin{ex}
-  We give a sequent !!{derivation} that shows $\Log{S5} \Proves \Ax{5}$, i.e.,
-  $\Diamond!A \lif \Box\Diamond!A$.
+  我们给出一个相继式推导，证明 $\Log{S5} \Proves \Ax{5}$，即
+  $\Diamond!A \lif \Box\Diamond!A$。
   \begin{prooftree}
     \Axiom$\Box\lnot!A \fCenter \Box\lnot!A$
     \RightLabel{\RightR{\lnot}}
@@ -275,8 +273,8 @@ the logics given in \olref{tab:logics-rules}.
 \end{ex}
 }}{% only <> prmitive
 \begin{ex}
-  We give a sequent !!{derivation} that shows $\Log{S5} \Proves \Ax{5}$, i.e.,
-  $\Diamond!A \lif \Box\Diamond!A$.
+  我们给出一个相继式推导，证明 $\Log{S5} \Proves \Ax{5}$，即
+  $\Diamond!A \lif \Box\Diamond!A$。
   \begin{prooftree}
     \Axiom$\Diamond!A \fCenter\Diamond!A$
     \RightLabel{\LeftR{\lnot}}
@@ -291,10 +289,10 @@ the logics given in \olref{tab:logics-rules}.
 \end{ex}
 }
 \begin{ex}
-The sequent calculus for \Log{S5} is not complete without the \Cut{}
-rule; e.g., \iftag{prvBox}{$\Diamond\Box !A \lif !A$}{$!A \lif
-\Box\Diamond !A$}, which is valid in~$\Log{S5}$, has no proof
-without~\Cut. Here is !!a{derivation} using~\Cut:
+如果没有 \Cut{} 规则，\Log{S5} 的相继式演算是不完备的；
+例如，\iftag{prvBox}{$\Diamond\Box !A \lif !A$}{$!A \lif
+\Box\Diamond !A$} 在~$\Log{S5}$ 中是有效的，但没有~\Cut 则无法证明。
+以下是一个使用~\Cut 的推导：
 \begin{prooftree}
 \iftag{prvBox}{\iftag{prvDiamond}{% both [] and <> primitive
 \Axiom$\Box !A \fCenter \Box!A$
@@ -350,14 +348,14 @@ without~\Cut. Here is !!a{derivation} using~\Cut:
 \end{ex}
 
 \begin{prob}
-Give sequent !!{derivation}s that show the following:
+给出相继式推导以证明下列各式：
   \begin{enumerate}
-  \item $\Log{KT5} \Proves \Ax{B}$;
-  \item $\Log{KT5} \Proves \Ax{4}$;
-  \item $\Log{KDB4} \Proves \Ax{T}$;
-  \item $\Log{KB4} \Proves \Ax{5}$;
-  \item $\Log{KB5} \Proves \Ax{4}$;
-  \item $\Log{KT} \Proves \Ax{D}$.
+  \item $\Log{KT5} \Proves \Ax{B}$；
+  \item $\Log{KT5} \Proves \Ax{4}$；
+  \item $\Log{KDB4} \Proves \Ax{T}$；
+  \item $\Log{KB4} \Proves \Ax{5}$；
+  \item $\Log{KB5} \Proves \Ax{4}$；
+  \item $\Log{KT} \Proves \Ax{D}$。
   \end{enumerate}
 \end{prob}
 

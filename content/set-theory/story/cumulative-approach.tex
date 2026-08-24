@@ -3,37 +3,17 @@
 \begin{document}
 
 \olfileid{sth}{story}{approach}
-\olsection{The Cumulative-Iterative Approach}
+\olsection{累积迭代进路}
 
-Here is a slightly fuller statement of how we will stratify sets into
-stages:
+关于如何将集合分层为阶段，以下是一个稍详细的说明：
+
 \begin{quote}
-	Sets are formed in \emph{stages}. For each stage $S$, there are
-	certain stages which are \emph{before} $S$. At stage $S$, each
-	collection consisting of sets formed at stages before $S$ is
-	formed into a set. There are no sets other than the sets which are
-	formed at stages. \citep[p.~323]{Shoenfield:AST}
-\end{quote} 
-This is a sketch of the \emph{cumulative-iterative conception of
-set}. It will underpin the formal set theory that we present in
-\olref[sth][][]{part}. 
+	集合是在\emph{阶段}中形成的。对于每个阶段 $S$，都存在某些\emph{先于} $S$ 的阶段。在阶段 $S$，每个由在 $S$ 之前的阶段中形成的集合所组成的聚集，都被形成为一个集合。除了在各阶段中形成的集合之外，不存在其他集合。\citep[p.~323]{Shoenfield:AST}
+\end{quote}
 
-Let's explore this in a little more detail. As Shoenfield describes
-the process, at every stage, we form new sets from the {sets} which
-were available to us from earlier stages. So, on Shoenfield's picture,
-at the initial stage, stage $0$, there are no \emph{earlier} stages,
-and so \emph{a fortiori} there are no sets available to us from
-earlier stages.\footnote{Why should we assume that there \emph{is} a
-first stage? See the footnote to \stagesord{} in
-\olref[z][story]{sec}.} So we form only one set: the set
-with no !!{element}s $\emptyset$. At stage $1$, exactly one set is
-available to us from earlier stages, so only one new set is
-$\{\emptyset\}$. At stage $2$, two sets are available to us from
-earlier stages, and we form two new sets $\{\{\emptyset\}\}$ and
-$\{\emptyset, \{\emptyset\}\}$. At stage $3$, four sets are available
-to us from earlier stages, so we form twelve new sets\ldots. As such,
-the cumulative-iterative  picture of the sets will look a bit like
-this (with numbers indicating stages):
+这就勾勒出了\emph{累积迭代的集合概念}的轮廓。它将构成本书 \olref[sth][][]{part} 所介绍的形式集合论的基础。
+
+让我们来做更详细的探讨。正如 Shoenfield（肖菲尔德）所描述的过程，在每个阶段，我们都从更早阶段可用的集合中形成新的集合。因此，在 Shoenfield 的图景中，在初始阶段（即阶段 $0$），没有任何\emph{更早的}阶段，\emph{因此更不可能}有来自更早阶段的可用集合。\footnote{为何应当假设存在\emph{第一个}阶段？参见 \olref[z][story]{sec} 中关于 \stagesord{} 的脚注。}因此我们只形成一个集合：不含任何元素的集合 $\emptyset$。在阶段 $1$，恰好有一个来自更早阶段的可用集合，因此只形成一个新集合 $\{\emptyset\}$。在阶段 $2$，有两个来自更早阶段的可用集合，我们形成两个新集合 $\{\{\emptyset\}\}$ 和 $\{\emptyset, \{\emptyset\}\}$。在阶段 $3$，有四个来自更早阶段的可用集合，于是我们形成十二个新集合……这样一来，集合的累积迭代图景大致如下（数字表示阶段）：
 \begin{center}
 	\begin{tikzpicture}[scale=0.6]
 	\tikzset{cut_here/.style={densely dotted}}
@@ -55,31 +35,18 @@ this (with numbers indicating stages):
 	\node[label] at (3, 6) {\small 6};
 	\end{tikzpicture}
 \end{center}
-So: why should we embrace this story? 
 
-One reason is that it is a nice, tractable story. Given the demise of
-the most obvious story, i.e., Na\"ive Comprehension, we are in want of
-something nice. 
+那么：我们为何要接受这个故事呢？
 
-But the story is not \emph{just} nice. We have a good reason to
-believe that any set theory based on this story will be
-\emph{consistent}. Here is why. 
+一个原因是，这是一个令人满意且易于驾驭的故事。鉴于最显而易见的故事（即朴素概括）已经失败，我们正需要某种令人满意的东西。
 
-Given the cumulative-iterative conception of set, we form sets at
-stages; and their !!{element}s must be objects which were available
-\emph{already}. So, for any stage~$S$, we can form the set 
+但这个故事不仅仅是令人满意。我们有充分的理由相信，任何基于这个故事建立的集合论都将是\emph{一致的}。原因如下。
+
+根据累积迭代的集合概念，我们在各个阶段中形成集合；且其元素必须是\emph{已经}可用的对象。因此，对于任何阶段~$S$，我们可以形成集合
 \[
-	R_S = \Setabs{x}{x \notin x \text{ and $x$ was available before $S$}}
-\]
-The reasoning involved in proving Russell's Paradox will now establish
-that $R_S$ itself is not available before stage $S$. And that's not a
-contradiction. Moreover, if we embrace the cumulative-iterative
-conception of set, then we shouldn't even have \emph{expected} to be
-able to form the Russell set itself. For that would be the set of all
-non-self-membered sets that ``will ever be available''. In short: the
-fact that we (provably) can't form the Russell set isn't
-\emph{surprising}, given the cumulative-iterative story; it's what we
-would \emph{predict}.
+	R_S = \Setabs{x}{x \notin x \text{并且 $x$ 在 $S$ 之前可用}}
+\]。
+现在，证明 Russell（罗素）悖论时所涉及的推理将表明，$R_S$ 本身在阶段 $S$ 之前是不可用的。而这并不矛盾。此外，如果我们接受累积迭代的集合概念，那么我们甚至不应该\emph{期望}能够形成 Russell 集本身。因为那将是所有“终将可用”的非自属集合的集合。简而言之：在累积迭代的故事看来，我们（可证地）不能形成 Russell 集这一事实并不\emph{令人意外}；这正是我们所\emph{预测}的。
 
 %In one sense, then, the cumulative-iterative conception of set yields a response to Russell's Paradox which is rather like the \emph{predicativist}'s response. After all, the predicativist said that the collection of all non-self-membered sets$_n$ is a set$_{n+1}$, and this set$_n$ will not be self-membered. (Indeed, most predicativists will treat it as \emph{ungrammatical} to try to ask whether a set is self-membered.)
 %

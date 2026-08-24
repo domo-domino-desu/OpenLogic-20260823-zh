@@ -8,39 +8,19 @@
 
 \olfileid{int}{pty}{tpr}
 
-\olsection{Type Preservation}
+\olsection{类型保持}
 
-The reduction and permutation conversions considered can also be
-defined directly for the systems \Log{tN2i} and \Log{tN3i}. The system
-\Log{tN3i} defines the type of a $\lambd$-term~$N$ relative to the
-context~$\Gamma$ as the !!{formula}~$!A$ such that $\Gamma \Sequent N
-: !A$ has !!a{proof} in \Log{tN3i}. The fact that the
-$\beta$-reduction rules for $\lambd$-terms exactly mirror the
-reduction and permutation conversions of !!{proof}s has an important
-consequence: the type of a $\lambd$-term relative to a
-context~$\Gamma$ remains the same after $\beta$-conversion. This
-property is called \emph{type preservation}.
+前文所考察的归约与排列转换，同样可以直接在系统 \Log{tN2i} 和 \Log{tN3i} 中定义。在系统 \Log{tN3i} 中，$\lambd$-项~$N$ 相对于语境~$\Gamma$ 的\emph{类型}被定义为满足 $\Gamma \Sequent N : !A$ 在 \Log{tN3i} 中有推导的公式~$!A$。$\lambd$-项的 $\beta$-归约规则与推导的归约及排列转换精确对应，这一事实有一个重要推论：$\lambd$-项相对于语境~$\Gamma$ 的类型在 $\beta$-转换后保持不变。这一性质称为\emph{类型保持}。
 
 \begin{prop}
-If $N$ has type~$!A$ relative
-to $\Gamma$ and $N \redone N'$, then $N'$ has type~$!A$ relative to~$\Gamma$.
+若 $N$ 相对于 $\Gamma$ 具有类型~$!A$ 并且 $N \redone N'$，则 $N'$ 相对于~$\Gamma$ 也具有类型~$!A$。
 \end{prop}
 
 \begin{proof}
-  By induction on~$N$ and the height of !!{proof}s~$\delta$ of $\Gamma
-  \Sequent N : !A$ we can easily establish the following: If $M$ is a
-  sub-term of~$N$, then $\delta$ contains a sub-!!{proof}~$\delta_1$
-  ending in $\Gamma' \Sequent M : !B$. If $M$ is a redex, then a
-  conversion applies to~$\delta_1$. By applying the reduction to the
-  $\delta_1$ we obtain !!a{proof}~$\delta_1'$ of $\Gamma' \Sequent M'
-  : !B$. By inspection of the conversions of \Log{tN3i}, $M'$ is the
-  reductum of~$M$. Replacing $\delta_1$ in~$\delta$ by $\delta_1'$
-  results in !!a{proof}~$\delta'$ of $\Gamma \Sequent N' : !A$, where
-  $N'$ results from~$N$ by replacing the subterm~$M$ by~$M'$.
+通过对~$N$ 以及 $\Gamma \Sequent N : !A$ 的推导~$\delta$ 的高度施归纳，我们容易确立以下事实：若 $M$ 是~$N$ 的子项，则 $\delta$ 包含一个结束于 $\Gamma' \Sequent M : !B$ 的子推导~$\delta_1$。若 $M$ 是可约式，则可对 $\delta_1$ 施加某种转换。对该 $\delta_1$ 施加归约，我们便得到 $\Gamma' \Sequent M' : !B$ 的推导~$\delta_1'$。审查 \Log{tN3i} 的转换规则可知，$M'$ 即为~$M$ 的归约结果。将 $\delta$ 中的 $\delta_1$ 替换为 $\delta_1'$，便得到 $\Gamma \Sequent N' : !A$ 的推导~$\delta'$，其中 $N'$ 是将 $N$ 中的子项~$M$ 替换为~$M'$ 所得。
 
-  For instance, consider the reduction conversion for~\Intro{\land}
-  followed by \Elim{\land}:
-  \[
+例如，考虑 \Intro{\land} 后接 \Elim{\land} 的归约转换：
+\[
   \bottomAlignProof
   \AxiomC{}
   \Deduce$\Gamma \fCenter N_1 : !B_1$
@@ -57,14 +37,10 @@ to $\Gamma$ and $N \redone N'$, then $N'$ has type~$!A$ relative to~$\Gamma$.
   \Deduce$\Gamma \fCenter N_i : !B_i$
   \DisplayProof
   \]
-  We see that the proof term of the !!{proof} on the right, i.e.,
-  $\delta_1'$ is $N_i$. It is exactly the result of applying
-  $\beta$-conversion to the proof term $\proj{i}{\pair{N_1}{N_2}}$ of
-  the !!{proof} on the left~($\delta_1$).
+我们看到右侧推导（即 $\delta_1'$）的证明项是 $N_i$。这恰是对左侧推导~($\delta_1$) 的证明项 $\proj{i}{\pair{N_1}{N_2}}$ 施行 $\beta$-转换的结果。
 
-  Or consider a \Intro{\lif} followed by an \Elim{\lif} inference, and
-  the reduction conversion applied to it:
-  \begin{multline*}
+又如，考虑一个 \Intro{\lif} 后接 \Elim{\lif} 推理，以及对其施加的归约转换：
+\begin{multline*}
   \bottomAlignProof
   \AxiomC{$\delta_2$}
   \Deduce$x: !B_1, \Gamma \fCenter N : !B_2$
@@ -85,30 +61,12 @@ to $\Gamma$ and $N \redone N'$, then $N'$ has type~$!A$ relative to~$\Gamma$.
   \Deduce$\Gamma \fCenter \Subst{N}{M}{x} : !B_2$
   \DisplayProof
   \end{multline*}
-  Again the proof term of the !!{proof} on the right is exactly the
-  result of $\beta$-reducing the proof term of the !!{proof} on the
-  left. Of course one would have to carefuly verify (by induction on
-  the height of~$\delta_2$) that if we replace all axioms of the form
-  $\Gamma' \Sequent x:!B_1$ in~$\delta_2$ by the !!{proof}~$\delta_3$
-  of $\Gamma \Sequent M:!B_1$ actually results in !!a{proof}
-  $\Subst{\delta_2}{\delta_3}{x:!B_1}$ of $\Gamma \Sequent
-  \Subst{N}{M}{x} : !B_2$.
+右侧推导的证明项同样恰是对左侧推导的证明项进行 $\beta$-归约的结果。当然，我们必须仔细验证（通过对~$\delta_2$ 的高度施归纳）：若在~$\delta_2$ 中将所有形如 $\Gamma' \Sequent x:!B_1$ 的公理替换为 $\Gamma \Sequent M:!B_1$ 的推导~$\delta_3$，确实会得到 $\Gamma \Sequent
+  \Subst{N}{M}{x} : !B_2$ 的推导 $\Subst{\delta_2}{\delta_3}{x:!B_1}$。
 \end{proof}
 
-The tight correspondence between !!{proof}s and $\lambd$-terms has
-another consequence. If $N$ is a $\lambd$-term of type $!A$ relative
-to a context~$\Gamma$ and contains a redex~$M$ (i.e., it is not a
-normal form), then the corresponding \Log{tN3i} proof~$\delta$ of
-$\Gamma \Sequent N : !A$ contains a sub-!!{proof} (ending in $\Gamma'
-\Sequent M: !B$) to which a conversion can be applied. If $N \redone
-N'$ by replacing $M$ by its reductum, the corresponding result of
-applying the reduction to~$\delta$ is !!a{proof} of $\Gamma \Sequent
-N' : !A$. Hence every $\lambd$-term not in normal form $\beta$-reduces
-to another. This property is called \emph{progress}.
+推导与 $\lambd$-项之间的紧密对应还有另一个推论。若 $N$ 是相对于语境~$\Gamma$ 具有类型 $!A$ 的 $\lambd$-项，且包含一个可约式~$M$（即它不是范式），则与之对应的 \Log{tN3i} 证明（即 $\Gamma \Sequent N : !A$ 的推导~$\delta$）包含一个可施加转换的子推导（该子推导结束于 $\Gamma' \Sequent M: !B$）。若通过将 $M$ 替换为其归约结果使得 $N \redone N'$，则对~$\delta$ 施加相应归约的结果便是 $\Gamma \Sequent N' : !A$ 的推导。因此，每一个不在范式中的 $\lambd$-项都能 $\beta$-归约到另一个项。这一性质称为\emph{进展性}。
 
-Progress together with type preservation ensure that $\beta$-reduction
-of $\lambd$-terms never ``gets stuck'': if a term is well-typed and
-isn't in normal form, it reduces to another well-typed term (and that
-term is of the same type).
+进展性与类型保持共同保证了 $\lambd$-项的 $\beta$-归约永远不会“卡住”：若一个项是良类型的且不在范式中，它就会归约到另一个良类型的项（且该项与原项类型相同）。
 
 \end{document}

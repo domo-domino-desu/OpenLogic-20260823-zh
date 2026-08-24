@@ -7,35 +7,28 @@
 \begin{document}
 
 \olfileid{lam}{int}{lrp}
-\olsection{Computable Functions are \usetoken{S}{lambda definable}}
+\olsection{可计算函数是 \usetoken{S}{lambda definable}}
 
 \begin{thm}
 \ollabel{thm:computable-lambda}
-Every computable partial function is !!{lambda definable}.
+每个部分可计算函数都是 $\lambd$-可定义的。
 \end{thm}
 
 \begin{proof}
-We need to show that every partial computable function~$f$ is
-!!{lambda defined} by a lambda term~$F$. By Kleene's normal form
-theorem, it suffices to show that every primitive recursive function
-is !!{lambda defined} by a lambda term, and then that the functions
-!!{lambda definable} are closed under suitable compositions and
-unbounded search. To show that every primitive recursive function is
-!!{lambda defined} by a lambda term, it suffices to show that the
-initial functions are !!{lambda definable}, and that the partial
-functions that are !!{lambda definable} are closed under
-composition, primitive recursion, and unbounded search.
+我们需要证明，每个部分可计算函数~$f$ 都由某个 $\lambda$-项~$F$ 所 $\lambd$-定义。
+根据 Kleene（克林）的范式定理，只需证明每个原始递归函数都由某个 $\lambda$-项 $\lambd$-定义，
+然后证明 $\lambd$-可定义的函数对适当的复合与无界搜索封闭。
+为了证明每个原始递归函数都由某个 $\lambda$-项 $\lambd$-定义，
+只需证明初始函数是 $\lambd$-可定义的，
+并且 $\lambd$-可定义的偏函数对复合、原始递归和无界搜索封闭。
 \end{proof}
 
-We will use a more conventional notation to make the rest of the proof
-more readable. For example, we will write $M(x, y, z)$ instead of
-$Mxyz$. While this is suggestive, you should remember that terms in
-the untyped lambda calculus do not have associated arities; so, for
-the same term~$M$, it makes just as much sense to write $M(x,y)$ and
-$M(x,y,z,w)$. But using this notation indicates that we are treating
-$M$ as a function of three variables, and helps make the intentions
-behind the definitions clearer. In a similar way, we will say ``define
-$M$ by $M(x,y,z) = \dots$'' instead of ``define $M$ by $M =
-\lambd[x][\lambd[y][\lambd[z][\dots]]]$.''
+我们将使用更传统的记法，以使证明的余下部分更具可读性。
+例如，我们将写 $M(x, y, z)$ 而非 $Mxyz$。
+虽然这种写法具有提示性，但你应当记住，无类型 $\lambda$-演算中的项并不具有关联的元数；
+因此，对于同一个项~$M$，写 $M(x,y)$ 与 $M(x,y,z,w)$ 同样是有意义的。
+但使用这种记法表明我们将 $M$ 视作三元函数，有助于使定义背后的意图更加清晰。
+类似地，我们会说“由 $M(x,y,z) = \dots$ 定义 $M$”，而非“由 $M =
+\lambd[x][\lambd[y][\lambd[z][\dots]]]$ 定义 $M$”。
 
 \end{document}

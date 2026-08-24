@@ -10,46 +10,28 @@
 \olsection{Turing Machines}
 
 \begin{explain}
-The formal definition of what constitutes a Turing machine looks
-abstract, but is actually simple: it merely packs into one
-mathematical structure all the information needed to specify the
-workings of a Turing machine. This includes (1) which states the
-machine can be in, (2) which symbols are allowed to be on the tape, (3)
-which state the machine should start in, and (4) what the instruction
-set of the machine is.
+关于什么算作图灵机，其形式定义看起来有些抽象，但实际上很简单：它只不过是把说明图灵机运作方式所需的所有信息打包进了一个数学结构。这包括：(1) 机器可能处于哪些状态，(2) 纸带上允许出现哪些符号，(3) 机器应从哪个状态开始，以及 (4) 机器的指令集是什么。
 \end{explain}
 
-\begin{defn}[Turing machine]
-A \emph{Turing machine} $M$ is a tuple $\langle Q, \Sigma, q_0,
-\delta\rangle$ consisting of
+\begin{defn}[图灵机]
+一个\emph{图灵机} $M$ 是一个元组 $\langle Q, \Sigma, q_0,
+\delta\rangle$，它由以下部分组成：
 \begin{enumerate}
-\item a finite set of \emph{states}~$Q$,
-\item a finite \emph{alphabet} $\Sigma$ which includes $\TMendtape$ and
-  $\TMblank$,
-\item an \emph{initial state}~$q_0 \in Q$,
-\item a finite \emph{instruction set}~$\delta\colon Q \times \Sigma
-  \pto Q \times \Sigma \times \{\TMleft, \TMright, \TMstay\}$.
+\item 一个有限的\emph{状态}集合~$Q$，
+\item 一个有限的\emph{字母表} $\Sigma$，其中包含 $\TMendtape$ 和 $\TMblank$，
+\item 一个\emph{初始状态}~$q_0 \in Q$，
+\item 一个有限的\emph{指令集}~$\delta\colon Q \times \Sigma
+  \pto Q \times \Sigma \times \{\TMleft, \TMright, \TMstay\}$。
 \end{enumerate}
-The partial function~$\delta$ is also called the \emph{transition function}
-of~$M$.
+该偏函数~$\delta$ 也称为~$M$ 的\emph{转移函数}。
 \end{defn}
 
 \begin{explain}
-We assume that the tape is infinite in one direction only. For this
-reason it is useful to designate a special symbol~$\TMendtape$ as a
-marker for the left end of the tape. This makes it easier for Turing
-machine programs to tell when they're ``in danger'' of running off the
-tape. We could assume that this symbol is never overwritten, i.e.,
-that $\delta(q,\TMendtape) = \tuple{q', \TMendtape, x}$ if
-$\delta(q,\TMendtape)$ is defined. Some textbooks do this, we do not.
-You can simply be careful when constructing your Turing machine that
-it never overwrites~$\TMendtape$.  Moreover, there are cases where
-allowing such overwriting provides some convenient flexibility.
+我们假设纸带仅在一个方向上是无限的。为此，指定一个特殊符号~$\TMendtape$ 作为纸带左端的标记会很有用。这使得图灵机程序更容易判断何时有“跑出”纸带的“危险”。我们可以假设这个符号永远不会被覆盖，即如果 $\delta(q,\TMendtape)$ 有定义，则 $\delta(q,\TMendtape) = \tuple{q', \TMendtape, x}$。有些教科书这样做，但我们不加此限制。你只需在构造图灵机时确保它从不覆盖~$\TMendtape$ 即可。此外，在某些情况下允许这种覆盖还能提供一定的灵活性。
 \end{explain}
 
 \begin{ex}
-\emph{Even Machine:} The even machine is formally
-the quadruple $\tuple{Q, \Sigma, q_0, \delta}$ where
+\emph{偶数机：}形式上是四元组 $\tuple{Q, \Sigma, q_0, \delta}$，其中
 \begin{align*}
 Q & = \{ q_0, q_1 \} \\
 \Sigma & = \{ \TMendtape, \TMblank, \TMstroke \}, \\

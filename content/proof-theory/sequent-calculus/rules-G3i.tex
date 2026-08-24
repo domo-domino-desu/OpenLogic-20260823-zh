@@ -8,10 +8,10 @@
 
 \begin{table}
 \begin{tabular}{@{}c@{}c@{}}
-\multicolumn{2}{@{}c@{}}{Axioms}\\[2ex]
+\multicolumn{2}{@{}c@{}}{公理}\\[2ex]
 $!C, \Gamma \Sequent !C$ & $\lfalse, \Gamma \Sequent \Delta$
 \\[2ex]
-\multicolumn{2}{@{}c@{}}{Logical Rules}\\[2ex]
+\multicolumn{2}{@{}c@{}}{逻辑规则}\\[2ex]
 \Axiom$\lnot !A, \Gamma \fCenter !A $
 \RightLabel{\LeftR{\lnot}}
 \UnaryInf$\lnot !A, \Gamma \fCenter \Delta$
@@ -81,13 +81,12 @@ $!C, \Gamma \Sequent !C$ & $\lfalse, \Gamma \Sequent \Delta$
 \UnaryInf$ \Gamma \fCenter \lexists[x][!A(x)]$
 \DisplayProof
 \end{tabular}
-\caption{Rules of \Log{G3i} for intuitionistic logic. In
-$\RightR{\forall}$ and $\LeftR{\exists}$, the !!{constant}~$a$ must
-not occur in the conclusion sequent. $\Gamma$ is a multisets of
-!!{formula}s, and $\Delta$ may be empty or contain a single
-!!{formula}. In axioms, the !!{formula}~$!C$ must be atomic.
-\Log{G1m} is \Log{G1i} without axioms $\lfalse, \Gamma \Sequent
-\Delta$.}
+\caption{直觉主义逻辑的 \Log{G3i} 规则。在
+$\RightR{\forall}$ 和 $\LeftR{\exists}$ 规则中，常项符号~$a$ 不得
+在结论相继式中出现。$\Gamma$ 是公式的多重集，$\Delta$ 可以为空或仅含单个
+公式。在公理中，公式~$!C$ 必须是原子公式。
+\Log{G1m} 是不含公理 $\lfalse, \Gamma \Sequent
+\Delta$ 的 \Log{G1i}。}
 \ollabel{tab:G3i}
 \end{table}
 

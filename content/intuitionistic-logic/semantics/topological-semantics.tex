@@ -8,40 +8,32 @@
 
 \olfileid{int}{sem}{top}
 
-\olsection{Topological Semantics}
+\olsection{拓扑语义}
 
-Another way to provide a semantics for intuitionistic logic is using
-the mathematical concept of a topology.
+为直觉主义逻辑提供语义的另一种方法是使用拓扑这一数学概念。
 
 \begin{defn}
-  Let $X$ be a set. A \emph{topology on~$X$} is a set $\Top{O}
-  \subseteq \Pow{X}$ that satisfies the properties below. The
-  !!{element}s of~$\Top{O}$ are called the \emph{open sets} of the
-  topology. The set $X$ together with $\Top{O}$ is called a
-  \emph{topological space}.
+  设 $X$ 是一个集合。$X$ 上的一个\emph{拓扑}是指满足以下性质的集合 $\Top{O}
+  \subseteq \Pow{X}$。
+  $\Top{O}$ 的元素称为该拓扑的\emph{开集}。集合 $X$ 连同 $\Top{O}$ 一起称为一个
+  \emph{拓扑空间}。
   \begin{enumerate}
-  \item The empty set and the entire space are open: $\emptyset$, $X \in
-    \Top{O}$.
-  \item Open sets are closed under finite intersections: if $U$, $V \in
-    \Top{O}$ then $U \cap V \in \Top{O}$
-  \item Open sets are closed under arbitrary unions: if $U_i \in
-    \Top{O}$ for all $i \in I$, then $\bigcup \Setabs{U_i}{i \in
-      I} \in \Top{O}$.
+  \item 空集和整个空间是开集：$\emptyset$, $X \in
+    \Top{O}$。
+  \item 开集对有限交封闭：如果 $U$, $V \in
+    \Top{O}$，那么 $U \cap V \in \Top{O}$。
+  \item 开集对任意并封闭：如果对所有 $i \in I$ 都有 $U_i \in
+    \Top{O}$，那么 $\bigcup \Setabs{U_i}{i \in
+      I} \in \Top{O}$。
   \end{enumerate}
 \end{defn}
 
-We may write $X$ for a topology if the collection of open sets can be
-inferred from the context; note that, still, only after $X$ is endowed
-with open sets can it be called a topology.
+如果从上下文可以推断出开集族，我们有时也直接用 $X$ 来表示一个拓扑；但需注意，只有当 $X$ 被赋予开集之后，它才能被称为一个拓扑。
 
 \begin{defn}
-  A \emph{topological model} of intuitionistic propositional logic is
-  a triple $\mModel{X} = \tuple{X, \Top{O}, V}$ where $\Top{O}$ is a
-  topology on~$X$ and $V$ is a function assigning an open set in
-  $\Top{O}$ to each propositional variable.
+  直觉主义命题逻辑的一个\emph{拓扑模型}是一个三元组 $\mModel{X} = \tuple{X, \Top{O}, V}$，其中 $\Top{O}$ 是 $X$ 上的一个拓扑，而 $V$ 是一个函数，为每个命题变元指派 $\Top{O}$ 中的一个开集。
 
-  Given a topological model~$\mModel{X}$, we can define $\Prop{X}{!A}$
-  inductively as follows:
+  给定一个拓扑模型~$\mModel{X}$，我们可以归纳地定义 $\Prop{X}{!A}$ 如下：
   \begin{enumerate}
   \item $\Prop{X}{\lfalse} = \emptyset$
   \item $\Prop{X}{p} = V(p)$
@@ -50,46 +42,21 @@ with open sets can it be called a topology.
   \item $\Prop{X}{!A \lif !B} = \Interior{(X \setminus \Prop{X}{!A}) \cup
     \Prop{X}{!B}}$
   \end{enumerate}
-  Here, $\Interior{V}$ is the function that maps a set $V \subseteq X$
-  to its \emph{interior}, that is, the union of all open sets it
-  contains. In other words,
+  这里，$\Interior{V}$ 是将子集 $V \subseteq X$ 映射到其\emph{内部}的函数，即包含于 $V$ 的所有开集的并。换言之，
   \[
-  \Interior{V} = \bigcup \Setabs{U}{U \subseteq V \text{ and } U \in \Top{O}}.
+  \Interior{V} = \bigcup \Setabs{U}{U \subseteq V \text{ 且 } U \in \Top{O}}.
   \]
 \end{defn}
 
-Note that the interior of any set is always open, since it is a union
-of open sets. Thus, $\Prop{X}{!A}$ is always an open set.
+注意，任何集合的内部总是开集，因为它是开集的并。因此，$\Prop{X}{!A}$ 总是一个开集。
 
-Although topological semantics is highly abstract, there are ways to
-think about it that might motivate it. Suppose that the !!{element}s,
-or ``points,'' of $X$ are points at which statements can be
-evaluated. The set of all points where $!A$ is true is the proposition
-expressed by~$!A$. Not every set of points is a potential proposition;
-only the !!{element}s of $\Top{O}$ are.  $!A \Entails !B$ iff $!B$ is
-true at every point at which~$!A$ is true, i.e., $\Prop{X}{!A}
-\subseteq \Prop{X}{!B}$, for all~$X$. The absurd statement~$\lfalse$
-is never true, so $\Prop{X}{\lfalse} = \emptyset$.
+尽管拓扑语义非常抽象，但有一些直观的思考方式可以为其提供动机。假设 $X$ 的元素或“点”是使得语句能够被赋值的点。使得 $!A$ 为真的所有点的集合，就是 $!A$ 所表达的命题。并非每个点集都是一个潜在的命题；只有 $\Top{O}$ 中的元素才是。$!A$ 语义地后承 $!B$ 当且仅当在 $!A$ 为真的每个点 $!B$ 也为真，即对所有~$X$ 有 $\Prop{X}{!A}
+\subseteq \Prop{X}{!B}$。荒谬语句~$\lfalse$ 从不为真，因此 $\Prop{X}{\lfalse} = \emptyset$。
 
-How must the propositions expressed by $!B \land !C$, $!B \lor !C$,
-and $!B \lif !C$ be related to those expressed by $!B$ and~$!C$ for
-the intuitionistically valid laws to hold, i.e., so that $!A \Proves
-!B$ iff $\Prop{X}{!A} \subset \Prop{X}{!B}$? We require $\lfalse
-\Proves !A$ for any $!A$, which is satisfied because $\emptyset
-\subseteq U$ for all $U$.  Since $!B \land !C \Proves !B$, we require
-that $\Prop{X}{!B \land !C} \subseteq \Prop{X}{!B}$, and similarly
-$\Prop{X}{!B \land !C} \subseteq \Prop{X}{!C}$. The largest set
-satisfying $W \subseteq U$ and $W \subseteq V$ is $U \cap V$.
-Conversely, $!B \Proves !B \lor !C$ and $!C \Proves !B \lor !C$, and
-so we require that $\Prop{X}{!B} \subseteq \Prop{X}{!B \lor !C}$ and
-$\Prop{X}{!C} \subseteq \Prop{X}{!B \lor !C}$. The smallest set~$W$
-such that $U \subseteq W$ and $V \subseteq W$ is $U \cup V$.
+为了使直觉主义有效法则成立，即为了使 $!A \Proves !B$ 当且仅当 $\Prop{X}{!A} \subset \Prop{X}{!B}$，$!B \land !C$、$!B \lor !C$ 以及 $!B \lif !C$ 所表达的命题必须与 $!B$、$!C$ 所表达的命题具有怎样的关系？我们要求对任意 $!A$ 有 $\lfalse \Proves !A$，这之所以成立，是因为对所有 $U$ 都有 $\emptyset \subseteq U$。由于 $!B \land !C \Proves !B$，我们要求 $\Prop{X}{!B \land !C} \subseteq \Prop{X}{!B}$，类似地有 $\Prop{X}{!B \land !C} \subseteq \Prop{X}{!C}$。满足 $W \subseteq U$ 且 $W \subseteq V$ 的最大集合是 $U \cap V$。反过来，$!B \Proves !B \lor !C$ 且 $!C \Proves !B \lor !C$，因此我们要求 $\Prop{X}{!B} \subseteq \Prop{X}{!B \lor !C}$ 且 $\Prop{X}{!C} \subseteq \Prop{X}{!B \lor !C}$。满足 $U \subseteq W$ 且 $V \subseteq W$ 的最小集合~$W$ 是 $U \cup V$。
 
-The definition for $\lif$ is tricky: $!A \lif !B$ expresses the
-weakest proposition that, combined with $!A$, entails $!B$. That $!A
-\lif !B$ combined with $!A$ entails~$!B$ is clear from $(!A \lif !B)
-\land !A \Proves !B $. So $\Prop{X}{!A \lif !B}$ should be the
-greatest open set such that $\Prop{X}{!A \lif !B} \cap \Prop{X}{!A}
-\subset \Prop{X}{!B}$, leading to our definition.
+$\lif$ 的定义则比较棘手：$!A \lif !B$ 表达的是与 $!A$ 结合后能语义地后承 $!B$ 的最弱的命题。$!A \lif !B$ 与 $!A$ 结合后能语义地后承~$!B$，这一点从 $(!A \lif !B)
+\land !A \Proves !B $ 可以清楚看出。因此，$\Prop{X}{!A \lif !B}$ 应该是满足 $\Prop{X}{!A \lif !B} \cap \Prop{X}{!A}
+\subset \Prop{X}{!B}$ 的最大的开集，这便引出了我们的定义。
 
 \end{document}

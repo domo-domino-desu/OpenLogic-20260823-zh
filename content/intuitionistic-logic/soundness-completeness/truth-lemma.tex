@@ -1,6 +1,4 @@
-% part: intuitionistic-logic
-% chapter: soundness-completeness
-% section: truth-lemma
+% part: intuitionistic-logic 在直觉主义逻辑中，真是依据“构造性证明”或“证实”来解释的：一个命题为真，当且仅当它（已经或能够）被证明。我们如何确认自己证明了一个命题呢？我们可能有一个直接证明，或者一个通过可靠方法得到的证明。对于复合陈述，其各组成部分的证明必须以适当的方式连接起来，才能构成该复合陈述的证明。这构成了与经典的真值条件语义学的根本背离。在经典语义学中，复合陈述的真值是各组成部分真值的函数，而真值本身并不通过证明或证实来解释。% chapter: soundness-completeness 直觉主义逻辑的 Kripke 语义是使这种证明条件思想在数学上精确化的一种方式。它由 % section: truth-lemma Brouwer 等人在 20 世纪早期发展起来。
 
 \documentclass[../../../include/open-logic-section]{subfiles}
 
@@ -8,64 +6,61 @@
 
 \olfileid{int}{sc}{tru}
 
-\olsection{The Truth Lemma}
+\olsection{真引理}
 
-The following lemma connects satisfaction in the canonical model with
-which !!{formula}s are !!{element}s of the prime set $\Delta$.
+下述引理将典范模型中的满足性与哪些公式是素集 $\Delta$ 的元素联系了起来。
 
 \begin{lem}\ollabel{lem:truth}
-  If $\Delta$ is prime, then $\mSat{M(\Delta)}{!A}[\sigma]$ iff
-  $\Delta(\sigma) \Proves !A$.
+  如果 $\Delta$ 是素的，那么 $\mSat{M(\Delta)}{!A}[\sigma]$ 当且仅当
+  $\Delta(\sigma) \Proves !A$。
 \end{lem}
 
 \begin{proof}
-  By induction on~$!A$.
+  对~$!A$ 进行归纳。
   \begin{enumerate}
-    \item \indcase{!A}{\lfalse}{Since $\Delta(\sigma)$ is prime, it
-      is consistent, so $\Delta(\sigma) \Proves/ \indfrm$. By
-      definition, $\mSat/{M(\Delta)}{\indfrm}[\sigma]$.}
-      \item \indcase{!A}{p}{By definition of $\mSat{{}}{}$,
-        $\mSat{M(\Delta)}{\indfrm}[\sigma]$ iff $\sigma \in V(p)$,
-        i.e., $\Delta(\sigma) \Proves \indfrm$.}
+    \item \indcase{!A}{\lfalse}{由于 $\Delta(\sigma)$ 是素的，它
+      是一致的，所以 $\Delta(\sigma) \Proves/ \indfrm$。根据
+      定义，$\mSat/{M(\Delta)}{\indfrm}[\sigma]$。}
+      \item \indcase{!A}{p}{根据 $\mSat{{}}{}$ 的定义，
+        $\mSat{M(\Delta)}{\indfrm}[\sigma]$ 当且仅当 $\sigma \in V(p)$，
+        即 $\Delta(\sigma) \Proves \indfrm$。}
       \item \indcase!{!A}{\lnot !B}{}
       \item \indcase{!A}{!B \land
-        !C}{$\mSat{M(\Delta)}{\indfrm}[\sigma]$ iff
-        $\mSat{M(\Delta)}{!B}[\sigma]$ and
-        $\mSat{M(\Delta)}{!C}[\sigma]$. By induction hypothesis,
-        $\mSat{M(\Delta)}{!B}[\sigma]$ iff $\Delta(\sigma) \Proves
-        !B$, and similarly for~$!C$. But $\Delta(\sigma) \Proves !B$
-        and $\Delta(\sigma) \Proves !C$ iff $\Delta(\sigma)
-        \Proves \indfrm$.}
+        !C}{$\mSat{M(\Delta)}{\indfrm}[\sigma]$ 当且仅当
+        $\mSat{M(\Delta)}{!B}[\sigma]$ 且
+        $\mSat{M(\Delta)}{!C}[\sigma]$。由归纳假设，
+        $\mSat{M(\Delta)}{!B}[\sigma]$ 当且仅当 $\Delta(\sigma) \Proves
+        !B$，对~$!C$ 同理。而 $\Delta(\sigma) \Proves !B$
+        且 $\Delta(\sigma) \Proves !C$ 当且仅当 $\Delta(\sigma)
+        \Proves \indfrm$。}
       \item \indcase{!A}{!B \lor
-        !C}{$\mSat{M(\Delta)}{\indfrm}[\sigma]$ iff
-        $\mSat{M(\Delta)}{!B}[\sigma]$ or
-        $\mSat{M(\Delta)}{!C}[\sigma]$. By induction hypothesis,
-        this holds iff $\Delta(\sigma) \Proves !B$ or
-        $\Delta(\sigma) \Proves !C$. We have to show that this in
-        turn holds iff $\Delta(\sigma) \Proves \indfrm$. The
-        left-to-right direction is clear. The right-to-left direction
-        follows since $\Delta(\sigma)$ is prime.}
-      \item \indcase{!A}{!B \lif !C}{First the contrapositive of the
-        left-to-right direction: Assume $\Delta(\sigma) \Proves/ !B
-        \lif !C$. Then also $\Delta(\sigma) \cup \{!B\} \Proves/
-        !C$. Since $\tuple{!B, !C}$ is $\tuple{!B_n, !C_n}$ for
-        some~$n$, we have $\Delta(\sigma.n) = (\Delta(\sigma) \cup
-        \{!B\})^*$, and $\Delta(\sigma.n) \Proves !B$ but $\Delta(\sigma.n) \Proves/
-        !C$. By inductive hypothesis, $\mSat{M(\Delta)}{!B}[\sigma.n]$
-        and $\mSat/{M(\Delta)}{!C}[\sigma.n]$. Since
-        $R\sigma(\sigma.n)$, this means that
-        $\mSat/{M(\Delta)}{\indfrm}[\sigma]$.
+        !C}{$\mSat{M(\Delta)}{\indfrm}[\sigma]$ 当且仅当
+        $\mSat{M(\Delta)}{!B}[\sigma]$ 或
+        $\mSat{M(\Delta)}{!C}[\sigma]$。由归纳假设，
+        这等价于 $\Delta(\sigma) \Proves !B$ 或
+        $\Delta(\sigma) \Proves !C$。我们需要证明这又等价于 $\Delta(\sigma) \Proves \indfrm$。
+        从左到右的方向是显然的。从右到左的方向则由 $\Delta(\sigma)$ 是素集可得。}
+      \item \indcase{!A}{!B \lif !C}{先证从左到右方向的逆否命题：假设 $\Delta(\sigma) \Proves/ !B
+        \lif !C$。
+        那么也有 $\Delta(\sigma) \cup \{!B\} \Proves/
+        !C$。由于 $\tuple{!B, !C}$ 对
+        某个~$n$ 是 $\tuple{!B_n, !C_n}$，我们有 $\Delta(\sigma.n) = (\Delta(\sigma) \cup
+        \{!B\})^*$，且 $\Delta(\sigma.n) \Proves !B$ 但 $\Delta(\sigma.n) \Proves/
+        !C$。由归纳假设，$\mSat{M(\Delta)}{!B}[\sigma.n]$
+        且 $\mSat/{M(\Delta)}{!C}[\sigma.n]$。由于
+        $R\sigma(\sigma.n)$，这意味着
+        $\mSat/{M(\Delta)}{\indfrm}[\sigma]$。
 
-        Now assume $\Delta(\sigma) \Proves !B \lif !C$, and let
-        $R\sigma\sigma'$. Since $\Delta(\sigma) \subseteq
-        \Delta(\sigma')$, we have: if $\Delta(\sigma') \Proves
-        !B$, then $\Delta(\sigma') \Proves !C$. In other words, for
-        every $\sigma'$ such that $R\sigma\sigma'$, either
-        $\Delta(\sigma') \Proves/ !B$ or $\Delta(\sigma') \Proves
-        !C$. By induction hypothesis, this means that whenever
-        $R\sigma\sigma'$, either $\mSat/{M(\Delta)}{!B}[\sigma']$ or
-        $\mSat{M(\Delta)}{!C}[\sigma']$, i.e.,
-        $\mSat{M(\Delta)}{\indfrm}[\sigma]$.}
+        现在假设 $\Delta(\sigma) \Proves !B \lif !C$，并设
+        $R\sigma\sigma'$。由于 $\Delta(\sigma) \subseteq
+        \Delta(\sigma')$，我们有：若 $\Delta(\sigma') \Proves
+        !B$，则 $\Delta(\sigma') \Proves !C$。换言之，对每个
+        满足 $R\sigma\sigma'$ 的 $\sigma'$，要么
+        $\Delta(\sigma') \Proves/ !B$，要么 $\Delta(\sigma') \Proves
+        !C$。由归纳假设，这意味着每当
+        $R\sigma\sigma'$，要么 $\mSat/{M(\Delta)}{!B}[\sigma']$，要么
+        $\mSat{M(\Delta)}{!C}[\sigma']$，即
+        $\mSat{M(\Delta)}{\indfrm}[\sigma]$。}
   \end{enumerate}
 \end{proof}
 

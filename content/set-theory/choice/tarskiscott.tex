@@ -3,72 +3,38 @@
 \begin{document}
 
 \olfileid{sth}{choice}{tarskiscott}
-\olsection{The Tarski--Scott Trick}
+\olsection{Tarski--Scott 技巧}
 
-In \olref[cardinals][cardsasords]{defcardinalasordinal}, we
-defined cardinals as ordinals. To do this, we assumed the Axiom of
-Well-Ordering. We did this, for no other reason than that it is the
-``industry standard''.
+在\olref[cardinals][cardsasords]{defcardinalasordinal}中，我们将基数定义为序数。要做到这一点，我们假定了良序公理。我们这样做纯粹是因为它是“行业标准”。
 
-Before we discuss any of the philosophical issues surrounding
-Well-Ordering, then, it is important to be clear that we \emph{can}
-depart from the industry standard, and develop a theory of cardinals
-\emph{without} assuming Well-Ordering. We can still employ the
-definitions of $\cardeq{A}{B}$, $\cardle{A}{B}$ and $\cardless{A}{B}$,
-as they appeared in \olref[sfr][siz][]{chap}. We will just need a new
-notion of \emph{cardinal}.
+因此，在我们讨论与良序公理相关的任何哲学问题之前，必须明确一点：我们\emph{可以}偏离行业标准，并且\emph{无需}假定良序公理来发展基数理论。我们仍然可以采用 $\cardeq{A}{B}$、$\cardle{A}{B}$ 和 $\cardless{A}{B}$ 的定义，即\olref[sfr][siz][]{chap}中所给出的那些定义。我们只需要一个新的\emph{基数}概念。
 
-A na\"ive thought would be to attempt to define $A$'s cardinality thus:
-\[
+一种朴素的想法是试图这样定义 $A$ 的基数：\[
 	\Setabs{x}{\cardeq{A}{x}}.
 \]
-You might want to compare this with Frege's definition of $\# x Fx$,
-sketched at the very end of \olref[cardinals][hp]{sec}. And, for
-reasons we gestured at there, this definition fails. Any singleton set
-is equinumerous with $\{\emptyset\}$. But new singleton sets are
-formed at every successor stage of the hierarchy (just consider the
-singleton of the previous stage). So $\Setabs{x}{\cardeq{A}{x}}$ does
-not exist, since it cannot have a rank.
+你也许想把它与 Frege（弗雷格）对 $\# x Fx$ 的定义作个比较，这在\olref[cardinals][hp]{sec}末尾曾有概述。而且，由于我们在那里提到的原因，这个定义行不通。任何单元素集都与 $\{\emptyset\}$ 等势。但新的单元素集在层级的每个后继阶段都会产生（只需考虑前一阶段的单元素集即可）。因此，$\Setabs{x}{\cardeq{A}{x}}$不存在，因为它不可能具有秩。
 
-To get around this problem, we use a trick due to Tarski and Scott:\footnote{A reminder: all formulas may have parameters (unless explicitly stated otherwise).}
+为了解决这个问题，我们使用一个由 Tarski（塔斯基）和 Scott（斯科特）提出的技巧：\footnote{提醒：所有公式都可能含有参数（除非另有明确说明）。}
 
 \begin{defn}[Tarski--Scott]
-For any formula $\phi(x)$, let
-$[ x : \phi(x)] $ be the set of all $x$, of least possible rank, such
-that $\phi(x)$ (or $\emptyset$, if there are no $\phi$s).
+对于任意公式 $\phi(x)$，令
+$[ x : \phi(x)] $ 为所有满足 $\phi(x)$ 且具有最小可能秩的 $x$ 的集合（或者，如果没有 $\phi$ 这样的 $x$，则为 $\emptyset$）。
 \end{defn}
 
-We should check that this definition is legitimate. Working in $\ZF$,
-\olref[spine][foundation]{zfentailsregularity} guarantees that
-$\setrank{x}$ exists for every $x$. Now, if there are any entities
-satisfying $\phi$, then we can let $\alpha$ be the least rank such
-that  $(\exists x\subseteq V_\alpha)\phi(x)$, i.e., $(\forall \beta
-\in \alpha)(\forall x \subseteq V_\beta)\lnot \phi(x)$. We can then
-define $[x : \phi(x)]$ by Separation as $\Setabs{x \in
-V_{\alpha+1}}{\phi(x)}$. 
+我们应当验证这个定义是否合法。在 $\ZF$ 中，\olref[spine][foundation]{zfentailsregularity} 保证了每个 $x$ 的 $\setrank{x}$ 都存在。现在，如果存在任何满足 $\phi$ 的对象，那么我们可以令 $\alpha$ 为满足 $(\exists x\subseteq V_\alpha)\phi(x)$ 的最小秩，即 $(\forall \beta
+\in \alpha)(\forall x \subseteq V_\beta)\lnot \phi(x)$。然后我们可以通过分离公理将 $[x : \phi(x)]$ 定义为 $\Setabs{x \in
+V_{\alpha+1}}{\phi(x)}$。
 
-Having justified the Tarski--Scott trick, we can now use it to define
-a notion of cardinality:
+在论证了 Tarski--Scott 技巧的合理性之后，我们现在可以用它来定义基数概念：
 
 \begin{defn}
-The \textsc{ts}-cardinality of $A$ is $\text{tsc}(A) = [x :
-\cardeq{A}{x}]$.
+$A$ 的 \textsc{ts}-基数是 $\text{tsc}(A) = [x :
+\cardeq{A}{x}]$。
 \end{defn}
 
-The definition of a \textsc{ts}-cardinal does not use Well-Ordering.
-But, even without that Axiom, we can show that
-\emph{\textsc{ts}-cardinals} behave rather like \emph{cardinals} as
-defined in \olref[cardinals][cardsasords]{defcardinalasordinal}.
-For example, if we restate
-\olref[cardinals][cardsasords]{lem:CardinalsBehaveRight} and
-\olref[card-arithmetic][opps]{lem:SizePowerset2Exp} in terms of
-\textsc{ts}-cardinals, the proofs go through just fine in $\ZF$,
-without assuming Well-Ordering. 
+\textsc{ts}-基数的定义没有使用良序公理。但是，即使没有该公理，我们也能证明\emph{\textsc{ts}-基数}的表现与\olref[cardinals][cardsasords]{defcardinalasordinal}中定义的\emph{基数}非常相似。例如，如果我们用 \textsc{ts}-基数来重述 \olref[cardinals][cardsasords]{lem:CardinalsBehaveRight} 和 \olref[card-arithmetic][opps]{lem:SizePowerset2Exp}，那么证明在 $\ZF$ 中完全行得通，无需假定良序公理。
 
-Whilst we are on the topic, it is worth noting that we can also
-develop a theory of ordinals using the Tarski--Scott trick. Where
-$\tuple{A, <}$ is a well-ordering, let $\text{tso}(A, <) = [\tuple{X,
-R} : \ordeq{\tuple{A, <}}{\tuple{X, R}}]$. For more on this treatment
-of cardinals and ordinals, see \citet[chs.~9--12]{Potter2004}.
+顺便一提，我们也可以使用 Tarski--Scott 技巧来发展序数理论。对于良序 $\tuple{A, <}$，令 $\text{tso}(A, <) = [\tuple{X,
+R} : \ordeq{\tuple{A, <}}{\tuple{X, R}}]$。有关基数和序数这种处理方式的更多内容，请参见 \citet[chs.~9--12]{Potter2004}。
 
 \end{document}

@@ -6,14 +6,13 @@
 \begin{document}
 
 \iftag{FOL}
-      {\olchapter{fol}{tab}{Tableaux}}
-      {\olchapter{pl}{tab}{Tableaux}}
+      {\olchapter{fol}{tab}{分析表}}
+      {\olchapter{pl}{tab}{分析表}}
 
 \begin{editorial}
-This chapter presents a signed analytic tableaux system.
+本章介绍一种带号分析表系统。
   
-To include or exclude material relevant to natural deduction as a
-proof system, use the ``prfTab'' tag.
+若要包含或排除自然演绎证明系统的相关内容，请使用“prfTab”标签。
 \end{editorial}
 
 \olimport{rules-and-proofs}
@@ -29,24 +28,22 @@ proof system, use the ``prfTab'' tag.
 \olimport{proving-things}
 
 \iftag{FOL}{%
-  \olimport{proving-things-quant}
+  \olimport{proving-things-quant} % 关于量词的证明
 }{}
 
-\olimport{proof-theoretic-notions}
-
-\olimport{provability-consistency}
-
-\olimport{provability-propositional}
+\olimport{proof-theoretic-notions} % 证明论概念
+\olimport{provability-consistency} % 可证性与一致性
+\olimport{provability-propositional} % 命题逻辑的可证性
 
 \iftag{FOL}{%
-  \olimport{provability-quantifiers}
+  \olimport{provability-quantifiers} % 量词的可证性
 }{}
 
-\olimport{soundness}
+\olimport{soundness} % 可靠性
 
 \iftag{FOL}{%
-  \olimport{identity}
-  \olimport{soundness-identity}
+  \olimport{identity} % 等词
+  \olimport{soundness-identity} % 等词的可靠性
 }{}
 
 \OLEndChapterHook

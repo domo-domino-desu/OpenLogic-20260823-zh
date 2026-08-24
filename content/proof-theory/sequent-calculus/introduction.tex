@@ -8,110 +8,38 @@
 
 \olfileid{pt}{seq}{int}
 
-\olsection{Introduction}
+\olsection{引言}
 
-Sequent calculi are !!{proof} systems that were introduced in the
-1930s by Gerhard Gentzen. They were intended less as a practical
-method for !!{proving} things. Rather, Gentzen used them in order to
-be able to prove certain results about the possible structure of
-!!{proof}s and their property. These kinds of questions are
-exactly the questions with which proof theory is concerned.
+相继式演算是由 Gerhard Gentzen（根岑）在二十世纪三十年代引入的推导系统。与其说它们的设计初衷是一种实用的推导方法，不如说 Gentzen 是将它们作为一种工具，以便能够证明有关推导的可能结构及其性质的某些结果。这类问题正是证明论所关注的。
 
-Sequent calculi operate on \emph{sequents}, as the name suggests, and
-not on !!{formula}s. A sequent is a pair of sequences or multisets of
-!!{formula}s. Gentzen's original systems (\Log{LK} and \Log{LJ}) used
-sequences; proof theorists now prefer to use multisets. A multiset is
-like a set, except that a multiset can contain an !!{element} more
-than once. Just as in sets, the order of !!{element}s does not matter,
-however. So the expressions $\{!A, !A, !B\}$ and $\{!A, !B, !A\}$
-describe the same multiset, but that multiset is different from $\{!A,
-!B\}$ and from $\{!A, !A, !B, !B\}$, since the latter contain
-different numbers of $!A$ and $!B$ than the former.
+正如其名，相继式演算处理的对象是\emph{相继式}，而非公式。一个相继式是由公式序列或公式多重集组成的对。Gentzen 最初的系统（\Log{LK} 和 \Log{LJ}）使用序列；现在的证明论学者则更偏好使用多重集。多重集类似于集合，不同之处在于一个多重集可以多次包含同一个元素。但与集合一样，元素的顺序无关紧要。因此，表达式 $\{!A, !A, !B\}$ 和 $\{!A, !B, !A\}$ 描述的是同一个多重集，但该多重集不同于 $\{!A, !B\}$ 和 $\{!A, !A, !B, !B\}$，因为后两者包含的 $!A$ 和 $!B$ 的数量与前者不同。
 
-Traditionally, multisets of !!{formula}s in proof theory are written
-using uppercase Greek letters. So when we write $\Gamma$, $\Delta$,
-$\Pi$, $\Lambda$, or $\Theta$, we intend these to be multisets of
-!!{formula}s of whatever logic we are working with. Traditionally
-also, instead of writing $\tuple{\Gamma, \Delta}$ proof theorists
-separate the two components by a sequent symbol; we use~$\Sequent$. 
+传统上，证明论中的公式多重集用大写希腊字母表示。所以当我们写出 $\Gamma$、$\Delta$、$\Pi$、$\Lambda$ 或 $\Theta$ 时，我们意指它们是我们所研究的逻辑中的公式多重集。按传统，证明论学者也不使用 $\tuple{\Gamma, \Delta}$ 的写法，而是用相继式符号分隔这两个部分；本书使用 $\Sequent$。
 
-\begin{defn}[Sequent]
-A \emph{sequent} is an expression of the form
+\begin{defn}[相继式]
+一个\emph{相继式}是形如
 \[
 \Gamma \Sequent \Delta
 \]
-where $\Gamma$ and $\Delta$ are finite (possibly empty) multisets of
-!!{formula}s. $\Gamma$ is called the \emph{antecedent}, while
-$\Delta$ is the \emph{succedent}.
+的表达式，其中 $\Gamma$ 和 $\Delta$ 是公式的有限（可能为空）多重集。$\Gamma$ 称为\emph{前件}，而 $\Delta$ 称为\emph{后件}。
 \end{defn}
 
-Let $!G$~be the conjunction of the !!{formula}s in~$\Gamma$ (taking
-the empty conjunction to be~$\ltrue$) and $!D$~be the disjunction of
-the !!{formula}s in~$\Delta$ (taking the empty disjunction to
-be~$\lfalse$). Then the sequent $\Gamma \Sequent \Delta$ is true (in
-some structure~$\Struct{M}$) iff $!G \lif !D$ is true. In classical
-logic, this amounts to the same as saying that either one of the
-!!{formula}s in~$\Gamma$ is false, or one of the !!{formula}s
-in~$\Delta$ is true.
+令 $!G$ 为 $\Gamma$ 中公式的合取（将空合取视为 $\ltrue$），$!D$ 为 $\Delta$ 中公式的析取（将空析取视为 $\lfalse$）。那么，相继式 $\Gamma \Sequent \Delta$（在某个结构 $\Struct{M}$ 中）为真，当且仅当 $!G \lif !D$ 为真。在经典逻辑中，这等价于说：要么 $\Gamma$ 中有一个公式为假，要么 $\Delta$ 中有一个公式为真。
 
-If $\Gamma$ is a multiset of !!{formula}s, we write $\Gamma, !A$ (or
-$!A, \Gamma$) for the result of adding $!A$ to~$\Gamma$. If $\Delta$
-is also a multiset of !!{formula}s, then $\Gamma, \Delta$ is the
-multiset union of the two sequences---if $\Gamma$ contains $!A$ with
-\emph{multiplicity}~n (i.e., it contains $n$ copies of~$!A$) and
-$\Delta$ with multiplicity~$m$, then $\Gamma, \Delta$ contains $!A$
-with multiplicity~$n+m$. If the multiset on one side of a sequent is
-empty, we usually just leave a blank. For instance, $\Sequent !A$ is
-the sequent with an empty antecendent and the succedent contains $!A$
-with multiplicity~$1$.
+如果 $\Gamma$ 是公式多重集，我们用 $\Gamma, !A$（或 $!A, \Gamma$）表示将 $!A$ 加入 $\Gamma$ 后得到的结果。如果 $\Delta$ 也是公式多重集，那么 $\Gamma, \Delta$ 就是这两个多重集的并——如果 $\Gamma$ 以\emph{重数} $n$ 包含 $!A$（即包含 $n$ 个 $!A$），而 $\Delta$ 以重数 $m$ 包含 $!A$，那么 $\Gamma, \Delta$ 就以重数 $n+m$ 包含 $!A$。如果相继式某一侧的多重集为空，我们通常就留出空白。例如，$\Sequent !A$ 就是一个前件为空、后件以重数 1 包含 $!A$ 的相继式。
 
-!!^a{proof} in the sequent calculus is a tree of sequents, where
-the topmost (or initial) sequents are axioms in the system considered,
-and if a sequent stands below one or two other sequents, it must
-follow correctly by a rule of inference in the system. We will first
-consider two different sequent systems for classical logic,
-$\Log{G1c}$ and~$\Log{G3c}$. Their axioms and rules are given in
-\cref{pt:seq:int:tab:G1c,pt:seq:int:tab:G3c}. \oliflabeldef{fol:seq::chap}{ (Gentzen's
-original system \Log{LK} is described in \olref[fol][seq][]{chap}.)}{}
+相继式演算中的推导是由相继式构成的树，其中最顶端（或初始）的相继式是所考虑系统中的公理，并且若某个相继式位于一个或两个其他相继式的下方，则它必须是由系统中的推理规则正确推出的。我们将首先考虑经典逻辑的两个不同的相继式系统，$\Log{G1c}$ 和 $\Log{G3c}$。它们的公理和规则在 \cref{pt:seq:int:tab:G1c,pt:seq:int:tab:G3c} 中给出。\oliflabeldef{fol:seq::chap}{ （Gentzen 最初的系统 \Log{LK} 在 \olref[fol][seq][]{chap} 中描述。）}{}
 
 \subfile{rules-G1c}
 \subfile{rules-G3c}
 
-The systems are subtly different, and these differences mean that they
-have different proof theoretic properties. \Log{G1c} has axioms $!A
-\Sequent !A$ with no other !!{formula}s allowed. \Log{G3c} has axioms
-of the form $!C, \Gamma \Sequent \Delta, !C$ with arbitrary ``side''
-!!{formula}s in $\Gamma$ and~$\Delta$, but the !!{formula}~$!C$
-appearing on both sides must be \emph{atomic}. \Log{G1c} has two versions
-each of the $\LeftR{\land}$ and $\RightR{\lor}$ rules whereas \Log{G3c}
-has just one each. And \Log{G1c} has additional ``structural rules''
-called ``contraction'' (\LeftR{\Contraction}, \RightR{\Contraction})
-and ``weakening'' (\LeftR{\Weakening}, \RightR{\Weakening}).
+这两个系统有细微差别，这些差别意味着它们具有不同的证明论性质。$\Log{G1c}$ 的公理为 $!A \Sequent !A$，且不允许包含其他公式。$\Log{G3c}$ 的公理形式为 $!C, \Gamma \Sequent \Delta, !C$，其中 $\Gamma$ 和 $\Delta$ 中可以有任意的“侧公式”，但两边出现的公式 $!C$ 必须是\emph{原子公式}。$\Log{G1c}$ 的 $\LeftR{\land}$ 规则和 $\RightR{\lor}$ 规则各有两个版本，而 $\Log{G3c}$ 各自只有一个版本。并且 $\Log{G1c}$ 拥有额外的“结构规则”，称为“收缩”（\LeftR{\Contraction}, \RightR{\Contraction}）和“弱化”（\LeftR{\Weakening}, \RightR{\Weakening}）。
 
-The systems \Log{G1c} and \Log{G3c} happen to be sound and complete
-for classical logic. In other words, every sequent !!{provable} in
-these systems is true in every !!{structure}, and every sequent that
-is true in every !!{structure} has !!a{proof}. So the question
-\emph{whether} a sequent has !!a{proof} can also be answered by other
-methods of logic (e.g., those of model theory). And since both systems
-!!{prove} exactly the sequents true in every !!{structure}, they in
-particular prove the same sequents.
+系统 $\Log{G1c}$ 和 $\Log{G3c}$ 对经典逻辑恰好是可靠且完备的。换言之，在这些系统中可推导的每个相继式在每个结构中都为真，并且在每个结构中都为真的每个相继式都有一个推导。因此，一个相继式\emph{是否}有推导的问题，也可以通过逻辑的其他方法（例如模型论的方法）来回答。而且，由于两个系统恰好推导出那些在所有结构中都为真的相继式，特别地，它们证明相同的相继式。
 
-Proof theory, however, is not just concerned with \emph{whether}
-something is provable, but \emph{how}. Proof theorists consider
-questions such as ``Can a certain rule always be avoided?,'' ``Can
-this rule be added to the system without resulting in new sequents
-becoming provable?,'' or ``Can !!{proof}s in one system be turned into
-!!{proof}s in another?'' If the answer is ``yes'' to such a question,
-the proof of this fact is often proved by induction on the complexity
-of !!{proof}s, or, equivalently, by induction on the structure of
-!!{proof}s. This yields not just a proof of the fact (e.g., if
-\Log{G1c} proves a sequent then \Log{G3c} proves the same sequent),
-but a procedure (e.g., of turning !!{proof}s in~\Log{G1c} into
-!!{proof}s in~\Log{G3c}).
+然而，证明论不仅关心某物\emph{是否}可证，还关心它是\emph{如何}可证的。证明论学者会考虑诸如“能否总是避免使用某个特定规则？”、“能否将某条规则加入系统而不导致新的相继式变得可证？”、或者“能否将一个系统中的推导转变为另一个系统中的推导？”等问题。如果这类问题的答案是肯定的，那么对这一事实的证明通常通过对推导的复杂度进行归纳，或者等价地，对推导的结构进行归纳来完成。这不仅证明了该事实（例如，如果 \Log{G1c} 证明了某个相继式，那么 \Log{G3c} 也能证明同一个相继式），还提供了一个程序（例如，将 \Log{G1c} 中的推导转化为 \Log{G3c} 中的推导的程序）。
 
-A central result in proof theory is the \emph{cut-elimination
-theorem}. It shows that we can add the cut rule
+证明论的一个核心结果是\emph{切割消去定理}。它表明，我们可以将切割规则
 \[
 \Axiom$\Gamma \fCenter \Delta, !A$
 \Axiom$!A, \Pi \fCenter \Lambda$
@@ -119,11 +47,6 @@ theorem}. It shows that we can add the cut rule
 \BinaryInf$\Gamma, \Pi \fCenter \Delta, \Lambda$
 \DisplayProof
 \]
-to the sequent systems without changing which sequents are
-!!{provable}. Moreover, the proof provides a method that transforms
-any !!{proof} using the rules of \Log{G1c} (or \Log{G3c}) together with
-\Cut{} into one that only uses the rules of \Log{G1c} (or \Log{G3c}).
-In other words, this procedure ``eliminates'' the \Cut{} rule from
-!!{proof}s using it; hence the name.
+添加到相继式系统中，而不会改变哪些相继式是可推导的。此外，该定理的证明提供了一种方法，能将任何同时使用了 \Log{G1c}（或 \Log{G3c}）规则与 \Cut{} 规则的推导，转换为只使用 \Log{G1c}（或 \Log{G3c}）规则的推导。换言之，该程序将 \Cut{} 规则从使用了它的推导中“消去”了；定理名便由此而来。
 
 \end{document}

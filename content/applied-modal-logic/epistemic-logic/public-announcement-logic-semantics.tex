@@ -8,63 +8,48 @@
 
 \olfileid{aml}{el}{psm}
 
-\olsection{Semantics of Public Announcement Logic}
+\olsection{公共宣告逻辑的语义}
 
-Relational models for public announcement logics are the same as they
-were in epistemic logics. However, the semantics for the public
-announcement operator are something new.
+公共宣告逻辑的关系模型与认知逻辑中的关系模型完全一样。不过，公共宣告算子的语义则是全新的。
 
-\begin{defn}\ollabel{defn:mmodels} \emph{Truth of !!a{formula}~$!A$
-  at~$w$} in a~$\mModel M = \tuple{W, R, V}$, in symbols:
-  $\mSat{M}{!A}[w]$, is defined inductively as follows:
+\begin{defn}\ollabel{defn:mmodels} 公式~$!A$ 在一个~$\mModel M = \tuple{W, R, V}$
+  的世界~$w$ 处的\emph{真值}，记作：
+  $\mSat{M}{!A}[w]$，归纳定义如下：
   \begin{enumerate}
-  \tagitem{prvFalse}{\indcase{!A}{\lfalse}{Never $\mSat{M}{\lfalse}[w]$}.}{}
-  \tagitem{prvTrue}{\indcase{!A}{\ltrue}{Always $\mSat{M}{\ltrue}[w]$}.}{}
-  \item $\mSat{M}{p}[w]$ iff $w \in V(p)$
-  \tagitem{prvNot}{\indcase{!A}{\lnot !B}{$\mSat{M}{\indfrm}[w]$ iff
+  \tagitem{prvFalse}{\indcase{!A}{\lfalse}{永不 $\mSat{M}{\lfalse}[w]$}.}{}
+  \tagitem{prvTrue}{\indcase{!A}{\ltrue}{总是 $\mSat{M}{\ltrue}[w]$}.}{}
+  \item $\mSat{M}{p}[w]$ 当且仅当 $w \in V(p)$
+  \tagitem{prvNot}{\indcase{!A}{\lnot !B}{$\mSat{M}{\indfrm}[w]$ 当且仅当
     $\mSat/{M}{!B}[w]$}.}{}
-  \tagitem{prvAnd}{\indcase{!A}{(!B \land !C)}{$\mSat{M}{\indfrm}[w]$ iff
-    $\mSat{M}{!B}[w]$ and $\mSat{M}{!C}[w]$}.}{}
-  \tagitem{prvOr}{\indcase{!A}{(!B \lor !C)}{$\mSat{M}{\indfrm}[w]$ iff
-    $\mSat{M}{!B}[w]$ or $\mSat{M}{!C}[w]$} (or both).}{}
-  \tagitem{prvIf}{\indcase{!A}{(!B \lif !C)}{$\mSat{M}{\indfrm}[w]$ iff
-    $\mSat/{M}{!B}[w]$ or $\mSat{M}{!C}[w]$}.}{}
-  \tagitem{prvIff}{\indcase{!A}{(!B \liff !C)}{$\mSat{M}{\indfrm}[w]$ iff
-    either both $\mSat{M}{!B}[w]$ and $\mSat{M}{!C}[w]$ or
-    neither $\mSat{M}{!B}[w]$ nor $\mSat{M}{!C}[w]$}.}{}
+  \tagitem{prvAnd}{\indcase{!A}{(!B \land !C)}{$\mSat{M}{\indfrm}[w]$ 当且仅当
+    $\mSat{M}{!B}[w]$ 且 $\mSat{M}{!C}[w]$}.}{}
+  \tagitem{prvOr}{\indcase{!A}{(!B \lor !C)}{$\mSat{M}{\indfrm}[w]$ 当且仅当
+    $\mSat{M}{!B}[w]$ 或 $\mSat{M}{!C}[w]$}（或两者皆成立）。}{}
+  \tagitem{prvIf}{\indcase{!A}{(!B \lif !C)}{$\mSat{M}{\indfrm}[w]$ 当且仅当
+    $\mSat/{M}{!B}[w]$ 或 $\mSat{M}{!C}[w]$}.}{}
+  \tagitem{prvIff}{\indcase{!A}{(!B \liff !C)}{$\mSat{M}{\indfrm}[w]$ 当且仅当
+    要么$\mSat{M}{!B}[w]$且$\mSat{M}{!C}[w]$，要么既不$\mSat{M}{!B}[w]$也不$\mSat{M}{!C}[w]$}.}{}
   \item\ollabel{defn:sub:mmodels-box}
-    \indcase{!A}{\Knows_a !B}{$\mSat{M}{\indfrm}[w]$ iff
-    $\mSat{M}{!B}[w']$ for all $w' \in W$ with $R_a ww'$}
+    \indcase{!A}{\Knows_a !B}{对所有满足 $R_a ww'$ 的 $w' \in W$，$\mSat{M}{\indfrm}[w]$ 当且仅当
+    $\mSat{M}{!B}[w']$}
   \item\ollabel{defn:sub:mmodels-pal}
-    \indcase{!A}{[!B] !C}{$\mSat{M}{\indfrm}[w]$ iff
-    $\mSat{M}{!B}[w]$ implies $\mSat{M \mid !B}{!C}[w]$}
+    \indcase{!A}{[!B] !C}{$\mSat{M}{\indfrm}[w]$ 当且仅当
+    如果$\mSat{M}{!B}[w]$那么$\mSat{M \mid !B}{!C}[w]$}
 
   
-  Where $\mModel M \mid !B = \tuple{W', R', V'}$ is defined as
-  follows:
+  其中 $\mModel M \mid !B = \tuple{W', R', V'}$ 定义如下：
   \begin{enumerate}
-    \item $W' = \Setabs{ u \in W}{\mSat{M}{!B}[u]}$. So the worlds of
-      $\mModel M \mid !B$ are the worlds in~$\mModel M$ at which $!B$
-      holds.
-    \item $R'_a = R_a \cap (W' \times W')$. Each agent's accessibility
-      relation is simply restricted to the worlds that remain in~$W'$.
-    \item $V'(p) = \Setabs{ u \in W'}{u \in V(p) }$. Similarly, the
-      propositional valuations at worlds remain the same, representing
-      the idea that informational events will not change the truth
-      value of propositional variables.
+    \item $W' = \Setabs{ u \in W}{\mSat{M}{!B}[u]}$。因此，$\mModel M \mid !B$ 的世界就是 $\mModel M$ 中 $!B$ 成立的那些世界。
+    \item $R'_a = R_a \cap (W' \times W')$。每个主体的可及关系被简单地限制在 $W'$ 中剩余的世界上。
+    \item $V'(p) = \Setabs{ u \in W'}{u \in V(p) }$。类似地，世界上的命题赋值保持不变，这体现了信息事件不会改变命题变元真值的思想。
   \end{enumerate}
   
   \end{enumerate} 
 \end{defn}
 
-What is distinctive, then, about public announcement logics, is that
-the truth of !!a{formula} at~$\mModel M$ can sometimes only be decided
-by referring to a model other than~$\mModel M$ itself.
+那么，公共宣告逻辑的独特之处在于，一个公式在~$\mModel M$ 中是否为真，有时只能通过参考 $\mModel M$ 自身之外的另一个模型来决定。
 
-Notice also that our semantics treats the announcement operator as a
-$\Box$~operator, and so if !!a{formula}~$!A$ cannot be truthfully
-announced at a world, then $[!A]B$ will hold there trivially, just as
-all $\Box$ !!{formula}s hold at endpoints. 
+还需注意，我们的语义将宣告算子视为一个 $\Box$~算子（必然算子），因此如果一个公式~$!A$ 在某个世界上不能被如实地宣告，那么 $[!A]B$ 将在此处平凡地成立，就像所有 $\Box$ 公式在端点上都成立一样。
 
 \begin{figure}
   \begin{center}
@@ -87,39 +72,22 @@ all $\Box$ !!{formula}s hold at endpoints.
       \node(m)[below=of w1]{$\mModel M$};
       \node(m')[below=of v1]{$\mModel M \mid p$}; 
 
-      \draw[-,dotted] (w1) to node {\footnotesize announcement of $p$}(v1) ;
+      \draw[-,dotted] (w1) to node {\footnotesize 宣告 $p$}(v1) ;
      
     \end{tikzpicture}
   \end{center}
-  \caption{Before and after the public announcement of $p$.}
+  \caption{宣告 $p$ 之前与之后。}
   \ollabel{fig:announcement-example}
 \end{figure}
 
-We can see the public announcement of !!a{formula} as shrinking a
-model, or restricting it to the worlds at which the !!{formula} was
-true. \olref{fig:announcement-example} gives an example of the effects
-of publicly announcing~$p$. One notable thing about that model is that
-agent~$b$ learns that~$p$ as a result of the announcement, while
-agent~$a$ does not (since $a$ already knew that~$p$ was true).
+我们可以将公式的公共宣告视为使模型收缩，或者说将其限制到该公式为真的那些世界。\olref{fig:announcement-example} 给出了公开宣告~$p$ 的效果示例。该模型中值得注意的一点是，主体~$b$ 通过宣告得知了~$p$，而主体~$a$ 则没有（因为 $a$ 已经知道~$p$ 为真）。
 
-More formally, we have $\mSat{M}{\lnot \Knows_b p}[w_1]$ but $\mSat{M
-\mid p}{\Knows_b p}[w'_1]$. This implies that $\mSat{M}{[p] \Knows_b
-p}[w_1]$. But we have some even stronger claims that we can make about
-the result of the announcement. In fact, it is the case that
-$\mSat{M}{[p]\CKnows_{\{a,b\}} p}[w_1]$. In other words, after $p$ is
-announced, it becomes \emph{common knowledge}.
+更形式化地说，我们有 $\mSat{M}{\lnot \Knows_b p}[w_1]$ 但 $\mSat{M
+\mid p}{\Knows_b p}[w'_1]$。这意味着 $\mSat{M}{[p] \Knows_b
+p}[w_1]$。但关于宣告的结果，我们甚至可以提出一些更强的断言。事实上，$\mSat{M}{[p]\CKnows_{\{a,b\}} p}[w_1]$ 成立。换句话说，在 $p$ 被宣告之后，它成为了\emph{公共知识}。
 
-We might wonder, though, whether this holds in the general case, and
-whether a truthful announcement of~$!A$ will \emph{always} result in
-$!A$ becoming common knowledge. It may be surprising that the answer
-is no. And in fact, it is possible to truthfully announce !!{formula}s
-that will no longer be true once they are announced. For example,
-consider the effects of announcing $p \land \lnot \Knows_b p$ at~$w_1$
-in \olref{fig:announcement-example}. In fact, $\mModel M \mid p$ and
-$\mModel M \mid (p \land \lnot \Knows_b p)$ are the same model.
-However, as we have already noted, $\mSat{M \mid p}{\Knows_b
-p}[w'_1]$. Therefore, $\mSat{M \mid (p \land \lnot \Knows_b p)}{\lnot
-(p \land \lnot \Knows_b p)}[w'_1]$, so this is !!a{formula} that
-becomes false once it has been announced. 
-
+我们或许会想，这一性质在一般情况下是否成立，以及如实地宣告~$!A$ 是否\emph{总是}会导致 $!A$ 成为公共知识。答案是否定的，这可能令人惊讶。事实上，确实可能存在一些公式，在如实地宣告它们之后，它们就不再为真了。例如，考虑在 \olref{fig:announcement-example} 的~$w_1$ 处宣告 $p \land \lnot \Knows_b p$ 的效果。事实上，$\mModel M \mid p$ 和 $\mModel M \mid (p \land \lnot \Knows_b p)$ 是同一个模型。
+然而，正如我们已经注意到的，$\mSat{M \mid p}{\Knows_b
+p}[w'_1]$。因此，$\mSat{M \mid (p \land \lnot \Knows_b p)}{\lnot
+(p \land \lnot \Knows_b p)}[w'_1]$，所以这是一个一旦被宣告就会变为假的公式。
 \end{document}

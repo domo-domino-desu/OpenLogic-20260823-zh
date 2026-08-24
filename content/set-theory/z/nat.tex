@@ -3,55 +3,24 @@
 \begin{document}
 	
 \olfileid{sth}{z}{nat}
-\olsection{Selecting our Natural Numbers}
+\olsection{选择我们的自然数}
 
 %Let us take it for granted that the informal principle \stagesinf{}
 %can be justified. It is also, though, worth commenting on the
 %particular axiom we extracted from that informal principle. 
 
-In \olref[infinity-again]{defnomega}, we explicitly defined
-the expression ``natural numbers''. How should you understand this
-stipulation? It is not a metaphysical claim, but just a decision to
-\emph{treat} certain sets as the natural numbers. We touched upon reasons for thinking this in
-\olref[sfr][rel][ref]{sec}, \olref[sfr][arith][ref]{sec} and
-\olref[sfr][infinite][dedekindsproof]{sec}. But we can make these
-reasons even more pointed.
+在 \olref[infinity-again]{defnomega} 节，我们明确定义了“自然数”这一说法。该如何理解这一规定？它并非形而上学的断言，而仅仅是一个\emph{将}某些集合\emph{视为}自然数的决定。我们在 \olref[sfr][rel][ref]{sec}、\olref[sfr][arith][ref]{sec} 和 \olref[sfr][infinite][dedekindsproof]{sec} 等节中已触及这样做的理由。但我们还可以让这些理由更具针对性。
 
-Our Axiom of Infinity follows \citet{VonNeumann1925}. But here is
-another axiom, which we could have adopted instead:
+我们的无穷公理沿用了 \citet{VonNeumann1925}（冯·诺伊曼）的思路。但这里还有另一条公理，我们本可以转而采用它：
 
 \begin{defish}
-\emph{Zermelo's \citeyear{Zermelo1908Untersuchungen} Axiom of
-Infinity.} There is a set $A$ such that $\emptyset \in A$ and
-$(\forall x \in A)\{x\} \in A$. 
+\emph{Zermelo（策梅洛）\citeyear{Zermelo1908Untersuchungen} 的无穷公理。} 存在一个集合 $A$，使得 $\emptyset \in A$ 且 $(\forall x \in A)\{x\} \in A$。
 \end{defish}
 
-Had we used Zermelo's axiom, instead of our (von Neumann-inspired)
-Axiom of Infinity, we would equally well have been given a Dedekind
-infinite set, and so a Dedekind algebra. On Zermelo's approach, the
-distinguished element of our algebra would again have been $\emptyset$
-(our surrogate for $0$), but the injection would have been given by
-the map $x \mapsto \{x\}$, rather than $x \mapsto x \cup \{x\}$. The
-simplest upshot of this is that Zermelo treats $2$ as
-$\{\{\emptyset\}\}$, whereas we (with von Neumann) treat $2$ as
-$\{\emptyset, \{\emptyset\}\}$. 
+假若我们采用的是 Zermelo 的公理，而非我们（受 von Neumann 启发）的无穷公理，我们同样会得到一个 Dedekind（戴德金）无限集，进而得到一个戴德金代数。在 Zermelo 的方法中，该代数的特异元同样会是 $\emptyset$（我们用以代表 $0$ 的替代物），但单射将由映射 $x \mapsto \{x\}$ 给出，而非 $x \mapsto x \cup \{x\}$。这样做最直接的结果是，Zermelo 将 $2$ 视为 $\{\{\emptyset\}\}$，而我们（与 von Neumann 一道）将 $2$ 视为 $\{\emptyset, \{\emptyset\}\}$。
 
-Why choose one axiom of Infinity rather than the other? The main
-practical reason is that von Neumann's approach ``scales up'' to
-handle transfinite numbers rather well. We will explore this from
-\olref[ordinals][]{chap} onwards. However, from the simple
-perspective of \emph{doing arithmetic}, both approaches would do
-equally well. So if someone tells you that the natural numbers
-\emph{are} sets, the obvious question is: \emph{Which sets are they?} 
+为何选择这条无穷公理而非另一条？主要的实际考量在于，von Neumann 的方法能很好地“向上扩展”以处理超限数。我们将从 \olref[ordinals][]{chap} 章开始探讨这一点。然而，仅从\emph{做算术}的简单视角来看，两种方法同样有效。所以，如果有人告诉你自然数\emph{就是}集合，那么一个明显的问题是：\emph{它们究竟是哪些集合？}
 
-This precise question was made famous by \citet{Benacerraf1965}. But
-it is worth emphasising that it is just the most famous example of a
-phenomenon that we have encountered many times already. The basic
-point is this. Set theory gives us a way to \emph{simulate} a bunch of
-``intuitive'' kinds of entities: the reals, rationals, integers, and
-naturals, yes; but also ordered pairs, functions, and relations.
-However, set theory never provides us with a \emph{unique} choice of
-simulation. There are \emph{always} alternatives
-which---straightforwardly---would have served us just as well. 
+这个确切的问题因 \citet{Benacerraf1965}（贝纳塞拉夫）而闻名。但值得强调的是，它仅仅是我们早已多次遇到的现象中最著名的一例。基本要点如下：集合论为我们提供了一种\emph{模拟}一系列“直观”实体的方法——不仅包括实数、有理数、整数和自然数，也包括序对、函数和关系。然而，集合论从未为我们提供一种\emph{唯一的}模拟选择。\emph{总是}存在一些替代方案——直截了当地说——它们同样能很好地胜任。
 
 \end{document}

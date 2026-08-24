@@ -8,216 +8,47 @@
 
 \olfileid{inc}{int}{bgr}
 
-\olsection{Historical Background}
+\olsection{历史背景}
 
-In this section, we will briefly discuss historical developments that
-will help put the incompleteness theorems in context. In particular,
-we will give a very sketchy overview of the history of mathematical
-logic; and then say a few words about the history of the foundations
-of mathematics.
+在本节中，我们将简要讨论为不完全性定理提供历史背景的相关发展。具体而言，我们将极其粗略地概述数理逻辑的历史，然后再简略谈谈数学基础的历史。
 
 \begin{digress}
-  The phrase ``mathematical logic'' is ambiguous. One can interpret the
-word ``mathematical'' as describing the subject matter, as in, ``the
-logic of mathematics,'' denoting the principles of mathematical
-reasoning; or as describing the methods, as in ``the mathematics of
-logic,'' denoting a mathematical study of the principles of reasoning.
-The account that follows involves mathematical logic in both senses,
-often at the same time.
+  “数理逻辑”这个说法是有歧义的。可以将“数学的”一词理解为对主题的描述，即“数学的逻辑”，意指数学推理的原则；也可以将其理解为对方法的描述，即“逻辑的数学”，意指对推理原则的数学研究。接下来的叙述将同时涉及这两种意义上的数理逻辑，而且常常是兼而有之。
 \end{digress}
 
-The study of logic began, essentially, with Aristotle, who lived
-approximately 384--322 \textsc{bce}. His \emph{Categories}, \emph{Prior
-  analytics}, and \emph{Posterior analytics} include systematic
-studies of the principles of scientific reasoning, including a
-thorough and systematic study of the syllogism.
+逻辑学的研究实质上始于 Aristotle（亚里士多德），他生活于约公元前384--322年。他的《范畴篇》、《前分析篇》和《后分析篇》包含了对科学推理原则的系统研究，其中包括对三段论全面而系统的研究。
 
-Aristotle's logic dominated scholastic philosophy through the middle
-ages; indeed, as late as the eighteenth century, Kant maintained that
-Aristotle's logic was perfect and in no need of revision. But the
-theory of the syllogism is far too limited to model anything but
-the most superficial aspects of mathematical reasoning. A century
-earlier, Leibniz, a contemporary of Newton's, imagined a complete
-``calculus'' for logical reasoning, and made some rudimentary steps
-towards designing such a calculus, essentially describing a version of
-propositional logic.
+Aristotle 的逻辑在中世纪主导了经院哲学；事实上，直到十八世纪，Kant（康德）仍坚持认为 Aristotle 的逻辑是完美的，无需修订。但三段论理论过于局限，除了数学推理最表面的方面之外，无法刻画任何东西。比康德早一个世纪，Leibniz（莱布尼茨）——Newton（牛顿）的同时代人——设想了一种用于逻辑推理的完整“演算”，并在设计这种演算方面迈出了初步的步伐，实质上描述了命题逻辑的一个版本。
 
-The nineteenth century was a watershed for logic. In 1854 George Boole
-wrote \emph{The Laws of Thought}, with a thorough algebraic study of
-propositional logic that is not far from modern presentations. In 1879
-Gottlob Frege published his \emph{Begriffsschrift} (Concept writing)
-which extends propositional logic with quantifiers and relations, and
-thus includes first-order logic. In fact, Frege's logical systems
-included higher-order logic as well, and more. In his \emph{Basic Laws
-  of Arithmetic}, Frege set out to show that all of arithmetic could
-be derived in his Begriffsschrift from purely logical
-assumption. Unfortunately, these assumptions turned out to be
-inconsistent, as Russell showed in 1902. But setting aside the
-inconsistent axiom, Frege more or less invented modern logic
-singlehandedly, a startling achievement. Quantificational logic was
-also developed independently by algebraically-minded thinkers after
-Boole, including Peirce and Schr\"oder.
+十九世纪是逻辑学的分水岭。1854年，George Boole（乔治·布尔）撰写了《思维规律》，对命题逻辑进行了彻底的代数研究，这与现代表述相差无几。1879年，Gottlob Frege（戈特洛布·弗雷格）出版了他的《概念文字》（Begriffsschrift），通过引入量词和关系扩展了命题逻辑，从而包含了一阶逻辑。事实上，Frege 的逻辑系统还包括高阶逻辑以及更多内容。在他的《算术基本定律》中，Frege 着手证明所有算术都可以在他的概念文字中从纯粹的逻辑假设推导出来。不幸的是，正如 Russell（罗素）在1902年所指出的，这些假设最终是不一致的。但撇开不一致的公理，Frege 几乎单枪匹马地发明了现代逻辑，这是一个惊人的成就。量词逻辑也被 Boole 之后具有代数思维的思想家独立发展，包括 Peirce（皮尔士）和 Schröder（施罗德）。
 
-Let us now turn to developments in the foundations of mathematics. Of
-course, since logic plays an important role in mathematics, there is a
-good deal of interaction with the developments just described. For
-example, Frege developed his logic with the explicit purpose of
-showing that all of mathematics could be based solely on his logical
-framework; in particular, he wished to show that mathematics consists
-of a priori \emph{analytic} truths instead of, as Kant had maintained,
-a priori \emph{synthetic} ones.
+现在让我们转向数学基础的发展。当然，由于逻辑在数学中扮演着重要角色，逻辑与刚才描述的发展之间有着大量互动。例如，Frege 发展他的逻辑，其明确目的是证明所有数学都可以完全基于他的逻辑框架；特别是，他希望证明数学由先验的\emph{分析}真理组成，而不是像 Kant 所主张的那样由先验的\emph{综合}真理组成。
 
-Many take the birth of mathematics proper to have occurred with the
-Greeks. Euclid's \emph{Elements}, written around 300 B.C., is already
-a mature representative of Greek mathematics, with its emphasis on
-rigor and precision. The definitions and proofs in Euclid's
-\emph{Elements} survive more or less intact in high school geometry
-textbooks today (to the extent that geometry is still taught in high
-schools). This model of mathematical reasoning has been held to be a
-paradigm for rigorous argumentation not only in mathematics but in
-branches of philosophy as well. (Spinoza even presented moral and
-religious arguments in the Euclidean style, which is strange to see!)
+许多人认为严格意义上的数学诞生于古希腊。Euclid（欧几里得）的《几何原本》写于约公元前300年，它以其对严谨和精确的强调，已然是希腊数学的成熟代表。Euclid《几何原本》中的定义和证明，至今仍或多或少完整地保留在高中几何教科书中（只要几何还在高中教授）。这种数学推理模型被认为是严谨论证的典范，不仅在数学中，在哲学的各个分支中也是如此。（Spinoza（斯宾诺莎）甚至以欧几里得风格呈现道德和宗教论证，这看起来颇为奇特！）
 
-Calculus was invented by Newton and Leibniz in the seventeenth
-century. (A fierce priority dispute raged for centuries, but most
-scholars today hold that the two developments were for the most part
-independent.)  Calculus involves reasoning about, for example,
-infinite sums of infinitely small quantities; these features fueled
-criticism by Bishop Berkeley, who argued that belief in God was no
-less rational than the mathematics of his time. The methods of
-calculus were widely used in the eighteenth century, for example by
-Leonhard Euler, who used calculations involving infinite sums with
-dramatic results.
+微积分由 Newton 和 Leibniz 在十七世纪发明。（一场关于优先权的激烈争论持续了几个世纪，但今天大多数学者认为这两项发展大体上是独立的。）微积分涉及对诸如无限小量的无限和之类的推理；这些特点引发了 Bishop Berkeley（贝克莱主教）的批评，他认为对上帝的信仰并不比他那个时代的数学更缺乏理性。微积分的方法在十八世纪被广泛使用，例如 Leonhard Euler（莱昂哈德·欧拉），他运用涉及无限和的计算，取得了戏剧性的成果。
 
-In the nineteenth century, mathematicians tried to address Berkeley's
-criticisms by putting calculus on a firmer foundation. Efforts by
-Cauchy, Weierstrass, Bolzano, and others led to our contemporary
-definitions of limits, continuity, differentiation, and integration in
-terms of ``epsilons and deltas,'' in other words, devoid of any
-reference to infinitesimals. Later in the century, mathematicians
-tried to push further, and explain all aspects of calculus, including
-the real numbers themselves, in terms of the natural numbers.
-(Kronecker: ``God created the whole numbers, all else is the work of
-man.'') In 1872, Dedekind wrote ``Continuity and the irrational
-numbers,'' where he showed how to ``construct'' the real numbers as
-sets of rational numbers (which, as you know, can be viewed as pairs
-of natural numbers); in 1888 he wrote ``Was sind und was sollen die
-Zahlen'' (roughly, ``What are the natural numbers, and what should
-they be?'') which aimed to explain the natural numbers in purely
-``logical'' terms. In 1887 Kronecker wrote ``\"Uber den Zahlbegriff''
-(``On the concept of number'') where he spoke of representing all
-mathematical object in terms of the integers; in 1889 Giuseppe Peano
-gave formal, symbolic axioms for the natural numbers.
+在十九世纪，数学家们试图回应 Berkeley 的批评，为微积分奠定更坚实的基础。Cauchy（柯西）、Weierstrass（魏尔斯特拉斯）、Bolzano（波尔查诺）等人的努力，催生了我们当代基于“ε 和 δ”的极限、连续、微分与积分的定义，换言之，这些定义完全排除了对无穷小的任何指涉。在该世纪后期，数学家们试图更进一步，用自然数来解释微积分的所有方面，包括实数本身。（Kronecker（克罗内克）有言：“上帝创造了整数，其余一切皆属人造。”）1872年，Dedekind（戴德金）撰写了《连续性与无理数》，在其中展示了如何将实数“构造”为有理数的集合（众所周知，有理数又可视为自然数对）；1888年，他写了《Was sind und was sollen die Zahlen》（大致意为“自然数是什么，它们应当是什么？”），旨在用纯“逻辑”术语解释自然数。1887年，Kronecker 写了《\"Uber den Zahlbegriff》（《论数的概念》），谈到用整数来表示所有数学对象；1889年，Giuseppe Peano（朱塞佩·皮亚诺）给出了自然数的形式化、符号化公理。
 
-The end of the nineteenth century also brought a new boldness in dealing
-with the infinite. Before then, infinitary objects and structures
-(like the set of natural numbers) were treated gingerly; ``infinitely
-many'' was understood as ``as many as you want,'' and ``approaches in
-the limit'' was understood as ``gets as close as you want.'' But Georg
-Cantor showed that it was possible to take the infinite at face
-value. Work by Cantor, Dedekind, and others help to introduce the
-general set-theoretic understanding of mathematics that is now widely accepted.
+十九世纪末，对待无限的态度也展现出一种新的勇气。在此之前，无限对象和结构（如自然数集）是被谨慎对待的；“无穷多”被理解为“你想要多少就有多少”，而“趋于极限”被理解为“可以变得任意接近”。但 Georg Cantor（格奥尔格·康托尔）表明，可以把无限当作真实的实体来对待。Cantor、Dedekind 等人的工作，有助于引入如今被广泛接受的、基于集合论的一般数学理解。
 
-This brings us to twentieth century developments in logic and foundations.
-In 1902 Russell discovered the paradox in Frege's logical system. In
-1904 Zermelo proved Cantor's well-ordering principle, using the
-so-called ``axiom of choice''; the legitimacy of this axiom prompted a
-good deal of debate. Between 1910 and 1913 the three volumes of
-Russell and Whitehead's \emph{Principia Mathematica} appeared,
-extending the Fregean program of establishing mathematics on logical
-grounds. Unfortunately, Russell and Whitehead were forced to adopt two
-principles that seemed hard to justify as purely logical: an axiom of
-infinity and an axiom of ``reducibility.'' In the 1900's Poincar\'e
-criticized the use of ``impredicative definitions'' in mathematics,
-and in the 1910's Brouwer began proposing to refound all of
-mathematics in an ``intuitionistic'' basis, which avoided the use of
-the law of the excluded middle ($!A \lor \lnot !A$).
+这便将我们带到了二十世纪逻辑与基础领域的发展。1902年，Russell 在 Frege 的逻辑系统中发现了悖论。1904年，Zermelo（策梅洛）利用所谓的“选择公理”证明了 Cantor 的良序原理；该公理的合法性引发了大量争论。1910年至1913年间，Russell 和 Whitehead（怀特海）的三卷本《数学原理》问世，拓展了 Frege 将数学建立在逻辑基础之上的纲领。不幸的是，Russell 和 Whitehead 被迫采纳了两条原则，它们很难在纯逻辑层面上得到辩护：一条是无穷公理，另一条是“可化归”公理。在1900年代，Poincaré（庞加莱）批评了数学中“非直谓定义”的使用；而在1910年代，Brouwer（布劳威尔）开始提议在“直觉主义”基础上重建全部数学，从而避免了排中律的使用（$!A \lor \lnot !A$）。
 
-Strange days indeed!{} The program of reducing all of mathematics to
-logic is now referred to as ``logicism,'' and is commonly viewed as
-having failed, due to the difficulties mentioned above. The program of
-developing mathematics in terms of intuitionistic mental constructions
-is called ``intuitionism,'' and is viewed as posing overly severe
-restrictions on everyday mathematics. Around the turn of the century,
-David Hilbert, one of the most influential mathematicians of all time,
-was a strong supporter of the new, abstract methods introduced by
-Cantor and Dedekind: ``no one will drive us from the paradise that
-Cantor has created for us.'' At the same time, he was sensitive to
-foundational criticisms of these new methods (oddly enough, now called
-``classical''). He proposed a way of having one's cake and eating it
-too:
+真是奇特的年代！将全部数学还原为逻辑的纲领，现在被称为“逻辑主义”，并且由于上述困难，通常被认为已经失败。基于直觉主义的心智构造来发展数学的纲领，称为“直觉主义”，它被认为对日常数学施加了过于严苛的限制。世纪之交前后，David Hilbert（大卫·希尔伯特）——史上最具影响力的数学家之一——是 Cantor 和 Dedekind 引入的新抽象方法的坚定支持者：“没有人能把我们从 Cantor 为我们创造的天堂中驱逐出去。”同时，他也敏锐地察觉到对这些新方法（奇怪的是，它们如今被称为“经典的”）的基础性批评。他提出了一种两全其美的方法：
+
 \begin{enumerate}
-\item Represent classical methods with formal axioms and rules;
-  represent mathematical questions as !!{formula}s in an axiomatic
-  system.
-\item Use safe, ``finitary'' methods to prove that these formal
-  deductive systems are consistent.
+\item 用形式公理和规则来表示经典方法；将数学问题表示为公理系统中的公式。
+\item 使用安全的、“有穷”方法来证明这些形式演绎系统是一致的。
 \end{enumerate}
 
-Hilbert's work went a long way toward accomplishing the first goal.
-In 1899, he had done this for geometry in his celebrated book
-\emph{Foundations of geometry}. In subsequent years, he and a number
-of his students and collaborators worked on other areas of mathematics
-to do what Hilbert had done for geometry.  Hilbert himself gave axiom
-systems for arithmetic and analysis. Zermelo gave an axiomatization of
-set theory, which was expanded on by Fraenkel, Skolem, von Neumann,
-and others.  By the mid-1920s, there were two approaches that laid
-claim to the title of an axiomatization of ``all'' of mathematics, the
-\emph{Principia mathematica} of Russell and Whitehead, and what came to
-be known as Zermelo--Fraenkel set theory.
+Hilbert 的工作在实现第一个目标方面取得了长足进展。1899年，他在其名著《几何基础》中为几何学做到了这一点。随后的几年里，他和他的许多学生及合作者致力于像 Hilbert 为几何学所做的那样，为其他数学领域建立公理系统。Hilbert 本人给出了算术和分析的公理系统。Zermelo 提出了集合论的公理化，后经 Fraenkel（弗兰克尔）、Skolem（斯科伦）、von Neumann（冯·诺伊曼）等人加以扩展。到1920年代中期，有两种方案声称将“全部”数学公理化：Russell 和 Whitehead 的《数学原理》，以及后来被称为策梅洛--弗兰克尔集合论的体系。
 
-In 1921, Hilbert set out on a research project to establish the goal
-of proving these systems to be consistent.  He was aided in this
-project by several of his students, in particular Bernays, Ackermann,
-and later Gentzen. The basic idea for accomplishing this goal was to
-cast the question of the possibility of !!{derivation} of an
-inconsistency in mathematics as a combinatorial problem about possible
-sequences of symbols, namely possible sequences of sentences which
-meet the criterion of being a correct !!{derivation} of, say, $!A \land
-\lnot !A$ from the axioms of an axiom system for arithmetic, analysis,
-or set theory.  A proof of the impossibility of such a sequence of
-symbols would---since it is itself a mathematical proof---be
-formalizable in these axiomatic systems.  In other words, there would
-be some sentence $\OCon$ which states that, say, arithmetic is
-consistent.  Moreover, this sentence should be provable in the systems
-in question, especially if its proof requires only very restricted,
-``finitary'' means.
+1921年，希尔伯特启动了一项研究计划，旨在证明这些系统的一致性。在这项计划中，他得到了几位学生的协助，特别是 Bernays、Ackermann 以及后来的 Gentzen。实现这一目标的基本思路是，将“数学中能否推导出矛盾”这一问题，转化为一个关于可能符号序列（即可能语句序列）的组合问题，这些序列需满足如下标准：它们是算术、分析或集合论的公理系统中关于 $!A \land \lnot !A$ 的正确推导。证明这种符号序列不可能存在，其本身也是一个数学证明，因而能够在这些公理系统中得到形式化。换言之，将会存在某个语句 $\OCon$，比如断言算术是一致的。此外，该语句应当在所讨论的系统中是可证的，尤其是当其证明仅需使用非常受限的“有穷”手段时。
 
-The second aim, that the axiom systems developed would settle every
-mathematical question, can be made precise in two ways. In one way, we
-can formulate it as follows: For any sentence~$!A$ in the language of
-an axiom system for mathematics, either $!A$ or $\lnot !A$ is provable
-from the axioms.  If this were true, then there would be no sentences
-which can neither be proved nor refuted on the basis of the axioms, no
-questions which the axioms do not settle.  An axiom system with this
-property is called \emph{complete}. Of course, for any given sentence
-it might still be a difficult task to determine which of the two
-alternatives holds.  But in principle there should be a method to do
-so.  In fact, for the axiom and !!{derivation} systems considered by
-Hilbert, completeness would imply that such a method exists---although
-Hilbert did not realize this.  The second way to interpret the
-question would be this stronger requirement: that there be a
-mechanical, computational method which would determine, for a given
-sentence~$!A$, whether it is derivable from the axioms or not.
+第二个目标是，所建立的公理系统能够解决每一个数学问题，这可以通过两种方式加以精确表述。一种表述方式是：对于数学公理系统语言中的任意语句~$!A$，$!A$ 或 $\lnot !A$ 可由公理证明。若果真如此，就不存在既不能由公理证明也不能由公理反驳的语句，也不存在公理所不能解决的问题。具有这种性质的公理系统被称为\emph{完备的}。当然，对于任意给定的语句，判定这两种可能性中哪一种成立可能仍然是一项困难的任务。但原则上应当存在一种方法来做到这一点。事实上，对于希尔伯特所考虑的公理与推导系统而言，完备性将意味着存在这样的方法——尽管希尔伯特本人并未意识到这一点。对该目标的第二种解读提出了更强的要求：存在一种机械的、计算的方法，能够对于给定的语句~$!A$，判定它是否可由公理推导出来。
 
-In 1931, G\"odel proved the two ``incompleteness theorems,'' which
-showed that this program could not succeed. There is no axiom system
-for mathematics which is complete, specifically, the sentence that
-expresses the consistency of the axioms is a sentence which can
-neither be proved nor refuted.
+1931年，G\"odel 证明了两个“不完全性定理”，表明这一纲领不可能成功。不存在完备的数学公理系统，具体而言，表达公理一致性的语句正是一个既不能被证明也不能被反驳的语句。
 
-This struck a lethal blow to Hilbert's original program. However, as
-is so often the case in mathematics, it also opened up exciting new
-avenues for research. If there is no one, all-encompassing formal
-system of mathematics, it makes sense to develop more circumscribed
-systems and investigate what can be proved in them. It also makes
-sense to develop less restricted methods of proof for establishing the
-consistency of these systems, and to find ways to measure how hard it
-is to prove their consistency.  Since G\"odel showed that (almost)
-every formal system has questions it cannot settle, it makes sense to
-look for ``interesting'' questions a given formal system cannot
-settle, and to figure out how strong a formal system has to be to
-settle them. To the present day, logicians have been pursuing these
-questions in a new mathematical discipline, the theory of proofs.
+这对希尔伯特最初的纲领造成了致命打击。然而，正如数学中经常发生的那样，它也开启了令人振奋的新研究途径。既然不存在单一的、包罗万象的数学形式系统，那么发展范围更局限的系统并探究在其中能证明什么，就是有意义的。发展受限更少的证明方法来确立这些系统的一致性，并找到衡量证明其一致性有多困难的方法，也同样是有意义的。既然 G\"odel 表明（几乎）每个形式系统都有它无法解决的问题，那么寻找给定形式系统所无法解决的“有趣的”问题，并弄清需要多强的形式系统才能解决它们，就是有意义的。时至今日，逻辑学家们仍在一个新的数学学科——证明论中，致力于研究这些问题。
 
 \end{document}

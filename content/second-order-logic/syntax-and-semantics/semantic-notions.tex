@@ -7,32 +7,22 @@
 \begin{document}
 
 \olfileid{sol}{syn}{sem}
-\olsection{Semantic Notions}
+\olsection{语义概念}
 
 \begin{explain}
-The central logical notions of \emph{validity}, \emph{entailment}, and
-\emph{satisfiability} are defined the same way for second-order logic
-as they are for first-order logic, except that the underlying
-satisfaction relation is now that for second-order !!{formula}s.  A
-second-order !!{sentence}, of course, is !!a{formula} in which all
-variables, including predicate and function variables, are bound.
+\emph{有效性}、\emph{语义后承}和\emph{可满足性}这些核心逻辑概念在二阶逻辑中的定义方式与一阶逻辑中相同，只是底层的满足关系现在是针对二阶公式的。当然，二阶语句是指所有变元（包括谓词变元和函数变元）都被约束的公式。
 \end{explain}
 
-\begin{defn}[Validity]
-A sentence $!A$ is \emph{valid}, $\Entails !A$, iff $\Sat{M}{!A}$ for every
-!!{structure}~$\Struct M$.
+\begin{defn}[有效性]
+语句 $!A$ 是\emph{有效的}，$\Entails !A$，当且仅当对每个结构~$\Struct M$ 都有 $\Sat{M}{!A}$。
 \end{defn}
 
-\begin{defn}[Entailment]
-A set of sentences~$\Gamma$ \emph{entails} a sentence~$!A$, $\Gamma
-\Entails !A$, iff for every !!{structure}~$\Struct M$ with
-$\Sat{M}{\Gamma}$, $\Sat{M}{!A}$.
+\begin{defn}[语义后承]
+语句集合~$\Gamma$ \emph{语义地后承}语句~$!A$，$\Gamma \Entails !A$，当且仅当对于每个满足 $\Sat{M}{\Gamma}$ 的结构~$\Struct M$，都有 $\Sat{M}{!A}$。
 \end{defn}
 
-\begin{defn}[Satisfiability]
-A set of sentences~$\Gamma$ is \emph{satisfiable} if $\Sat{M}{\Gamma}$
-for some !!{structure}~$\Struct M$.  If $\Gamma$ is not satisfiable it is
-called \emph{unsatisfiable}.
+\begin{defn}[可满足性]
+语句集合~$\Gamma$ 是\emph{可满足的}，若存在某个结构~$\Struct M$ 使得 $\Sat{M}{\Gamma}$。若 $\Gamma$ 不可满足，则称其为\emph{不可满足的}。
 \end{defn}
 
 \end{document}

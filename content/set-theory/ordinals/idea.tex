@@ -3,9 +3,10 @@
 \begin{document}
 
 \olfileid{sth}{ordinals}{idea}	
-\olsection{The General Idea of an Ordinal}
+\olsection{序数的一般概念}
 
-Consider the natural numbers, in their usual order:
+考虑按通常顺序排列的自然数：
+
 \begin{center}
 	\begin{tikzpicture}
 	\foreach \x/\xtext in {0, 1, 2, 3, 4, 5}
@@ -16,10 +17,9 @@ Consider the natural numbers, in their usual order:
 	\node (ldots) at (6, 1) {\small{$\ldots$}};
 	\end{tikzpicture}
 \end{center}
-We call this, in the jargon, an $\omega$-sequence. And indeed, this
-general ordering is mirrored in our initial construction of the stages
-of the set hierarchy. But, now suppose we move $0$ to the end of this
-sequence, so that it comes after all the other numbers:
+
+用术语来说，我们称之为一个$\omega$-序列。的确，这种一般的序体现在我们最初构造集合层级各阶段的方式中。但现在设想我们将$0$移到此序列的末尾，使其排在所有其他数之后：
+
 \begin{center}
 	\begin{tikzpicture}
 	\foreach \x/\xtext in {1, 2, 3, 4, 5}
@@ -32,15 +32,11 @@ sequence, so that it comes after all the other numbers:
 	\node (noa) at (7, 1) {\small{$0$}};
 	\end{tikzpicture}
 \end{center}
-We have the same entities here, but ordered in a fundamentally
-different way: our first ordering had no last element; our new
-ordering does. Indeed, our new ordering consists of an
-$\omega$-sequence of entities ($1, 2, 3, 4, 5, \ldots$), followed by
-another entity. It will be an $\omega+1$-sequence.
 
-We can generate even more types of ordering, using just these
-entities. For example, consider all the even numbers (in their natural
-order) followed by all the odd numbers (in their natural order):
+这里的实体相同，但排序方式有着根本的不同：我们第一个序没有最后元素；而新序有。事实上，我们的新序由一个$\omega$-序列的实体（$1, 2, 3, 4, 5, \ldots$）后接另一个实体构成。这便是一个$\omega+1$-序列。
+
+仅用这些实体，我们还能生成更多类型的序。例如，考虑所有偶数（按自然顺序）后接所有奇数（按自然顺序）：
+
 \begin{center}
 	\begin{tikzpicture}
 	\node(a1) at (1,1) {\small{$0$}};
@@ -58,10 +54,9 @@ order) followed by all the odd numbers (in their natural order):
 	\node(b5) at (7,1) {\small{$\ldots$}};
 	\end{tikzpicture}
 \end{center}
-This is an $\omega$-sequence followed by another $\omega$-sequence; an
-$\omega+\omega$-sequence. 
 
-Well, we can keep going. But what we would like is a general way to
-understand this talk about \emph{orderings}. 
+这是一个$\omega$-序列后接另一个$\omega$-序列；即一个$\omega+\omega$-序列。
+
+当然，我们可以继续下去。但我们想要的是一种一般性的方法，来理解关于\emph{序}的这些说法。
 
 \end{document}

@@ -7,52 +7,39 @@
 \begin{document}
 
 \olfileid{lam}{syn}{sub}
-\olsection{Substitution}
+\olsection{代入}
 
 \begin{explain}
-Free variables are references to environment variables, thus it makes
-sense to actually use a specific value in the place of a free
-variable. For example, we may want to replace $f$ in $\lambd[x][f x]$
-with a specific term, like the identity function $\lambd[y][y]$. This
-results in $\lambd[x][(\lambd[y][y]) x]$. The process of replacing
-free variables with lambda terms is called substitution.
+自由变元是对环境变元的引用，因此用特定的值去替换自由变元是有意义的。
+例如，我们可能希望将 $\lambd[x][f x]$ 中的 $f$ 替换为一个具体的项，比如恒等函数 $\lambd[y][y]$。
+结果为 $\lambd[x][(\lambd[y][y]) x]$。
+将自由变元替换为 λ-项的过程称为\emph{代入}。
 \end{explain}
 
-\begin{defn}[Substitution] \ollabel{defn:substitution}
-  The \emph{substitution} of a term $N$ for a variable $x$ in a term
-  $M$, $\Subst{M}{N}{x}$, is defined inductively by:
+\begin{defn}[代入]\ollabel{defn:substitution}
+  将项 $N$ 代入项 $M$ 中的变元 $x$，记作 $\Subst{M}{N}{x}$，归纳定义如下：
   \begin{enumerate}
-    \item $\Subst{x}{N}{x} = N$. \ollabel{defn:substitution-1} 
-    \item $\Subst{y}{N}{x}  = y$ if $x \neq y$. \ollabel{defn:substitution-2} 
-    \item $\Subst{PQ}{N}{x}  = (\Subst{P}{N}{x}) (\Subst{Q}{N}{x})$.
-      \ollabel{def:substitution-3}
+    \item $\Subst{x}{N}{x} = N$。\ollabel{defn:substitution-1}
+    \item $\Subst{y}{N}{x}  = y$，若 $x \neq y$。\ollabel{defn:substitution-2}
+    \item $\Subst{PQ}{N}{x}  = (\Subst{P}{N}{x}) (\Subst{Q}{N}{x})$。\ollabel{def:substitution-3}
     \item $\Subst{(\lambd[y][P])}{N}{x} = \lambd[y][\Subst{P}{N}{x}]$,
-      if $x \neq y$ and $y \notin \FV{N}$, otherwise undefined.
-      \ollabel{defn:substitution-4}
+          若 $x \neq y$ 且 $y \notin \FV{N}$，否则无定义。\ollabel{defn:substitution-4}
   \end{enumerate}
 \end{defn}
 
 \begin{explain}
-In \olref{defn:substitution}\olref{defn:substitution-4}, we require $x
-\neq y$ because we don't want to replace \emph{bound} occurrences of
-the variable~$x$ in~$M$ by~$N$.  For example, if we compute the
-substitution $\Subst{\lambd[x][x]}{y}{x}$, the result should not be
-$\lambd[x][y]$ but simply $\lambd[x][x]$.
+在 \olref{defn:substitution}\olref{defn:substitution-4} 中，我们要求 $x \neq y$，因为我们不希望用 $N$ 去替换 $M$ 中变元 $x$ 的\emph{约束}出现。
+例如，如果我们要进行代入计算 $\Subst{\lambd[x][x]}{y}{x}$，结果不应该是 $\lambd[x][y]$，而应当是 $\lambd[x][x]$。
 
-When substituting $N$ for~$x$ in $\lambd[y][P]$, we also require that
-$y \notin \FV{N}$.  For example, we cannot substitute $y$ for $x$ in
-$\lambd[y][x]$, i.e., $\Subst{\lambd[y][x]}{y}{x}$, because it would
-result in $\lambd[y][y]$, a term that stands for the function that
-accepts an argument and returns it directly. But the term
-$\lambd[y][x]$ stands for a function that always returns the term~$x$
-(or whatever $x$ refers to). So the result we actually want is a
-function that accepts an argument, drop it, and returns the
-environment variable~$y$. To do this properly, we would first have to
-``rename'' the bound variable~$y$.
+当在 $\lambd[y][P]$ 中将 $x$ 替换为 $N$ 时，我们还要求 $y \notin \FV{N}$。
+例如，我们不能在 $\lambd[y][x]$ 中将 $x$ 替换为 $y$，即 $\Subst{\lambd[y][x]}{y}{x}$，因为那将得到 $\lambd[y][y]$，这个项表示的是接受一个自变元并直接将其返回的函数。
+但项 $\lambd[y][x]$ 表示的是一个总是返回项 $x$（或 $x$ 所指代的内容）的函数。
+所以，我们真正想要的结果是一个接受一个自变元、丢弃它、并返回环境变元 $y$ 的函数。
+要正确地做到这一点，我们必须先“重命名”约束变元 $y$。
 \end{explain}
 
 \begin{prob}
-  What is the result of the following substitutions?
+  下列代入的结果是什么？
   \begin{enumerate}
   \item $\Subst{\lambd[y][x(\lambd[w][vwx])]}{(uv)}{x}$
   \item $\Subst{\lambd[y][x(\lambd[x][x])]}{(\lambd[y][xy])}{x}$
@@ -60,64 +47,53 @@ environment variable~$y$. To do this properly, we would first have to
   \end{enumerate}
 \end{prob}
 
-\begin{thm} \ollabel{thm:notinfv}
-  If $x \notin \FV{M}$, then $\FV{\Subst{M}{N}{x}} = \FV{M}$, if
-  the left-hand side is defined.
+\begin{thm}\ollabel{thm:notinfv}
+  若 $x \notin \FV{M}$，则 $\FV{\Subst{M}{N}{x}} = \FV{M}$，前提是等式左端有定义。
 \end{thm}
 
 \begin{proof}
-  By induction on the formation of $M$.
+  对 $M$ 的构造进行归纳。
   \begin{enumerate}
-  \item $M$ is a variable: exercise.
-  \item $M$ is of the form $(PQ)$: exercise.
-  \item $M$ is of the form $\lambd[y][P]$, and since
-    $\Subst{\lambd[y][P]}{N}{x}$ is defined, it has to be
-    $\lambd[y][\Subst{P}{N}{x}]$. Then $\Subst{P}{N}{x}$ has to be
-    defined; also, $x \neq y$ and $x \notin \FV{Q}$. Then:
+  \item $M$ 是变元：练习。
+  \item $M$ 形如 $(PQ)$：练习。
+  \item $M$ 形如 $\lambd[y][P]$，且由于 $\Subst{\lambd[y][P]}{N}{x}$ 有定义，它必然是 $\lambd[y][\Subst{P}{N}{x}]$。则 $\Subst{P}{N}{x}$ 亦必有定义；同时，$x \neq y$ 且 $x \notin \FV{Q}$。于是：
     \begin{multline*}
       \FV{\Subst{\lambd[y][P]}{N}{x}} = \\
     \begin{aligned}
       & = \FV{\lambd[y][\Subst{P}{N}{x}]} &&
-      \text{by \olref{defn:substitution-4}}\\
+      \text{由 \olref{defn:substitution-4}}\\
       & = \FV{\Subst{P}{N}{x}} \setminus \{y\} &&
-      \text{by \olref[fv]{def:fv}\olref[fv]{def:fv2}}\\
-      & = \FV{P} \setminus \{y\} && \text{by inductive hypothesis} \\
-      & = \FV{\lambd[y][P]} && \text{by \olref[fv]{def:fv}\olref[fv]{def:fv2}}
+      \text{由 \olref[fv]{def:fv}\olref[fv]{def:fv2}}\\
+      & = \FV{P} \setminus \{y\} && \text{由归纳假设} \\
+      & = \FV{\lambd[y][P]} && \text{由 \olref[fv]{def:fv}\olref[fv]{def:fv2}}
     \end{aligned}
     \end{multline*}
   \end{enumerate}
 \end{proof}
 
 \begin{prob}
-  Complete the proof of \olref[lam][syn][sub]{thm:notinfv}.
+  完成 \olref[lam][syn][sub]{thm:notinfv} 的证明。
 \end{prob}
 
-\begin{thm} \ollabel{thm:infv}
-  If $x \in \FV{M})$, then $\FV{\Subst{M}{N}{x}} = (\FV{M} \setminus
-  \{x\}) \cup \FV{N}$, provided the left hand is defined.
+\begin{thm}\ollabel{thm:infv}
+  若 $x \in \FV{M}$，则 $\FV{\Subst{M}{N}{x}} = (\FV{M} \setminus
+  \{x\}) \cup \FV{N}$，前提是等式左端有定义。
 \end{thm}
 
 \begin{proof}
-  By induction on the formation of $M$.
+  对 $M$ 的构造进行归纳。
   \begin{enumerate}
-  \item $M$ is a variable: exercise.
-  \item $M$ is of the form $PQ$: Since
-    $\Subst{(PQ)}{N}{y}$ is defined, it has to be
-    $(\Subst{P}{N}{x})(\Subst{Q}{N}{x})$ with both substitution
-    defined. Also, since $x \in \FV{PQ}$, either $x \in \FV{P}$ or
-    $x \in \FV{Q}$ or both. The rest is left as an exercise.
-  \item $M$ is of the form $\lambd[y][P]$. Since
-    $\Subst{\lambd[y][P]}{N}{x}$ is defined, it has to be
-    $\lambd[y][\Subst{P}{N}{x}]$, with $\Subst{P}{N}{x}$
-    defined, $x \neq y$ and $y \notin \FV{N}$; also, since $y \in
-    \FV{\lambd[x][P]}$, we have $y \in \FV{P}$ too. Now:
+  \item $M$ 是变元：练习。
+  \item $M$ 形如 $PQ$：由于 $\Subst{(PQ)}{N}{y}$ 有定义，它必然是 $(\Subst{P}{N}{x})(\Subst{Q}{N}{x})$，且这两个代入均有定义。此外，由于 $x \in \FV{PQ}$，可知 $x \in \FV{P}$ 或 $x \in \FV{Q}$ 或两者皆有。余下部分留作练习。
+  \item $M$ 形如 $\lambd[y][P]$。由于 $\Subst{\lambd[y][P]}{N}{x}$ 有定义，它必然是 $\lambd[y][\Subst{P}{N}{x}]$，其中 $\Subst{P}{N}{x}$ 有定义，$x \neq y$ 且 $y \notin \FV{N}$；同时，由于 $y \in
+    \FV{\lambd[x][P]}$，可知 $y \in \FV{P}$。现在：
     \begin{multline*}
       \FV{\Subst{(\lambd[y][P])}{N}{x}} = \\
       \begin{aligned}
       & = \FV{\lambd[y][\Subst{P}{N}{x}]} \\
       & = \FV{\Subst{P}{N}{x}} \setminus \{y\} \\
       & = ((\FV{P} \setminus \{y\}) \cup (\FV{N} \setminus \{x\})
-       && \text{by inductive hypothesis} \\
+       && \text{由归纳假设} \\
       & = (\FV{P} \setminus \{x, y\}) \cup \FV{N}
        && x \notin \FV{N} \\
       & = (\FV{\lambd[y][P]} \setminus \{x\}) \cup \FV{N}
@@ -127,53 +103,49 @@ environment variable~$y$. To do this properly, we would first have to
 \end{proof}
 
 \begin{prob}
-  Complete the proof of \olref[lam][syn][sub]{thm:infv}.
+  完成 \olref[lam][syn][sub]{thm:infv} 的证明。
 \end{prob}
 
 \begin{thm}\ollabel{thm:clr}
-  $x \notin \FV{\Subst{M}{N}{x}}$, if the right-hand side is
-  defined and $x \notin \FV{N}$.
+  $x \notin \FV{\Subst{M}{N}{x}}$，前提是等式右端有定义且 $x \notin \FV{N}$。
 \end{thm}
 
 \begin{proof}
-  Exercise.
+  练习。
 \end{proof}
 
 \begin{prob}
-  Prove \olref[lam][syn][sub]{thm:clr}.
+  证明 \olref[lam][syn][sub]{thm:clr}。
 \end{prob}
 
 
 \begin{thm}\ollabel{thm:inv}
-  If $\Subst{M}{y}{x}$ is defined and $y \notin \FV{M}$, then
-  $\Subst{\Subst{M}{y}{x}}{x}{y} = M$.
+  若 $\Subst{M}{y}{x}$ 有定义且 $y \notin \FV{M}$，则 $\Subst{\Subst{M}{y}{x}}{x}{y} = M$。
 \end{thm}
 
 \begin{proof}
-  By induction on the formation of $M$.
+  对 $M$ 的构造进行归纳。
   \begin{enumerate}
-  \item $M$ is a variable $z$: Exercise.
-  \item $M$ is of the form $(PQ)$. Then:
+  \item $M$ 是变元 $z$：练习。
+  \item $M$ 形如 $(PQ)$。则：
     \begin{align*}
       \Subst{\Subst{(PQ)}{y}{x}}{x}{y}
       &=\Subst{((\Subst{P}{y}{x})(\Subst{Q}{y}{x}))}{x}{y} \\
       &= (\Subst{\Subst{P}{y}{x}}{x}{y})(\Subst{\Subst{Q}{y}{x}}{x}{y}) \\
-      &= (PQ) \text{ by inductive hypothesis}
+      &= (PQ) \text{ 由归纳假设}
     \end{align*}
-  \item $M$ is of the form $\lambd[z][N]$. Because
-    $\Subst{\lambd[z][N]}{y}{x}$ is defined, we know
-    that $z \neq y$. So:
+  \item $M$ 形如 $\lambd[z][N]$。因为 $\Subst{\lambd[z][N]}{y}{x}$ 有定义，可知 $z \neq y$。所以：
     \begin{align*}
       \Subst{\Subst{(\lambd[z][N])}{y}{x}}{x}{y}\\
       & = \Subst{(\lambd[z][\Subst{N}{y}{x}])}{x}{y} \\
       & = \lambd[z][\Subst{\Subst{N}{y}{x}}{x}{y}] \\
-      &= \lambd[z][N] \text{ by inductive hypothesis} 
+      &= \lambd[z][N] \text{ 由归纳假设} 
     \end{align*}
   \end{enumerate}
 \end{proof}
 
 \begin{prob}
-  Complete the proof of \olref[lam][syn][sub]{thm:inv}.
+  完成 \olref[lam][syn][sub]{thm:inv} 的证明。
 \end{prob}
 
 \end{document}

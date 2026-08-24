@@ -8,61 +8,34 @@
 
 \olfileid{fol}{syn}{int}
 
-\olsection{Introduction}
+\olsection{引言}
 
-In order to develop the theory and metatheory of first-order logic, we
-must first define the syntax and semantics of its expressions.  The
-expressions of first-order logic are terms and !!{formula}s.  Terms
-are formed from !!{variable}s, !!{constant}s, and !!{function}s.
-!!^{formula}s, in turn, are formed from !!{predicate}s together with
-terms (these form the smallest, ``atomic'' !!{formula}s), and then
-from atomic !!{formula}s we can form more complex ones using logical
-connectives and quantifiers.  There are many different ways to set
-down the formation rules; we give just one possible one. Other systems
-will chose different symbols, will select different sets of
-connectives as primitive, will use parentheses differently (or even not
-at all, as in the case of so-called Polish notation).  What all
-approaches have in common, though, is that the formation rules define
-the set of terms and !!{formula}s \emph{inductively}. If done
-properly, every expression can result essentially in only one way
-according to the formation rules.  The inductive definition resulting
-in expressions that are \emph{uniquely readable} means we can give
-meanings to these expressions using the same method---inductive
-definition.
+为了建立一阶逻辑的理论与元理论，我们必须首先定义其表达式的语法和语义。
+一阶逻辑的表达式分为项和公式。
+项由变元、常项符号和函数符号形成。
+公式则由谓词符号与项一起形成（它们形成最小的、“原子”公式），然后我们可以利用逻辑联结词和量词，从原子公式出发构造更复杂的公式。
+设定形成规则的方式有很多种；我们只给出其中一种可能的方案。
+其他系统会选择不同的符号，选取不同的联结词集合作为原始联结词，采用不同的括号使用方式（甚至完全不用括号，例如所谓的波兰记法）。
+然而，所有方法的共同之处在于：形成规则是以\emph{归纳}的方式定义项和公式的集合。
+如果设定得当，每个表达式根据形成规则本质上只能以唯一一种方式生成。
+由归纳定义产生的表达式是\emph{唯一可读的}，这意味着我们可以使用同样的方法——归纳定义——来赋予这些表达式意义。
 
-Giving the meaning of expressions is the domain of semantics.  The
-central concept in semantics is that of satisfaction in
-!!a{structure}. !!^a{structure} gives meaning to the building blocks
-of the language: !!a{domain} is a non-empty set of objects. The
-quantifiers are interpreted as ranging over this domain, !!{constant}s
-are assigned elements in the domain, !!{function}s are assigned
-functions from the !!{domain} to itself, and !!{predicate}s are
-assigned relations on the !!{domain}.  The !!{domain} together with
-assignments to the basic vocabulary constitutes
-!!a{structure}. !!^{variable}s may appear in !!{formula}s, and in
-order to give a semantics, we also have to assign !!{element}s of the
-!!{domain} to them---this is a variable assignment. The satisfaction
-relation, finally, brings these together. !!^a{formula} may be satisfied
-in !!a{structure}~$\Struct{M}$ relative to a variable assignment~$s$,
-written as $\Sat{M}{!A}[s]$. This relation is also defined by
-induction on the structure of~$!A$, using the truth tables for the
-logical connectives to define, say, satisfaction of $!A \land !B$ in
-terms of satisfaction (or not) of $!A$ and ~$!B$.  It then turns out
-that the variable assignment is irrelevant if the !!{formula}~$!A$ is
-!!a{sentence}, i.e., has no free variables, and so we can talk of
-!!{sentence}s being simply satisfied (or not) in !!{structure}s.
+赋予表达式意义属于语义学的范畴。
+语义学的核心概念是在结构中的\emph{满足}关系。
+结构为语言的基本构件赋予意义：论域是一个非空的对象集合。
+量词被解释为以这个论域为取值范围，常项符号被指派以论域中的元素，函数符号被指派以从论域到其自身的函数，谓词符号被指派以论域上的关系。
+论域连同对基本词汇的指派一起构成了一个\emph{结构}。
+变元可能出现在公式中，为了给出语义，我们还必须给它们指派论域中的元素——这称为\emph{变元指派}。
+最终，\emph{满足关系}将这些要素结合起来。
+一个公式可以在结构~$\Struct{M}$ 中相对于变元指派~$s$ 被满足，记作 $\Sat{M}{!A}[s]$。
+这一关系也是通过对~$!A$ 的结构进行归纳来定义的，例如，利用逻辑联结词的真值表，根据 $!A$ 和~$!B$ 是否被满足来定义 $!A \land !B$ 的满足条件。
+由此可知，如果公式~$!A$ 是一个语句（即没有自由变元），那么变元指派就是无关紧要的，因此我们可以直接谈论语句在结构中被满足（或不被满足）。
 
-On the basis of the satisfaction relation $\Sat{M}{!A}$ for sentences
-we can then define the basic semantic notions of validity, entailment,
-and satisfiability.  A sentence is valid, $\Entails !A$, if every
-structure satisfies it. It is entailed by a set of !!{sentence}s,
-$\Gamma \Entails !A$, if every !!{structure} that satisfies all the
-!!{sentence}s in~$\Gamma$ also satisfies~$!A$. And a set of sentences
-is satisfiable if some !!{structure} satisfies all !!{sentence}s in it
-at the same time.  Because !!{formula}s are inductively defined, and
-satisfaction is in turn defined by induction on the structure of
-!!{formula}s, we can use induction to prove properties of our
-semantics and to relate the semantic notions defined.
+基于语句的满足关系 $\Sat{M}{!A}$，我们可以进而定义有效性、语义后承和可满足性这些基本的语义概念。
+一个语句是有效的（$\Entails !A$），如果每个结构都满足它。
+一个语句集语义地后承一个语句（$\Gamma \Entails !A$），如果每个满足~$\Gamma$ 中所有语句的结构也都满足~$!A$。
+一个语句集是可满足的，如果存在某个结构同时满足其中的所有语句。
+由于公式是归纳定义的，而满足关系又是根据公式的结构归纳定义的，我们可以使用归纳法来证明语义所具有的性质，并建立所定义的各个语义概念之间的关联。
 
 
 

@@ -10,47 +10,35 @@
       {\olfileid{fol}{com}{com}}
       {\olfileid{pl}{com}{com}}
 
-\olsection{The Compactness Theorem}
+\olsection{紧致性定理}
 
-One important consequence of the completeness theorem is the
-compactness theorem.  The compactness theorem states that if each
-\emph{finite} subset of a set of !!{sentence}s is satisfiable, the
-entire set is satisfiable---even if the set itself is infinite. This
-is far from obvious. There is nothing that seems to rule out, at first
-glance at least, the possibility of there being infinite sets of
-!!{sentence}s which are contradictory, but the contradiction only
-arises, so to speak, from the infinite number.  The compactness
-theorem says that such a scenario can be ruled out: there are no
-unsatisfiable infinite sets of !!{sentence}s each finite subset of
-which is satisfiable. Like the completeness theorem, it has a version
-related to entailment: if an infinite set of !!{sentence}s entails
-something, already a finite subset does.
+完备性定理的一个重要推论是紧致性定理。
+紧致性定理断言：如果一个语句集的每个\emph{有限}子集都是可满足的，那么整个集合就是可满足的——即使该集合本身是无穷的。
+这远非显然。
+至少乍看之下，似乎没有什么能排除存在这样的无穷语句集的可能性：它们包含矛盾，但可以说，矛盾恰恰源于其无穷性。
+紧致性定理指出，这种情形可以被排除：不存在这样的不可满足的无穷语句集，使得它的每个有限子集都是可满足的。
+与完备性定理类似，它也有一个关于语义后承的版本：如果一个无穷语句集语义后承某个语句，那么它的某个有限子集就已经语义后承该语句。
 
 \begin{defn}
-  A set $\Gamma$ of !!{formula}s is \emph{finitely satisfiable} iff every finite $\Gamma_0 \subseteq \Gamma$ is satisfiable.
+  一个公式集 $\Gamma$ 是\emph{有限可满足的}，当且仅当每个有限子集 $\Gamma_0 \subseteq \Gamma$ 都是可满足的。
 \end{defn}
 
-\begin{thm}[Compactness Theorem]
+\begin{thm}[紧致性定理]
 \ollabel{thm:compactness}
-The following hold for any sentences $\Gamma$ and $!A$:
+对任意语句集 $\Gamma$ 和语句 $!A$，下述命题成立：
 \begin{enumerate}
-  \item $\Gamma \Entails !A$ iff there is a finite $\Gamma_0
-    \subseteq \Gamma$ such that $\Gamma_0 \Entails !A$.
-  \item $\Gamma$ is satisfiable iff it is finitely
-    satisfiable.
+  \item $\Gamma \Entails !A$ 当且仅当存在有限子集 $\Gamma_0 \subseteq \Gamma$ 使得 $\Gamma_0 \Entails !A$。
+  \item $\Gamma$ 是可满足的当且仅当它是有限可满足的。
 \end{enumerate}
 \end{thm}
 
 \begin{proof}
-We prove (2).  If $\Gamma$ is satisfiable, then there is
-\iftag{FOL}{!!a{structure}~$\Struct{M}$}{!!a{valuation}~$\pAssign{v}$}
-such that $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$ for all $!A \in
-\Gamma$.  Of course, this $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ also
-satisfies every finite subset of~$\Gamma$, so $\Gamma$ is finitely
-satisfiable.
+我们证明 (2)。如果 $\Gamma$ 是可满足的，那么存在
+\iftag{FOL}{结构~$\Struct{M}$}{赋值~$\pAssign{v}$}
+使得 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$ 对所有 $!A \in \Gamma$ 成立。
+显然，这个 $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ 也满足 $\Gamma$ 的每个有限子集，因此 $\Gamma$ 是有限可满足的。
 
-Now suppose that $\Gamma$ is finitely satisfiable.  Then every finite
-subset~$\Gamma_0 \subseteq \Gamma$ is satisfiable.  By soundness
+现在假设 $\Gamma$ 是有限可满足的。那么每个有限子集 $\Gamma_0 \subseteq \Gamma$ 都是可满足的。根据可靠性
 (\iftag{FOL}{%
   \tagrefs{prfAX/{fol:axd:sou:cor:consistency-soundness},
     prfSC/{fol:seq:sou:cor:consistency-soundness},
@@ -59,9 +47,8 @@ subset~$\Gamma_0 \subseteq \Gamma$ is satisfiable.  By soundness
   \tagrefs{prfAX/{pl:axd:sou:cor:consistency-soundness},
     prfSC/{pl:seq:sou:cor:consistency-soundness},
     prfND/{pl:ntd:sou:cor:consistency-soundness},
-    prfTab/{pl:tab:sou:cor:consistency-soundness}}}),
-every finite subset is consistent.  Then $\Gamma$ itself must be
-consistent by
+    prfTab/{pl:tab:sou:cor:consistency-soundness}}})，
+每个有限子集都是一致的。那么根据
 \iftag{FOL}{%
   \tagrefs{prfAX/{fol:axd:ptn:prop:proves-compact},
     prfSC/{fol:seq:ptn:prop:proves-compact},
@@ -70,129 +57,58 @@ consistent by
   \tagrefs{prfAX/{pl:axd:ptn:prop:proves-compact},
     prfSC/{pl:seq:ptn:prop:proves-compact},
     prfND/{pl:ntd:ptn:prop:proves-compact},
-    prfTab/{pl:tab:ptn:prop:proves-compact}}}.
-By completeness (\olref[cth]{thm:completeness}), since $\Gamma$~is
-consistent, it is satisfiable.
+    prfTab/{pl:tab:ptn:prop:proves-compact}}}，
+$\Gamma$ 本身必须是一致的。再根据完备性定理（\olref[cth]{thm:completeness}），既然 $\Gamma$ 是一致的，它就是可满足的。
 \end{proof}
 
 \tagprob{FOL}
 \begin{prob}
-Prove (1) of \olref[fol][com][com]{thm:compactness}.
+证明 \olref[fol][com][com]{thm:compactness} 的 (1)。
 \end{prob}
 \tagendprob
 
 \tagprob{notFOL}
 \begin{prob}
-Prove (1) of \olref[pl][com][com]{thm:compactness}.
+证明 \olref[pl][com][com]{thm:compactness} 的 (1)。
 \end{prob}
 \tagendprob
 
 \iftag{FOL}{%
 \begin{ex}
-In every model~$\Struct{M}$ of a theory~$\Gamma$, each term~$t$ of
-course picks out !!a{element} of~$\Domain{M}$. Can we guarantee that
-it is also true that every !!{element} of~$\Domain{M}$ is picked out
-by some term or other? In other words, are there theories~$\Gamma$ all
-models of which are covered?  The compactness theorem shows that this
-is not the case if $\Gamma$ has infinite models. Here's how to see
-this: Let $\Struct{M}$ be an infinite model of~$\Gamma$, and let $c$
-be !!a{constant} not in the language of~$\Gamma$. Let $\Delta$ be the
-set of all sentences $\eq/[c][t]$ for $t$ a term in the
-language~$\Lang{L}$ of~$\Gamma$, i.e.,
+在理论~$\Gamma$ 的每个模型~$\Struct{M}$ 中，每个项~$t$ 当然都选取了~$\Domain{M}$ 中的一个元素。我们能否保证，$\Domain{M}$ 的每个元素也都被某个项所选取呢？换句话说，是否存在所有模型都是覆盖的理论~$\Gamma$？紧致性定理表明，如果 $\Gamma$ 有无穷模型，情况就不是这样。理由如下：设 $\Struct{M}$ 是~$\Gamma$ 的一个无穷模型，并设 $c$ 是一个不在~$\Gamma$ 的语言中的常项符号。令 $\Delta$ 为所有形如 $\eq/[c][t]$ 的语句构成的集合，其中 $t$ 是~$\Gamma$ 的语言~$\Lang{L}$ 中的项，即
   \[
   \Delta = \Setabs{\eq/[c][t]}{t \in \Trm[L]}.
   \]
-A finite subset of $\Gamma \cup \Delta$ can be written as $\Gamma'
-\cup \Delta'$, with $\Gamma' \subseteq \Gamma$ and $\Delta' \subseteq
-\Delta$. Since $\Delta'$ is finite, it can contain only finitely many
-terms. Let $a \in \Domain{M}$ be !!a{element} of $\Domain{M}$ not
-picked out by any of them, and let $\Struct{M'}$ be the !!{structure}
-that is just like $\Struct{M}$, but also $\Assign{c}{M'} = a$. Since
-$a \neq \Value{t}{M}$ for all~$t$ occurring in~$\Delta'$,
-$\Sat{M'}{\Delta'}$. Since $\Sat{M}{\Gamma}$, $\Gamma' \subseteq
-\Gamma$, and $c$ does not occur in~$\Gamma$, also
-$\Sat{M'}{\Gamma'}$. Together, $\Sat{M'}{\Gamma' \cup \Delta'}$ for
-every finite subset $\Gamma' \cup \Delta'$ of $\Gamma \cup \Delta$. So
-every finite subset of $\Gamma \cup \Delta$ is satisfiable. By
-compactness, $\Gamma \cup \Delta$ itself is satisfiable. So there are
-models~$\Sat{M}{\Gamma \cup \Delta}$. Every such $\Struct{M}$ is a
-model of~$\Gamma$, but is not covered, since $\Value{c}{M} \neq
-\Value{t}{M}$ for all terms~$t$ of~$\Lang{L}$.
+$\Gamma \cup \Delta$ 的一个有限子集可以写成 $\Gamma' \cup \Delta'$，其中 $\Gamma' \subseteq \Gamma$ 且 $\Delta' \subseteq \Delta$。因为 $\Delta'$ 是有限的，它只能包含有限多个项。设 $a \in \Domain{M}$ 是 $\Domain{M}$ 中一个不被 $\Delta'$ 中的任何项选取的元素，并令 $\Struct{M'}$ 是一个与 $\Struct{M}$ 完全相同、只是 $\Assign{c}{M'} = a$ 的结构。因为对于所有出现在~$\Delta'$ 中的项~$t$ 都有 $a \neq \Value{t}{M}$，所以 $\Sat{M'}{\Delta'}$。因为 $\Sat{M}{\Gamma}$，$\Gamma' \subseteq \Gamma$，且 $c$ 不在~$\Gamma$ 中出现，所以也有 $\Sat{M'}{\Gamma'}$。合起来，$\Sat{M'}{\Gamma' \cup \Delta'}$ 对于 $\Gamma \cup \Delta$ 的每个有限子集 $\Gamma' \cup \Delta'$ 都成立。因此，$\Gamma \cup \Delta$ 的每个有限子集都是可满足的。由紧致性定理，$\Gamma \cup \Delta$ 本身是可满足的。所以存在满足~$\Gamma \cup \Delta$ 的模型~$\Sat{M}{\Gamma \cup \Delta}$。每个这样的 $\Struct{M}$ 都是~$\Gamma$ 的模型，但却不是覆盖的，因为 $\Value{c}{M} \neq
+\Value{t}{M}$ 对于所有~$\Lang{L}$ 中的项~$t$ 都成立。
 \end{ex}
 
 \begin{ex}
-Consider !!a{language} $\Lang{L}$ containing the !!{predicate}~$<$,
-!!{constant}s $\Obj{0}$, $\Obj{1}$, and !!{function}s $+$, $\times$, and
-$-$. Let $\Gamma$ be the set of all !!{sentence}s in this
-!!{language} true in the !!{structure}~$\Struct{Q}$ with domain~$\Rat$ and the obvious
-interpretations.  $\Gamma$~is the set of all !!{sentence}s
-of~$\Lang{L}$ true about the rational numbers. Of course, in~$\Rat$
-(and even in~$\Real$), there are no numbers~$r$ which are greater than~$0$
-but less than $1/k$ for all $k \in \PosInt$.  Such a number, if it
-existed, would be an \emph{infinitesimal:} non-zero, but infinitely
-small.  The compactness theorem can be used to show that there are 
-models of~$\Gamma$ in which infinitesimals exist. We do not have 
-!!a{function} for division in our language (division by zero is 
-undefined, and !!{function}s have to be interpreted by total functions).
-However, we can still express that $r < 1/k$, since this is the case iff
-$r \cdot k < 1$. Now let $c$ be a new !!{constant} and let $\Delta$ be 
+考虑一个包含谓词符号~$<$、常项符号 $\Obj{0}$、$\Obj{1}$ 以及函数符号 $+$、$\times$ 和 $-$ 的语言 $\Lang{L}$。令 $\Gamma$ 为该语言中所有在结构~$\Struct{Q}$（论域为 $\Rat$ 并带有显然的解释）中为真的语句的集合。$\Gamma$ 就是关于有理数为真的所有~$\Lang{L}$-语句的集合。当然，在~$\Rat$ 中（甚至在~$\Real$ 中），不存在这样的数~$r$：它大于~$0$ 且对所有 $k \in \PosInt$ 都小于 $1/k$。这样的数如果存在，将是一个\emph{无穷小}：非零，但无限小。紧致性定理可用来证明存在包含无穷小的~$\Gamma$ 的模型。在我们的语言中没有表示除法的函数符号（除以零无定义，且函数符号必须由全函数解释）。不过，我们仍然可以表达 $r < 1/k$，因为这当且仅当 $r \cdot k < 1$ 时成立。现在令 $c$ 为一个新的常项符号，并令 $\Delta$ 为
 \[
 \{\Obj{0} < c\}
 \cup \Setabs{ c \times \num k < \Obj{1} }{k \in \PosInt}
 \]
-(where $\num{k} = (\Obj{1} + (\Obj{1} + \dots + (\Obj{1} +
-\Obj{1})\dots))$ with $k$~$\Obj{1}$'s). For any finite
-subset~$\Delta_0$ of~$\Delta$ there is a~$K$ such that for all the
-!!{sentence}s $c \times \num{k} < \Obj{1}$ in~$\Delta_0$ have $k < K$.
-If we expand $\Struct{Q}$ to~$\Struct{Q'}$ with $\Assign{c}{Q'} = 1/K$
-we have that $\Sat{Q'}{\Gamma_0 \cup \Delta_0}$ for any finite
-$\Gamma_0 \subseteq \Gamma$, and so $\Gamma \cup \Delta$ is finitely
-satisfiable (Exercise: prove this in detail). By compactness, $\Gamma
-\cup \Delta$ is satisfiable. Any model~$\Struct{S}$ of $\Gamma \cup
-\Delta$ contains an infinitesimal, namely~$\Assign{c}{S}$.
+（其中 $\num{k} = (\Obj{1} + (\Obj{1} + \dots + (\Obj{1} +
+\Obj{1})\dots))$ 包含 $k$ 个 $\Obj{1}$）。对于~$\Delta$ 的任意有限子集~$\Delta_0$，存在一个~$K$，使得 $\Delta_0$ 中的所有语句 $c \times \num{k} < \Obj{1}$ 里的 $k$ 都满足 $k < K$。如果我们把 $\Struct{Q}$ 扩张到~$\Struct{Q'}$ 并令 $\Assign{c}{Q'} = 1/K$，那么对于任意有限的 $\Gamma_0 \subseteq \Gamma$，都有 $\Sat{Q'}{\Gamma_0 \cup \Delta_0}$，因此 $\Gamma \cup \Delta$ 是有限可满足的（练习：详细证明这一点）。由紧致性定理，$\Gamma \cup \Delta$ 是可满足的。任何 $\Gamma \cup \Delta$ 的模型~$\Struct{S}$ 都包含一个无穷小，即~$\Assign{c}{S}$。
 \end{ex}
 }{}
 
 \tagprob{FOL}
 \begin{prob}
-In the standard model of arithmetic~$\Struct{N}$, there is no
-!!{element}~$k \in \Domain{N}$ which satisfies every formula~$\num{n}
-< x$ (where $\num{n}$ is $\Obj{0}^{\prime\dots\prime}$ with $n$
-$\prime$'s).  Use the compactness theorem to show that the set of
-!!{sentence}s in the language of arithmetic which are true in the standard
-model of arithmetic $\Struct{N}$ are also true in
-!!a{structure}~$\Struct{N'}$ that contains !!a{element} which
-\emph{does} satisfy every formula $\num{n} < x$.
+在算术的标准模型~$\Struct{N}$ 中，没有元素~$k \in \Domain{N}$ 满足所有公式~$\num{n} < x$（其中 $\num{n}$ 是带有 $n$ 个撇号的 $\Obj{0}^{\prime\dots\prime}$）。使用紧致性定理证明：算术语言中在算术标准模型 $\Struct{N}$ 中为真的语句集合，在某个结构~$\Struct{N'}$ 中也同样为真，而该结构包含一个\emph{确实}满足所有公式 $\num{n} < x$ 的元素。
 \end{prob}
 \tagendprob
 
 \iftag{FOL}{
 \begin{ex}
-We know that first-order logic with !!{identity} can express that the
-size of the !!{domain} must have some minimal size: The
-sentence~$!A_{\ge n}$ (which says ``there are at least $n$ distinct
-objects'') is true only in structures where $\Domain{M}$ has at
-least~$n$ objects. So if we take
+我们知道，带等词的一阶逻辑可以表达论域必须具有某个最小大小：语句~$!A_{\ge n}$（意思是“至少有 $n$ 个不同对象”）仅在 $\Domain{M}$ 中至少有~$n$ 个对象的结构中为真。因此，如果我们取
   \[
   \Delta = \Setabs{!A_{\ge n}}{n \ge 1}
   \]
-then any model of $\Delta$ must be infinite. Thus, we can guarantee
-that a theory only has infinite models by adding~$\Delta$ to it: the
-models of $\Gamma \cup \Delta$ are all and only the infinite models
-of~$\Gamma$.
+那么 $\Delta$ 的任何模型都必定是无穷的。这样一来，我们就能通过将~$\Delta$ 加入一个理论来保证该理论只有无穷模型：$\Gamma \cup \Delta$ 的模型恰好是~$\Gamma$ 的所有无穷模型。
 
-So first-order logic can express infinitude. The compactness theorem
-shows that it cannot express finitude, however. For suppose some set
-of sentences $\Lambda$ were satisfied in all and only finite
-!!{structure}s. Then $\Delta \cup \Lambda$ is finitely
-satisfiable. Why? Suppose $\Delta' \cup \Lambda' \subseteq \Delta \cup
-\Lambda$ is finite with $\Delta' \subseteq \Delta$ and $\Lambda'
-\subseteq \Lambda$. Let $n$ be the largest number such that $!A_{\ge n}
-\in \Delta'$. $\Lambda$, being satisfied in all finite structures, has
-a model~$\Struct{M}$ with finitely many but $\ge n$ !!{element}s. But
-then $\Sat{M}{\Delta' \cup \Lambda'}$.  By compactness, $\Delta \cup
-\Lambda$ has an infinite model, contradicting the assumption that
-$\Lambda$ is satisfied only in finite !!{structure}s.
+所以一阶逻辑能够表达无穷性。然而，紧致性定理表明它不能表达有穷性。因为，假设某个语句集 $\Lambda$ 被所有且仅被有穷结构满足。那么 $\Delta \cup \Lambda$ 是有限可满足的。为什么呢？假设 $\Delta' \cup \Lambda' \subseteq \Delta \cup \Lambda$ 是有限的，其中 $\Delta' \subseteq \Delta$，$\Lambda' \subseteq \Lambda$。令 $n$ 是使得 $!A_{\ge n} \in \Delta'$ 的最大数字。由于 $\Lambda$ 被所有有穷结构满足，它有一个模型~$\Struct{M}$，其元素个数有穷但 $\ge n$。但是这样一来 $\Sat{M}{\Delta' \cup \Lambda'}$。根据紧致性定理，$\Delta \cup \Lambda$ 有一个无穷模型，这与 $\Lambda$ 只被有穷结构满足的假设矛盾。
 \end{ex}
 }{}
 

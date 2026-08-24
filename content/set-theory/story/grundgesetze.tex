@@ -4,59 +4,39 @@
 
 \olfileid{sth}{story}{blv}
 
-\olsection{Appendix: Frege's Basic Law V}
+\olsection{附录：弗雷格的基本定律 V}
 
-In \olref[rus]{sec}, we explained that Russell's formulated his
-paradox as a problem for the system Frege outlined in his
-\emph{Grundgesetze}. Frege's system did not include a direct
-formulation of Na\"{i}ve Comprehension. So, in this appendix, we will
-very briefly explain what Frege's system \emph{did} include, and how
-it relates to Na\"ive Comprehension and how it relates to Russell's
-Paradox.
+在 \olref[rus]{sec} 中，我们解释了 Russell（罗素）如何将其悖论表述为 Frege（弗雷格）在其 \emph{Grundgesetze} 中所概述的系统的问题。弗雷格的系统并未直接包含素朴概括原理的表述。因此，在本附录中，我们将非常简要地解释弗雷格的系统究竟\emph{包含}了什么，以及它与素朴概括原理和罗素悖论分别有何关系。
 
-Frege's system is \emph{second-order}, and was designed to formulate
-the notion of an \emph{extension of a concept}.\footnote{Strictly
-speaking, Frege attempts to formalize a more general notion: the
-``value-range'' of a function. Extensions of concepts are a special
-case of the more general notion. See \citet[pp.\ 8--9]{Heck2012} for
-the details.} Using notation inspired by Frege, we will write
-$\fregeext{x}{F(x)}$ for \emph{the extension of the concept~$F$}. This
-is a device which takes a \emph{predicate}, ``$F$'', and turns it into
-a (first-order) \emph{term}, ``$\fregeext{x}{F(x)}$''. Using this
-device, Frege offered the following \emph{definition} of membership:
-\[
+弗雷格的系统是\emph{二阶的}，旨在形式化\emph{概念的外延}这一观念。\footnote{严格来说，弗雷格试图形式化的是一个更一般的观念：函数的``值域''。概念的外延是这个更一般观念的一个特例。详情参见 \citet[pp.\ 8--9]{Heck2012}。}采用受弗雷格启发的记法，我们将\emph{概念~$F$ 的外延}记作 $\fregeext{x}{F(x)}$。这是一种将\emph{谓词}“$F$”转换为（一阶）\emph{项}“$\fregeext{x}{F(x)}$”的机制。利用这一机制，弗雷格给出了如下的属于关系\emph{定义}：\[
 	a \in b =_\text{df} \exists G(b = \fregeext{x}{G(x)} \land Ga)
 \]
-roughly: $a \in b$ iff $a$ falls under a concept whose extension is
-$b$. (Note that the quantifier ``$\exists G$'' is second-order.) Frege
-also maintained the following principle, known as \emph{Basic Law V}: 
-$$\fregeext{x}{F(x)} = \fregeext{x}{G(x)} \liff \forall x (Fx \liff Gx)$$
-roughly: concepts have identical extensions iff they are coextensive. (Again, both ``$F$'' and ``$G$'' are in predicate position.) Now a simple principle connects membership with property-satisfaction:
+粗略地说：$a \in b$ 当且仅当 $a$ 落入某个外延为 $b$ 的概念之下。（注意量词“$\exists G$”是二阶的。）弗雷格还坚持以下原则，即所谓的\emph{基本定律 V}：$$\fregeext{x}{F(x)} = \fregeext{x}{G(x)} \liff \forall x (Fx \liff Gx)$$
+粗略地说：概念具有相同的外延当且仅当它们是共外延的。（同样，“$F$”和“$G$”都在谓词位置。）现在，一个简单的原理将属于关系与属性满足联系起来：
 
-\begin{lem}[in \emph{Grundgesetze}]\ollabel{lem:Fregeextensions}
+\begin{lem}[见于 \emph{Grundgesetze}]\ollabel{lem:Fregeextensions}
 $\forall F \forall a(a \in \fregeext{x}{F(x)} \liff Fa)$
 \end{lem}
 
 \begin{proof} 
-Fix $F$ and $a$. Now $a \in \fregeext{x}{F(x)}$ iff $\exists G(\fregeext{x}{F(x)}
-= \fregeext{x}{G(x)} \land Ga)$ (by the definition of membership) iff
-$\exists G(\forall x(Fx \liff Gx) \land Ga)$ (by Basic Law V) iff $Fa$
-(by elementary second-order logic).
+固定 $F$ 和 $a$。则 $a \in \fregeext{x}{F(x)}$ 当且仅当 $\exists G(\fregeext{x}{F(x)}
+= \fregeext{x}{G(x)} \land Ga)$（根据属于关系的定义）当且仅当
+$\exists G(\forall x(Fx \liff Gx) \land Ga)$（根据基本定律 V）当且仅当 $Fa$
+（根据基本二阶逻辑）。
 \end{proof}
 
-And this yields Na\"ive Comprehension almost immediately:
+由此几乎立即得到素朴概括原理：
 
-\begin{lem}[in \emph{Grundgesetze}.]
+\begin{lem}[见于 \emph{Grundgesetze}。]
 $\forall F \exists s \forall a (a \in s \liff Fa)$
 \end{lem}
 
 \begin{proof}
-Fix $F$; now \olref{lem:Fregeextensions} yields $\forall a (a \in
-\fregeext{x}{F(x)} \liff Fa)$; so $\exists s\forall a(a \in s \liff Fa)$ by
-existential generalisation. The result follows since $F$ was
-arbitrary.
+固定 $F$；则由 \olref{lem:Fregeextensions} 得 $\forall a (a \in
+\fregeext{x}{F(x)} \liff Fa)$；故由
+存在概括可得 $\exists s\forall a(a \in s \liff Fa)$。由于 $F$ 是任意的，结果得证。
 \end{proof}
 
-Russell's Paradox follows by taking $F$ as given by $\forall x(Fx \liff x \notin x)$. 
+取 $F$ 为 $\forall x(Fx \liff x \notin x)$ 即得罗素悖论。
 
 \end{document}

@@ -8,147 +8,88 @@
 
 \olfileid{mth}{ind}{idf}
 
-\olsection{Inductive Definitions}
+\olsection{归纳定义}
 
-In logic we very often define kinds of objects \emph{inductively},
-i.e., by specifying rules for what counts as an object of the kind to
-be defined which explain how to get new objects of that kind from old
-objects of that kind.  For instance, we often define special kinds of
-sequences of symbols, such as the terms and !!{formula}s of a
-language, by induction.  For a simple example, consider strings
-consisting of letters $\mathrm{a}$, $\mathrm{b}$, $\mathrm{c}$,
-$\mathrm{d}$, the symbol~$\circ$, and brackets $[$ and $]$, such as
-``$[[\mathrm{c} \circ \mathrm{d}][$'', ``$[\mathrm{a}[]\circ]$'',
-``$\mathrm{a}$'' or ``$[[\mathrm{a} \circ \mathrm{b}]\circ
-\mathrm{d}]$''.  You probably feel that there's something
-``wrong'' with the first two strings: the brackets don't
-``balance'' at all in the first, and you might feel that the
-``$\circ$'' should ``connect'' expressions that themselves make
-sense. The third and fourth string look better: for every ``$[$''
-there's a closing ``$]$'' (if there are any at all), and for any
-$\circ$ we can find ``nice'' expressions on either side,
-surrounded by a pair of parentheses.
+在逻辑中，我们经常\emph{归纳地}定义各类对象，亦即，通过规定何种对象算作该类对象的规则来定义，这些规则说明了如何从已有的该类对象生成新的该类对象。例如，我们经常通过归纳来定义特定的符号序列，比如一种语言的项和公式。来看一个简单的例子：考虑由字母 $\mathrm{a}$、$\mathrm{b}$、$\mathrm{c}$、$\mathrm{d}$、符号~$\circ$ 以及方括号 $[$ 和 $]$ 组成的符号串，例如 ``$[[\mathrm{c} \circ \mathrm{d}][$''、``$[\mathrm{a}[]\circ]$''、``$\mathrm{a}$'' 或 ``$[[\mathrm{a} \circ \mathrm{b}]\circ
+\mathrm{d}]$''。你可能会觉得前两个符号串有些「不对劲」：第一个的括号完全「不平衡」，而第二个可能会让你觉得 ``$\circ$'' 应该「连接」自身有意义的表达式。第三和第四个符号串看起来就好多了：只要出现了 ``$[$''，就一定有一个闭合的 ``$]$'' 与之对应，并且对于任何一个 $\circ$，我们都能在它两边找到被一对括号括起来的「好」表达式。
 
-We would like to precisely specify what counts as a ``nice term.''
-First of all, every letter by itself is nice.  Anything that's not
-just a letter by itself should be of the form ``$[t \circ s]$'' where
-$s$ and $t$ are themselves nice. Conversely, if $t$ and $s$ are nice,
-then we can form a new nice term by putting a $\circ$ between them and
-surround them by a pair of brackets.  We might use these operations
-to \emph{define} the set of nice terms.  This is an \emph{inductive
-  definition}.
+我们想要精确地规定什么算作一个「好项」。首先，每个字母本身都是好项。任何不仅仅由单个字母构成的对象，都应当具有 ``$[t \circ s]$'' 的形式，其中 $s$ 和 $t$ 本身也是好项。反过来，如果 $t$ 和 $s$ 是好项，那么我们可以在它们中间放一个 $\circ$ 并用一对括号将它们括起来，从而形成一个新的好项。我们可以利用这些操作来\emph{定义}好项的集合。这就是一个\emph{归纳定义}。
 
-\begin{defn}[Nice terms]
-  The set of \emph{nice terms} is inductively defined as follows:
+\begin{defn}[好项]
+  \emph{好项}的集合归纳定义如下：
   \begin{enumerate}
-  \item Any letter $\mathrm{a}$, $\mathrm{b}$, $\mathrm{c}$,
-    $\mathrm{d}$ is a nice term.
-  \item If $s_1$ and $s_2$ are nice terms, then so
-    is $[s_1 \circ s_2]$.
-  \item Nothing else is a nice term.
+  \item 任何字母 $\mathrm{a}$、$\mathrm{b}$、$\mathrm{c}$、
+    $\mathrm{d}$ 都是好项。
+  \item 若 $s_1$ 和 $s_2$ 是好项，那么 $[s_1 \circ s_2]$ 也是好项。
+  \item 没有其他东西是好项。
   \end{enumerate}
 \end{defn}
 
-This definition tells us that something counts as a nice term iff it
-can be constructed according to the two conditions (1) and~(2) in some
-finite number of steps. In the first step, we construct all nice terms
-just consisting of letters by themselves, i.e.,
+此定义告诉我们，一个对象算作好项，当且仅当它能根据条款（1）和~(2)
+在有限步内构造出来。第一步，我们构造出所有仅由字母本身组成的好项，即
 \[
 \mathrm{a}, \mathrm{b}, \mathrm{c}, \mathrm{d}
 \]
-In the second step, we apply (2) to the terms we've constructed. We'll get
+第二步，我们将（2）应用到已经构造出的项上。就会得到
 \[
 [\mathrm{a} \circ \mathrm{a}], [\mathrm{a} \circ \mathrm{b}],
 [\mathrm{b} \circ \mathrm{a}], \dots, [\mathrm{d} \circ \mathrm{d}]
 \]
-for all combinations of two letters. In the third step, we apply (2)
-again, to any two nice terms we've constructed so far. We get new nice
-term such as $[\mathrm{a} \circ [\mathrm{a} \circ
-    \mathrm{a}]]$---where $t$ is $\mathrm{a}$ from step~1 and $s$ is
-$[\mathrm{a} \circ \mathrm{a}]$ from step~2---and $[[\mathrm{b} \circ
-    \mathrm{c}] \circ [\mathrm{d} \circ \mathrm{b}]]$ constructed out
-of the two terms $[\mathrm{b} \circ \mathrm{c}]$ and $[\mathrm{d}
-  \circ \mathrm{b}]$ from step~2. And so on.  Clause (3) rules out
-that anything not constructed in this way sneaks into the set of nice
-terms.
+这涵盖了所有两个字母的组合。第三步，我们再次将（2）应用到目前构造出的任意两个好项上。我们会得到新的好项，例如 $[\mathrm{a} \circ [\mathrm{a} \circ
+    \mathrm{a}]]$——其中 $t$ 是来自第一步的 $\mathrm{a}$，而 $s$ 是
+来自第二步的 $[\mathrm{a} \circ \mathrm{a}]$——以及由第二步中的两个项 $[\mathrm{b} \circ \mathrm{c}]$ 和 $[\mathrm{d}
+  \circ \mathrm{b}]$ 构造出的 $[[\mathrm{b} \circ
+    \mathrm{c}] \circ [\mathrm{d} \circ \mathrm{b}]]$。如此等等。条款（3）排除了任何未以这种方式构造出来的对象被算作好项的可能。
 
-Note that we have not yet proved that every sequence of symbols that
-``feels'' nice is nice according to this definition. However, it
-should be clear that everything we can construct does in fact ``feel
-nice'': brackets are balanced, and $\circ$ connects parts that are
-themselves nice.
+注意，我们尚未证明每一个感觉上是好的符号串根据这个定义都是好项。然而，应该很清楚，我们能构造出的所有东西实际上感觉上都是好的：括号是平衡的，而且 $\circ$ 连接的部分本身也是好的。
 
-The key feature of inductive definitions is that if you want to prove
-something about all nice terms, the definition tells you which cases
-you must consider.  For instance, if you are told that $t$ is a nice
-term, the inductive definition tells you what $t$ can look like: $t$
-can be a letter, or it can be $[s_1 \circ s_2]$ for some pair of
-nice terms $s_1$ and~$s_2$. Because of clause (3), those are the only
-possibilities.
+归纳定义的关键特征是，如果你想证明关于所有好项的某种性质，该定义就会指明你必须考虑哪些情况。例如，如果已知 $t$ 是一个好项，那么归纳定义就告诉你 $t$ 可能的样子：$t$ 可以是一个字母，或者对于某一对好项 $s_1$ 和~$s_2$，它可以是 $[s_1 \circ s_2]$。由于条款（3），这些是仅有的可能性。
 
-When proving claims about all of an inductively defined set, the
-strong form of induction becomes particularly important. For instance,
-suppose we want to prove that for every nice term of length~$n$, the
-number of $[$ in it is~$< n/2$.  This can be seen as a claim about
-all~$n$: for every $n$, the number of $[$ in any nice term of
-length~$n$ is $< n/2$.
+在证明关于某个归纳定义集合全体元素的断言时，强归纳法变得尤为重要。例如，假设我们要证明对于每个长度为~$n$ 的好项，其中 $[$ 的个数 $< n/2$。这可以被看作一个关于所有~$n$ 的断言：对于每个 $n$，任何长度为~$n$ 的好项中 $[$ 的个数都 $< n/2$。
 
 \begin{prop}
-  For any $n$, the number of $[$ in a nice term of length~$n$ is
-  $< n/2$.
+  对任意 $n$，长度为~$n$ 的好项中 $[$ 的个数都 $< n/2$。
 \end{prop}
 
 \begin{proof}
-To prove this result by (strong) induction, we have to show that the
-following conditional claim is true:
+为了用（强）归纳法证明这个结果，我们需要证明以下条件命题为真：
 \begin{quote}
-  If for every $l < k$, any nice term of length~$l$ has $< l/2$
-  $[$'s, then any nice term of length~$k$ has $< k/2$ $[$'s.
+  如果对每个 $l < k$，任意长度为~$l$ 的好项中 $[$ 的个数都 $< l/2$，
+  那么任意长度为~$k$ 的好项中 $[$ 的个数都 $< k/2$。
 \end{quote}
-To show this conditional, assume that its antecedent is true, i.e.,
-assume that for any $l<k$, nice terms of length~$l$ contain $< l/2$
-$[$'s.  We call this assumption the inductive hypothesis. We want to
-show the same is true for nice terms of length~$k$.
+为证明这个条件命题，假设其前件为真，即假设对任意 $l<k$，长度为~$l$ 的好项中 $[$ 的个数 $< l/2$。
+我们称此假设为归纳假设。我们要证明该结论对长度为~$k$ 的好项同样成立。
 
-So suppose $t$ is a nice term of length~$k$.  Because nice terms are
-inductively defined, we have two cases: (1)~$t$ is a letter by
-itself, or (2)~$t$ is $[s_1 \circ s_2]$ for some nice terms $s_1$ and~$s_2$.
+于是设 $t$ 是一个长度为~$k$ 的好项。由于好项是归纳定义的，我们有两种情况：
+(1)~$t$ 本身是一个字母，或者 (2)~$t$ 是 $[s_1 \circ s_2]$，其中 $s_1$ 和~$s_2$ 是好项。
 \begin{enumerate}
-\item $t$ is a letter.  Then $k = 1$, and the number of $[$ in $t$
-is~$0$. Since $0 < 1/2$, the claim holds.
-\item $t$ is $[s_1 \circ s_2]$ for some nice terms $s_1$ and~$s_2$.
-  Let's let $l_1$ be the length of~$s_1$ and $l_2$ be the length
-  of~$s_2$.  Then the length~$k$ of $t$ is $l_1+l_2+3$ (the lengths of
-  $s_1$ and $s_2$ plus three symbols $[$, $\circ$, $]$). Since
-  $l_1+l_2+3$ is always greater than $l_1$, $l_1 < k$. Similarly, $l_2
-  < k$. That means that the induction hypothesis applies to the terms
-  $s_1$ and~$s_2$: the number~$m_1$ of $[$ in $s_1$ is $< l_1/2$, and
-  the number~$m_2$ of $[$ in~$s_2$ is $< l_2/2$.
+\item $t$ 是一个字母。那么 $k = 1$，并且 $t$ 中 $[$ 的个数为~$0$。由于 $0 < 1/2$，结论成立。
+\item $t$ 是 $[s_1 \circ s_2]$，其中 $s_1$ 和~$s_2$ 是好项。
+  令 $l_1$ 为~$s_1$ 的长度，$l_2$ 为~$s_2$ 的长度。
+  那么 $t$ 的长度~$k$ 为 $l_1+l_2+3$（即 $s_1$ 和 $s_2$ 的长度加上三个符号 $[$、$\circ$、$]$）。
+  由于 $l_1+l_2+3$ 总是大于 $l_1$，所以 $l_1 < k$。类似地，$l_2 < k$。
+  这意味着归纳假设适用于项 $s_1$ 和~$s_2$：$s_1$ 中 $[$ 的个数~$m_1$ 满足 $m_1 < l_1/2$，
+  并且~$s_2$ 中 $[$ 的个数~$m_2$ 满足 $m_2 < l_2/2$。
 
-  The number of $[$ in $t$ is the number of $[$ in~$s_1$, plus the
-  number of $[$ in~$s_2$, plus~$1$, i.e., it is $m_1 + m_2 + 1$. Since $m_1
-  < l_1/2$ and $m_2 < l_2/2$ we have:
+  $t$ 中 $[$ 的个数等于~$s_1$ 中 $[$ 的个数加上~$s_2$ 中 $[$ 的个数再加~$1$，
+  即 $m_1 + m_2 + 1$。由于 $m_1 < l_1/2$ 且 $m_2 < l_2/2$，我们有：
   \[
   m_1 + m_2 + 1 < \frac{l_1}{2} + \frac{l_2}{2} + 1 = \frac{l_1+l_2+2}{2} < \frac{l_1+l_2+3}{2} = k/2.
   \]
 \end{enumerate}
-In each case, we've shown that the number of $[$ in $t$ is $< k/2$ (on
-the basis of the inductive hypothesis). By strong induction, the
-proposition follows.
+在每种情况下，我们都证明了（在归纳假设的基础上）$t$ 中 $[$ 的个数 $< k/2$。
+由强归纳法，命题得证。
 \end{proof}
 
 \begin{prob}
-  Define the set of supernice terms by
+  通过以下方式定义超级好项的集合：
   \begin{enumerate}
-  \item Any letter $\mathrm{a}$, $\mathrm{b}$, $\mathrm{c}$,
-    $\mathrm{d}$ is a supernice term.
-  \item If $s$ is a supernice term, then so is $[s]$.
-  \item If $s_1$ and $s_2$ are supernice terms, then so
-    is $[s_1 \circ s_2]$.
-  \item Nothing else is a supernice term.
+  \item 任意字母 $\mathrm{a}$、$\mathrm{b}$、$\mathrm{c}$、$\mathrm{d}$ 都是超级好项。
+  \item 如果 $s$ 是超级好项，那么 $[s]$ 也是超级好项。
+  \item 如果 $s_1$ 和 $s_2$ 是超级好项，那么 $[s_1 \circ s_2]$ 也是超级好项。
+  \item 没有其他东西是超级好项。
   \end{enumerate}
-  Show that the number of $[$ in a supernice term~$t$ of length~$n$ is
-    $\le n/2 +1$.
+  证明：对长度为~$n$ 的任意超级好项~$t$，其中 $[$ 的个数 $\le n/2 +1$。
 \end{prob}
 
 \end{document}

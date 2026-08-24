@@ -10,72 +10,47 @@
       {\olfileid{fol}{seq}{sou}}
       {\olfileid{pl}{seq}{sou}}
 
-\olsection{Soundness}
+\olsection{可靠性}
 
 \begin{explain}
-!!^a{derivation} system, such as the sequent calculus, is \emph{sound}
-if it cannot !!{derive} things that do not actually hold.  Soundness is
-thus a kind of guaranteed safety property for !!{derivation} systems.
-Depending on which proof theoretic property is in question, we would
-like to know for instance, that
+一个推导系统（例如相继式演算），如果不能推出实际上不成立的东西，就是\emph{可靠的}。
+因此，可靠性是推导系统的一种有保障的安全性质。
+视所讨论的证明论性质而定，我们希望知道，例如：
 \begin{enumerate}
-\item every !!{derivable}~$!A$ is \iftag{FOL}{valid}{a tautology};
-\item if !!a{sentence} is !!{derivable} from some others, it is also a
-  consequence of them;
-\item if a set of !!{sentence}s is inconsistent, it is unsatisfiable.
+\item 每个可推导的~$!A$ 都是\iftag{FOL}{有效的}{重言式}；
+\item 如果一个语句能从其他语句推导出来，那么它也是这些语句的语义后承；
+\item 如果一个语句集是不一致的，那么它是不可满足的。
 \end{enumerate}
-These are important properties of !!a{derivation} system.  If any of
-them do not hold, the !!{derivation} system is deficient---it would
-!!{derive} too much.  Consequently, establishing the soundness of a
-!!{derivation} system is of the utmost importance.
+这些是推导系统的重要性质。如果其中任何一条不成立，该推导系统就是有缺陷的——它会推出过多的东西。
+因此，确立推导系统的可靠性至关重要。
 
-Because all these proof-theoretic properties are defined via
-!!{derivability} in the sequent calculus of certain sequents, proving
-(1)--(3) above requires proving something about the semantic
-properties of !!{derivable} sequents.  We will first define what it
-means for a sequent to be \emph{valid}, and then show that every
-!!{derivable} sequent is valid.  (1)--(3) then follow as corollaries
-from this result.
+因为所有这些证明论性质都是通过某些相继式在相继式演算中的可推导性来定义的，
+所以要证明上述 (1)--(3)，就需要证明关于可推导相继式语义性质的某些结论。
+我们将首先定义什么是一个\emph{有效的}相继式，然后证明每个可推导的相继式都是有效的。
+于是，(1)--(3) 即可作为该结果的推论得出。
 \end{explain}
 
 \begin{defn}
-\iftag{FOL}{!!^a{structure}~$\Struct
-  M$}{!!^a{valuation}~$\pAssign{v}$} \emph{satisfies} a sequent
-$\Gamma \Sequent \Delta$ iff either
-$\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A}$ for some $!A \in \Gamma$ or
-$\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$ for some $!A \in \Delta$.
+\iftag{FOL}{结构~$\Struct M$}{赋值~$\pAssign{v}$}\emph{满足}相继式 $\Gamma \Sequent \Delta$，
+当且仅当要么存在 $!A \in \Gamma$ 使得 $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A}$，要么存在 $!A \in \Delta$ 使得 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$。
 
-A sequent is \emph{valid} iff every \iftag{FOL}{!!{structure}~$\Struct
-  M$}{!!{valuation}~$\pAssign{v}$} satisfies it.
+一个相继式是\emph{有效的}，当且仅当每个\iftag{FOL}{结构~$\Struct M$}{赋值~$\pAssign{v}$}都满足它。
 \end{defn}
 
-\begin{thm}[Soundness]
-\ollabel{thm:sequent-soundness} If $\Log{LK}$ !!{derive}s $\Theta
-\Sequent \Xi$, then $\Theta \Sequent \Xi$ is valid.
+\begin{thm}[可靠性]
+\ollabel{thm:sequent-soundness} 如果 $\Log{LK}$ 推导出 $\Theta \Sequent \Xi$，那么 $\Theta \Sequent \Xi$ 是有效的。
 \end{thm}
 
 \begin{proof}
-Let $\pi$ be !!a{derivation} of $\Theta \Sequent \Xi$. We proceed by
-induction on the number of inferences~$n$ in~$\pi$.
+设 $\pi$ 是 $\Theta \Sequent \Xi$ 的一个推导。我们对 $\pi$ 中的推理步数~$n$ 进行归纳。
 
-If the number of inferences is~$0$, then $\pi$ consists only of an
-initial sequent. Every initial sequent $!A \Sequent !A$ is obviously
-valid, since for every \iftag{FOL}{$\Struct M$}{$\pAssign{v}$}, either
-$\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A}$ or
-$\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$.
+如果推理步数是~$0$，那么 $\pi$ 仅由一个初始矢列组成。每个初始矢列 $!A \Sequent !A$ 显然是有效的，因为对于每个 \iftag{FOL}{结构~$\Struct{M}$}{赋值~$\pAssign{v}$}，要么 $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A}$，要么 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$。
 
-If the number of inferences is greater than~0, we distinguish cases
-according to the type of the lowermost inference. By induction
-hypothesis, we can assume that the premises of that inference are
-valid, since the number of inferences in the !!{derivation} of any premise is
-smaller than~$n$.
+如果推理步数大于~$0$，我们根据最后一步推理的类型来区分情况。根据归纳假设，可设该推理的前提是有效的，因为任何前提的推导中所含的推理步数都小于~$n$。
 
-First, we consider the possible inferences with only one premise.
+首先，我们考虑单前提的推理。
 \begin{enumerate}
-\item The last inference is a weakening.  Then $\Theta \Sequent \Xi$
-  is either $!A, \Gamma \Sequent \Delta$ (if the last inference is
-  \LeftR{\Weakening}) or $\Gamma \Sequent \Delta, !A$ (if it's
-  \RightR{\Weakening}), and the !!{derivation} ends in one of
+\item 最后一步推理为削弱。那么 $\Theta \Sequent \Xi$ 要么是 $!A, \Gamma \Sequent \Delta$（若最后一步推理是 \LeftR{\Weakening}），要么是 $\Gamma \Sequent \Delta, !A$（若最后一步推理是 \RightR{\Weakening}），并且推导以如下形式之一结束：
   \begin{prooftree}
     \AxiomC{}
     \Deduce$\Gamma \fCenter \Delta$
@@ -87,187 +62,71 @@ First, we consider the possible inferences with only one premise.
     \RightLabel{\RightR{\Weakening}}
     \UnaryInf$\Gamma \fCenter \Delta, !A$
   \end{prooftree}
-  By induction hypothesis, $\Gamma \Sequent \Delta$ is valid, i.e.,
-  for every
-  \iftag{FOL}{!!{structure}~$\Struct{M}$}{!!{valuation}~$\pAssign{v}$},
-  either there is some $!C \in \Gamma$ such that
-  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$ or there is some $!C \in
-  \Delta$ such that $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$.
+  根据归纳假设，$\Gamma \Sequent \Delta$ 是有效的，即对每个 \iftag{FOL}{结构~$\Struct{M}$}{赋值~$\pAssign{v}$}，要么存在某个 $!C \in \Gamma$ 使得 $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$，要么存在某个 $!C \in \Delta$ 使得 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$。
   
-  If $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$ for some $!C \in \Gamma$,
-  then $!C \in \Theta$ as well since $\Theta = !A, \Gamma$, and so
-  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$ for some $!C \in \Theta$.
-  Similarly, if $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$ for some $!C \in
-  \Delta$, as $!C \in \Xi$, $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$ for
-  some $!C \in \Xi$. Consequently, $\Theta \Sequent \Xi$ is valid.
-\item The last inference is \LeftR{\lnot}: Then the premise of the
-  last inference is $\Gamma \Sequent \Delta, !A$ and the conclusion is
-  $\lnot !A, \Gamma \Sequent \Delta$, i.e., the !!{derivation} ends in
+  若对某个 $!C \in \Gamma$ 有 $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$，则由于 $\Theta = !A, \Gamma$，也有 $!C \in \Theta$，从而对某个 $!C \in \Theta$ 有 $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$。类似地，若对某个 $!C \in \Delta$ 有 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$，则由于 $!C \in \Xi$，也有对某个 $!C \in \Xi$ 的 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$。因此，$\Theta \Sequent \Xi$ 是有效的。
+\item 最后一步推理是 \LeftR{\lnot}：那么最后一步推理的前提是 $\Gamma \Sequent \Delta, !A$，结论是 $\lnot !A, \Gamma \Sequent \Delta$，即推导结束于：
   \begin{prooftree}
     \AxiomC{}
     \Deduce$\Gamma \fCenter \Delta, !A$
     \RightLabel{\LeftR{\lnot}}
     \UnaryInf$\lnot !A, \Gamma \fCenter \Delta$
   \end{prooftree}
-  and $\Theta = \lnot !A, \Gamma$ while $\Xi = \Delta$.
+  且 $\Theta = \lnot !A, \Gamma$，$\Xi = \Delta$。
 
-  The induction hypothesis tells us that $\Gamma \Sequent \Delta, !A$
-  is valid, i.e., for every \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$},
-  either (a) for some $!C \in \Gamma$,
-  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$, or (b) for some $!C \in
-  \Delta$, $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$, or (c)
-  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$. We want to show that $\Theta
-  \Sequent \Xi$ is also valid.  Let \iftag{FOL}{$\Struct{M}$ be
-    !!a{structure}}{$\pAssign{v}$ be !!a{valuation}}. If (a) holds,
-  then there is $!C \in \Gamma$ so that
-  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$, but $!C \in \Theta$ as
-  well. If (b) holds, there is $!C \in \Delta$ such that
-  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$, but $!C \in \Xi$ as
-  well. Finally, if $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$, then
-  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{\lnot !A}$. Since $\lnot !A \in
-  \Theta$, there is $!C \in \Theta$ such that
-  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$. Consequently, $\Theta
-  \Sequent \Xi$ is valid.
-\item The last inference is \RightR{\lnot}: Exercise.
-\item The last inference is \LeftR{\land}: There are two variants: $!A
-  \land !B$ may be inferred on the left from $!A$ or from $!B$ on the
-  left side of the premise.  In the first case, the $\pi$ ends in
+  归纳假设告诉我们 $\Gamma \Sequent \Delta, !A$ 是有效的，即对每个 \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$}，要么 对某个 $!C \in \Gamma$ 有 $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$，要么 对某个 $!C \in \Delta$ 有 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$，要么 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$。我们要证 $\Theta \Sequent \Xi$ 也是有效的。设 \iftag{FOL}{$\Struct{M}$ 是一个结构}{$\pAssign{v}$ 是一个赋值}。若 成立，则存在 $!C \in \Gamma$ 使得 $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$，而 $!C$ 也在 $\Theta$ 中。若 成立，则存在 $!C \in \Delta$ 使得 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$，而 $!C$ 也在 $\Xi$ 中。最后，若 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$，则 $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{\lnot !A}$。由于 $\lnot !A \in \Theta$，存在 $!C \in \Theta$ 使得 $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$。因此，$\Theta \Sequent \Xi$ 是有效的。
+\item 最后一步推理是 \RightR{\lnot}：练习。
+\item 最后一步推理是 \LeftR{\land}：有两种变体：$!A \land !B$ 在左侧可由前提左侧的 $!A$ 或 $!B$ 推出。在第一种情况下，$\pi$ 结束于：
   \begin{prooftree}
     \AxiomC{}
     \Deduce$!A, \Gamma \fCenter \Delta$
     \RightLabel{\LeftR{\land}}
     \UnaryInf$!A \land !B, \Gamma \fCenter \Delta$
   \end{prooftree}
-  and $\Theta = !A \land !B, \Gamma$ while $\Xi = \Delta$.  Consider
-  \iftag{FOL}{!!a{structure}~$\Struct
-    M$}{!!a{valuation}~$\pAssign{v}$}.  Since by induction hypothesis,
-  $!A, \Gamma \Sequent \Delta$ is valid, (a)
-  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A}$, (b)
-  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$ for some $!C \in \Gamma$, or
-  (c)~$\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$ for some $!C \in \Delta$.
-  In case (a), $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A \land !B}$, so
-  there is $!C \in \Theta$ (namely, $!A \land !B$) such that
-  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$.  In case (b), there is $!C
-  \in \Gamma$ such that $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$, and
-  $!C \in \Theta$ as well. In case (c), there is $!C \in \Delta$ such
-  that $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$, and $!C \in \Xi$ as well
-  since $\Xi = \Delta$. So in each case, \iftag{FOL}{$\Struct
-    M$}{$\pAssign{v}$} satisfies $!A \land !B, \Gamma \Sequent
-  \Delta$.  Since \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} was
-  arbitrary, $\Gamma \Sequent \Delta$ is valid.  The case where $!A
-  \land !B$ is inferred from $!B$ is handled the same, changing $!A$
-  to $!B$.
-\item The last inference is \RightR{\lor}: There are two variants: $!A
-  \lor !B$ may be inferred on the right from $!A$ or from $!B$ on the
-  right side of the premise.  In the first case, $\pi$ ends in
+  且 $\Theta = !A \land !B, \Gamma$，$\Xi = \Delta$。考虑 \iftag{FOL}{一个结构~$\Struct M$}{一个赋值~$\pAssign{v}$}。根据归纳假设，$!A, \Gamma \Sequent \Delta$ 是有效的，既然如此，要么 $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A}$，要么 对某个 $!C \in \Gamma$ 有 $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$，要么 对某个 $!C \in \Delta$ 有 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$。在情况 下，$\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A \land !B}$，因此存在 $!C \in \Theta$（即 $!A \land !B$）使得 $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$。在情况 下，存在 $!C \in \Gamma$ 使得 $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$，并且 $!C$ 也在 $\Theta$ 中。在情况 下，存在 $!C \in \Delta$ 使得 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$，并且由于 $\Xi = \Delta$，$!C$ 也在 $\Xi$ 中。所以在每种情况下，\iftag{FOL}{$\Struct M$}{$\pAssign{v}$} 都满足 $!A \land !B, \Gamma \Sequent \Delta$。由于 \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} 是任意的，故 $!A \land !B, \Gamma \Sequent \Delta$ 是有效的。$!A \land !B$ 由 $!B$ 推出的情况可类似处理，只需将 $!A$ 改为 $!B$。
+\item 最后一步推理是 \RightR{\lor}：有两种变体：$!A \lor !B$ 在右侧可由前提右侧的 $!A$ 或 $!B$ 推出。在第一种情况下，$\pi$ 结束于：
   \begin{prooftree}
     \AxiomC{}
     \Deduce$\Gamma \fCenter \Delta, !A$
     \RightLabel{\RightR{\lor}}
     \UnaryInf$\Gamma \fCenter \Delta, !A \lor !B$
   \end{prooftree}
-  Now $\Theta = \Gamma$ and $\Xi = \Delta, !A \lor !B$.  Consider
-  \iftag{FOL}{!!a{structure}~$\Struct{M}$}{!!a{valuation}~$\pAssign{v}$}.
-  Since $\Gamma \Sequent \Delta, !A$ is valid, (a)
-  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$, (b)
-  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$ for some $!C \in \Gamma$, or
-  (c)~$\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$ for some $!C \in \Delta$.
-  In case (a), $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A \lor !B}$.  In case
-  (b), there is $!C \in \Gamma$ such that
-  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$.  In case (c), there is $!C
-  \in \Delta$ such that $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$. So in
-  each case, \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} satisfies
-  $\Gamma \Sequent \Delta, !A \lor !B$, i.e., $\Theta \Sequent \Xi$.
-  Since \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} was arbitrary,
-  $\Theta \Sequent \Xi$ is valid.  The case where $!A \lor !B$ is
-  inferred from $!B$ is handled the same, changing $!A$ to $!B$.
-\item The last inference is \RightR{\lif}: Then $\pi$ ends in
+  现在 $\Theta = \Gamma$，$\Xi = \Delta, !A \lor !B$。考虑 \iftag{FOL}{一个结构~$\Struct{M}$}{一个赋值~$\pAssign{v}$}。由于 $\Gamma \Sequent \Delta, !A$ 是有效的，要么 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$，要么 对某个 $!C \in \Gamma$ 有 $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$，要么 对某个 $!C \in \Delta$ 有 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$。在情况 下，$\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A \lor !B}$。在情况 下，存在 $!C \in \Gamma$ 使得 $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$。在情况 下，存在 $!C \in \Delta$ 使得 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$。所以在每种情况下，\iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} 都满足 $\Gamma \Sequent \Delta, !A \lor !B$，即 $\Theta \Sequent \Xi$。由于 \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} 是任意的，$\Theta \Sequent \Xi$ 是有效的。$!A \lor !B$ 由 $!B$ 推出的情况可类似处理，只需将 $!A$ 改为 $!B$。
+\item 最后一步推理是 \RightR{\lif}：那么 $\pi$ 结束于：
   \begin{prooftree}
     \AxiomC{}
     \Deduce$!A, \Gamma \fCenter \Delta, !B$
     \RightLabel{\RightR{\lif}}
     \UnaryInf$\Gamma \fCenter \Delta, !A \lif !B$
   \end{prooftree}
-  Again, the induction hypothesis says that the premise is valid; we
-  want to show that the conclusion is valid as well. Let
-  \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} be arbitrary. Since $!A,
-  \Gamma \Sequent \Delta, !B$ is valid, at least one of the following
-  cases obtains: (a) $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A}$, (b)
-  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$, (c)
-  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$ for some~$~!C \in \Gamma$, or
-  (d) $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$ for some $!C \in \Delta$.
-  In cases (a) and (b), $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A \lif !B}$
-  and so there is a $!C \in \Delta, !A \lif !B$ such that
-  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$.  In case (c), for some $!C \in
-  \Gamma$, $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$. In case (d), for
-  some $!C \in \Delta$, $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$.  In each
-  case, \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} satisfies $\Gamma
-  \Sequent \Delta, !A \lif !B$.  Since
-  \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} was arbitrary, $\Gamma
-  \Sequent \Delta, !A \lif !B$ is valid.  \iftag{FOL}{%
-\item The last inference is \LeftR{\lforall}: Then there is
-  !!a{formula}~$!A(x)$ and a closed term~$t$ such that $\pi$ ends in
+  同样，根据归纳假设，前提是有效的；我们要证结论也是有效的。设 \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} 是任意的。由于 $!A, \Gamma \Sequent \Delta, !B$ 是有效的，以下至少一种情况成立： $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A}$， $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$， 对某个 $!C \in \Gamma$ 有 $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$，或 对某个 $!C \in \Delta$ 有 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$。在情况 和 中，$\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A \lif !B}$，因此存在 $!C \in \Delta, !A \lif !B$ 使得 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$。在情况 下，对某个 $!C \in \Gamma$，有 $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$。在情况 下，对某个 $!C \in \Delta$，有 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$。在每种情况下，\iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} 都满足 $\Gamma \Sequent \Delta, !A \lif !B$。由于 \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} 是任意的，故 $\Gamma \Sequent \Delta, !A \lif !B$ 是有效的。\iftag{FOL}{%
+\item 最后一步推理是 \LeftR{\lforall}：那么存在一个公式~$!A(x)$ 和一个闭项~$t$，使得 $\pi$ 结束于：
   \begin{prooftree}
     \AxiomC{}
     \Deduce$!A(t), \Gamma \fCenter \Delta$
     \RightLabel{\LeftR{\lforall}}
     \UnaryInf$\lforall[x][!A(x)], \Gamma \fCenter \Delta$
   \end{prooftree}
-  We want to show that the conclusion $\lforall[x][!A(x)], \Gamma
-  \Sequent \Delta$ is valid.  Consider !!a{structure}~$\Struct M$.
-  Since the premise $!A(t), \Gamma \Sequent \Delta$ is valid, (a)
-  $\Sat/{M}{!A(t)}$, (b) $\Sat/{M}{!C}$ for some $!C \in \Gamma$, or
-  (c)~$\Sat{M}{!C}$ for some $!C \in \Delta$.  In case (a), by
-  \olref[syn][sem]{prop:quant-terms}, if
-  $\Sat{M}{\lforall[x][!A(x)]}$, then $\Sat{M}{!A(t)}$. Since
-  $\Sat/{M}{!A(t)}$, $\Sat/{M}{\lforall[x][!A(x)]}$ . In case (b) and
-  (c), $\Struct{M}$ also satisfies $\lforall[x][!A(x)], \Gamma
-  \Sequent \Delta$.  Since $\Struct M$ was arbitrary,
-  $\lforall[x][!A(x)], \Gamma \Sequent \Delta$ is valid.
-\item The last inference is \RightR{\lexists}: Exercise.
-\item The last inference is \RightR{\lforall}: Then there is
-  !!a{formula}~$!A(x)$ and !!a{constant}~$a$ such that $\pi$ ends in
+  我们要证结论 $\lforall[x][!A(x)], \Gamma
+  \Sequent \Delta$ 是有效的。考虑一个结构~$\Struct M$。由于前提 $!A(t), \Gamma \Sequent \Delta$ 是有效的，要么 $\Sat/{M}{!A(t)}$，要么 对某个 $!C \in \Gamma$ 有 $\Sat/{M}{!C}$，要么 对某个 $!C \in \Delta$ 有 $\Sat{M}{!C}$。在情况 下，根据 \olref[syn][sem]{prop:quant-terms}，如果 $\Sat{M}{\lforall[x][!A(x)]}$，那么 $\Sat{M}{!A(t)}$。由于 $\Sat/{M}{!A(t)}$，故 $\Sat/{M}{\lforall[x][!A(x)]}$。在情况 和 下，$\Struct{M}$ 也满足 $\lforall[x][!A(x)], \Gamma
+  \Sequent \Delta$。由于 $\Struct M$ 是任意的，所以 $\lforall[x][!A(x)], \Gamma \Sequent \Delta$ 是有效的。
+\item 最后一步推理是 \RightR{\lexists}：练习。
+\item 最后一步推理是 \RightR{\lforall}：那么存在一个公式~$!A(x)$ 和一个常项符号~$a$，使得 $\pi$ 结束于：
   \begin{prooftree}
     \AxiomC{}
     \Deduce$\Gamma \fCenter \Delta, !A(a)$
     \RightLabel{\RightR{\lforall}}
     \UnaryInf$\Gamma \fCenter \Delta, \lforall[x][!A(x)]$
   \end{prooftree}
-  where the eigenvariable condition is satisfied, i.e., $a$ does not
-  occur in $!A(x)$, $\Gamma$, or $\Delta$.  By induction hypothesis,
-  the premise of the last inference is valid.  We have to show that
-  the conclusion is valid as well, i.e., that for any
-  !!{structure}~$\Struct M$, (a) $\Sat{M}{\lforall[x][!A(x)]}$, (b)
-  $\Sat/{M}{!C}$ for some $!C \in \Gamma$, or (c)~$\Sat{M}{!C}$ for
-  some $!C \in \Delta$.
+  其中本征变元条件成立，即 $a$ 不在 $!A(x)$、$\Gamma$ 或 $\Delta$ 中出现。根据归纳假设，最后一步推理的前提是有效的。我们必须证明结论也是有效的，即对任意结构~$\Struct M$，要么 $\Sat{M}{\lforall[x][!A(x)]}$，要么 对某个 $!C \in \Gamma$ 有 $\Sat/{M}{!C}$，要么 对某个 $!C \in \Delta$ 有 $\Sat{M}{!C}$。
 
-  Suppose $\Struct{M}$ is an arbitrary !!{structure}. If (b) or (c)
-  holds, we are done, so suppose neither holds: for all $!C \in
-  \Gamma$, $\Sat{M}{!C}$, and for all $!C \in \Delta$,
-  $\Sat/{M}{!C}$. We have to show that (a) holds, i.e.,
-  $\Sat{M}{\lforall[x][!A(x)]}$.  By
-  \olref[syn][ass]{prop:sat-quant}, if suffices to show that
-  $\Sat{M}{!A(x)}[s]$ for all variable assignments~$s$.  So let $s$ be
-  an arbitrary variable assignment. Consider the
-  structure~$\Struct{M'}$ which is just like~$\Struct{M}$ except
-  $\Assign{a}{M'} = s(x)$. By
-  \olref[syn][ext]{cor:extensionality-sent}, for any $!C \in \Gamma$,
-  $\Sat{M'}{!C}$ since $a$ does not occur in~$\Gamma$, and for any
-  $!C \in \Delta$, $\Sat/{M'}{!C}$. But the premise is valid, so
-  $\Sat{M'}{!A(a)}$. By \olref[syn][ass]{prop:sentence-sat-true},
-  $\Sat{M'}{!A(a)}[s]$, since $!A(a)$ is a sentence. Now $\varAssign{s}{s}{x}$
-  with $s(x) = \Value{a}{M'}[s]$, since we've defined $\Struct{M'}$ in
-  just this way. So \olref[syn][ext]{prop:ext-formulas} applies, and
-  we get $\Sat{M'}{!A(x)}[s]$. Since $a$ does not occur in~$!A(x)$, by
-  \olref[syn][ext]{prop:extensionality}, $\Sat{M}{!A(x)}[s]$. Since
-  $s$ was arbitrary, we've completed the proof that
-  $\Sat{M}{!A(x)}[s]$ for all variable assignments.
-\item The last inference is \LeftR{\lexists}: Exercise.
+  设 $\Struct{M}$ 是任意结构。若 或 成立，则结论已成立，所以假设两者均不成立：对所有 $!C \in \Gamma$，$\Sat{M}{!C}$；并且对所有 $!C \in \Delta$，$\Sat/{M}{!C}$。我们需要证明 成立，即 $\Sat{M}{\lforall[x][!A(x)]}$。根据 \olref[syn][ass]{prop:sat-quant}，只需证明对所有变元指派~$s$ 都有 $\Sat{M}{!A(x)}[s]$。那么，设 $s$ 为任意变元指派。考虑结构~$\Struct{M'}$，它除了 $\Assign{a}{M'} = s(x)$ 外与 $\Struct{M}$ 完全相同。根据 \olref[syn][ext]{cor:extensionality-sent}，由于 $a$ 不在 $\Gamma$ 中出现，对任意 $!C \in \Gamma$，$\Sat{M'}{!C}$；并且对任意 $!C \in \Delta$，$\Sat/{M'}{!C}$。但前提是有效的，所以 $\Sat{M'}{!A(a)}$。根据 \olref[syn][ass]{prop:sentence-sat-true}，$\Sat{M'}{!A(a)}[s]$，因为 $!A(a)$ 是一个语句。现在 $\varAssign{s}{s}{x}$ 且有 $s(x) = \Value{a}{M'}[s]$，因为我们正是这样定义 $\Struct{M'}$ 的。因此根据 \olref[syn][ext]{prop:ext-formulas}，可得 $\Sat{M'}{!A(x)}[s]$。由于 $a$ 不在 $!A(x)$ 中出现，根据 \olref[syn][ext]{prop:extensionality}，$\Sat{M}{!A(x)}[s]$。因为 $s$ 是任意的，我们已证明了 $\Sat{M}{!A(x)}[s]$ 对所有变元指派成立。
+\item 最后一步推理是 \LeftR{\lexists}：练习。
 }{}
 \end{enumerate}
-Now let's consider the possible inferences with two premises.
+现在来考虑有两个前提的推理。
 \begin{enumerate}
-\item The last inference is a cut: then $\pi$ ends in
+\item 最后一步推理是切：那么 $\pi$ 结束于：
   \begin{prooftree}
     \AxiomC{}
     \Deduce$\Gamma \fCenter \Delta, !A$
@@ -276,18 +135,8 @@ Now let's consider the possible inferences with two premises.
     \RightLabel{\Cut}
     \BinaryInf$\Gamma, \Pi \fCenter \Delta, \Lambda$
   \end{prooftree}
-  Let \iftag{FOL}{$\Struct{M}$ be !!a{structure}}{$\pAssign{v}$ be
-    !!a{valuation}}.  By induction hypothesis, the premises are valid,
-  so \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} satisfies both premises.
-  We distinguish two cases: (a) $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A}$
-  and (b) $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$.  In case (a), in order
-  for \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} to satisfy the left
-  premise, it must satisfy $\Gamma \Sequent \Delta$.  But then it also
-  satisfies the conclusion.  In case (b), in order for
-  \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} to satisfy the right
-  premise, it must satisfy $\Pi \setminus \Lambda$.  Again,
-  \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} satisfies the conclusion.
-\item The last inference is \RightR{\land}.  Then $\pi$ ends in
+  设 \iftag{FOL}{$\Struct{M}$ 是一个结构}{$\pAssign{v}$ 是一个赋值}。根据归纳假设，前提是有效的，所以 \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} 满足两个前提。我们区分两种情况： $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A}$ 和 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$。在情况 下，若 \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} 满足左前提，则它必须满足 $\Gamma \Sequent \Delta$。于是它也满足结论。在情况 下，若 \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} 满足右前提，则它必须满足 $\Pi \Sequent \Lambda$。同样，\iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} 也满足结论。
+\item 最后一步推理是 \RightR{\land}。那么 $\pi$ 结束于：
   \begin{prooftree}
     \AxiomC{}
     \Deduce$\Gamma \fCenter \Delta, !A$
@@ -296,17 +145,9 @@ Now let's consider the possible inferences with two premises.
     \RightLabel{\RightR{\land}}
     \BinaryInf$\Gamma \fCenter \Delta, !A \land !B$
   \end{prooftree}
-  Consider \iftag{FOL}{!!a{structure}~$\Struct
-    M$}{!!a{valuation}~$\pAssign{v}$}. If
-  \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} satisfies $\Gamma \Sequent
-  \Delta$, we are done. So suppose it doesn't. Since $\Gamma \fCenter
-  \Delta, !A$ is valid by induction hypothesis,
-  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$. Similarly, since $\Gamma
-  \Sequent \Delta, !B$ is valid,
-  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$. But then
-  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A \land !B}$.
-\item The last inference is \LeftR{\lor}: Exercise.
-\item The last inference is \LeftR{\lif}.  Then $\pi$ ends in
+  考虑 \iftag{FOL}{一个结构~$\Struct M$}{一个赋值~$\pAssign{v}$}。如果 \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} 满足 $\Gamma \Sequent \Delta$，则已得证。因此假设它不满足。由于 $\Gamma \fCenter \Delta, !A$ 根据归纳假设是有效的，所以 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$。类似地，由于 $\Gamma \Sequent \Delta, !B$ 是有效的，所以 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$。但这样一来就有 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A \land !B}$。
+\item 最后一步推理是 \LeftR{\lor}：练习。
+\item 最后一步推理是 \LeftR{\lif}。那么 $\pi$ 结束于：
   \begin{prooftree}
     \AxiomC{}
     \Deduce$\Gamma \fCenter \Delta, !A$
@@ -315,70 +156,61 @@ Now let's consider the possible inferences with two premises.
     \RightLabel{\LeftR{\lif}}
     \BinaryInf$!A \lif !B, \Gamma, \Pi \fCenter \Delta, \Lambda$
   \end{prooftree}
-  Again, consider
-  \iftag{FOL}{!!a{structure}~$\Struct{M}$}{!!a{valuation}~$\pAssign{v}$}
-  and suppose \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} doesn't satisfy
-  $\Gamma, \Pi \Sequent \Delta, \Lambda$. We have to show that
-  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A \lif !B}$. If
-  \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} doesn't satisfy $\Gamma,
-  \Pi \Sequent \Delta, \Lambda$, it satisfies neither $\Gamma \Sequent
-  \Delta$ nor $\Pi \Sequent \Lambda$. Since, $\Gamma \Sequent \Delta,
-  !A$ is valid, we have $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$. Since
-  $!B, \Pi \Sequent \Lambda$ is valid, we have
-  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!B}$. But then
-  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A \lif !B}$, which is what we
-  wanted to show.
+  再考虑 \iftag{FOL}{一个结构~$\Struct{M}$}{一个赋值~$\pAssign{v}$}，并假设 \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} 不满足 $\Gamma, \Pi \Sequent \Delta, \Lambda$。我们需要证明 $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A \lif !B}$。如果 \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} 不满足 $\Gamma, \Pi \Sequent \Delta, \Lambda$，那么它既不满足 $\Gamma \Sequent \Delta$ 也不满足 $\Pi \Sequent \Lambda$。由于 $\Gamma \Sequent \Delta, !A$ 是有效的，可得 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$。由于 $!B, \Pi \Sequent \Lambda$ 是有效的，可得 $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!B}$。但这样一来就有 $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A \lif !B}$，这正是我们要证的。
 \end{enumerate}
 \end{proof}
 
 \tagprob{FOL}
+
 \begin{prob}
-Complete the proof of \olref[fol][seq][sou]{thm:sequent-soundness}.
+完成 \olref[fol][seq][sou]{thm:sequent-soundness} 的证明。
 \end{prob}
+
 \tagendprob
 
 \tagprob{notFOL}
+
 \begin{prob}
-Complete the proof of \olref[pl][seq][sou]{thm:sequent-soundness}.
+完成 \olref[pl][seq][sou]{thm:sequent-soundness} 的证明。
 \end{prob}
+
 \tagendprob
 
 \begin{cor}
 \ollabel{cor:weak-soundness}
-If $\Proves !A$ then $!A$ is \iftag{FOL}{valid}{a tautology}.
+若 $\Proves !A$，则 $!A$ 是 \iftag{FOL}{有效的}{重言式}。
 \end{cor}
 
 \begin{cor}
 \ollabel{cor:entailment-soundness}
-If $\Gamma \Proves !A$ then $\Gamma \Entails !A$.
+若 $\Gamma \Proves !A$，则 $\Gamma \Entails !A$。
 \end{cor}
 
 \begin{proof}
-If $\Gamma \Proves !A$ then for some finite subset $\Gamma_0 \subseteq
-\Gamma$, there is !!a{derivation} of $\Gamma_0 \Sequent !A$.  By
-\olref{thm:sequent-soundness}, every
-\iftag{FOL}{!!{structure}~$\Struct{M}$}{!!{valuation}~$\pAssign{v}$}
-either makes some $!B \in \Gamma_0$ false or makes $!A$ true.  Hence,
-if $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$ then also
-$\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$.
+若 $\Gamma \Proves !A$，则存在 $\Gamma$ 的某个有限子集 $\Gamma_0 \subseteq
+\Gamma$，且有 $\Gamma_0 \Sequent !A$ 的推导。根据
+\olref{thm:sequent-soundness}，每个
+\iftag{FOL}{结构~$\Struct{M}$}{赋值~$\pAssign{v}$}
+要么使某个 $!B \in \Gamma_0$ 为假，要么使 $!A$ 为真。因此，
+若 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$，则 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$ 也成立。
 \end{proof}
 
 \begin{cor}
 \ollabel{cor:consistency-soundness}
-If $\Gamma$ is satisfiable, then it is consistent.
+若 $\Gamma$ 是可满足的，则它是一致的。
 \end{cor}
 
 \begin{proof}
-We prove the contrapositive.  Suppose that $\Gamma$ is not consistent.
-Then there is a finite $\Gamma_0 \subseteq \Gamma$ and !!a{derivation}
-of $\Gamma_0 \Sequent \quad$.  By \olref{thm:sequent-soundness},
-$\Gamma_0 \Sequent \quad$ is valid.  In other words, for every
-\iftag{FOL}{!!{structure}~$\Struct{M}$}{!!{valuation}~$\pAssign{v}$},
-there is $!C \in \Gamma_0$ so that
-$\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$, and since $\Gamma_0
-\subseteq \Gamma$, that $!C$ is also in~$\Gamma$.  Thus, no
-\iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} satisfies~$\Gamma$, and
-$\Gamma$ is not satisfiable.
+我们证明其逆否命题。假设 $\Gamma$ 不一致，
+则存在 $\Gamma$ 的有限子集 $\Gamma_0 \subseteq \Gamma$，且有
+$\Gamma_0 \Sequent \quad$ 的推导。根据 \olref{thm:sequent-soundness}，
+$\Gamma_0 \Sequent \quad$ 是有效的。换言之，对每个
+\iftag{FOL}{结构~$\Struct{M}$}{赋值~$\pAssign{v}$}，
+都存在 $!C \in \Gamma_0$ 使得
+$\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$；又由于 $\Gamma_0
+\subseteq \Gamma$，该 $!C$ 也属于~$\Gamma$。因此，没有
+\iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} 满足~$\Gamma$，即
+$\Gamma$ 不可满足。
 \end{proof}
 
 \end{document}

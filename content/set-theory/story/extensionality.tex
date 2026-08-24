@@ -3,34 +3,22 @@
 \begin{document}
 
 \olfileid{sth}{story}{extensionality}
-\olsection{Extensionality}
+\olsection{外延性}
 
-The very first thing to say is that sets are individuated by their
-!!{element}s. More precisely:
+首先要指出的是，集合是由其元素唯一确定的。更精确地说：
 
-\begin{axiom}[Extensionality]
-If sets $A$ and $B$ have the same !!{element}s, then $A$ and $B$ are
-the same set.
+\begin{axiom}[外延性公理]
+如果集合 $A$ 和 $B$ 具有相同的元素，则 $A$ 和 $B$ 是同一个集合。
 \[
   \lforall[A][\lforall[B][(\lforall[x][(x \in A \liff x \in B)] \lif
   \eq[A][B])]]
 \]
 \end{axiom}
 
-We assumed this throughout \olref[sfr][][]{part}. But it bears
-repeating. The Axiom of Extensionality expresses the basic idea that a
-set is determined by its !!{element}s. (So sets might be contrasted with
-\emph{concepts}, where precisely the same objects might fall under
-many different concepts.) 
+我们在 \olref[sfr][][]{part} 中始终预设了这一点。但这点值得重申。外延性公理表达了集合由其元素决定这一基本思想。（因此，集合或许可以与\emph{概念}形成对比：完全相同的对象可以归属于许多不同的概念。）
 
-Why embrace this principle? Well, it is plausible to say that any
-denial of Extensionality is a decision to abandon anything which might
-even be called \emph{set theory}. Set theory is no more nor less than
-the theory of extensional collections. 
+为什么要采纳这条原则？可以说，任何对外延性的否定，都无异于决定放弃任何哪怕能被称为\emph{集合论}的东西。集合论无非是关于外延汇集的理论。
 
-The real challenge in \olref[sth][][]{part}, though, is to lay
-down principles which tell us \emph{which sets exist}. And it turns
-out that the only truly ``obvious'' answer to this question is
-provably wrong.
+然而，在 \olref[sth][][]{part} 中，真正的挑战在于确立一些原则，用以告诉我们\emph{哪些集合存在}。而结果表明，对这个问题唯一真正“明显”的答案，是可以证明为错误的。
 
 \end{document}

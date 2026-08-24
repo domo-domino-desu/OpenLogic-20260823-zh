@@ -10,66 +10,30 @@
       {\olfileid{fol}{com}{int}}
       {\olfileid{pl}{com}{int}}
 
-\olsection{Introduction}
+\olsection{引言}
 
-The completeness theorem is one of the most fundamental results about
-logic.  It comes in two formulations, the equivalence of which we'll
-prove.  In its first formulation it says something fundamental about
-the relationship between semantic consequence and our !!{derivation}
-system: if !!a{sentence}~$!A$ follows from some !!{sentence}s
-$\Gamma$, then there is also !!a{derivation} that establishes $\Gamma
-\Proves !A$. Thus, the !!{derivation} system is as strong as it can
-possibly be without proving things that don't actually follow.
+完备性定理是逻辑学最基本的结果之一。
+它有两种表述形式，我们将证明这两种表述是等价的。
+其第一种表述揭示了语义后承与我们的推导系统之间某种根本性的关系：
+如果语句~$!A$ 是某些语句~$\Gamma$ 的语义后承，那么也存在一个推导能确立 $\Gamma
+\Proves !A$。因此，推导系统在不推出实际上并非后承的结论的前提下，已经尽可能强了。
 
-In its second formulation, it can be stated as a model existence
-result: every consistent set of !!{sentence}s is satisfiable.
-Consistency is a proof-theoretic notion: it says that our
-!!{derivation} system is unable to produce certain !!{derivation}s.
-But who's to say that just because there are no !!{derivation}s of a
-certain sort from~$\Gamma$, it's guaranteed that there is
-\iftag{FOL}{!!a{structure}~$\Struct{M}$}{!!{valuation}{~$\pAssign{v}$}
-with $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$}? Before the
-completeness theorem was first proved---in fact before we had the
-!!{derivation} systems we now do---the great German mathematician
-David Hilbert held the view that consistency of mathematical theories
-guarantees the existence of the objects they are about. He put it as
-follows in a letter to Gottlob Frege:
+它的第二种表述可以陈述为一个模型存在性结果：每个一致的语句集都是可满足的。
+一致性是一个证明论概念：它说的是我们的推导系统无法产生某种特定的推导。
+但是，谁又能说，仅仅因为从~$\Gamma$ 出发没有某种推导，就能保证存在
+\iftag{FOL}{一个结构~$\Struct{M}$}{赋值{~$\pAssign{v}$}
+使得 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$}呢？
+在完备性定理首次被证明之前——事实上，早在我们拥有现在这样的推导系统之前——伟大的德国数学家 David Hilbert 持有这样一种观点：数学理论的一致性保证了其所谈论的对象存在。他在给 Gottlob Frege（弗雷格）的一封信中这样写道：
+
 \begin{quote}
-  If the arbitrarily given axioms do not contradict one another with
-  all their consequences, then they are true and the things defined by
-  the axioms exist. This is for me the criterion of truth and
-  existence. 
+  如果任意给定的公理连同它们的所有推论都不相互矛盾，那么它们就是真的，并且由这些公理所定义的事物是存在的。对我来说，这就是真理与存在的标准。
 \end{quote}
-Frege vehemently disagreed. The second formulation of the completeness
-theorem shows that Hilbert was right in at least the sense that if the
-axioms are consistent, then \emph{some}
-\iftag{FOL}{!!{structure}}{!!{valuation}} exists that makes them all
-true.
 
-These aren't the only reasons the completeness theorem---or rather,
-its proof---is important.  It has a number of important consequences,
-some of which we'll discuss separately.  For instance, since any
-!!{derivation} that shows $\Gamma \Proves !A$ is finite and so can
-only use finitely many of the !!{sentence}s in~$\Gamma$, it follows by
-the completeness theorem that if $!A$ is a consequence of~$\Gamma$, it
-is already a consequence of a finite subset of~$\Gamma$.  This is
-called \emph{compactness}.  Equivalently, if every finite subset of
-$\Gamma$ is consistent, then $\Gamma$ itself must be consistent.
+Frege 强烈反对。完备性定理的第二种表述表明，Hilbert 至少在这个意义上是对的：如果公理是一致的，那么确实存在\emph{某个}\iftag{FOL}{结构}{赋值}使得它们全部为真。
 
-Although the compactness theorem follows from the completeness theorem
-via the detour through !!{derivation}s, it is also possible to use the
-\emph{the proof of} the completeness theorem to establish it
-directly. For what the proof does is take a set of !!{sentence}s with
-a certain property---consistency---and constructs !!a{structure} out
-of this set that has certain properties (in this case, that it
-satisfies the set). Almost the very same construction can be used to
-directly establish compactness, by starting from ``finitely
-satisfiable'' sets of !!{sentence}s instead of consistent ones.
-\iftag{FOL}{The construction also yields other consequences, e.g.,
-  that any satisfiable set of !!{sentence}s has a finite or
-  !!{denumerable}s model.  (This result is called the
-  L\"owenheim--Skolem theorem.)  In general, the construction of
-  !!{structure}s from sets of !!{sentence}s is used often in logic,
-  and sometimes even in philosophy.}{}
+这并非完备性定理——或者更准确地说，它的证明——重要的全部原因。它有许多重要的推论，其中一些我们将单独讨论。例如，由于任何证明 $\Gamma \Proves !A$ 的推导都是有限的，因而只能用到~$\Gamma$ 中有限多个语句，那么根据完备性定理，如果 $!A$ 是~$\Gamma$ 的后承，它必定已经是~$\Gamma$ 的某个有限子集的后承。这被称为\emph{紧致性}。等价地说，如果 $\Gamma$ 的每个有限子集都是一致的，那么 $\Gamma$ 本身也必须是一致的。
+
+虽然紧致性定理可以通过推导这一迂回路径从完备性定理得出，但也可以利用完备性定理\emph{的证明}来直接确立它。因为这个证明所做的，正是从一个具有某种性质（即一致性）的语句集出发，并从中构造出一个具有某些性质的结构（在此情形下，即该结构满足该语句集）。几乎完全相同的构造也可以用来直接确立紧致性，只需从“有限可满足”的语句集而不是一致的语句集出发即可。
+\iftag{FOL}{该构造还能得出其他推论，例如，任何可满足的语句集都有一个有限或可数无穷的模型。（这个结果称为 L\"owenheim--Skolem（勒文海姆–斯科伦）定理。）一般而言，从语句集构造结构的方法在逻辑学中经常使用，有时甚至在哲学中也会用到。}{}
 
 \end{document}

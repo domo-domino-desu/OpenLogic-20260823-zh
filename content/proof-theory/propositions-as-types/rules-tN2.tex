@@ -1,6 +1,42 @@
 % Part: proof-theory
 % Chapter: natural-deduction
+命题逻辑的语言~$\Lang L_0$ 由以下符号构成：无穷多个不同的\emph{命题变元}：$p_0$, $p_1$, $p_2$, $\dots$；以及五个\emph{联结词}：$\lnot$, $\land$, $\lor$, $\lif$, $\liff$。这些符号（命题变元与联结词）都互不相同。
 % Section: rules-N2
+我们通常用 $p$, $q$, $r$, \dots 来表示命题变元。
+
+\begin{explain}
+$\Lang L_0$ 的任意有限符号序列都只是一个符号串。
+\emph{构造序列}是一个符号串的有限序列，其中每个串都是根据某些形成规则从前面的串构造出来的。
+一个\emph{合式公式}（或简称\emph{公式}）是某个构造序列中的最后一个串。
+\end{explain}
+
+公式归纳定义如下：
+\begin{enumerate}
+\item （归纳基）每个命题变元~$p$ 都是一个公式。
+\item （归纳步）若~$!A$ 和~$!B$ 是公式，则下列也是公式：
+\begin{align*}
+& \lnot !A && \text{（$!A$ 的否定）}\\
+& (!A \land !B) && \text{（$!A$ 与 $!B$ 的合取）}\\
+& (!A \lor !B) && \text{（$!A$ 与 $!B$ 的析取）}\\
+& (!A \lif !B) && \text{（$!A$ 与 $!B$ 的条件句）}\\
+& (!A \liff !B) && \text{（$!A$ 与 $!B$ 的双条件句）}
+\end{align*}
+\end{enumerate}
+除此之外，没有别的东西是公式。
+
+注意，符号 $\lif$ 和 $\land$ 以及 $\lor$ 和 $\liff$ 都是\emph{二元中缀运算符}：它们写在两个公式之间。
+为明确起见，在本书中我们将它们当作二元联结词，但在定义真值函数时，我们允许它们接收多个参数。
+例如，$\lif(A_1, \dots, A_n, B)$ 只是 $A_1 \lif (A_2 \lif \dots (A_n \lif B)\dots)$ 的简写，而 $\land(A_1, \dots, A_n)$ 是 $(\dots (A_1 \land A_2) \land \dots \land A_n)$ 的简写，但 \texttt{if}
+
+项或公式的\emph{高度}是一个递归定义的自然数。定义如下：
+\begin{enumerate}
+\item 对任意常项符号~$c$、变元~$x$ 以及原子公式~$\Atom{R}{t_1, \dots, t_n}$，定义 $\height{c} = \height{x} = \height{\Atom{R}{t_1, \dots, t_n}} = 1$。
+\item 若 $t_1$, \dots, $t_n$ 是项且 $f$ 是一个 $n$元函数符号，则 $\height{f(t_1, \dots, t_n)} = \max(\height{t_1}, \dots, \height{t_n}) + 1$。
+\item 若 $!A_1$, \dots, $!A_n$ 是公式且 $\star$ 是一个 $n$元逻辑算子，则 $\height{\star(!A_1, \dots, !A_n)} = \max(\height{!A_1}, \dots, \height{!A_n}) + 1$。
+\end{enumerate}
+换句话说，一个项或公式的高度，比它的各个直接真子项或直接真子公式（视情况而定）的高度的最大值大~1。如果一个项或公式没有直接真子项或直接真子公式（即它是常项、变元或原子公式），则其高度为~1。
+
+等价地，$\height{u}$ 是满足以下条件的最大自然数~$n$：存在一个长度为~$n$ 的、$u$ 的构造序列（参见\olref[fol][syn][seq]{defn:formation-sequence}）。任何 $u$ 的构造序列的长度都至少是 $\height{u}$，并且存在某个 $u$ 的构造序列，其长度恰好是 $\height{u}$。
 
 \documentclass[../../../include/open-logic-section]{subfiles}
 
@@ -8,9 +44,9 @@
 
 \begin{table}
 \begin{tabular}{@{}c@{}c@{}}
-\multicolumn{2}{l}{\textbf{Axioms:}}\\
+\multicolumn{2}{l}{\textbf{公理：}}\\
 \multicolumn{2}{c}{$x:!A \Sequent x:!A$}\\[3ex]
-\multicolumn{2}{l}{\textbf{Inference Rules:}}\\[3ex]
+\multicolumn{2}{l}{\textbf{推理规则：}}\\[3ex]
 \multicolumn{2}{c}{\Axiom$x: !A, \Gamma \fCenter N:!B$
 \RightLabel{\Intro{\lif}}
 \UnaryInf$\Gamma \fCenter \lambd[\typeof{x}{!A}][N] : !A \lif !B $
@@ -64,8 +100,7 @@
 \UnaryInf$\Gamma \fCenter \abort{!A}{N} : !A$
 \DisplayProof}
 \end{tabular}
-\caption{Rules of the propositional term-labelled intuitionistic
-natural deduction system \Log{tN2ip}.}
+\caption{命题项标记直觉主义自然演绎系统 \Log{tN2ip} 的规则。}
 \ollabel{tab:tN2ip}
 \end{table}
 

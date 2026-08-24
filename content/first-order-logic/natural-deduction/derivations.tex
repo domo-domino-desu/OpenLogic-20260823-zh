@@ -13,70 +13,46 @@
 \olsection{\usetoken{P}{derivation}}
 
 \begin{explain}
-We've said what an assumption is, and we've given the rules of
-inference.  !!^{derivation}s in natural deduction are inductively
-generated from these: each !!{derivation} either is an assumption
-on its own, or consists of one, two, or three !!{derivation}s followed
-by a correct inference.
+我们已经说明了假设是什么，并给出了推理规则。自然演绎中的推导是由它们归纳生成的：每个推导要么本身是一个假设，要么由一个、两个或三个推导后跟一个正确的推理构成。
 \end{explain}
 
-\begin{defn}[!!^{derivation}]
-\Article{derivation} \emph{!!{derivation}} of !!a{sentence}~$!A$ from
-assumptions~$\Gamma$ is a finite tree of !!{sentence}s satisfying the
-following conditions:
+\begin{defn}[推导]
+\Article{derivation} 从假设~$\Gamma$ 出发对语句~$!A$ 的一个\emph{推导}，是满足下列条件的有限语句树：
 \begin{enumerate}
-\item The topmost !!{sentence}s of the tree are either in $\Gamma$ or
-  are !!{discharged} by an inference in the tree.
-\item The bottommost !!{sentence} of the tree is~$!A$.
-\item Every !!{sentence} in the tree except the sentence~$!A$ at
-  the bottom is a premise of a correct application of an inference
-  rule whose conclusion stands directly below that !!{sentence} in the
-  tree.
+\item 树中最顶层的语句要么属于~$\Gamma$，要么被树中的某个推理所解除。
+\item 树中最底层的语句是~$!A$。
+\item 树中除最底层的语句~$!A$ 外，每个语句都是某次推理规则正确应用的前提，且该次应用的结论在该树中紧接于该语句下方。
 \end{enumerate}
-We then say that $!A$ is the \emph{conclusion} of the !!{derivation}
-and $\Gamma$ its !!{undischarged} assumptions.
+此时，我们称~$!A$ 为该推导的\emph{结论}，称~$\Gamma$ 为其未解除的假设。
 
-If !!a{derivation} of $!A$ from~$\Gamma$ exists, we say that $!A$ is
-\emph{!!{derivable}} from~$\Gamma$, or in symbols: $\Gamma \Proves
-!A$. If there is !!a{derivation} of~$!A$ in which every assumption is
-!!{discharged}, we write~$\Proves !A$.
+如果存在从~$\Gamma$ 到~$!A$ 的推导，我们就说~$!A$ \emph{可由~$\Gamma$ 推导}，记作 $\Gamma \Proves !A$。如果存在~$!A$ 的一个推导，其中所有假设都被解除了，我们就记作~$\Proves !A$。
 \end{defn}
 
 \begin{ex}
-Every assumption on its own is !!a{derivation}. So, e.g., $!A$ by
-itself is !!a{derivation}, and so is $!B$ by itself.  We can obtain a
-new !!{derivation} from these by applying, say, the $\Intro{\land}$
-rule,
+每个假设本身就是一个推导。因此，例如，$!A$ 本身是一个推导，$!B$ 本身也是一个推导。我们可以通过应用（比如说）$\Intro{\land}$ 规则，从这些推导得到一个新的推导：
 \begin{prooftree}
 \AxiomC{$!A$}
 \AxiomC{$!B$}
 \RightLabel{\Intro{\land}}
 \BinaryInfC{$!A \land !B$}
 \end{prooftree}
-These rules are meant to be general: we can replace the $!A$ and~$!B$
-in it with any !!{sentence}s, e.g., by $!C$ and~$!D$. Then the
-conclusion would be $!C \land !D$, and so
+这些规则是通用的：我们可以用任何语句替换其中的 $!A$ 和~$!B$，例如换成 $!C$ 和~$!D$。那么结论就会是 $!C \land !D$，因此
 \begin{prooftree}
 \AxiomC{$!C$}
 \AxiomC{$!D$}
 \RightLabel{\Intro{\land}}
 \BinaryInfC{$!C \land !D$}
 \end{prooftree}
-is a correct !!{derivation}. Of course, we can also switch the
-assumptions, so that $!D$ plays the role of~$!A$ and $!C$ that
-of~$!B$. Thus,
+是一个正确的推导。当然，我们也可以交换假设，让 $!D$ 扮演~$!A$ 的角色，让 $!C$ 扮演~$!B$ 的角色。因此，
 \begin{prooftree}
 \AxiomC{$!D$}
 \AxiomC{$!C$}
 \RightLabel{\Intro{\land}}
 \BinaryInfC{$!D \land !C$}
 \end{prooftree}
-is also a correct !!{derivation}.
+也是一个正确的推导。
 
-We can now apply another rule, say, $\Intro{\lif}$, which allows us to
-conclude a conditional and allows us to !!{discharge} any assumption
-that is identical to the antecedent of that conditional. So both of
-the following would be correct !!{derivation}s:
+我们现在可以应用另一条规则，比如 $\Intro{\lif}$。该规则允许我们得出一个条件句作为结论，并允许我们解除任何与该条件句前件相同的假设。所以以下两个都是正确的推导：
 \begin{prooftree}
 \AxiomC{$\Discharge{!C}{1}$}
 \AxiomC{$!D$}
@@ -92,14 +68,10 @@ the following would be correct !!{derivation}s:
 \DischargeRule{\Intro{\lif}}{1}
 \UnaryInfC{$!D \lif (!C \land !D)$}
 \end{prooftree}
-They show, respectively, that $!D \Proves !C \lif (!C \land !D)$ and
-$!C \Proves !D \lif (!C \land !D)$.
+它们分别证明了 $!D \Proves !C \lif (!C \land !D)$ 和 $!C \Proves !D \lif (!C \land !D)$。
 
-Remember that discharging of assumptions is a permission, not a
-requirement: we don't have to discharge the assumptions. In
-particular, we can apply a rule even if the assumptions are not
-present in the !!{derivation}. For instance, the following is legal, even
-though there is no assumption~$!A$ to be !!{discharged}:
+请记住，解除假设是允许的，而非必须的：我们并非必须解除假设。
+特别地，即使假设并未出现在推导中，我们也可以应用相应的规则。例如，下面的推导是合法的，尽管并不存在需要被解除的假设~$!A$：
 \begin{prooftree}
   \AxiomC{$!B$}
   \DischargeRule{\Intro{\lif}}{1}

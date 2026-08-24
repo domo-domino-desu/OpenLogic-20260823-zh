@@ -3,99 +3,72 @@
 \begin{document}
 
 \olfileid{sth}{ordinals}{opps}
-\olsection{Successor and Limit Ordinals}
+\olsection{后继序数与极限序数}
 
-In the next few chapters, we will use ordinals a great deal. So it
-will help if we introduce some simple notions. 
+在接下来的几章中，我们将大量使用序数。因此，先引入一些简单的概念会很有帮助。
 
 \begin{defn}
-For any ordinal $\alpha$, its \emph{successor} is $\ordsucc{\alpha}
-=\alpha \cup \{\alpha\}$. We say that $\alpha$ is a \emph{successor}
-ordinal if $\ordsucc{\beta} = \alpha$ for some ordinal~$\beta$. We
-say that $\alpha$ is a \emph{limit} ordinal iff $\alpha$ is neither
-empty nor a successor ordinal.
+对于任意序数 $\alpha$，其\emph{后继}是 $\ordsucc{\alpha}
+=\alpha \cup \{\alpha\}$。若存在序数~$\beta$ 使得 $\ordsucc{\beta} = \alpha$，则称 $\alpha$ 为\emph{后继}序数。称 $\alpha$ 为\emph{极限}序数，当且仅当 $\alpha$ 既不是空集也不是后继序数。
 \end{defn}
+
 \noindent
-The following result shows that this is the right notion of
-\emph{successor}:
+以下结果表明，这是\emph{后继}的正确概念：
 
 \begin{prop}
-For any ordinal $\alpha$:
+对任意序数 $\alpha$：
 \begin{enumerate}
-	\item $\alpha \in \ordsucc{\alpha}$;
-	\item $\ordsucc{\alpha}$ is an ordinal;
-	\item there is no ordinal $\beta$ such that $\alpha \in \beta \in
-	\ordsucc{\alpha}$.
+	\item $\alpha \in \ordsucc{\alpha}$；
+	\item $\ordsucc{\alpha}$ 是一个序数；
+	\item 不存在序数 $\beta$ 使得 $\alpha \in \beta \in \ordsucc{\alpha}$。
 	\end{enumerate}
 \end{prop}
 
 \begin{proof}
-Trivially, $\alpha \in \alpha \cup \{\alpha\} = \ordsucc{\alpha}$.
-Equally, $\ordsucc{\alpha}$ is a transitive set of ordinals, and hence
-an ordinal by \olref[basic]{corordtransitiveord}.
-And it is impossible that $\alpha \in \beta \in \ordsucc{\alpha}$,
-since then either $\beta \in \alpha$ or $\beta = \alpha$,
-contradicting \olref[basic]{ordordered}.
+显然，$\alpha \in \alpha \cup \{\alpha\} = \ordsucc{\alpha}$。
+此外，$\ordsucc{\alpha}$ 是由序数组成的传递集，因此由 \olref[basic]{corordtransitiveord} 知它是一个序数。
+且不可能 $\alpha \in \beta \in \ordsucc{\alpha}$，因为若不然，要么 $\beta \in \alpha$ 要么 $\beta = \alpha$，这与 \olref[basic]{ordordered} 矛盾。
 \end{proof}
-\noindent
-This also licenses a variant of proof by transfinite induction:
 
-\begin{thm}[Simple Transfinite Induction]\ollabel{simpletransrecursion}
-Let $\phi(x)$ be a formula such that:
+\noindent
+这也使我们可以使用超限归纳法的一种变体：
+
+\begin{thm}[简单超限归纳法]\ollabel{simpletransrecursion}
+设 $\phi(x)$ 为一个满足以下条件的公式：
 \begin{enumerate}
-	\item $\phi(\emptyset)$; and
-	\item for any ordinal $\alpha$, if $\phi(\alpha)$ then
-	$\phi(\ordsucc{\alpha})$; and 
-	\item if $\alpha$ is a limit ordinal and $(\forall \beta \in
-	\alpha)\phi(\beta)$, then $\phi(\alpha)$.
+	\item $\phi(\emptyset)$；且
+	\item 对任意序数 $\alpha$，若 $\phi(\alpha)$ 则 $\phi(\ordsucc{\alpha})$；且
+	\item 若 $\alpha$ 是极限序数且 $(\forall \beta \in \alpha)\phi(\beta)$，则 $\phi(\alpha)$。
 \end{enumerate}
-Then $\forall \alpha \phi(\alpha)$.
+那么 $\forall \alpha \phi(\alpha)$。
 \end{thm}
 
 \begin{proof}
-We prove the contrapositive. So, suppose there is some ordinal which
-is $\lnot\phi$; let $\gamma$ be the least such ordinal. Then either
-$\gamma = \emptyset$, or $\gamma = \ordsucc{\alpha}$ for some $\alpha$
-such that $\phi(\alpha)$; or $\gamma$ is a limit ordinal and $(\forall
-\beta \in \gamma)\phi(\beta)$.
+我们证明其逆否命题。假设存在某个序数不满足 $\phi$；令 $\gamma$ 为这样的最小序数。那么要么 $\gamma = \emptyset$，要么存在满足 $\phi(\alpha)$ 的 $\alpha$ 使得 $\gamma = \ordsucc{\alpha}$；要么 $\gamma$ 是极限序数且 $(\forall \beta \in \gamma)\phi(\beta)$。
 \end{proof}
+
 \noindent
-A final bit of notation will prove helpful later on:
+最后引入一个稍后将用到的记号：
 
 \begin{defn}\ollabel{defsupstrict}
-If $X$ is a  set of ordinals, then $\supstrict(X) = \bigcup_{\alpha
-\in X} \ordsucc{\alpha}$.
+若 $X$ 是序数的集合，则 $\supstrict(X) = \bigcup_{\alpha
+\in X} \ordsucc{\alpha}$。
 \end{defn}
+
 \noindent
-Here, ``lsub'' stands for ``least strict upper bound''.\footnote{Some
-books use ``$\text{sup}(X)$'' for this.  But other books use
-``$\text{sup}(X)$'' for the least \emph{non-strict} upper bound, i.e.,
-simply $\bigcup X$. If $X$ has a greatest element, $\alpha$, these
-notions come apart: the least \emph{strict} upper bound is
-$\ordsucc{\alpha}$, whereas the least \emph{non-strict} upper bound is
-just $\alpha$.}  The following result explains this:
+这里，“lsub”代表“最小严格上界”。\footnote{有些书用“$\text{sup}(X)$”表示这个。但另一些书用“$\text{sup}(X)$”表示最小的\emph{非严格}上界，即 $\bigcup X$。如果 $X$ 有最大元 $\alpha$，这两个概念就不同了：最小的\emph{严格}上界是 $\ordsucc{\alpha}$，而最小的\emph{非严格}上界就是 $\alpha$。} 下面的结果解释了这一点：
 
 \begin{prop}
-If $X$ is a set of ordinals, $\supstrict(X)$ is the least ordinal
-greater than every ordinal in $X$.
+若 $X$ 是序数的集合，则 $\supstrict(X)$ 是大于 $X$ 中每个序数的最小序数。
 \end{prop}
 
 \begin{proof}
-Let $Y = \Setabs{\ordsucc{\alpha}}{\alpha \in X}$, so that
-$\supstrict(X) = \bigcup Y$. Since ordinals are transitive and every
-member of an ordinal is an ordinal, $\supstrict(X)$ is a transitive
-set of ordinals, and so is an ordinal by
-\olref[basic]{corordtransitiveord}. 
+令 $Y = \Setabs{\ordsucc{\alpha}}{\alpha \in X}$，于是 $\supstrict(X) = \bigcup Y$。由于序数是传递的，且序数的每个元素都是序数，故 $\supstrict(X)$ 是由序数组成的传递集，因此由 \olref[basic]{corordtransitiveord} 知它是一个序数。
 
-If $\alpha \in X$, then $\ordsucc{\alpha} \in Y$, so $\ordsucc{\alpha}
-\subseteq \bigcup Y = \supstrict(X)$, and hence $\alpha \in
-\supstrict(X)$. So $\supstrict(X)$ is strictly greater than every
-ordinal in $X$.
+若 $\alpha \in X$，则 $\ordsucc{\alpha} \in Y$，于是 $\ordsucc{\alpha}
+\subseteq \bigcup Y = \supstrict(X)$，因此 $\alpha \in \supstrict(X)$。所以 $\supstrict(X)$ 严格大于 $X$ 中的每个序数。
 
-Conversely, if $\alpha \in \supstrict(X)$, then $\alpha \in
-\ordsucc{\beta} \in Y$ for some $\beta \in X$, so that $\alpha \leq
-\beta \in X$. So $\supstrict(X)$ is the \emph{least} strict upper
-bound on $X$.
+反之，若 $\alpha \in \supstrict(X)$，则对某个 $\beta \in X$ 有 $\alpha \in \ordsucc{\beta} \in Y$，于是 $\alpha \leq \beta \in X$。所以 $\supstrict(X)$ 是 $X$ 的\emph{最小}严格上界。
 \end{proof}
 
 \end{document}

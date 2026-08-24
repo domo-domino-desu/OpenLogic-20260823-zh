@@ -8,93 +8,70 @@
 
 \olfileid{fol}{syn}{ext}
 
-\olsection{Extensionality}
+\olsection{外延性}
 
 \begin{explain}
-Extensionality, sometimes called relevance, can be expressed
-informally as follows: the only factors that bear upon the
-satisfaction of !!{formula}~$!A$ in !!a{structure}~$\Struct M$
-relative to !!a{variable} assignment~$s$, are the size of the
-!!{domain} and the assignments made by~$\Struct M$ and~$s$ to the
-elements of the language that actually appear in~$!A$.
+外延性，有时也称为相关性，可以非形式地表述如下：决定公式~$!A$ 在结构~$\Struct M$ 中相对于变元指派~$s$ 是否被满足的唯一因素，是论域的大小以及~$\Struct M$ 和~$s$ 对实际出现在~$!A$ 中的语言元素所作的指派。
 
-One immediate consequence of extensionality is that where two
-!!{structure}s~$\Struct M$ and~$\Struct M'$ agree on all the elements
-of the language appearing in a sentence~$!A$ and have the same
-domain,~$\Struct M$ and~$\Struct M'$ must also agree on whether or not
-$!A$ itself is true.
+外延性的一个直接推论是：如果两个结构~$\Struct M$ 和~$\Struct M'$ 在出现在语句~$!A$ 中的所有语言元素上的指派一致，并且论域相同，那么~$\Struct M$ 和~$\Struct M'$ 对~$!A$ 本身是否为真也必定判定一致。
 \end{explain}
 
-\begin{prop}[Extensionality]
+\begin{prop}[外延性]
   \ollabel{prop:extensionality}
-  Let $!A$ be !!a{formula}, and $\Struct M_1$ and $\Struct M_2$ be
-  !!{structure}s with $\Domain{M_1} = \Domain{M_2}$, and $s$ a
-  variable assignment on $\Domain{M_1} = \Domain{M_2}$.  If
-  $\Assign{c}{M_1} = \Assign{c}{M_2}$, $\Assign{R}{M_1}=\Assign{R}{M_2}$,
-  and $\Assign{f}{M_1} = \Assign{f}{M_2}$ for every !!{constant}~$c$,
-  relation symbol~$R$, and !!{function} $f$ occurring in~$!A$, then
-  $\Sat{M_1}{!A}[s]$ iff $\Sat{M_2}{!A}[s]$.
+  设 $!A$ 为公式，$\Struct M_1$ 和 $\Struct M_2$ 为具有 $\Domain{M_1} = \Domain{M_2}$ 的结构，$s$ 为 $\Domain{M_1} = \Domain{M_2}$ 上的变元指派。如果 $\Assign{c}{M_1} = \Assign{c}{M_2}$，并且对~$!A$ 中出现的每个常项符号~$c$、关系符号~$R$ 和函数符号~$f$，都有 $\Assign{R}{M_1}=\Assign{R}{M_2}$ 和 $\Assign{f}{M_1} = \Assign{f}{M_2}$，那么 $\Sat{M_1}{!A}[s]$ 当且仅当 $\Sat{M_2}{!A}[s]$。
 \end{prop}
 
 \begin{proof}
-  First prove (by induction on~$t$) that for every term,
-  $\Value{t}{M_1}[s] = \Value{t}{M_2}[s]$.  Then prove the proposition
-  by induction on~$!A$, making use of the claim just proved for the
-  induction basis (where $!A$ is atomic).
+  首先（通过对项~$t$ 进行归纳）证明对每个项都有 $\Value{t}{M_1}[s] = \Value{t}{M_2}[s]$。然后通过对~$!A$ 进行归纳证明本命题，其中在归纳基始（即~$!A$ 为原子公式时）利用刚刚证明的关于项的结论。
 \end{proof}
 
 \begin{prob}
-Carry out the proof of \olref[fol][syn][ext]{prop:extensionality} in
-detail.
+请详细给出 \olref[fol][syn][ext]{prop:extensionality} 的证明。
 \end{prob}
 
-\begin{cor}[Extensionality for !!^{sentence}s]
+\begin{cor}[语句的外延性]
   \ollabel{cor:extensionality-sent}
-  Let $!A$ be !!a{sentence} and $\Struct{M_1}$, $\Struct{M_2}$ as in
-  \olref{prop:extensionality}. Then $\Sat{M_1}{!A}$ iff $\Sat{M_2}{!A}$.
+  设 $!A$ 为语句，$\Struct{M_1}$ 和 $\Struct{M_2}$ 满足 \olref{prop:extensionality} 中的条件。那么 $\Sat{M_1}{!A}$ 当且仅当 $\Sat{M_2}{!A}$。
 \end{cor}
 
 \begin{proof}
-Follows from \olref{prop:extensionality} by \olref[ass]{cor:sat-sentence}.
+由 \olref{prop:extensionality} 及 \olref[ass]{cor:sat-sentence} 可得。
 \end{proof}
 
-Moreover, the value of a term, and whether or not !!a{structure}
-satisfies !!a{formula}, only depend on the values of its subterms.
+此外，一个项的值，以及一个结构是否满足一个公式，都只依赖于其子项的值。
 
 \begin{prop}\ollabel{prop:ext-terms}
-Let $\Struct M$ be !!a{structure}, $t$ and $t'$ terms, and $s$ a
-variable assignment. Then $\Value{\Subst{t}{t'}{x}}{M}[s] =
-\Value{t}{M}[\Subst{s}{\Value{t'}{M}[s]}{x}]$.
+设 $\Struct M$ 为结构，$t$ 与 $t'$ 为项，且 $s$ 为变元指派。则 $\Value{\Subst{t}{t'}{x}}{M}[s] =
+\Value{t}{M}[\Subst{s}{\Value{t'}{M}[s]}{x}]$。
 \end{prop}
 
 \begin{proof}
-By induction on~$t$.
+对~$t$ 进行归纳。
 \begin{enumerate}
-\item If $t$ is a constant, say, $t\ident c$, then $\Subst{t}{t'}{x} =
-  c$, and $\Value{c}{M}[s] = \Assign{c}{M} =
-  \Value{c}{M}[\Subst{s}{\Value{t'}{M}[s]}{x}]$.
+\item 若 $t$ 为常项，例如 $t\ident c$，则 $\Subst{t}{t'}{x} =
+  c$，且 $\Value{c}{M}[s] = \Assign{c}{M} =
+  \Value{c}{M}[\Subst{s}{\Value{t'}{M}[s]}{x}]$。
 
-\item If $t$ is a variable other than~$x$, say, $t \ident y$, then
-  $\Subst{t}{t'}{x} = y$, and $\Value{y}{M}[s] =
-  \Value{y}{M}[\Subst{s}{\Value{t'}{M}[s]}{x}]$ since
-  $\varAssign{s}{\Subst{s}{\Value{t'}{M}[s]}{x}}{x}$.
+\item 若 $t$ 是 $x$ 以外的变元，例如 $t \ident y$，则
+  $\Subst{t}{t'}{x} = y$，且由于
+  $\varAssign{s}{\Subst{s}{\Value{t'}{M}[s]}{x}}{x}$，有 $\Value{y}{M}[s] =
+  \Value{y}{M}[\Subst{s}{\Value{t'}{M}[s]}{x}]$。
 
-\item If $t \ident x$, then $\Subst{t}{t'}{x} = t'$. But
-  $\Value{x}{M}[\Subst{s}{\Value{t'}{M}[s]}{x}] = \Value{t'}{M}[s]$ by
-  definition of~$\Subst{s}{\Value{t'}{M}[s]}{x}$.
+\item 若 $t \ident x$，则 $\Subst{t}{t'}{x} = t'$。但根据
+  $\Subst{s}{\Value{t'}{M}[s]}{x}$ 的定义，$\Value{x}{M}[\Subst{s}{\Value{t'}{M}[s]}{x}] = \Value{t'}{M}[s]$。
 
-\item If $t \ident \Atom{f}{t_1,\dots,t_n}$ then we have:
+\item 若 $t \ident \Atom{f}{t_1,\dots,t_n}$ 则我们有：
 \begin{multline*}
   \Value{\Subst{t}{t'}{x}}{M}[s]  = \\
   \begin{aligned}[b]
 & = \Value{\Atom{f}{\Subst{t_1}{t'}{x}, \dots, \Subst{t_n}{t'}{x}}}{M}[s]\\
-& \qquad    \text{ by definition of $\Subst{t}{t'}{x}$}\\
+& \qquad    \text{ 由 $\Subst{t}{t'}{x}$ 的定义}\\
 & = \Assign{f}{M}(\Value{\Subst{t_1}{t'}{x}}{M}[s], \dots,
     \Value{\Subst{t_n}{t'}{x}}{M}[s])\\
     & \qquad  \text{ by definition of $\Value{\Atom{f}{\dots}}{M}[s]$}\\
 & = \Assign{f}{M}(\Value{t_1}{M}[\Subst{s}{\Value{t'}{M}[s]}{x}], \dots,
    \Value{t_n}{M}[\Subst{s}{\Value{t'}{M}[s]}{x}])\\
-& \qquad    \text{ by induction hypothesis}\\
+& \qquad    \text{ 由归纳假设}\\
 & = \Value{t}{M}[\Subst{s}{\Value{t'}{M}[s]}{x}]
     \text{ by definition of $\Value{\Atom{f}{\dots}}{M}[\Subst{s}{\Value{t'}{M}[s]}{x}]$}
   \end{aligned}
@@ -102,36 +79,29 @@ By induction on~$t$.
 \end{enumerate}
 \end{proof}
 
-\begin{prop}\ollabel{prop:ext-formulas} Let $\Struct M$ be
-!!a{structure}, $!A$ !!a{formula}, $t'$~a term, and $s$~a variable
-assignment. Then $\Sat{M}{\Subst{!A}{t'}{x}}[s]$ iff
-$\Sat{M}{!A}[\Subst{s}{\Value{t'}{M}[s]}{x}]$.
+\begin{prop}\ollabel{prop:ext-formulas} 设 $\Struct M$ 为结构，
+ $!A$ 为公式，$t'$~为项，且 $s$~为变元指派。则 $\Sat{M}{\Subst{!A}{t'}{x}}[s]$ 当且仅当
+  $\Sat{M}{!A}[\Subst{s}{\Value{t'}{M}[s]}{x}]$。
 \end{prop}
 
 \begin{proof}
-Exercise.
+练习。
 \end{proof}
 
 \begin{prob}
-Prove \olref[fol][syn][ext]{prop:ext-formulas}
+证明 \olref[fol][syn][ext]{prop:ext-formulas}。
 \end{prob}
 
 \begin{explain}
-  The point of
-  \cref{fol:syn:ext:prop:ext-terms,fol:syn:ext:prop:ext-formulas} is
-  the following. Suppose we have a term $t$ or !!a{formula}~$!A$ and
-  some term~$t'$, and we want to know the value of $\Subst{t}{t'}{x}$
-  or whether or not $\Subst{!A}{t'}{x}$ is satisfied in
-  !!a{structure}~$\Struct M$ relative to !!a{variable} assignment~$s$.
-  Then we can either perform the substitution first and then consider
-  the value or satisfaction relative to $\Struct{M}$ and~$s$, or we
-  can first determine the value~$m = \Value{t'}{M}[s]$ of $t'$ in
-  $\Struct{M}$ relative to~$s$, change the !!{variable} assignment
-  to~$\Subst{s}{m}{x}$ and then consider the value of~$t$ in
-  $\Struct{M}$ and~$\Subst{s}{m}{x}$, or whether
-  $\Sat{M}{!A}[\Subst{s}{m}{x}]$.
+  \cref{fol:syn:ext:prop:ext-terms,fol:syn:ext:prop:ext-formulas} 的要点如下。
+  假设我们有一个项 $t$ 或公式~$!A$ 以及某个项~$t'$，并且我们想知道在结构~$\Struct M$
+  中相对于变元指派~$s$，$\Subst{t}{t'}{x}$ 的值或者 $\Subst{!A}{t'}{x}$
+  是否被满足。那么我们可以有两种做法：要么先进行代入，然后再考虑相对于 $\Struct{M}$ 和~$s$ 的值或满足情况；
+  要么先确定 $t'$ 在 $\Struct{M}$ 中相对于~$s$ 的值 $m = \Value{t'}{M}[s]$，
+  将变元指派改为~$\Subst{s}{m}{x}$，再考虑在 $\Struct{M}$ 和~$\Subst{s}{m}{x}$ 下 $t$
+  的值，或者 $\Sat{M}{!A}[\Subst{s}{m}{x}]$ 是否成立。
   \Cref{fol:syn:ext:prop:ext-terms,fol:syn:ext:prop:ext-formulas}
-  guarantee that the answer will be the same, whichever way we do it.
+  保证了无论采用哪种做法，答案都是相同的。
 \end{explain}
 
 \end{document}

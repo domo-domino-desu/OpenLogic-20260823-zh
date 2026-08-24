@@ -1,68 +1,54 @@
-% Part: computability
-% Chapter: recursive-functions
-% Section: other-recursions
-
 \documentclass[../../../include/open-logic-section]{subfiles}
 
 \begin{document}
 
 \olfileid{cmp}{rec}{ore}
-\olsection{Other Recursions}
+\olsection{其他递归方式}
 
-Using pairing and sequencing, we can justify more exotic (and
-useful) forms of primitive recursion. For example, it is often useful
-to define two functions simultaneously, such as in the following
-definition:
+% Part: computability
+% Chapter: recursive-functions
+% Section: other-recursions
+
+利用配对和序列化，我们可以论证更奇特（且有用）的原始递归形式的合理性。
+例如，联立定义两个函数通常很有用，如下面的定义所示：
 \begin{align*}
 h_0(\vec x, 0) & = f_0(\vec x) \\
 h_1(\vec x, 0) & = f_1(\vec x) \\
 h_0(\vec x, y+1) & = g_0(\vec x, y, h_0(\vec x, y), h_1(\vec x, y)) \\
 h_1(\vec x, y+1) & = g_1(\vec x, y, h_0(\vec x, y), h_1(\vec x, y))
 \end{align*}
-This is an instance of \emph{simultaneous recursion}. Another useful
-way of defining functions is to give the value of $h(\vec x, y+1)$ in
-terms of \emph{all} the values $h(\vec x, 0)$, \dots,~$h(\vec x, y)$, as in
-the following definition:
+这就是\emph{联立递归}的一个实例。
+定义函数的另一种有用方法是，根据\emph{所有}值 $h(\vec x, 0)$, ……,~$h(\vec x, y)$ 来给出 $h(\vec x, y+1)$ 的值，如下面的定义所示：
 \begin{align*}
 h(\vec x, 0) & = f(\vec x) \\
 h(\vec x, y+1) & = g(\vec x, y, \tuple{h(\vec x, 0), \dots, h(\vec x, y)}).
 \end{align*}
-The following schema captures this idea more succinctly:
+下面的模式更简洁地刻画了这一思想：
 \[
 h(\vec x, y) = g(\vec x, y, \tuple{h(\vec x, 0), \dots, h(\vec x, y-1)})
 \]
-with the understanding that the last argument to $g$ is just the
-empty sequence when $y$ is $0$. In either formulation, the idea is
-that in computing the ``successor step,'' the function $h$ can make
-use of the entire sequence of values computed so far.
-This is known as a \emph{course-of-values} recursion. For a particular
-example, it can be used to justify the following type of definition:
+其中约定当 $y$ 为 $0$ 时，$g$ 的最后一个自变元就是空序列。
+无论哪种表述，其思想都是在计算“后继步”时，函数 $h$ 可以利用已计算出的整个值序列。
+这被称为\emph{串值递归}。
+对于一个具体的例子，它可以用来论证以下类型定义的合理性：
 \begin{align*}
 h(\vec x, y) & = \begin{cases}
-  g(\vec x, y, h(\vec x, k(\vec x, y))) & \text{if $k(\vec x, y) < y$} \\
-  f(\vec x) & \text{otherwise}
+  g(\vec x, y, h(\vec x, k(\vec x, y))) & \text{若 $k(\vec x, y) < y$} \\
+  f(\vec x) & \text{否则}
 \end{cases}
 \end{align*}
-In other words, the value of $h$ at $y$ can be computed in terms of
-the value of $h$ at \emph{any} previous value, given by~$k$.
-
+换句话说，$h$ 在 $y$ 处的值可以根据 $h$ 在由~$k$ 给出的\emph{任何}先前值上的取值来计算。
 
 \begin{prob}
-  Define the remainder function $r(x,y)$ by course-of-values
-  recursion. (If $x$, $y$ are natural numbers and $y > 0$, $r(x,y)$ is
-  the number less than~$y$ such that $x = z\times y + r(x,y)$ for
-  some~$z$. For definiteness, let's say that if $y=0$, $r(x,0) = 0$.)
+  用串值递归定义余数函数 $r(x,y)$。（若 $x$, $y$ 是自然数且 $y > 0$，则 $r(x,y)$ 是小于~$y$ 且满足对某个~$z$ 有 $x = z\times y + r(x,y)$ 的数。为明确起见，我们约定若 $y=0$，则 $r(x,0) = 0$。）
 \end{prob}
 
-You should think about how to obtain these functions using ordinary
-primitive recursion. One final version of primitive recursion is more
-flexible in that one is allowed to change the \emph{parameters} (side
-values) along the way:
+你应该思考如何用普通原始递归得到这些函数。
+最后再介绍一种原始递归的版本，它更加灵活，允许在递归过程中改变\emph{参数}（辅助值）：
 \begin{align*}
 h(\vec x, 0) & = f(\vec x) \\
 h(\vec x, y+1) & = g(\vec x, y, h(k(\vec x), y))
 \end{align*}
-This, too, can be simulated with ordinary primitive recursion. (Doing
-so is tricky. For a hint, try unwinding the computation by hand.)
+这也能够用普通原始递归来模拟。（这做起来有些技巧。提示一下：尝试手动展开计算过程。）
 
 \end{document}

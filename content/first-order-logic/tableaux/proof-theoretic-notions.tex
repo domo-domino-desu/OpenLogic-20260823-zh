@@ -10,35 +10,24 @@
       {\olfileid{fol}{tab}{ptn}}
       {\olfileid{pl}{tab}{ptn}}
       
-\olsection{Proof-Theoretic Notions}
+\olsection{证明论概念}
 
 \begin{editorial}
-This section collects the definitions of the provability relation
-and consistency for tableaux.
+本节汇集了关于分析表的可证性关系与一致性的定义。
 \end{editorial}
 
 \begin{explain}
-Just as we've defined a number of important semantic notions
-(validity, entailment, satisfiability), we now define corresponding
-\emph{proof-theoretic notions}.  These are not defined by appeal to
-satisfaction of !!{sentence}s in !!{structure}s, but by appeal to the
-existence of certain closed !!{tableau}x.  It was an important
-discovery that these notions coincide.  That they do is the content of
-the \emph{soundness} and \emph{completeness theorems}.
+正如我们已经定义了一些重要的语义概念（有效性、语义后承、可满足性），现在我们来定义相应的\emph{证明论概念}。这些概念不是依据语句在结构中的满足性来定义的，而是依据某些封闭分析表的存在来定义的。一个重要发现是，这些概念与语义概念是重合的。这种重合正是\emph{可靠性定理与完备性定理}的内容。
 \end{explain}
 
-
-\begin{defn}[Theorems]
-A !!{sentence}~$!A$ is a \emph{theorem} if there is a closed
-!!{tableau} for~$\sFmla{\False}{!A}$.  We write $\Proves !A$ if $!A$
-is a theorem and $\Proves/ !A$ if it is not.
+\begin{defn}[定理]
+如果存在一个针对~$\sFmla{\False}{!A}$ 的封闭分析表，则语句~$!A$ 是一个\emph{定理}。若 $!A$ 是定理，则记作 $\Proves !A$；否则记作 $\Proves/ !A$。
 \end{defn}
 
-\begin{defn}[!!^{derivability}]
-!!^a{sentence} $!A$ is \emph{!!{derivable} from} a set of
-!!{sentence}s~$\Gamma$, $\Gamma \Proves !A$ iff there is a
-finite set $\{!B_1, \dots, !B_n\} \subseteq \Gamma$
-and a closed !!{tableau} for the set
+\begin{defn}[可推导性]
+语句 $!A$ 可由语句集合~$\Gamma$ \emph{推导}，记作 $\Gamma \Proves !A$，
+当且仅当存在一个有限集 $\{!B_1, \dots, !B_n\} \subseteq \Gamma$
+以及一个针对集合
 \[
 \{
   \sFmla{\False}{!A},
@@ -46,144 +35,133 @@ and a closed !!{tableau} for the set
   \sFmla{\True}{!B_n}
   \}.
 \]
-If $!A$ is not !!{derivable} from $\Gamma$ we write $\Gamma \Proves/
-!A$.
+的封闭分析表。
+如果 $!A$ 不能由 $\Gamma$ 推导，则记作 $\Gamma \Proves/ !A$。
 \end{defn}
 
-\begin{defn}[Consistency]
-A set of !!{sentence}s~$\Gamma$ is \emph{inconsistent} iff there is a
-finite set $\{!B_1, \dots, !B_n\} \subseteq \Gamma$ and a closed
-!!{tableau} for the set
+\begin{defn}[一致性]
+语句集合~$\Gamma$ 是\emph{不一致的}，当且仅当存在一个有限集 $\{!B_1, \dots, !B_n\} \subseteq \Gamma$
+以及一个针对集合
 \[
 \{
   \sFmla{\True}{!B_1}, \dots,
   \sFmla{\True}{!B_n}  
   \}.
 \]
-If $\Gamma$ is not inconsistent, we say it is \emph{consistent}.
+的封闭分析表。
+如果 $\Gamma$ 不是不一致的，则称它是\emph{一致的}。
 \end{defn}
 
-\begin{prop}[Reflexivity]
+\begin{prop}[自反性]
 \ollabel{prop:reflexivity}
-If $!A \in \Gamma$, then $\Gamma \Proves !A$.
+若 $!A \in \Gamma$，则 $\Gamma \Proves !A$。
 \end{prop}
 
 \begin{proof}
-If $!A \in \Gamma$, $\{!A\}$ is a finite subset of~$\Gamma$ and the !!{tableau}
+若 $!A \in \Gamma$，则 $\{!A\}$ 是~$\Gamma$ 的一个有限子集，并且如下分析表
 \begin{oltableau}
   [\sFmla{\False}{\formula{A}}, just = \TAss
     [\sFmla{\True}{\formula{A}}, just = \TAss,close]
   ]
 \end{oltableau}
-is closed.
+是封闭的。
 \end{proof}
   
 
-\begin{prop}[Monotonicity]
+\begin{prop}[单调性]
 \ollabel{prop:monotonicity}
-If $\Gamma \subseteq \Delta$ and $\Gamma \Proves !A$, then $\Delta
-\Proves !A$.
+若 $\Gamma \subseteq \Delta$ 且 $\Gamma \Proves !A$，则 $\Delta
+\Proves !A$。
 \end{prop}
 
 \begin{proof}
-Any finite subset of~$\Gamma$ is also a finite subset of~$\Delta$.
+$\Gamma$ 的任何有限子集也是~$\Delta$ 的有限子集。
 \end{proof}
 
-\begin{prop}[Transitivity]
+\begin{prop}[传递性]
 \ollabel{prop:transitivity}
-If $\Gamma \Proves !A$ and $\{!A\} \cup
-\Delta \Proves !B$, then $\Gamma \cup \Delta \Proves !B$.
+若 $\Gamma \Proves !A$ 且 $\{!A\} \cup
+\Delta \Proves !B$，则 $\Gamma \cup \Delta \Proves !B$。
 \end{prop}
 
 \begin{proof}
-If $\{!A\} \cup \Delta \Proves !B$, then there is a finite subset $\Delta_0 =
-\{!C_1, \dots, !C_n\} \subseteq \Delta$ such that
+如果 $\{!A\} \cup \Delta \Proves !B$，则存在一个有限子集 $\Delta_0 =
+\{!C_1, \dots, !C_n\} \subseteq \Delta$ 使得
 \begin{align*}
 \{\sFmla{\False}{!B}, & \sFmla{\True}{!A}, \sFmla{\True}{!C_1},
 \dots, \sFmla{\True}{!C_n}\}
-\intertext{has a closed !!{tableau}. If $\Gamma \Proves !A$ then there
-  are $!D_1$, \dots, $!D_m \subseteq \Gamma$ such that}
+\intertext{有一个封闭分析表。如果 $\Gamma \Proves !A$，那么存在 $!D_1$, \dots, $!D_m \subseteq \Gamma$ 使得}
 \{\sFmla{\False}{!A}, & \sFmla{\True}{!D_1},
 \dots, \sFmla{\True}{!D_m}\}
 \end{align*}
-has a closed !!{tableau}.
+有一个封闭分析表。
 
-Now consider the !!{tableau} with assumptions
+现在考虑以
 \[
 \sFmla{\False}{!B},
 \sFmla{\True}{!C_1}, \dots, \sFmla{\True}{!C_n},
 \sFmla{\True}{!D_1}, \dots, \sFmla{\True}{!D_m}.
 \]
-Apply the \Cut{} rule on~$!A$. This generates two branches, one has
-$\sFmla{\True}{!A}$ in it, the other $\sFmla{\False}{!A}$. Thus,
-on the one branch, all of
+为假设的分析表。
+对~$!A$ 应用 \Cut{} 规则。这会生成两个分支，一个包含 $\sFmla{\True}{!A}$，另一个包含 $\sFmla{\False}{!A}$。于是，
+在其中一个分支上，
 \[
 \{\sFmla{\False}{!B}, \sFmla{\True}{!A},
 \sFmla{\True}{!C_1}, \dots, \sFmla{\True}{!C_n}\}
 \]
-are available. Since there is a closed !!{tableau} for these
-assumptions, we can attach it to that branch; every branch through
-$\sFmla{\True}{!A}$ closes. On the other branch, all of
+全部可用。既然存在针对这些假设的封闭分析表，我们可以将其附加到该分支；所有经过 $\sFmla{\True}{!A}$ 的分支都会闭合。在另一个分支上，
 \[
 \{\sFmla{\False}{!A}, \sFmla{\True}{!D_1}, \dots,
 \sFmla{\True}{!D_m}\}
 \]
-are available, so we can also complete the other side to obtain a
-closed !!{tableau}.  This shows $\Gamma \cup \Delta \Proves !B$.
+全部可用，因此我们也能完成另一侧以得到一个封闭分析表。这表明 $\Gamma \cup \Delta \Proves !B$。
 \end{proof}
 
-Note that this means that in particular if $\Gamma \Proves !A$ and $!A
-\Proves !B$, then $\Gamma \Proves !B$. It follows also that if $!A_1,
-\dots, !A_n \Proves !B$ and $\Gamma \Proves !A_i$ for each~$i$, then
-$\Gamma \Proves !B$.
+注意，这特别意味着，如果 $\Gamma \Proves !A$ 且 $!A \Proves !B$，那么 $\Gamma \Proves !B$。由此也可得，如果 $!A_1,
+\dots, !A_n \Proves !B$ 且对每个~$i$ 都有 $\Gamma \Proves !A_i$，那么 $\Gamma \Proves !B$。
 
 \begin{prop}
 \ollabel{prop:incons}
-$\Gamma$ is inconsistent iff $\Gamma \Proves !A$ for every
-  !!{sentence}~$!A$.
+$\Gamma$ 是不一致的，当且仅当对每个语句~$!A$ 都有 $\Gamma \Proves !A$。
 \end{prop}
 
 \begin{proof}
-Exercise.
+练习。
 \end{proof}
 
 \tagprob{FOL}
 \begin{prob}
-Prove \olref[fol][tab][ptn]{prop:incons}
+证明 \olref[fol][tab][ptn]{prop:incons}。
 \end{prob}
 \tagendprob
 
 \tagprob{notFOL}
 \begin{prob}
-Prove \olref[pl][tab][ptn]{prop:incons}
+证明 \olref[pl][tab][ptn]{prop:incons}。
 \end{prob}
 \tagendprob
 
-\begin{prop}[Compactness]
+\begin{prop}[紧致性]
   \ollabel{prop:proves-compact}
   \begin{enumerate}
-  \item If $\Gamma \Proves !A$ then there is a finite subset $\Gamma_0
-    \subseteq \Gamma$ such that $\Gamma_0 \Proves !A$.
-  \item If every finite subset of~$\Gamma$ is
-    consistent, then $\Gamma$ is consistent.
+  \item 如果 $\Gamma \Proves !A$，则存在一个有限子集 $\Gamma_0 \subseteq \Gamma$ 使得 $\Gamma_0 \Proves !A$。
+  \item 如果~$\Gamma$ 的每个有限子集都是一致的，那么 $\Gamma$ 是一致的。
   \end{enumerate}
 \end{prop}
 
 \begin{proof}
   \begin{enumerate}
-    \item If $\Gamma \Proves !A$, then there is a finite subset
-      $\Gamma_0 = \{!B_1, \dots, !B_n\}$ and a closed !!{tableau} for
+    \item 如果 $\Gamma \Proves !A$，则存在一个有限子集 $\Gamma_0 = \{!B_1, \dots, !B_n\}$ 以及一个针对
       \[
       \{\sFmla{\False}{!A}, \sFmla{\True}{!B_1}, \dots, \sFmla{\True}{!B_n}\}
       \]
-      This !!{tableau} also shows $\Gamma_0 \Proves !A$.
-    \item If $\Gamma$ is inconsistent, then for some finite subset
-      $\Gamma_0 = \{!B_1, \dots, !B_n\}$ there is a closed !!{tableau}
-      for
+      的封闭分析表。此分析表也表明 $\Gamma_0 \Proves !A$。
+    \item 如果 $\Gamma$ 不一致，则对某个有限子集
+      $\Gamma_0 = \{!B_1, \dots, !B_n\}$，存在一个针对
       \[
       \{\sFmla{\True}{!B_1}, \dots, \sFmla{\True}{!B_n}\}
       \]
-      This closed !!{tableau} shows that $\Gamma_0$ is inconsistent.
+      的封闭分析表。这个封闭分析表表明 $\Gamma_0$ 是不一致的。
   \end{enumerate}
 \end{proof}
 

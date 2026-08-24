@@ -8,102 +8,87 @@
 
 \olfileid{nml}{fil}{exf}
 
-\olsection{Examples of Filtrations}
+\olsection{过滤的例子}
 
-We have not yet shown that there are any filtrations. But indeed, for
-any model $\mModel{M}$, there are many filtrations of $\mModel{M}$
-through $\Gamma$. We identify two, in particular: the finest and
-coarsest filtrations. Filtrations of the same models will differ in
-their accessibility relation (as \olref[fil]{defn:filtration} stipulates
-directly what $W^*$ and~$V^*$ should be). The finest filtration
-will have as few related worlds as possible, whereas the coarsest will
-have as many as possible.
+我们尚未证明是否存在过滤。但实际上，对于任意模型 $\mModel{M}$，都存在许多 $\mModel{M}$ 通过 $\Gamma$ 的过滤。我们特别指出两种：最细过滤和最粗过滤。同一模型的不同过滤，其区别在于可达关系（因为 \olref[fil]{defn:filtration} 直接规定了 $W^*$ 和~$V^*$ 应如何设定）。最细过滤将拥有尽可能少的可达世界，而最粗过滤则拥有尽可能多的可达世界。
 
 \begin{defn}
-  Where $\Gamma$ is closed under subformulas, the \emph{finest}
-  filtration $\mModel{M^*}$ of a model $\mModel{M}$ is defined by putting:
-  \[
-  R^*[u][v] \quad \text{if and only if} \quad \exists u'\in [u] \;
+  设 $\Gamma$ 对子公式封闭，模型 $\mModel{M}$ 的\emph{最细}过滤 $\mModel{M^*}$ 定义为规定：\[
+  R^*[u][v] \quad \text{当且仅当} \quad \exists u'\in [u] \;
   \exists v' \in [v] : Ru'v'.
   \]
 \end{defn}
 
 \begin{prop}\ollabel{prop:finest}
-  The finest filtration $\mModel{M^*}$ is indeed a filtration. 
+  最细过滤 $\mModel{M^*}$ 确实是一个过滤。
 \end{prop}
 
 \begin{proof}
-  We need to check that $R^*$, so defined, satisfies
-  \olref[fil]{defn:filtration}\olref[fil]{defn:filtration-R}. We check
-  the three conditions in turn.
+  我们需要检查如此定义的 $R^*$ 满足
+  \olref[fil]{defn:filtration}\olref[fil]{defn:filtration-R}。我们依次检查这三个条件。
 
-  If $Ruv$ then since $u \in [u]$ and $v \in [v]$, also $R^*[u][v]$,
-  so \olref[fil]{defn:filtration-R1} is satisfied.
+  如果 $Ruv$，那么由于 $u \in [u]$ 且 $v \in [v]$，也有 $R^*[u][v]$，
+  因此满足 \olref[fil]{defn:filtration-R1}。
   
-  \iftag{prvBox}{\iftag{probBox}{We leave the verification of
-      \olref[fil]{defn:filtration-R2} as an exercise.}{For
-        \olref[fil]{defn:filtration-R2}, suppose $\Box!A \in \Gamma$,
-        $R^*[u][v]$, and $\mSat{M}{\Box!A}[u]$. By definition of
-        $R^*$, there are $u' \equiv u$ and $v' \equiv v$ such that
-        $Ru'v'$. Since $u$ and $u'$ agree on $\Gamma$, also
-        $\mSat{M}{\Box!A}[u']$, so that $\mSat{M}{!A}[v']$. By closure
-        of $\Gamma$ under sub-!!{formula}s, $v$ and $v'$ agree on
-        $!A$, so $\mSat{M}{!A}[v]$, as desired.}}{}
+  \iftag{prvBox}{\iftag{probBox}{我们将
+      \olref[fil]{defn:filtration-R2} 的验证留作练习。}{对于
+        \olref[fil]{defn:filtration-R2}，假设 $\Box!A \in \Gamma$，
+        $R^*[u][v]$，且 $\mSat{M}{\Box!A}[u]$。根据 $R^*$ 的定义，
+        存在 $u' \equiv u$ 和 $v' \equiv v$ 使得 $Ru'v'$。
+        由于 $u$ 和 $u'$ 在 $\Gamma$ 上一致，故也有
+        $\mSat{M}{\Box!A}[u']$，从而 $\mSat{M}{!A}[v']$。
+        由于 $\Gamma$ 对子公式封闭，$v$ 和 $v'$ 在 $!A$ 上一致，
+        所以 $\mSat{M}{!A}[v]$，如所欲证。}}{}
   
-  \iftag{prvDiamond}{\iftag{probDiamond}{We leave the verification of
-      \olref[fil]{defn:filtration-R3} as an exercise.}{To verify
-        \olref[fil]{defn:filtration-R3}, suppose $\Diamond!A \in
-        \Gamma$, $R^*[u][v]$, and $\mSat{M}{!A}[v]$.  By definition of
-        $R^*$, there are $u' \equiv u$ and $v' \equiv v$ such that
-        $Ru'v'$. Since $v$ and $v'$ agree on~$\Gamma$, and $\Gamma$ is
-        closed under sub-!!{formula}s, also $\mSat{M}{!A}[v']$, so
-        that $\mSat{M}{\Diamond !A}[u']$.  Since $u$ and $u'$ also
-        agree on $\Gamma$, $\mSat{M}{\Diamond !A}[u]$.}}{}
+  \iftag{prvDiamond}{\iftag{probDiamond}{我们将
+      \olref[fil]{defn:filtration-R3} 的验证留作练习。}{为验证
+        \olref[fil]{defn:filtration-R3}，假设 $\Diamond!A \in
+        \Gamma$，$R^*[u][v]$，且 $\mSat{M}{!A}[v]$。
+        根据 $R^*$ 的定义，存在 $u' \equiv u$ 和 $v' \equiv v$ 使得
+        $Ru'v'$。由于 $v$ 和 $v'$ 在~$\Gamma$ 上一致，且 $\Gamma$
+        对子公式封闭，故也有 $\mSat{M}{!A}[v']$，从而
+        $\mSat{M}{\Diamond !A}[u']$。因为 $u$ 和 $u'$ 也在 $\Gamma$ 上一致，
+        故得 $\mSat{M}{\Diamond !A}[u]$。}}{}
 \end{proof}
 
 \begin{probtag}{probBox,probDiamond}
-  Complete the proof of \olref[nml][fil][exf]{prop:finest}.
+  完成 \olref[nml][fil][exf]{prop:finest} 的证明。
 \end{probtag}
 
 \begin{defn}
-  Where $\Gamma$ is closed under subformulas, the \emph{coarsest}
-  filtration~$\mModel{M^*}$ of a model~$\mModel{M}$ is defined by
-  putting $R^*[u][v]$ if and only if
-  \iftag{notprvBox,notprvDiamond}{the following condition is
-    met:}{\emph{both} of the following conditions are met:}
+  设 $\Gamma$ 对子公式封闭，模型~$\mModel{M}$ 的\emph{最粗}过滤~$\mModel{M^*}$
+  通过以下方式定义：规定 $R^*[u][v]$ 当且仅当
+  \iftag{notprvBox,notprvDiamond}{满足以下条件：}{\emph{同时}满足以下两个条件：}
   \begin{tagenumerate}{prvBox,prvDiamond}
-  \tagitem{prvBox}{\ollabel{defn:coarsest-Box}If $\Box!A \in \Gamma$
-    and $\mSat{M}{\Box!A}[u]$ then
-    $\mSat{M}{!A}[v]$\iftag{prvDiamond}{;}{.}}{}
-  \tagitem{prvDiamond}{\ollabel{defn:coarsest-Diamond}If $\Diamond!A
-    \in \Gamma$ and $\mSat{M}{!A}[v]$ then
-    $\mSat{M}{\Diamond!A}[u]$.}{}
+  \tagitem{prvBox}{\ollabel{defn:coarsest-Box}若 $\Box!A \in \Gamma$
+    且 $\mSat{M}{\Box!A}[u]$，则
+    $\mSat{M}{!A}[v]$\iftag{prvDiamond}{；}{。}}{}
+  \tagitem{prvDiamond}{\ollabel{defn:coarsest-Diamond}若 $\Diamond!A
+    \in \Gamma$ 且 $\mSat{M}{!A}[v]$，则
+    $\mSat{M}{\Diamond!A}[u]$。}{}
   \end{tagenumerate}
 \end{defn}
 
 \begin{prop}
-  The coarsest filtration $\mModel{M^*}$ is indeed a filtration. 
+  最粗过滤 $\mModel{M^*}$ 确实是一个过滤。
 \end{prop}
 
 \begin{proof}
-  Given the definition of $R^*$, the only condition that is left to
-  verify is the implication from $Ruv$ to $R^*[u][v]$. So assume
-  $Ruv$. \iftag{prvBox}{Suppose $\Box!A \in \Gamma$ and
-    $\mSat{M}{\Box!A}[u]$; then obviously
-    $\mSat{M}{!A}[v]$\iftag{prvDiamond}{, and
-      \olref{defn:coarsest-Box} is
-      satisfied. }{.}}{}\iftag{prvDiamond}{Suppose $\Diamond!A \in
-    \Gamma$ and $\mSat{M}{!A}[v]$. Then $\mSat{M}{\Diamond!A}[u]$
-    since~$Ruv$\iftag{prvBox}{, and \olref{defn:coarsest-Diamond} is
-      satisfied}{}.}{}
+  根据 $R^*$ 的定义，唯一尚需验证的条件是由 $Ruv$ 可推出 $R^*[u][v]$。
+  故假设 $Ruv$。
+  \iftag{prvBox}{假设 $\Box!A \in \Gamma$ 且
+    $\mSat{M}{\Box!A}[u]$；那么显然有
+    $\mSat{M}{!A}[v]$\iftag{prvDiamond}{，且
+      满足 \olref{defn:coarsest-Box}。}{。}}{}
+  \iftag{prvDiamond}{假设 $\Diamond!A \in
+    \Gamma$ 且 $\mSat{M}{!A}[v]$。则由~$Ruv$ 可得 $\mSat{M}{\Diamond!A}[u]$
+    \iftag{prvBox}{，且满足 \olref{defn:coarsest-Diamond}}{}。}{}
 \end{proof}
 
 \begin{ex}
-  Let $W = \PosInt$, $Rnm$ iff $m = n + 1$, and $V(p) = \Setabs{2n}{n \in
-    \Nat}$. The model $\mModel{M} = \tuple{W, R, V}$ is depicted in
-  \olref{fig:ex-filtration}. The worlds are $1$, $2$, etc.; each
-  world can access exactly one other world---its successor---and $p$ is
-  true at all and only the even numbers.
+  令 $W = \PosInt$，$Rnm$ 当且仅当 $m = n + 1$，并且 $V(p) = \Setabs{2n}{n \in
+    \Nat}$。模型 $\mModel{M} = \tuple{W, R, V}$ 如
+  \olref{fig:ex-filtration} 所示。这些世界是 $1$、$2$ 等等；每个世界恰好能到达另一个世界——它的后继——并且 $p$ 在且仅在偶数处为真。
 
   \begin{figure}
     \centering
@@ -131,48 +116,44 @@ have as many as possible.
       \draw[->,bend left] (4) to (3);
       \draw[->,reflexive above] (4) to (4);
     \end{tikzpicture}
-    \caption{An infinite model and its filtrations.}
+    \caption{一个无限模型及其过滤。}
     \ollabel{fig:ex-filtration}
   \end{figure}
   
-  Now let $\Gamma$ be the set of sub-!!{formula}s of~$\Box p \lif p$,
-  i.e., $\{p, \Box p, \Box p \lif p\}$. $p$ is true at all and only
-  the even numbers, $\Box p$ is true at all and only the odd numbers,
-  so $\Box p \lif p$ is true at all and only the even numbers. In
-  other words, every odd number makes $\Box p$ true but $p$ and $\Box
-  p \lif p$ false; every even number makes $p$ and $\Box p \lif p$
-  true, but $\Box p$ false. So $W^* = \{ [1], [2] \}$, where $[1] =
-  \{1, 3, 5, \dots\}$ and $[2] = \{2, 4, 6, \dots\}$. Since $2 \in
-  V(p)$, $[2] \in V^*(p)$; since $1 \notin V(p)$, $[1] \notin
-  V^*(p)$. So $V^*(p) = \{[2]\}$.
+  现在令 $\Gamma$ 为~$\Box p \lif p$ 的子公式集合，
+  即 $\{p, \Box p, \Box p \lif p\}$。$p$ 在且仅在偶数处为真，
+  $\Box p$ 在且仅在奇数处为真，
+  所以 $\Box p \lif p$ 在且仅在偶数处为真。
+  换言之，每个奇数使得 $\Box p$ 为真，但使得 $p$ 和 $\Box p \lif p$ 为假；
+  每个偶数使得 $p$ 和 $\Box p \lif p$ 为真，但使得 $\Box p$ 为假。
+  因此 $W^* = \{ [1], [2] \}$，其中 $[1] =
+  \{1, 3, 5, \dots\}$ 且 $[2] = \{2, 4, 6, \dots\}$。
+  由于 $2 \in V(p)$，有 $[2] \in V^*(p)$；
+  由于 $1 \notin V(p)$，有 $[1] \notin V^*(p)$。
+  所以 $V^*(p) = \{[2]\}$。
 
-  Any filtration based on $W^*$ must have an accessibility relation
-  that includes $\tuple{[1], [2]}, \tuple{[2],[1]}$: since $R12$, we
-  must have $R^*[1][2]$ by
-  \olref[fil]{defn:filtration}\olref[fil]{defn:filtration-R1}, and
-  since $R23$ we must have $R^*[2][3]$, and $[3]=[1]$. It cannot
-  include $\tuple{[1],[1]}$: if it did, we'd have $R^*[1][1]$,
-  $\mSat{M}{\Box p}[1]$ but $\mSat/{M}{p}[1]$, contradicting
-  \olref[fil]{defn:filtration-R2}. Nothing requires or rules out that
-  $R^*[2][2]$. So, there are two possible filtrations of~$\mModel{M}$,
-  corresponding to the two accessibility relations
+  任何基于 $W^*$ 的过滤，其可达关系必须包含 $\tuple{[1], [2]}, \tuple{[2],[1]}$：
+  由于 $R12$，根据
+  \olref[fil]{defn:filtration}\olref[fil]{defn:filtration-R1} 我们必须有 $R^*[1][2]$；
+  并且由于 $R23$ 我们必须有 $R^*[2][3]$，而 $[3]=[1]$。
+  它不能包含 $\tuple{[1],[1]}$：若是包含，我们将有 $R^*[1][1]$，
+  $\mSat{M}{\Box p}[1]$ 但 $\mSat/{M}{p}[1]$，这与
+  \olref[fil]{defn:filtration-R2} 矛盾。
+  没有任何条件要求或排除 $R^*[2][2]$。
+  因此，~$\mModel{M}$ 有两种可能的过滤，分别对应两种可达关系
   \[
-  \{\tuple{[1],[2]}, \tuple{[2],[1]}\} \text{ and }
+  \{\tuple{[1],[2]}, \tuple{[2],[1]}\} \text{ 和 }
   \{\tuple{[1],[2]}, \tuple{[2],[1]}, \tuple{[2],[2]}\}.
-  \]
-  In either case, $p$ and $\Box p \lif p$ are false and $\Box p$ is
-  true at~$[1]$; $p$ and $\Box p \lif p$ are true and $\Box p$ is
-  false at~$[2]$.
+  \]。
+  在任何一种情况下，在~$[1]$ 处 $p$ 和 $\Box p \lif p$ 为假而 $\Box p$ 为真；
+  在~$[2]$ 处 $p$ 和 $\Box p \lif p$ 为真而 $\Box p$ 为假。
 \end{ex}
 
-
 \begin{prob}
-  Consider the following model $\mModel{M} = \tuple{W, R, V}$ where $W
-  = \Setabs{0\sigma}{\sigma \in \Bin^*}$, the set of sequences of $0$s
-  and~$1$s starting with~$0$, with $R\sigma\sigma'$ iff $\sigma' =
-  \sigma 0$ or $\sigma' = \sigma 1$, and $V(p) = \Setabs{\sigma
-    0}{\sigma \in \Bin^*}$ and $V(q) = \Setabs{\sigma 1}{\sigma \in
-    \Bin^* \setminus \{1\}}$. Here's a picture:
+  考虑如下模型 $\mModel{M} = \tuple{W, R, V}$，其中 $W
+  = \Setabs{0\sigma}{\sigma \in \Bin^*}$ 是由 $0$ 和~$1$ 组成且以~$0$ 开头的序列的集合，$R\sigma\sigma'$ 当且仅当 $\sigma' = \sigma 0$ 或 $\sigma' = \sigma 1$，并且 $V(p) = \Setabs{\sigma
+    0}{\sigma \in \Bin^*}$ 和 $V(q) = \Setabs{\sigma 1}{\sigma \in
+    \Bin^* \setminus \{1\}}$。下图展示了该模型：
   \begin{center}
     \begin{tikzpicture}[modal,
         node distance=2cm
@@ -216,13 +197,10 @@ have as many as possible.
       \draw[dotted] (011) to (0111);
     \end{tikzpicture}
   \end{center}
-  We have $\mSat/{M}{\Box(p \lor q) \lif (\Box p \lor \Box q)}[w]$ for
-  every~$w$.
+  对于每个世界~$w$，我们都有 $\mSat/{M}{\Box(p \lor q) \lif (\Box p \lor \Box q)}[w]$。
 
-  Let $\Gamma$ be the set of sub-!!{formula}s of~$\Box(p \lor q) \lif
-  (\Box p \lor \Box q)$. What are $W^*$ and~$V^*$?  What is the
-  accessibility relation of the finest filtration of~$\mModel{M}$? Of the
-  coarsest?
+  设 $\Gamma$ 为公式~$\Box(p \lor q) \lif
+  (\Box p \lor \Box q)$ 的所有子公式的集合。$W^*$ 和~$V^*$ 分别是什么？模型~$\mModel{M}$ 的最细过滤的可达关系是什么？最粗过滤的呢？
 \end{prob}
 
 \end{document}

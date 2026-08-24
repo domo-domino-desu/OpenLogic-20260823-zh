@@ -7,96 +7,72 @@
 \begin{document}
 
 \olfileid{inc}{req}{min}
-\olsection{Regular Minimization is Representable in $\Th{Q}$}
+\olsection{正则极小化在 $\Th{Q}$ 中是可表示的}
 
-Let's consider unbounded search. Suppose $g(x, z)$ is regular and
-representable in $\Th{Q}$, say by the !!{formula}~$!A_g(x, z, y)$. Let
-$f$ be defined by $f(z) = \umin{x}{[g(x, z) = 0]}$. We would like to find
-!!a{formula}~$!A_f(z, y)$ representing~$f$.  The value of~$f(z)$ is
-that number~$x$ which (a) satisfies $g(x, z) = 0$ and (b) is the least
-such, i.e., for any $w < x$, $g(w, z) \neq 0$.  So the following is a
-natural choice:
+我们来考虑无界搜索。假设 $g(x, z)$ 是正则的并且在 $\Th{Q}$ 中可表示，例如由公式~$!A_g(x, z, y)$ 表示。令 $f$ 由 $f(z) = \umin{x}{[g(x, z) = 0]}$ 定义。我们想要找到一个表示~$f$ 的公式~$!A_f(z, y)$。$f(z)$ 的值是满足 (a) $g(x, z) = 0$ 且为其中最小的数~$x$，即对任意 $w < x$，$g(w, z) \neq 0$。因此，下面是一个自然的选择：
 \[
 !A_f(z,y) \ident !A_g(y, z, \Obj 0) \land \lforall[w][(w < y \lif \lnot
   !A_g(w, z, \Obj 0))].
 \]
-In the general case, of course, we would have to replace $z$ with
-$z_0$, \dots, $z_k$.
+当然，在一般情形下，我们需要将 $z$ 替换为 $z_0$，……，$z_k$。
 
-The proof, again, will involve some lemmas about things $\Th{Q}$ is
-strong enough to prove.
+证明同样会涉及一些引理，表明 $\Th{Q}$ 足够强以致能证明某些事实。
 
 \begin{lem}
-\ollabel{lem:succ} For every !!{constant}~$a$ and every natural
-number~$n$,
+\ollabel{lem:succ} 对每个常项符号~$a$ 和每个自然数~$n$，
 \[
 \Th{Q} \Proves \eq[(a' + \num n)][(a + \num n)'].
 \]
 \end{lem}
 
 \begin{proof}
-The proof is, as usual, by induction on $n$. In the base case, $n =
-0$, we need to show that $\Th{Q}$ proves $\eq[(a' + \Obj 0)][(a + \Obj
-0)']$. But we have:
+照例，证明通过对 $n$ 归纳进行。在基础情况 $n = 0$，我们需要证明 $\Th{Q}$ 可证明 $\eq[(a' + \Obj 0)][(a + \Obj
+0)']$。但我们有：
 \begin{align}
-  \Th{Q} & \Proves \eq[(a' + \Obj 0)][a'] \quad \text{by axiom $Q_4$}
+  \Th{Q} & \Proves \eq[(a' + \Obj 0)][a'] \quad \text{由公理 $Q_4$}
   \ollabel{step1}\\
-  \Th{Q} & \Proves  \eq[(a + \Obj 0)][a] \quad \text{by axiom $Q_4$}
+  \Th{Q} & \Proves  \eq[(a + \Obj 0)][a] \quad \text{由公理 $Q_4$}
   \ollabel{step2} \\
-  \Th{Q} & \Proves \eq[(a + \Obj 0)'][a'] \quad \text{by \olref{step2}}
+  \Th{Q} & \Proves \eq[(a + \Obj 0)'][a'] \quad \text{由 \olref{step2}}
   \ollabel{step3} \\
   \Th{Q} & \Proves \eq[(a' + \Obj 0)][(a + \Obj 0)'] \quad
-  \text{by \olref{step1} and \olref{step3}}\notag
+  \text{由 \olref{step1} 与 \olref{step3}}\notag
 \end{align}
-In the induction step, we can assume that we have shown that $\Th{Q}
-\Proves \eq[(a' + \num n)][(a + \num n)']$. Since
-$\num{n+1}$ is $\num{n}'$, we need to show that $\Th{Q}$ proves
-$\eq[(a' + \num{n}')][(a + \num{n}')']$. We have:
+在归纳步中，可设已证 $\Th{Q}
+\Proves \eq[(a' + \num n)][(a + \num n)']$。由于 $\num{n+1}$ 就是 $\num{n}'$，我们需要证明 $\Th{Q}$ 可证明 $\eq[(a' + \num{n}')][(a + \num{n}')']$。我们有：
 \begin{align}
   \Th{Q} & \Proves \eq[(a' + \num n')][(a' + \num n)'] \quad
-  \text{by axiom $!Q_5$} \ollabel{step5}\\
+  \text{由公理 $!Q_5$} \ollabel{step5}\\
   \Th{Q} & \Proves \eq[(a' + \num n')][(a + \num n')'] \quad
-  \text{inductive hypothesis} \ollabel{step6}\\
+  \text{归纳假设} \ollabel{step6}\\
   \Th{Q} & \Proves \eq[(a' + \num n)'][(a + \num n')'] \quad
-  \text{by \olref{step5} and \olref{step6}.} \notag
+  \text{由 \olref{step5} 和 \olref{step6}} \notag
 \end{align}
 \end{proof}
 
-It is again worth mentioning that this is weaker than saying that
-$\Th{Q}$ proves $\lforall[x][\lforall[y][(x' + y) = (x + y)']]$.
-Although this !!{sentence} is true in~$\Struct{N}$, $\Th{Q}$ does not
-prove it.
+再次值得一提的是，这比说 $\Th{Q}$ 可证明 $\lforall[x][\lforall[y][(x' + y) = (x + y)']]$ 要弱。
+尽管这个语句在~$\Struct{N}$ 中为真，但 $\Th{Q}$ 不能证明它。
 
 \begin{lem}
 \ollabel{lem:less-zero}
-$\Th{Q} \Proves \lforall[x][\lnot x < \Obj 0]$.
+$\Th{Q} \Proves \lforall[x][\lnot x < \Obj 0]$。
 \end{lem}
 
 \begin{proof}
-We give the proof informally (i.e., only giving hints as to
-how to construct the formal !!{derivation}).
+我们非形式化地给出证明（即，仅给出如何构造形式推导的提示）。
 
-We have to prove $\lnot a < \Obj 0$ for an arbitrary~$a$. By the
-definition of $<$, we need to prove $\lnot
-\lexists[y][\eq[(y'+a)][\Obj 0]]$ in $\Th{Q}$. We'll assume
-$\lexists[y][\eq[(y'+a)][\Obj 0]]$ and prove a contradiction. Suppose
-$\eq[(b'+a)][\Obj 0]$. Using $!Q_3$, we
-have that $\eq[a][\Obj 0] \lor \lexists[y][\eq[a][y']]$. We
-distinguish cases. 
+我们要对任意的~$a$ 证明 $\lnot a < \Obj 0$。根据 $<$ 的定义，我们需要在 $\Th{Q}$ 中证明 $\lnot
+\lexists[y][\eq[(y'+a)][\Obj 0]]$。我们将假设 $\lexists[y][\eq[(y'+a)][\Obj 0]]$ 并导出一个矛盾。假设 $\eq[(b'+a)][\Obj 0]$。利用 $!Q_3$，我们可知 $\eq[a][\Obj 0] \lor \lexists[y][\eq[a][y']]$。我们区分情况。 
 
-Case 1: $\eq[a][\Obj 0]$ holds. From $\eq[(b'+a)][\Obj 0]$, we have
-$\eq[(b' + \Obj 0)][\Obj 0]$. By axiom~$!Q_4$ of $\Th{Q}$, we have
-$\eq[(b' + \Obj 0)][b']$, and hence $\eq[b'][\Obj 0]$. But by
-axiom~$!Q_2$ we also have $\eq/[b'][\Obj 0]$, a contradiction. 
+情况 1： $\eq[a][\Obj 0]$。由 $\eq[(b'+a)][\Obj 0]$，我们有 $\eq[(b' + \Obj 0)][\Obj 0]$。根据 $\Th{Q}$ 的公理~$!Q_4$，我们有 $\eq[(b' + \Obj 0)][b']$，因此 $\eq[b'][\Obj 0]$。但根据公理~$!Q_2$，我们也有 $\eq/[b'][\Obj 0]$，矛盾。
 
-Case 2: For some $c$, $\eq[a][c']$. But then we have $\eq[(b' +
-c')][\Obj 0]$. By axiom~$!Q_5$, we have $\eq[(b' + c)'][\Obj 0]$, again
-contradicting axiom~$Q_2$.
+情况 2： 对某个 $c$，$\eq[a][c']$。那么我们有 $\eq[(b' +
+c')][\Obj 0]$。由公理~$!Q_5$，我们有 $\eq[(b' + c)'][\Obj 0]$，这再次与公理~$!Q_2$ 矛盾。
 \end{proof}
 
 \begin{lem}
 \ollabel{lem:less-nsucc}
-For every natural number~$n$, 
+对每个自然数~$n$，
   \[
   \Th{Q} \Proves
   \lforall[x][(x < \num {n+1} \lif (\eq[x][\Obj 0] \lor \dots \lor
@@ -105,38 +81,17 @@ For every natural number~$n$,
 \end{lem}
 
 \begin{proof}
-We use induction on~$n$. Let us consider the base case, when $n = 0$.
-In that case, we need to show $a < \num 1 \lif \eq[a][\Obj 0]$, for
-arbitrary~$a$. Suppose $a < \num 1$. Then by the defining axiom for
-$<$, we have $\lexists[y][\eq[(y'+a)][\Obj 0']]$ (since $\num 1 \ident
-\Obj 0'$).
+我们对~$n$ 使用归纳法。先考虑基础情况 $n = 0$。此时，我们需要对任意的~$a$ 证明 $a < \num 1 \lif \eq[a][\Obj 0]$。假设 $a < \num 1$。那么根据 $<$ 的定义公理，我们有 $\lexists[y][\eq[(y'+a)][\Obj 0']]$（因为 $\num 1 \ident \Obj 0'$）。
 
-Suppose $b$ has that property, i.e., we have $\eq[(b'+a)][\Obj 0']$.
-We need to show $\eq[a][\Obj 0]$. By axiom~$!Q_3$, we have either
-$\eq[a][\Obj 0]$ or that there is a $c$ such that $\eq[a][c']$. In the
-former case, there is nothing to show. So suppose $\eq[a][c']$. Then
-we have $\eq[(b' + c')][\Obj 0']$. By axiom~$!Q_5$ of $\Th{Q}$, we have
-$\eq[(b'+c)'][\Obj 0']$. By axiom~$!Q_1$, we have $\eq[(b' + c)][\Obj
-0]$. But this means, by axiom~$!Q_8$, that $c < \Obj 0$, contradicting
-\olref{lem:less-zero}.
+假设 $b$ 具有此性质，即 $\eq[(b'+a)][\Obj 0']$。我们需要证明 $\eq[a][\Obj 0]$。由公理~$!Q_3$，要么 $\eq[a][\Obj 0]$，要么存在 $c$ 使得 $\eq[a][c']$。前一种情况无需再证。故设 $\eq[a][c']$。那么我们有 $\eq[(b' + c')][\Obj 0']$。根据 $\Th{Q}$ 的公理~$!Q_5$，我们有 $\eq[(b'+c)'][\Obj 0']$。由公理~$!Q_1$，我们有 $\eq[(b' + c)][\Obj
+0]$。但这意味着，根据公理~$!Q_8$，有 $c < \Obj 0$，与 \olref{lem:less-zero} 矛盾。
 
-Now for the inductive step. We prove the case for $n+1$, assuming the
-case for~$n$. So suppose $a < \num {n+2}$. Again using $!Q_3$ we can
-distinguish two cases: $\eq[a][\Obj 0]$ and for some $b$,
-$\eq[a][b']$. In the first case, $\eq[a][\Obj 0] \lor \dots \lor
-\eq[a][\num{n+1}]$ follows trivially. In the second case, we have $b'
-< \num {n+2}$, i.e., $b' < \num{n+1}'$. By axiom~$!Q_8$, for some $c$,
-$\eq[(c'+b')][\num{n+1}']$. By axiom $!Q_5$,
-$\eq[(c'+b)'][\num{n+1}']$. By axiom~$!Q_1$, $\eq[(c'+b)][\num{n+1}]$,
-and so $b < \num{n+1}$ by axiom~$!Q_8$. By inductive hypothesis,
-$\eq[b][\Obj 0] \lor \dots \lor \eq[b][\num{n}]$. From this, we get
-$\eq[b'][\Obj 0'] \lor \dots \lor \eq[b'][\num{n}']$ by logic, and so
-$\eq[a][\num{1}] \lor \dots \lor \eq[a][\num{n+1}]$ since
-$\eq[a][b']$.
+现在考虑归纳步。假设对~$n$ 成立，证明对 $n+1$ 的情况。假设 $a < \num {n+2}$。再次利用 $!Q_3$，我们可以区分两种情况：$\eq[a][\Obj 0]$，以及对某个 $b$，$\eq[a][b']$。在第一种情况，$\eq[a][\Obj 0] \lor \dots \lor
+\eq[a][\num{n+1}]$ 平凡成立。在第二种情况，我们有 $b' < \num {n+2}$，即 $b' < \num{n+1}'$。由公理~$!Q_8$，对某个 $c$，$\eq[(c'+b')][\num{n+1}']$。由公理 $!Q_5$，$\eq[(c'+b)'][\num{n+1}']$。由公理~$!Q_1$，$\eq[(c'+b)][\num{n+1}]$，所以根据公理~$!Q_8$ 有 $b < \num{n+1}$。由归纳假设，$\eq[b][\Obj 0] \lor \dots \lor \eq[b][\num{n}]$。由此，由逻辑可得 $\eq[b'][\Obj 0'] \lor \dots \lor \eq[b'][\num{n}']$，又因 $\eq[a][b']$，所以得到 $\eq[a][\num{1}] \lor \dots \lor \eq[a][\num{n+1}]$。
 \end{proof}
 
 \begin{lem}
-  \ollabel{lem:trichotomy} For every natural number~$m$,
+  \ollabel{lem:trichotomy} 对每个自然数~$m$，
   \[
   \Th{Q} \Proves
   \lforall[y][((y < \num{m} \lor \num{m} < y) \lor \eq[y][\num{m}])].
@@ -144,101 +99,81 @@ $\eq[a][b']$.
 \end{lem}
 
 \begin{proof}
-By induction on~$m$. First, consider the case $m=0$. $\Th{Q} \Proves
-\lforall[y][(\eq[y][\Obj 0] \lor \lexists[z][\eq[y][z']])]$ by~$!Q_3$.
-Let $a$ be arbitrary. Then either $\eq[a][\Obj 0]$ or for some~$b$,
-$\eq[a][b']$. In the former case, we also have $(a < \Obj 0 \lor \Obj
-0 < a) \lor \eq[a][\Obj 0]$. But if $\eq[a][b']$, then $\eq[(b' +
-\Obj 0)][(a + \Obj 0)]$ by the logic of~$\eq$. By $!Q_4$, $\eq[(a +
-\Obj 0)][a]$, so we have $\eq[(b' + \Obj 0)][a]$, and hence
-$\lexists[z][\eq[(z' + \Obj 0)][a]]$. By the definition of $<$ in
-$!Q_8$, $\Obj 0 < a$.  If $\Obj 0 < a$, then also $(\Obj 0 < a \lor a
-< \Obj 0) \lor \eq[a][\Obj 0]$. 
+对~$m$ 进行归纳。首先考虑 $m=0$ 的情形。由~$!Q_3$ 可得 $\Th{Q} \Proves
+\lforall[y][(\eq[y][\Obj 0] \lor \lexists[z][\eq[y][z']])]$。
+设 $a$ 任意。则要么 $\eq[a][\Obj 0]$，要么对某个~$b$，$\eq[a][b']$。在前一种情况下，我们也有 $(a < \Obj 0 \lor \Obj
+0 < a) \lor \eq[a][\Obj 0]$。但若 $\eq[a][b']$，则由等词的逻辑可得 $\eq[(b' +
+\Obj 0)][(a + \Obj 0)]$。由 $!Q_4$，$\eq[(a +
+\Obj 0)][a]$，所以我们有 $\eq[(b' + \Obj 0)][a]$，从而得到 $\lexists[z][\eq[(z' + \Obj 0)][a]]$。根据 $!Q_8$ 中对 $<$ 的定义，有 $\Obj 0 < a$。如果 $\Obj 0 < a$，那么也有 $(\Obj 0 < a \lor a
+< \Obj 0) \lor \eq[a][\Obj 0]$。 
 
-Now suppose we have
+现在假设我们有
 \begin{align*}
   \Th{Q} & \Proves \lforall[y][((y < \num{m} \lor \num{m} < y) \lor
     \eq[y][\num{m}])]
-  \intertext{and we want to show}
+  \intertext{而我们要证}
   \Th{Q} & \Proves \lforall[y][((y < \num{m+1} \lor \num{m+1} < y) \lor
     \eq[y][\num{m+1}])]
 \end{align*}
-Let $a$ be arbitrary. By $!Q_3$, either $\eq[a][\Obj 0]$ or for
-some~$b$, $\eq[a][b']$. In the first case, we have $\eq[\num{m}' +
-a][\num{m+1}]$ by $!Q_4$, and so $a < \num{m+1}$ by $!Q_8$.
+设 $a$ 任意。由 $!Q_3$，要么 $\eq[a][\Obj 0]$，要么对某个~$b$，$\eq[a][b']$。在第一种情况下，由 $!Q_4$ 可得 $\eq[\num{m}' +
+a][\num{m+1}]$，于是根据 $!Q_8$ 有 $a < \num{m+1}$。
 
-Now consider the second case, $\eq[a][b']$. By the induction
-hypothesis, $(b < \num{m} \lor \num{m} < b) \lor
-    \eq[b][\num{m}]$.
+现在考虑第二种情况，$\eq[a][b']$。由归纳假设，$(b < \num{m} \lor \num{m} < b) \lor
+    \eq[b][\num{m}]$。
 
-The first disjunct $b < \num{m}$ is equivalent (by $!Q_8$) to
-$\lexists[z][\eq[(z' + b)][\num{m}]]$. Suppose $c$ has this property.
-If $\eq[(c' + b)][\num{m}]$, then also $\eq[(c' + b)'][\num{m}']$. By
-$!Q_5$, $\eq[(c' + b)'][(c' + b')]$. Hence, $\eq[(c' +
-b')][\num{m}']$. We get $\lexists[u][\eq[(u' + b')][\num{m+1}]]$ by
-existentially generalizing on~$c'$ and keeping in mind that $\num{m}'
-\ident \num{m+1}$. Hence, if $b < \num{m}$ then $b' < \num{m+1}$ and
-so $a < \num{m+1}$.
+第一个析取支 $b < \num{m}$（由 $!Q_8$）等价于 $\lexists[z][\eq[(z' + b)][\num{m}]]$。假设 $c$ 具有此性质。
+如果 $\eq[(c' + b)][\num{m}]$，那么也有 $\eq[(c' + b)'][\num{m}']$。由 $!Q_5$，$\eq[(c' + b)'][(c' + b')]$。因此，$\eq[(c' +
+b')][\num{m}']$。对~$c'$ 进行存在概括，并注意到 $\num{m}'
+\ident \num{m+1}$，可得 $\lexists[u][\eq[(u' + b')][\num{m+1}]]$。因此，如果 $b < \num{m}$，那么 $b' < \num{m+1}$，从而 $a < \num{m+1}$。
 
-Now suppose $\num{m} < b$, i.e., $\lexists[z][\eq[(z' +
-\num{m})][b]]$.  Suppose $c$ is such a~$z$, i.e., $\eq[(c' +
-\num{m})][b]$. By logic, $\eq[(c' + \num{m})'][b']$. By $!Q_5$,
-$\eq[(c' + \num{m}')][b']$. Since $\eq[a][b']$ and $\num{m}' \ident
-\num{m+1}$, $\eq[(c' + \num{m+1})][a]$. By $!Q_8$, $\num{m+1} < a$.
+现在假设 $\num{m} < b$，即 $\lexists[z][\eq[(z' +
+\num{m})][b]]$。假设 $c$ 是这样的 $z$，即 $\eq[(c' +
+\num{m})][b]$。由逻辑，$\eq[(c' + \num{m})'][b']$。由 $!Q_5$，$\eq[(c' + \num{m}')][b']$。由于 $\eq[a][b']$ 且 $\num{m}' \ident
+\num{m+1}$，$\eq[(c' + \num{m+1})][a]$。由 $!Q_8$，$\num{m+1} < a$。
 
-Finally, assume $\eq[b][\num{m}]$. Then, by logic,
-$\eq[b'][\num{m}']$, and so $\eq[a][\num{m+1}]$.
+最后，假设 $\eq[b][\num{m}]$。那么，由逻辑，$\eq[b'][\num{m}']$，于是 $\eq[a][\num{m+1}]$。
 
-Hence, from each disjunct of the case for~$m$ and~$b$, we can obtain
-the corresponding disjunct for~$m+1$ and~$a$.
+因此，从 $m$ 和 $b$ 的情形的每个析取支，我们都能得到 $m+1$ 和 $a$ 的对应析取支。
 \end{proof}
   
 \begin{prop}
 \ollabel{prop:rep-minimization}
-If $!A_g(x, z, y)$ represents $g(x, z)$ in~$\Th{Q}$, then
+如果 $!A_g(x, z, y)$ 在~$\Th{Q}$ 中表示 $g(x, z)$，那么
 \[
 !A_f(z,y) \ident !A_g(y, z, \Obj 0) \land \lforall[w][(w < y \lif \lnot
   !A_g(w, z, \Obj 0))]
 \]
-represents $f(z) = \umin{x}{[g(x, z) = 0]}$.
+表示 $f(z) = \umin{x}{[g(x, z) = 0]}$。
 \end{prop}
 
 \begin{proof}
-First we show that if $f(n) = m$, then $\Th{Q} \Proves !A_f(\num n, \num m)$,
-i.e.,  
+首先证明，如果 $f(n) = m$，那么 $\Th{Q} \Proves !A_f(\num n, \num m)$，即  
 \begin{align}
   \Th{Q} & \Proves !A_g(\num{m}, \num{n}, \Obj 0) \land \lforall[w][(w <
     \num{m} \lif \lnot !A_g(w, \num{n}, \Obj 0))]. \notag
-  \intertext{Since $!A_g(x, z, y)$ represents $g(x, z)$ and $g(m, n) =
-    0$ if $f(n) = m$, we have}
+  \intertext{由于 $!A_g(x, z, y)$ 表示 $g(x, z)$ 且当 $f(n) = m$ 时 $g(m, n) = 0$，我们有}
 \Th{Q} & \Proves !A_g(\num{m}, \num{n}, \Obj 0). \notag
-\intertext{If $f(n) = m$, then for every $k < m$, $g(k, n) \neq 0$. So}
+\intertext{若 $f(n) = m$，则对每个 $k < m$，$g(k, n) \neq 0$。所以}
 \Th{Q} & \Proves \lnot !A_g(\num{k}, \num{n}, \Obj 0). \notag
-\intertext{We get that}
+\intertext{我们得到}
 \Th{Q} & \Proves \lforall[w][(w < \num{m} \lif \lnot
   !A_g(w, \num{n}, \Obj 0))]. \ollabel{rep-less}
 \end{align}
-by \olref{lem:less-zero} in case $m = 0$ and by \olref{lem:less-nsucc} otherwise.
+在 $m = 0$ 时由 \olref{lem:less-zero} 可得，否则由 \olref{lem:less-nsucc} 可得。
 
-Now let's show that if $f(n) = m$, then $\Th{Q} \Proves
-\lforall[y][(!A_f(\num{n}, y) \lif \eq[y][\num{m}])]$.  We again
-sketch the argument informally, leaving the formalization to the
-reader.
+现在证明，如果 $f(n) = m$，那么 $\Th{Q} \Proves
+\lforall[y][(!A_f(\num{n}, y) \lif \eq[y][\num{m}])]$。我们再次非形式化地概述该论证，将形式化工作留给读者。
 
-Suppose $!A_f(\num{n}, b)$. From this we get (a) $!A_g(b, \num{n},
-\Obj 0)$ and (b) $\lforall[w][(w < b \lif \lnot !A_g(w, \num{n}, \Obj
-  0))]$.  By \olref{lem:trichotomy}, $(b < \num{m} \lor \num{m} < b)
-\lor \eq[b][\num{m}]$. We'll show that both $b < \num{m}$ and $\num{m}
-< b$ leads to a contradiction.
+假设 $!A_f(\num{n}, b)$。由此我们得到 $!A_g(b, \num{n},
+\Obj 0)$ 和 $\lforall[w][(w < b \lif \lnot !A_g(w, \num{n}, \Obj
+  0))]$。由 \olref{lem:trichotomy}，$(b < \num{m} \lor \num{m} < b)
+\lor \eq[b][\num{m}]$。我们将证明 $b < \num{m}$ 和 $\num{m} < b$ 都会导致矛盾。
 
-If $\num{m} < b$, then $\lnot !A_g(\num{m}, \num{n}, \Obj 0)$
-from~(b). But $m = f(n)$, so $g(m, n) = 0$, and so $\Th{Q} \Proves
-!A_g(\num{m}, \num{n}, \Obj 0)$ since $!A_g$ represents~$g$. So we
-have a contradiction.
+如果 $\num{m} < b$，那么由 可得 $\lnot !A_g(\num{m}, \num{n}, \Obj 0)$。但 $m = f(n)$，所以 $g(m, n) = 0$；又因 $!A_g$ 表示~$g$，所以 $\Th{Q} \Proves
+!A_g(\num{m}, \num{n}, \Obj 0)$。于是得出矛盾。
 
-Now suppose $b < \num{m}$. Then since $\Th{Q} \Proves \lforall[w][(w <
-  \num{m} \lif \lnot !A_g(w, \num{n}, \Obj 0))]$ by \olref{rep-less}, we
-get $\lnot !A_g(b, \num{n}, \Obj 0)$. This again contradicts~(a).
+现在假设 $b < \num{m}$。那么由 \olref{rep-less}，因 $\Th{Q} \Proves \lforall[w][(w <
+  \num{m} \lif \lnot !A_g(w, \num{n}, \Obj 0))]$，可得 $\lnot !A_g(b, \num{n}, \Obj 0)$。这又与 矛盾。
 \end{proof}
 
 \end{document}

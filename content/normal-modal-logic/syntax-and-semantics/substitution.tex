@@ -8,74 +8,66 @@
 
 \olfileid{nml}{syn}{sub}
 
-\olsection{Simultaneous Substitution}
+\olsection{同时代入}
 
-An \emph{instance} of !!a{formula}~$!A$ is the result of replacing all
-occurrences of !!a{propositional variable} in~$!A$ by some other
-!!{formula}. We will refer to instances of !!{formula}s often, both
-when discussing validity and when discussing !!{derivability}. It
-therefore is useful to define the notion precisely.
+公式~$!A$ 的一个\emph{实例}，是指将 $!A$ 中某个命题变元的所有出现替换为另一公式所得的结果。无论是在讨论有效性还是在讨论可推导性时，我们都常常会涉及公式的实例。因此，精确定义该概念是很有用的。
 
 \begin{defn}\ollabel{def:subst-inst}
-  Where $!A$ is a modal !!{formula} all of whose !!{propositional
-    variable}s are among $p_1$, \dots, $p_n$, and $!D_1$, \dots,
-  $!D_n$ are also modal !!{formula}s, we define
-  $\SSubst{!A}{\subst{!D_1}{p_1}, \dots, \subst{!D_n}{p_n}}$ as the
-  result of simultaneously substituting each $!D_i$ for $p_i$
-  in~$!A$. Formally, this is a definition by induction on~$!A$:
+  设 $!A$ 是一个模态公式，其命题变元均在 $p_1$、\dots、$p_n$ 之中，并且 $!D_1$、\dots、$!D_n$ 也是模态公式，我们定义
+  $\SSubst{!A}{\subst{!D_1}{p_1}, \dots, \subst{!D_n}{p_n}}$
+  为在~$!A$ 中同时将每个 $p_i$ 替换为 $!D_i$ 所得的结果。形式地，此定义是通过对~$!A$ 进行归纳给出的：
   \begin{enumerate}
     \tagitem{prvFalse}{\indcase{!A}{\lfalse}{%
         $\SSubst{\indfrm}{\subst{!D_1}{p_1}, \dots,
-          \subst{!D_n}{p_n}}$ is $\lfalse$.}}{}
+          \subst{!D_n}{p_n}}$ 是 $\lfalse$。}}{}
     \tagitem{prvTrue}{\indcase{!A}{\ltrue}{%
         $\SSubst{\indfrm}{\subst{!D_1}{p_1}, \dots,
-          \subst{!D_n}{p_n}}$ is $\ltrue$.}}{}
+          \subst{!D_n}{p_n}}$ 是 $\ltrue$。}}{}
     \item \indcase{!A}{q}{$\SSubst{\indfrm}{\subst{!D_1}{p_1}, \dots,
-        \subst{!D_n}{p_n}}$ is $q$, provided $q \not\ident p_i$ for $i
-      = 1$, \dots,~$n$.}
+        \subst{!D_n}{p_n}}$ 是 $q$，只要对所有 $i
+      = 1$、\dots、$n$ 均有 $q \not\ident p_i$。}
     \item \indcase{!A}{p_i}{$\SSubst{\indfrm}{\subst{!D_1}{p_1},
-        \dots, \subst{!D_n}{p_n}}$ is $!D_i$.}
+        \dots, \subst{!D_n}{p_n}}$ 是 $!D_i$。}
     \tagitem{prvNot}{\indcase{!A}{\lnot !B}{%
-        $\SSubst{\indfrm}{\subst{!D_1}{p_1}, \dots, \subst{!D_n}{p_n}}$ is
-        $\lnot \SSubst{!B}{\subst{!D_1}{p_1}, \dots, \subst{!D_n}{p_n}}$.}}{}
+        $\SSubst{\indfrm}{\subst{!D_1}{p_1}, \dots, \subst{!D_n}{p_n}}$ 是
+        $\lnot \SSubst{!B}{\subst{!D_1}{p_1}, \dots, \subst{!D_n}{p_n}}$。}}{}
     \tagitem{prvAnd}{\indcase{!A}{(!B \land
         !C)}{$\SSubst{\indfrm}{\subst{!D_1}{p_1}, \dots,
-          \subst{!D_n}{p_n}}$ is
+          \subst{!D_n}{p_n}}$ 是
         \[(\SSubst{!B}{\subst{!D_1}{p_1}, \dots, \subst{!D_n}{p_n}} \land
           \SSubst{!C}{\subst{!D_1}{p_1}, \dots, \subst{!D_n}{p_n}}).\]}}{}
     \tagitem{prvOr}{\indcase{!A}{(!B \lor
           !C)}{$\SSubst{\indfrm}{\subst{!D_1}{p_1}, \dots,
-          \subst{!D_n}{p_n}}$ is
+          \subst{!D_n}{p_n}}$ 是
         \[(\SSubst{!B}{\subst{!D_1}{p_1}, \dots, \subst{!D_n}{p_n}} \lor
           \SSubst{!C}{\subst{!D_1}{p_1}, \dots, \subst{!D_n}{p_n}}).\]}}{}
     \tagitem{prvIf}{\indcase{!A}{(!B \lif
           !C)}{$\SSubst{\indfrm}{\subst{!D_1}{p_1}, \dots,
-          \subst{!D_n}{p_n}}$ is
+          \subst{!D_n}{p_n}}$ 是
         \[(\SSubst{!B}{\subst{!D_1}{p_1}, \dots, \subst{!D_n}{p_n}} \lif
           \SSubst{!C}{\subst{!D_1}{p_1}, \dots, \subst{!D_n}{p_n}}).\]}}{}
     \tagitem{prvIf}{\indcase{!A}{(!B \liff
           !C)}{$\SSubst{\indfrm}{\subst{!D_1}{p_1}, \dots,
-          \subst{!D_n}{p_n}}$ is
+          \subst{!D_n}{p_n}}$ 是
         \[(\SSubst{!B}{\subst{!D_1}{p_1}, \dots, \subst{!D_n}{p_n}} \liff
           \SSubst{!C}{\subst{!D_1}{p_1}, \dots, \subst{!D_n}{p_n}}).\]}}{}
     \item \indcase{!A}{\Box !B}{%
-        $\SSubst{\indfrm}{\subst{!D_1}{p_1}, \dots, \subst{!D_n}{p_n}}$ is
+        $\SSubst{\indfrm}{\subst{!D_1}{p_1}, \dots, \subst{!D_n}{p_n}}$ 是
         $\Box
         \SSubst{!B}{\subst{!D_1}{p_1}, \dots, \subst{!D_n}{p_n}}.$}
     \tagitem{prvDiamond}{\indcase{!A}{\Diamond !B}{%
-        $\SSubst{\indfrm}{\subst{!D_1}{p_1}, \dots, \subst{!D_n}{p_n}}$ is
+        $\SSubst{\indfrm}{\subst{!D_1}{p_1}, \dots, \subst{!D_n}{p_n}}$ 是
         $\Diamond
         \SSubst{!B}{\subst{!D_1}{p_1}, \dots, \subst{!D_n}{p_n}}.$}}{}
   \end{enumerate}
-  The !!{formula} $\SSubst{!A}{\subst{!D_1}{p_1}, \dots,
-    \subst{!D_n}{p_n}}$ is called a \emph{substitution instance}
-  of~$!A$.
+  公式 $\SSubst{!A}{\subst{!D_1}{p_1}, \dots,
+    \subst{!D_n}{p_n}}$ 称为 $!A$ 的一个\emph{代入实例}。
 \end{defn}
 
 \begin{ex}
-  Suppose $!A$ is $p_1 \lif \Box(p_1 \land p_2)$, $!D_1$ is
-  $\Diamond(p_2 \lif p_3)$ and $!D_2$ is $\lnot\Box p_1$. Then
-  $\SSubst{!A}{\subst{!D_1}{p_1}, \subst{!D_2}{p_2}}$ is
+  设 $!A$ 是 $p_1 \lif \Box(p_1 \land p_2)$，$!D_1$ 是
+  $\Diamond(p_2 \lif p_3)$，$!D_2$ 是 $\lnot\Box p_1$。那么
+  $\SSubst{!A}{\subst{!D_1}{p_1}, \subst{!D_2}{p_2}}$ 是
   \begin{align*}
     \Diamond(p_2 \lif p_3) &
     \lif \Box(\Diamond(p_2 \lif p_3) \land \lnot\Box p_1)
@@ -86,12 +78,12 @@ therefore is useful to define the notion precisely.
       the same as iterated substitution, e.g., compare
       $\SSubst{!A}{\subst{!D_1}{p_1}, \subst{!D_2}{p_2}}$ above with
       $\Subst{(\Subst{!A}{!D_1}{p_1})}{!D_2}{p_2}$, which is:}
-    \Diamond(p_2 \lif p_3) & \Subst{\lif \Box(\Diamond(p_2 \lif p_3) \land p_2)}{\lnot\Box p_1}{p_2}, \text{ i.e.,}\\
+    \Diamond(p_2 \lif p_3) & \Subst{\lif \Box(\Diamond(p_2 \lif p_3) \land p_2)}{\lnot\Box p_1}{p_2}, \text{ 即，}\\
     \Diamond(\lnot\Box p_1 \lif p_3) &
     \lif \Box(\Diamond(\lnot\Box p_1
     \lif p_3) \land \lnot\Box p_1)\\
     \intertext{and with $\Subst{(\Subst{!A}{!D_2}{p_2})}{!D_1}{p_1}$:}
-    p_1 & \lif \Subst{\Box(p_1 \land \lnot\Box p_1)}{\Diamond(p_2 \lif p_3)}{p_1}, \text{ i.e.,}\\
+    p_1 & \lif \Subst{\Box(p_1 \land \lnot\Box p_1)}{\Diamond(p_2 \lif p_3)}{p_1}, \text{ 即，}\\
     \Diamond(p_2 \lif p_3) &
     \lif \Box(\Diamond(p_2
     \lif p_3) \land \lnot\Box\Diamond(p_2 \lif p_3)).

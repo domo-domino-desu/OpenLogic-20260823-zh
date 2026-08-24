@@ -8,66 +8,37 @@
 
 \olfileid{mvl}{seq}{rul}
 
-\olsection{Rules and \usetoken{P}{derivation}}
+\olsection{规则与 \usetoken{P}{derivation}}
 
-For the following, let $\Gamma, \Delta, \Pi, \Lambda$ represent finite
-sequences of !!{sentence}s.
+在以下讨论中，令 $\Gamma, \Delta, \Pi, \Lambda$ 表示有穷的语句序列。
 
-\begin{defn}[Sequent]
-An \emph{$n$-sided sequent} is an expression of the form
+\begin{defn}[相继式]
+一个\emph{$n$ 边相继式}是形如
 \[
 \Gamma_1 \nSequent \dots \nSequent \Gamma_n
 \]
-where each $\Gamma_1$ is a finite (possibly empty) sequences of
-!!{sentence}s of the language~$\Lang L$.
+的表达式，其中每个 $\Gamma_1$ 是语言~$\Lang L$ 中语句的一个有穷（可能为空）序列。
 \end{defn}
 
-\begin{defn}[Initial Sequent]
-An \emph{$n$-sided initial sequent} is an $n$-sided sequent of the
-form $!A \nSequent \dots \nSequent !A$ for any !!{sentence} $!A$ in
-the language.
+\begin{defn}[初始相继式]
+对于语言中的任意语句 $!A$，形如 $!A \nSequent \dots \nSequent !A$ 的 $n$ 边相继式称为\emph{$n$ 边初始相继式}。
 
-If the language contains a $0$-place connective~$\star$, i.e., a
-propositional constant, then we also take the sequent $\dots \nSequent
-\star \nSequent \dots$ where $\star$ appears in the space for the truth
-value associated with~$\tf{\star} \in V$, and is empty otherwise. 
+如果语言包含一个 0 元联结词~$\star$，即一个命题常项，那么我们也把形如 $\dots \nSequent \star \nSequent \dots$ 的相继式作为初始相继式，其中 $\star$ 出现在与其真值~$\tf{\star} \in V$ 相关联的位置上，而其他位置为空。
 \end{defn}
 
-For each connective of an $n$-valued logic~$\Log{L}$, there is a
-logical rule for each truth value that this connective can take
-in~$\Log{L}$. !!^{derivation}s in an $n$-sided sequent calculus
-for~$\Log{L}$ are trees of sequents, where the topmost sequents are
-initial sequents, and if a sequent stands below one or more other
-sequents, it must follow correctly by a rule of inference for the
-connectives of~$\Log{L}$.
+对于 $n$ 值逻辑~$\Log{L}$ 的每个联结词，该联结词在~$\Log{L}$ 中可取的每个真值都对应一条逻辑规则。在 $\Log{L}$ 的 $n$ 边相继式演算中，推导是由相继式构成的树，其最顶层的相继式是初始相继式；并且，若一个相继式位于一个或多个其他相继式之下，则它必须是由 $\Log{L}$ 联结词的某条推理规则正确生成的。
 
-\begin{defn}[Theorems]
-!!^a{sentence}~$!A$ is a \emph{theorem} of an $n$-valued
-logic~$\Log{L}$ if there is !!a{derivation}
-of the $n$-sequent containing $!A$ in each position corresponding to a
-designated truth value of~$\Log{L}$.  We write $\Proves[\Log{L}]
-!A$ if $!A$ is a theorem and $\Proves/[\Log{L}] !A$ if it is not.
+\begin{defn}[定理]
+如果存在一个 $n$ 边相继式的推导，使得该相继式在每个对应于 $\Log{L}$ 的指定真值的位置上都包含 $!A$，则称 $n$ 值逻辑~$\Log{L}$ 中的语句~$!A$ 为 $\Log{L}$ 的一个\emph{定理}。
+若 $!A$ 是定理，则记作 $\Proves[\Log{L}] !A$；否则记作 $\Proves/[\Log{L}] !A$。
 \end{defn}
 
-\begin{defn}[!!^{derivability}]
-!!^a{sentence}~$!A$ is \emph{!!{derivable} from} a set of
-!!{sentence}s~$\Gamma$ in an $n$-valued logic~$\Log{L}$, $\Gamma
-\Proves[\Log{L}] !A$, iff there is a finite subset~$\Gamma_0 \subseteq
-\Gamma$ and a sequence $\Gamma_0'$ of the !!{sentence}s in~$\Gamma_0$
-such that the following sequent has  !!a{derivation}:
-\[ \Lambda_1 \nSequent \dots \nSequent \Lambda_n \] where $\Lambda_i$
-is $!A$ if position $i$ corresponds to a designated truth value, and
-$\Gamma_0'$otherwise. If $!A$ is not !!{derivable} from $\Gamma$ we
-write $\Gamma \Proves/ !A$.
+\begin{defn}[可推导性]
+在 $n$ 值逻辑~$\Log{L}$ 中，语句~$!A$ \emph{可从}语句集合~$\Gamma$ \emph{推导}，记作 $\Gamma \Proves[\Log{L}] !A$，当且仅当存在 $\Gamma$ 的一个有穷子集~$\Gamma_0 \subseteq \Gamma$ 以及 $\Gamma_0$ 中语句的一个序列 $\Gamma_0'$，使得如下相继式存在推导：
+\[ \Lambda_1 \nSequent \dots \nSequent \Lambda_n \]
+其中 $\Lambda_i$ 在位置 $i$ 对应于指定真值时为 $!A$，否则为 $\Gamma_0'$。如果 $!A$ 不能从 $\Gamma$ 推导，则记作 $\Gamma \Proves/ !A$。
 \end{defn}
 
-For instance, $3$-valued \L ukasiewicz logic has a $3$-sided sequent
-calculus. In a $3$-sided sequent $\Gamma \nSequent \Pi \nSequent
-\Delta$, $\Gamma$ corresponds to~$\False$, $\Delta$ to~$\True$, and
-$\Pi$ to~$\Undef$.  Axioms are $!A \nSequent !A \nSequent !A$. Since
-only $\True$ is designated, $\Gamma \Proves[\LogLuk[3]] !A$ iff the
-sequent $\Gamma \nSequent \Gamma \nSequent !A$ has !!a{derivation}.
-(If $\Undef$ were also designated, we would need !!a{derivation} of
-$\Gamma \nSequent !A \nSequent !A$.)
+例如，三值 Łukasiewicz（卢卡西维茨）逻辑有一个三边相继式演算。在三边相继式 $\Gamma \nSequent \Pi \nSequent \Delta$ 中，$\Gamma$ 对应于~$\False$，$\Delta$ 对应于~$\True$，而 $\Pi$ 对应于~$\Undef$。公理是 $!A \nSequent !A \nSequent !A$。由于只有 $\True$ 是指定真值，因此 $\Gamma \Proves[\LogLuk[3]] !A$ 当且仅当相继式 $\Gamma \nSequent \Gamma \nSequent !A$ 存在推导。（如果 $\Undef$ 也是指定真值，我们就需要 $\Gamma \nSequent !A \nSequent !A$ 的推导。）
 
 \end{document}

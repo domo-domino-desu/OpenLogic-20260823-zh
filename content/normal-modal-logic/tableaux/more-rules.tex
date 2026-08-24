@@ -8,10 +8,9 @@
 
 \olfileid{nml}{tab}{mru}
 
-\olsection{Rules for Other Accessibility Relations}
+\olsection{其他可达关系的规则}
 
-In order to deal with logics determined by special accessibility
-relations, we consider the additional rules in \olref{tab:more-rules}.
+为了处理由特殊可达关系所确定的逻辑，我们在 \olref{tab:more-rules} 中给出以下附加规则。
 
 \begin{table}
   \begin{center}
@@ -72,8 +71,8 @@ relations, we consider the additional rules in \olref{tab:more-rules}.
       \DisplayProof}{}
     \\
     \iftag{notprvBox,notprvDiamond}
-         {$\sigma.n$ is used}
-         {$\sigma.n$ is used & $\sigma.n$ is used}
+         {其中~$\sigma.n$ 是已使用的}
+         {其中~$\sigma.n$ 是已使用的 & 其中~$\sigma.n$ 是已使用的}
     \\[1ex]
     \hline
     \iftag{prvBox}{
@@ -91,75 +90,74 @@ relations, we consider the additional rules in \olref{tab:more-rules}.
     \hline
     \end{tabular}
   \end{center}
-  \caption{More modal rules.}
+  \caption{更多模态规则。}
   \ollabel{tab:more-rules}
 \end{table}
 
-Adding these rules results in systems that are sound and complete for
-the logics given in \olref{tab:logics-rules}.
+加上这些规则之后，所得到的系统对于 \olref{tab:logics-rules} 中给出的这些逻辑而言是可靠且完备的。
 
 \begin{table}
   \begin{center}
     \begin{tabular}{lll}
       \hline
-      Logic & $R$ is \dots & Rules\\
+      逻辑 & $R$ 是\dots & 规则\\
       \hline
-      $\Log{T} = \Log{KT}$ & reflexive &
+      $\Log{T} = \Log{KT}$ & 自反的 &
       \iftag{prvBox}{T$\Box$}{}%
       \iftag{notprvBox,notprvDiamond}{}{, }%
       \iftag{prvDiamond}{T$\Diamond$}{}
       \\ \hline
-      $\Log{D} = \Log{KD}$ & serial &
+      $\Log{D} = \Log{KD}$ & 序列的 &
       \iftag{prvBox}{D$\Box$}{}%
       \iftag{notprvBox,notprvDiamond}{}{, }%
       \iftag{prvDiamond}{D$\Diamond$}{}
       \\ \hline
-      $\Log{K4}$ & transitive &
+      $\Log{K4}$ & 传递的 &
       \iftag{prvBox}{4$\Box$}{}%
       \iftag{notprvBox,notprvDiamond}{}{, }%
       \iftag{prvDiamond}{4$\Diamond$}{}
       \\ \hline
-      $\Log{B} = \Log{KTB}$ & reflexive, &
+      $\Log{B} = \Log{KTB}$ & 自反的， &
       \iftag{prvBox}{T$\Box$}{}%
       \iftag{notprvBox,notprvDiamond}{}{, }%
       \iftag{prvDiamond}{T$\Diamond$}{}\\
-      & symmetric &
+      & 对称的 &
       \iftag{prvBox}{B$\Box$}{}%
       \iftag{notprvBox,notprvDiamond}{}{, }%
       \iftag{prvDiamond}{B$\Diamond$}{}
       \\ \hline
-      $\Log{S4} = \Log{KT4}$ & reflexive, &
+      $\Log{S4} = \Log{KT4}$ & 自反的， &
       \iftag{prvBox}{T$\Box$}{}%
       \iftag{notprvBox,notprvDiamond}{}{, }%
       \iftag{prvDiamond}{T$\Diamond$}{},\\
-      & transitive &
+      & 传递的 &
       \iftag{prvBox}{4$\Box$}{}%
       \iftag{notprvBox,notprvDiamond}{}{, }%
       \iftag{prvDiamond}{4$\Diamond$}{}
       \\ \hline
-      $\Log{S5} = \Log{KT4B}$ & reflexive, &
+      $\Log{S5} = \Log{KT4B}$ & 自反的， &
       \iftag{prvBox}{T$\Box$}{}%
       \iftag{notprvBox,notprvDiamond}{}{, }%
       \iftag{prvDiamond}{T$\Diamond$}{},\\
-      & transitive, &
+      & 传递的， &
       \iftag{prvBox}{4$\Box$}{}%
       \iftag{notprvBox,notprvDiamond}{}{, }%
       \iftag{prvDiamond}{4$\Diamond$}{},\\
-      &  euclidean &
+      &  欧几里得的 &
       \iftag{prvBox}{4r$\Box$}{}%
       \iftag{notprvBox,notprvDiamond}{}{, }%
       \iftag{prvDiamond}{4r$\Diamond$}{}
       \\ \hline
     \end{tabular}
   \end{center}
-  \caption{!!^{tableau} rules for various modal logics.}
+  \caption{各种模态逻辑的真值树规则。}
   \ollabel{tab:logics-rules}
 \end{table}
 
 
 \begin{ex}
-  We give a closed tableau that shows $\Log{S5} \Proves \Ax{5}$, i.e.,
-  $\Box!A \lif \Box\Diamond!A$.
+  下面给出一棵闭合的真值树，说明 $\Log{S5} \Proves \Ax{5}$，即
+  $\Box!A \lif \Box\Diamond!A$。
   \begin{oltableau}
     [\pFmla{\False}{\Box\formula{A} \lif \Box\Diamond \formula{A}}{1},
       just = \TAss
@@ -184,7 +182,7 @@ the logics given in \olref{tab:logics-rules}.
 \end{ex}
 
 \begin{prob}
-Give closed !!{tableau}s that show the following:
+给出闭合的真值树，说明以下各式成立：
   \begin{enumerate}
   \item $\Log{KT5} \Proves \Ax{B}$;
   \item $\Log{KT5} \Proves \Ax{4}$;

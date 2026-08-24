@@ -7,81 +7,71 @@
 \begin{document}
 
 \olfileid{lam}{syn}{eta}
-\olsection{$\eta$-conversion}
+\olsection{$\eta$-转换}
 
-There is another relation on $\lambda$ terms. In \olref[fv]{sec} we
-used the example $\lambd[x][(fx)]$, which accepts an argument and
-applies $f$ to it.  In other words, it is the same function as~$f$:
-$\lambd[x][(fx)]N$ and $fN$ both reduce to~$fN$.  We use
-$\eta$-reduction (and $\eta$-extension) to capture this idea.
+在 $\lambda$ 项上还存在另一种关系。在 \olref[fv]{sec} 节中，
+我们使用了 $\lambd[x][(fx)]$ 这个例子，它接受一个自变元并对之应用 $f$。
+换句话说，它与~$f$ 是同一个函数：$\lambd[x][(fx)]N$ 和 $fN$ 都归约到~$fN$。
+我们用 $\eta$-归约（以及 $\eta$-扩张）来刻画这一思想。
 
-\begin{defn}[$\eta$-contraction, $\eredone$]
+\begin{defn}[$\eta$-收缩, $\eredone$]
   \ollabel{defn:beredone}
-  \emph{$\eta$-contraction} ($\eredone$) is the smallest compatible relation
-  on terms satisfying the following condition:
+  \emph{$\eta$-收缩} ($\eredone$) 是指项上满足以下条件的最小兼容关系：
   \[
-    \lambd[x][M x] \eredone M \text{ provided } x \notin FV(M)
+    \lambd[x][M x] \eredone M \text{条件是} x \notin FV(M)
   \]
 \end{defn}
 
-\begin{defn}[$\beta\eta$-reduction, $\bered$] \ollabel{defn:bered}
-  \emph{$\beta\eta$-reduction} ($\bered$) is the smallest reflexive,
-  transitive relation on terms containing $\bredone$ and $\eredone$,
-  i.e., the rules of reflexivity and transitive plus the following two
-  rules:
+\begin{defn}[$\beta\eta$-归约, $\bered$] \ollabel{defn:bered}
+  \emph{$\beta\eta$-归约} ($\bered$) 是指项上包含 $\bredone$ 和 $\eredone$ 的最小自反且传递的关系，
+  即自反性、传递性规则加上以下两条规则：
   \begin{enumerate}
-  \item If $M \bredone N$ then $M \bered N$. \ollabel{defn:bered3}
-  \item If $M \eredone N$ then $M \bered N$. \ollabel{defn:bered4}
+  \item 若 $M \bredone N$ 则 $M \bered N$。\ollabel{defn:bered3}
+  \item 若 $M \eredone N$ 则 $M \bered N$。\ollabel{defn:bered4}
   \end{enumerate}
     
 \end{defn}
 
 \begin{defn}
-  We extend the equivalence relation $\equal$ with the $\eta$-conversion rule:
+  我们用 $\eta$-转换规则来扩展等价关系 $\equal$：
   \[
   \lambd[x][f x] \equal f
   \]
-  and denote the extended relation as $\equal[\eta]$.
+  并将扩展后的关系记为 $\equal[\eta]$。
 \end{defn}
 
-$\eta$-equivalence is important because it is related to extensionality
-of lambda terms:
+$\eta$等价之所以重要，是因为它与 $\lambda$ 项的外延性有关：
 
-\begin{defn}[Extensionality]
-  We extend the equivalence relation $\equal$ with the (\ext) rule:
+\begin{defn}[外延性]
+  我们用 (\ext) 规则来扩展等价关系 $\equal$：
   \begin{center}
-  If $Mx \equal Nx$ then $M \equal N$, provided $x \notin FV(MN)$.
+  若 $Mx \equal Nx$ 则 $M \equal N$，条件是 $x \notin FV(MN)$。
   \end{center}
-  and denote the extended relation as $\equal[\ext]$.
+  并将扩展后的关系记为 $\equal[\ext]$。
 \end{defn}
 
-Roughly speaking, the rule states that two terms, viewed as functions,
-should be considered equal if they behave the same for the same
-argument.
+粗略地说，这条规则表明，若将两个项视为函数，且它们对相同的自变元表现相同，则应被视为相等。
 
-We now prove that the $\eta$ rule provides exactly the extensionality,
-and nothing else.
+现在我们来证明，$\eta$ 规则恰好提供了外延性，且不提供其他内容。
 
 \begin{thm}
-  $M \equal[\ext] N$ if and only if $M \equal[\eta] N$.
+  $M \equal[\ext] N$ 当且仅当 $M \equal[\eta] N$。
 \end{thm}
 
 \begin{proof}
-  First we prove that $\equal[\eta]$ is closed under the
-  extensionality rule. That is, $ext$ rule doesn't add anything to
-  $\equal[\eta]$. We then have $\equal[\eta]$ contains $\equal[\ext]$,
-  and if $M \equal[\ext] N$, then $M \equal[\eta] N$.
+  首先我们证明 $\equal[\eta]$ 在外延性规则下是封闭的。
+  也就是说，\ext 规则不会对 $\equal[\eta]$ 增加任何新内容。
+  这样一来，我们就知道 $\equal[\eta]$ 包含 $\equal[\ext]$，
+  并且如果 $M \equal[\ext] N$，那么 $M \equal[\eta] N$。
 
-  To prove $\equal[\eta]$ is closed under \ext, note that for any $M
-  \equal N$ derived by the \ext{} rule, we have $Mx
-  \equal[\eta] Nx$ as premise. Then we have $\lambd[x][Mx]
-  \equal[\eta] \lambd[x][Nx]$ by a rule of $\equal$, applying $\eta$
-  on both side gives us $M \equal[\eta] N$.
+  为证 $\equal[\eta]$ 在 \ext 规则下封闭，注意到对于由 \ext 规则推导出的任何 $M \equal N$，
+  其前提是 $Mx \equal[\eta] Nx$。于是根据 $\equal$ 的规则有 $\lambd[x][Mx]
+  \equal[\eta] \lambd[x][Nx]$，对两边应用 $\eta$
+  便得到 $M \equal[\eta] N$。
 
-  Similarly we prove that the $\eta$ rule is contained in
-  $\equal[ext]$. For any $\lambd[x][Mx]$ and $M$ with $x \notin
-  FV(M)$, we have that $(\lambd[x][Mx])x \equal[\ext] Mx$,
-  giving us $\lambd[x][Mx] \equal[\ext] M$ by the \ext{} rule.
+  类似地，我们证明 $\eta$ 规则包含在 $\equal[\ext]$ 中。
+  对于任何满足 $x \notin FV(M)$ 的 $\lambd[x][Mx]$ 和 $M$，我们有 $(\lambd[x][Mx])x \equal[\ext] Mx$，
+  于是通过 \ext 规则得到 $\lambd[x][Mx] \equal[\ext] M$。
 \end{proof}
 
 \end{document}

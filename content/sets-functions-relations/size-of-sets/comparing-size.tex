@@ -8,143 +8,89 @@
 
 \olfileid{sfr}{siz}{car}
 
-\olsection{Sets of Different Sizes, and Cantor's Theorem}
+\olsection{不同大小的集合与康托尔定理}
 
 \begin{explain}
-We have offered a precise statement of the idea that two sets have the
-same size. We can also offer a precise statement of the idea that one
-set is smaller than another. Our definition of ``is smaller than (or
-equinumerous)'' will require, instead of !!a{bijection} between the
-sets, !!a{injection} from the first set to the second. If such a
-function exists, the size of the first set is less than or equal to
-the size of the second. Intuitively, !!a{injection} from one set to
-another guarantees that the range of the function has at least as many
-!!{element}s as the domain, since no two !!{element}s of the domain
-map to the same !!{element} of the range.
+我们已经给出了两个集合“大小相同”这一概念的精确定义。
+我们同样可以给出“一个集合比另一个小”这一概念的精确定义。
+我们对“小于（或等势）”的定义，需要的不是两个集合之间的双射，
+而是从第一个集合到第二个集合的单射。
+如果这样的函数存在，那么第一个集合的大小就小于或等于第二个集合的大小。
+直观上，从一个集合到另一个集合的单射保证了该函数的值域至少和定义域包含同样多的元素，
+因为定义域中没有两个元素映射到值域中的同一个元素。
 \end{explain}
 
 \begin{defn}
-$A$ is \emph{no larger than}~$B$, written $\cardle{A}{B}$, iff there
-is !!a{injection} $f \colon A \to B$.
+$A$ \emph{不大于}~$B$，记作 $\cardle{A}{B}$，当且仅当存在单射 $f \colon A \to B$。
 \end{defn}
 
-It is clear that this is a reflexive and transitive relation, but that
-it is not symmetric (this is left as an exercise). We can also
-introduce a notion, which states that one set is (strictly) smaller
-than another. 
+显然，这是一个自反且传递的关系，但不是对称的（留作练习）。
+我们还可以引入一个概念，用以表明一个集合（严格地）小于另一个集合。
 
 \begin{defn}
-$A$ is \emph{smaller than}~$B$, written $\cardless{A}{B}$, iff there
-is !!a{injection}~$f\colon A \to B$ but no !!{bijection}~$g\colon A
-\to B$, i.e., $\cardle{A}{B}$ and $\cardneq{A}{B}$.
+$A$ \emph{小于}~$B$，记作 $\cardless{A}{B}$，当且仅当存在单射~$f\colon A \to B$ 但不存在双射~$g\colon A
+\to B$，即 $\cardle{A}{B}$ 且 $\cardneq{A}{B}$。
 \end{defn}
 
-It is clear that this relation is irreflexive
-and transitive. (This is left as an exercise.) Using this notation, we
-can say that a set $A$ is !!{enumerable} iff $\cardle{A}{\Nat}$, and
-that $A$ is !!{nonenumerable} iff $\cardless{\Nat}{A}$. This allows us
-to restate
+显然，该关系是非自反且传递的。（这也留作练习。）使用这一记号，我们可以说 $A$ 是可数的当且仅当 $\cardle{A}{\Nat}$，而 $A$ 是不可数的当且仅当 $\cardless{\Nat}{A}$。这使我们可以将
 \oliflabeldef{sfr:siz:nen-alt:thm:nonenum-pownat}{%
 \olref[sfr][siz][nen-alt]{thm:nonenum-pownat}
-as the observation that
+重述为如下结论：
 $\cardless{\Nat}{\Pow{\Nat}}$}{%
 \olref[sfr][siz][nen]{thm:nonenum-pownat}
-as the observation that $\cardless{\PosInt}{\Pow{\PosInt}}$}. In fact,
-\citet{Cantor1892} proved that this last point is \emph{perfectly
-general}:
+重述为如下结论：$\cardless{\PosInt}{\Pow{\PosInt}}$}。
+事实上，\citet{Cantor1892} 证明了最后这一点具有\emph{完全的一般性}：
 
 \begin{thm}[Cantor]\ollabel{thm:cantor}
-$\cardless{A}{\Pow{A}}$, for any set $A$.
+对任意集合 $A$，$\cardless{A}{\Pow{A}}$。
 \end{thm}
 
 \begin{proof}
-The map $f(x) = \{x\}$ is !!a{injection} $f \colon A \to \Pow{A}$,
-since if $x \neq y$, then also $\{x\} \neq \{y\}$ by extensionality,
-and so $f(x) \neq f(y)$. So we have that $\cardle{A}{\Pow{A}}$. 
+映射 $f(x) = \{x\}$ 是一个单射 $f \colon A \to \Pow{A}$，因为若 $x \neq y$，则由外延性原理亦有 $\{x\} \neq \{y\}$，从而 $f(x) \neq f(y)$。因此我们有 $\cardle{A}{\Pow{A}}$。
 
 \begin{editorial}
-We present the slow proof if \olref[nen]{sec} is
-present, otherwise a faster proof matching \olref[nen-alt]{sec}.
+如果存在 \olref[nen]{sec}，我们给出慢速证明；否则给出与 \olref[nen-alt]{sec} 匹配的快速证明。
 \end{editorial}
 
 \oliflabeldef{sfr:siz:nen:sec}{% 
-  We will now show that there cannot be !!a{surjective} function~$g\colon A \to
-  \Pow{A}$, let alone !!a{bijective} one, and hence that
-  $\cardneq{A}{\Pow{A}}$. For suppose that $g\colon A \to \Pow{A}$.
-  Since $g$ is total, every $x \in A$ is mapped to a subset $g(x)
-  \subseteq A$. We can show that $g$ cannot be surjective. To do this, we
-  define a subset~$\overline{A} \subseteq A$ which by definition cannot be in the
-  range of~$g$. Let
+  现在我们证明不可能存在满射函数~$g\colon A \to \Pow{A}$，更不用说双射了，从而 $\cardneq{A}{\Pow{A}}$。
+  假设 $g\colon A \to \Pow{A}$。
+  由于 $g$ 是全函数，每个 $x \in A$ 都映射到某个子集 $g(x) \subseteq A$。
+  我们来证明 $g$ 不可能是满射。为此，定义子集~$\overline{A} \subseteq A$，由其定义可知它不可能在~$g$ 的值域中。令
   \[
   \overline{A} = \Setabs{x \in A}{x \notin g(x)}.
   \]
-  Since $g(x)$ is defined for all $x \in A$, $\overline{A}$ is clearly
-  a well-defined subset of~$A$.  But, it cannot be in the range
-  of~$g$. Let $x \in A$ be arbitrary, we will show that $\overline{A} \neq
-  g(x)$.  If $x \in g(x)$, then it does not satisfy $x \notin g(x)$,
-  and so by the definition of~$\overline{A}$, we have $x \notin
-  \overline{A}$.  If $x \in \overline{A}$, it must satisfy the
-  defining property of~$\overline{A}$, i.e., $x \in A$ and $x \notin
-  g(x)$. Since $x$ was arbitrary, this shows that for each $x \in
-  \overline{A}$, $x \in g(x)$ iff $x \notin \overline{A}$, and so
-  $g(x) \neq \overline{A}$.  In other words, $\overline{A}$ cannot be
-  in the range of~$g$, contradicting the assumption that~$g$ is
-  surjective.}{It remains to show that $\cardneq{A}{\Pow{A}}$. For
-  reductio, suppose $\cardeq{A}{\Pow{A}}$, i.e., there is some
-  !!{bijection} $g \colon A \to \Pow{A}$. Now consider:
+  由于 $g(x)$ 对所有 $x \in A$ 均有定义，$\overline{A}$ 显然是~$A$ 的一个良定义的子集。
+  但它不可能在~$g$ 的值域中。任取 $x \in A$，我们证明 $\overline{A} \neq g(x)$。
+  若 $x \in g(x)$，则它不满足 $x \notin g(x)$，因而根据~$\overline{A}$ 的定义，有 $x \notin \overline{A}$。
+  若 $x \in \overline{A}$，则它必须满足~$\overline{A}$ 的定义性质，即 $x \in A$ 且 $x \notin g(x)$。
+  由于 $x$ 是任取的，这表明对每个 $x \in A$，$x \in g(x)$ 当且仅当 $x \notin \overline{A}$，故 $g(x) \neq \overline{A}$。
+  换言之，$\overline{A}$ 不可能在~$g$ 的值域中，这与~$g$ 为满射的假设相矛盾。}{还需证明 $\cardneq{A}{\Pow{A}}$。用归谬法，假设 $\cardeq{A}{\Pow{A}}$，即存在某个双射 $g \colon A \to \Pow{A}$。现在考虑：
   \[
     D = \Setabs{x \in A}{x \notin g(x)}
   \]
-  Note that $D \subseteq A$, so that $D \in \Pow{A}$. Since $g$ is
-  !!a{bijection}, there is some $y \in A$ such that $g(y) = D$. But
-  now we have:
+  注意 $D \subseteq A$，因此 $D \in \Pow{A}$。由于 $g$ 是双射，存在某个 $y \in A$ 使得 $g(y) = D$。但现在我们有：
   \[
-    y \in g(y) \text{ iff } y \in D \text{ iff } y \notin g(y).
+    y \in g(y) \text{ 当且仅当 } y \in D \text{ 当且仅当 } y \notin g(y).
   \]
-  This is a contradiction; so $\cardneq{A}{\Pow{A}}$.}{}
+  得出矛盾；因此 $\cardneq{A}{\Pow{A}}$。}{}
 \end{proof}
 
 \begin{explain}
-\oliflabeldef{sfr:siz:nen:thm:nonenum-pownat}{It's instructive to
-  compare the proof of \olref{thm:cantor} to that of
-  \olref[nen]{thm:nonenum-pownat}. There we showed that for any list
-  $Z_1$, $Z_2$, \dots, of subsets of~$\PosInt$ one can construct a
-  set~$\overline{Z}$ of numbers guaranteed not to be on the list. It
-  was guaranteed not to be on the list because, for every $n \in
-  \PosInt$, $n \in Z_n$ iff $n \notin \overline{Z}$. This way, there
-  is always some number that is !!a{element} of one of $Z_n$ or
-  $\overline{Z}$ but not the other. We follow the same idea here,
-  except the indices~$n$ are now !!{element}s of~$A$ instead
-  of~$\PosInt$. The set $\overline{A}$ is defined so that it is
-  different from~$g(x)$ for each $x \in A$, because $x \in g(x)$ iff
-  $x \notin \overline{A}$. Again, there is always !!a{element} of~$A$
-  which is !!a{element} of one of $g(x)$ and $\overline{A}$ but not
-  the other. And just as $\overline{Z}$ therefore cannot be on the
-  list $Z_1$, $Z_2$, \dots, $\overline{A}$ cannot be in the range
-  of~$g$.}{}
+\oliflabeldef{sfr:siz:nen:thm:nonenum-pownat}{将 \olref{thm:cantor} 的证明与
+  \olref[nen]{thm:nonenum-pownat} 的证明加以比较颇具启发意义。在那里我们证明了，对于 $\PosInt$ 的任何子集列表 $Z_1$, $Z_2$, \dots，都能构造出一个集合~$\overline{Z}$，保证它不在该列表中。之所以能保证这一点，是因为对于每个 $n \in
+  \PosInt$，$n \in Z_n$ 当且仅当 $n \notin \overline{Z}$。这样，总存在某个数，它属于 $Z_n$ 与 $\overline{Z}$ 之一，而不属于另一个。我们在这里遵循同样的思想，只不过现在的索引~$n$ 是~$A$ 的元素而非~$\PosInt$ 的元素。集合 $\overline{A}$ 的定义保证了对每个 $x \in A$，它都不同于~$g(x)$，因为 $x \in g(x)$ 当且仅当 $x \notin \overline{A}$。同样地，总存在~$A$ 的某个元素，它属于 $g(x)$ 与 $\overline{A}$ 之一，而不属于另一个。正如 $\overline{Z}$ 因此不可能出现在列表 $Z_1$, $Z_2$, \dots 中一样，$\overline{A}$ 也不可能在~$g$ 的值域中。}{}
 
-\oliflabeldef{sfr:siz:nen-alt:thm:nonenum-pownat}{It's instructive to
-  compare the proof of \olref{thm:cantor} to that of
-  \olref[nen-alt]{thm:nonenum-pownat}. There we showed that for any
-  list $N_0$, $N_1$, $N_2$, \dots, of subsets of~$\Nat$ we can construct a
-  set~$D$ of numbers guaranteed not to be on the list. It was
-  guaranteed not to be on the list because $n \in N_n$ iff $n \notin
-  D$, for every $n \in \Nat$. We follow the same idea here, except the
-  indices~$n$ are now !!{element}s of~$A$ rather than of~$\Nat$. The
-  set $D$ is defined so that it is different from~$g(x)$ for each $x
-  \in A$, because $x \in g(x)$ iff $x \notin D$.}{}
+\oliflabeldef{sfr:siz:nen-alt:thm:nonenum-pownat}{将 \olref{thm:cantor} 的证明与
+  \olref[nen-alt]{thm:nonenum-pownat} 的证明加以比较颇具启发意义。在那里我们证明了，对于 $\Nat$ 的任何子集列表 $N_0$, $N_1$, $N_2$, \dots，都能构造出一个集合~$D$，保证它不在该列表中。之所以能保证这一点，是因为对于每个 $n \in \Nat$，$n \in N_n$ 当且仅当 $n \notin
+  D$。我们在这里遵循同样的思想，只不过现在的索引~$n$ 是~$A$ 的元素而非~$\Nat$ 的元素。集合 $D$ 的定义保证了对每个 $x \in A$，它都不同于~$g(x)$，因为 $x \in g(x)$ 当且仅当 $x \notin D$。}{}
 
-The proof is also worth comparing with the proof of Russell's Paradox,
-\olref[sfr][set][rus]{thm:russells-paradox}. Indeed, Cantor's Theorem was
-the inspiration for Russell's own paradox.
+这个证明也值得与 Russell（罗素）悖论（\olref[sfr][set][rus]{thm:russells-paradox}）的证明相比较。事实上，Cantor 定理正是 Russell 本人悖论的灵感来源。
 \end{explain}
 
 \begin{prob}
-  Show that there cannot be !!a{injection} $g\colon \Pow{A} \to
-  A$, for any set~$A$. Hint: Suppose $g\colon \Pow{A} \to A$ is
-  !!{injective}. Consider $D = \Setabs{g(B)}{B \subseteq A \text{ and
-  } g(B) \notin B}$. Let $x = g(D)$. Use the fact that $g$ is
-  !!{injective} to derive a contradiction. 
+  证明：对任意集合~$A$，都不可能存在单射 $g\colon \Pow{A} \to A$。提示：假设 $g\colon \Pow{A} \to A$ 是单射。考虑 $D = \Setabs{g(B)}{B \subseteq A \text{ and
+  } g(B) \notin B}$。令 $x = g(D)$。利用 $g$ 为单射这一事实导出矛盾。
 \end{prob}
 
 \end{document}

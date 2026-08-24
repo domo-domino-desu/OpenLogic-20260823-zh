@@ -7,84 +7,56 @@
 \begin{document}
 
 \olfileid{sfr}{set}{sub}
-\olsection{Subsets and Power Sets}
+\olsection{子集与幂集}
 
 \begin{explain}
-We will often want to compare sets. And one obvious kind of comparison
-one might make is as follows: \emph{everything in one set is in the
-other too}. This situation is sufficiently important for us to
-introduce some new notation.
+我们经常需要比较集合。一种显而易见的比较方式是：\emph{一个集合中的所有元素也都是另一个集合的元素}。这种情况十分重要，值得引入一些新记号。
 \end{explain}
 
-\begin{defn}[Subset]
-If every !!{element} of a set $A$ is also !!a{element} of~$B$, then we
-say that $A$ is a \emph{subset} of~$B$, and write $A \subseteq B$. If
-$A$ is not a subset of~$B$ we write $A \not\subseteq B$.
-If $A \subseteq B$ but $A \neq B$, we write $A \subsetneq B$ and say
-that $A$ is a \emph{proper subset} of $B$.
+\begin{defn}[子集]
+如果集合 $A$ 的每个元素都是 $B$ 的元素，那么我们称 $A$ 是 $B$ 的\emph{子集}，记作 $A \subseteq B$。如果 $A$ 不是 $B$ 的子集，记作 $A \not\subseteq B$。
+如果 $A \subseteq B$ 但 $A \neq B$，我们记作 $A \subsetneq B$，并称 $A$ 是 $B$ 的\emph{真子集}。
 \end{defn}
 
 \begin{ex}
-Every set is a subset of itself, and $\emptyset$ is a subset of every
-set. The set of natural even numbers is a subset of the set of natural
-numbers. Also, $\{ a, b \} \subseteq \{ a, b, c \}$. But $\{ a, b, e
-\}$ is not a subset of $\{ a, b, c \}$.
+每个集合都是它自身的子集，且 $\emptyset$ 是任何集合的子集。自然偶数集是自然数集的子集。此外，$\{ a, b \} \subseteq \{ a, b, c \}$。但是 $\{ a, b, e \}$ 不是 $\{ a, b, c \}$ 的子集。
 \end{ex}
 
 \begin{ex}
-The number $2$ is an !!{element} of the set of integers, whereas the
-set of even numbers is a subset of the set of integers. However, a set
-may happen to \emph{both} be !!a{element} and a subset of some other
-set, e.g., $\{0\} \in \{0, \{0\}\}$ and also $\{0\} \subseteq \{0,
-\{0\}\}$.
+数 $2$ 是整数集的\emph{元素}，而偶数集则是整数集的\emph{子集}。然而，一个集合可能\emph{同时}是另一个集合的元素和子集，例如 $\{0\} \in \{0, \{0\}\}$，以及 $\{0\} \subseteq \{0,
+\{0\}\}$。
 \end{ex}
 
-Extensionality gives a criterion of identity for sets: $A = B$ iff
-every !!{element} of~$A$ is also !!a{element} of~$B$ and vice versa.
-The definition of ``subset'' defines $A \subseteq B$ precisely as the
-first half of this criterion: every !!{element} of~$A$ is also
-!!a{element} of~$B$. Of course the definition also applies if we
-switch $A$ and $B$: that is, $B \subseteq A$ iff every !!{element}
-of~$B$ is also !!a{element} of~$A$. And that, in turn, is exactly the
-``vice versa'' part of extensionality. In other words, extensionality
-entails that sets are equal iff they are subsets of one another.
+外延性给出了集合的同一性标准：$A = B$ 当且仅当 $A$ 的每个元素也是 $B$ 的元素，反之亦然。
+“子集”的定义恰好将此标准的前半部分作为 $A \subseteq B$ 的定义：$A$ 的每个元素也是 $B$ 的元素。
+当然，如果我们交换 $A$ 和 $B$，该定义也适用：即 $B \subseteq A$ 当且仅当 $B$ 的每个元素也是 $A$ 的元素。而这恰好是外延性中“反之亦然”的部分。换言之，外延性意味着：两个集合相等当且仅当它们互为子集。
 
 \begin{prop}
-$A = B$ iff both $A \subseteq B$ and $B \subseteq A$.
+$A = B$ 当且仅当 $A \subseteq B$ 且 $B \subseteq A$。
 \end{prop}
 
-Now is also a good opportunity to introduce some further bits of
-helpful notation. In defining when $A$ is a subset of~$B$ we said that
-``every !!{element} of~$A$ is \dots,'' and filled the ``$\dots$'' with
-``!!a{element} of $B$''. But this is such a common \emph{shape} of
-expression that it will be helpful to introduce some formal notation
-for it.
+现在也是引入一些有用的辅助记号的好时机。在定义 $A$ 为 $B$ 的子集时，我们说“$A$ 的每个元素都是……”，并在“……”处填上了“$B$ 的一个元素”。但这种表达模式非常常见，为此引入形式记号将大有帮助。
 
 \begin{defn}\ollabel{forallxina}
-$(\forall x \in A)\phi$ abbreviates $\forall x(x \in A \lif
-\phi)$. Similarly, $(\exists x \in A)\phi$ abbreviates $\exists x(x
-\in A \land \phi)$. 
+$(\forall x \in A)\phi$ 是 $\forall x(x \in A \lif \phi)$ 的缩写。类似地，$(\exists x \in A)\phi$ 是 $\exists x(x \in A \land \phi)$ 的缩写。
 \end{defn}
 
-Using this notation, we can say that $A \subseteq B$ iff $(\forall
-x \in A)x \in B$. 
+使用这个记号，我们可以说 $A \subseteq B$ 当且仅当 $(\forall x \in A)x \in B$。
 
-Now we move on to considering a certain kind of set: the set of all
-subsets of a given set. 
+现在我们来考虑一种特定的集合：一个给定集合的所有子集构成的集合。
 
-\begin{defn}[Power Set]
-The set consisting of all subsets of a set~$A$ is called the
-\emph{power set of}~$A$, written $\Pow{A}$.
+\begin{defn}[幂集]
+由一个集合~$A$的所有子集构成的集合，称为~$A$的\emph{幂集}，记作 $\Pow{A}$。
   \[
     \Pow{A} = \Setabs{B}{B \subseteq A} 
   \]
 \end{defn}
 
 \begin{ex}
-What are all the possible subsets of $\{ a, b, c \}$? They are:
+$\{ a, b, c \}$ 的所有可能子集有哪些？它们是：
 $\emptyset$, $\{a \}$, $\{b\}$, $\{c\}$, $\{a, b\}$, $\{a, c\}$, $\{b,
-c\}$, $\{a, b, c\}$. The set of all these subsets is
-$\Pow{\{a,b,c\}}$:
+c\}$, $\{a, b, c\}$。所有这些子集构成的集合是
+$\Pow{\{a,b,c\}}$：
 \[
 \Pow{\{ a, b, c \}} = \{\emptyset, \{a \}, \{b\}, \{c\}, \{a, b\},
 \{b, c\}, \{a, c\}, \{a, b, c\}\}
@@ -92,12 +64,11 @@ $\Pow{\{a,b,c\}}$:
 \end{ex}
 
 \begin{prob}
-List all subsets of $\{a, b, c, d\}$.
+列出 $\{a, b, c, d\}$ 的所有子集。
 \end{prob}
 
 \begin{prob}
-Show that if $A$ has $n$ !!{element}s, then $\Pow{A}$ has $2^n$
-!!{element}s.
+证明：若 $A$ 有 $n$ 个元素，则 $\Pow{A}$ 有 $2^n$ 个元素。
 \end{prob}
 
 \end{document}

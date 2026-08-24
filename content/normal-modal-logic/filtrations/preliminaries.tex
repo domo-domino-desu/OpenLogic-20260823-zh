@@ -8,69 +8,38 @@
 
 \olfileid{nml}{fil}{pre}
 
-\olsection{Preliminaries}
+\olsection{预备知识}
 
-Filtrations allow us to establish the decidability of our systems of
-modal logic by showing that they have the \emph{finite model
-  property}, i.e., that any !!{formula} that is true (false) in a
-model is also true (false) in a \emph{finite} model.  Filtrations are
-defined relative to sets of !!{formula}s which are closed under
-subformulas.
+滤过技术允许我们通过证明模态逻辑系统具有\emph{有限模型性质}来确立其可判定性，即：若一公式在某个模型中为真（假），则它在某个\emph{有限}模型中也同样为真（假）。滤过是相对于在子公式下封闭的公式集来定义的。
 
 \begin{defn}\ollabel{defn:modallyclosed}
-  A set $\Gamma$ of !!{formula}s is \emph{closed under subformulas} if it
-  contains every subformula of !!a{formula} in $\Gamma$. Further,
-  $\Gamma$ is \emph{modally closed} if it is closed under subformulas
-  and moreover $!A \in \Gamma$ implies $\Box!A,
-  \Diamond!A \in \Gamma$. 
+  如果公式集 $\Gamma$ 包含了 $\Gamma$ 中每个公式的所有子公式，则称 $\Gamma$ 是\emph{在子公式下封闭的}。进一步，如果 $\Gamma$ 在子公式下封闭，并且 $!A \in \Gamma$ 蕴含 $\Box!A, \Diamond!A \in \Gamma$，则称 $\Gamma$ 是\emph{模态封闭的}。
 \end{defn}
 
-For instance, given !!a{formula}~$!A$, the set of all its
-sub-!!{formula}s is closed under sub-!!{formula}s. When we're defining
-a filtration of a model through the set of sub-!!{formula}s of~$!A$,
-it will have the property we're after: it makes $!A$ true (false) iff
-the original model does.
+例如，给定一个公式~$!A$，其所有子公式构成的集合就是在子公式下封闭的。当我们以~$!A$ 的子公式集来定义模型的一个滤过时，它将具有我们所关心的性质：它使~$!A$ 为真（假），当且仅当原模型使~$!A$ 为真（假）。
 
-The set of worlds of a filtration of~$\mModel{M}$ through~$\Gamma$ is
-defined as the set of all equivalence classes of the following
-equivalence relation.
+以~$\Gamma$ 对~$\mModel{M}$ 进行滤过时，其可能世界集定义为以下等价关系的所有等价类构成的集合。
 
 \begin{defn}
-Let $\mModel{M} =\tuple{W, R, V}$ and suppose $\Gamma$ is closed under
-sub-!!{formula}s. Define a relation $\equiv$ on $W$ to hold of any two
-worlds that make the same !!{formula}s from $\Gamma$ true, i.e.:
+令 $\mModel{M} =\tuple{W, R, V}$ 并假设 $\Gamma$ 在子公式下封闭。在 $W$ 上定义关系 $\equiv$，使得在 $\Gamma$ 中使得相同公式为真的任意两个世界之间具有该关系，即：
 \[
-u \equiv v \quad \text{if and only if } \quad 
+u \equiv v \quad \text{当且仅当} \quad
 \forall !A \in \Gamma : \mSat{M}{!A}[u] \Leftrightarrow \mSat{M}{!A}[v].
 \]
-The equivalence class~$[w]_\equiv$ of a world~$w$, or $[w]$ for short,
-is the set of all worlds $\equiv$-equivalent to~$w$:
+世界~$w$ 的等价类~$[w]_\equiv$，简记为 $[w]$，是所有与~$w$ $\equiv$-等价的世界组成的集合：
 \[
 [w] = \Setabs{v}{v \equiv w}.
 \]
 \end{defn}
 
 \begin{prop}
-  Given $\mModel{M}$ and $\Gamma$, $\equiv$ as defined above is an
-  equivalence relation, i.e., it is reflexive, symmetric, and
-  transitive.
+  给定 $\mModel{M}$ 和 $\Gamma$，如上定义的 $\equiv$ 是一个等价关系，即它是自反的、对称的且传递的。
 \end{prop}
 
 \begin{proof}
-  The relation $\equiv$ is reflexive, since $w$ makes exactly the same
-  !!{formula}s from~$\Gamma$ true as itself. It is symmetric since if
-  $u$ makes the same !!{formula}s from~$\Gamma$ true as $v$, the same
-  holds for $v$ and~$u$. It is also transitive, since if $u$ makes the
-  same !!{formula}s from~$\Gamma$ true as~$v$, and $v$ as $w$, then
-  $u$ makes the same !!{formula}s from~$\Gamma$ true as~$w$.
+  关系 $\equiv$ 是自反的，因为 $w$ 与自身使得 $\Gamma$ 中完全相同的公式为真。它是对称的，因为如果 $u$ 与 $v$ 使得 $\Gamma$ 中相同的公式为真，那么 $v$ 与 $u$ 也使得 $\Gamma$ 中相同的公式为真。它也是传递的，因为如果 $u$ 与 $v$ 使得 $\Gamma$ 中相同的公式为真，且 $v$ 与 $w$ 使得 $\Gamma$ 中相同的公式为真，那么 $u$ 与 $w$ 也使得 $\Gamma$ 中相同的公式为真。
 \end{proof}
 
-The relation $\equiv$, like any equivalence relation, divides~$W$ into
-\emph{partitions}, i.e., subsets of~$W$ which are pairwise disjoint,
-and together cover all of~$W$. Every $w \in W$ is !!a{element} of one
-of the partitions, namely of~$[w]$, since $w \equiv w$. So the
-partitions $[w]$ cover all of~$W$. They are pairwise disjoint, for if
-$u \in [w]$ and $u \in [v]$, then $u \equiv w$ and $u \equiv v$, and
-by symmetry and transitivity, $w \equiv v$, and so $[w] = [v]$.
+像任何等价关系一样，关系 $\equiv$ 将~$W$ 划分为若干\emph{划分块}，即 $W$ 的一些两两互不相交、并且共同覆盖整个 $W$ 的子集。每个 $w \in W$ 都属于其中一个划分块，即属于~$[w]$，因为 $w \equiv w$。所以划分块 $[w]$ 覆盖了整个 $W$。它们是两两不相交的，因为如果 $u \in [w]$ 且 $u \in [v]$，那么 $u \equiv w$ 且 $u \equiv v$，根据对称性和传递性，有 $w \equiv v$，因此 $[w] = [v]$。
 
 \end{document}

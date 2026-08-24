@@ -8,86 +8,42 @@
 
 \olfileid{int}{pty}{int}
 
-\olsection{Introduction}
+\olsection{引言}
 
-The lambda calculus is a simple model of computation. It operates on
-terms built from variables. If $N$ and $M$ are terms, then $(NM)$ is
-also a term (``$N$ applied to~$M$''). If $N$ is a term, then
-$\lambd[x][N]$ is a term. If $N$ contains the variable~$x$, then the
-corresponding occurrences of~$x$ in $\lambd[x][N]$ are bound by the
-$\lambd[x]$ operator, and so are no longer free. A term of the form
-$(\lambd[x][N]M)$ is said to $\beta$-contract to $\Subst{N}{M}{x}$
-(the result of replacing every free occurrence of $x$ in~$N$ by $M$).
-A term $N$ $\beta$-converts to~$N'$ if $N'$ results from $N$ by
-$\beta$-contracting a subterm, and we write $N \redone N'$. A
-computation in the $\lambd$-calculus is a sequence $N \redone N_1
-\redone N_2 \redone \dots$. If this sequence ends in a term $N_k$
-where no subterm can be $\beta$-contracted, it is called \emph{normal}
-or a normal form of~$N$. Think of computation in the $\lambd$-calculus
-as such sequences. The computation halts if it results in a normal
-form, and the normal form is the result of the computation. This
-simple model of computations turns out to be Turing complete: every
-partial recursive function can be computated by a term in the $\lambd$-calculus.
+λ演算是一个简单的计算模型。它操作由变元构成的项。如果 $N$ 和 $M$ 是项，那么 $(NM)$ 也是项（“$N$ 应用于~$M$”）。如果 $N$ 是项，那么 $\lambd[x][N]$ 也是项。如果 $N$ 包含变元~$x$，那么在 $\lambd[x][N]$ 中相应的 $x$ 的出现就被 $\lambd[x]$ 算子所约束，因此不再是自由的。形如 $(\lambd[x][N]M)$ 的项被称为可 $\beta$-归约为 $\Subst{N}{M}{x}$（即将 $N$ 中每一个自由出现的 $x$ 替换为 $M$ 所得的结果）。如果 $N'$ 是由 $N$ 对某个子项进行 $\beta$-归约得到的，则称项 $N$ 可 $\beta$-转换为 $N'$，记作 $N \redone N'$。λ演算中的计算是一个序列 $N \redone N_1
+\redone N_2 \redone \dots$。如果该序列终止于项 $N_k$，且其中没有任何子项可以再进行 $\beta$-归约，则称该项为\emph{正规的}（normal），或称其为~$N$ 的一个范式。不妨将λ演算中的计算视为这样的序列。如果计算得到一个范式，则计算停机，该范式即为计算的结果。结果表明，这个简单的计算模型是图灵完备的：每一个部分递归函数都可以由λ演算中的一个项来计算。
 
-Haskell Curry and William Howard independently discovered a close
-similarity between natural deduction and the $\lambd$-calculus.
-Intuitively, a term $\lambd[x][N]$ is a function: $x$ is the argument;
-$N$ tells us how to compute the value given~$x$. A term
-$(\lambd[x][N]M)$ then is applying the function $\lambd[x][N]$ to an
-argument~$M$, and $\beta$-contraction tells us how to evaluate it:
-replace $x$ in $N$ by~$M$ (and keep evaluating the resulting term).
-Now think of these as functions with a fixed domain and range. If the
-domain of $\lambd[x][N]$ is $A$ and and its range~$B$, then we should
-think of the variable~$x$ as only taking arguments from~$A$ and $N$ as
-producing values from~$B$. Consequently, $(\lambd[x][N]M)$ only should
-make sense if $\lambd[x][N]$ is a function $A \to B$, and $M \in A$.
-If we want to add this information to the $\lambd$-calculus we obtain
-the \emph{typed} $\lambd$-calculus. In the typed $\lambd$-calculus not
-every expression $(\lambd[x][N]M)$ is legal, but only those where the
-``types'' of $\lambd[x][N]$ and $M$ fit together, i.e., $\lambd[x][N]$
-has type $A \lif B$ and $M$ has type~$A$. The type of $\lambd[x][N]$
-is $A \to B$ only if the type of $x$ is $A$ and the type of $N$
-is~$B$. In general, not every expression $(M_1M_2)$ is legal. Only
-those terms $(M_1M_2)$ are legal where $M_1$ has type $A \to B$ and
-$M_2$ has type~$A$; if so, then $(M_1M_2)$ has type~$B$. 
+Haskell Curry（柯里）和 William Howard（霍华德）各自独立地发现了自然演绎与λ演算之间的密切相似性。直观上看，项 $\lambd[x][N]$ 是一个函数：$x$ 是自变元；$N$ 告诉我们在给定~$x$ 时如何计算其值。那么项 $(\lambd[x][N]M)$ 就是将函数 $\lambd[x][N]$ 应用于自变元~$M$，而 $\beta$-归约告诉我们如何对其进行求值：用 $M$ 替换 $N$ 中的 $x$（并继续对所得的项求值）。现在，将它们视为具有固定定义域和值域的函数。如果 $\lambd[x][N]$ 的定义域是 $A$，值域是~$B$，那么我们应当认为变元~$x$ 只接受来自~$A$ 的自变元，而 $N$ 则产生属于~$B$ 的值。因此，仅当 $\lambd[x][N]$ 是 $A \to B$ 的函数且 $M \in A$ 时，$(\lambd[x][N]M)$ 才是有意义的。如果我们想把这种信息加入λ演算，就得到了\emph{类型化}λ演算。在类型化λ演算中，并非每个表达式 $(\lambd[x][N]M)$ 都是合法的，只有那些 $\lambd[x][N]$ 和 $M$ 的“类型”相匹配的表达式才是合法的，即 $\lambd[x][N]$ 具有类型 $A \lif B$ 且 $M$ 具有类型~$A$。$\lambd[x][N]$ 的类型为 $A \to B$，仅当 $x$ 的类型为 $A$ 且 $N$ 的类型为~$B$。一般而言，并非每个表达式 $(M_1M_2)$ 都合法。只有那些 $M_1$ 具有类型 $A \to B$ 且 $M_2$ 具有类型~$A$ 的项 $(M_1M_2)$ 才合法；若如此，则 $(M_1M_2)$ 具有类型~$B$。
 
-These typing rules now clearly correspond to !!{derivation}s in
-natural deduction, where the types are represented by !!{formula}s,
-and the !!{derivation}s themselves to $\lambd$-terms. For instance,
-!!a{derivation} of $!A \lif !B$ corresponds to a term
-$\lambd[\typeof{x}{!A}][N]$, which has the function type
-$!A \lif !B$. The inference rules of natural deduction correspond to
-typing rules in the typed lambda calculus, e.g.,
+这些类型规则清晰地对应于自然演绎中的推导，其中类型由公式表示，而推导本身则对应于λ项。例如，$!A \lif !B$ 的一个推导对应于项 $\lambd[\typeof{x}{!A}][N]$，该项具有函数类型 $!A \lif !B$。自然演绎的推理规则对应于类型化λ演算中的类型规则，例如，
+
 \begin{prooftree}
   \AxiomC{$\Discharge{!A}{x}$}
   \DeduceC{$!B$}
   \DischargeRule{\Intro\lif}{x}
   \UnaryInfC{$!A \lif !B$}
   \DisplayProof\bottomAlignProof
-  \quad\text{corresponds to}\quad
+  \quad\text{对应}\quad
   \Axiom$x: !A \fCenter N: !B$
   \UnaryInf$ \fCenter \lambd[\typeof{x}{!A}][N] : !A \lif !B$
 \end{prooftree}
-where the rule on the right means that if $x$ is of type~$!A$ and $N$
-is of type~$!B$, then $\lambd[\typeof{x}{!A}][N]$ is of type~$!A \lif
-!B$.
 
-The $\Elim\lif$ rule corresponds to the typing rule for composition
-terms, i.e.,
+其中右边的规则表示：如果 $x$ 的类型是~$!A$ 且 $N$ 的类型是~$!B$，那么 $\lambd[\typeof{x}{!A}][N]$ 的类型就是~$!A \lif !B$。
+
+$\Elim\lif$ 规则对应于复合项的类型规则，即
 \[
   \AxiomC{$!A \lif !B$}
   \AxiomC{$!A$}
   \RightLabel{\Elim\lif}
   \BinaryInfC{$!B$}
   \DisplayProof
-  \quad\text{corresponds to}\quad
+  \quad\text{对应}\quad
   \Axiom$\fCenter M_1: !A \lif !B$
   \Axiom$\fCenter M_2: !A$
   \BinaryInf$ \fCenter (M_1M_2) : !B$
   \DisplayProof
 \]
-If a \Intro\lif{} rule is followed immediately by a \Elim\lif{} rule,
-the !!{derivation} can be simplified:
+如果一个 \Intro\lif{} 规则之后紧跟着一个 \Elim\lif{} 规则，该推导就可以被简化：
 \begin{gather*}
   \AxiomC{$\Discharge{!A}{x}$}
   \DeduceC{$!B$}
@@ -104,39 +60,32 @@ the !!{derivation} can be simplified:
   \DeduceC{$!B$}
   \DisplayProof
 \end{gather*}
-which corresponds to $\beta$-contraction of lambda terms
+这对应于λ项的 $\beta$-归约：
 \[
 (\lambd[\typeof{x}{!A}][N]M) \quad\redone\quad
 \Subst{N}{M}{x}.
 \]
 
-Similar correspondences hold between the rules for $\land$ and ``product''
-types, and between the rules for $\lor$ and ``sum'' types.
+类似的对应关系也存在于 $\land$ 的规则与“积”类型之间，以及 $\lor$ 的规则与“和”类型之间。
 
-This correspondence between terms in the simply typed lambda calculus
-and natural deduction !!{derivation}s is called the ``Curry--Howard'',
-``proofs-as-programs,'' or ``propositions as types'' correspondence.
-In addition to !!{formula}s (propositions) corresponding to types, and
-proofs to terms, we can summarize the correspondences as follows:
+简单类型化λ演算中的项与自然演绎推导之间的这种对应关系，被称为“Curry--Howard”对应、“证明即程序”或“命题即类型”对应。除了公式（命题）对应于类型、证明对应于项之外，我们可以将对应关系总结如下：
+
 \begin{center}
   \begin{tabular}{c c c}
-    logic & program \\
+    逻辑 & 程序 \\
     \hline
-    proposition/!!{formula} & type \\
-    proof & term \\
-    assumption & variable \\
-    discharged assumption & bound variable \\
-    undischarged assumption & free variable \\
-    $!A \lif !B$ & function type \\
-    $!A \land !B$ & product type \\
-    $!A \lor !B$ & sum type \\
-    $\lfalse$ & empty type \\
+    命题/公式 & 类型 \\
+    证明 & 项 \\
+    假设 & 变元 \\
+    被解除的假设 & 约束变元 \\
+    未被解除的假设 & 自由变元 \\
+    $!A \lif !B$ & 函数类型 \\
+    $!A \land !B$ & 积类型 \\
+    $!A \lor !B$ & 和类型 \\
+    $\lfalse$ & 空类型 \\
     \hline
   \end{tabular}
 \end{center}
 
-The Curry--Howard correspondence is one of the cornerstones of
-automated proof assistants and type checkers for programs, since
-checking a proof witnessing a proposition (as we did above) amounts to
-checking if a program (term) has the declared type.
+Curry--Howard 对应是自动证明助理和程序类型检查器的基石之一，因为检查一个见证命题的证明（正如我们上面所做的那样），就相当于检查一个程序（项）是否具有所声明的类型。
 \end{document}

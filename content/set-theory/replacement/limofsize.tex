@@ -3,62 +3,24 @@
 \begin{document}
 
 \olfileid{sth}{replacement}{limofsize}
-\olsection{Limitation-of-size}
+\olsection{大小限制}
 
-Perhaps the most common attempt to offer an ``intrinsic'' justification of
-Replacement comes via the following notion:
+或许，为替换公理提供“内在”辩护的最常见尝试源自以下观念：
+
 \begin{enumerate}
-	\item[] \limofsize. Any things form a set, provided that there are
-	not too many of them.
+	\item[] \limofsize. 任何一些对象，只要其数量不是太多，就能构成一个集合。
 \end{enumerate}
-This principle will immediately vindicate Replacement. After all, any
-set formed by Replacement cannot be any larger than any set from which
-it was formed. Stated precisely: suppose you form a set
-$\funimage{\tau}{A} = \Setabs{\tau(x)}{x \in A}$ using Replacement;
-then $\cardle{\funimage{\tau}{A}}{A}$; so if the !!{element}s of $A$
-were not too numerous to form a set, their images are not too numerous
-to form $\funimage{\tau}{A}$. 
 
-The obvious difficulty with invoking \limofsize{} to justify
-Replacement is that we have \emph{not} yet laid down any principle
-like \limofsize. Moreover, when we told our story about the
-cumulative-iterative conception of set in
-\crefrange{sth:story::chap}{sth:z::chap}, nothing ever \emph{hinted}
-in the direction of \limofsize. This, indeed, is precisely why Boolos
-at one point wrote: ``Perhaps one may conclude that there are at least
-two thoughts `behind' set theory'' \citeyearpar[p.~19]{Boolos1989}. On
-the one hand, the ideas surrounding the cumulative-iterative
-conception of set are meant to vindicate~$\Z$. On the other hand,
-\limofsize{} is meant to vindicate Replacement. 
+该原则将直接为替换公理提供辩护。毕竟，由替换所形成的任何集合，其大小都不可能超过据以形成它的集合。确切地说：假设通过替换形成集合 $\funimage{\tau}{A} = \Setabs{\tau(x)}{x \in A}$；那么 $\cardle{\funimage{\tau}{A}}{A}$；因此，如果 $A$ 的元素没有多到无法构成集合，那么它们的像也不会多到无法构成 $\funimage{\tau}{A}$。
 
-But the issue it is not just that we have thus far been \emph{silent}
-about \limofsize. Rather, the issue is that \limofsize{} (as just
-formulated) seems to sit quite badly with the cumulative-iterative
-notion of set. After all, it mentions nothing about the idea of sets
-as formed in \emph{stages}.
+援引 \limofsize{} 来为替换公理辩护，其显而易见的困难在于，我们迄今\emph{并未}确立任何类似 \limofsize{} 的原则。此外，当我们在 \crefrange{sth:story::chap}{sth:z::chap} 中讲述集合的累积迭代概念时，也从未有任何内容\emph{暗示}过 \limofsize{}。这也正是为何 Boolos（布洛斯）曾写道：“或许可以得出结论，集合论‘背后’至少存在两种思想” \citeyearpar[p.~19]{Boolos1989}。一方面，围绕集合之累积迭代概念的那些思想旨在为 ~$\Z$ 提供辩护。另一方面，\limofsize{} 则旨在为替换公理提供辩护。
 
-This is really not much of a surprise, given the history of these
-``two thoughts'' (i.e., the cumulative-iterative conception of set,
-and \limofsize). These ``two thoughts'' ultimately amount to two
-rather  different projects for blocking the set-theoretic paradoxes.
-The cumulative-iterative notion of set blocks Russell's paradox by
-saying, roughly: \emph{we should never have expected a Russell set to
-exist, because it would not be ``formed'' at any stage}. By contrast,
-\limofsize{} is meant to rule out the Russell set, by saying, roughly:
-\emph{we should never have expected a Russell set to exist, because it
-would have been too big}. 
+但问题不仅仅在于我们迄今为止对 \limofsize{} 保持\emph{沉默}。真正的问题在于，\limofsize{}（如刚才所表述的）似乎与集合的累积迭代概念格格不入。毕竟，它完全没有提及集合是在\emph{阶段}中形成的这一观念。
 
-Put like this, then, let's be blunt: considered as a reply to the
-paradoxes, \limofsize{} stands in need of \emph{much} more
-justification. Consider, for example, this version of Russell's
-Paradox: \emph{no pug sniffs exactly the pugs which don't sniff
-themselves} (see \olref[sth][story][rus]{sec}). If you ask ``why is there no such pug?'', it is not a
-good answer to be told that such a pug would have to sniff too many
-pugs. So why would it be a good intuitive explanation, of the
-non-existence of a Russell set, that it would have to be ``too big''
-to exist? 
+考虑到这两种“思想”（即集合的累积迭代概念和 \limofsize{}）的历史，这其实并不太令人惊讶。这两种“思想”最终归结为两种截然不同的阻止集合论悖论的方案。集合的累积迭代概念阻止 Russell（罗素）悖论的方式大致如下：\emph{我们本就不该指望罗素集存在，因为它不会在任何阶段被“形成”}。相比之下，\limofsize{} 则旨在大致通过如下说法来排除罗素集：\emph{我们本就不该指望罗素集存在，因为它会太大}。
 
-In short, it's forgivable if you are a bit mystified concerning the ``intuitive''
-motivation for \limofsize. 
+既然如此，不妨坦率地说：作为对悖论的一种回应，\limofsize{} 还需要\emph{远为充分的}辩护。例如，考虑这个版本的罗素悖论：\emph{没有哪只哈巴狗会恰好去嗅那些不嗅自己的哈巴狗}（参见\olref[sth][story][rus]{sec}）。如果你问“为什么没有这样一只哈巴狗？”，那么“这样一只哈巴狗势必得嗅太多的哈巴狗”并不是一个好回答。那么，为什么说罗素集必定“太大”以至于无法存在，就能成为关于其不存在的好的直观解释呢？
+
+简而言之，如果你对 \limofsize{} 的“直观”动机感到有些困惑，那是完全可以理解的。
 
 \end{document}

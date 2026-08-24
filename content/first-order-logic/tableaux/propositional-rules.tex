@@ -10,9 +10,9 @@
       {\olfileid{fol}{tab}{prl}}
       {\olfileid{pl}{tab}{prl}}
 
-\olsection{Propositional Rules}
+\olsection{命题规则}
 
-\subsection{Rules for $\lnot$}
+\subsection{$\lnot$ 的规则}
 
 \begin{defish}
 \AxiomC{\sFmla{\True}{\lnot !A}}
@@ -26,7 +26,7 @@
 \DisplayProof
 \end{defish}
 
-\subsection{Rules for $\land$}
+\subsection{$\land$ 的规则}
 
 \begin{defish}\noindent
 \AxiomC{\sFmla{\True}{!A \land !B}}
@@ -42,7 +42,7 @@
 \DisplayProof
 \end{defish}
 
-\subsection{Rules for $\lor$}
+\subsection{$\lor$ 的规则}
 
 \begin{defish}
 \AxiomC{\sFmla{\True}{!A \lor !B}}
@@ -58,7 +58,7 @@
 \DisplayProof
 \end{defish}
 
-\subsection{Rules for $\lif$}
+\subsection{$\lif$ 的规则}
 
 \begin{defish}
 \AxiomC{\sFmla{\True}{!A \lif !B}}
@@ -74,7 +74,7 @@
 \DisplayProof
 \end{defish}
 
-\subsection{The Cut Rule}
+\subsection{切割规则}
 
 \begin{defish}
 \AxiomC{}
@@ -83,11 +83,7 @@
 \DisplayProof
 \end{defish}
 
-The \Cut{} rule is not applied ``to'' a previous !!{signed formula}; rather,
-it allows every branch in !!a{tableau} to be split in two, one branch
-containing $\sFmla{\True}{!A}$, the other~$\sFmla{\False}{!A}$. It is
-not necessary---any set of !!{signed formula}s with a closed
-!!{tableau} has one not using \Cut---but it allows us to combine
-!!{tableau}s in a convenient way.
+\Cut 规则并非“应用于”先前的某个带号公式；而是允许将分析表中的每个分支分为两支，一支包含 $\sFmla{\True}{!A}$，另一支包含 $\sFmla{\False}{!A}$。
+它并非必需——任何存在封闭分析表的带号公式集，也都有一个不使用 \Cut 的封闭分析表——但它提供了一种组合分析表的便捷方式。
 
 \end{document}

@@ -8,30 +8,18 @@
 
 \olfileid{inc}{tcp}{cax}
 
-\olsection{\printtoken{S}{axiomatizable} Theories}
+\olsection{可公理化理论}
 
-A theory $\Th{T}$ is said to be \emph{!!{axiomatizable}} if it has a
-computable set of axioms~$A$. (Saying that $A$ is a set of axioms for
-$\Th{T}$ means $T = \Setabs{!A}{A \Proves !A}$.) Any ``reasonable''
-axiomatization of the natural numbers will have this property. In
-particular, any theory with a finite set of axioms is
-!!{axiomatizable}.
+理论 $\Th{T}$ 被称为是\emph{可公理化的}，如果它有一个可计算的公理集~$A$。（称 $A$ 是 $\Th{T}$ 的公理集，意思是$T = \Setabs{!A}{A \Proves !A}$。）自然数的任何“合理的”公理化都具有这一性质。特别地，任何具有有限公理集的理论都是可公理化的。
 
 \begin{lem}
-Suppose $\Th{T}$ is !!{axiomatizable}. Then $\Th{T}$ is !!{computably
-enumerable}.
+假设 $\Th{T}$ 是可公理化的。那么 $\Th{T}$ 是可计算枚举的。
 \end{lem}
 
 \begin{proof}
-Suppose $A$ is a computable set of axioms for $\Th{T}$. To determine
-if $!A \in T$, just search for !!a{derivation} of $!A$ from the axioms.
+假设 $A$ 是 $\Th{T}$ 的一个可计算公理集。要判定 $!A \in T$，只需从公理出发搜索 $!A$ 的一个推导。
 
-Put slightly differently, $!A$ is in $\Th{T}$ if and only if there is
-a finite list of axioms $!B_1$, \dots, $!B_k$ in $A$ and !!a{derivation} of
-$(!B_1 \land \dots \land !B_k) \lif !A$ in first-order logic.  But
-we already know that any set with a definition of the form ``there
-exists \dots such that \dots'' is !!{c.e.}, provided the second ``\dots''
-is computable.
+换一种说法，$!A$ 属于 $\Th{T}$ 当且仅当存在 $A$ 中公理的一个有限列表 $!B_1$, \dots, $!B_k$，以及一阶逻辑中 $(!B_1 \land \dots \land !B_k) \lif !A$ 的一个推导。但我们已知，任何具有“存在……使得……”形式定义的集合，只要第二个“……”是可计算的，就是 c.e.\@ 的。
 \end{proof}
 
 \end{document}

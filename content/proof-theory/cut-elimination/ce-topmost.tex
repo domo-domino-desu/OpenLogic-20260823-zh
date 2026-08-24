@@ -8,10 +8,10 @@
 
 \olfileid{pt}{cut}{top}
 
-\olsection{Removing Topmost Cuts}
+\olsection{移除最顶层的切割}
 
 \begin{defn}
-Consider !!a{proof}~$\pi$ ending in a \CutCS{} rule,
+考虑一个以 \CutCS{} 规则结束的推导~$\pi$，
 \[
 \AxiomC{}
 \RightLabel{$\pi_1$}
@@ -23,20 +23,19 @@ Consider !!a{proof}~$\pi$ ending in a \CutCS{} rule,
 \BinaryInf$\Gamma \fCenter \Delta$
 \DisplayProof
 \]
-and containing no other \CutCS{} inferences. The \emph{cut height}
-of~$\pi$ is $\cheight{\pi} = \pheight{\pi_1} + \pheight{\pi_2}$. The
-\emph{cut rank} of~$\pi$ is $\cutrank{\pi} = \depth{!A}$.
+且不含其他 \CutCS{} 推理。$\pi$ 的\emph{切割高度}
+为 $\cheight{\pi} = \pheight{\pi_1} + \pheight{\pi_2}$。$\pi$ 的
+\emph{切割秩}为 $\cutrank{\pi} = \depth{!A}$。
 \end{defn}
 
 \begin{lem}\ollabel{lem:cut-adm-G3c}
-The \CutCS{} rule is admissible in~\Log{G3c}. In other words, if $\pi$
-is !!a{proof} ending in a single~\CutCS{} and otherwise using only rules
-of~$\Log{G3c}$, then there is !!a{proof}~$\pi'$ of the same end-sequent in~\Log{G3c}.
+\CutCS{} 规则在~\Log{G3c} 中是可接纳的。
+换言之，若推导~$\pi$ 以单一~\CutCS{} 规则结束，且其余部分仅使用~\Log{G3c} 的规则，
+则在~\Log{G3c} 中存在具有相同末相继式的推导~$\pi'$。
 \end{lem}
 
 \begin{proof}
-The proof is by double induction on cut !!{height} and rank. The
-!!{proof}~$\pi$ ends in:
+证明使用对切割高度和秩的双重归纳。推导~$\pi$ 以如下推理结束：
 \[
 \AxiomC{}
 \RightLabel{$\pi_1$}
@@ -49,87 +48,51 @@ The proof is by double induction on cut !!{height} and rank. The
 \DisplayProof
 \]
 
-Induction basis: $\cheight{\pi} = 0$ and $\cutrank{\pi} = 0$. Since
-$\cheight{\pi} = \pheight{\pi_1} + \pheight{\pi_2} = 0$, both $\Gamma
-\Sequent \Delta, !A$ and $!A, \Gamma \Sequent \Delta$ are axioms.
-There are two cases: (a)~either $!A$ is not principal in one of them,
-or (b)~$!A$ is principal in both of them. In both cases we'll show
-below that $\Gamma \Sequent \Delta$ must be an axiom (and we don't
-need the inductive hypothesis to do that).
+归纳基础：$\cheight{\pi} = 0$ 且 $\cutrank{\pi} = 0$。由
+$\cheight{\pi} = \pheight{\pi_1} + \pheight{\pi_2} = 0$可知，$\Gamma
+\Sequent \Delta, !A$ 和 $!A, \Gamma \Sequent \Delta$ 都是公理。
+有两种情况： 或(b)~$!A$ 在两个公理中都是主公式。在两种情况下，下面都将证明 $\Gamma \Sequent \Delta$ 必为公理（且无需使用归纳假设）。
 
-We'll now distinguish a number of possible cases according to whether
-$\pi_1$ and $\pi_2$ are axioms or end in an inference, and whether
-$!A$~is principal in that inference or not. Cases A and~B cover the
-induction basis. In the inductive step we assume $\cheight{\pi} > 0$
-or $\cutrank{\pi} > 0$ (or both). We can use the inductive hypothesis,
-namely that the last~\CutCS{} can be removed from any !!{proof} which
-ends in a single~\CutCS{} which either has cut rank $= \cutrank{\pi}$
-and a cut !!{height} $< \cheight{\pi}$, or has cut rank~$<
-\cutrank{\pi}$. The case where $\cheight{\pi} = 0$ (both premises are
-axioms) are covered by cases~A and~B. The cases where $\cheight{\pi} >
-0$ are covered by cases C--D.
+现在，我们根据 $\pi_1$ 和 $\pi_2$ 是公理还是以某个推理结束，以及 $!A$~是否是该推理的主公式，来区分多种可能的情况。情况 A 和~B 涵盖了归纳基础。在归纳步骤中，我们假设 $\cheight{\pi} > 0$
+或 $\cutrank{\pi} > 0$（或两者都成立）。我们可以使用归纳假设，即：对于任何以单个~\CutCS{} 结尾的推导，若该~\CutCS{} 的切割秩等于 $\cutrank{\pi}$ 且切割高度小于 $\cheight{\pi}$，或其切割秩小于 $\cutrank{\pi}$，则都可以从中移除最后的~\CutCS{}。$\cheight{\pi} = 0$ 的情况（两个前提都是公理）已由情况~A 和~B 涵盖。$\cheight{\pi} >
+0$ 的情况则由情况 C--D 涵盖。
 
-\paragraph{Case A:}
-Some $!B$ occurs in both $\Gamma$ and~$\Delta$. 
-Then $\Gamma \Sequent \Delta$ is an axiom (if $!B$~is atomic), or has
-!!a{proof}~$\pi'$ in \Log{G3c} without \CutCS{} by
-\olref[seq][ex]{prop:G3c-axioms}. This covers case~(a) of the
-induction basis, since if $!A$ is not principal in $\Gamma
-\Sequent \Delta, !A$ or not principal in $!A, \Gamma \Sequent \Delta$
-and these are axioms, then some other atomic~$!B$ must occur in both
-$\Gamma$ and~$\Delta$. It also covers the inductive step if one of the
-premises is an axiom in which $!A$ is not principal (even if the other
-premise is the conclusion of a rule).
+\paragraph{情况 A：}
+某个 $!B$ 同时出现在 $\Gamma$ 和~$\Delta$ 中。
+那么 $\Gamma \Sequent \Delta$ 是公理（如果 $!B$~是原子式），或者根据
+\olref[seq][ex]{prop:G3c-axioms}，在 \Log{G3c} 中存在一个不含 \CutCS{} 的推导~$\pi'$。这涵盖了归纳基础的情况~(a)，因为如果 $!A$ 在 $\Gamma
+\Sequent \Delta, !A$ 中不是主公式，或在 $!A, \Gamma \Sequent \Delta$ 中不是主公式，并且这些相继式是公理，那么必定有另一个原子式~$!B$ 同时出现在 $\Gamma$ 和~$\Delta$ 中。在归纳步骤中，如果有一个前提是公理且其中 $!A$ 不是主公式（即使另一个前提是某个规则的结论），该情况也适用。
 
-\paragraph{Case B:} Both premises are axioms, and $!A$ is principal
-and hence atomic. Consider the left premise, $\Gamma \Sequent
-\Delta, !A$. Since $!A$ is principal, it must occur in $\Gamma$
-(otherwise $\Gamma \Sequent \Delta, !A$ wouldn't be an axiom). Similarly,
-$!A$ must occur in $\Delta$, or else $!A, \Gamma \Sequent \Delta$
-wouldn't be an axiom. Thus $!A$ is atomic and occurs in both $\Gamma$
-and $\Delta$, i.e., $\Gamma \Sequent \Delta$ is an axiom. This covers
-case~(b) of the induction basis.
+\paragraph{情况 B：} 两个前提都是公理，且 $!A$ 是主公式，因而是原子式。考虑左前提 $\Gamma \Sequent
+\Delta, !A$。由于 $!A$ 是主公式，它必然出现在 $\Gamma$ 中（否则 $\Gamma \Sequent \Delta, !A$ 就不是公理）。类似地，$!A$ 必然出现在 $\Delta$ 中，否则 $!A, \Gamma \Sequent \Delta$
+就不是公理。因此 $!A$ 是原子式且同时出现在 $\Gamma$ 和 $\Delta$ 中，即 $\Gamma \Sequent \Delta$ 是公理。这涵盖了归纳基础的情况~(b)。
 
 \begin{center}
-Alternative cases A and B
+替代的情况 A 与 B
 \end{center}
 
-\paragraph{Case A:} One of the premises of the cut is an axiom of the
-form $!C, \Gamma' \Sequent \Delta', !C$ with $!C$~atomic. If $!C$ is
-not the cut !!{formula}~$!A$, then $!C$ must occur in both $\Gamma$
-and~$\Delta$. In that case, $\Gamma \Sequent \Delta$ is an axiom and
-we can take it as~$\pi'$. If $!C \ident !A$ is the cut !!{formula}
-then either (if the left premise is an axiom) $!A \in \Gamma$ and
-$\Gamma = \Gamma', !A$, or (if the right premise is an axiom) $!A \in
-\Delta$ and $\Delta = \Delta', !A$. In the first case, $\pi_2$ is
-!!a{proof} of $!A, !A, \Gamma' \Sequent \Delta$ and by admissibility
-of \LeftR{\Contraction} (\olref[seq][inv]{prop:G3c-cont-adm}) there is
-!!a{proof} of $\Gamma \Sequent \Delta$. In the second case, $\pi_2$ is
-!!a{proof} of $\Gamma \Sequent \Delta', !A, !A$ and by admissibility
-of \RightR{\Contraction} we get !!a{proof} of $\Gamma \Sequent
-\Delta$.
+\paragraph{情况 A：} 切割的某个前提是形如 $!C, \Gamma' \Sequent \Delta', !C$ 的公理，其中 $!C$~是原子式。如果 $!C$ 不是切割公式~$!A$，那么 $!C$ 必然同时出现在 $\Gamma$
+和~$\Delta$ 中。此时，$\Gamma \Sequent \Delta$ 是公理，我们可以直接取它为~$\pi'$。如果 $!C \ident !A$ 是切割公式，
+那么要么（在左前提是公理时）$!A \in \Gamma$ 且
+$\Gamma = \Gamma', !A$，要么（在右前提是公理时）$!A \in
+\Delta$ 且 $\Delta = \Delta', !A$。在第一种情况下，$\pi_2$ 是
+$!A, !A, \Gamma' \Sequent \Delta$ 的一个推导，根据 \LeftR{\Contraction} 的可容许性（\olref[seq][inv]{prop:G3c-cont-adm}），存在
+$\Gamma \Sequent \Delta$ 的一个推导。在第二种情况下，$\pi_2$ 是
+$\Gamma \Sequent \Delta', !A, !A$ 的一个推导，根据 \RightR{\Contraction} 的可容许性，可得 $\Gamma \Sequent
+\Delta$ 的一个推导。
 
-\paragraph{Case B:} One of the premises is an axiom of the
-form~$\lfalse, \Gamma' \Sequent \Delta'$. If the left premise is such
-an axiom, then $\lfalse \in \Gamma$ and $\Gamma \Sequent \Delta$ is
-also an axiom. If the right premise is such an axiom, then either
-$\lfalse \in \Gamma$ (in which case $\Gamma \Sequent \Delta$ again is
-an axiom), or $!A \ident \lfalse$. In the latter case, $\pi_1$ is
-!!a{proof} of $\Gamma \Sequent \Delta, \lfalse$. We can turn it into
-!!a{proof} of~$\Gamma \Sequent \Delta$ by deleting one copy
-of~$\lfalse$ from the consequent of every sequent in~$\pi_1$.
-(Exercise: verify this by induction on~$\pheight{\pi_1}$.)
+\paragraph{情况 B：} 某个前提是形如~$\lfalse, \Gamma' \Sequent \Delta'$ 的公理。如果左前提是这样的
+公理，那么 $\lfalse \in \Gamma$ 且 $\Gamma \Sequent \Delta$ 也是
+公理。如果右前提是这样的公理，那么要么
+$\lfalse \in \Gamma$（此时 $\Gamma \Sequent \Delta$ 仍是公理），要么 $!A \ident \lfalse$。在后一种情况下，$\pi_1$ 是
+$\Gamma \Sequent \Delta, \lfalse$ 的一个推导。我们可以通过删除~$\pi_1$ 中每个相继式后件中的一个~$\lfalse$ 副本，将其转化为~$\Gamma \Sequent \Delta$ 的推导。
+（练习：通过对~$\pheight{\pi_1}$ 归纳来验证这一点。）
 
-Now suppose that neither case~A nor case~B applies. In the remaining
-cases, $\cheight{\pi} > 0$, i.e., at least one of the premises is the
-conclusion of an inference.
+现在假设情况~A 和情况~B 均不适用。在剩余的情况下，$\cheight{\pi} > 0$，即至少有一个前提是某个推理的结论。
 
-\paragraph{Cases C and D: Permuting cuts.}
-The possibilities considered in cases~C and~D all have a common
-pattern. We begin with !!a{proof} ending in~\CutCS{} where one premise
-is obtained by a rule~$R$ in which the cut !!{formula}~$!A$ is not
-principal (some other !!{formula}~$!D$ is). In this !!{proof},
-\CutCS{} follows the rule~$R$, and schematically looks as follows:
+\paragraph{情况 C 和 D：置换切割。}
+情况~C 和~D 所考虑的情形都有一个共同模式。我们从一个以~\CutCS{} 结尾的推导开始，它的某个前提由规则~$R$ 给出，其中切割公式~$!A$ 不是主公式（某个其他公式~$!D$ 才是）。在这个推导中，
+\CutCS{} 跟在规则~$R$ 之后，其示意图如下：
 \[
 \AxiomC{}
 \RightLabel{$\pi_1$}
@@ -144,16 +107,10 @@ principal (some other !!{formula}~$!D$ is). In this !!{proof},
 \BinaryInf$\Gamma \fCenter \Delta', !D$
 \DisplayProof
 \]
-This only covers the case where $R$~is a right rule with one premise,
-$A$~is not the principal !!{formula} of~$R$, and the !!{formula}~$!D$ which
-\emph{is} principal occurs in the succedent of the right premise
-of~\CutCS. If $!D$~occurs in the antecedent (i.e., $R$ is a left rule)
-or in the left premise of~\CutCS, it would look different, of course.
-The !!{formula}s in $\Pi$ and~$\Lambda$ represent the active
-!!{formula}s of rule~$R$.
+这仅覆盖了 $R$ 为单前提右规则、$A$ 不是 $R$ 的主公式、而真正是主公式的 $!D$ 出现在~\CutCS{} 右前提后件中的情况。如果 $!D$~出现在前件中（即 $R$ 是左规则）或出现在~\CutCS 的左前提中，示意图当然会不同。
+$\Pi$ 和~$\Lambda$ 中的公式代表规则~$R$ 的活动公式。
 
-We turn this order around and consider !!a{proof}
-where $R$ follows~\CutCS{}:
+我们将这一顺序倒转，考虑一个 $R$ 跟在~\CutCS{} 之后的推导：
 \[
 \AxiomC{}
 \RightLabel{$\pi_1'$}
@@ -167,33 +124,16 @@ where $R$ follows~\CutCS{}:
 \UnaryInf$\Gamma, \fCenter \Delta', !D, !D$
 \DisplayProof
 \]
-We use !!{height}-preserving weakening to obtain $\pi_1'$ and $\pi_3'$
-from $\pi_1$ and $\pi_3$, respectively.
+我们分别从 $\pi_1$ 和 $\pi_3$ 出发，利用保持高度的弱化得到 $\pi_1'$ 和 $\pi_3'$。
 
-Because we switch the order of \CutCS{} and~$R$, this is referred to
-as ``permuting a cut upwards across~$R$.'' Doing so decreases the
-height of the !!{proof} ending in the right premise of~\CutCS, and so
-decreases the cut !!{height}. That is, the sub-!!{proof}s ending in the
-new \CutCS{} can be assumed to have !!{height} no larger than
-$\pi_1$ and $\pi_3$, so the cut !!{height} is reduced (we've removed
-one inference on the right). Now the induction hypothesis applies,
-which tells us that the \CutCS{} inference can be removed. Finally, we
-remove the extra copy of~$!D$ using the admissibility
-of~$\RightR{\Contraction}$.
+由于我们交换了 \CutCS{} 与~$R$ 的顺序，这被称为“将切割向上穿过~$R$ 进行置换”。这样做降低了以 \CutCS{} 右前提为结束相继式的子推导的高度，从而降低了切割高度。也就是说，以新的 \CutCS{} 结尾的子推导的高度可假定不大于
+$\pi_1$ 和 $\pi_3$，因此切割高度降低了（我们在右侧移除了一个推理）。现在归纳假设适用，由此可知这个 \CutCS{} 推理可以被移除。最后，我们利用~$\RightR{\Contraction}$ 的可容许性移除额外的~$!D$ 副本。
 
-\paragraph{Case C:}
-At least one of $\pi_1$ and $\pi_2$ ends in a one-premise rule~$R$ in
-which $!A$~is not principal. There are a total of 18 cases, depending
-on whether $!A$~is not principal in the left or the right premise
-of~\CutCS, and depending on which of the nine one-premise rules
-(\LeftR{\lnot}, \RightR{\lnot}, \RightR{\lor}, \LeftR{\land},
-\RightR{\lif}, and the four quantifier rules) the rule~$R$ is. We only
-consider two examples: where $!A$~is not principal in the last
-inference of~$\pi_2$, which ends in~$\RightR{\lif}$ or
-in~\LeftR{\lexists}. The other cases are analogous and left as
-exercises.
+\paragraph{情况 C：}
+$\pi_1$ 和 $\pi_2$ 中至少有一个以单前提规则~$R$ 结尾，且其中 $!A$~不是主公式。总共有 18 种情况，取决于 $!A$~在~\CutCS 的左前提还是右前提中不是主公式，以及规则~$R$ 是九个单前提规则（\LeftR{\lnot}, \RightR{\lnot}, \RightR{\lor}, \LeftR{\land},
+\RightR{\lif}, 以及四个量词规则）中的哪一个。我们只考虑两个例子：$!A$~在~$\pi_2$ 的最后推理中不是主公式，且该推理以~$\RightR{\lif}$ 或~$\LeftR{\lexists}$ 结束。其他情况类似，留作练习。
 
-Suppose $\pi$ ends in:
+假设 $\pi$ 以如下推理结尾：
 \[
 \AxiomC{}
 \RightLabel{$\pi_1$}
@@ -208,14 +148,11 @@ Suppose $\pi$ ends in:
 \BinaryInf$\Gamma \fCenter \Delta', !B \lif !C$
 \DisplayProof
 \]
-where $\Delta = \Delta', !B \lif !C$. We apply !!{height}-preserving
-weakening (\olref[seq][adm]{prop:weak-G3c-adm}) to $\pi_1$ to obtain
-!!a{proof} $\pi_1'$ of $!B, \Gamma \fCenter \Delta', !B \lif !C, !C,
-!A$ (we weaken with $!B$ on the left and $!C$ on the right).
-Similarly, we apply \olref[seq][adm]{prop:weak-G3c-adm}
-to~$\pi_3$ to get !!a{proof}~$\pi_3'$ of $!A, !B, \Gamma \fCenter
-\Delta', !B \lif !C, !C$ (by weakening with $!B \lif !C$ on the right).
-The induction hypothesis applies to
+其中 $\Delta = \Delta', !B \lif !C$。我们对 $\pi_1$ 应用保持高度的弱化（\olref[seq][adm]{prop:weak-G3c-adm}），得到一个推导 $\pi_1'$，其结束相继式为 $!B, \Gamma \fCenter \Delta', !B \lif !C, !C,
+!A$（我们在左侧弱化 $!B$，在右侧弱化 $!C$）。
+类似地，我们对~$\pi_3$ 应用 \olref[seq][adm]{prop:weak-G3c-adm}，得到一个推导~$\pi_3'$，其结束相继式为 $!A, !B, \Gamma \fCenter
+\Delta', !B \lif !C, !C$（通过在右侧弱化 $!B \lif !C$）。
+归纳假设适用于以下推导（切割公式为~$!A$）：
 \[
 \AxiomC{}
 \RightLabel{$\pi_1'$}
@@ -227,11 +164,9 @@ The induction hypothesis applies to
 \BinaryInf$!B, \Gamma \fCenter \Delta', !B \lif !C, !C$
 \DisplayProof
 \]
-with cut !!{formula}~$!A$: This !!{proof} has the same cut rank and a
-lower cut !!{height} than~$\pi$. This gives us !!a{proof}~$\pi_4$ in
-\Log{G3c} without \CutCS{} of~$!B, \Gamma \fCenter \Delta', !B \lif
-!C, !C$. Apply $\RightR{\lif}$ to get !!a{proof} of $\Gamma \fCenter
-\Delta', !B \lif !C, !B \lif !C$:
+该推导与~$\pi$ 具有相同的切割秩，但切割高度更低。由此可得一个在 \Log{G3c} 中不含 \CutCS{} 的推导~$\pi_4$，其结束相继式为~$!B, \Gamma \fCenter \Delta', !B \lif
+!C, !C$。应用 $\RightR{\lif}$ 规则可得结束相继式为 $\Gamma \fCenter
+\Delta', !B \lif !C, !B \lif !C$ 的推导：
 \[
 \AxiomC{}
 \RightLabel{$\pi_4$}
@@ -240,12 +175,11 @@ lower cut !!{height} than~$\pi$. This gives us !!a{proof}~$\pi_4$ in
 \UnaryInf$\Gamma \fCenter \Delta', !B \lif !C, !B \lif !C$
 \DisplayProof
 \]
-To get !!a{proof}~$\pi'$ of $\Gamma \Sequent \Delta$, i.e., $\Gamma
-\fCenter \Delta', !B \lif !C$, apply
-\olref[seq][inv]{prop:G3c-cont-adm} (the admissibility of
-contraction).
+为得到 $\Gamma \Sequent \Delta$，即 $\Gamma
+\fCenter \Delta', !B \lif !C$ 的推导~$\pi'$，需应用
+\olref[seq][inv]{prop:G3c-cont-adm}（收缩规则的可容许性）。
 
-Now suppose $\pi$ ends in:
+现在假设 $\pi$ 以如下推理结尾：
 \[
 \AxiomC{}
 \RightLabel{$\pi_1$}
@@ -260,7 +194,7 @@ Now suppose $\pi$ ends in:
 \BinaryInf$\Gamma' \fCenter \Delta$
 \DisplayProof
 \]
-We again apply the inductive hypothesis to
+我们再次将归纳假设应用于
 \[
 \AxiomC{}
 \RightLabel{$\pi_1[!B(c) \Sequent {}]$}
@@ -274,19 +208,15 @@ We again apply the inductive hypothesis to
 \UnaryInf$\lexists[x][!B(x)], \lexists[x][!B(x)], \Gamma' \fCenter \Delta$
 \DisplayProof
 \]
-Note that the eigenvariable condition is satisfied, since the
-eigenvariable condition on~\LeftR{\lexists} in~$\pi_2$ guarantees that
-$c$ does not occur in $\lexists[x][!B(x)]$, $\Gamma'$, or~$\Delta$.
-Finally, apply \olref[seq][inv]{prop:G3c-cont-adm}.
+注意特征变元条件成立，因为~$\pi_2$ 中~\LeftR{\lexists} 的特征变元条件保证了
+$c$ 不在 $\lexists[x][!B(x)]$、$\Gamma'$ 或~$\Delta$ 中出现。
+最后，应用 \olref[seq][inv]{prop:G3c-cont-adm}。
 
 
-\paragraph{Case D:}
-At least one of $\pi_1$ and $\pi_2$ ends in a two-premise rule~$R$ in
-which $!A$ is not principal. There are 6 cases. We consider the case
-where $!A$ is not principal in the last inference of~$\pi_2$, which
-ends in~$\RightR{\land}$; the other cases are analogous.
+\paragraph{情况 D：}
+$\pi_1$ 和 $\pi_2$ 中至少有一个以双前提规则~$R$ 结尾，且其中 $!A$ 不是主公式。共有 6 种情况。我们考虑 $!A$ 在~$\pi_2$ 的最后推理中不是主公式，且该推理以~$\RightR{\land}$ 结束的情况；其他情况类似。
 
-Assume $\pi$ ends in:
+假设 $\pi$ 以如下推理结尾：
 \[
 \AxiomC{}
 \RightLabel{$\pi_1$}
@@ -304,7 +234,7 @@ Assume $\pi$ ends in:
 \BinaryInf$\Gamma \fCenter \Delta$
 \DisplayProof
 \]
-The inductive hypothesis applies to the !!{proof}s
+归纳假设适用于以下推导：
 \[
 \AxiomC{}
 \RightLabel{$\pi_1'$}
@@ -316,7 +246,7 @@ The inductive hypothesis applies to the !!{proof}s
 \BinaryInf$\Gamma \fCenter \Delta', !B \land !C, !B$
 \DisplayProof
 \]
-and
+与
 \[
 \AxiomC{}
 \RightLabel{$\pi_1''$}
@@ -328,19 +258,12 @@ and
 \BinaryInf$\Gamma \fCenter \Delta', !B \land !C, !C$
 \DisplayProof
 \]
-Here, the \Log{G3c} !!{proof}s $\pi_1'$ and $\pi_1''$ are obtained by
-!!{height}-preserving weakening (\olref[seq][adm]{prop:weak-G3c-adm})
-from~$\pi_1$ (once weakening on the right with $!B$, and once with
-$!C$). The !!{proof}s $\pi_3'$ and~$\pi_4'$ are obtained from $\pi_3$
-and~$\pi_4$ also by !!{height}-preserving weakening from $\pi_3$
-and~$\pi_4$, respectively (by weakening with $!B \land !C$ on the
-right).
+此处，\Log{G3c} 推导 $\pi_1'$ 和 $\pi_1''$ 是通过保持高度的弱化（\olref[seq][adm]{prop:weak-G3c-adm}）
+从~$\pi_1$ 得到的（一次在右侧弱化 $!B$，一次弱化 $!C$）。推导 $\pi_3'$ 和~$\pi_4'$ 也是通过保持高度的弱化分别从 $\pi_3$ 和~$\pi_4$ 得到的（通过在右侧弱化 $!B \land !C$）。
 
-The inductive hypothesis gives us !!{proof}s~$\pi_5$ and~$\pi_6$ in
-\Log{G3c} of $\Gamma \fCenter \Delta', !B \land !C, !B$ and $\Gamma
-\fCenter \Delta', !B \land !C, !C$. We combine these into !!a{proof}
-of $\Gamma \Sequent \Delta', !B \land !C, !B \land !C$ using the
-rule~$\RightR{\land}$:
+归纳假设给出了 \Log{G3c} 中的推导~$\pi_5$ 和~$\pi_6$，其结束相继式分别为 $\Gamma \fCenter \Delta', !B \land !C, !B$ 和 $\Gamma
+\fCenter \Delta', !B \land !C, !C$。我们使用
+规则~$\RightR{\land}$ 将它们组合成结束相继式为 $\Gamma \Sequent \Delta', !B \land !C, !B \land !C$ 的推导：
 \[
 \AxiomC{}
 \RightLabel{$\pi_5$}
@@ -352,23 +275,16 @@ rule~$\RightR{\land}$:
 \BinaryInf$\Gamma \fCenter \Delta, !B \land !C, !B \land !C$
 \DisplayProof
 \]
-To get !!a{proof} of $\Gamma \Sequent \Delta$, i.e., $\Gamma \fCenter
-\Delta', !B \land !C$, apply \olref[seq][inv]{prop:G3c-cont-adm} (the
-admissibility of contraction).
+为得到 $\Gamma \Sequent \Delta$，即 $\Gamma \fCenter
+\Delta', !B \land !C$ 的推导，需要应用 \olref[seq][inv]{prop:G3c-cont-adm}（收缩规则的可容许性）。
 
-\paragraph{Case E: Reducing cuts.}
-The final case concerns the situation where both $\pi_1$ and $\pi_2$
-end in inferences in which $!A$ is principal. There are six cases,
-one for each possible !!{main operator} of~$!A$.
+\paragraph{情况 E：归约切割。}
+最后一种情况涉及 $\pi_1$ 和 $\pi_2$ 均以某个推理结尾，且在这些推理中 $!A$ 都是主公式。共有六种情况，对应于~$!A$ 的六种可能的主联结词。
 
-In each case, we turn a \CutCS{} with cut !!{formula}~$!A$ into one or more
-cuts on sub-!!{formula}s of~$!A$, namely on the active !!{formula}s of
-the inferences of which~$!A$ is the principal !!{formula}. These cases
-are therefore often referred to as ``reduction'' or ``conversion'' of
-the cut inference.
+在每种情况下，我们将一个切割公式为~$!A$ 的 \CutCS{} 转换成一个或多个对~$!A$ 的子公式（即那些以~$!A$ 为主公式的推理的活动公式）的切割。因此，这些情况通常被称为切割推理的“归约”或“转换”。
 
 \begin{enumerate}
-\item If $!A \ident \lnot !B$ then $\pi$ ends in
+\item 若 $!A \ident \lnot !B$，则 $\pi$ 以如下推理结尾：
 \[
 \AxiomC{}
 \RightLabel{$\pi_1'$}
@@ -386,7 +302,7 @@ the cut inference.
 \BinaryInf$\Gamma \fCenter \Delta$
 \DisplayProof
 \]
-By inductive hypothesis, \CutCS{} can be eliminated from
+由归纳假设，可从以下推导中消除 \CutCS{}：
 \[
 \AxiomC{}
 \RightLabel{$\pi_2'$}
@@ -400,7 +316,7 @@ By inductive hypothesis, \CutCS{} can be eliminated from
 \]
 
 \item
-If $!A \ident (!B \lor !C)$ then $\pi$ ends in
+若 $!A \ident (!B \lor !C)$，则 $\pi$ 以如下推理结尾：
 \[
 \AxiomC{}
 \RightLabel{$\pi_1'$}
@@ -421,7 +337,7 @@ If $!A \ident (!B \lor !C)$ then $\pi$ ends in
 \BinaryInf$\Gamma \fCenter \Delta$
 \DisplayProof
 \]
-Consider the !!{proof} ending in \CutCS,
+考虑以 \CutCS 结尾的推导：
 \[
 \AxiomC{}
 \RightLabel{$\pi_1'$}
@@ -433,10 +349,8 @@ Consider the !!{proof} ending in \CutCS,
 \BinaryInf$\Gamma \fCenter \Delta, !B$
 \DisplayProof
 \]
-where $\pi_2'''$ is obtained from $\pi_2''$ by !!{height}-preserving weakening.
-It has cut rank $< \cutr{\pi}$ as $\depth{!C} < \depth{!B \lor !C}$, so the
-inductive hypothesis yields !!a{proof} in \Log{G3c} of $\pi_1''$ of
-$\Gamma \fCenter \Delta, !B$. The !!{proof} ending in \CutCS,
+其中 $\pi_2'''$ 是通过保持高度的弱化从 $\pi_2''$ 得到的。由于 $\depth{!C} < \depth{!B \lor !C}$，其切割秩小于 $\cutr{\pi}$，
+故由归纳假设可得 $\Gamma \fCenter \Delta, !B$ 的 \Log{G3c} 推导 $\pi_1''$。以 \CutCS 结尾的推导：
 \[
 \AxiomC{}
 \RightLabel{$\pi_1''$}
@@ -448,13 +362,12 @@ $\Gamma \fCenter \Delta, !B$. The !!{proof} ending in \CutCS,
 \BinaryInf$\Gamma \fCenter \Delta$
 \DisplayProof
 \]
-has cut rank $= \depth{!B} < \depth{!B \lor !C}$, so the inductive
-hypothesis applies again, and yields !!a{proof} $\pi'$ of $\Gamma
-\fCenter \Delta$.
+切割秩为 $= \depth{!B} < \depth{!B \lor !C}$，所以归纳假设再次适用，从而可得 $\Gamma
+\fCenter \Delta$ 的推导 $\pi'$。
 
-\item $!A \ident (!B \land !C)$. Exercise.
+\item $!A \ident (!B \land !C)$。练习。
 
-\item If $!A \ident (!B \lif !C)$ then $\pi$ ends in
+\item 若 $!A \ident (!B \lif !C)$，则 $\pi$ 以如下推理结尾：
 \[
 \AxiomC{}
 \RightLabel{$\pi_1'$}
@@ -475,7 +388,7 @@ hypothesis applies again, and yields !!a{proof} $\pi'$ of $\Gamma
 \BinaryInf$\Gamma \fCenter \Delta$
 \DisplayProof
 \]
-The !!{proof} ending in \CutCS,
+以 \CutCS 结尾的推导：
 \[
 \AxiomC{}
 \RightLabel{$\pi_1'$}
@@ -487,9 +400,9 @@ The !!{proof} ending in \CutCS,
 \BinaryInf$!B, \Gamma \fCenter \Delta$
 \DisplayProof
 \]
-has lower cut rank than~$\pi$. The inductive hypthesis yields
-!!a{proof}~$\pi_1''$ of $!B, \Gamma \fCenter \Delta$.
-Now consider the !!{proof} ending in \CutCS,
+切割秩低于~$\pi$。归纳假设给出
+$!B, \Gamma \fCenter \Delta$ 的推导~$\pi_1''$。
+现在考虑以 \CutCS 结尾的推导：
 \[
 \AxiomC{}
 \RightLabel{$\pi_2'$}
@@ -501,10 +414,10 @@ Now consider the !!{proof} ending in \CutCS,
 \BinaryInf$\Gamma \fCenter \Delta$
 \DisplayProof
 \]
-Its cut rank is also less than the cut rank of~$\pi$, so the induction
-hypothesis yields a \Log{G3c}-!!{proof}~$\pi'$ of $\Gamma \fCenter
-\Delta$.
-\item If $!A \ident \lforall[x][!B(x)]$ then $\pi$ ends in
+它的切割秩也小于~$\pi$ 的切割秩，所以归纳
+假设给出 $\Gamma \fCenter
+\Delta$ 的 \Log{G3c} 推导~$\pi'$。
+\item 若 $!A \ident \lforall[x][!B(x)]$，则 $\pi$ 以如下推理结尾：
 \[
 \AxiomC{}
 \RightLabel{$\pi_1'$}
@@ -522,7 +435,7 @@ hypothesis yields a \Log{G3c}-!!{proof}~$\pi'$ of $\Gamma \fCenter
 \BinaryInf$\Gamma \fCenter \Delta$
 \DisplayProof
 \]
-By inductive hypothesis, \CutCS{} can be eliminated from
+由归纳假设，可从以下推导中消除 \CutCS{}：
 \[
 \AxiomC{}
 \RightLabel{$\pi_1''$}
@@ -534,21 +447,14 @@ By inductive hypothesis, \CutCS{} can be eliminated from
 \BinaryInf$!B(t), \Gamma \fCenter \Delta$
 \DisplayProof
 \]
-where $\pi_1''$ is obtained from $\pi_1$ (not~$\pi_1'$!) by
-!!{height}-preserving weakening. (The !!{proof} has the same cut rank
-but lower cut !!{height}.) This gives us !!a{proof}~$\pi_2''$ of
-$!B(t), \Gamma \fCenter \Delta$.
+其中 $\pi_1''$ 是通过保持高度的弱化从 $\pi_1$（而非~$\pi_1'$！）得到的。（该推导具有相同的切割秩但切割高度更低。）由此可得 $!B(t), \Gamma \fCenter \Delta$ 的推导~$\pi_2''$。
 
-The !!{proof}~$\pi_1'$ has end-sequent $\Gamma \Sequent \Delta,
-!B(c)$, where $c$~is the eigenvariable of a~$\RightR{\lforall}$
-inference. So $c$~does not occur in~$!B(x)$, $\Gamma$, or~$\Delta$. We
-assume the !!{proof}~$\pi$ is regular, so $c$~is the eigenvariable of
-only the following~$\RightR{\lforall}$ inference and only occurs above
-it, i.e., only occurs in~$\pi_1'$ and is not an eigenvariable of an
-inference in~$\pi_1'$. Since $c$ does not occur in~$\pi_2$, it cannot
-occur in~$t$. By \olref[seq][qua]{lem:subst-regular}, the
-!!{proof}~$\Subst{\pi_1'}{t}{c}$ is !!a{proof} of $\Gamma \Sequent \Delta,
-!B(t)$. We now apply the inductive hypothesis to the !!{proof}
+推导~$\pi_1'$ 的结束相继式为 $\Gamma \Sequent \Delta,
+!B(c)$，其中 $c$~是某个~$\RightR{\lforall}$
+推理的特征变元。所以 $c$~不在~$!B(x)$、$\Gamma$ 或~$\Delta$ 中出现。我们
+假设推导~$\pi$ 是正则的，所以 $c$~仅是紧接其下的~$\RightR{\lforall}$ 推理的特征变元，并且只出现在该推理之上，即仅出现在~$\pi_1'$ 中，且不是~$\pi_1'$ 中任何其他推理的特征变元。由于 $c$ 不在~$\pi_2$ 中出现，它也不在~$t$ 中出现。根据 \olref[seq][qua]{lem:subst-regular}，
+推导~$\Subst{\pi_1'}{t}{c}$ 是 $\Gamma \Sequent \Delta,
+!B(t)$ 的一个推导。现在我们对以下推导应用归纳假设：
 \[
 \AxiomC{}
 \RightLabel{$\Subst{\pi_1'}{t}{c}$}
@@ -560,42 +466,28 @@ occur in~$t$. By \olref[seq][qua]{lem:subst-regular}, the
 \BinaryInf$\Gamma \fCenter \Delta$
 \DisplayProof
 \]
-(The induction hypothesis applies since the cut !!{formula}
-is~$!B(t)$, so the !!{proof} has lower cut rank than~$\pi$.)
-\item We leave the case $!A \ident \lexists[x][!B(x)]$ as an exercise.
+（归纳假设适用，因为切割公式是~$!B(t)$，所以该推导的切割秩低于~$\pi$。）
+\item 我们将 $!A \ident \lexists[x][!B(x)]$ 的情形留作练习。
 \end{enumerate}
 \end{proof}
 
 \begin{prob}
-Verify the sub-case of case~D in the proof of \olref{lem:cut-adm-G3c}
-where $!A$ is not principal in the last inference of~$\pi_1$, which
-ends in~$\LeftR{\lif}$. (Note: part of this exercise is to clearly
-state what you have to prove, i.e., what form $\pi$ has in this case.)
+验证 \olref{lem:cut-adm-G3c} 证明中情况~D 的一个子情况：在 $\pi_1$ 的最后一个推理（以 $\LeftR{\lif}$ 结束）中，公式 $!A$ 不是主公式。（注：本练习的部分要求是清楚地陈述你要证明什么，即在此情况下 $\pi$ 具有何种形式。）
 \end{prob}
 
 \begin{prob}
-Verify the sub-case of case~D in the proof of \olref{lem:cut-adm-G3c}
-where $!A$ is not principal in the last inference of~$\pi_1$, which
-ends in~$\LeftR{\lforall}$.
+验证 \olref{lem:cut-adm-G3c} 证明中情况~D 的一个子情况：在 $\pi_1$ 的最后一个推理（以 $\LeftR{\lforall}$ 结束）中，公式 $!A$ 不是主公式。
 \end{prob}
 
 \begin{prob}
-Verify the sub-case of case~E in the proof of \olref{lem:cut-adm-G3c}
-where $!A$ is principal in the last inferences of both $\pi_1$ and
-$\pi_2$ and $!A \ident (!B \land !C)$.
+验证 \olref{lem:cut-adm-G3c} 证明中情况~E 的一个子情况：公式 $!A$ 在 $\pi_1$ 和 $\pi_2$ 各自的最后一个推理中都是主公式，且 $!A \ident (!B \land !C)$。
 \end{prob}
 
 \begin{prob}
-Verify the sub-case of case~E in the proof of \olref{lem:cut-adm-G3c}
-where $!A$ is principal in the last inferences of both $\pi_1$ and
-$\pi_2$ and $!A \ident \lexists[x][!B(x)]$.
+验证 \olref{lem:cut-adm-G3c} 证明中情况~E 的一个子情况：公式 $!A$ 在 $\pi_1$ 和 $\pi_2$ 各自的最后一个推理中都是主公式，且 $!A \ident \lexists[x][!B(x)]$。
 \end{prob}
 
-Note that in case~E the cut !!{height} of the !!{proof} ending in
-\CutCS{} to which we apply the inductive hypothesis can be larger than
-the cut !!{height} of the original proof. E.g., in the case where $!A
-\ident (!B \lif !C)$ we turned $\pi$ into !!a{proof} involving two
-\CutCS{} inferences,
+注意，在情况~E 中，我们对以 \CutCS{} 结束的推导应用归纳假设，而该推导的切割高度可能大于原始证明的切割高度。例如，在 $!A \ident (!B \lif !C)$ 的情形下，我们将 $\pi$ 转变为一个包含两个 \CutCS{} 推理的推导：
 \[
 \AxiomC{}
 \RightLabel{$\pi_2'$}
@@ -613,31 +505,16 @@ the cut !!{height} of the original proof. E.g., in the case where $!A
 \BinaryInf$!B, \Gamma \fCenter \Delta$
 \DisplayProof
 \]
-The top \CutCS{} between $\pi_1'$ and $\pi_2''$ has both lower cut
-rank and lower cut !!{height} than~$\pi$. But the
-!!{proof}~$\pi_1''$---the result of applying the inductive
-hypothesis---no longer has lower cut !!{height} than~$\pi$. Since the
-cut !!{formula} of the lower \CutCS{} is $!B$, its cut \emph{rank},
-however, is lower than the cut rank of~$\pi$.
+$\pi_1'$ 和 $\pi_2''$ 之间的顶层 \CutCS{} 的切割秩和切割高度均低于 $\pi$。但是，应用归纳假设的结果——推导 $\pi_1''$——的切割高度不再低于 $\pi$。然而，由于下层 \CutCS{} 的切割公式是 $!B$，其切割\emph{秩}低于 $\pi$ 的切割秩。
 
-\olref{lem:cut-adm-G3c} establishes that we can eliminate a single topmost
-\CutCS{} inference from !!a{proof}. We can show that we can eliminate
-any number of \CutCS{} inferences from !!a{proof} by successively
-applying it to the topmost sub-!!{proof}s ending in~\CutCS.
+\olref{lem:cut-adm-G3c} 确立了我们可以从一个推导中消除单个最顶层的 \CutCS{} 推理。通过依次将 \olref{lem:cut-adm-G3c} 应用于以 \CutCS{} 结束的最顶层子推导，可以证明，我们能够从推导中消除任意数量的 \CutCS{} 推理。
 
-\begin{thm}\ollabel{thm:cut-elim-G3c-topmost} Any !!{proof} $\pi$ in
-$\Log{G3c} + \CutCS$ can be transformed into !!a{proof} in~\Log{G3c}.
+\begin{thm}\ollabel{thm:cut-elim-G3c-topmost}
+$\Log{G3c} + \CutCS$ 中的任意推导 $\pi$ 都可转换为 $\Log{G3c}$ 中的推导。
 \end{thm}
 
 \begin{proof}
-  By induction on the number~$n$ of \CutCS{} inferences in~$\pi$. If
-  $n=0$, there is nothing to do: $\pi$ is already !!a{proof}
-  in~\Log{G3c}. Otherwise, consider the sub-!!{proof}~$\pi'$ ending in
-  a top-most \CutCS{} inference. It contains a single \CutCS{} rule as the
-  last inference. Apply \olref{lem:cut-adm-G3c} to transform it into a
-  \CutCS{}-free proof~$\pi''$, and replace the sub-!!{proof}~$\pi'$
-  by~$\pi''$. The result is !!a{proof} containing $n-1$ \CutCS{}
-  inferences, and the induction hypothesis applies.
+对 $\pi$ 中 \CutCS{} 推理的数量 $n$ 进行归纳。若 $n=0$，则无需做任何事：$\pi$ 本身已是 $\Log{G3c}$ 中的推导。否则，考虑以最顶层 \CutCS{} 推理结束的子推导 $\pi'$。它包含单个 \CutCS{} 规则作为最后一个推理。应用 \olref{lem:cut-adm-G3c} 将其转换为无 \CutCS{} 的证明 $\pi''$，并用 $\pi''$ 替换子推导 $\pi'$。所得结果是一个包含 $n-1$ 个 \CutCS{} 推理的推导，从而可应用归纳假设。
 \end{proof}
 
 \end{document}

@@ -7,36 +7,26 @@
 \begin{document}
 
 \olfileid{cmp}{rec}{cmp}
-\olsection{Primitive Recursive Functions are Computable}
+\olsection{原始递归函数是可计算的}
 
-Suppose a function $h$ is defined by primitive recursion
+假设函数 $h$ 由原始递归定义
 \begin{eqnarray*}
 h(\vec x, 0)     & = & f(\vec x) \\
 h(\vec x, y + 1) & = & g(\vec x, y, h(\vec x, y))
 \end{eqnarray*}
-and suppose the functions $f$ and $g$ are computable.  (We use $\vec x$ to abbreviate $x_0$, \dots, $x_{k-1}$.) Then $h(\vec
-x, 0)$ can obviously be computed, since it is just $f(\vec x)$ which we
-assume is computable.  $h(\vec x, 1)$ can then also be computed, since
-$1 = 0 + 1$ and so $h(\vec x, 1)$ is just
+，且函数 $f$ 和 $g$ 是可计算的。（我们用 $\vec x$ 简写 $x_0$, \dots, $x_{k-1}$。）那么 $h(\vec x, 0)$ 显然可计算，因为它即为 $f(\vec x)$，而由假设 $f$ 可计算。$h(\vec x, 1)$ 亦可计算，由于 $1 = 0 + 1$，故 $h(\vec x, 1)$ 即为
 \begin{align*}
  h(\vec x, 1) & = g(\vec x, 0, h(\vec x, 0)) =  g(\vec x, 0, f(\vec x)).
-\intertext{We can go on in this way and  compute}
+\intertext{我们可以照此继续计算}
 h(\vec x, 2) & = g(\vec x, 1, h(\vec x, 1)) = g(\vec x, 1, g(\vec x, 0, f(\vec x)))\\
 h(\vec x, 3) & = g(\vec x, 2, h(\vec x, 2)) = g(\vec x, 2, g(\vec x, 1, g(\vec x, 0, f(\vec x))))\\
 h(\vec x, 4) & = g(\vec x, 3, h(\vec x, 3)) = g(\vec x, 3, g(\vec x, 2, g(\vec x, 1, g(\vec x, 0, f(\vec x)))))\\
 & \vdots
 \end{align*}
-Thus, to compute $h(\vec x, y)$ in general, successively compute
-$h(\vec x, 0)$, $h(\vec x, 1)$, \dots, until we reach $h(\vec x, y)$.
+因此，一般地，要计算 $h(\vec x, y)$，只需依次计算 $h(\vec x, 0)$, $h(\vec x, 1)$, \dots，直至得到 $h(\vec x, y)$。
 
-Thus, a primitive recursive definition yields a new computable
-function if the functions $f$ and $g$ are computable.  Composition of
-functions also results in a computable function if the functions $f$
-and $g_i$ are computable.
+由此可见，若函数 $f$ 和 $g$ 可计算，则原始递归定义产生的新函数亦可计算。若函数 $f$ 和 $g_i$ 可计算，则函数的复合亦生成可计算函数。
 
-Since the basic functions $\Zero$, $\Succ$, and $\Proj{n}{i}$ are
-computable, and composition and primitive recursion yield computable
-functions from computable functions, this means that every primitive
-recursive function is computable.
+由于基本函数 $\Zero$、$\Succ$ 和 $\Proj{n}{i}$ 都是可计算的，且复合与原始递归均能由可计算函数生成可计算函数，故每个原始递归函数都是可计算的。
 
 \end{document}

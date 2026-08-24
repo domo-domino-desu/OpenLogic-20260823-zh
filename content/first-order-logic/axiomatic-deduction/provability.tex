@@ -13,294 +13,283 @@
       {\olfileid{fol}{axd}{prv}}
       {\olfileid{pl}{axd}{prv}}
 
-\olsection{Properties of \usetoken{S}{derivability}}
+\olsection{\usetoken{S}{derivability}的性质}
 
-\begin{prop}[Monotonicity] If $\Gamma \subseteq \Delta$ and $\Gamma \Proves !A$
-then also $\Delta \Proves !A$ \end{prop}
+\begin{prop}[单调性] 若 $\Gamma \subseteq \Delta$ 且 $\Gamma \Proves !A$，
+则亦有 $\Delta \Proves !A$。\end{prop}
 
-\begin{proof} Any finite $\Gamma_0 \subseteq \Gamma$ is also a finite
-subset of~$\Delta$, so !!a{derivation} of $\Gamma_0 \Proves !A$ also shows
-$\Delta \Proves !A$. \end{proof}
+\begin{proof} 任何有限的 $\Gamma_0 \subseteq \Gamma$ 也是 $\Delta$ 的有限子集，
+因此 $\Gamma_0 \Proves !A$ 的一个推导同时也表明 $\Delta \Proves !A$。\end{proof}
 
-\begin{prop}\ollabel{prop:provability} $\Gamma \Proves !A$ if and only if
-$\Gamma\cup \{\lnot!A \}$ is inconsistent. \end{prop}
+\begin{prop}\ollabel{prop:provability} $\Gamma \Proves !A$ 当且仅当
+$\Gamma\cup \{\lnot!A \}$ 是不一致的。\end{prop}
 
 \begin{prop} \begin{enumerate}
-\item \ollabel{prop:provability-contr} If $\Gamma \Proves !A$ and $\Gamma
-\cup \{ !A\} \Proves \lfalse$, then $\Gamma$ is inconsistent.
+\item \ollabel{prop:provability-contr} 若 $\Gamma \Proves !A$ 且 $\Gamma
+\cup \{ !A\} \Proves \lfalse$，则 $\Gamma$ 是不一致的。
 
-\item \ollabel{prop:provability-lnot} If $\Gamma \cup \{!A\}
-\Proves \lfalse$, then $\Gamma \Proves \lnot !A$.
+\item \ollabel{prop:provability-lnot} 若 $\Gamma \cup \{!A\}
+\Proves \lfalse$，则 $\Gamma \Proves \lnot !A$。
 
-\item \ollabel{prop:provability-exhaustive} If $\Gamma \cup \{!A\}
-\Proves \lfalse$ and $\Gamma \cup \{\lnot !A\} \Proves
-\lfalse$, then $\Gamma \Proves \lfalse$.
+\item \ollabel{prop:provability-exhaustive} 若 $\Gamma \cup \{!A\}
+\Proves \lfalse$ 且 $\Gamma \cup \{\lnot !A\} \Proves
+\lfalse$，则 $\Gamma \Proves \lfalse$。
 
-\tagitem{prvOr}{\ollabel{prop:provability-lor-left} If $\Gamma \cup \{!A\}
-\Proves \lfalse$ and $\Gamma \cup \{!B\} \Proves
-\lfalse$, then $\Gamma \cup \{!A \lor !B\} \Proves \lfalse$.}{}
+\tagitem{prvOr}{\ollabel{prop:provability-lor-left} 若 $\Gamma \cup \{!A\}
+\Proves \lfalse$ 且 $\Gamma \cup \{!B\} \Proves
+\lfalse$，则 $\Gamma \cup \{!A \lor !B\} \Proves \lfalse$。}{}
 
-\tagitem{prvOr}{\ollabel{prop:provability-lor-right} If $\Gamma
-\Proves !A$ or $\Gamma \Proves !B$, then $\Gamma
-\Proves !A \lor !B$.}{}
+\tagitem{prvOr}{\ollabel{prop:provability-lor-right} 若 $\Gamma
+\Proves !A$ 或 $\Gamma \Proves !B$，则 $\Gamma
+\Proves !A \lor !B$。}{}
 
-\tagitem{prvAnd}{\ollabel{prop:provability-land-left} If $\Gamma
-\Proves !A \land !B$ then $\Gamma \Proves !A$ and
-$\Gamma \Proves !B$.}{}
+\tagitem{prvAnd}{\ollabel{prop:provability-land-left} 若 $\Gamma
+\Proves !A \land !B$ 则 $\Gamma \Proves !A$ 且
+$\Gamma \Proves !B$。}{}
 
-\tagitem{prvAnd}{\ollabel{prop:provability-land-right} If $\Gamma
-\Proves !A$ and $\Gamma \Proves !B$, then $\Gamma
-\Proves !A \land !B$.}{}
+\tagitem{prvAnd}{\ollabel{prop:provability-land-right} 若 $\Gamma
+\Proves !A$ 且 $\Gamma \Proves !B$，则 $\Gamma
+\Proves !A \land !B$。}{}
 
-\tagitem{prvIf}{\ollabel{prop:provability-mp} If $\Gamma \Proves
-!A$ and $\Gamma \Proves !A \lif !B$, then $\Gamma
-\Proves !B$.}{}
+\tagitem{prvIf}{\ollabel{prop:provability-mp} 若 $\Gamma \Proves
+!A$ 且 $\Gamma \Proves !A \lif !B$，则 $\Gamma
+\Proves !B$。}{}
 
-\tagitem{prvIf}{\ollabel{prop:provability-lif} If $\Gamma \Proves
-\lnot !A$ or $\Gamma \Proves !B$, then $\Gamma \Proves
-!A \lif !B$.}{} \end{enumerate} \end{prop}
+\tagitem{prvIf}{\ollabel{prop:provability-lif} 若 $\Gamma \Proves
+\lnot !A$ 或 $\Gamma \Proves !B$，则 $\Gamma \Proves
+!A \lif !B$。}{} \end{enumerate} \end{prop}
 
-\begin{proof} 
+\begin{proof}
 \begin{enumerate}
-\item Assume that $\Gamma_0 \cup \{!A\} \Proves \lfalse$.
+\item 假设 $\Gamma_0 \cup \{!A\} \Proves \lfalse$。
 
-\begin{derivation} 
-1. & $\Gamma_0 \cup \{!A\} \Proves \lfalse$ & hyp. \\
-2. & $\Gamma_1 \Proves !A$ & hyp.\\ 
-3. & $\Gamma_0 \cup \Gamma_1 \Proves \lfalse$ & cut \\ 
+\begin{derivation}
+1. & $\Gamma_0 \cup \{!A\} \Proves \lfalse$ & 假设 \\
+2. & $\Gamma_1 \Proves !A$ & 假设\\
+3. & $\Gamma_0 \cup \Gamma_1 \Proves \lfalse$ & Cut \\
 \end{derivation}
 
-Since $\Gamma_0 \subseteq \Gamma$ and $\Gamma_1 \subseteq \Gamma$,
-$\Gamma_0 \cup \Gamma_1 \subseteq \Gamma$, hence $\Gamma \Proves \lfalse$.
+由于 $\Gamma_0 \subseteq \Gamma$ 且 $\Gamma_1 \subseteq \Gamma$，
+$\Gamma_0 \cup \Gamma_1 \subseteq \Gamma$，因此 $\Gamma \Proves \lfalse$。
 
-\item We assume that $\Gamma_0 \cup\{\lnot !A\} \Proves \lfalse$.
+\item 假设 $\Gamma_0 \cup\{\lnot !A\} \Proves \lfalse$。
 
-\begin{derivation} 
-1. & $\Gamma_0 \cup\{\lnot !A\} \Proves \lfalse$ & hyp. \\ 
-2. & $\Gamma_0 \Proves \lnot !A \lif \lfalse$ & Deduction Theorem\\
-3. & $\Gamma_0 \Proves (\lnot !A \lif \lfalse) \lif !A$ & Ax0\\ 
-4. & $\Gamma_0 \Proves !A$ & MP 2, 3 \\ 
+\begin{derivation}
+1. & $\Gamma_0 \cup\{\lnot !A\} \Proves \lfalse$ & 假设 \\
+2. & $\Gamma_0 \Proves \lnot !A \lif \lfalse$ & 演绎定理\\
+3. & $\Gamma_0 \Proves (\lnot !A \lif \lfalse) \lif !A$ & Ax0\\
+4. & $\Gamma_0 \Proves !A$ & MP 2, 3 \\
 \end{derivation}
 
-\item We assume that $\Gamma \cup \{ !A \} \Proves \lfalse$ and that
-$\Gamma_1 \cup \{\lnot !A \} \Proves \lfalse$.
+\item 假设 $\Gamma \cup \{ !A \} \Proves \lfalse$ 且 $\Gamma_1 \cup \{\lnot !A \} \Proves \lfalse$。
 
-\begin{derivation} 
-1. & $\Gamma_0 \cup\{!A\} \Proves \lfalse$ & hyp. \\
-2. & $\Gamma_0 \Proves !A \lif \lfalse$ & Deduction Theorem \\ 
-3. & $\Gamma_1 \cup \{\lnot !A \} \Proves \lfalse$ & hyp\\ 
-4. & $\Gamma_0 \Proves (!A \lif \lfalse) \lif \lnot !A$ & Ax0\\ 
-5. & $\Gamma_0 \Proves \lnot !A$ & MP 2, 4\\ 
+\begin{derivation}
+1. & $\Gamma_0 \cup\{!A\} \Proves \lfalse$ & 假设 \\
+2. & $\Gamma_0 \Proves !A \lif \lfalse$ & 演绎定理 \\
+3. & $\Gamma_1 \cup \{\lnot !A \} \Proves \lfalse$ & 假设\\
+4. & $\Gamma_0 \Proves (!A \lif \lfalse) \lif \lnot !A$ & Ax0\\
+5. & $\Gamma_0 \Proves \lnot !A$ & MP 2, 4\\
 6. & $\Gamma_0 \cup \Gamma_1 \Proves \lfalse$ & Cut 3, 5 \\
 \end{derivation}
 
-Since $\Gamma_0 \subseteq \Gamma$ and $\Gamma_1 \subseteq \Gamma$,
-$\Gamma_0 \cup \Gamma_1 \subseteq \Gamma$. Hence $\Gamma \Proves \lfalse$.
+由于 $\Gamma_0 \subseteq \Gamma$ 且 $\Gamma_1 \subseteq \Gamma$，
+$\Gamma_0 \cup \Gamma_1 \subseteq \Gamma$。因此 $\Gamma \Proves \lfalse$。
 
 % prop:provability-lor-left 
 \tagitem{defOr}{}{
-\iftag{probOr}{Exercise.}{Exercise.}}
+\iftag{probOr}{练习。}{练习。}}
 
 % prop:provability-lor-right 
-\tagitem{defOr}{}{ \iftag{probOr}{Exercise.}{
-We assume that $\Gamma_0 \Proves !A$.
+\tagitem{defOr}{}{ \iftag{probOr}{练习。}{
+假设 $\Gamma_0 \Proves !A$。
 
-\begin{derivation} 
-1. & $\Gamma_0 \Proves !A$ & hyp \\ 
-2. & $\Gamma_0 \Proves !A \lif (!A \lor !B)$ & Ax0\\ 
+\begin{derivation}
+1. & $\Gamma_0 \Proves !A$ & 假设 \\
+2. & $\Gamma_0 \Proves !A \lif (!A \lor !B)$ & Ax0\\
 3. & $\Gamma_0 \Proves !A \lor !B$ & MP 1, 2 \\
 \end{derivation}
 
-Therefore $\Gamma \Proves !A \lor !B$. The proof for when $\Gamma \Proves
-!B$ is similar.}}
+因此 $\Gamma \Proves !A \lor !B$。当 $\Gamma \Proves
+!B$ 时的证明类似。}}
 
 % prop:provability-land-left 
-\tagitem{defAnd}{}{ \iftag{probAnd}{Exercise}{
-Assume that $\Gamma_0 \Proves !A \land !B$
+\tagitem{defAnd}{}{ \iftag{probAnd}{练习}{
+假设 $\Gamma_0 \Proves !A \land !B$
 
-\begin{derivation} 
-1. & $\Gamma_0 \Proves !A \land !B$ & hyp \\ 
-2. & $\Gamma_0 \Proves (!A\land !B) \lif !A $ & Ax0\\ 
+\begin{derivation}
+1. & $\Gamma_0 \Proves !A \land !B$ & 假设 \\
+2. & $\Gamma_0 \Proves (!A\land !B) \lif !A $ & Ax0\\
 3. & $\Gamma_0 \Proves !A \lor !B$ & MP 1, 2 \\
 \end{derivation}
 
-Hence, $\Gamma \Proves !A$. A similar !!{derivation} starting shows that
-$\Gamma \Proves !B$.}}
+因此，$\Gamma \Proves !A$。一个类似的推导表明
+$\Gamma \Proves !B$。}}
 
 % prop:provability-land-right
-\tagitem{defAnd}{}{\iftag{probAnd}{Exercise.}{Exercise.}}
+\tagitem{defAnd}{}{\iftag{probAnd}{练习。}{练习。}}
 
 % prop:provability-mp 
-\tagitem{defIf}{}{ \iftag{probIf}{Exercise.}{ We
-assume both that $\Gamma_0 \Proves !A$ and $\Gamma_0 \Proves !A \lif !B $.
+\tagitem{defIf}{}{ \iftag{probIf}{练习。}{ 假设
+$\Gamma_0 \Proves !A$ 且 $\Gamma_0 \Proves !A \lif !B $。
 
-\begin{derivation} 
-1. & $\Gamma_0 \Proves !A$ & hyp \\ 
-2. & $\Gamma_0 \Proves !A \lif !B $ & hyp\\ 
+\begin{derivation}
+1. & $\Gamma_0 \Proves !A$ & 假设 \\
+2. & $\Gamma_0 \Proves !A \lif !B $ & 假设\\
 3. & $\Gamma_0 \Proves !B$ & MP 1, 2\\
 \end{derivation}
 
-Since $\Gamma_0 \cup \Gamma_1 \subseteq \Gamma$, this means that $\Gamma
-\Proves !B$.}}
+由于 $\Gamma_0 \cup \Gamma_1 \subseteq \Gamma$，这意味着 $\Gamma
+\Proves !B$。}}
 
 % prop:provability-lif 
-\tagitem{defIf}{}{\iftag{probIf}{Exercise.}{First
-suppose $\Gamma \Proves \lnot !A$.
-    
-\begin{derivation} 
-1. & $\Gamma_0 \Proves \lnot !A$ & hyp \\ 
-2. & $\Gamma_0 \Proves \lnot !A \lif (!A \lif !B) $ & Ax0\\ 
+\tagitem{defIf}{}{\iftag{probIf}{练习。}{首先
+假设 $\Gamma \Proves \lnot !A$。
+
+\begin{derivation}
+1. & $\Gamma_0 \Proves \lnot !A$ & 假设 \\
+2. & $\Gamma_0 \Proves \lnot !A \lif (!A \lif !B) $ & Ax0\\
 3. & $\Gamma_0 \Proves !A \lif !B$ & MP 1,
 2\\ \end{derivation}
 
-The proof for $\Gamma \Proves !B$ is similar:
+$\Gamma \Proves !B$ 的证明类似：
 
-\begin{derivation} 
-1. & $\Gamma_0 \Proves !B$ & hyp \\ 
-2. & $\Gamma_0 \Proves !B \lif (!A \lif !B) $ & Ax0\\ 
+\begin{derivation}
+1. & $\Gamma_0 \Proves !B$ & 假设 \\
+2. & $\Gamma_0 \Proves !B \lif (!A \lif !B) $ & Ax0\\
 3. & $\Gamma_0 \Proves !A \lif !B$ & MP 1, 2\\
 \end{derivation}}}
 
-\end{enumerate} 
+\end{enumerate}
 \end{proof}
 
-\begin{probtag}{probOr,probAnd,probIf} Complete the proof of
-\olref[fol][axd][prv]{prop:provability}. 
+\begin{probtag}{probOr,probAnd,probIf} 完成
+\olref[fol][axd][prv]{prop:provability} 的证明。
 \end{probtag}
 
-\begin{thm}[Generalization] \ollabel{thm:Generalization} If $\Gamma \Proves
-!A$ and $x$ is not free in any !!{formula} in $\Gamma$, then $\Gamma
-\Proves \lforall[x][!A]$. 
+\begin{thm}[泛化定理] \ollabel{thm:Generalization} 若 $\Gamma \Proves
+!A$ 且 $x$ 在 $\Gamma$ 的任何公式中均不自由，则 $\Gamma
+\Proves \lforall[x][!A]$。
 \end{thm}
 
-\begin{proof} By induction on $\mathsf{Thm}_\Gamma$: if $!A$ is an axiom,
-so is $\lforall[x][!A]$. If $!A\in \Gamma$ then $x$ is not free in $!A$, so
-that $!A \lif \lforall[x][!A]$ is an axiom (\textbf{Ax3}), and $\Gamma
-\Proves \lforall[x][!A]$ by MP. Now suppose $!A$ follows by MP because
-$\Gamma \Proves !B$ and $\Gamma \Proves !B \lif !A$. By induction
-hypothesis, $\Gamma \Proves \lforall[x][!B]$ and $\Gamma \Proves
-\lforall[x][( !B \lif !A)]$. But by \textbf{Ax2} also \[ \Gamma \Proves
-\lforall[x][( !B \lif !A)] \lif (\lforall[x][ !B] \lif \lforall[x][!A]), \]
-and two applications of MP give $\Gamma \Proves \lforall[x][!A]$ as
-desired. \end{proof}
+\begin{proof} 通过对 $\mathsf{Thm}_\Gamma$ 进行归纳来证明：若 $!A$ 是公理，
+则 $\lforall[x][!A]$ 也是公理。若 $!A\in \Gamma$，则 $x$ 在 $!A$ 中不自由，故
+$!A \lif \lforall[x][!A]$ 是一条公理（\textbf{Ax3}），并且 $\Gamma
+\Proves \lforall[x][!A]$ 可由 MP 规则得到。现假设 $!A$ 由 MP 规则得出，即由
+$\Gamma \Proves !B$ 且 $\Gamma \Proves !B \lif !A$ 而得。由归纳
+假设，$\Gamma \Proves \lforall[x][!B]$ 且 $\Gamma \Proves
+\lforall[x][( !B \lif !A)]$。但由 \textbf{Ax2} 有 \[ \Gamma \Proves
+\lforall[x][( !B \lif !A)] \lif (\lforall[x][ !B] \lif \lforall[x][!A]), \]，
+两次应用 MP 规则即得所证的 $\Gamma \Proves \lforall[x][!A]$。 \end{proof}
 
-\begin{thm}\ollabel{thm:WeakGen} (\emph{Weak Generalization on Constants})
-If $\Gamma \Proves !A$ and $c$ is !!a{constant} not in occurring in
-$\Gamma$, then there is a variable $x$ not in $!A$ such that $\Gamma
-\Proves \lforall[x][\Subst{!A}{x}{c}]$, and the proof does not involve $c$.
+\begin{thm}\ollabel{thm:WeakGen} （\emph{弱常项泛化定理}）
+若 $\Gamma \Proves !A$ 且常项符号 $c$ 不在 $\Gamma$ 中出现，
+则存在一个不在 $!A$ 中出现的变元 $x$，使得 $\Gamma
+\Proves \lforall[x][\Subst{!A}{x}{c}]$，并且该证明不涉及 $c$。
 \end{thm}
 
-\begin{proof} Let $!A_1,\ldots,!A_n$ be a proof of $!A$ from $\Gamma$, so
-that $!A=!A_n$. Pick a variable $x$ not in $!A_1,\ldots,!A_n$, and consider
-the new sequence: $\Subst{!A_1}{x}{c},\ldots,\Subst{!A_n}{x}{c}.$ Such a
-sequence is a proof of $\Subst{!A}{x}{c}$ from $\Gamma$. In fact, for each
-$i=1,\ldots,n$: \begin{itemize} \item if $!A$ is an axiom, then so is
-$\Subst{!A_i}{x}{c}$; \item if $!A_i \in \Gamma$, then since $c$ is not in
-$\Gamma$, we have $\Subst{!A_i}{x}{c} = !A_i \in \Gamma$; \item if $!A_i$
-is obtained from $!A_j$ and $!A_j \lif !A_i$ then $\Subst{!A_i}{x}{c}$
-follows by MP from $\Subst{!A_j}{x}{c}$ and $\Subst{(!A_j \lif !A_i)}{x}{c}
-= \Subst{!A_j}{x}{c} \lif \Subst{!A_i}{x}{c}$. \end{itemize} It is clear
-that the !!{constant} $c$ no longer occurs in the new sequence. Now let
-$\Gamma'$ comprise those !!{formula}s from $\Gamma$ that appear in the
-!!{derivation} of $\Subst{!A}{x}{c}$; then $x$ is not free in any
-!!{formula} in $\Gamma'$ and $\Gamma' \Proves \Subst{!A}{x}{c}$. By
-generalization (\olref{thm:Generalization}) $\Gamma'
-\Proves \lforall[x][\Subst{!A}{x}{c}]$, whence by monotonicity $\Gamma \Proves
-\lforall[x][\Subst{!A}{x}{c}]$, as desired. 
+\begin{proof} 令 $!A_1,\ldots,!A_n$ 为从 $\Gamma$ 推出 $!A$ 的一个证明，故
+$!A=!A_n$。选取一个不在 $!A_1,\ldots,!A_n$ 中出现的变元 $x$，并考虑
+新的序列：$\Subst{!A_1}{x}{c},\ldots,\Subst{!A_n}{x}{c}.$ 该
+序列是 $\Subst{!A}{x}{c}$ 从 $\Gamma$ 的一个证明。事实上，对每个
+$i=1,\ldots,n$： \begin{itemize} \item 若 $!A$ 是公理，则 $\Subst{!A_i}{x}{c}$ 也是公理； \item 若 $!A_i \in \Gamma$，则由于 $c$ 不在
+$\Gamma$ 中，我们有 $\Subst{!A_i}{x}{c} = !A_i \in \Gamma$； \item 若 $!A_i$
+是由 $!A_j$ 和 $!A_j \lif !A_i$ 通过 MP 规则得到，则 $\Subst{!A_i}{x}{c}$
+可由 MP 规则从 $\Subst{!A_j}{x}{c}$ 和 $\Subst{(!A_j \lif !A_i)}{x}{c}
+= \Subst{!A_j}{x}{c} \lif \Subst{!A_i}{x}{c}$ 得到。\end{itemize} 显然，
+常项符号 $c$ 不再出现在新序列中。现在令
+$\Gamma'$ 由出现在 $\Subst{!A}{x}{c}$ 推导中的那些 $\Gamma$ 的公式组成；那么 $x$ 在 $\Gamma'$
+的任何公式中均不自由，且 $\Gamma' \Proves \Subst{!A}{x}{c}$。由
+泛化定理（\olref{thm:Generalization}）得 $\Gamma'
+\Proves \lforall[x][\Subst{!A}{x}{c}]$，再由单调性得 $\Gamma \Proves
+\lforall[x][\Subst{!A}{x}{c}]$，如所求。
 \end{proof}
 
 \begin{explain}
-Our goal is to replace the requirement in \olref{thm:WeakGen} that $x$
-does not occur in $!A$ (at all) by the weaker requirements that $x$ is
-not free in $!A$ and it is !!{free for} $c$ in $!A$. Clearly this can
-be accomplished by a change of bound !!{variable} --- so that is what
-we set out to prove first.
+我们的目标是用更弱的要求——$x$ 在 $!A$ 中不自由且对 $c$ 在 $!A$ 中自由——来
+替换 \olref{thm:WeakGen} 中 $x$ 完全不在 $!A$ 中出现这一要求。显然这可以通过
+改变约束变元来实现——而这正是我们首先要证明的。
 \end{explain}
 
 \begin{lem}
-\ollabel{lem:free-for} 
-If $x$ is free for $c$ in $!A$ and $y$ is not free in $!A$, then $x$
-is !!{free for} $y$ in $\Subst{!A}{y}{c}$.
+\ollabel{lem:free-for}
+若 $x$ 对 $c$ 在 $!A$ 中自由且 $y$ 在 $!A$ 中不自由，则 $x$
+对 $y$ 在 $\Subst{!A}{y}{c}$ 中自由。
 \end{lem}
 
-\begin{proof} If $x$ is not !!{free for} $y$ in $\Subst{!A}{y}{x}$, then
-some free occurrence of $y$ in $\Subst{!A}{y}{c}$ falls within the scope of
-a quantifier $\lforall[x]$. But $y$ is not free in $!A$, by hypothesis, so
-all such occurrences come from the substitution $\Subst{}{y}{c}$. So some
-occurrence of $c$ falls within the scope of $\lforall[x]$ and $x$ is not
-!!{free for} $c$ in $!A$. 
+\begin{proof} 若 $x$ 对 $y$ 在 $\Subst{!A}{y}{x}$ 中不自由，则
+$\Subst{!A}{y}{c}$ 中 $y$ 的某个自由出现在量词 $\lforall[x]$ 的辖域内。
+但由假设 $y$ 在 $!A$ 中不自由，所以所有这些出现都源自代入 $\Subst{}{y}{c}$。因此，
+$c$ 的某个出现在 $\lforall[x]$ 的辖域内，从而 $x$ 对 $c$ 在 $!A$ 中不自由。
 \end{proof}
 
-\begin{lem}[Change of Bound Variable]
-\ollabel{lem:ChangeBdVar} 
-If $x$ and $y$ are not free in $!A$ and they are both !!{free for} $c$
-in $!A$, then $\Proves \lforall[x][\Subst{!A}{x}{c}] \equiv
-\lforall[y][\Subst{!A}{y}{c}]$ (and the proof does not involve $c$).
+\begin{lem}[改变约束变元]
+\ollabel{lem:ChangeBdVar}
+若 $x$ 和 $y$ 在 $!A$ 中均不自由，且两者都对 $c$ 在 $!A$ 中自由，
+则 $\Proves \lforall[x][\Subst{!A}{x}{c}] \equiv
+\lforall[y][\Subst{!A}{y}{c}]$（且证明不涉及 $c$）。
 \end{lem}
 
-\begin{proof} 
-From the hypotheses, $y$ is !!{free for} $c$ in $!A$ and $x$ is not
-free in $!A$, so by the previous \olref{lem:free-for}, $y$ is
-!!{free for} $x$ in $\Subst{!A}{x}{c}$. It follows that
+\begin{proof}
+由假设，$y$ 对 $c$ 在 $!A$ 中自由且 $x$ 在 $!A$ 中不自由，故由
+前一引理 \olref{lem:free-for}，$y$ 对 $x$ 在 $\Subst{!A}{x}{c}$ 中自由。由此可知
 $\lforall[x][\Subst{!A}{x}{c} \lif \Subst{!A}{x}{c} \Subst{}{y}{x}]$
-is an axiom (\textbf{Ax1}). Since $x$ is not free in $!A$, we have
-$\Subst{!A}{x}{c} \Subst{}{y}{x} = \Subst{!A}{y}{c}$, so that 
+是一条公理（\textbf{Ax1}）。由于 $x$ 在 $!A$ 中不自由，我们有
+$\Subst{!A}{x}{c} \Subst{}{y}{x} = \Subst{!A}{y}{c}$，所以
 \[
 \Proves \lforall[x][\Subst{!A}{x}{c}] \lif \Subst{!A}{y}{c}, 
-\] 
-and by the Deduction Theorem $\lforall[x][\Subst{!A}{x}{c}] \Proves
-\Subst{!A}{y}{c}$. Since $y$ is not free in $!A$, it also not free in
-$\lforall[x][\Subst{!A}{x}{c}]$, so that by Generalization
-$\lforall[x][\Subst{!A}{x}{c}] \Proves \lforall[y][\Subst{!A}{y}{c}]$,
-and the Deduction Theorem again gives $\Proves
-\lforall[x][\Subst{!A}{x}{c}] \lif \lforall[y][\Subst{!A}{y}{c}]$.
-The proof of $\Proves \lforall[y][\Subst{!A}{y}{c}] \lif \lforall[x]
-[\Subst{!A}{x}{c}]$ is perfectly symmetric, so that the conclusion
-follows by Taut.
+\]
+并且由演绎定理得 $\lforall[x][\Subst{!A}{x}{c}] \Proves
+\Subst{!A}{y}{c}$。由于 $y$ 在 $!A$ 中不自由，它在
+$\lforall[x][\Subst{!A}{x}{c}]$ 中也不自由，故由泛化定理
+$\lforall[x][\Subst{!A}{x}{c}] \Proves \lforall[y][\Subst{!A}{y}{c}]$，
+再次应用演绎定理得 $\Proves
+\lforall[x][\Subst{!A}{x}{c}] \lif \lforall[y][\Subst{!A}{y}{c}]$。
+$\Proves \lforall[y][\Subst{!A}{y}{c}] \lif \lforall[x]
+[\Subst{!A}{x}{c}]$ 的证明完全对称，因此结论由重言式可得。
 \end{proof}
 
-\begin{thm}[Strong Generalization on Constants]
-\ollabel{thm:StrongGen} 
-If $\Gamma \Proves !A$, the !!{constant} $c$ does not occur in
-$\Gamma$, and $x$ is not free in $!A$ but it is !!{free for} $c$ in $!A$,
-then $\Gamma \Proves \lforall[x][\Subst{!A}{x}{c}]$. 
+\begin{thm}[强常项泛化定理]
+\ollabel{thm:StrongGen}
+若 $\Gamma \Proves !A$，常项符号 $c$ 不在 $\Gamma$ 中出现，
+且 $x$ 在 $!A$ 中不自由但对 $c$ 在 $!A$ 中自由，
+则 $\Gamma \Proves \lforall[x][\Subst{!A}{x}{c}]$。
 \end{thm}
 
-\begin{proof} 
-Since $\Gamma \Proves !A$ and $c$ is not in $\Gamma$, then by
-Weak Generalization there is !!a{variable} $y$ not in $!A$ such that
-$\Gamma \Proves \lforall[y][\Subst{!A}{y}{c}]$. Since $y$ is not in $!A$
-(at all), it is not free in $!A$ and it is also !!{free for} $c$ in $!A$;
-if moreover (by hypothesis) $x$ is not free in $!A$ and !!{free for} $c$ in
-$!A$, then the requirements for a change of bound !!{variable} are met, so
+\begin{proof}
+由于 $\Gamma \Proves !A$ 且 $c$ 不在 $\Gamma$ 中，由
+弱常项泛化定理知，存在一个不在 $!A$ 中出现的变元 $y$，使得
+$\Gamma \Proves \lforall[y][\Subst{!A}{y}{c}]$。由于 $y$ 完全不在 $!A$ 中出现，
+它在 $!A$ 中不自由，并且对 $c$ 在 $!A$ 中也自由；
+又由假设 $x$ 在 $!A$ 中不自由且对 $c$ 在 $!A$ 中自由，
+则改变约束变元的条件得到满足，故
 $\Proves \lforall[x][\Subst{!A}{x}{c}] \equiv
-\lforall[y][\Subst{!A}{y}{c}]$, whence $\Gamma \Proves
-\lforall[x][\Subst{!A}{x}{c}]$. 
+\lforall[y][\Subst{!A}{y}{c}]$，进而得 $\Gamma \Proves
+\lforall[x][\Subst{!A}{x}{c}]$。
 \end{proof}
 
-\begin{thm} 
+\begin{thm}
 \ollabel{thm:provability-quantifiers}
-\begin{tagenumerate}{prvEx,prvAll} 
-\tagitem{prvEx}{If $\Gamma \Proves !A(t)$ then $\Gamma \Proves
-  \lexists[x][!A(x)]$.}{} 
-\tagitem{prvAll}{If $\Gamma \Proves \lforall[x][!A(x)]$ then $\Gamma
-  \Proves !A(t)$.}{}
-\end{tagenumerate} 
+\begin{tagenumerate}{prvEx,prvAll}
+\tagitem{prvEx}{若 $\Gamma \Proves !A(t)$ 则 $\Gamma \Proves
+  \lexists[x][!A(x)]$。}{}
+\tagitem{prvAll}{若 $\Gamma \Proves \lforall[x][!A(x)]$ 则 $\Gamma
+  \Proves !A(t)$。}{}
+\end{tagenumerate}
 \end{thm}
 
-\begin{proof} 
-\begin{tagenumerate}{prvEx,prvAll} 
+\begin{proof}
+\begin{tagenumerate}{prvEx,prvAll}
 %%Need axioms for exists
-\tagitem{prvEx}{Exercise.}{}
-\tagitem{prvAll} {Assume that  $\Gamma_0 \Proves \lforall[x][!A(x)]$.
+\tagitem{prvEx}{练习。}{}
+\tagitem{prvAll}{假设 $\Gamma_0 \Proves \lforall[x][!A(x)]$。
 
-\begin{derivation} 
-1. & $\Gamma_0 \Proves \lforall[x][!A(x)]$ & hyp. \\
-2. & $\Gamma_0 \Proves \lforall[x][!A(x)] \lif \Subst{!A}{t}{x}$ & Ax1 \\ 
-3. & $\Gamma_0 \Proves \Subst{!A}{t}{x}$ & MP 1, 2 \\ 
+\begin{derivation}
+1. & $\Gamma_0 \Proves \lforall[x][!A(x)]$ & 假设 \\
+2. & $\Gamma_0 \Proves \lforall[x][!A(x)] \lif \Subst{!A}{t}{x}$ & Ax1 \\
+3. & $\Gamma_0 \Proves \Subst{!A}{t}{x}$ & MP 1, 2 \\
 \end{derivation}}{}
 
-\end{tagenumerate} 
+\end{tagenumerate}
 \end{proof}
 
 \end{document}

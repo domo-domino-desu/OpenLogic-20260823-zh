@@ -1,87 +1,68 @@
-% Part: incompleteness
-% Chapter: theories-computability
-% Section: extensions-of-q-not-decidable
-
 \documentclass[../../../include/open-logic-section]{subfiles}
 
 \begin{document}
 
 \olfileid{inc}{tcp}{cqn}
+% Part: incompleteness
+% Chapter: theories-computability
+% Section: extensions-of-q-not-decidable
+这一想法是通过将“可证性”概念显式化，来加强不完全性定理的证明。第一不完全性定理的证明表明，如果一个理论既可靠又完备，那么它就会证明一个实际上断言自身不可证的语句。然而，仔细检查该证明就会发现，可靠性假设可以被更弱的一致性假设所替代。（这是 Rosser 在 1936 年观察到的，从而加强了 Gödel 1931 年的原始结果。）
 
-\olsection{Consistent Extensions of $\Th{Q}$ are Undecidable}
+\olsection{$\Th{Q}$ 的一致扩张是不可判定的}
 
 \begin{explain}
-Remember that a theory is \emph{consistent} if it does not prove both
-$!A$ and $\lnot !A$ for any formula~$!A$. Since anything follows from
-a contradiction, an inconsistent theory is trivial: every sentence is
-provable. Clearly, if a theory if $\omega$-consistent, then it is
-consistent. But being consistent is a weaker requirement (i.e., there
-are theories that are consistent but not $\omega$-consistent.). We can
-weaken the assumption in \olref[oqn]{thm:oconsis-q} to simple
-consistency to obtain a stronger theorem.
+回忆一下，如果一个理论对任何公式~$!A$ 都不同时证明 $!A$ 和 $\lnot !A$，那么它就是\emph{一致的}。由于从矛盾可以推出一切，不一致的理论是平凡的：每个语句都是可证的。显然，如果一个理论是 $\omega$-一致的，那么它就是一致的。但是，一致性是一个更弱的要求（即存在一致但不是 $\omega$-一致的理论）。我们可以将 \olref[oqn]{thm:oconsis-q} 中的假设减弱为简单的一致性，从而得到一个更强的定理。
 \end{explain}
 
 \begin{lem}
-There is no ``universal computable relation.'' That is, there is no
-binary computable relation $R(x,y)$, with the following property:
-whenever $S(y)$ is a unary computable relation, there is some $k$ such
-that for every $y$, $S(y)$ is true if and only if $R(k,y)$ is true.
+不存在“通用的可计算关系”。也就是说，不存在具有以下性质的二元可计算关系 $R(x,y)$：若 $S(y)$ 是一个一元可计算关系，则总存在某个 $k$，使得对每个 $y$，$S(y)$ 为真当且仅当 $R(k,y)$ 为真。
 \end{lem}
 
 \begin{proof}
-Suppose $R(x,y)$ is a universal computable relation. Let $S(y)$
-be the relation $\lnot R(y,y)$. Since $S(y)$ is computable, for some
-$k$, $S(y)$ is equivalent to $R(k,y)$. But then we have that $S(k)$ is
-equivalent to both $R(k,k)$ and $\lnot R(k,k)$, which is a
-contradiction.
+假设 $R(x,y)$ 是一个通用的可计算关系。令 $S(y)$ 为关系 $\lnot R(y,y)$。
+由于 $S(y)$ 可计算，对某个 $k$，$S(y)$ 等价于 $R(k,y)$。
+但这样一来，$S(k)$ 就同时等价于 $R(k,k)$ 和 $\lnot R(k,k)$，矛盾。
 \end{proof}
 
 
 \begin{thm}
-Let $\Th{T}$ be any consistent theory that includes $\Th{Q}$. Then
-$\Th{T}$ is not decidable.
+设 $\Th{T}$ 为任意包含 $\Th{Q}$ 的一致理论，则 $\Th{T}$ 是不可判定的。
 \end{thm}
 
 
 \begin{proof}
-Suppose $\Th{T}$ is a consistent, decidable
-extension of $\Th{Q}$. We will obtain a contradiction by using $\Th{T}$ to
-define a universal computable relation.
+假设 $\Th{T}$ 是 $\Th{Q}$ 的一个一致且可判定的扩张。
+我们将通过使用 $\Th{T}$ 来定义一个通用的可计算关系，从而得出矛盾。
 
-Let $R(x,y)$ hold if and only if
+令 $R(x,y)$ 成立当且仅当
 \begin{quote}
-$x$ codes a formula $!D(u)$, and $\Th{T}$ proves $!D(\num y)$.
+$x$ 编码一个公式 $!D(u)$，并且 $\Th{T}$ 证明 $!D(\num y)$。
 \end{quote}
-Since we are assuming that $\Th{T}$ is decidable, $R$ is computable. Let us
-show that $R$ is universal. If $S(y)$ is any computable relation, then
-it is representable in $\Th{Q}$ (and hence $\Th{T}$) by a formula
-$!D_S(u)$. Then for every $n$, we have
+由于我们假设 $\Th{T}$ 是可判定的，所以 $R$ 是可计算的。
+我们来证明 $R$ 是通用的。
+如果 $S(y)$ 是任意可计算关系，则它在 $\Th{Q}$ 中（因而也在 $\Th{T}$ 中）可由一个公式 $!D_S(u)$ 表示。
+于是对每个 $n$，我们有
 \begin{eqnarray*}
 S(\num n) & \lif & T \vdash !D_S(\num n) \\
 & \lif & R(\Gn{!D_S(u)}, n)
 \end{eqnarray*}
-and
+以及
 \begin{eqnarray*}
 \lnot S(\num n) & \lif & T \vdash \lnot !D_S(\num n) \\
-& \lif & T \not\vdash !D_S(\num n) \quad \text{(since $\Th{T}$ is
-  consistent)} \\
+& \lif & T \not\vdash !D_S(\num n) \quad \text{（因为 $\Th{T}$ 是一致的）} \\
 & \lif & \lnot R(\Gn{!D_S(u)}, n).
 \end{eqnarray*}
-That is, for every $y$, $S(y)$ is true if and only if
-$R(\Gn{!D_S(u)}, y)$ is. So $R$ is universal, and we have the
-contradiction we were looking for.
+也就是说，对每个 $y$，$S(y)$ 为真当且仅当
+$R(\Gn{!D_S(u)}, y)$ 为真。所以 $R$ 是通用的，从而得到了我们想要的矛盾。
 \end{proof}
 
-Let ``true arithmetic'' be the theory $\Setabs{!A}{ \Sat{\Nat}{!A}}$,
-that is, the set of sentences in the language of arithmetic that are
-true in the standard interpretation.
+令“真算术”为理论 $\Setabs{!A}{ \Sat{\Nat}{!A}}$，即算术语言中在标准解释下为真的所有语句的集合。
 
 \begin{cor}
-True arithmetic is not decidable.
+真算术是不可判定的。
 \end{cor}
 
 %In Section~\olref{undefinability:truth:section} we will state a stronger
 %result, due to Tarski.
 
 \end{document}
-

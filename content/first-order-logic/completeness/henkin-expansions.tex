@@ -8,103 +8,71 @@
 
 \olfileid{fol}{com}{hen}
 
-\olsection{Henkin Expansion}
+\olsection{Henkin 展开}
 
 \begin{explain}
-Part of the challenge in proving the completeness theorem is that the
-model we construct from a complete consistent set~$\Gamma$ must make
-all the quantified !!{formula}s in~$\Gamma$ true.  In order to
-guarantee this, we use a trick due to Leon Henkin.  In essence, the
-trick consists in expanding the language by infinitely many !!{constant}s
-and adding, for each !!{formula} with one free !!{variable} $!A(x)$ a
-formula of the form
+证明完备性定理的挑战之一在于，我们从完备一致集~$\Gamma$ 构造出的模型，必须使~$\Gamma$ 中的所有量词公式为真。为了保证这一点，我们使用一个源于 Leon Henkin（莱昂·亨金）的技巧。本质上，这个技巧在于通过添加可数无穷多个新的常项符号来扩充语言，并且为每一个含有一个自由变元 $x$ 的公式 $!A(x)$，添加一个形如
 \iftag{prvEx}
       {$\lexists[x][!A(x)] \lif !A(c)$}
-      {$\lnot\lforall[x][!A(x)] \lif \lnot !A(c)$},
-where $c$ is one of the new !!{constant}s.  When we construct the
-!!{structure} satisfying~$\Gamma$, this will guarantee that each
+      {$\lnot\lforall[x][!A(x)] \lif \lnot !A(c)$}
+的公式，其中 $c$ 是某个新的常项符号。当我们构造满足~$\Gamma$ 的结构时，这将保证每个
 \iftag{prvEx}
-{true existential sentence has a witness}
-{false universal sentence has a counterexample}
-among the new constants.
+{真的存在语句在新常项中都有一个见证}
+{假的全称语句在新常项中都有一个反例}。
 \end{explain}
 
 \begin{prop}
 \ollabel{prop:lang-exp}
-If $\Gamma$ is consistent in $\Lang L$ and $\Lang L'$ is obtained from
-$\Lang L$ by adding !!a{denumerable} set of new !!{constant}s $\Obj d_0$,
-$\Obj d_1$, \dots, then $\Gamma$ is consistent in~$\Lang L'$.
+设 $\Gamma$ 在语言 $\Lang L$ 中是一致的，且 $\Lang L'$ 是通过给 $\Lang L$ 添加一个可数无穷的新常项符号集 $\Obj d_0$,
+$\Obj d_1$, \dots 而得到的，则 $\Gamma$ 在~$\Lang L'$ 中也是一致的。
 \end{prop}
 
-\begin{defn}[Saturated set]
-A set $\Gamma$ of !!{formula}s of a language $\Lang {L}$ is
-\emph{saturated} iff for each !!{formula}~$!A(x) \in \Frm[L]$ with one
-free !!{variable}~$x$ there is !!a{constant}~$c \in \Lang{L}$ such
-that
+\begin{defn}[饱和集]
+语言 $\Lang{L}$ 的一个公式集 $\Gamma$ 是\emph{饱和的}，当且仅当对于每一个含有一个自由变元~$x$ 的公式~$!A(x) \in \Frm[L]$，都存在一个常项符号~$c \in \Lang{L}$，使得
 \iftag{prvEx}
       {$\lexists[x][!A(x)] \lif !A(c) \in \Gamma$}
-      {$\lnot\lforall[x][!A(x)] \lif \lnot !A(c) \in \Gamma$}.
+      {$\lnot\lforall[x][!A(x)] \lif \lnot !A(c) \in \Gamma$}。
 \end{defn}
 
-The following definition will be used in the proof of the next theorem.
+以下定义将用于下一定理的证明。
 
 \begin{defn}
 \ollabel{defn:henkin-exp}
-Let $\Lang L'$ be as in \olref{prop:lang-exp}.  Fix an enumeration
-$!A_0(x_0)$, $!A_1(x_1)$, \dots of all !!{formula}s~$!A_i(x_i)$
-of~$\Lang L'$ in which one variable ($x_i$) occurs free.  We define
-the !!{sentence}s~$!D_n$ by induction on~$n$.
+设 $\Lang L'$ 如 \olref{prop:lang-exp} 所述。固定~$\Lang L'$ 中所有恰有一个变元（$x_i$）自由出现的公式~$!A_i(x_i)$ 的一个枚举 $!A_0(x_0)$, $!A_1(x_1)$, \dots。我们归纳地定义语句~$!D_n$。
 
-Let $c_0$ be the first !!{constant} among the $\Obj d_i$ we added
-to~$\Lang{L}$ which does not occur in~$!A_0(x_0)$.  Assuming that
-$!D_0$, \dots,~$!D_{n-1}$ have already been defined, let $c_n$ be the
-first among the new !!{constant}s~$\Obj d_i$ that occurs neither in
-$!D_0$, \dots,~$!D_{n-1}$ nor in~$!A_n(x_n)$.
+令 $c_0$ 为添加到~$\Lang{L}$ 的新常项符号 $\Obj d_i$ 中，第一个不在~$!A_0(x_0)$ 中出现的常项符号。假设 $!D_0$, \dots,~$!D_{n-1}$ 已经定义，令 $c_n$ 为新常项符号~$\Obj d_i$ 中第一个既不出现在 $!D_0$, \dots,~$!D_{n-1}$ 中，也不出现在~$!A_n(x_n)$ 中的常项符号。
 
-Now let $!D_{n}$ be the !!{formula} \iftag{prvEx}
+现令 $!D_{n}$ 为公式 \iftag{prvEx}
 {$\lexists[x_{n}][!A_{n}(x_{n})] \lif
   !A_{n}(c_{n})$}{$\lnot\lforall[x_{n}][!A_{n}(x_{n})] \lif \lnot
-  !A_{n}(c_{n})$}.
+  !A_{n}(c_{n})$}。
 \end{defn}
 
 \begin{lem}
 \ollabel{lem:henkin}
-Every consistent set~$\Gamma$ can be extended to a saturated
-consistent set~$\Gamma'$.
+每个一致集~$\Gamma$ 都可以扩充为一个饱和的一致集~$\Gamma'$。
 \end{lem}
 
 \begin{proof}
-Given a consistent set of sentences~$\Gamma$ in a language~$\Lang{L}$,
-expand the language by adding !!a{denumerable} set of new
-!!{constant}s to form~$\Lang{L'}$.  By \olref{prop:lang-exp}, $\Gamma$
-is still consistent in the richer language.  Further, let $!D_i$ be as
-in \olref{defn:henkin-exp}.  Let
+给定语言~$\Lang{L}$ 中的一个一致语句集~$\Gamma$，通过添加一个可数无穷的新常项符号集来扩充语言，得到~$\Lang{L'}$。根据 \olref{prop:lang-exp}，$\Gamma$ 在更丰富的语言中仍是一致的。进一步，令 $!D_i$ 如 \olref{defn:henkin-exp} 所定义。令
 \begin{align*}
 \Gamma_0 & = \Gamma \\
 \Gamma_{n+1} & = \Gamma_n \cup \{!D_n \}
 \end{align*}
-i.e., $\Gamma_{n+1} = \Gamma \cup \{ !D_0, \dots, !D_n \}$, and let
-$\Gamma' = \bigcup_{n} \Gamma_n$.  $\Gamma'$ is clearly saturated.
+即 $\Gamma_{n+1} = \Gamma \cup \{ !D_0, \dots, !D_n \}$，并令
+$\Gamma' = \bigcup_{n} \Gamma_n$。显然 $\Gamma'$ 是饱和的。
 
-If $\Gamma'$ were inconsistent, then for some $n$, $\Gamma_n$ would be
-inconsistent (Exercise: explain why).  So to show that $\Gamma'$ is
-consistent it suffices to show, by induction on~$n$, that each
-set~$\Gamma_n$ is consistent.
+如果 $\Gamma'$ 不一致，那么对于某个 $n$，$\Gamma_n$ 将会不一致（习题：解释原因）。因此，要证明 $\Gamma'$ 是一致的，只需对~$n$ 进行归纳，证明每个集合~$\Gamma_n$ 是一致的即可。
 
-The induction basis is simply the claim that $\Gamma_0 = \Gamma$ is
-consistent, which is the hypothesis of the theorem.  For the induction
-step, suppose that $\Gamma_{n}$ is consistent but $\Gamma_{n+1} =
-\Gamma_n \cup \{!D_n\}$ is inconsistent.  Recall that $!D_n$~is
+归纳基础即 $\Gamma_0 = \Gamma$ 是一致的，这正是定理的假设。对于归纳步骤，假设 $\Gamma_{n}$ 是一致的但 $\Gamma_{n+1} =
+\Gamma_n \cup \{!D_n\}$ 不一致。回顾 $!D_n$~是
 \iftag{prvEx}
 {$\lexists[x_{n}][!A_{n}(x_n)] \lif !A_{n}(c_{n})$}
-{$\lnot\lforall[x_{n}][!A_{n}(x_n)] \lif \lnot !A_{n}(c_{n})$},
-where $!A_n(x_n)$ is !!a{formula} of $\Lang{L'}$ with only the
-variable~$x_n$ free. By the way we've chosen the~$c_n$ (see
-\olref{defn:henkin-exp}), $c_n$ does not occur in~$!A_n(x_n)$ nor
-in~$\Gamma_n$.
+{$\lnot\lforall[x_{n}][!A_{n}(x_n)] \lif \lnot !A_{n}(c_{n})$}，
+其中 $!A_n(x_n)$ 是 $\Lang{L'}$ 中仅变元~$x_n$ 是自由的公式。根据我们选择~$c_n$ 的方式（见 \olref{defn:henkin-exp}），$c_n$ 不出现在~$!A_n(x_n)$ 中，也不出现在~$\Gamma_n$ 中。
 
-If $\Gamma_n \cup \{!D_n\}$ is inconsistent, then $\Gamma_n
-\Proves \lnot !D_n$, and hence both of the following hold:
+如果 $\Gamma_n \cup \{!D_n\}$ 不一致，则 $\Gamma_n
+\Proves \lnot !D_n$，从而以下两者同时成立：
 \iftag{prvEx}{
 \[
 \Gamma_n \Proves \lexists[x_n][!A_n(x_n)]
@@ -116,97 +84,85 @@ If $\Gamma_n \cup \{!D_n\}$ is inconsistent, then $\Gamma_n
 \qquad
 \Gamma_n \Proves !A_n(c_n)
 \]}
-Since $c_n$ does not occur in
-$\Gamma_n$ or in~$!A_n(x_n)$, 
-\tagrefs{prfAX/{fol:axd:qpr:thm:strong-generalization},prfSC/{fol:seq:qpr:thm:strong-generalization},prfND/{fol:ntd:qpr:thm:strong-generalization},prfTab/{fol:tab:qpr:thm:strong-generalization}} applies.
-From \iftag{prvEx}
+由于 $c_n$ 不出现在
+$\Gamma_n$ 或~$!A_n(x_n)$ 中，
+\tagrefs{prfAX/{fol:axd:qpr:thm:strong-generalization},prfSC/{fol:seq:qpr:thm:strong-generalization},prfND/{fol:ntd:qpr:thm:strong-generalization},prfTab/{fol:tab:qpr:thm:strong-generalization}} 适用。
+由 \iftag{prvEx}
 {$\Gamma_n \Proves \lnot !A_n(c_n)$}
-{$\Gamma_n \Proves !A_n(c_n)$},
-we obtain
+{$\Gamma_n \Proves !A_n(c_n)$}，
+可得
 \iftag{prvEx}
 {$\Gamma_n \Proves \lforall[x_n][\lnot !A_n(x_n)]$}
-{$\Gamma_n \Proves \lforall[x_n][!A_n(x_n)]$}.
-Thus we have that both
+{$\Gamma_n \Proves \lforall[x_n][!A_n(x_n)]$}。
+于是我们有
 \iftag{prvEx}
-{$\Gamma_n \Proves \lexists[x_n][!A_n(x_n)]$ and
+{$\Gamma_n \Proves \lexists[x_n][!A_n(x_n)]$ 与
 $\Gamma_n \Proves \lforall[x_n][\lnot !A_n(x_n)]$}
-{$\Gamma_n \Proves \lnot\lforall[x_n][!A_n(x_n)]$ and
-$\Gamma_n \Proves \lforall[x_n][!A_n(x_n)]$},
-so $\Gamma_n$ itself is inconsistent.
+{$\Gamma_n \Proves \lnot\lforall[x_n][!A_n(x_n)]$ 与
+$\Gamma_n \Proves \lforall[x_n][!A_n(x_n)]$}，
+因此 $\Gamma_n$ 本身不一致。
 \iftag{prvEx}
-{(Note that
+{(注意
 \iftag{prvAll}
 {$\lforall[x_n][\lnot !A_n(x_n)] \Proves
   \lnot\lexists[x_n][!A_n(x_n)]$}
-{$\lforall[x_n][\lnot !A_n]$ is defined as
-  $\lnot\lexists[x_n][\lnot\lnot !A_n(x_n)]$ and
+{$\lforall[x_n][\lnot !A_n]$ 定义为
+  $\lnot\lexists[x_n][\lnot\lnot !A_n(x_n)]$ 与
   $\lnot\lexists[x_n][\lnot\lnot !A_n(x_n)] \Proves
-  \lnot\lexists[x_n][!A_n(x_n)]$}.)}{}
-Contradiction: $\Gamma_n$ was supposed to be consistent.  Hence
-$\Gamma_n \cup \{ !D_n\}$ is consistent.
+  \lnot\lexists[x_n][!A_n(x_n)]$}。)}{}
+矛盾：$\Gamma_n$ 本应是一致的。故
+$\Gamma_n \cup \{ !D_n\}$ 是一致的。
 \end{proof}
 
 \begin{explain}
-We'll now show that \emph{complete}, consistent sets which are
-saturated have the property that \iftag{prvAll}{it contains a
-  universally quantified !!{sentence} iff it contains all its
-  instances}{}\iftag{defAll,defEx}{}{ and }\iftag{prvAll}{it contains an
-  existentially quantified !!{sentence} iff it contains at least one
-  instance}{}. We'll use this to show that the !!{structure} we'll
-generate from a complete, consistent, saturated set makes all its
-quantified sentences true.
+我们现在要说明，\emph{完备}、一致且饱和的集合具有这样的性质：\iftag{prvAll}{它包含一个全称量化语句当且仅当它包含其所有实例}{}\iftag{defAll,defEx}{}{并且}\iftag{prvAll}{它包含一个存在量化语句当且仅当它包含至少一个实例}{}。我们将利用这一点来证明，从一个完备、一致、饱和的集合生成的结构，会使其中所有的量词语句为真。
 \end{explain}
 
 \begin{prop}\ollabel{prop:saturated-instances}
-Suppose $\Gamma$ is complete, consistent, and saturated.
+假设 $\Gamma$ 是完备、一致且饱和的。
 \begin{tagenumerate}{prvEx,prvAll}
-\tagitem{prvEx}{$\lexists[x][!A(x)] \in \Gamma$ iff $!A(t) \in \Gamma$
-  for at least one closed term~$t$.}{}
-\tagitem{prvAll}{$\lforall[x][!A(x)] \in \Gamma$ iff $!A(t) \in \Gamma$
-  for all closed terms~$t$.}{}
+\tagitem{prvEx}{$\lexists[x][!A(x)] \in \Gamma$ 当且仅当存在至少一个闭项~$t$ 使得 $!A(t) \in \Gamma$。}{}
+\tagitem{prvAll}{$\lforall[x][!A(x)] \in \Gamma$ 当且仅当对所有闭项~$t$ 都有 $!A(t) \in \Gamma$。}{}
 \end{tagenumerate}
 \end{prop}
 
 \begin{proof}
   \begin{tagenumerate}{prvEx,prvAll}
   \tagitem{prvEx}{%
-    \iftag{probEx}{Exercise.}{First suppose that $\lexists[x][!A(x)]
-      \in \Gamma$.  Because $\Gamma$ is saturated,
-      $(\lexists[x][!A(x)] \lif !A(c)) \in \Gamma$ for some
-      !!{constant}~$c$. By
-      \tagrefs{prfAX/{fol:axd:ppr:prop:provability-lif},prfSC/{fol:seq:ppr:prop:provability-lif},prfND/{fol:ntd:ppr:prop:provability-lif},prfTab/{fol:tab:ppr:prop:provability-lif}}, item~(1),
-      and \olref[ccs]{prop:ccs}\olref[ccs]{prop:ccs-prov-in}, $!A(c)
-      \in \Gamma$.
+    \iftag{probEx}{练习。}{首先假设 $\lexists[x][!A(x)]
+      \in \Gamma$。因为 $\Gamma$ 是饱和的，
+      所以对某个常项符号~$c$ 有 $(\lexists[x][!A(x)] \lif !A(c)) \in \Gamma$。根据
+      \tagrefs{prfAX/{fol:axd:ppr:prop:provability-lif},prfSC/{fol:seq:ppr:prop:provability-lif},prfND/{fol:ntd:ppr:prop:provability-lif},prfTab/{fol:tab:ppr:prop:provability-lif}} 的第~(1) 条，
+      以及 \olref[ccs]{prop:ccs}\olref[ccs]{prop:ccs-prov-in}，可得 $!A(c)
+      \in \Gamma$。
 
-    For the other direction, saturation is not necessary: Suppose
-    $!A(t) \in \Gamma$. Then $\Gamma \Proves \lexists[x][!A(x)]$ by
-      \tagrefs{prfAX/{fol:axd:qpr:prop:provability-quantifiers},prfSC/{fol:seq:qpr:prop:provability-quantifiers},prfND/{fol:ntd:qpr:prop:provability-quantifiers},prfTab/{fol:tab:qpr:prop:provability-quantifiers}}, item~(1). By
-    \olref[ccs]{prop:ccs}\olref[ccs]{prop:ccs-prov-in},
-    $\lexists[x][!A(x)] \in \Gamma$.}}{}
+    反之，不需要饱和性：假设
+    $!A(t) \in \Gamma$。则由
+      \tagrefs{prfAX/{fol:axd:qpr:prop:provability-quantifiers},prfSC/{fol:seq:qpr:prop:provability-quantifiers},prfND/{fol:ntd:qpr:prop:provability-quantifiers},prfTab/{fol:tab:qpr:prop:provability-quantifiers}} 的第~(1) 条，可得 $\Gamma \Proves \lexists[x][!A(x)]$。再根据
+    \olref[ccs]{prop:ccs}\olref[ccs]{prop:ccs-prov-in}，
+    得到 $\lexists[x][!A(x)] \in \Gamma$。}}{}
   \tagitem{prvAll}{%
-    \iftag{probAll}{Exercise.}{Suppose that $!A(t) \in \Gamma$ for
-      all closed terms~$t$. By way of contradiction, assume
-      $\lforall[x][!A(x)] \notin \Gamma$. Since $\Gamma$ is complete,
-      $\lnot\lforall[x][!A(x)] \in \Gamma$. By saturation,
-      \iftag{prvEx}{$(\lexists[x][\lnot !A(x)] \lif \lnot !A(c)) \in
+    \iftag{probAll}{练习。}{假设对所有闭项~$t$ 都有 $!A(t) \in \Gamma$。用反证法，假定
+      $\lforall[x][!A(x)] \notin \Gamma$。由于 $\Gamma$ 是完备的，
+      因此 $\lnot\lforall[x][!A(x)] \in \Gamma$。根据饱和性，
+      对某个常项符号~$c$ 有 \iftag{prvEx}{$(\lexists[x][\lnot !A(x)] \lif \lnot !A(c)) \in
         \Gamma$}{$(\lnot\lforall[x][!A(x)] \lif \lnot !A(c)) \in
-        \Gamma$} for some !!{constant}~$c$. By assumption, since $c$
-      is a closed term, $!A(c) \in \Gamma$. But this would make
-      $\Gamma$ inconsistent. (Exercise: give the !!{derivation} that shows
+        \Gamma$}。由假设，因为 $c$
+      是闭项，所以 $!A(c) \in \Gamma$。但这将导致
+      $\Gamma$ 不一致。（练习：给出推导以证明
       \[
       \lnot \lforall[x][!A(x)],
       \iftag{prvEx}{\lexists[x][\lnot !A(x)] \lif \lnot
         !A(c)}{\lnot\lforall[x][!A(x)] \lif \lnot
         !A(c)}, !A(c)
       \]
-      is inconsistent.)
+      是不一致的。）
 
-      For the reverse direction, we do not need saturation: Suppose
-      $\lforall[x][!A(x)] \in \Gamma$.  Then $\Gamma \Proves !A(t)$
-      by
-      \tagrefs{prfAX/{fol:axd:qpr:prop:provability-quantifiers},prfSC/{fol:seq:qpr:prop:provability-quantifiers},prfND/{fol:ntd:qpr:prop:provability-quantifiers},prfTab/{fol:tab:qpr:prop:provability-quantifiers}},
-      item~(2). We get $!A(t) \in \Gamma$ by
-      \olref[ccs]{prop:ccs}.}}{}
+      反之，我们不需要饱和性：假设
+      $\lforall[x][!A(x)] \in \Gamma$。那么，由
+      \tagrefs{prfAX/{fol:axd:qpr:prop:provability-quantifiers},prfSC/{fol:seq:qpr:prop:provability-quantifiers},prfND/{fol:ntd:qpr:prop:provability-quantifiers},prfTab/{fol:tab:qpr:prop:provability-quantifiers}}
+      的第~(2) 条，有 $\Gamma \Proves !A(t)$。再根据
+      \olref[ccs]{prop:ccs}，得到 $!A(t) \in \Gamma$。}}{}
   \end{tagenumerate}
 \end{proof}
 

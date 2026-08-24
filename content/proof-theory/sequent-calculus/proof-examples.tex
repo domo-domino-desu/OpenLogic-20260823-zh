@@ -8,43 +8,38 @@
 
 \olfileid{pt}{seq}{ex}
 
-\olsection{Examples of Proofs}
+\olsection{证明举例}
 
-To give !!{proof}s of sequents it is typically convenient to work your
-way upwards from the end-sequent by selecting !!a{formula} in it as
-the active !!{formula} and writing the premises of the corresponding
-rule on top of the sequent, then repeating the process until it leads
-to axioms. For instance, suppose we want to prove the sequent
+要给相继式构造推导，通常方便的做法是从目标相继式开始向上回溯：
+选择其中的一个公式作为活动公式，在相继式上方写出相应规则的前提，
+然后重复这一过程，直至得到公理。例如，假设我们要证明相继式
 \[(!C \land !D) \lif !E \Sequent !C \lif (!D \lif !E)\]
-Consider $!C \lif (!D \lif !E)$: it is of the form $!A \lif !B$ and
-occurs on the right of the sequent. Matching the entire sequent with
-the $\RightR{\lif}$ rule of \Log{G1c},
+考虑 $!C \lif (!D \lif !E)$：它具有 $!A \lif !B$ 的形式，并且出现在相继式的右边。
+将整个相继式与 \Log{G1c} 的 $\RightR{\lif}$ 规则进行匹配，
 \[\Axiom$ !A, \Gamma \fCenter \Delta, !B$
 \RightLabel{\RightR{\lif}}
 \UnaryInf$ \Gamma \fCenter \Delta, !A \lif !B $
 \DisplayProof\]
-suggests we should take $\Gamma = \{!C \lif (!D \lif !E)\}$, $\Delta =
-\emptyset$, $!A \ident !C$ and $!B \ident !D \lif !E$. So the last
-inference of a proof could be
+这提示我们应该取 $\Gamma = \{!C \lif (!D \lif !E)\}$，$\Delta =
+\emptyset$，$!A \ident !C$ 和 $!B \ident !D \lif !E$。因此，证明的最后一步推理可以是
 \[\Axiom$ !C, (!C \land !D) \lif !E \fCenter !D \lif !E$
 \RightLabel{\RightR{\lif}}
 \UnaryInf$(!C \land !D) \lif !E \fCenter !C \lif (!D \lif !E)$
 \DisplayProof\]
-If we repeat this idea, focusing on $!D \lif !E$ as active formula, we
-generate
+如果我们重复这一思路，将 $!D \lif !E$ 作为活动公式，便得到
 \[\Axiom$ !D, !C, (!C \land !D) \lif !E \fCenter !E$
 \RightLabel{\RightR{\lif}}
 \UnaryInf$!C, (!C \land !D) \lif !E \fCenter !D \lif !E$
 \RightLabel{\RightR{\lif}}
 \UnaryInf$(!C \land !D) \lif !E \fCenter !C \lif (!D \lif !E)$
 \DisplayProof\]
-Now we have to focus on $(!C \land !D) \lif !E$ and use the $\LeftR{\lif}$ rule of \Log{G1c},
+现在我们需要关注 $(!C \land !D) \lif !E$，并使用 \Log{G1c} 的 $\LeftR{\lif}$ 规则，
 \[\Axiom$ \Gamma \fCenter \Delta, !A$
 \Axiom$ !B, \Gamma \fCenter \Delta$
 \RightLabel{\LeftR{\lif}}
 \BinaryInf$ !A \lif !B, \Gamma \fCenter \Delta$
 \DisplayProof\]
-This leads us to
+这引导我们得到
 \[\Axiom$!D, !C \fCenter !E, !C \land !D$
 \Axiom$!D, !C, !E \fCenter !E$
 \RightLabel{\LeftR{\lif}}
@@ -54,8 +49,7 @@ This leads us to
 \RightLabel{\RightR{\lif}}
 \UnaryInf$(!C \land !D) \lif !E \fCenter !C \lif (!D \lif !E)$
 \DisplayProof\]
-Using the !!{formula} $!C \land !D$ in the left topmost sequent as
-principal and the $\RightR{\land}$ rule gives us
+将最左顶端相继式中的公式 $!C \land !D$ 作为主公式，并应用 $\RightR{\land}$ 规则，得到
 \[
 \Axiom$!D, !C \fCenter !E, !C$
 \Axiom$!D, !C \fCenter !E, !D$
@@ -70,17 +64,13 @@ principal and the $\RightR{\land}$ rule gives us
 \UnaryInf$(!C \land !D) \lif !E \fCenter !C \lif (!D \lif !E)$
 \DisplayProof
 \]
-So far so good. Note that everything we did also works in \Log{G3c},
-since the rules we've made use of so far are the same in \Log{G1c}
-and~\Log{G3c}. We've arrived at !!a{proof} fragment where all top
-sequents contain the same !!{formula} on the left as on the right. But
-they are not quite axioms yet.
+目前为止一切顺利。注意，我们以上所做的在 \Log{G3c} 中同样可行，因为迄今为止我们用到的规则在 \Log{G1c}
+和~\Log{G3c} 中是相同的。我们得到了一个推导片段，其中所有顶端相继式左右两边都包含同一个公式。
+但它们还不算公理。
 
-In \Log{G1c}, we have to give !!{proof}s of the topmost sequents from
-axioms of the form $!A \Sequent !A$. This is easily done using the
-weakening rules, e.g., the leftmost topmost sequent $!D, !C \Sequent
-!E, !C$ can be !!{prove}d
-as follows:
+在 \Log{G1c} 中，我们必须从形如 $!A \Sequent !A$ 的公理出发，给出最顶端那些相继式的推导。
+这很容易用弱化规则完成，例如，最左顶端的相继式 $!D, !C \Sequent
+!E, !C$ 可以如下推导：
 \[
 \Axiom$!C \fCenter !C$
 \RightLabel{\LeftR{\Weakening}}
@@ -88,7 +78,7 @@ as follows:
 \RightLabel{\RightR{\Weakening}}
 \UnaryInf$!D, !C \fCenter !E, !C$
 \]
-Overall, we have !!a{proof} in \Log{G1c} which looks like this:
+综合来看，我们在 \Log{G1c} 中得到了如下推导：
 \[
 \Axiom$!C \fCenter !C$
 \RightLabel{\LeftR{\Weakening}}
@@ -115,68 +105,56 @@ Overall, we have !!a{proof} in \Log{G1c} which looks like this:
 \UnaryInf$(!C \land !D) \lif !E \fCenter !C \lif (!D \lif !E)$
 \DisplayProof
 \]
-The structure of this proof (in particular, its height) is independent
-of what the !!{formula}s $!C$, $!D$, and~$!E$ are. We can replace
-these symbols in the !!{proof} above by any !!{formula}s and the
-result will still be a !!{proof} in~\Log{G1c}. The proof in \Log{G1c}
-is \emph{schematic}.
+这个证明的结构（特别是其高度）与公式 $!C$、$!D$ 和~$!E$ 的具体形式无关。
+我们可以用任意公式替换上述推导中的这些符号，结果仍然是~\Log{G1c} 中的一个推导。
+\Log{G1c} 中的这个证明是\emph{模式化的}。
 
-In \Log{G3c}, axioms are sequents of the form $!A, \Gamma \Sequent
-\Delta, !A$ where $!A$ must be atomic. So although $!D, !C \Sequent
-!E, !C$ looks like an axiom of \Log{G3c} ($\Gamma = \{!D\}$; $\Delta =
-\{!E\}$), it is only \emph{really} an axiom if $!C$ in fact is atomic.
-Our proof fragment is only a complete proof in \Log{G3c} if $!C$,
-$!D$, and $!E$ are atomic !!{formula}s.
+在 \Log{G3c} 中，公理是形如 $!A, \Gamma \Sequent
+\Delta, !A$ 的相继式，其中 $!A$ 必须是原子公式。因此，尽管 $!D, !C \Sequent
+!E, !C$ 看起来像 \Log{G3c} 的一个公理（$\Gamma = \{!D\}$；$\Delta =
+\{!E\}$），但仅当 $!C$ 实际上是原子公式时，它才\emph{真正是}一个公理。
+我们的推导片段只有当 $!C$、
+$!D$ 和 $!E$ 都是原子公式时，才是 \Log{G3c} 中的一个完整证明。
 
-Although we haven't, strictly speaking, shown that
-\[\Log{G1c} \Proves (!C \land !D) \lif !E \fCenter !C \lif (!D \lif
-!E),\] in practice this is all we need to do (and can do). That's
-because every sequent of the form $!A, \Gamma \Sequent \Delta, !A$ is
-provable in \Log{G3c}, even if $!A$ itself is not atomic. We can show
-this by induction on the depth~$\depth{!A}$ of~$!A$.
+虽然严格来说，我们还没有证明 \[\Log{G1c} \Proves (!C \land !D) \lif !E \fCenter !C \lif (!D \lif
+!E),\]，但实际上这就是我们需要（并且能够）做的全部工作。这是因为，每一个形如 $!A, \Gamma \Sequent \Delta, !A$ 的相继式在 \Log{G3c} 中都是可证的，即使 $!A$ 本身不是原子公式。我们可以通过对~$!A$ 的深度~$\depth{!A}$ 进行归纳来证明这一点。
 
 \begin{defn}\ollabel{defn:depth}
-The \emph{depth}~$\depth{!A}$ of !!a{formula} is defined as follows:
+公式的\emph{深度}~$\depth{!A}$ 定义如下：
 \begin{enumerate}
-  \item If $!A$ is atomic, $\depth{!A} = 0$.
-  \item If $!A \ident \lnot !B$, $!A \ident \lforall[x][A]$, or 
-  $!A \ident \lexists[x][A]$, then $\depth{!A} = \depth{!B} + 1$.
-  \item If $!A \ident (!B \land !C)$, $(!B \lor !C)$, or $(!B \lif
-  !C)$, then $\depth{!A} = \max(\depth{!B},\depth{!C}) + 1$.
+  \item 若 $!A$ 是原子公式，则 $\depth{!A} = 0$。
+  \item 若 $!A \ident \lnot !B$、$!A \ident \lforall[x][A]$ 或
+  $!A \ident \lexists[x][A]$，则 $\depth{!A} = \depth{!B} + 1$。
+  \item 若 $!A \ident (!B \land !C)$、$!A \ident (!B \lor !C)$ 或 $!A \ident (!B \lif
+  !C)$，则 $\depth{!A} = \max(\depth{!B},\depth{!C}) + 1$。
 \end{enumerate}
 \end{defn}
 
-It is not hard to prove that $\depth{A(x)} = \depth{A(t)}$ for any
-term~$t$. The important fact for us is that in any rule, the depth of
-the principal !!{formula} is always greater than the depth of the
-active !!{formula}s. For instance, we have:
+不难证明，对于任意项~$t$，$\depth{A(x)} = \depth{A(t)}$。关键在于，在任何规则中，主公式的深度总是大于活动公式的深度。例如，我们有：
 \begin{align*}
 \depth{P(x)} = \depth{P(a)} & = 0,\\
 \depth{\lforall[x][P(x)]} & = 1,\\
 \depth{(\lforall[x][P(x)] \lif P(a))} & = \max(1,0) + 1 = 2.
 \end{align*}
-We can use this to prove some results by induction on~$\depth{!A}$,
-such as the following.
+我们可以利用这一点，通过对~$\depth{!A}$ 进行归纳来证明一些结果，如下命题。
 
 \begin{prop}\ollabel{prop:G1c-axioms}
-For any~$!A$, there is !!a{proof} in $\Log{G1c}$ of $!A \Sequent !A$
-in which all axioms are atomic.
+对于任意~$!A$，在 $\Log{G1c}$ 中存在一个 $!A \Sequent !A$ 的推导，其中所有公理都是原子公式。
 \end{prop}
 
 \begin{proof}
-  By induction on~$\depth{!A}$. If $\depth{!A} = 0$ then $!A$ is
-  atomic and $!A \Sequent !A$ already is a !!{proof} in~\Log{G1c} of
-  the required form. If $\depth{!A} > 0$, $!A$ is constructed from
-  !!{formula}s of lower depth, e.g, $!A \ident \lnot !B$, $!A \ident
-  (!B \land !C)$, or $!A \ident \lforall[x][A(x)]$. The inductive
-  hypothesis is that for all $!D$ with $\depth{!D} < \depth{!A}$,
-  $\Log{G1c} \Proves !D \Sequent !D$ from atomic axioms.
+  对~$\depth{!A}$ 进行归纳。若 $\depth{!A} = 0$，则 $!A$ 是原子公式，
+  此时 $!A \Sequent !A$ 已经是~\Log{G1c} 中符合要求形式的推导。
+  若 $\depth{!A} > 0$，则 $!A$ 由深度较低的公式构造而成，
+  例如 $!A \ident \lnot !B$、$!A \ident
+  (!B \land !C)$，或 $!A \ident \lforall[x][A(x)]$。
+  归纳假设为：对所有满足 $\depth{!D} < \depth{!A}$ 的 $!D$，
+  在 $\Log{G1c}$ 中都能从原子公理推出 $!D \Sequent !D$。
 
-  If $!A \ident \lnot !B$, then $\depth{!B} < \depth{!A}$ and by
-  inductive hypothesis, there is !!a{proof}~$\pi_1$ in \Log{G1c} from
-  atomic axioms of
-  $!B \Sequent !B$. We can extend this to !!a{proof}
-  of $\lnot !B \Sequent \lnot !B$ as follows:
+  若 $!A \ident \lnot !B$，则 $\depth{!B} < \depth{!A}$，
+  根据归纳假设，在 \Log{G1c} 中存在从原子公理出发的
+  $!B \Sequent !B$ 推导~$\pi_1$。
+  我们可以如下将其扩展为 $\lnot !B \Sequent \lnot !B$ 的推导：
   \[
   \AxiomC{}
   \RightLabel{$\pi_1$}
@@ -188,12 +166,10 @@ in which all axioms are atomic.
   \DisplayProof
 \]
 
-  If $!A \ident (!B \land !C)$, then $\depth{!B} < \depth{!A}$ and
-  $\depth{!C} < \depth{!A}$. By inductive hypothesis, there are
-  !!{proof}s~$\pi_1$ and~$\pi_2$ in \Log{G1c} from atomic axioms of $!B
-  \Sequent !B$ and $!C \Sequent !C$. We can extend these
-  to !!a{proof} of $!B \land !C \Sequent !B \land !C$
-  as follows:
+  若 $!A \ident (!B \land !C)$，则 $\depth{!B} < \depth{!A}$ 且
+  $\depth{!C} < \depth{!A}$。根据归纳假设，在 \Log{G1c} 中存在从原子公理出发的
+  $!B \Sequent !B$ 和 $!C \Sequent !C$ 的推导~$\pi_1$ 和~$\pi_2$。
+  我们可以如下将它们扩展为 $!B \land !C \Sequent !B \land !C$ 的推导：
   \[
   \AxiomC{}
   \RightLabel{$\pi_1$}
@@ -220,13 +196,12 @@ in which all axioms are atomic.
   \DisplayProof
   \]
 
-  Now suppose $!A \ident \lforall[x][B(x)]$. Take !!a{constant}~$c$
-  that does not occur in $\lforall[x][B(x)]$. Then $\depth{B(c)} =
-  \depth{!B(x)} < \depth{!A}$ and by inductive hypothesis, there is
-  !!a{proof}~$\pi_1$ in \Log{G1c} from atomic axioms of $!B(c)
-  \Sequent !B(c)$. We can extend this to !!a{proof} of
-  $\lforall[x][B(x)] \Sequent \lforall[x][B(x)]$ as
-  follows:
+  现在假设 $!A \ident \lforall[x][B(x)]$。取一个不在 $\lforall[x][B(x)]$ 中出现的常项符号~$c$。
+  则 $\depth{B(c)} =
+  \depth{!B(x)} < \depth{!A}$，根据归纳假设，在 \Log{G1c} 中存在从原子公理出发的
+  $!B(c)
+  \Sequent !B(c)$ 推导~$\pi_1$。
+  我们可以如下将其扩展为 $\lforall[x][B(x)] \Sequent \lforall[x][B(x)]$ 的推导：
   \[
   \AxiomC{}
   \RightLabel{$\pi_1$}
@@ -238,16 +213,15 @@ in which all axioms are atomic.
   \DisplayProof
 \]
 
-  The remaining cases are left as exercises.
+  其余情况留作练习。
 \end{proof}
 
 \begin{prob}
-  Complete the proof of \olref{prop:G1c-axioms} by carrying out the
-  cases where $!A \ident (!B \lor !C)$, $!A \ident (!B \lif !C)$ and
-  $!A \ident \lexists[x][B(x)]$.
+  通过处理 $!A \ident (!B \lor !C)$、$!A \ident (!B \lif !C)$ 以及
+  $!A \ident \lexists[x][B(x)]$ 的情况，补全 \olref{prop:G1c-axioms} 的证明。
 \end{prob}
 
-For our purposes, we could also have used the !!{proof}
+就我们的目的而言，在 $!A \ident \lnot !B$ 的情形下，本也可以使用推导
 \[
 \AxiomC{}
 \RightLabel{$\pi_1$}
@@ -257,18 +231,14 @@ For our purposes, we could also have used the !!{proof}
 \RightLabel{\LeftR{\lnot}}
 \UnaryInf$\lnot !B \fCenter \lnot !B$
 \DisplayProof
-\]
-in the case where $!A \ident \lnot !B$. However, there are sequent
-systems in which this wouldn't have worked. The intuitionistic
-sequent calculus \Log{G1i} is like \Log{G1c}, except it restricts all
-sequents to at most one !!{formula} on the right side of a sequent. If
-$\Delta = \emptyset$, then the first !!{proof} would also be
-!!a{proof} in~\Log{G1i}, but the second would not be, since
-one sequent contains both $!B$ and~$\lnot !B$ on the right.
+\]。
+然而，在某些相继式系统中，这样做是行不通的。
+直觉主义相继式演算 \Log{G1i} 类似于 \Log{G1c}，只是它限制所有相继式的右边至多有一个公式。
+若 $\Delta = \emptyset$，则第一种推导也可以是~\Log{G1i} 中的推导，
+但第二种则不行，因为其中一个相继式的右边同时包含 $!B$ 和~$\lnot !B$。
 
-Note that even in \Log{G1c} we could not have used an alternate order
-of rules in the case where $!A \ident \lforall[x][!B(x)]$. The
-following is \emph{not} !!a{proof}
+请注意，即使在 \Log{G1c} 中，对于 $!A \ident \lforall[x][!B(x)]$ 的情形，我们也无法采用不同的规则顺序。
+以下\emph{不是}推导：
   \[
   \AxiomC{}
   \RightLabel{$\pi_1$}
@@ -279,30 +249,32 @@ following is \emph{not} !!a{proof}
   \UnaryInf$\lforall[x][!B(x)] \fCenter \lforall[x][!B(x)]$
   \DisplayProof
 \]
-since the eigenvariable condition on~$\RightR{\lforall}$ is violated.
+因为它违反了 $\RightR{\lforall}$ 规则的特征变元条件。
 
 \begin{prop}\ollabel{prop:G3c-axioms}
-Any sequent of the form $!A, \Gamma
-\Sequent \Delta, !A$ (with $!A$ \emph{not} necessarily atomic) is
-provable in~\Log{G3c}.
+任何形如 $!A, \Gamma
+\Sequent \Delta, !A$（其中 $!A$ \emph{未必}是原子公式）的相继式
+在~\Log{G3c} 中都是可证的。
 \end{prop}
 
 \begin{proof}
-The proof is very similar to the one of \olref{prop:G1c-axioms}, but
-we must be careful with the inductive hypothesis. The case where $n =
-\depth{!A} = 0$ is again easy. If $n=0$, $!A$ is atomic, and $!A,
-\Gamma \Sequent \Delta, !A$ is an axiom of~\Log{G3c}.
+证明与 \olref{prop:G1c-axioms} 的证明非常相似，
+但在归纳假设上必须小心。当 $n =
+\depth{!A} = 0$ 时的情形同样简单：若 $n=0$，则 $!A$ 是原子公式，
+于是 $!A, \Gamma \Sequent \Delta, !A$ 是~\Log{G3c} 的公理。
 
-Now suppose $n>0$. Again we distinguish cases. The inductive
-hypothesis is: for all $D!$ with $\depth{!D} < n$, and all $\Pi$
-and $\Lambda$, $\Log{G3c} \Proves !D, \Pi \Sequent \Lambda, !D$. Here
-is the case for $!A \ident (!B \land !C)$. We use the inductive
-hypothesis twice: once for $!D = !B$, $\Pi = !C, \Gamma$, and $\Lambda
-= \Delta$ to get !!a{proof}~$\pi_1$ of $!B, !C, \Gamma \Sequent
-\Delta, !B$, and once for $!D = !C$, $\Pi = !B, \Lambda$, and $\Lambda
-= \Delta$ to get !!a{proof}~$\pi_2$ of $!B, !C, \Gamma \Sequent
-\Delta, !C$. Here is the !!{proof} of~$!B \land !C, \Gamma \Sequent
-\Delta, !B \land !C$:
+现在假设 $n>0$。我们再次分情况讨论。归纳假设是：
+对所有满足 $\depth{!D} < n$ 的 $!D$，以及所有的 $\Pi$ 和 $\Lambda$，
+$\Log{G3c} \Proves !D, \Pi \Sequent \Lambda, !D$。
+以下是 $!A \ident (!B \land !C)$ 的情形：我们两次使用归纳假设：
+一次取 $!D = !B$、$\Pi = !C, \Gamma$ 和 $\Lambda
+= \Delta$，得到 $!B, !C, \Gamma \Sequent
+\Delta, !B$ 的推导~$\pi_1$；
+另一次取 $!D = !C$、$\Pi = !B, \Lambda$ 和 $\Lambda
+= \Delta$，得到 $!B, !C, \Gamma \Sequent
+\Delta, !C$ 的推导~$\pi_2$。
+以下是 $!B \land !C, \Gamma \Sequent
+\Delta, !B \land !C$ 的推导：
 \[
 \AxiomC{}
 \RightLabel{$\pi_1$}
@@ -319,12 +291,12 @@ hypothesis twice: once for $!D = !B$, $\Pi = !C, \Gamma$, and $\Lambda
 \DisplayProof
 \]
 
-For $!A \ident \lforall[x][!B(x)]$, pick !!a{constant} not
-in~$\lforall[x][!B(x)]$, $\Gamma$, or~$\Delta$. Apply the inductive
-hypothesis for $!D = !B(c)$, $\Pi = \lforall[x][!B(x)], \Gamma$
-and $\Lambda = \Delta$. This gives !!a{proof}~$\pi_1$ of $!B(c),
-\lforall[x][!B(x)], \Gamma \Sequent \Delta, !B(c)$, from which we
-obtain:
+对于 $!A \ident \lforall[x][!B(x)]$ 的情形，选取一个不在
+$\lforall[x][!B(x)]$、$\Gamma$ 或~$\Delta$ 中出现的常项符号。
+对 $!D = !B(c)$、$\Pi = \lforall[x][!B(x)], \Gamma$
+以及 $\Lambda = \Delta$ 应用归纳假设。
+由此得到 $!B(c),
+\lforall[x][!B(x)], \Gamma \Sequent \Delta, !B(c)$ 的推导~$\pi_1$，据此我们得到：
 \[
 \AxiomC{}
 \RightLabel{$\pi_1$}
@@ -335,14 +307,13 @@ obtain:
 \UnaryInf$\lforall[x][!B(x)], \Gamma \fCenter \Delta, \lforall[x][!B(x)]$
 \DisplayProof
 \]
-The eigenvariable condition on $\RightR{\lforall}$ is satisfied by the
-way we chose~$c$.
+我们选取~$c$ 的方式使得 $\RightR{\lforall}$ 规则的特征变元条件得以满足。
 \end{proof}
 
 \begin{prob}
-  Continue the proof of \olref{prop:G3c-axioms} by carrying out the
-  cases where $!A \ident (!B \lif !C)$ and $!A \ident
-  \lexists[x][B(x)]$.
+  通过处理 $!A \ident (!B \lif !C)$ 和 $!A \ident
+  \lexists[x][B(x)]$ 的情形，
+  继续完成 \olref{prop:G3c-axioms} 的证明。
 \end{prob}
 
 \end{document}

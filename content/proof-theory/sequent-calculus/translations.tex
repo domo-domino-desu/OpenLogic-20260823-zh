@@ -8,55 +8,43 @@
 
 \olfileid{pt}{seq}{tr}
 
-\olsection{Translating between \Log{G1c} and \Log{G3c}}
+\olsection{\Log{G1c} 与 \Log{G3c} 之间的转换}
 
-We mentioned that both \Log{G1c} and \Log{G3c} are sound and complete
-for classical logic, i.e., they each prove all and only the sequents
-true in every !!{structure}. In particular, they prove the same
-sequents. We are now in a position to prove this fact without the
-detour through the soundness and completeness theorems, but using
-purely proof-theoretically. Such a proof provides
-\emph{transformations} of !!{proof}s in \Log{G1c} into !!{proof}s in
-\Log{G3c} and vice versa.
+我们之前提到，对于经典逻辑，\Log{G1c} 和 \Log{G3c} 都是可靠且完备的，
+即，它们证明的恰好是在所有结构中皆为真的相继式。
+特别地，它们证明相同的相继式。
+现在我们无需绕道可靠性定理与完备性定理，纯证明论地即可证明这一事实。
+这样的证明提供了将 \Log{G1c} 中的推导\emph{转换}为 \Log{G3c} 中的推导的方法，反之亦然。
 
 \begin{prop}
-If $\Log{G1c} \Proves S$ then $\Log{G3c} \Proves S$.
+若 $\Log{G1c} \Proves S$，则 $\Log{G3c} \Proves S$。
 \end{prop}
 
 \begin{proof}
-  We show that if $\pi$ is !!a{proof} in \Log{G1c}, then there is
-  !!a{proof}~$\pi'$ of~$S$ in \Log{G3c}. We do this by induction on $n
-  = \pheight{\pi}$.
+  我们证明：若 $\pi$ 是 \Log{G1c} 中的一个推导，则存在 \Log{G3c} 中 $S$ 的一个推导~$\pi'$。
+  我们对 $n = \pheight{\pi}$ 进行归纳。
 
-  If $n = 0$, then $\pi$ is an axiom. The axiom $\lfalse \Sequent
-  \quad$ is also an axiom in~\Log{G3c} (take the context $\Gamma,
-  \Delta$ to be empty). In \Log{G3c}, axioms $!A \Sequent !A$ with
-  arbitrary, not just atomic~$!A$ are allowed. But we proved in
-  \olref[ex]{prop:G3c-axioms} that all such sequents are !!{provable}
-  in~\Log{G3c}.
+  若 $n = 0$，则 $\pi$ 是一条公理。
+  公理 $\lfalse \Sequent \quad$ 也是 \Log{G3c} 中的一条公理（取上下文 $\Gamma, \Delta$ 为空）。
+  在 \Log{G3c} 中，允许公理 $!A \Sequent !A$ 中的 $!A$ 为任意公式，而不仅限于原子公式。
+  但我们在 \olref[ex]{prop:G3c-axioms} 中已经证明了所有这样的相继式在 \Log{G3c} 中都是可推导的。
   
-  If $n>0$, $\pi$ ends in a rule~$R$. The inductive hypothesis
-  guarantees that there are !!{proof}s of the premises of that rule
-  in~\Log{G3c}, i.e., that the immediate sub-!!{proof}s have
-  translations in~\Log{G3c}. If the rule~$R$ is also a rule in
-  \Log{G3c}, we apply it to the translated !!{proof}s of the premises.
-  For those rules that are no also rules of~\Log{G3c}, we have already
-  shown that they are at least admissible. So, if rule~$R$ was
-  $\LeftR{\land}$ or $\RightR{\lor}$, apply
-  \olref[adm]{prop:lor-G3-adm}. If it was a weakening rule, apply
-  \olref[adm]{prop:weak-G3c-adm}. If it was a contraction rule, apply
-  \olref[inv]{prop:G3c-cont-adm}.
+  若 $n > 0$，$\pi$ 以某个规则~$R$ 结束。
+  归纳假设保证了该规则的前提在 \Log{G3c} 中是可推导的，即，直接子推导在 \Log{G3c} 中有相应的转换。
+  如果规则~$R$ 也是 \Log{G3c} 中的规则，我们便将其应用于各前提转换后的推导。
+  对于那些并非 \Log{G3c} 规则的规则，我们之前已经证明它们至少是可接纳的。
+  因此，如果规则~$R$ 是 $\LeftR{\land}$ 或 $\RightR{\lor}$，则应用 \olref[adm]{prop:lor-G3-adm}；
+  如果是弱化规则，则应用 \olref[adm]{prop:weak-G3c-adm}；
+  如果是收缩规则，则应用 \olref[inv]{prop:G3c-cont-adm}。
 \end{proof}
 
 \begin{prop}
-If $\Log{G3c} \Proves S$ then $\Log{G1c} \Proves S$.
+若 $\Log{G3c} \Proves S$，则 $\Log{G1c} \Proves S$。
 \end{prop}
 
 \begin{proof}
-  We again proceed by induction on the !!{height} of !!a{proof}~$\pi$
-  of $S$. Every axiom of \Log{G3c} can be !!{prove}d in~\Log{G1c} from
-  an axiom plus several applications of the \LeftR{\Weakening} and
-  \RightR{\Weakening} rules:
+  我们再次对 $S$ 的一个推导~$\pi$ 的高度进行归纳。
+  \Log{G3c} 的每条公理都可以在 \Log{G1c} 中由一条公理加上若干次 \LeftR{\Weakening} 和 \RightR{\Weakening} 规则的应用推导出来：
   \[
   \Axiom$!C \fCenter !C$
   \RightLabel{\LeftR{\Weakening}}
@@ -72,11 +60,9 @@ If $\Log{G3c} \Proves S$ then $\Log{G1c} \Proves S$.
   \Deduce$\lfalse, \Gamma \fCenter \Delta$
   \DisplayProof
   \]
-  If $\pi$ ends in a rule~$R$, the inductive hypothesis yields
-  !!{proof}s in \Log{G1c} of the premises, and we can apply the same
-  rule~$R$ to those !!{proof}s. The exceptions are the rules
-  \LeftR{\land} and \RightR{\lor}, which differ between \Log{G1c}
-  and~\Log{G3c}. The \Log{G3c} versions are derivable in \Log{G1c} as follows:
+  如果 $\pi$ 以某个规则~$R$ 结束，归纳假设给出了各前提在 \Log{G1c} 中的推导，我们可以将同样的规则~$R$ 应用于这些推导。
+  例外是 \LeftR{\land} 和 \RightR{\lor} 规则，它们在 \Log{G1c} 与 \Log{G3c} 中有所不同。
+  \Log{G3c} 版本的这些规则在 \Log{G1c} 中可按如下方式推导：
   \[
   \Axiom$!A, !B, \Gamma \fCenter \Delta$
   \RightLabel{\LeftR{\land}}

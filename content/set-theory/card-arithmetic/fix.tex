@@ -3,35 +3,27 @@
 \begin{document}
 
 \olfileid{sth}{card-arithmetic}{fix}
-\olsection{$\aleph$-Fixed Points}
+\olsection{$\aleph$-不动点}
 
-In \olref[spine][]{chap}, we suggested that Replacement stands in need
-of justification, because it forces the hierarchy to be rather tall.
-Having done some cardinal arithmetic, we can give a little
-illustration of the height of the hierarchy. 
+在 \olref[spine][]{chap} 中，我们曾提到替代公理需要得到辩护，因为它迫使层叠变得相当高大。在进行了一些基数算术的讨论后，我们可以稍作展示，看看这个层叠有多高。
 
-Evidently $0 < \aleph_0$, and $1 < \aleph_1$, and $2 < \aleph_2$\ldots
-and, indeed, the difference in size only gets \emph{bigger} with every
-step. So it is tempting to conjecture that $\kappa< \aleph_\kappa$
-for every ordinal $\kappa$. 
+显然 $0 < \aleph_0$，且 $1 < \aleph_1$，且 $2 < \aleph_2$\ldots
+而且确实，这种大小差异随每一步只会变得\emph{更大}。因此很容易猜想，对每个序数 $\kappa$，都有 $\kappa< \aleph_\kappa$。
 
-But this conjecture is \emph{false}, given $\ZFC$. In fact, we can
-prove that there are \emph{$\aleph$-fixed-points}, i.e.,
-cardinals $\kappa$ such that $\kappa=\aleph_\kappa$. 
+但在 $\ZFC$ 下，这个猜想是\emph{不成立的}。事实上，我们可以证明存在\emph{$\aleph$-不动点}，即满足 $\kappa=\aleph_\kappa$ 的基数 $\kappa$。
 
 \begin{prop}\ollabel{alephfixed}
-There is an $\aleph$-fixed-point.
+存在一个 $\aleph$-不动点。
 \end{prop}
 
 \begin{proof}
-Using recursion, define:
+使用递归定义：
 \begin{align*}
 	\kappa_0 &= 0\\
 	\kappa_{n+1} &= \aleph_{\kappa_n}\\
 	\kappa&= \bigcup_{n < \omega}\kappa_n
 \end{align*}
-Now $\kappa$ is a cardinal by
-\olref[cardinals][classing]{unioncardinalscardinal}. But now:
+根据 \olref[cardinals][classing]{unioncardinalscardinal}，$\kappa$ 是一个基数。现在有：
 \[
 	\kappa= \bigcup_{n < \omega} \kappa_{n+1} = 
 	\bigcup_{n < \omega}\aleph_{\kappa_n} = 
@@ -45,120 +37,84 @@ Now $\kappa$ is a cardinal by
 %	\aleph_\kappa$.
 \end{proof}
 
-Boolos once wrote an article about exactly the $\aleph$-fixed-point we
-just constructed. After noting the existence of $\kappa$, at the start
-of his article, he said:
+
+Boolos 曾撰文专门讨论我们刚构造的这个 $\aleph$-不动点。在文章开头指出 $\kappa$ 的存在之后，他写道：
+
 \begin{quote}
-	[$\kappa$ is] a \emph{pretty big} number, by the lights of those
-	with no previous exposure to  set theory,  so big, it seems to me,
-	that  it calls into question the truth of any theory, one of whose
-	assertions is the claim that there are at least $\kappa$ objects.
-	\citep[p.~257]{Boolos2000}
+    [$\kappa$ 是] 一个\emph{相当大的}数，在那些从未接触过集合论的人看来；大得似乎足以让任何断言至少存在 $\kappa$ 个对象的理论的真理性受到质疑。
+    \citep[p.~257]{Boolos2000}
 \end{quote}
-And he ultimately concluded his paper by asking:
+
+而他最终在论文结尾这样发问：
+
 \begin{quote}
-	[do] we  suspect that,  however  it  may  have  been  at  the
-	beginning  of  the  story,  by  the  time  we have come thus  far
-	the wheels  are  spinning  and  we  are no longer  listening  to
-	a description  of  anything  that  is the case?
-	\citep[p.~268]{Boolos2000}
+    [我们是否] 怀疑，无论故事的开端怎样，到了这一步时，\emph{车轮只是在空转}，我们听到的已不再是关于任何\emph{实际情况}的描述？
+    \citep[p.~268]{Boolos2000}
 \end{quote}
-If we have, indeed, outrun ``anything that is the case'', then we must
-point the finger of blame directly at Replacement. For it is this
-axiom which allows our proof to work. In which case, one assumes,
-Boolos would need to revisit the claim he made, a few decades earlier,
-that Replacement has ``no undesirable'' consequences (see
-\olref[replacement][extrinsic]{sec}).
 
-But is the existence of $\kappa$ so bad? It might help, here, to
-consider Russell's \emph{Tristram Shandy paradox}. Tristram Shandy
-documents his life in his diary, but it takes him a year to record a
-single day. With every passing year, Tristram falls further and
-further behind: after one year, he has recorded only one day, and has
-lived 364 days unrecorded days; after two years, he has only recorded
-two days, and has lived 728 unrecorded days; after three years, he has
-only recorded three days, and lived 1092 unrecorded
-days \dots\footnote{Forgetting about leap years.} Still, if Tristram
-is \emph{immortal}, Tristram will manage to record every day, for he
-will record the $n$th day on the $n$th year of his life. And so, ``at
-the end of time'', Tristram will have a complete diary. 
+如果我们确实已经脱离了“任何实际情况”，那么我们必须将指责的矛头直接指向替代公理。因为正是这条公理使得我们的证明得以成立。在这种情况下，人们大概会认为，Boolos 需要重新审视他几十年前提出的那个主张，即替代公理“\emph{没有}不良后果”（参见 \olref[replacement][extrinsic]{sec}）。
 
-Now: why is this so different from the thought that $\alpha$ is
-smaller than $\aleph_\alpha$---and indeed, increasingly, desperately
-smaller---up until $\kappa$, at which point, we catch up, and $\kappa
-= \aleph_\kappa$?
+但 $\kappa$ 的存在真的如此糟糕吗？在此，考虑一下 Russell 的\emph{《项狄传》悖论}或许有所帮助。特里斯特拉姆·项狄用日记记录他的生活，但记录一天要花掉他一年的时间。随着每一年过去，项狄落后得越来越远：一年后，他只记录了一天，却已经度过了 364 天未记录的日子；两年后，他只记录了两天，却度过了 728 天未记录的日子；三年后，他只记录了三天，却度过了 1092 天未记录的日子……\footnote{忽略闰年。} 然而，如果项狄\emph{永生不死}，他将能够记录下每一天，因为他会在自己生命的第 $n$ 年记录第 $n$ 天。这样，“在时间的尽头”，项狄将拥有一本完整的日记。
 
-Setting that aside, and assuming we accept $\ZFC$, let's close with a
-little more fun concerning fixed-point constructions. The next three
-results establish, intuitively, that there is a (non-trivial) point at
-which the hierarchy is as wide as it is tall:
+那么：为什么这与下面这种想法如此不同呢？——即 $\alpha$ 小于 $\aleph_\alpha$（而且确实，越来越小，甚至令人绝望地小），直至 $\kappa$，在此时我们终于“赶上了”，使得 $\kappa
+= \aleph_\kappa$？
+
+抛开这个不谈，假设我们接受 $\ZFC$，让我们以一些关于不动点构造的趣味探讨来结束本节。直观上说，以下三个结果表明，存在一个（非平凡的）点，在该点处层叠的宽度等于其高度：
 
 \begin{prop}\ollabel{bethfixed}
-There is a $\beth$-fixed-point, i.e., a $\kappa$ such that $\kappa=
-\beth_\kappa$.
+存在一个 $\beth$-不动点，即一个满足 $\kappa=
+\beth_\kappa$ 的 $\kappa$。
 \end{prop}
 
 \begin{proof}
-As in \olref{alephfixed}, using ``$\beth$'' in place of ``$\aleph$''. 
+如 \olref{alephfixed}，用“$\beth$”代替“$\aleph$”。
 \end{proof}
 
 \begin{prop}\ollabel{stagesize}
-$\card{V_{\omega+\alpha}} = \beth_{\alpha}$. If $\omega \ordtimes
-\omega \leq \alpha$, then $\card{V_\alpha} = \beth_\alpha$.
+$\card{V_{\omega+\alpha}} = \beth_{\alpha}$。若 $\omega \ordtimes
+\omega \leq \alpha$，则 $\card{V_\alpha} = \beth_\alpha$。
 \end{prop}
 
 \begin{proof}
-The first claim holds by a simple transfinite induction. The second
-claim follows, since if $\omega \ordtimes \omega \leq \alpha$ then
-$\omega + \alpha = \alpha$. To establish this, we use facts about
-ordinal arithmetic from \olref[ord-arithmetic][]{chap}. First note
-that $\omega \ordtimes \omega = \omega \ordtimes (1 \ordplus \omega) =
-(\omega  \ordtimes 1) \ordplus (\omega\ordtimes\omega) = \omega
-\ordplus (\omega \ordtimes \omega)$. Now if $\omega \ordtimes \omega
-\leq \alpha$, i.e., $\alpha = (\omega\ordtimes\omega) \ordplus \beta$
-for some $\beta$, then $\omega \ordplus \alpha = \omega \ordplus
-((\omega \ordtimes \omega) \ordplus \beta) = (\omega \ordplus (\omega
-\ordtimes \omega)) \ordplus \beta = (\omega \ordtimes \omega) \ordplus
-\beta = \alpha$. 
+第一个断言可由简单的超限归纳法得出。
+第二个断言随之成立，因为如果 $\omega \ordtimes \omega \leq \alpha$，则有 $\omega + \alpha = \alpha$。为了证明这一点，我们使用\olref[ord-arithmetic][]{chap}中关于序数算术的若干事实。
+首先注意到 $\omega \ordtimes \omega = \omega \ordtimes (1 \ordplus \omega) = (\omega  \ordtimes 1) \ordplus (\omega\ordtimes\omega) = \omega \ordplus (\omega \ordtimes \omega)$。
+现在，如果 $\omega \ordtimes \omega \leq \alpha$，即对某个 $\beta$ 有 $\alpha = (\omega\ordtimes\omega) \ordplus \beta$，那么 $\omega \ordplus \alpha = \omega \ordplus ((\omega \ordtimes \omega) \ordplus \beta) = (\omega \ordplus (\omega \ordtimes \omega)) \ordplus \beta = (\omega \ordtimes \omega) \ordplus \beta = \alpha$。
 \end{proof}
 
 \begin{cor}
-There is a $\kappa$ such that $\card{V_\kappa} = \kappa$.
+存在 $\kappa$ 使得 $\card{V_\kappa} = \kappa$。
 \end{cor}
 
 \begin{proof}
-Let $\kappa$ be a $\beth$-fixed point, as given by \olref{bethfixed}.
-Clearly $\omega \ordtimes \omega < \kappa$. So $\card{V_\kappa} =
-\beth_\kappa= \kappa$ by \olref{stagesize}.
+令 $\kappa$ 为如 \olref{bethfixed} 所给出的一个 $\beth$-不动点。
+显然 $\omega \ordtimes \omega < \kappa$。因此由 \olref{stagesize}，$\card{V_\kappa} =
+\beth_\kappa= \kappa$。
 \end{proof}
 
-There are as many stages beneath $V_\kappa$ as there are !!{element}s
-of $V_\kappa$. Intuitively, then, $V_\kappa$ is as wide as it is tall.
-This is very Tristram-Shandy-esque: we move from one stage to the next
-by taking \emph{powersets}, thereby making our hierarchy \emph{much}
-bigger with each step. But, ``in the end'', i.e., at stage $\kappa$,
-the hierarchy's width catches up with its height. 
 
-One might ask: \emph{How often does the hierarchy's width match its
-height?} The answer is: \emph{As often as there are ordinals.} But
-this needs a little explanation. 
+在 $V_\kappa$ 之下的阶段数，和 $V_\kappa$ 的元素个数一样多。
+直观上说，$V_\kappa$ 的宽度和它的高度相等。
+这非常具有《项狄传》的风格：我们通过取\emph{幂集}从一个阶段推进到下一个阶段，
+从而每一步都让我们的层叠变得\emph{更}大。
+但是，“到最后”，即在阶段 $\kappa$，层叠的宽度赶上了它的高度。
 
-We define a term $\tau$ as follows. For any $A$, let:
+人们可能会问：\emph{层叠宽度匹配其高度的现象多久发生一次？}
+答案是：\emph{和序数一样多。}但这需要稍加解释。
+
+我们如下定义一个项 $\tau$。对任意 $A$，令：
 \begin{align*}
 	\tau_0(A) & \defis \card{A}\\
 	\tau_{n+1}(A) & \defis \beth_{\tau_n(A)}\\
 	\tau(A) & \defis \bigcup_{n < \omega}\tau_n(A)
-\intertext{As in \olref{bethfixed}, $\tau(A)$ is a
-$\beth$-fixed point for any $A$, and trivially $\card{A} < \tau(A)$.
-So now consider this recursive definition:}
+\intertext{与 \olref{bethfixed} 类似，对任意 $A$，$\tau(A)$ 都是一个 $\beth$-不动点，并且显然有 $\card{A} < \tau(A)$。
+现在考虑如下的递归定义：}
 	W_0 &\defis 0\\
 	W_{\alpha + 1} & \defis \tau(W_\alpha)\\
 	W_\alpha & \defis \bigcup_{\beta < \alpha} W_\beta
-	\text{, when $\alpha$ is a limit}
+	\text{，当 $\alpha$ 是极限序数时}
 \end{align*}
-The construction is defined for all ordinals. Intuitively, then,
-$W$ is ``!!a{injection}'' from the ordinals to $\beth$-fixed points.
-And, exactly as before, 
-$V_{W_\alpha}$ is as wide as it is tall, for any $\alpha$.
+该构造对所有序数都有定义。直观上说，$W$ 是从序数到 $\beth$-不动点的“一个单射”。
+并且，和之前完全一样，对任意 $\alpha$，$V_{W_\alpha}$ 的宽度与高度相等。
 
 \end{document}

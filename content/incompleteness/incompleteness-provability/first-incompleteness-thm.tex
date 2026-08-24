@@ -8,121 +8,116 @@
 
 \olfileid{inc}{inp}{1in}
 
-\olsection{The First Incompleteness Theorem}
+\olsection{第一不完全性定理}
 
-We can now describe G\"odel's original proof of the first
-incompleteness theorem. Let $\Th{T}$ be any computably axiomatized theory
-in a language extending the language of arithmetic, such that $\Th{T}$
-includes the axioms of $\Th{Q}$. This means that, in particular, $\Th{T}$
-represents computable functions and relations.
+我们现在可以描述 Gödel 最初对第一不完全性定理的证明。
+设 $\Th{T}$ 为任意可计算公理化理论，其语言扩展了算术语言，且 $\Th{T}$ 包含 $\Th{Q}$ 的公理。
+特别地，这意味着 $\Th{T}$ 能表示可计算函数和关系。
 
-We have argued that, given a reasonable coding of formulas and proofs
-as numbers, the relation $\Prf[\Th{T}](x,y)$ is computable, where
-$\Prf[\Th{T}](x,y)$ holds if and only if $x$ is the G\"odel number of
-!!a{derivation} of the !!{formula} with G\"odel number~$y$
-in~$\Th{T}$. In fact, for the particular theory that G\"odel had in
-mind, G\"odel was able to show that this relation is primitive
-recursive, using the list of 45 functions and relations in his
-paper. The 45th relation, $x B y$, is just $\Prf[\Th{T}](x,y)$ for his
-particular choice of~$\Th{T}$. Remember that where G\"odel uses the
-word ``recursive'' in his paper, we would now use the phrase
-``primitive recursive.''
+我们之前已经论证过，给定一种将公式和证明编码为数字的合理方式，
+关系 $\Prf[\Th{T}](x,y)$ 是可计算的，其中
+$\Prf[\Th{T}](x,y)$ 成立当且仅当 $x$ 是 $\Th{T}$ 中
+哥德尔数为 $y$ 的公式的某个推导的哥德尔数。
+事实上，对于 Gödel 所考虑的特定理论，Gödel 能够利用他论文中的
+45 个函数和关系列表，证明这个关系是原始递归的。
+对应于他所选择的特定的 $\Th{T}$，第 45 个关系 $x B y$ 正是 $\Prf[\Th{T}](x,y)$。
+需要注意的是，在 Gödel 论文中用到“递归”一词之处，我们现在会使用“原始递归”这一术语。
 
-Since $\Prf[\Th{T}](x,y)$ is computable, it is representable in $\Th{T}$. We
-will use $\OPrf[\Th{T}](x,y)$ to refer to the formula that represents
-it. Let $\OProv[\Th{T}](y)$ be the formula
-$\lexists[x][\OPrf[\Th{T}](x,y)]$. This describes the 46th relation,
-$\fn{Bew}(y)$, on G\"odel's list. As G\"odel notes, this is the only
-relation that ``cannot be asserted to be recursive.''  What he
-probably meant is this: from the definition, it is not clear that it
-is computable; and later developments, in fact, show that it isn't.
+由于 $\Prf[\Th{T}](x,y)$ 是可计算的，它在 $\Th{T}$ 中是可表示的。
+我们将用 $\OPrf[\Th{T}](x,y)$ 表示代表它的公式。
+令 $\OProv[\Th{T}](y)$ 为公式 $\lexists[x][\OPrf[\Th{T}](x,y)]$。
+这描述了 Gödel 列表中的第 46 个关系 $\fn{Bew}(y)$。
+如 Gödel 所指出的，这是唯一一个“不能被断言为递归”的关系。
+他的意思大概是：从定义来看，无法直接看出它是可计算的；
+而后来的发展实际上表明它是不可计算的。
 
-Let $\Th{T}$ be an !!{axiomatizable} theory containing~$\Th{Q}$. Then
-$\Prf[\Th{T}](x, y)$ is decidable, hence representable in~$\Th{Q}$ by
-!!a{formula}~$\OPrf[\Th{T}](x, y)$. Let $\OProv[\Th{T}](y)$ be the formula we
-described above. By the fixed-point lemma, there is a formula
-$!G_\Th{T}$ such that $\Th{Q}$ (and hence $\Th{T}$) !!{derive}s
+设 $\Th{T}$ 为包含 $\Th{Q}$ 的可公理化理论。
+则 $\Prf[\Th{T}](x, y)$ 是可判定的，
+从而在 $\Th{Q}$ 中可由公式 $\OPrf[\Th{T}](x, y)$ 表示。
+令 $\OProv[\Th{T}](y)$ 为我们上面描述的公式。
+由不动点引理，存在公式 $!G_\Th{T}$，使得 $\Th{Q}$（从而 $\Th{T}$）推导
 \begin{equation}
 \ollabel{eqn:qpf}
 !G_\Th{T} \liff \lnot \OProv[\Th{T}](\gn{!G_\Th{T}}).
 \end{equation}
-Note that $!G_\Th{T}$ says, in essence, ``$!G_\Th{T}$ is not
-!!{derivable} in~$\Th{T}$.''
+注意，$!G_\Th{T}$ 实质上断言了“$!G_\Th{T}$ 在 $\Th{T}$ 中不可推导”。
 
 \begin{lem}\ollabel{lem:cons-G-unprov}
-If $\Th{T}$ is a consistent, !!{axiomatizable} theory
-extending~$\Th{Q}$, then $\Th{T} \Proves/ !G_\Th{T}$.
+若 $\Th{T}$ 是一致、可公理化且扩展 $\Th{Q}$ 的理论，
+则 $\Th{T} \Proves/ !G_\Th{T}$。
 \end{lem}
 
 \begin{proof}
-Suppose $\Th{T}$ !!{derive}s $!G_\Th{T}$. Then there \emph{is}
-!!a{derivation}, and so, for some number $m$, the relation $\Prf[\Th{T}](m,
-\Gn{!G_\Th{T}})$ holds. But then $\Th{Q}$ !!{derive}s the sentence
-$\OPrf[\Th{T}](\num m, \gn{!G_\Th{T}})$. So $\Th{Q}$ !!{derive}s
-$\lexists[x][\OPrf[\Th{T}](x,\gn{!G_\Th{T}})]$, which is, by definition,
-$\OProv[\Th{T}](\gn{!G_\Th{T}})$. By \olref{eqn:qpf}, $\Th{Q}$ !!{derive}s
-$\lnot !G_\Th{T}$, and since $\Th{T}$ extends $\Th{Q}$, so
-does~$\Th{T}$. We have shown that if $\Th{T}$ !!{derive}s $!G_\Th{T}$, then
-it also !!{derive}s $\lnot !G_\Th{T}$, and hence it would be inconsistent.
+假设 $\Th{T}$ 推导 $!G_\Th{T}$。
+那么确实存在一个推导，因此对某个数 $m$，关系 $\Prf[\Th{T}](m,
+\Gn{!G_\Th{T}})$ 成立。
+于是 $\Th{Q}$ 推导语句
+$\OPrf[\Th{T}](\num m, \gn{!G_\Th{T}})$。
+所以 $\Th{Q}$ 推导
+$\lexists[x][\OPrf[\Th{T}](x,\gn{!G_\Th{T}})]$，而根据定义，这即
+$\OProv[\Th{T}](\gn{!G_\Th{T}})$。
+由 \olref{eqn:qpf}，$\Th{Q}$ 推导 $\lnot !G_\Th{T}$，
+并且由于 $\Th{T}$ 扩展 $\Th{Q}$，$\Th{T}$ 也推导 $\lnot !G_\Th{T}$。
+我们证明了：如果 $\Th{T}$ 推导 $!G_\Th{T}$，那么它也推导 $\lnot !G_\Th{T}$，
+从而它就会不一致。
 \end{proof}
 
 \begin{defn}
 \ollabel{thm:oconsis-q}
-A theory $\Th{T}$ is \emph{$\omega$-consistent} if the following holds: if
-$\lexists[x][!A(x)]$ is any sentence and $\Th{T}$ !!{derive}s $\lnot
-!A(\num 0)$, $\lnot !A(\num 1)$, $\lnot !A(\num 2)$, \dots then $\Th{T}$
-does not prove $\lexists[x][!A(x)]$.
+一个理论 $\Th{T}$ 是\emph{$\omega$一致的}，如果满足以下条件：
+如果 $\lexists[x][!A(x)]$ 是任意语句，并且 $\Th{T}$ 推导 $\lnot
+!A(\num 0)$、$\lnot !A(\num 1)$、$\lnot !A(\num 2)$、……，
+那么 $\Th{T}$ 不推导 $\lexists[x][!A(x)]$。
 \end{defn}
 
-Note that every $\omega$-consistent theory is also consistent. This
-follows simply from the fact that if $\Th{T}$ is inconsistent, then
-$\Th{T} \Proves !A$ for every~$!A$. In particular, if $\Th{T}$ is
-inconsistent, it !!{derive}s both $\lnot !A(\num n)$ for every~$n$ and
-also !!{derive}s~$\lexists[x][!A(x)]$. So, if $\Th{T}$ is
-inconsistent, it is $\omega$-inconsistent. By contraposition, if
-$\Th{T}$ is $\omega$-consistent, it must be consistent.
+注意，每个 $\omega$一致的理论也是一致的。
+这只需由以下事实即可得出：如果 $\Th{T}$ 不一致，那么
+对每个 $!A$ 都有 $\Th{T} \Proves !A$。
+特别地，如果 $\Th{T}$ 不一致，它既推导对任意 $n$ 的 $\lnot !A(\num n)$，
+也推导 $\lexists[x][!A(x)]$。
+所以，如果 $\Th{T}$ 不一致，它就是 $\omega$不一致的。
+由逆否律，如果 $\Th{T}$ 是 $\omega$一致的，则它必然是一致的。
 
 \begin{lem}\ollabel{lem:omega-cons-G-unref}
-If $\Th{T}$ is an $\omega$-consistent, !!{axiomatizable} theory
-extending~$\Th{Q}$, then $\Th{T} \Proves/ \lnot !G_\Th{T}$.
+若 $\Th{T}$ 是 $\omega$一致、可公理化且扩展 $\Th{Q}$ 的理论，
+则 $\Th{T} \Proves/ \lnot !G_\Th{T}$。
 \end{lem}
 
 \begin{proof}
-We show that if $\Th{T}$ !!{derive}s $\lnot !G_\Th{T}$, then it is
-$\omega$-inconsistent. Suppose $\Th{T}$ !!{derive}s $\lnot !G_\Th{T}$. If
-$\Th{T}$ is inconsistent, it is $\omega$-inconsistent, and we are
-done. Otherwise, $\Th{T}$ is consistent, so it does not !!{derive}
-$!G_\Th{T}$ by \olref{lem:cons-G-unprov}. Since there is no
-!!{derivation} of $!G_\Th{T}$ in $\Th{T}$, $\Th{Q}$ !!{derive}s
+我们证明：如果 $\Th{T}$ 推导 $\lnot !G_\Th{T}$，那么它就是 $\omega$不一致的。
+假设 $\Th{T}$ 推导 $\lnot !G_\Th{T}$。
+如果 $\Th{T}$ 不一致，它已经是 $\omega$不一致的，得证。
+否则，$\Th{T}$ 是一致的，于是由 \olref{lem:cons-G-unprov}，它不推导
+$!G_\Th{T}$。
+由于 $\Th{T}$ 中不存在 $!G_\Th{T}$ 的推导，$\Th{Q}$ 推导
 \[
 \lnot \OPrf[\Th{T}](\num 0, \gn{!G_\Th{T}}), \lnot \OPrf[\Th{T}](\num 1,
 \gn{!G_\Th{T}}), \lnot \OPrf[\Th{T}](\num 2, \gn{!G_\Th{T}}), \dots
 \]
-and so does~$\Th{T}$.  On the other hand, by \olref{eqn:qpf}, $\lnot
-!G_\Th{T}$ is equivalent to
-$\lexists[x][\OPrf[\Th{T}](x,\gn{!G_\Th{T}})]$. So $\Th{T}$ is
-$\omega$-inconsistent.
+并且 $\Th{T}$ 也推导它。
+另一方面，由 \olref{eqn:qpf}，$\lnot
+!G_\Th{T}$ 等价于
+$\lexists[x][\OPrf[\Th{T}](x,\gn{!G_\Th{T}})]$。
+因此 $\Th{T}$ 是 $\omega$不一致的。
 \end{proof}
 
 \begin{prob}
-  Every $\omega$-consistent theory is consistent. Show that the
-  converse does not hold, i.e., that there are consistent but
-  $\omega$-inconsistent theories. Do this by showing that $\Th{Q} \cup
-  \{\lnot !G_\Th{Q}\}$ is consistent but $\omega$-inconsistent.
+  每个 $\omega$一致的理论都是一致的。证明反之不成立，即存在一致但 $\omega$不一致的理论。
+  通过证明 $\Th{Q} \cup
+  \{\lnot !G_\Th{Q}\}$ 是一致但 $\omega$不一致的来完成此题。
 \end{prob}
 
 \begin{thm}
-\ollabel{thm:first-incompleteness} Let $\Th{T}$ be any
-$\omega$-consistent, !!{axiomatizable} theory extending~$\Th{Q}$. Then
-$\Th{T}$ is not complete.
+\ollabel{thm:first-incompleteness} 设 $\Th{T}$ 为任意
+$\omega$一致、可公理化且扩展 $\Th{Q}$ 的理论。
+则 $\Th{T}$ 不是完备的。
 \end{thm}
 
 \begin{proof}
-  If $\Th{T}$ is $\omega$-consistent, it is consistent, so $\Th{T}
-  \Proves/ !G_\Th{T}$ by \olref{lem:cons-G-unprov}.  By
-  \olref{lem:omega-cons-G-unref}, $\Th{T} \Proves/ \lnot !G_\Th{T}$.
-  This means that $\Th{T}$ is incomplete, since it !!{derive}s neither
-  $!G_\Th{T}$ nor $\lnot !G_\Th{T}$.
+  若 $\Th{T}$ 是 $\omega$一致的，则它是一致的，因此由 \olref{lem:cons-G-unprov} 可得 $\Th{T}
+  \Proves/ !G_\Th{T}$。
+  由 \olref{lem:omega-cons-G-unref} 可得 $\Th{T} \Proves/ \lnot !G_\Th{T}$。
+  这意味着 $\Th{T}$ 是不完备的，因为它既不推导 $!G_\Th{T}$，也不推导 $\lnot !G_\Th{T}$。
 \end{proof}
 
 \end{document}

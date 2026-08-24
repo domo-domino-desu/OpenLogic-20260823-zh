@@ -1,47 +1,52 @@
-% Part: first-order-logic
-% Chapter: semantics
-% Section: intro-semantics
-
 \documentclass[../../../include/open-logic-section]{subfiles}
 
 \begin{document}
 
 \olfileid{fol}{syn}{its}
 
-\olsection{Introduction}
+\begin{explain}
+正如项具有由项的形成规则所定义的结构，公式也具有由公式的形成规则所定义的结构。
+项的结构是真函数符号在项构造运算下生成的闭包；公式的结构则是联结词、量词和原子公式在公式构造运算下生成的闭包。
+我们将看到，公式的结构也可以归纳地刻画。
+\end{explain}
 
-Giving the meaning of expressions is the domain of semantics.  The
-central concept in semantics is that of satisfaction in
-!!a{structure}. !!^a{structure} gives meaning to the building blocks
-of the language: !!a{domain} is a non-empty set of objects. The
-quantifiers are interpreted as ranging over this domain, !!{constant}s
-are assigned elements in the domain, !!{function}s are assigned
-functions from the !!{domain} to itself, and !!{predicate}s are
-assigned relations on the !!{domain}.  The !!{domain} together with
-assignments to the basic vocabulary constitutes !!a{structure}.
-!!^{variable}s may appear in !!{formula}s, and in order to give a
-semantics, we also have to assign !!{element}s of the !!{domain} to
-them---this is a variable assignment. The satisfaction relation,
-finally, brings these together. !!^a{formula} may be satisfied in
-!!a{structure}~$\Struct{M}$ relative to !!a{variable} assignment~$s$,
-written as $\Sat{M}{!A}[s]$. This relation is also defined by
-induction on the structure of~$!A$, using the truth tables for the
-logical connectives to define, say, satisfaction of $(!A \land !B)$ in
-terms of satisfaction (or not) of $!A$ and ~$!B$.  It then turns out
-that the !!{variable} assignment is irrelevant if the !!{formula}~$!A$
-is !!a{sentence}, i.e., has no free variables, and so we can talk of
-!!{sentence}s being simply satisfied (or not) in !!{structure}s.
+\begin{defn}[项的结构]
+\ollabel{defn:term-structure}
+项~$\tau$ 的\emph{结构}递归定义如下：
+\begin{enumerate}
+\item 如果 $\tau$ 是常项符号或变元，则其结构就是 $\tau$ 本身。
+\item 如果 $\tau$ 是 $\Obj f^n(\tau_1, \dots, \tau_n)$，其中 $\Obj f^n$ 是 $n$ 元函数符号且 $\tau_1$, \dots, $\tau_n$ 是项，则 $\tau$ 的结构是有序对 $\langle \Obj f^n, \langle S(\tau_1), \dots, S(\tau_n) \rangle \rangle$，其中 $S(\tau_i)$ 是 $\tau_i$ 的结构。% Part: first-order-logic
+\end{enumerate}
+\end{defn}
 
-On the basis of the satisfaction relation $\Sat{M}{!A}$ for !!{sentence}s
-we can then define the basic semantic notions of validity, entailment,
-and satisfiability. !!^a{sentence} is valid, $\Entails !A$, if every
-!!{structure} satisfies it. It is entailed by a set of !!{sentence}s,
-$\Gamma \Entails !A$, if every !!{structure} that satisfies all the
-!!{sentence}s in~$\Gamma$ also satisfies~$!A$. And a set of !!{sentence}s
-is satisfiable if some !!{structure} satisfies all !!{sentence}s in it
-at the same time.  Because !!{formula}s are inductively defined, and
-satisfaction is in turn defined by induction on the structure of
-!!{formula}s, we can use induction to prove properties of our
-semantics and to relate the semantic notions defined.
+\begin{defn}[公式的结构]
+\ollabel{defn:formula-structure}
+公式~$!A$ 的\emph{结构}递归定义如下：
+\begin{enumerate}
+\item 如果 $!A$ 是原子公式，即形如 $\Atom{R}{t_1,\dots,t_n}$ 或 $t_1 = t_2$，则其结构分别是 $\langle R, \langle S(t_1), \dots, S(t_n) \rangle \rangle$ 与 $\langle =, \langle S(t_1), S(t_2) \rangle \rangle$，其中 $S(t_i)$ 是项~$t_i$ 的结构。
+\item 如果 $!A$ 形如 $\lnot !B$、${!B \land !C}$、${!B \lor !C}$、${!B \lif !C}$ 或 ${!B \liff !C}$，则其结构为 $\langle \circ, S(!B) \rangle$ 或 $\langle \circ, \langle S(!B), S(!C) \rangle \rangle$，其中 $\circ$ 是对应的联结词，而 $S(!B)$（及 $S(!C)$）是 $!B$（及 $!C$）的结构。
+\item 如果 $!A$ 形如 $\lforall[x][!B]$ 或 $\lexists[x][!B]$，则其结构为 $\langle Q, S(!B) \rangle$，其中 $Q$ 是量词，$S(!B)$ 是 $!B$ 的结构。% Chapter: semantics
+\end{enumerate}
+% Section: intro-semantics
+\end{defn}
+
+\olsection{引言}
+
+赋予表达式意义属于语义学的范畴。
+语义学的核心概念是在结构中的\emph{满足}关系。
+结构为语言的基本构件赋予意义：一个\emph{论域}是一个非空的对象集合。
+量词被解释为遍历该论域，常项符号被指派以论域中的元素，函数符号被指派以从论域到自身的函数，谓词符号被指派以论域上的关系。
+论域连同对这些基本词汇的指派，共同构成一个\emph{结构}。
+公式中可能出现变元，为了给出其语义，我们还必须将论域中的元素指派给它们——这便是\emph{变元指派}。
+最后，\emph{满足关系}将这些部分结合起来。
+一个公式可以在结构~$\Struct{M}$ 中相对于变元指派~$s$ 被满足，记作 $\Sat{M}{!A}[s]$。
+这一关系同样是通过对~$!A$ 的结构进行归纳来定义的，例如，利用逻辑联结词的真值表，依据 $!A$ 和~$!B$ 是否被满足来定义 $(!A \land !B)$ 的满足条件。
+由此可知，如果公式~$!A$ 是一个语句（即没有自由变元），变元指派就是无关紧要的，因此我们可以直接谈论语句在结构中是否被满足。
+
+基于语句的满足关系 $\Sat{M}{!A}$，我们可以进而定义有效性、语义后承和可满足性这些基本的语义概念。
+一个语句是\emph{有效的}，记作 $\Entails !A$，当且仅当每个结构都满足它。
+一组语句 $\Gamma$ \emph{语义地后承}一个语句，记作 $\Gamma \Entails !A$，当且仅当每个满足~$\Gamma$ 中所有语句的结构也都满足~$!A$。
+而一组语句是\emph{可满足的}，当且仅当存在某个结构同时满足其中的所有语句。
+由于公式是归纳定义的，而满足关系又是基于公式的结构归纳定义的，因此我们可以使用归纳法来证明语义的各种性质，并建立起所定义的各个语义概念之间的联系。
 
 \end{document}

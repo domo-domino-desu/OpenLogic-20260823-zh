@@ -10,25 +10,18 @@
       {\olfileid{fol}{ntd}{pro}}
       {\olfileid{pl}{ntd}{pro}}
 
-\olsection{Examples of \usetoken{P}{derivation}}
+\olsection{推导示例}
 
 \begin{ex}
-Let's give !!a{derivation} of the !!{sentence} $(!A \land !B) \lif !A$.
+我们来给出语句 $(!A \land !B) \lif !A$ 的一个推导。
 
-We begin by writing the desired conclusion at the bottom of the 
-!!{derivation}.
+我们首先将待证的结论写在推导的底部。
 \begin{prooftree}
 \AxiomC{}
 \UnaryInfC{$(!A\land !B) \lif !A$}
 \end{prooftree}
 
-Next, we need to figure out what kind of inference could result in
-!!a{sentence} of this form. The !!{main operator} of the
-conclusion is $\lif$, so we'll try to arrive at the
-conclusion using the \Intro{\lif} rule. It is best to write down
-the assumptions involved and label the inference rules as you
-progress, so it is easy to see whether all assumptions have been
-!!{discharged} at the end of the proof.
+接下来，我们需要弄清楚何种推理能得到这种形式的语句。结论的主联结词是 $\lif$，因此我们将尝试使用 \Intro{\lif} 规则来得到结论。在推导过程中，最好将涉及的假设写下来并标明所用的推理规则，以便在证明结束时容易看出所有假设是否均已解除。
 \begin{prooftree}
 \AxiomC{$\Discharge{!A \land !B}{1}$}
 \DeduceC{$!A$}
@@ -36,9 +29,7 @@ progress, so it is easy to see whether all assumptions have been
 \UnaryInfC{$(!A\land !B) \lif !A$}
 \end{prooftree}
 
-We now need to fill in the steps from the assumption $!A \land !B$ to $!A$.
-Since we only have one connective to deal with, $\land$, we must
-use the $\land$ elim rule. This gives us the following proof:
+现在我们需要补全从假设 $!A \land !B$ 到 $!A$ 的步骤。由于我们只需处理一个联结词 $\land$，因此必须使用 $\land$ 消去规则。这就得到了如下推导：
 \begin{prooftree}
 \AxiomC{$\Discharge{!A \land !B}{1}$}
 \RightLabel{\Elim{\land}}
@@ -46,43 +37,26 @@ use the $\land$ elim rule. This gives us the following proof:
 \DischargeRule{\Intro{\lif}}{1} 
 \UnaryInfC{$(!A\land !B) \lif !A$}
 \end{prooftree}
-We now have a correct !!{derivation} of $(!A \land
-!B) \lif !A$.
+这样，我们就得到了 $(!A \land !B) \lif !A$ 的一个正确推导。
 \end{ex}
 
 \begin{ex}
-Now let's give !!a{derivation} of $(\lnot !A \lor !B)
-\lif (!A \lif !B)$.
+现在，让我们来给出 $(\lnot !A \lor !B)
+\lif (!A \lif !B)$ 的一个推导。
 
-We begin by writing the desired conclusion at the bottom of the 
-!!{derivation}.
+我们首先将待证的结论写在推导的底部。
 \begin{prooftree}
 \AxiomC{}
 \UnaryInfC{$(\lnot !A \lor !B) \lif (!A \lif !B)$}
 \end{prooftree}
-To find a logical rule that could give us this conclusion, we
-look at the logical connectives in the conclusion: $\lnot$,
-$\lor$, and $\lif$. We only care at the moment about the first
-occurrence of $\lif$ because it is the !!{main operator} of the
-!!{sentence} in the end-sequent, while $\lnot$, $\lor$ and the second
-occurrence of $\lif$ are inside the scope of another connective, so we
-will take care of those later. We therefore start with the
-\Intro{\lif} rule.  A correct application must look like this:
+为了找到能得到该结论的逻辑规则，我们考察结论中的逻辑联结词：$\lnot$、$\lor$ 和 $\lif$。我们目前只关心第一个出现的 $\lif$，因为它是最终相继式中语句的主联结词，而 $\lnot$、$\lor$ 以及第二个出现的 $\lif$ 都在另一个联结词的辖域内，所以我们将稍后再处理它们。因此，我们从 \Intro{\lif} 规则开始。正确的应用必须形如：
 \begin{prooftree}
 \AxiomC{$\Discharge{\lnot !A \lor !B}{1}$}
 \DeduceC{$!A \lif !B$}
 \DischargeRule{\Intro{\lif}}{1}
 \UnaryInfC{$(\lnot !A \lor !B) \lif (!A \lif !B)$}
 \end{prooftree}
-This leaves us with two possibilities to continue. Either we can
-keep working from the bottom up and look for another application
-of the \Intro{\lif} rule, or we can work from the top down and apply a
-\Elim{\lor} rule. Let us apply the latter. We will use the assumption
-$\lnot !A \lor !B$ as the leftmost premise of \Elim{\lor}.  For a valid
-application of \Elim{\lor}, the other two premises must be identical
-to the conclusion $!A \lif !B$, but each may be derived in turn from
-another assumption, namely one of the two disjuncts of $\lnot !A \lor !B$.
-So our !!{derivation} will look like this:
+这给我们留下了两种继续的可能性。我们可以继续自底向上工作，寻找另一个 \Intro{\lif} 规则的应用，或者自顶向下工作，应用一个 \Elim{\lor} 规则。我们采用后者。我们将使用假设 $\lnot !A \lor !B$ 作为 \Elim{\lor} 规则最左边的前提。为了正确应用 \Elim{\lor} 规则，另外两个前提必须与结论 $!A \lif !B$ 相同，但它们每个都可以分别从另一个假设推导出来，即从 $\lnot !A \lor !B$ 的两个析取支之一推导出来。所以我们的推导将形如：
 \begin{prooftree}
 \AxiomC{$\Discharge{\lnot !A \lor !B}{1}$}
 \AxiomC{$\Discharge{\lnot !A}{2}$}
@@ -95,8 +69,7 @@ So our !!{derivation} will look like this:
 \UnaryInfC{$(\lnot !A \lor !B) \lif (!A \lif !B)$}
 \end{prooftree}
 
-In each of the two branches on the right, we want to !!{derive} $!A
-\lif !B$, which is best done using \Intro{\lif}.
+在右边两个分支的每一个中，我们都需要推导 $!A \lif !B$，这最好使用 \Intro{\lif} 规则来完成。
 \begin{prooftree}
 \AxiomC{$\Discharge{\lnot !A \lor !B}{1}$}
 \AxiomC{$\Discharge{\lnot !A}{2}, \Discharge{!A}{3}$}
@@ -113,10 +86,7 @@ In each of the two branches on the right, we want to !!{derive} $!A
 \UnaryInfC{$(\lnot !A \lor !B) \lif (!A \lif !B)$}
 \end{prooftree}
 
-For the two missing parts of the !!{derivation}, we need
-!!{derivation}s of $!B$ from $\lnot !A$ and $!A$ in the middle, and
-from $!A$ and $!B$ on the left.  Let's take the former first. $\lnot
-!A$ and $!A$ are the two premises of \Elim{\lnot}:
+对于推导中缺失的两个部分，我们需要补全：从（中间分支的）$\lnot !A$ 和 $!A$ 推出 $!B$ 的推导，以及从（左边分支的）$!A$ 和 $!B$ 推出 $!B$ 的推导。我们先来处理前者。$\lnot !A$ 和 $!A$ 是 \Elim{\lnot} 规则的两个前提：
 \begin{prooftree}
 \AxiomC{$\Discharge{\lnot !A}{2}$}
 \AxiomC{$\Discharge{!A}{3}$}
@@ -124,8 +94,7 @@ from $!A$ and $!B$ on the left.  Let's take the former first. $\lnot
 \BinaryInfC{$\lfalse$}
 \DeduceC{$!B$}
 \end{prooftree}
-By using \FalseInt, we can obtain $!B$ as a conclusion and
-complete the branch.
+通过使用 \FalseInt{} 规则，我们可以得到结论 $!B$，从而完成该分支。
 \begin{prooftree}
 \AxiomC{$\Discharge{\lnot !A \lor !B}{1}$}
 \AxiomC{$\Discharge{\lnot !A}{2}$}
@@ -146,13 +115,7 @@ complete the branch.
 \UnaryInfC{$(\lnot !A \lor !B) \lif (!A \lif !B)$}
 \end{prooftree}
 
-Let's now look at the rightmost branch.  Here it's important to
-realize that the definition of !!{derivation} \emph{allows assumptions
-  to be discharged} but \emph{does not require} them to be.  In other
-words, if we can derive $!B$ from one of the assumptions $!A$ and $!B$
-without using the other, that's ok.  And to !!{derive} $!B$ from~$!B$
-is trivial: $!B$ by itself is such !!a{derivation}, and no inferences
-are needed.  So we can simply delete the assumption~$!A$.
+现在来看最右边的分支。这里很重要的一点是，要意识到推导的定义\emph{允许解除假设}，但\emph{并不要求}必须解除。换句话说，如果我们能从假设 $!A$ 或 $!B$ 之一推出 $!B$ 而不使用另一个，也是可以的。而从~$!B$ 推出~$!B$ 是平凡的：$!B$ 本身就是一个这样的推导，不需要任何推理步骤。因此我们可以直接删去假设~$!A$。
 \begin{prooftree}
 \AxiomC{$\Discharge{\lnot !A \lor !B}{1}$}
 \AxiomC{$\Discharge{\lnot !A}{2}$}
@@ -171,31 +134,18 @@ are needed.  So we can simply delete the assumption~$!A$.
 \DischargeRule{\Intro{\lif}}{1} 
 \UnaryInfC{$(\lnot !A \lor !B) \lif (!A \lif !B)$}
 \end{prooftree}
-Note that in the finished !!{derivation}, the rightmost \Intro{\lif}
-inference does not actually discharge any assumptions.
+注意，在最终的推导中，最右边的 \Intro{\lif} 推理实际上并没有解除任何假设。
 \end{ex}
 
 \begin{ex}
-So far we have not needed the \FalseCl{} rule. It is special in that
-it allows us to discharge an assumption that isn't a sub-!!{formula} of
-the conclusion of the rule.  It is closely related to the \FalseInt{}
-rule. In fact, the \FalseInt{} rule is a special case of the
-\FalseCl{} rule---there is a logic called ``intuitionistic logic'' in
-which only \FalseInt{} is allowed.  The \FalseCl{} rule is a last
-resort when nothing else works.  For instance, suppose we want to
-!!{derive} $!A \lor \lnot !A$. Our usual strategy would be to attempt
-to !!{derive} $!A \lor \lnot !A$ using $\Intro{\lor}$. But this would
-require us to !!{derive} either $!A$ or $\lnot !A$ from no
-assumptions, and this can't be done. \FalseCl{} to the rescue!
+到目前为止，我们还没有用到 \FalseCl{} 规则。它的特殊之处在于，它允许我们解除一个并非该规则结论之子公式的假设。它与 \FalseInt{} 规则密切相关。事实上，\FalseInt{} 规则是 \FalseCl{} 规则的一个特例——有一种称为“直觉主义逻辑”的逻辑，其中只允许使用 \FalseInt{} 规则。\FalseCl{} 规则是当其他方法都无效时的最后手段。例如，假设我们想推导 $!A \lor \lnot !A$。我们通常的策略会是尝试用 $\Intro{\lor}$ 来推导 $!A \lor \lnot !A$。但这会要求我们在没有任何假设的情况下推导出 $!A$ 或 $\lnot !A$，而这无法做到。这时就要靠 \FalseCl{} 了！
 \begin{prooftree}
   \AxiomC{$\Discharge{\lnot(!A \lor \lnot !A)}{1}$}
   \DeduceC{$\lfalse$}
   \DischargeRule{\FalseCl}{1}
   \UnaryInfC{$!A \lor \lnot !A$}
 \end{prooftree}
-Now we're looking for !!a{derivation} of $\lfalse$ from $\lnot(!A \lor
-\lnot !A)$. Since $\lfalse$ is the conclusion of $\Elim{\lnot}$ we
-might try that:
+现在我们需要寻找一个从 $\lnot(!A \lor \lnot !A)$ 到 $\lfalse$ 的推导。由于 $\lfalse$ 是 \Elim{\lnot} 规则的结论，我们可以尝试应用该规则：
 \begin{prooftree}
   \AxiomC{$\Discharge{\lnot(!A \lor \lnot !A)}{1}$}
   \DeduceC{$\lnot !A$}
@@ -206,8 +156,7 @@ might try that:
   \DischargeRule{\FalseCl}{1}
   \UnaryInfC{$!A \lor \lnot !A$}
 \end{prooftree}
-Our strategy for finding !!a{derivation} of~$\lnot !A$ calls for an
-application of~$\Intro{\lnot}$:
+为了寻找 $\lnot !A$ 的推导，我们的策略是应用 $\Intro{\lnot}$ 规则：
 \begin{prooftree}
   \AxiomC{$\Discharge{\lnot(!A \lor \lnot !A)}{1}, \Discharge{!A}{2}$}
   \DeduceC{$\lfalse$}
@@ -220,9 +169,7 @@ application of~$\Intro{\lnot}$:
   \DischargeRule{\FalseCl}{1}
   \UnaryInfC{$!A \lor \lnot !A$}
 \end{prooftree}
-Here, we can get $\lfalse$ easily by applying $\Elim{\lnot}$ to the
-assumption $\lnot(!A \lor \lnot !A)$ and $!A \lor \lnot !A$ which
-follows from our new assumption $!A$ by~$\Intro{\lor}$:
+这里，我们可以通过对假设 $\lnot(!A \lor \lnot !A)$ 以及由新假设 $!A$ 通过 $\Intro{\lor}$ 规则推出的 $!A \lor \lnot !A$ 应用 \Elim{\lnot} 规则，来轻松得到 $\lfalse$：
 \begin{prooftree}
   \AxiomC{$\Discharge{\lnot(!A \lor \lnot !A)}{1}$}
   \AxiomC{$\Discharge{!A}{2}$}
@@ -239,7 +186,7 @@ follows from our new assumption $!A$ by~$\Intro{\lor}$:
   \DischargeRule{\FalseCl}{1}
   \UnaryInfC{$!A \lor \lnot !A$}
 \end{prooftree}
-On the right side we use the same strategy, except we get $!A$ by~\FalseCl:
+在右侧我们使用了相同的策略，只不过我们通过 \FalseCl{} 规则得到 $!A$：
 \begin{prooftree}
   \AxiomC{$\Discharge{\lnot(!A \lor \lnot !A)}{1}$}
   \AxiomC{$\Discharge{!A}{2}$}
@@ -265,7 +212,7 @@ On the right side we use the same strategy, except we get $!A$ by~\FalseCl:
 \end{ex}
 
 \begin{prob}
-Give !!{derivation}s that show the following:
+给出推导以证明如下各式：
 \begin{enumerate}
 \item $!A \land (!B \land !C) \Proves (!A \land !B) \land !C$.
 \item $!A \lor (!B \lor !C) \Proves (!A \lor !B) \lor !C$.
@@ -275,7 +222,7 @@ Give !!{derivation}s that show the following:
 \end{prob}
 
 \begin{prob}
-Give !!{derivation}s that show the following:
+给出推导以证明如下各式：
 \begin{enumerate}
 \item $(!A \lor !B) \lif !C \Proves !A \lif !C$.
 \item $(!A \lif !C) \land (!B \lif !C) \Proves (!A \lor !B) \lif !C$.
@@ -293,7 +240,7 @@ Give !!{derivation}s that show the following:
 \end{prob}
 
 \begin{prob}
-Give !!{derivation}s that show the following:
+给出推导以证明如下各式：
 \begin{enumerate}
 \item $\lnot(!A \lif !B) \Proves !A$.
 \item $\lnot(!A \land !B) \Proves \lnot !A \lor \lnot !B$.
@@ -304,7 +251,7 @@ Give !!{derivation}s that show the following:
 \item $(!A \lif !B) \lif !A \Proves !A$.
 \item $\Proves (!A \lif !B) \lor (!B \lif !C)$.
 \end{enumerate}
-(These all require the $\FalseCl$~rule.)
+(这些题目都需要用到 $\FalseCl$~规则。)
 \end{prob}
 
 \end{document}

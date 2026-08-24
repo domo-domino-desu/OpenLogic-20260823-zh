@@ -1,89 +1,48 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
 % Part: sets-functions-relations
 % Chapter: sets
 % Section: russells-paradox
 
-\documentclass[../../../include/open-logic-section]{subfiles}
-
-
-\begin{document}
-
 \olfileid{sfr}{set}{rus}
 \olsection{Russell's Paradox}
 
-Extensionality licenses the notation $\Setabs{x}{\phi(x)}$, for
-\emph{the} set of $x$'s such that~$\phi(x)$. However, all that
-extensionality \emph{really} licenses is the following thought.
-\emph{If} there is a set whose members are all and only the $\phi$'s,
-\emph{then} there is only one such set. Otherwise put: having fixed
-some~$\phi$, the set $\Setabs{x}{\phi(x)}$ is unique, \emph{if it
-exists}.
+外延性原理为记号 $\Setabs{x}{\phi(x)}$ 提供了依据，该记号表示满足~$\phi(x)$ 的那些~$x$ 所构成的\emph{那个}集合。然而，外延性原理\emph{真正}认可的只是下面这个论断：\emph{如果}存在一个集合，其成员恰好是且仅是所有具有性质~$\phi$ 的对象，\emph{那么}这样的集合只有一个。换句话说：固定某个~$\phi$ 后，集合 $\Setabs{x}{\phi(x)}$ 是唯一的——\emph{倘若它存在的话}。
 
-But this conditional is important!{} Crucially, not every property
-lends itself to \emph{comprehension}. That is, some  properties do
-\emph{not} define sets. If they all did, then we would run into
-outright contradictions. The most famous example of this is Russell's
-Paradox.
+但这个条件句非常重要！关键之处在于，并非每个性质都能用于\emph{概括}。也就是说，有些性质\emph{并不}定义集合。如果所有性质都能定义集合，那么我们就会陷入直接的矛盾。其中最著名的例子就是 Russell（罗素）悖论。
 
-Sets may be !!{element}s of other sets---for instance, the power set
-of a set~$A$ is made up of sets. And so it makes sense to ask or
-investigate whether a set is !!a{element} of another set. Can a set be
-a member of itself?  Nothing about the idea of a set seems to rule
-this out. For instance, if \emph{all} sets form a collection of
-objects, one might think that they can be collected into a single
-set---the set of all sets. And it, being a set, would be !!a{element}
-of the set of all sets. 
+集合可以是其他集合的元素——例如，一个集合~$A$ 的幂集就是由集合构成的。因此，询问或研究一个集合是否是另一个集合的元素是有意义的。一个集合能是自己的元素吗？从集合的观念来看，似乎没有什么能排除这种可能。例如，如果\emph{所有}集合形成一个对象的汇集，人们可能会认为它们可以被归拢为一个单一的集合——即所有集合的集合。而这个集合，作为一个集合，将会是所有集合的集合的一个元素。
 
-Russell's Paradox arises when we consider the property of not having
-itself as !!a{element}, of being \emph{non-self-membered}. What if we
-suppose that there is a set of all sets that do not have themselves as
-!!a{element}? Does
+当我们考虑“不属于自身”这一性质，即\emph{非自属的}性质时，Russell 悖论就产生了。如果我们假设存在一个由所有不属于自身的集合构成的集合，会怎样呢？
 \[
 R = \Setabs{x}{x \notin x}
 \]
-exist? It turns out that we can prove that it does not.
+存在吗？结果表明，我们可以证明它并不存在。
 
-\begin{thm}[Russell's Paradox]\ollabel{thm:russells-paradox}
-	There is no set $R = \Setabs{x}{x \notin x}$.
+\begin{thm}[Russell 悖论]\ollabel{thm:russells-paradox}
+	不存在集合 $R = \Setabs{x}{x \notin x}$。
 \end{thm}
 
 \begin{proof}
-If $R = \Setabs{x}{x \notin x}$ exists, then
-$R \in R$ iff $R \notin R$, which is a contradiction.
+如果 $R = \Setabs{x}{x \notin x}$ 存在，那么
+$R \in R$ 当且仅当 $R \notin R$，这是一个矛盾。
 \end{proof}
 
 \begin{tagblock}{novice}
 \begin{explain}
-Let's run through this proof more slowly. If $R$ exists, it makes sense to ask whether $R \in
-R$ or not. Suppose that indeed $R \in R$. Now, $R$~was defined as the set of all
-sets that are not !!{element}s of themselves. So, if $R \in R$,
-then $R$ does not itself have $R$'s defining property. But only sets
-that have this property are in~$R$, hence, $R$ cannot be !!a{element}
-of~$R$, i.e., $R \notin R$. But $R$ can't both be and not be
-!!a{element} of~$R$, so we have a contradiction.
+让我们更详细地梳理一下这个证明。如果 $R$ 存在，那么考察 $R \in R$ 是否成立是有意义的。假设确实 $R \in R$。现在，$R$ 被定义为所有不属于自身的集合的集合。所以，如果 $R \in R$，那么 $R$ 本身就不具有 $R$ 的定义性质。但只有具有该性质的集合才在~$R$ 中，因此，$R$ 不可能是~$R$ 的元素，即 $R \notin R$。但 $R$ 不可能同时是且不是~$R$ 的元素，所以我们得到了一个矛盾。
 
-Since the assumption that $R \in R$ leads to a contradiction, we have
-$R \notin R$. But this also leads to a contradiction!{} For if $R
-\notin R$, then $R$ itself does have $R$'s defining property, and so $R$ would be
-!!a{element} of $R$ just like all the other non-self-membered sets.
-And again, it can't both not be and be !!a{element} of~$R$.
+既然假设 $R \in R$ 会导致矛盾，我们就有 $R \notin R$。但这也导致矛盾！因为如果 $R
+\notin R$，那么 $R$ 本身确实具有 $R$ 的定义性质，因此 $R$ 将像所有其他非自属集合一样，是 $R$ 的一个元素。同样，它不可能同时不是且是~$R$ 的元素。
 \end{explain}
 \end{tagblock}
 
 \begin{digress}
-How do we set up a set theory which avoids falling into
-Russell's Paradox, i.e., which avoids making the \emph{inconsistent}
-claim that $R = \Setabs{x}{x \notin x}$ exists? Well, we would need to
-lay down axioms which give us very precise conditions for stating when
-sets exist (and when they don't). 
+我们如何建立一个能避免陷入 Russell 悖论的集合论，即避免做出 $R = \Setabs{x}{x \notin x}$ 存在这一\emph{不一致的}断言呢？我们需要设立一些公理，为我们提供陈述集合何时存在（以及何时不存在）的非常精确的条件。
 	
-The set theory sketched in this chapter doesn't do this. It's
-\emph{genuinely na\"ive}. It tells you only that sets obey
-extensionality and that, if you have some sets, you can form their
-union, intersection, etc. It is possible to develop set theory more
-rigorously than this. \oliflabeldef{cumul:::part}{That rigour will be
-reserved for Part \olref[cumul][][]{part}. For now, we will proceed
-na\"ively, and carefully try to sidestep contradictions.}{}
+本章概述的集合论没有做到这一点。它是\emph{真正朴素的}。它只告诉你集合服从外延性，并且如果你有一些集合，你可以构造它们的并集、交集等。我们有可能以比这更严格的方式发展集合论。 \oliflabeldef{cumul:::part}{这种严格性将留到第 \olref[cumul][][]{part} 部分。目前，我们将在朴素的意义下推进，并小心地尝试避开矛盾。}{}
 \end{digress}
-
 
 \end{document}

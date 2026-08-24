@@ -3,63 +3,52 @@
 \begin{document}
 
 \olfileid{sth}{ordinals}{wo}
-\olsection{Well-Orderings}
+\olsection{良序}
 
-The fundamental notion is as follows:
+基本概念如下：
 
 \begin{defn}
-The relation $<$ \emph{well-orders} $A$ iff it meets these two conditions:
+关系 $<$ \emph{良序} $A$，当且仅当它满足以下两个条件：
 \begin{enumerate}
-	\item $<$ is connected, i.e., for all $a, b \in A$, either $a < b$
-	or $a = b$ or $b < a$;
-	\item every non-empty subset of $A$ has a $<$-minimal !!{element},
-	i.e., if $\emptyset \neq X \subseteq A$ then $(\exists m \in
+	\item $<$ 是连通的，即对所有的 $a, b \in A$，$a < b$，或 $a = b$，或 $b < a$；
+	\item $A$ 的每个非空子集都有一个 $<$-极小元，即如果 $\emptyset \neq X \subseteq A$ 那么 $(\exists m \in
 	X)(\forall z \in X)z \nless m$
 \end{enumerate}
 \end{defn}
 
-It is easy to see that three examples we just considered were indeed
-well-ordering relations. 
+不难看出，前文考虑的三个例子确实都是良序关系。
 
 \begin{prob}
-\Olref[sth][ordinals][idea]{sec} presented three example orderings
-on the natural numbers. Check that each is a well-ordering.
+\Olref[sth][ordinals][idea]{sec} 给出了自然数上的三个序关系例子。请验证每一个都是良序。
 \end{prob}
 
-Here are some elementary but extremely important observations
-concerning well-ordering.
+以下是关于良序的几个基本但极其重要的观察。
 
 \begin{prop}\ollabel{wo:strictorder}
-If $<$ well-orders $A$, then every non-empty subset of $A$ has a unique
-$<$-least member, and $<$ is irreflexive, asymmetric and transitive.
+如果 $<$ 良序 $A$，那么 $A$ 的每个非空子集都有唯一的 $<$-最小元，并且 $<$ 是反自反、非对称和传递的。
 \end{prop}
 
 \begin{proof}
-If $X$ is a non-empty subset of $A$, it has a $<$-minimal !!{element}
-$m$, i.e., $(\forall z \in X)z \nless m$. Since $<$ is connected,
-$(\forall z \in X)m \leq z$. So $m$ is the $<$-least !!{element} of $X$.
+如果 $X$ 是 $A$ 的非空子集，它有一个 $<$-极小元 $m$，即 $(\forall z \in X)z \nless m$。由于 $<$ 是连通的，$(\forall z \in X)m \leq z$。所以 $m$ 是 $X$ 的 $<$-最小元。
 
-For irreflexivity, fix $a \in A$; the $<$-least !!{element} of $\{a\}$ is $a$, so $a \nless a$. For transitivity, if $a < b < c$, then
-since $\{a, b, c\}$ has a $<$-least !!{element}, $a < c$. Asymmetry
-follows from irreflexivity and transitivity
+对于反自反性，取定 $a \in A$；$\{a\}$ 的 $<$-最小元是 $a$，所以 $a \nless a$。对于传递性，如果 $a < b < c$，那么由于 $\{a, b, c\}$ 有一个 $<$-最小元，可得 $a < c$。非对称性则由反自反性和传递性得出。
 \end{proof}
 
 \begin{prop}\ollabel{propwoinduction}
-If $<$ well-orders $A$, then for any formula $\phi(x)$:
+如果 $<$ 良序 $A$，那么对任意公式 $\phi(x)$：
 \[
-	\text{if }(\forall a \in A)((\forall b < a)\phi(b) \lif 
-		\phi(a))\text{, then }(\forall a \in A)\phi(a).
+	\text{如果 }(\forall a \in A)((\forall b < a)\phi(b) \lif 
+		\phi(a))\text{，那么 }(\forall a \in A)\phi(a).
 \]
 \end{prop}
 
 \begin{proof}
-We will prove the contrapositive. Suppose $\lnot(\forall a \in
-A)\phi(a)$, i.e., that $X = \Setabs{x \in A}{\lnot\phi(x)} \neq
-\emptyset$. Then $X$ has an $<$-minimal !!{element}, $a$. So $(\forall
-b < a)\phi(b)$ but $\lnot \phi(a)$. \end{proof}\noindent This last
-property should remind you of the principle of strong induction on the
-naturals, i.e.: if $(\forall n \in \omega)((\forall m < n)\phi(m)
-\lif \phi(n))$, then $(\forall n \in \omega)\phi(n)$. And this
-property makes well-ordering into a very \emph{robust} notion.\footnote{A reminder: all formulas can have parameters (unless explicitly stated otherwise).} 
+我们将证明其逆否命题。假设 $\lnot(\forall a \in
+A)\phi(a)$，即 $X = \Setabs{x \in A}{\lnot\phi(x)} \neq
+\emptyset$。那么 $X$ 有一个 $<$-极小元 $a$。因此 $(\forall b < a)\phi(b)$ 但 $\lnot \phi(a)$。
+\end{proof}
+
+\noindent 这最后一个性质应当让人想起自然数上的强归纳原理，即：如果 $(\forall n \in \omega)((\forall m < n)\phi(m)
+\lif \phi(n))$，那么 $(\forall n \in \omega)\phi(n)$。而这个性质使得良序成为一个非常\emph{稳健}的概念。\footnote{提醒：所有公式都可以带参数（除非另有明确说明）。}
 
 \end{document}

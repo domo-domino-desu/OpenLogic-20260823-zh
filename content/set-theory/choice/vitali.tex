@@ -3,269 +3,151 @@
 \begin{document}
 
 \olfileid{sth}{choice}{vitali}
-\olsection{Appendix: Vitali's Paradox}
+\olsection{附录：Vitali 悖论}
 
-To get a real sense of whether the Banach-Tarski construction is
-acceptable or not, we should examine its \emph{proof}. Unfortunately,
-that would require much more algebra than we can present here.
-However, we can offer some quick remarks which might shed some insight
-on the proof of Banach-Tarski,\footnote{For a much fuller treatment,
-see \cite{Weston2003} or \cite{Wagon2016}.} by focussing on the
-following result:
+要真正评判 Banach-Tarski 构造是否可接受，我们应当考察其\emph{证明}。遗憾的是，这所需的代数知识远超我们在此所能呈现的范围。不过，通过聚焦于以下结果，我们或许能提供一些简短的评论，从而为 Banach-Tarski 的证明带来一些洞见\footnote{更完整的处理，参见 \cite{Weston2003} 或 \cite{Wagon2016}。}：
 
-\begin{thm}[Vitali's Paradox (in $\ZFC$)]\ollabel{vitaliparadox}
-Any circle can be decomposed into countably many pieces, which can be
-reassembled (by rotation and transportation) to form two copies of
-that circle.
+
+\begin{thm}[Vitali 悖论（在 $\ZFC$ 中）]\ollabel{vitaliparadox}
+任何圆都可以分解为可数多块，这些块可以（通过旋转和平移）重新组装成该圆的两个副本。
 \end{thm}
 
-Vitali's Paradox is much easier to prove than the Banach--Tarski Paradox. We have
-called it ``Vitali's Paradox'', since it follows from Vitali's
-\citeyear{Vitali1905} construction of an unmeasurable set.  But the
-set-theoretic aspects of the proof of Vitali's Paradox and the
-Banach-Tarski Paradox are very similar. The essential difference
-between the results is just that Banach-Tarski considers a
-\emph{finite} decomposition, whereas Vitali's Paradox considers a
-\emph{countably infinite} decomposition.  As \citet{Weston2003}
-puts it, Vitali's Paradox ``is certainly not nearly as striking as the
-Banach--Tarski paradox, but it does illustrate that geometric
-paradoxes can  happen even in `simple' situations.'' 
 
-Vitali's Paradox concerns a two-dimensional figure, a circle. So we
-will work on the plane, $\Real^2$. Let $\rotationsgroup$ be the set of
-(clockwise) rotations of points around the origin by \emph{rational}
-radian values between $[0,2\pi)$. Here are some algebraic facts about
-$\rotationsgroup$ (if you don't understand the statement of the
-result, the proof will make its meaning clear):
+Vitali 悖论比 Banach--Tarski 悖论容易证明得多。我们将其称为“Vitali 悖论”，是因为它源于 Vitali \citeyear{Vitali1905} 对不可测集的构造。不过，Vitali 悖论与 Banach-Tarski 悖论的证明在集合论层面非常相似。两者的核心区别仅仅在于：Banach-Tarski 处理的是\emph{有限}分解，而 Vitali 悖论处理的是\emph{可数无穷}分解。正如 \citet{Weston2003} 所言，Vitali 悖论“当然远不如 Banach--Tarski 悖论那样惊人，但它确实表明即使在‘简单’的情形下，几何悖论也可能发生。”
+
+Vitali 悖论涉及一个二维图形，即圆。因此我们将在平面 $\Real^2$ 上进行讨论。令 $\rotationsgroup$ 为绕原点（顺时针）旋转的集合，其旋转弧度值为 $[0,2\pi)$ 之间的\emph{有理}数。以下是关于 $\rotationsgroup$ 的一些代数事实（如果你不理解该结果的陈述，证明会使其含义变得清晰）：
+
 
 \begin{lem}\ollabel{rotationsgroupabelian}
-$\rotationsgroup$ forms an abelian {group} under composition of functions.
+$\rotationsgroup$ 在函数复合运算下构成一个阿贝尔群。
 \end{lem}
 
 \begin{proof}
-Writing $0_{\rotationsgroup}$ for the rotation by $0$ radians, this is
-an identity element for $\rotationsgroup$, since
-$\comp{0_{\rotationsgroup}}{\rho} = \comp{\rho}{0_{\rotationsgroup}} =
-\rho$ for any $\rho \in \rotationsgroup$.
+将旋转 $0$ 弧度记作 $0_{\rotationsgroup}$，则它是 $\rotationsgroup$ 的恒等元，因为对任意 $\rho \in \rotationsgroup$，$\comp{0_{\rotationsgroup}}{\rho} = \comp{\rho}{0_{\rotationsgroup}} =
+\rho$。
 
-Every element has an inverse. Where $\rho \in \rotationsgroup$ rotates
-by $r$ radians, $\rho^{-1} \in \rotationsgroup$ rotates by $2\pi - r$
-radians, so that $\rho \circ \rho^{-1} = 0_\rotationsgroup$.
+每个元素都有逆元。若 $\rho \in \rotationsgroup$ 旋转了 $r$ 弧度，则 $\rho^{-1} \in \rotationsgroup$ 旋转 $2\pi - r$ 弧度，使得 $\rho \circ \rho^{-1} = 0_\rotationsgroup$。
 
-Composition is associative: $\comp{\rho}{(\comp{\sigma}{\tau})} =
-\comp{(\comp{\rho}{\sigma})}{\tau}$ for any $\rho, \sigma, \tau \in
-\rotationsgroup$
+复合运算满足结合律：对任意 $\rho, \sigma, \tau \in \rotationsgroup$，$\comp{\rho}{(\comp{\sigma}{\tau})} =
+\comp{(\comp{\rho}{\sigma})}{\tau}$。
 
-Composition is commutative: $\comp{\rho}{\sigma} =
-\comp{\sigma}{\rho}$ for any $\rho, \sigma \in \rotationsgroup$.
+复合运算满足交换律：对任意 $\rho, \sigma \in \rotationsgroup$，$\comp{\rho}{\sigma} =
+\comp{\sigma}{\rho}$。
 \end{proof}
 
-In fact, we can split our group $\rotationsgroup$
-in half, and then use either half to recover the whole group:
+
+事实上，我们可以将群 $\rotationsgroup$ 分成两半，然后用其中任意一半复原整个群：
+
 
 \begin{lem}\ollabel{disjointgroup}
-There is a partition of $\rotationsgroup$ into two disjoint sets,
-$\rotationsgroup_{1}$ and $\rotationsgroup_{2}$, both of which are a
-basis for $\rotationsgroup$. 
+存在 $\rotationsgroup$ 的一个划分，将其分成两个不相交的集合 $\rotationsgroup_{1}$ 和 $\rotationsgroup_{2}$，其中每一个都是 $\rotationsgroup$ 的一个基。 
 \end{lem}
 
 \begin{proof}
-Let $\rotationsgroup_{1}$ consist of the rotations by rational radian
-values in $[0, \pi)$; let $\rotationsgroup_{2} = \rotationsgroup
-\setminus \rotationsgroup_1$. By elementary algebra,
-$\Setabs{\comp{\rho}{\rho}}{\rho \in \rotationsgroup_1} =
-\rotationsgroup$. A similar result can be obtained for
-$\rotationsgroup_2$.
+令 $\rotationsgroup_{1}$ 由弧度值为 $[0, \pi)$ 中有理数的旋转构成；令 $\rotationsgroup_{2} = \rotationsgroup
+\setminus \rotationsgroup_1$。根据初等代数，$\Setabs{\comp{\rho}{\rho}}{\rho \in \rotationsgroup_1} =
+\rotationsgroup$。对于 $\rotationsgroup_2$ 也有类似的结果。
 \end{proof}
 
-We will use this fact about groups to establish \olref{vitaliparadox}.
-Let $\onesphere$ be the unit circle, i.e., the set of points
-exactly~$1$ unit away from the origin of the plane, i.e.,
-$\Setabs{\tuple{r,s} \in \Real^2}{\sqrt{r^2+s^2}=1}$. We will split
-$\onesphere$ into parts by considering the following relation on
-$\onesphere$:
+
+我们将利用这个关于群的事实来证明 \olref{vitaliparadox}。令 $\onesphere$ 为单位圆，即平面上与原点距离恰好为 $1$ 个单位的点的集合，亦即 $\Setabs{\tuple{r,s} \in \Real^2}{\sqrt{r^2+s^2}=1}$。我们将通过考虑 $\onesphere$ 上的如下关系来划分它：
 \[
 	r \sim s \emph{ iff }(\exists \rho \in \rotationsgroup)\rho(r) = s.
 \]
-That is, the points of $\onesphere$ are linked by this relation iff you can get from one to the other by a rational-valued rotation about the origin. Unsurprisingly:
+也就是说，$\onesphere$ 上的点由该关系相连，当且仅当可以通过绕原点进行一次有理数值的旋转从其中一个点到达另一个点。毫不意外：
+
 
 \begin{lem}
-$\sim$ is an equivalence relation.
+$\sim$ 是一个等价关系。
 \end{lem}
 
 \begin{proof}
-Trivial, using \olref{rotationsgroupabelian}. 
+利用 \olref{rotationsgroupabelian}，这是平凡的。 
 \end{proof}
 
-We now invoke Choice to obtain a set, $C$, containing exactly one
-member from each equivalence class of $\onesphere$ under $\sim$. That
-is, we consider a choice function $f$ on the set of equivalence
-classes,\footnote{Since $\rotationsgroup$ is !!{enumerable},
-each !!{element} of $E$ is !!{enumerable}. Since $\onesphere$ is
-!!{nonenumerable}, it follows from \olref{vitalicover} and
-\olref[card-arithmetic][simp]{kappaunionkappasize} that $E$ is
-!!{nonenumerable}. So this is a use of \emph{un}countable Choice.}
-\[
+
+我们现在调用选择公理来获得一个集合 $C$，它恰好包含 $\onesphere$ 在 $\sim$ 下的每个等价类中的一个成员。也就是说，我们考虑等价类集合上的一个选择函数 $f$\footnote{由于 $\rotationsgroup$ 是可数的，$E$ 的每个元素也是可数的。由于 $\onesphere$ 是不可数的，根据 \olref{vitalicover} 和 \olref[card-arithmetic][simp]{kappaunionkappasize} 可知 $E$ 也是不可数的。所以这是\emph{不可数}选择的一次应用。}，\[
 	E = \Setabs{\equivrep{r}{\sim}}{r \in \onesphere},
 \]
-and let $C = \ran{f}$. For each rotation $\rho \in \rotationsgroup$,
-the set $\funimage{\rho}{C}$ consists of the points obtained by
-applying the rotation $\rho$ to each point in $C$. These next two
-results show that these sets cover the circle completely and without
-overlap:
+并令 $C = \ran{f}$。对于每个旋转 $\rho \in \rotationsgroup$，集合 $\funimage{\rho}{C}$ 由对 $C$ 中每个点施加旋转 $\rho$ 所得到的点构成。接下来的两个结果表明，这些集合完全且无重叠地覆盖了该圆：
+
 
 \begin{lem}\ollabel{vitalicover}
-$\onesphere = \bigcup_{\rho \in \rotationsgroup} \funimage{\rho}{C}$.
+$\onesphere = \bigcup_{\rho \in \rotationsgroup} \funimage{\rho}{C}$。
 \end{lem}
 
 \begin{proof}
-Fix $s \in \onesphere$; there is some $r \in C$ such that $r \in
-\equivrep{s}{\sim}$, i.e., $r \sim s$, i.e., $\rho(r) = s$ for some
-$\rho \in \rotationsgroup$. 
+固定 $s \in \onesphere$；存在某个 $r \in C$ 使得 $r \in
+\equivrep{s}{\sim}$，即 $r \sim s$，即对某个 $\rho \in \rotationsgroup$ 有 $\rho(r) = s$。
 \end{proof}
 
 \begin{lem}\ollabel{vitalinooverlap}
-If $\rho_1 \neq \rho_2$ then $\funimage{\rho_1}{C} \cap \funimage{\rho_2}{C} = \emptyset$. 
+若 $\rho_1 \neq \rho_2$，则 $\funimage{\rho_1}{C} \cap \funimage{\rho_2}{C} = \emptyset$。
 \end{lem}
 
 \begin{proof}
-Suppose $s \in \funimage{\rho_{1}}{C} \cap \funimage{\rho_{2}}{C}$. So
-$s = \rho_{1}(r_{1}) = \rho_{2}(r_{2})$ for some $r_{1}, r_{2} \in C$.
-Hence $\rho^{-1}_2(\rho_1(r_1)) = r_2$, and
-$\comp{\rho_1}{\rho^{-1}_2} \in \rotationsgroup$, so $r_{1} \sim
-r_{2}$. So $r_1 = r_2$, as $C$ selects exactly one member from each
-equivalence class under $\sim$. So $s = \rho_1(r_1) = \rho_2(r_1)$,
-and hence $\rho_1 = \rho_2$.
+假设 $s \in \funimage{\rho_{1}}{C} \cap \funimage{\rho_{2}}{C}$。因此对某个 $r_{1}, r_{2} \in C$，有 $s = \rho_{1}(r_{1}) = \rho_{2}(r_{2})$。
+于是 $\rho^{-1}_2(\rho_1(r_1)) = r_2$，且 $\comp{\rho_1}{\rho^{-1}_2} \in \rotationsgroup$，所以 $r_{1} \sim
+r_{2}$。由于 $C$ 从 $\sim$ 下的每个等价类中恰好选取一个成员，故 $r_1 = r_2$。所以 $s = \rho_1(r_1) = \rho_2(r_1)$，
+从而 $\rho_1 = \rho_2$。
 \end{proof}
 
-We now apply our earlier algebraic facts to our circle:
+
+现在我们将之前的代数事实应用到我们的圆上：
 
 \begin{lem}\ollabel{pseudobanachtarski}
-There is a partition of $\onesphere$ into two disjoint sets, $D_{1}$
-and $D_{2}$, such that $D_{1}$ can be partitioned into countably many
-sets which can be rotated to form a copy of $\onesphere$ (and
-similarly for $D_{2}$).
+存在 $\onesphere$ 的一个划分，将其分成两个不相交的集合 $D_{1}$
+和 $D_{2}$，使得 $D_{1}$ 可以划分为可数多个集合，这些集合经旋转后能构成 $\onesphere$ 的一个拷贝（对 $D_2$ 同理）。
 \end{lem}
 
 \begin{proof}
-Using $\rotationsgroup_{1}$ and $\rotationsgroup_{2}$ from \olref{disjointgroup}, let:
+利用 \olref{disjointgroup} 中的 $\rotationsgroup_{1}$ 和 $\rotationsgroup_{2}$，令：
 \begin{align*}
 	D_{1} &= \bigcup_{\rho \in \rotationsgroup_1} \funimage{\rho}{C} & 
 	D_{2} &= \bigcup_{\rho \in \rotationsgroup_2} \funimage{\rho}{C}
 \end{align*}
-This is a partition of $\onesphere$, by \olref{vitalicover}, and $D_1$
-and $D_2$ are disjoint by \olref{vitalinooverlap}. By construction,
-$D_1$ can be partitioned into countably many sets,
-$\funimage{\rho}{C}$ for each $\rho \in R_1$. And these can be rotated
-to form a copy of $\onesphere$, since $\onesphere = \bigcup_{\rho \in
+根据 \olref{vitalicover}，这是 $\onesphere$ 的一个划分；根据 \olref{vitalinooverlap}，$D_1$ 与 $D_2$ 不相交。由构造，$D_1$ 可被划分为可数多个集合，即每个 $\rho \in \rotationsgroup_1$ 对应的 $\funimage{\rho}{C}$。而这些集合经旋转可以构成 $\onesphere$ 的一个拷贝，因为根据 \olref{disjointgroup} 和 \olref{vitalicover}，有 $\onesphere = \bigcup_{\rho \in
 \rotationsgroup}\funimage{\rho}{C} = \bigcup_{\rho \in
-\rotationsgroup_1}\funimage{(\comp{\rho}{\rho})}{C}$ by
-\olref{disjointgroup} and \olref{vitalicover}. The same reasoning
-applies to $D_2$. \end{proof}\noindent This immediately entails
-Vitali's Paradox. For we can generate \emph{two} copies of
-$\onesphere$ from $\onesphere$, just by splitting it up into countably
-many pieces (the various $\funimage{\rho}{C}$'s) and then rigidly
-moving them (simply rotate each piece of $D_1$, and first transport
-and then rotate each piece of $D_2$).
+\rotationsgroup_1}\funimage{(\comp{\rho}{\rho})}{C}$。
+对 $D_2$ 的推理同理。\end{proof}
 
-Let's recap the proof-strategy. We started with some algebraic facts
-about the group of rotations on the plane. We used this group to
-partition $\onesphere$ into equivalence classes. We then arrived at a
-``paradox'', by using Choice to select elements from each class.
+\noindent 这直接导出了 Vitali 悖论。因为我们只需将 $\onesphere$ 分割成可数多块（即各个 $\funimage{\rho}{C}$），然后对它们进行刚性移动（简单地旋转 $D_1$ 的每一块，并先平移再旋转 $D_2$ 的每一块），就能从 $\onesphere$ 生成\emph{两个}拷贝。
 
-We use exactly the same strategy to prove Banach--Tarski. The main
-difference is that the algebraic facts used to prove Banach--Tarski
-are significantly more complicated than those used to prove
-Vitali's Paradox. But those algebraic facts have nothing to do with
-Choice. We will summarise them quickly. 
+我们来回顾一下证明策略。我们从关于平面旋转群的一些代数事实出发。我们利用这个群将 $\onesphere$ 划分为等价类。随后，我们利用选择公理从每个等价类中选取元素，从而得出了一个“悖论”。
 
-To prove Banach--Tarski, we start by establishing an analogue of
-\olref{disjointgroup}: any \emph{free group} can be split into four
-pieces, which intuitively we can ``move around'' to recover two copies
-of the whole group.\footnote{The fact that we can use \emph{four}
-pieces is due to \cite{Robinson1947}. For a recent proof, see
-\citet[Theorem 5.2]{Wagon2016}. We follow \citet[p.~3]{Weston2003}
-in describing this as ``moving'' the pieces of the group.} We then
-show that we can use two particular rotations around the origin of
-$\Real^3$ to generate a free group of rotations, $F$.\footnote{See
-\citet[Theorem 2.1]{Wagon2016}.} (No Choice yet.) We now regard points
-on the surface of the sphere as ``similar'' iff one can be obtained
-from the other by a rotation in~$F$. We then \emph{use Choice} to
-select exactly one point from each equivalence class of ``similar''
-points. Applying our division of $F$ to the surface of the sphere, as
-in \olref{pseudobanachtarski}, we split that surface into four pieces,
-which we can ``move around'' to obtain two copies of the surface of
-the sphere. And this establishes \citep{Hausdorff1914}:
+我们使用完全相同的策略来证明 Banach--Tarski 悖论。主要的区别在于，证明 Banach-Tarski 所需的代数事实比证明 Vitali 悖论所用的要复杂得多。但这些代数事实与选择公理毫无关系。我们将对此作一简要概述。
 
-\begin{thm}[Hausdorff's Paradox (in $\ZFC$)] 
-The surface of any sphere can be decomposed into finitely many pieces,
-which can be reassembled (by rotation and transportation) to form two
-disjoint copies of that sphere.
+为了证明 Banach--Tarski，我们首先建立一个类似于 \olref{disjointgroup} 的结果：任何\emph{自由群}都可以分割成四块，直观上我们可以通过“移动”这些块来复原出整个群的两个拷贝。\footnote{我们可以使用\emph{四}块这一事实归功于 \cite{Robinson1947}。关于最近的证明，参见 \citet[Theorem 5.2]{Wagon2016}。我们遵循 \citet[p.~3]{Weston2003} 的做法，将此描述为“移动”群的碎片。} 然后我们证明，利用 $\Real^3$ 中绕原点的两个特定旋转，可以生成一个自由旋转群 $F$。\footnote{参见 \citet[Theorem 2.1]{Wagon2016}。}（此时尚未用到选择公理。）现在，我们将球面上的点视为“相似的”，当且仅当其中一个点可以通过 $F$ 中的某个旋转从另一个点得到。然后我们\emph{使用选择公理}，从每个“相似”点的等价类中恰好选取一个点。如 \olref{pseudobanachtarski} 中那样，将我们对 $F$ 的划分应用到球面上，我们将该球面分割成四块，通过“移动”这些块，可以得到球面的两个拷贝。这就确立了 \citep{Hausdorff1914}：
+
+\begin{thm}[Hausdorff（豪斯多夫）悖论（在 $\ZFC$ 中）]
+任何球面都可以分解为有限多块，这些块可以（通过旋转和平移）重新组装，形成该球面的两个不相交拷贝。
 \end{thm}
 
-A couple of further algebraic tricks are needed to obtain the full
-Banach-Tarski Theorem (which concerns not just the sphere's surface,
-but its interior too). Frankly, however, this is just icing on the
-algebraic cake. Hence Weston writes:
+
+要得到完整的 Banach-Tarski 定理（不仅涉及球面，还涉及其内部），还需要一些进一步的代数技巧。不过坦率地说，这不过是代数蛋糕上的糖霜。因此 Weston 写道：
+
 \begin{quote}	
-  [\ldots] the result on free groups is the \emph{key step} in the
-  proof of the Banach-Tarski paradox. From this point of view, the
-  Banach-Tarski paradox is not a statement about $\Real^3$ so much as
-  it is a statement about the complexity of the group [of translations
-  and rotations in $\Real^3$]. \cite[p.~16]{Weston2003}
+  [\ldots] 关于自由群的结果是证明 Banach-Tarski 悖论的\emph{关键步骤}。从这个角度看，Banach-Tarski 悖论与其说是关于 $\Real^3$ 的陈述，不如说是关于 [$\Real^3$ 中平移与旋转] 群复杂性的陈述。\cite[p.~16]{Weston2003}
 \end{quote}
-That is: whether we can offer a \emph{finite} decomposition (as in
-Banach--Tarski) or a \emph{countably infinite} decomposition (as in
-Vitali's Paradox) comes down to certain group-theoretic facts about
-working in two-dimension or three-dimensions.
 
-Admittedly, this last observation slightly spoils the joke at the end
-of \olref[banach]{sec}. Since it is  two dimensional,
-``Banach-Tarski'' must be divided into a countable \emph{infinity} of
-pieces, if one wants to rearrange those pieces to form ``Banach-Tarski
-Banach-Tarski''. To repair the joke, one must write in three
-dimensions. We leave this as an exercise for the reader.
+也就是说：我们能够提供\emph{有限}分解（如 Banach--Tarski）还是\emph{可数无穷}分解（如 Vitali 悖论），归结为关于在二维或三维空间中操作的某些群论事实。
 
-One final comment. In \olref[banach]{sec}, we mentioned that the
-``pieces'' of the sphere one obtains cannot be \emph{measurable}, but
-must be unpicturable ``infinite scatterings''. The same is true of our
-use of Choice in obtaining \olref{pseudobanachtarski}. And this is all
-worth explaining.
+诚然，最后这一说明多少让 \olref[banach]{sec} 末尾的笑话打了点折扣。因为它是二维的，“Banach-Tarski”必须被分成可数\emph{无穷}片，才能将这些碎片重新排列成“Banach-Tarski Banach-Tarski”。要修复这个笑话，必须用三维来书写。我们把这留给读者作为练习。
 
-Again, we must sketch some background (but this is \emph{just} a
-sketch; you may want to consult a textbook entry on \emph{measure}).
-To define a measure for a set $X$ is to assign a value $\mu(E) \in
-\Real$ for each $E$ in some ``$\sigma$-algebra'' on $X$. Details here
-are not essential, except that the function $\mu$ must obey the
-principle of countable additivity: the measure of a countable union of
-disjoint sets is the sum of their individual measures, i.e.,
-$\mu(\bigcup_{n < \omega} X_n) = \sum_{n < \omega}\mu(X_n)$ whenever
-the $X_n$s are disjoint. To say that a set is ``unmeasurable'' is to
-say that no measure can be suitably assigned. Now, using our
-$\rotationsgroup$ from before:
+最后一点评论。在 \olref[banach]{sec} 中，我们提到得到的球面“碎片”不可能是\emph{可测的}，而必须是无法描绘的“无限散布的点集”。我们在利用选择公理得到 \olref{pseudobanachtarski} 时，情况也是如此。这一切都值得解释一下。
+
+我们还得再勾勒一些背景（但这\emph{仅仅}是勾勒；你可能需要查阅关于\emph{测度}的教科书条目）。为集合 $X$ 定义一个测度，就是对 $X$ 上某个“$\sigma$-代数”中的每个 $E$ 指派一个值 $\mu(E) \in \Real$。这里的细节并非关键，只需注意函数 $\mu$ 必须服从可数可加性原则：互不相交集合的可数并的测度等于它们各自测度之和，即当 $X_n$ 互不相交时，$\mu(\bigcup_{n < \omega} X_n) = \sum_{n < \omega}\mu(X_n)$。称一个集合“不可测”，就是说无法适当地为其指派测度。现在，利用我们之前的 $\rotationsgroup$：
 
 \begin{cor}[Vitali]
-Let $\mu$ be a measure such that $\mu(\onesphere) = 1$, and such that
-$\mu(X) = \mu(Y)$ if $X$ and $Y$ are congruent. Then
-$\funimage{\rho}{C}$ is unmeasurable for all $\rho \in
-\rotationsgroup$. 
+令 $\mu$ 是一个测度，满足 $\mu(\onesphere) = 1$，并且如果 $X$ 和 $Y$ 合同则 $\mu(X) = \mu(Y)$。那么对于所有 $\rho \in \rotationsgroup$，$\funimage{\rho}{C}$ 都是不可测的。
 \end{cor}
 
 \begin{proof}
-For reductio, suppose otherwise. So let $\mu(\funimage{\sigma}{C}) =
-r$ for some $\sigma \in \rotationsgroup$ and some $r \in \Real$. For
-any $\rho \in C$, $\funimage{\rho}{C}$ and $\funimage{\sigma}{C}$ are
-congruent, and hence  $\mu(\funimage{\rho}{C}) = r$ for any $\rho \in
-C$. By \olref{vitalicover} and \olref{vitalinooverlap}, $\onesphere =
-\bigcup_{\rho \in \rotationsgroup}\funimage{\rho}{C}$ is a countable
-union of pairwise disjoint sets. So countable additivity dictates that
-$\mu(\onesphere) = 1$ is the sum of the measures of each
-$\funimage{\rho}{C}$, i.e.,
+用反证法，假设不然。因此，对某个 $\sigma \in \rotationsgroup$ 和某个 $r \in \Real$，令 $\mu(\funimage{\sigma}{C}) =
+r$。对任意 $\rho \in C$，$\funimage{\rho}{C}$ 和 $\funimage{\sigma}{C}$ 是合同的，因此对任意 $\rho \in C$，$\mu(\funimage{\rho}{C}) = r$。根据 \olref{vitalicover} 和 \olref{vitalinooverlap}，$\onesphere =
+\bigcup_{\rho \in \rotationsgroup}\funimage{\rho}{C}$ 是一个由两两不交集合构成的可数并。所以由可数可加性，$\mu(\onesphere) = 1$ 等于每个 $\funimage{\rho}{C}$ 的测度之和，即
 \[
 	1 = \mu(\onesphere) = \sum_{\rho \in \rotationsgroup}\mu(\funimage{\rho}{C}) = \sum_{\rho \in \rotationsgroup}r
 \]
-But if $r = 0$ then $\sum_{\rho \in \rotationsgroup}r = 0$, and if $r
-> 0$ then $\sum_{\rho \in \rotationsgroup}r = \infty$. 
+但如果 $r = 0$ 则 $\sum_{\rho \in \rotationsgroup}r = 0$，而如果 $r > 0$ 则 $\sum_{\rho \in \rotationsgroup}r = \infty$。
 \end{proof}
-
-\end{document}

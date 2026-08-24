@@ -7,50 +7,41 @@
 \begin{document}
 
 \olfileid{inc}{art}{sub}
-\olsection{Substitution}
+\olsection{代入}
 
-Recall that substitution is the operation of replacing all free
-occurrences of !!a{variable}~$u$ in !!a{formula}~$!A$ by a term~$t$,
-written $\Subst{!A}{t}{u}$. This operation, when carried out on
-G\"odel numbers of !!{variable}s, !!{formula}s, and terms, is
-primitive recursive.
+回顾一下，代入是指将公式~$!A$ 中变元~$u$ 的所有自由出现替换为项~$t$ 的操作，记作 $\Subst{!A}{t}{u}$。当对变元、公式和项的哥德尔数进行该运算时，该运算是原始递归的。
 
 \begin{prop}\ollabel{prop:subst-primrec}
-There is a primitive recursive function $\fn{Subst}(x, y, z)$ with the
-property that
+存在一个原始递归函数 $\fn{Subst}(x, y, z)$ 满足
 \[
 \fn{Subst}(\Gn{!A}, \Gn{t}, \Gn{u}) = \Gn{\Subst{!A}{t}{u}}.
 \]
 \end{prop}
 
 \begin{proof}
-We can then define a function $\fn{hSubst}$ by primitive recursion as
-follows:
+我们可以通过原始递归如下定义函数 $\fn{hSubst}$：
 \begin{multline*}
 \begin{aligned}
 \fn{hSubst}(x, y, z, 0) & = \emptyseq \\
 \fn{hSubst}(x, y, z, i+1) & =
 \end{aligned}\\
 \begin{cases}
-\fn{hSubst}(x, y, z, i) \concat y & \text{if $\fn{FreeOcc}(x, z, i)$} \\
-\fn{append}(\fn{hSubst}(x, y, z, i), (x)_{i}) & \text{otherwise.}
+\fn{hSubst}(x, y, z, i) \concat y & \text{若 $\fn{FreeOcc}(x, z, i)$} \\
+\fn{append}(\fn{hSubst}(x, y, z, i), (x)_{i}) & \text{否则。}
 \end{cases}
 \end{multline*}
-$\fn{Subst}(x, y, z)$ can now be defined as $\fn{hSubst}(x, y, z, \len{x})$.
+现在可以将 $\fn{Subst}(x, y, z)$ 定义为 $\fn{hSubst}(x, y, z, \len{x})$。
 \end{proof}
 
 \begin{prop}
 \ollabel{prop:free-for}
-The relation $\fn{FreeFor}(x, y, z)$, which holds iff the term with
-G\"odel number~$y$ is !!{free for} the variable with G\"odel
-number~$z$ in the formula with G\"odel number~$x$, is primitive
-recursive.
+关系 $\fn{FreeFor}(x, y, z)$ 是原始递归的，其中该关系成立当且仅当哥德尔数为~$y$ 的项对哥德尔数为~$x$ 的公式中哥德尔数为~$z$ 的变元是自由的。
 \end{prop}
 
-\begin{proof} Exercise. \end{proof}
+\begin{proof} 练习。 \end{proof}
 
 \begin{prob}
-Prove \olref[inc][art][sub]{prop:free-for}
+证明 \olref[inc][art][sub]{prop:free-for}
 \end{prob}
 
 \end{document}

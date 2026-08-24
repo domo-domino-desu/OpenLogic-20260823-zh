@@ -8,57 +8,38 @@
 
 \olfileid{nml}{syn}{nor}
 
-\olsection{Normal Modal Logics}
+\olsection{正规模态逻辑}
 
-A modal logic can be seen as any suitably well-behaved set of
-!!{formula}s.  There are some modal logics which are of particular
-interest, both because they have interesting interpretations and
-applications, but mainly because they are theoretically well
-understood.  Those are the so-called normal modal logics.
+模态逻辑可被视为任何具有良好性质的公式集合。某些模态逻辑尤其受到关注，既因为它们有着有趣的解释与应用，但主要是因为它们在理论上已被透彻理解。这些就是所谓的正规模态逻辑。
 
 \begin{defn}\ollabel{defn:modal-logic}
-A \emph{modal logic}~$\Log L$ is a set of !!{formula}s of the basic
-modal language which 
+一个\emph{模态逻辑}~$\Log L$ 是基本模态语言的公式集合，它满足：
 \begin{enumerate}
-\item contains all propositional tautologies, 
-\item is closed under uniform substitution, and 
-\item is closed under modus ponens, i.e., whenever $!A$ and $(!A \lif
-  !B) \in \Log L$ then also $!B \in \Log L$.
+\item 包含所有命题重言式；
+\item 在统一代入下封闭；且
+\item 在分离规则下封闭，即，只要 $!A$ 和 $(!A \lif !B) \in \Log L$，则 $!B \in \Log L$。
 \end{enumerate}
 \end{defn}
 
 \begin{ex}
-Some admittedly not very interesting sets of !!{formula}s which
-satisfy this definition and therefore count as modal logics are:
+满足此定义因而可算作模态逻辑的公式集合（尽管并不十分有趣）包括：
 \begin{enumerate}
-\item the set of all tautologies
-\item the set of all !!{formula}s (the inconsistent modal logic)
+\item 所有重言式的集合
+\item 所有公式的集合（不一致的模态逻辑）
 \end{enumerate}
 \end{ex}
 
 \begin{defn}\label{defn:normal-modal-logic}
-A modal logic~$\Log L$ is \emph{normal} iff 
+一个模态逻辑~$\Log L$ 是\emph{正规的}，当且仅当它同时满足：
 \begin{enumerate}
-\item it contains both
+\item 包含
 \begin{align}
 \tag{K} \Box(p \lif q) & \lif (\Box p \lif \Box q) \\
 \tag{Dual} \Diamond p & \liff \lnot \Box \lnot p
 \end{align}
-\item and it is closed under necessitation, i.e., whenever $!A \in
-  \Log L$, then also $\Box !A \in \Log L$.
+\item 在必然化规则下封闭，即，只要 $!A \in \Log L$，则 $\Box !A \in \Log L$。
 \end{enumerate}
 \end{defn}
 
-We will encounter two main ways of defining modal logics.  One is
-proof-theoretically, as the set of !!{formula}s that can be derived in
-certain !!{derivation} systems. The other is model-theoretically, as
-sets of !!{formula}s which are valid in certain classes of
-models. This mirrors the situation in ordinary propositional logic (or
-first-order logic, for that matter).  Here we can also single out a
-set of !!{formula}s in two different ways, e.g., as the set of
-tautologies which are true in all truth-value assignments and as the
-set of all !!{derivable} !!{formula}s in some !!{derivation} system.
-For normal modal logics, this two-fold way of specifying modal logics
-is possible using relational models and axiomatic (Hilbert-type) proof
-systems.
+我们将看到定义模态逻辑的两种主要方式。一种是证明论的方式，即将其定义为在特定推导系统中可推导出的公式集合。另一种是模型论的方式，即将其定义为在特定模型类中有效的公式集合。这与普通命题逻辑（乃至一阶逻辑）中的情形相对应。在那里，我们同样可以用两种不同的方式刻画一个公式集合，例如，既可以将其定义为在所有真值赋值下均为真的重言式集合，也可以将其定义为某个推导系统中所有可推导公式的集合。对于正规模态逻辑，利用关系模型和公理化（希尔伯特型）证明系统，这种以双重方式刻画模态逻辑的做法是可行的。
 \end{document}

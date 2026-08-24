@@ -8,29 +8,20 @@
 
 \olfileid{int}{int}{ntd}
 
-\olsection{Natural Deduction}
+\olsection{自然演绎}
 
-Natural deduction without the $\FalseCl$ rules is a standard
-!!{derivation} system for intuitionistic logic. We repeat the rules
-here and indicate the motivation using the BHK interpretation.  In
-each case, we can think of a rule which allows us to conclude that if
-the premises have constructions, so does the conclusion.
+不含 $\FalseCl$ 规则的自然演绎是直觉主义逻辑的标准推导系统。
+我们在此复述这些规则，并利用 BHK 解释来阐明其动机。
+在每种情况下，我们都可以这样来理解一条规则：它允许我们得出，如果前提有构造，那么结论也有构造。
 
-Since natural deduction !!{derivation}s have undischarged assumptions,
-we should consider such !!a{derivation}, say, of $!A$ from
-!!{undischarged} assumptions~$\Gamma$, as a function that turns
-constructions of all $!B \in \Gamma$ into a construction of~$!A$.  If
-there is !!a{derivation} of~$!A$ from no !!{undischarged} assumptions,
-then there is a construction of~$!A$ in the sense of the BHK
-interpretation. For the purpose of the discussion, however, we'll
-suppress the~$\Gamma$ when not needed.
+由于自然演绎推导可以有未解除的假设，我们应当将这样的推导——例如，从未解除的假设 $\Gamma$ 推导 $!A$——视为一个函数，它将所有 $!B \in \Gamma$ 的构造转化为 $!A$ 的一个构造。
+如果存在一个没有任何未解除假设的 $!A$ 的推导，那么根据 BHK 解释，$!A$ 就有一个构造。
+不过，为了讨论方便，我们在不需要时会略去 $\Gamma$。
 
-An assumption~$!A$ by itself is !!a{derivation} of~$!A$ from the
-!!{undischarged} assumption~$!A$. This agrees with the
-BHK-interpretation: the identity function on constructions turns any
-construction of~$!A$ into a construction of~$!A$.
+一个假设 $!A$ 本身就是从其未解除假设 $!A$ 推导 $!A$ 的推导。
+这与 BHK 解释一致：构造上的恒等函数将 $!A$ 的任何构造转化为 $!A$ 的一个构造。
 
-\subsection{Conjunction}
+\subsection{合取}
 
 \begin{defish}
 \AxiomC{$!A$}
@@ -52,16 +43,14 @@ construction of~$!A$ into a construction of~$!A$.
 \end{tabular}
 \end{defish}
 
-Suppose we have constructions $N_1$, $N_2$ of $!A_1$ and $!A_2$,
-respectively.  Then we also have a construction $!A_1 \land !A_2$, namely the
-pair $\tuple{N_1, N_2}$.
+假设我们分别有 $!A_1$ 和 $!A_2$ 的构造 $N_1$ 和 $N_2$。
+那么我们也有 $!A_1 \land !A_2$ 的一个构造，即有序对 $\tuple{N_1, N_2}$。
 
-A construction of $!A_1 \land !A_1$ on the BHK interpretation is a pair
-$\tuple{N_1, N_2}$. So assume we have such a pair. Then we also have a
-construction of each conjunct: $N_1$ is a construction of~$!A_1$ and $N_2$ is a
-construction of $!A_2$.
+在 BHK 解释下，$!A_1 \land !A_2$ 的一个构造是一个有序对 $\tuple{N_1, N_2}$。
+因此，假设我们有了这样一个有序对，那么我们也就有了每个合取支的一个构造：
+$N_1$ 是 $!A_1$ 的一个构造，而 $N_2$ 是 $!A_2$ 的一个构造。
 
-\subsection{Conditional}
+\subsection{条件句}
 
 \begin{defish}
   \AxiomC{$\Discharge{!A}{u}$}
@@ -72,25 +61,20 @@ construction of $!A_2$.
 \hfill
   \AxiomC{$!A \lif !B$}
   \AxiomC{$!A$}
-  \RightLabel{$\Elim{\lif}$}
+  \RightLabel{\Elim{\lif}}
   \BinaryInfC{$!B$}
   \DisplayProof
 \end{defish}
 
-If we have !!a{derivation} of~$!B$ from !!{undischarged}
-assumption~$!A$, then there is a function~$f$ that turns constructions
-of~$!A$ into constructions of~$!B$. That same function is a
-construction of $!A \lif !B$. So, if the premise of $\Intro\lif$ has a
-construction conditional on a construction of~$!A$, the conclusion $!A
-\lif !B$ has a construction.
+如果我们有一个从未解除假设 $!A$ 推导出 $!B$ 的推导，那么就存在一个函数 $f$，它将 $!A$ 的构造转化为 $!B$ 的构造。
+这个函数本身也就是 $!A \lif !B$ 的一个构造。
+所以，如果 $\Intro\lif$ 的前提在给定 $!A$ 的一个构造的条件下有构造，那么结论 $!A \lif !B$ 就有一个构造。
 
-On the other hand, suppose there are constructions~$N$ of $!A$ and $f$
-of $!A \lif !B$. A construction of $!A \lif !B$ is a function that
-turns constructions of $!A$ into constructions of~$!B$. So, $f(N)$ is
-a construction of~$!B$, i.e., the conclusion of $\Elim\lif$ has a
-construction.
+另一方面，假设我们有 $!A$ 的一个构造 $N$ 以及 $!A \lif !B$ 的一个构造 $f$。
+$!A \lif !B$ 的一个构造是一个将 $!A$ 的构造转化为 $!B$ 的构造的函数。
+因此，$f(N)$ 就是 $!B$ 的一个构造，也就是说，$\Elim\lif$ 的结论有一个构造。
 
-\subsection{Disjunction}
+\subsection{析取}
 
 \begin{defish}
 \begin{tabular}{l}
@@ -115,15 +99,12 @@ construction.
 \DisplayProof
 \end{defish}
 
-If we have a construction~$N_i$ of~$!A_i$ we can turn it into a
-construction~$\tuple{i, N_i}$ of~$!A_1 \lor !A_2$. On the other hand,
-suppose we have a construction of~$!A_1 \lor !A_2$, i.e., a pair
-$\tuple{i, N_i}$ where $N_i$ is a construction of~$!A_i$, and also
-functions $f_1$, $f_2$, which turn constructions of $!A_1$, $!A_2$,
-respectively, into constructions of~$!C$. Then $f_i(N_i)$ is a
-construction of~$!C$, the conclusion of~$\Elim\lor$.
+如果我们有 $!A_i$ 的一个构造 $N_i$，我们可以将其转化为 $!A_1 \lor !A_2$ 的一个构造 $\tuple{i, N_i}$。
+另一方面，假设我们有 $!A_1 \lor !A_2$ 的一个构造，即一个有序对 $\tuple{i, N_i}$，其中 $N_i$ 是 $!A_i$ 的一个构造；
+以及函数 $f_1$ 和 $f_2$，它们分别将 $!A_1$ 和 $!A_2$ 的构造转化为 $!C$ 的构造。
+那么 $f_i(N_i)$ 就是 $!C$ 的一个构造，也就是 $\Elim\lor$ 结论的构造。
 
-\subsection{Absurdity}
+\subsection{荒谬}
 
 \begin{defish}
   \AxiomC{$\lfalse$}
@@ -132,20 +113,15 @@ construction of~$!C$, the conclusion of~$\Elim\lor$.
   \DisplayProof
 \end{defish}
 
-If we have !!a{derivation} of~$\lfalse$ from !!{undischarged}
-assumptions~$!B_1$, \dots, $!B_n$, then there is a function~$f(M_1,
-\dots, M_n)$ that turns constructions of $!B_1$, \dots, $!B_n$ into a
-construction of~$\lfalse$. Since $\lfalse$ has no construction, there
-cannot be any constructions of all of $!B_1$, \dots, $!B_n$
-either. Hence, $f$ also has the property that \emph{if} $M_1$, \dots,
-$M_n$ are constructions of $!B_1$, \dots, $!B_n$, respectively,
-\emph{then} $f(M_1, \dots, M_n)$ is a construction of~$!A$.
+如果我们有一个从一组未解除假设 $!B_1$, \dots, $!B_n$ 推导出 $\lfalse$ 的推导，那么就存在一个函数 $f(M_1,
+\dots, M_n)$，它将 $!B_1$, \dots, $!B_n$ 的构造转化为 $\lfalse$ 的构造。
+由于 $\lfalse$ 没有构造，$!B_1$, \dots, $!B_n$ 也不可能同时都有构造。
+因此，函数 $f$ 也就具有如下性质：\emph{如果} $M_1$, \dots, $M_n$ 分别是 $!B_1$, \dots, $!B_n$ 的构造，\emph{那么} $f(M_1, \dots, M_n)$ 就是 $!A$ 的一个构造。
 
-\subsection{Rules for $\lnot$}
+\subsection{关于 $\lnot$ 的规则}
 
-Since $\lnot !A$ is defined as $!A \lif \lfalse$, we strictly speaking
-do not need rules for~$\lnot$. But if we did, this is what they'd look
-like:
+由于 $\lnot !A$ 被定义为 $!A \lif \lfalse$，严格来说我们不需要关于 $\lnot$ 的专门规则。
+但如果我们确实需要，它们的形式如下：
 
 \begin{defish}
 \AxiomC{$\Discharge{!A}{n}$}
@@ -163,10 +139,10 @@ like:
 \end{defish}
 
 
-\subsection{Examples of \usetoken{P}{derivation}}
+\subsection{\usetoken{P}{derivation}示例}
 
 \begin{enumerate}
-\item $\Proves !A \lif (\lnot !A \lif \lfalse)$, i.e., $\Proves !A
+\item $\Proves !A \lif (\lnot !A \lif \lfalse)$，即 $\Proves !A
   \lif ((!A \lif \lfalse) \lif \lfalse)$
   \begin{prooftree}
     \AxiomC{$\Discharge{!A}{2}$}
@@ -196,7 +172,7 @@ like:
     \UnaryInfC{$((!A \land !B) \lif !C) \lif (!A \lif (!B \lif !C))$}
   \end{prooftree}
 
-\item $\Proves \lnot(!A \land \lnot !A)$, i.e., $\Proves (!A \land (!A
+\item $\Proves \lnot(!A \land \lnot !A)$，即 $\Proves (!A \land (!A
   \lif \lfalse))\lif \lfalse$
   \begin{prooftree}
     \AxiomC{$\Discharge{!A \land (!A \lif \lfalse)}{1}$}
@@ -211,7 +187,7 @@ like:
     \UnaryInfC{$(!A \land (!A \lif \lfalse))\lif \lfalse$}
   \end{prooftree}
 
-\item $\Proves \lnot\lnot(!A \lor \lnot !A)$, i.e., $\Proves ((!A \lor
+\item $\Proves \lnot\lnot(!A \lor \lnot !A)$，即 $\Proves ((!A \lor
   (!A \lif \lfalse))\lif \lfalse)\lif \lfalse$
   \begin{prooftree}\hskip-3em
     \AxiomC{$\Discharge{(!A \lor (!A \lif \lfalse))\lif \lfalse}{2}$}
@@ -234,19 +210,16 @@ like:
 \end{enumerate}
 
 \begin{prop}
-  If $\Gamma \Proves !A$ in natural deduction for intuitionistic
-  logic, $\Gamma \Proves !A$ in classical logic. In particular, if
-  $!A$ is an intuitionistic theorem, it is also a classical theorem.
+  若在直觉主义逻辑的自然演绎中有 $\Gamma \Proves !A$，则在经典逻辑中也有 $\Gamma \Proves !A$。
+  特别地，如果 $!A$ 是一个直觉主义定理，那么它也是一个经典定理。
 \end{prop}
 
 \begin{proof}
-  Every natural deduction rule is also a rule in classical natural
-  deduction, so every !!{derivation} in intuitionistic logic is also
-  !!a{derivation} in classical logic.
+  直觉主义自然演绎的每一条规则也是经典自然演绎的规则，因此直觉主义逻辑中的每一个推导本身也是经典逻辑中的一个推导。
 \end{proof}
 
 \begin{prob}
-  Give !!{derivation}s in intuitionistic logic of the following !!{formula}s:
+  给出下列公式在直觉主义逻辑中的推导：
   \begin{enumerate}
     \item $(\lnot !A \lor !B) \lif (!A \lif !B)$
     \item $\lnot\lnot\lnot !A \lif \lnot !A$

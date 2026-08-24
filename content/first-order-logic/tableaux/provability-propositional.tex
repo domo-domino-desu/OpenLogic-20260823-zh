@@ -1,9 +1,13 @@
 % Part: first-order-logic
+命题逻辑让我们能够谈论语句之间的逻辑关系，但仅限于那些由语句内部使用的命题联结词所构成的关系。
 % Chapter: tableaux
-% Section: provability-propositional
+一阶逻辑将语言的逻辑分析推进一步：通过分析语句的内部结构，它使我们除了命题联结词的操作之外，还能谈论对象、性质以及对象间的关系。
+% Section: provability-propositional特别是，它引入了“对所有”（$\forall$）和“存在某个”（$\exists$）这两个\emph{量词}，使我们能够做出“所有人都有一死”或“有些数是素数”这样的概括性断言。
 
 % verification of properties of provability needed for maximally
+例如，句子“所有人都有一死”可以符号化为 $\forall x (H(x) \lif M(x))$，其中 $H(x)$ 和 $M(x)$ 分别是“$x$ 是人”和“$x$ 有一死”的缩写，而 $\forall$ 就是全称量词。
 % consistent sets in the completeness chapter.
+句子“有些数是素数”可以符号化为 $\exists x (N(x) \land P(x))$，其中 $N(x)$ 和 $P(x)$ 分别是“$x$ 是数”和“$x$ 是素数”的缩写，而 $\exists$ 就是存在量词。
 
 \documentclass[../../../include/open-logic-section]{subfiles}
 
@@ -13,30 +17,25 @@
       {\olfileid{fol}{tab}{ppr}}
       {\olfileid{pl}{tab}{ppr}}
 
-\olsection{\usetoken{S}{derivability} and the Propositional Connectives}
+\olsection{\usetoken{S}{derivability} 与命题联结词}
 
 \begin{explain}
-  We establish that the !!{derivability} relation~$\Proves$ of
-  tableaux is strong enough to establish some basic facts involving
-  the propositional connectives, such as that $!A \land !B \Proves !A$
-  and $!A, !A \lif !B \Proves !B$ (modus ponens). These facts are
-  needed for the proof of the completeness theorem.
+  我们将证明，分析表的可推导关系~$\Proves$ 足够强大，能够确立涉及命题联结词的一些基本事实，例如 $!A \land !B \Proves !A$ 和 $!A, !A \lif !B \Proves !B$（肯定前件律）。这些事实是完备性定理的证明所必需的。
 \end{explain}
 
 \begin{prop}\ollabel{prop:provability-land}
   \begin{enumerate}
-  \item \ollabel{prop:provability-land-left} Both $!A \land !B \Proves
-    !A$ and $!A \land !B \Proves !B$.
+  \item \ollabel{prop:provability-land-left} $!A \land !B \Proves
+    !A$ 且 $!A \land !B \Proves !B$。
   \item \ollabel{prop:provability-land-right} $!A, !B \Proves !A \land
-    !B$.
+    !B$。
   \end{enumerate}
 \end{prop}
 
 \begin{proof}
   \begin{enumerate}
-  \item Both $\{\sFmla{\False}{!A}, \sFmla{\True}{!A \land !B}\}$ and
-    $\{\sFmla{\False}{!B}, \sFmla{\True}{!A \land !B}\}$ have closed
-    !!{tableau}s
+  \item $\{\sFmla{\False}{!A}, \sFmla{\True}{!A \land !B}\}$ 和
+    $\{\sFmla{\False}{!B}, \sFmla{\True}{!A \land !B}\}$ 都有闭分析表：
     \begin{oltableau}{}
       [\sFmla{\False}{\formula{A}}, just=\TAss
         [\sFmla{\True}{\formula{A} \land \formula{B}}, just=\TAss
@@ -57,8 +56,8 @@
         ]
       ]
     \end{oltableau}
-    \item Here is a closed !!{tableau} for $\{\sFmla{\True}{!A},
-      \sFmla{\True}{!B}, \sFmla{\False}{!A \land !B}\}$:
+    \item 以下是 $\{\sFmla{\True}{!A},
+      \sFmla{\True}{!B}, \sFmla{\False}{!A \land !B}\}$ 的一个闭分析表：
       \begin{oltableau}
         [\sFmla{\False}{\formula{A} \land \formula{B}}, just = \TAss
           [\sFmla{\True}{\formula{A}}, just = \TAss
@@ -74,15 +73,15 @@
 
 \begin{prop}\ollabel{prop:provability-lor}
   \begin{enumerate}
-  \item $\{!A \lor !B, \lnot !A, \lnot !B\}$ is inconsistent.
-  \item Both $!A \Proves !A \lor !B$ and $!B \Proves !A \lor !B$.
+  \item $\{!A \lor !B, \lnot !A, \lnot !B\}$ 是不一致的。
+  \item $!A \Proves !A \lor !B$ 且 $!B \Proves !A \lor !B$。
   \end{enumerate}
 \end{prop}
 
 \begin{proof}
   \begin{enumerate}
-  \item We give a closed !!{tableau} of $\{\sFmla{\True}{!A \lor !B},
-    \sFmla{\True}{\lnot !A}, \sFmla{\True}{\lnot !B}\}$:
+  \item 我们给出 $\{\sFmla{\True}{!A \lor !B},
+    \sFmla{\True}{\lnot !A}, \sFmla{\True}{\lnot !B}\}$ 的一个闭分析表：
     \begin{oltableau}
       [\sFmla{\True}{\formula{A} \lor \formula{B}}, just = \TAss
         [\sFmla{\True}{\lnot \formula{A}}, just = \TAss
@@ -97,9 +96,8 @@
         ]
       ]
     \end{oltableau}
-  \item Both $\{\sFmla{\False}{!A \lor !B}, \sFmla{\True}{!A}\}$ and
-    $\{\sFmla{\False}{!A \lor !B}, \sFmla{\True}{!B}\}$ have closed
-    !!{tableau}s:
+  \item $\{\sFmla{\False}{!A \lor !B}, \sFmla{\True}{!A}\}$ 和
+    $\{\sFmla{\False}{!A \lor !B}, \sFmla{\True}{!B}\}$ 都有闭分析表：
     \begin{oltableau}{}
       [\sFmla{\False}{\formula{A} \lor \formula{B}}, just=\TAss
         [\sFmla{\True}{\formula{A}}, just=\TAss
@@ -125,16 +123,16 @@
 
 \begin{prop}\ollabel{prop:provability-lif}
   \begin{enumerate}
-  \item \ollabel{prop:provability-lif-left}  $!A, !A \lif !B \Proves !B$.
+  \item \ollabel{prop:provability-lif-left} $!A, !A \lif !B \Proves !B$。
   \item \ollabel{prop:provability-lif-right}
-    Both $\lnot !A \Proves !A \lif !B$ and $!B \Proves !A \lif !B$.
+    $\lnot !A \Proves !A \lif !B$ 且 $!B \Proves !A \lif !B$。
   \end{enumerate}
 \end{prop}
 
 \begin{proof}
   \begin{enumerate}
     \item $\{\sFmla{\False}{!B}, \sFmla{\True}{!A \lif !B},
-      \sFmla{\True}{!A}\}$ has a closed !!{tableau}:
+      \sFmla{\True}{!A}\}$ 有一个闭分析表：
       \begin{oltableau}
         [\sFmla{\False}{\formula{B}}, just=\TAss
           [\sFmla{\True}{\formula{A} \lif \formula{B}}, just=\TAss
@@ -145,9 +143,9 @@
           ]
         ]
       \end{oltableau}
-    \item Both $\{\sFmla{\False}{!A \lif !B},
-      \sFmla{\True}{\lnot !A}\}$ and $\{\sFmla{\False}{!A \lif !B},
-      \sFmla{\True}{!B}\}$ have closed !!{tableau}s:
+    \item $\{\sFmla{\False}{!A \lif !B},
+      \sFmla{\True}{\lnot !A}\}$ 和 $\{\sFmla{\False}{!A \lif !B},
+      \sFmla{\True}{!B}\}$ 都有闭分析表：
       \begin{oltableau}
         [\sFmla{\False}{\formula{A} \lif \formula{B}}, just = \TAss
           [\sFmla{\True}{\lnot \formula{A}}, just = \TAss
@@ -163,7 +161,7 @@
         [\sFmla{\False}{\formula{A} \lif \formula{B}}, just = \TAss
           [\sFmla{\True}{\formula{B}}, just = \TAss
             [\sFmla{\True}{\formula{A}}, just = {\TRule{\False}{\lif}[1]}
-              [\sFmla{\False}{\formula{B}}, just = {\TRule{\False}{\lif}[1]},close
+              [\sFmla{\False}{\formula{B}}, just = {\TRule{\False}{\lif}[1]}, close
               ]
             ]
           ]

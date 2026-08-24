@@ -8,187 +8,88 @@
 
 \olfileid{pt}{ps}{cpl}
 
-\olsection{Completeness}
+\olsection{完备性}
 
-We now show that the proof search algorithm is fool-proof, i.e., if it
-aborts or never halts, there is no !!{proof} of the starting
-sequent~$\Gamma \Sequent \Delta$. To do this, we define
-!!a{structure}~$\Struct M$ such that for all $!A \in \Gamma$,
-$\Sat{M}{!A}$, and for all~$! \in \Delta$, $\Sat/{M}{!A}$. In other
-words, all !!{formula}s in~$\Gamma$ are true and all !!{formula}s
-in~$\Delta$ are false in~$\Struct M$, i.e., $\Gamma \Sequent \Delta$
-is not valid. Since \Log{G3c} is sound, $\Gamma \Sequent \Delta$ has
-no !!{proof}
+现在我们来证明这个证明搜索算法是无懈可击的，也就是说，如果它中止或者永不终止，那么起始相继式~$\Gamma \Sequent \Delta$ 就没有推导。为了证明这一点，我们定义一个结构~$\Struct M$，使得对所有 $!A \in \Gamma$ 都有 $\Sat{M}{!A}$，并对所有 $!A \in \Delta$ 都有 $\Sat/{M}{!A}$。换言之，$\Gamma$ 中的所有公式在~$\Struct M$ 中为真，而 $\Delta$ 中的所有公式在~$\Struct M$ 中为假，即 $\Gamma \Sequent \Delta$ 不是有效的。由于 \Log{G3c} 是可靠的，所以 $\Gamma \Sequent \Delta$ 没有推导。
 
-We define $\Struct{M}$ from a pair $\Theta, \Xi$ of !!{formula}s and a
-set~$C$ of !!{constant}s. We obtain $\Theta, \Xi$ and~$C$ from a
-\emph{failure branch} of the failed (aborted or non-terminating) run
-of the proof search. A failure branch is a sequence $\Pi_n \Sequent
-\Lambda_n$ of sequents and sets of !!{constant}s~$C_n$ such that
-$\Pi_0 \Sequent \Lambda_0$ is the end-sequent $\Gamma \Sequent
-\Delta$, and $\Pi_{n+1} \Sequent \Lambda_{n+1}$ is a premise of $\Pi_n
-\Sequent \Lambda_n$ generated at stage~$n+1$ for which the algorithm
-does not find !!a{proof}. Such a premise must obviously exist for
-each~$n$, since otherwise the algorithm would have found !!a{proof}.
-We let $C_n$ be the set of !!{constant}s associated with~$\Pi_n
-\Sequent \Delta_n$.
+我们利用一对公式 $\Theta, \Xi$ 和一个常项符号集~$C$ 来定义 $\Struct{M}$。我们从证明搜索的失败（中止或永不终止）运行中的一条\emph{失败分支}中得到 $\Theta$、$\Xi$ 和~$C$。一条失败分支是一个相继式序列 $\Pi_n \Sequent \Lambda_n$ 和常项符号集序列~$C_n$，满足 $\Pi_0 \Sequent \Lambda_0$ 就是末尾相继式 $\Gamma \Sequent \Delta$，并且 $\Pi_{n+1} \Sequent \Lambda_{n+1}$ 是第~$n+1$ 阶段生成的 $\Pi_n \Sequent \Lambda_n$ 的一个前提，且算法未能为该前提找到推导。显然，对每个~$n$ 这样的前提都必须存在，否则算法就已经找到推导了。我们令 $C_n$ 为与~$\Pi_n \Sequent \Lambda_n$ 相关联的常项符号集。
 
-If the algorithm aborts at a top-most sequent consisting only of
-atomic !!{formula}s, the branch ending in that sequent is a failure
-branch. If if the algorithm never terminates, it keeps generating
-larger and larger trees. You can think of these as growing an infinite
-tree (the tree you'd have after infinitely many steps of the algorithm
-had run). This would be an infinite tree which is, however, finitely
-branching (every node only has one or two children---the sequents
-immediately above it). Every infinite, finitely branching tree must
-have an infinite branch by K\H{o}nig's Lemma. Such an infinite branch
-would be a failure branch in the case where the search algorithm runs
-forever.
+如果算法在一个只包含原子公式的顶端相继式处中止，则以该相继式为终点的分支就是一条失败分支。如果算法永不终止，它会不断生成越来越大的树。你可以将其想象成一棵不断生长的无穷树（即算法运行无限多步后你会得到的那棵树）。这将是一棵无穷树，但它是有限分支的（每个节点只有一到两个子节点——即紧接其上方的相继式）。根据 Kőnig（柯尼希）引理，每棵无穷的有限分支树都必有一条无穷分支。在搜索算法永远运行的情况下，这样一条无穷分支就是一条失败分支。
 
-If the sequence of $\Pi_n \Sequent \Lambda_n$ and $C_n$ is a failure
-branch, let $\Theta = \bigcup_n \Pi_n$ and $\Xi = \bigcup_n \Lambda_n$
-(removing indices and multiple occurrences of !!{formula}s) and $C =
-\bigcup_n C_n$.
+如果 $\Pi_n \Sequent \Lambda_n$ 和 $C_n$ 的序列是一条失败分支，令 $\Theta = \bigcup_n \Pi_n$，$\Xi = \bigcup_n \Lambda_n$（去掉指标，并去掉公式的多次出现），以及 $C = \bigcup_n C_n$。
 
-We are ready to define~$\Struct{M}$.
+现在我们可以定义~$\Struct{M}$了。
+
 \begin{enumerate}
-\item The domain $\Domain{M}$ is the
-set of terms that can be formed from~$C$ and the !!{function}s
-in~$\Gamma \Sequent \Delta$, if there are any, but no !!{variable}s. 
-\item If $c \in \Domain{M}$, $\Assign{c}{M} = c$.
-\item If $f$ is an $m$-place !!{function} in $\Gamma \Sequent \Delta$, and $t_1$,
-\dots, $t_m \in \Domain{M}$, then $\Assign{f}{M}(t_1, \dots, t_m) =
-f(t_1, \dots, t_n)$.
-\item If $R$ is an $m$-place !!{predicate} in $\Gamma \Sequent
-\Delta$, then $\Assign{R}{M} = \Setabs{\tuple{t_1, \dots, t_m} \in
-\Domain{M}^n}{R(t_1, \dots, t_n) \in \Theta}$.
+\item 论域 $\Domain{M}$ 是由~$C$ 中的常项符号和 $\Gamma \Sequent \Delta$ 中的函数符号（如果有的话）构成的不含变元的项的集合。
+\item 若 $c \in \Domain{M}$，则 $\Assign{c}{M} = c$。
+\item 若 $f$ 是 $\Gamma \Sequent \Delta$ 中的一个 $m$ 元函数符号，且 $t_1$,
+\dots, $t_m \in \Domain{M}$，则 $\Assign{f}{M}(t_1, \dots, t_m) =
+f(t_1, \dots, t_n)$。
+\item 若 $R$ 是 $\Gamma \Sequent
+\Delta$ 中的一个 $m$ 元谓词符号，则 $\Assign{R}{M} = \Setabs{\tuple{t_1, \dots, t_m} \in
+\Domain{M}^n}{R(t_1, \dots, t_n) \in \Theta}$。
 \end{enumerate}
-$\Struct{M}$ is a \emph{term model} in that its domain is a set of
-terms, and the !!{constant}s and !!{function}s are interpreted so as
-to guarantee that $\Value{t}{M} = t$. The atomic !!{formula}s
-in~$\Theta$ are used to define $\Assign{R}{M}$ in such a way as to
-guarantee that $\Sat{M}{R(t_1, \dots, t_n)}$ iff $R(t_1, \dots, t_n)
-\in \Theta$. 
+
+$\Struct{M}$ 是一个\emph{项模型}，因为它的论域是一个项的集合，并且对常项符号和函数符号的解释保证了 $\Value{t}{M} = t$。我们利用~$\Theta$ 中的原子公式来定义 $\Assign{R}{M}$，从而确保 $\Sat{M}{R(t_1, \dots, t_n)}$ 当且仅当 $R(t_1, \dots, t_n)
+\in \Theta$。
 
 \begin{lem}\ollabel{lem:truth}
-For all $!A \in \Theta \cup \Xi$:
+对所有 $!A \in \Theta \cup \Xi$：
 \begin{enumerate}
-  \item If $!A \in \Theta$ then $\Sat{M}{!A}$.
-  \item If $!A \in \Xi$ then $\Sat/{M}{!A}$.
+  \item 若 $!A \in \Theta$，则 $\Sat{M}{!A}$。
+  \item 若 $!A \in \Xi$，则 $\Sat/{M}{!A}$。
 \end{enumerate}
 \end{lem}
 
 \begin{proof}
-  By induction on $\depth{!A}$.
+  对 $\depth{!A}$ 进行归纳。
 
-First assume $!A$ is atomic, i.e., either $!A \ident \lfalse$ or $!A
-\ident R(t_1, \dots, t_m)$.
+首先假设 $!A$ 是原子的，即 $!A \ident \lfalse$ 或 $!A
+\ident R(t_1, \dots, t_m)$。
 
-Because $\Pi_n \Sequent \Lambda_n$ is a failure branch, no $\Pi_n$ can
-contain $\lfalse$ (otherwise $\Pi_n \Sequent \Lambda_n$ would be an
-axiom). $\Sat{M}{R(t_1, \dots, t_m)}$ iff $R(t_1, \dots, t_m) \in
-\Theta$ by definition of~$\Struct{M}$. Together we have: if $!A \in
-\Theta$, then $\Sat{M}{!A}$.
+由于 $\Pi_n \Sequent \Lambda_n$ 是一条失败分支，没有任何 $\Pi_n$ 会包含 $\lfalse$（否则 $\Pi_n \Sequent \Lambda_n$ 就会是一个公理）。根据~$\Struct{M}$ 的定义，$\Sat{M}{R(t_1, \dots, t_m)}$ 当且仅当 $R(t_1, \dots, t_m) \in
+\Theta$。综合起来我们有：若 $!A \in \Theta$，则 $\Sat{M}{!A}$。
 
-If $!A$ is atomic and $!A \in \Pi_n$ then $!A \in \Pi_{n+1}$ and if
-$!A \in \Lambda_n$ then $!A \in \Lambda_{n+1}$. (This follows from the
-way the proof search algorithm generates successor sequents.) Hence,
-if $!A \in \Theta \cap \Xi$ then for some~$n$, $!A \in \Pi_n \cap
-\Lambda_n$. This means that $\Pi_n \Sequent \Lambda_n$ is an axiom,
-and the failure branch can contain no axioms. So $!A \notin \Theta
-\cap \Xi$ for atomic~$!A$ by construction, and consequently if $!A \in
-\Xi$ then $!A \notin \Theta$. This implies that if $!A \in \Xi$ then
-$\Sat/{M}{!A}$ by definition of~$\Struct{M}$.
+如果 $!A$ 是原子的且 $!A \in \Pi_n$，那么 $!A \in \Pi_{n+1}$；如果 $!A \in \Lambda_n$，那么 $!A \in \Lambda_{n+1}$。（这是因为证明搜索算法生成后继相继式的方式如此。）因此，如果 $!A \in \Theta \cap \Xi$，那么对某个~$n$，有 $!A \in \Pi_n \cap \Lambda_n$。这意味着 $\Pi_n \Sequent \Lambda_n$ 是一个公理，而失败分支不能包含任何公理。所以，根据构造，对原子的~$!A$ 有 $!A \notin \Theta \cap \Xi$，进而如果 $!A \in \Xi$ 则 $!A \notin \Theta$。根据~$\Struct{M}$ 的定义，这意味着如果 $!A \in \Xi$ 则 $\Sat/{M}{!A}$。
 
-For the inductive step, assume (1) and (2) hold for all !!{formula}s
-of lower !!{depth} than~$!A$. We prove (1) and (2) for $!A$ by
-distinguishing cases.
+对于归纳步骤，假设 (1) 和 (2) 对所有深度小于~$!A$ 的公式成立。我们通过分情况讨论来证明 $!A$ 满足 (1) 和 (2)。
 
-First note that when $!A^i$ occurs in $\Pi_n \Sequent \Lambda_n$ then
-$!A^i$ also occurs in $\Pi_{n+1} \Sequent \Lambda_{n+1}$ unless $i$ is
-the smallest index in $\Pi_n \Sequent \Lambda_n$. Since the smallest
-index increases in topmost sequents added at each stage, eventually we
-reach $\Pi_n \Sequent \Lambda_n$ in which $!A^i$ occurs, and $i$ is
-the smallest index. At stage $n+1$ the algorithm reduces~$!A^i$. In
-other words, if $!A \in \Theta$, then for some $n$, $\Pi_n = \Pi_n',
-!A^i$ and $i$ is the smallest index. And if $!A \in \Xi$, then for
-some $n$, $\Lambda_n = \Lambda_n', !A^i$ and $i$~is the smallest
-index.
+首先注意，当 $!A^i$ 出现在 $\Pi_n \Sequent \Lambda_n$ 中时，若 $i$ 不是 $\Pi_n \Sequent \Lambda_n$ 中的最小索引，则 $!A^i$ 也会出现在 $\Pi_{n+1} \Sequent \Lambda_{n+1}$ 中。由于在每一阶段添加的顶端相继式中最小索引会增加，我们最终会达到一个 $\Pi_n \Sequent \Lambda_n$，其中 $!A^i$ 出现且 $i$ 是最小索引。在第 $n+1$ 阶段，算法归约~$!A^i$。换句话说，如果 $!A \in \Theta$，则对某个 $n$，有 $\Pi_n = \Pi_n',
+!A^i$ 且 $i$ 是最小索引。而如果 $!A \in \Xi$，则对某个 $n$，有 $\Lambda_n = \Lambda_n', !A^i$ 且 $i$ 是最小索引。
 
 \begin{enumerate}
-  \item $!A \in \Theta$ and $!A \ident !B \land !C$. Then for some
-  $n$, $\Pi_n = \Pi_n', (!B \land !C)^i$. $\Pi_{n+1} \Sequent
-  \Lambda_{n+1}$ is the corresponding premise of~\LeftR{\land}, i.e.,
-  $\Pi_{n+1} = \Pi_n', !B^k, !C^{k+1}$. Consequently, $!B, !C \in
-  \Theta$. By inductive hypothesis, $\Sat{M}{!B}$ and $\Sat{M}{!C}$.
-  By definition of $\Sat{M}{}$, we have $\Sat{M}{!B \land !C}$.
+  \item $!A \in \Theta$ 且 $!A \ident !B \land !C$。则对某个 $n$，有 $\Pi_n = \Pi_n', (!B \land !C)^i$。$\Pi_{n+1} \Sequent
+  \Lambda_{n+1}$ 是~\LeftR{\land} 的对应前提，即 $\Pi_{n+1} = \Pi_n', !B^k, !C^{k+1}$。因此，$!B, !C \in \Theta$。由归纳假设，$\Sat{M}{!B}$ 且 $\Sat{M}{!C}$。根据 $\Sat{M}{}$ 的定义，有 $\Sat{M}{!B \land !C}$。
 
-  \item $!A \in \Xi$ and $!A \ident !B \land !C$. Then for some $n$,
-  $\Lambda_n = \Lambda_n', !B \land !C$. $\Pi_{n+1} \Sequent
-  \Lambda_{n+1}$ is one of the two premises of~\RightR{\land} with
-  conclusion $\Pi_n \Sequent \Lambda'_n, !B \land !C$, i.e.,
-  $\Lambda_{n+1} = \Lambda_n', !B^k$ or $\Lambda_{n+1} = \Lambda_n',
-  !C^k$. Consequently, either $!B \in \Xi$ or $!C \in \Xi$. By
-  inductive hypothesis, either $\Sat/{M}{!B}$ or $\Sat/{M}{!C}$. By
-  definition of $\Sat{M}{}$, we have $\Sat/{M}{!B \land !C}$.
+  \item $!A \in \Xi$ 且 $!A \ident !B \land !C$。则对某个 $n$，有 $\Lambda_n = \Lambda_n', !B \land !C$。$\Pi_{n+1} \Sequent
+  \Lambda_{n+1}$ 是以 $\Pi_n \Sequent \Lambda'_n, !B \land !C$ 为结论的~\RightR{\land} 的两个前提之一，即 $\Lambda_{n+1} = \Lambda_n', !B^k$ 或 $\Lambda_{n+1} = \Lambda_n',
+  !C^k$。因此，要么 $!B \in \Xi$，要么 $!C \in \Xi$。由归纳假设，要么 $\Sat/{M}{!B}$，要么 $\Sat/{M}{!C}$。根据 $\Sat{M}{}$ 的定义，有 $\Sat/{M}{!B \land !C}$。
   
-  \item The cases where $!A \ident \lnot !B$, $!A \ident !B \lor !C$,
-  and $!A \ident !B \lif !C$ are similar and left as exercises.
+  \item $!A \ident \lnot !B$、$!A \ident !B \lor !C$ 和 $!A \ident !B \lif !C$ 的情况类似，留作练习。
 
-  \item $!A \in \Theta$ and $!A \ident \lexists[x][!B(x)]$. Then for
-  some $n$, $\Pi_n = \Pi_n', \lexists[x][!B(x)]^i$. $\Pi_{n+1}
-  \Sequent \Lambda_{n+1}$ is the corresponding premise
-  of~\LeftR{\lexists}, i.e., $\Pi_{n+1} = \Pi_n', !B(c)^k$ for
-  some~$c$. Consequently, $!B(c) \in \Theta$ and~$c \in C$. By
-  inductive hypothesis, $\Sat{M}{!B(c)}$. By definition of
-  $\Sat{M}{}$, we have $\Sat{M}{\lexists[x][!B(x)]}$.
+  \item $!A \in \Theta$ 且 $!A \ident \lexists[x][!B(x)]$。则对某个 $n$，有 $\Pi_n = \Pi_n', \lexists[x][!B(x)]^i$。$\Pi_{n+1}
+  \Sequent \Lambda_{n+1}$ 是~\LeftR{\lexists} 的对应前提，即对某个~$c$ 有 $\Pi_{n+1} = \Pi_n', !B(c)^k$。因此，$!B(c) \in \Theta$ 且~$c \in C$。由归纳假设，有 $\Sat{M}{!B(c)}$。根据 $\Sat{M}{}$ 的定义，有 $\Sat{M}{\lexists[x][!B(x)]}$。
 
-  \item $!A \in \Xi$ and $!A \ident \lexists[x][!B(x)]$. Then for some
-  $n$, $\Lambda_n = \Lambda_n', \lexists[x][!B(x)]^i$. Since every time
-  $\lexists[x][!B(x)]$ is reduced, $\lexists[x][!B(x)]$ remains on the
-  right side of the premise sequent with a new index,
-  $\lexists[x][!B(x)]$ is reduced infinitely often on the right side
-  in a failure branch if it occurs there. Every term $t \in
-  \Domain{M}$ eventually is ``the first term only containing constants
-  in~$C_n$ not already used in a reduction of $\lexists[x][!B(x)]$ on
-  the right'' on a failure branch. Hence, for all $t \in \Domain{M}$,
-  $!B(t) \in \Lambda_n$ for some~$n$ and consequently $!B(t) \in \Xi$.
-  By inductive hypothesis, $\Sat/{M}{!B(t)}$ for all $t \in
-  \Domain{M}$. By definition of $\Sat{M}{}$, we have
-  $\Sat/{M}{\lexists[x][!B(x)]}$.
+  \item $!A \in \Xi$ 且 $!A \ident \lexists[x][!B(x)]$。则对某个 $n$，有 $\Lambda_n = \Lambda_n', \lexists[x][!B(x)]^i$。由于每次归约 $\lexists[x][!B(x)]$ 时，$\lexists[x][!B(x)]$ 都会带有一个新索引保留在前提相继式的右侧，因此，如果它出现在失败分支上，那么 $\lexists[x][!B(x)]$ 就会在右侧被无限次归约。对每个项 $t \in \Domain{M}$，在失败分支上它最终都会成为“仅由~$C_n$ 中的常项构成且在对 $\lexists[x][!B(x)]$ 进行右侧归约时第一个尚未被使用过的项”。因此，对所有 $t \in \Domain{M}$，在某个~$n$ 下 $!B(t) \in \Lambda_n$，从而 $!B(t) \in \Xi$。由归纳假设，对所有 $t \in \Domain{M}$ 有 $\Sat/{M}{!B(t)}$。根据 $\Sat{M}{}$ 的定义，有 $\Sat/{M}{\lexists[x][!B(x)]}$。
 
-  \item The cases where $!A \ident \lforall[x][!B(x)]$ are similar and
-  left as exercises.
+  \item $!A \ident \lforall[x][!B(x)]$ 的情况类似，留作练习。
 \end{enumerate}
 \end{proof}
 
-\begin{cor}\ollabel{cor:complete} The proof search algorithm for
-\Log{G3c} is complete: if it aborts or never halts, the starting
-sequent~$\Gamma \Sequent \Delta$ is not valid and hence has no
-!!{proof}.
+\begin{cor}\ollabel{cor:complete} \Log{G3c} 的证明搜索算法是完备的：如果它中止或永不终止，则起始相继式~$\Gamma \Sequent \Delta$ 不是有效的，因而没有推导。
 \end{cor}
 
 \begin{proof}
-  If the algorithm aborts or never halts, there is a failure branch
-  from which $\Struct{M}$ can be defined. By \olref{lem:truth}, for
-  all $!A \in \Gamma$, $\Sat{M}{!A}$ and for all $!A \in \Delta$,
-  $\Sat/{M}{!A}$. (Recall that $\Pi_0 = \Gamma$ and $\Lambda_0 =
-  \Delta$, so $\Gamma \subseteq \Theta$ and $\Delta \subseteq \Xi$.)
-  So $\Gamma \Sequent \Delta$ is not valid. By soundness of~\Log{G3c},
-  $\Gamma \Sequent \Delta$ has no !!{proof}.
+  如果算法中止或永不终止，则存在一个失败分支，可以从中定义出 $\Struct{M}$。根据\olref{lem:truth}，对所有 $!A \in \Gamma$，有 $\Sat{M}{!A}$；对所有 $!A \in \Delta$，有 $\Sat/{M}{!A}$。（回想 $\Pi_0 = \Gamma$ 且 $\Lambda_0 = \Delta$，所以 $\Gamma \subseteq \Theta$ 且 $\Delta \subseteq \Xi$。）因此 $\Gamma \Sequent \Delta$ 不是有效的。由~\Log{G3c} 的可靠性，$\Gamma \Sequent \Delta$ 没有推导。
 \end{proof}
 
 \begin{cor}
-\Log{G3c} is complete: if $\Gamma \Sequent \Delta$ is valid,
-$\Log{G3c} \Proves \Gamma \Sequent \Delta$.
+\Log{G3c} 是完备的：如果 $\Gamma \Sequent \Delta$ 是有效的，则 $\Log{G3c} \Proves \Gamma \Sequent \Delta$。
 \end{cor}
 
 \begin{proof}
-  We prove the contrapositive. Suppose $\Log{G3c} \Proves/ \Gamma
-  \Sequent \Delta$. Then the proof search algorithm must abort or
-  never halt, as there is no !!{proof} to be found. By \olref{cor:complete}, $\Gamma \Sequent \Delta$ is not
-  valid.
+  我们证明其逆否命题。假设 $\Log{G3c} \Proves/ \Gamma \Sequent \Delta$。那么证明搜索算法必定中止或永不终止，因为找不到推导。根据\olref{cor:complete}，$\Gamma \Sequent \Delta$ 不是有效的。
 \end{proof}
-
 
 \end{document}

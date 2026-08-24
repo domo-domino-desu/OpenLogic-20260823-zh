@@ -7,56 +7,37 @@
 \begin{document}
 
 \olfileid{cmp}{thy}{cmp}
-\olsection{Computably Enumerable Sets not Closed under Complement}
+\olsection{可计算枚举集对补不封闭}
 
-Suppose $A$ is computably enumerable. Is the complement of~$A$,
-$\Complement{A} = \Nat \setminus A$, always computably enumerable
-as well? The following theorem and corollary show that the answer is
-``no.''
+假设 $A$ 是可计算枚举的，那么 $A$ 的补集 $\Complement{A} = \Nat \setminus A$ 是否也总是可计算枚举的？下面的定理和推论表明答案是否定的。
 
 \begin{thm}
 \ollabel{thm:ce-comp}
-Let $A$ be any set of natural numbers. Then $A$ is computable if and
-only if both $A$ and $\Complement{A}$ are computably enumerable.
+设 $A$ 是任意自然数集合。则 $A$ 是可计算的，当且仅当 $A$ 和 $\Complement{A}$ 都是可计算枚举的。
 \end{thm}
 
 \begin{proof}
-The forwards direction is easy: if $A$ is computable, then
-$\Complement{A}$ is computable as well ($\Char{A} = 1 \tsub
-\Char{\Complement{A}}$), and so both are computably enumerable.
+前向方向是显然的：如果 $A$ 是可计算的，那么 $\Complement{A}$ 也是可计算的（$\Char{A} = 1 \tsub
+\Char{\Complement{A}}$），因此两者都是可计算枚举的。
 
-In the other direction, suppose $A$ and~$\Complement{A}$ are both
-computably enumerable. Let $A$ be the domain of~$\cfind{d}$, and let
-$\Complement{A}$ be the domain of~$\cfind{e}$. Define $h$ by
+反之，假设 $A$ 和 $\Complement{A}$ 都是可计算枚举的。设 $A$ 为 $\cfind{d}$ 的定义域，$\Complement{A}$ 为 $\cfind{e}$ 的定义域。如下定义 $h$：
 \[
 h(x) = \umin{s}{(T(d,x,s) \lor T(e,x,s))}.
 \]
-In other words, on input~$x$, $h$~searches for either a halting
-computation of~$\cfind{d}$ or a halting computation of~$\cfind{e}$.
-Now, if $x \in A$, it will succeed in the first case, and if $x \in
-\Complement{A}$, it will succeed in the second case. So, $h$~is a
-total computable function. But now we have that for every~$x$, $x \in
-A$ if and only if $T(e, x, h(x))$, i.e., if $\cfind{e}$ is the one
-that is defined. Since $T(e, x, h(x))$ is a computable relation,
-$A$~is computable.
+换言之，对于输入 $x$，$h$ 会搜索 $\cfind{d}$ 或 $\cfind{e}$ 的停机计算。此时，如果 $x \in A$，前一种搜索将会成功；如果 $x \in \Complement{A}$，后一种搜索将会成功。因此，$h$ 是全可计算函数。由此可知，对每个 $x$，$x \in A$ 当且仅当 $T(e, x, h(x))$，即有定义的是 $\cfind{e}$。由于 $T(e, x, h(x))$ 是可计算关系，因此 $A$ 是可计算的。
 \end{proof}
 
 \begin{explain}
-It is easier to understand what is going on in informal computational
-terms: to decide $A$, on input $x$ search for halting computations of
-$\cfind{e}$ and $\cfind{f}$. One of them is bound to halt; if it is $\cfind{e}$,
-then $x$ is in~$A$, and otherwise, $x$ is in~$\Complement{A}$.
+用非形式的计算术语更容易理解这里的直观：要判定 $A$，只需以 $x$ 为输入，搜索 $\cfind{e}$ 和 $\cfind{f}$ 的停机计算。两者之中必然有一个会停机；如果是 $\cfind{e}$ 停机，那么 $x \in A$，否则 $x \in \Complement{A}$。
 \end{explain}
 
 \begin{cor}
 \ollabel{cor:comp-k}
-$\Complement{K_0}$ is not computably enumerable.
+$\Complement{K_0}$ 不是可计算枚举的。
 \end{cor}
 
 \begin{proof}
-We know that $K_0$ is computably enumerable, but not computable. If
-$\Complement{K_0}$ were computably enumerable, then $K_0$ would be
-computable by \olref{thm:ce-comp}, contradicting \olref[ncp]{thm:K-0}.
+已知 $K_0$ 是可计算枚举的但不可计算。如果 $\Complement{K_0}$ 也是可计算枚举的，那么根据 \olref{thm:ce-comp}，$K_0$ 就是可计算的，这与 \olref[ncp]{thm:K-0} 矛盾。
 \end{proof}
 
 \end{document}

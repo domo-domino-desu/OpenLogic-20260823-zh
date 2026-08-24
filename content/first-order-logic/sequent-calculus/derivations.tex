@@ -1,7 +1,3 @@
-% Part: first-order-logic
-% Chapter: sequent-calculus
-% Section: derivations
-
 \documentclass[../../../include/open-logic-section]{subfiles}
 
 \begin{document}
@@ -10,52 +6,40 @@
       {\olfileid{fol}{seq}{der}}
       {\olfileid{pl}{seq}{der}}
 
-\olsection{\usetoken{P}{derivation}}
+\olsection{推导}
+
+% Part: first-order-logic
+% Chapter: sequent-calculus
+% Section: derivations
 
 \begin{explain}
-We've said what an initial sequent looks like, and we've given the
-rules of inference.  !!^{derivation}s in the sequent calculus are
-inductively generated from these: each !!{derivation} either is an
-initial sequent on its own, or consists of one or two !!{derivation}s
-followed by an inference.
+我们介绍了初始相继式的样子，也给出了推理规则。相继式演算中的推导就是由这些归纳生成的：每个推导要么本身就是一个初始相继式，要么由一个或两个推导再接一个推理规则构成。
 \end{explain}
 
-\begin{defn}[$\Log{LK}$ !!{derivation}]
-An \emph{$\Log{LK}$-!!{derivation}} of a sequent~$S$ is a finite tree
-of sequents satisfying the following conditions:
+\begin{defn}[$\Log{LK}$ 推导]
+相继式~$S$ 的\emph{$\Log{LK}$-推导}是一棵满足以下条件的有限相继式树：
 \begin{enumerate}
-\item The topmost sequents of the tree are initial sequents.
-\item The bottommost sequent of the tree is~$S$.
-\item Every sequent in the tree except $S$ is a premise of a correct
-  application of an inference rule whose conclusion stands directly
-  below that sequent in the tree.
+\item 树的顶端相继式是初始相继式。
+\item 树的底端相继式是~$S$。
+\item 树中除~$S$ 之外的每个相继式，都是某个推理规则正确应用的前提，而该规则的结论恰好位于树中该相继式的正下方。
 \end{enumerate}
-We then say that $S$ is the \emph{end-sequent} of the !!{derivation} and
-that $S$ is \emph{!!{derivable} in $\Log{LK}$} (or $\Log{LK}$-!!{derivable}).
+此时，我们称~$S$ 是该推导的\emph{末位相继式}（end-sequent），并称~$S$ 是\emph{可在 $\Log{LK}$ 中推导的}（或称 $\Log{LK}$-可推导的）。
 \end{defn}
 
 \begin{ex}
-Every initial sequent, e.g., $!C \Sequent !C$ is !!a{derivation}. We
-can obtain a new !!{derivation} from this by applying, say, the
-$\LeftR{\Weakening}$ rule,
+每一个初始相继式，例如 $!C \Sequent !C$，本身就是一个推导。我们可以通过应用某个推理规则，比如 $\LeftR{\Weakening}$ 规则，从此推导得到一个新推导：
 \begin{prooftree}
 \Axiom$ \Gamma \fCenter \Delta $
 \RightLabel{\LeftR{\Weakening}}
 \UnaryInf$ !A, \Gamma \fCenter \Delta$
 \end{prooftree}
-The rule, however, is meant to be general: we can replace the $!A$ in
-the rule with any !!{sentence}, e.g., also with~$!D$. If the premise
-matches our initial sequent $!C \Sequent !C$, that means that both
-$\Gamma$ and $\Delta$ are just~$!C$, and the conclusion would then be
-$!D, !C \Sequent !C$. So, the following is !!a{derivation}:
+然而，这个规则是通用的：我们可以把规则中的 $!A$ 替换成任何语句，比如换成~$!D$。如果前提匹配我们的初始相继式 $!C \Sequent !C$，那就意味着 $\Gamma$ 和 $\Delta$ 都只是~$!C$，那么结论就会是 $!D, !C \Sequent !C$。因此，下面就是一个推导：
 \begin{prooftree}
 \Axiom$ !C \fCenter !C $
 \RightLabel{\LeftR{\Weakening}}
 \UnaryInf$ !D, !C \fCenter !C$
 \end{prooftree}
-We can now apply another rule, say $\LeftR{\Exchange}$, which allows
-us to switch two !!{sentence}s on the left. So, the following is also
-a correct !!{derivation}:
+我们现在可以应用另一个规则，比如 $\LeftR{\Exchange}$ 规则，它允许我们交换左边的两个语句。所以，下面也是一个正确的推导：
 \begin{prooftree}
 \Axiom$ !C \fCenter !C $
 \RightLabel{\LeftR{\Weakening}}
@@ -63,33 +47,27 @@ a correct !!{derivation}:
 \RightLabel{\LeftR{\Exchange}}
 \UnaryInf$ !C, !D \fCenter !C$
 \end{prooftree}
-In this application of the rule, which was given as
+在这次规则应用中，规则原本的形式是
 \begin{prooftree}
 \Axiom$ \Gamma, !A, !B, \Pi \fCenter \Delta $
 \RightLabel{\LeftR{\Exchange}}
 \UnaryInf$ \Gamma, !B, !A, \Pi \fCenter \Delta,$
 \end{prooftree}
-both $\Gamma$ and $\Pi$ were empty, $\Delta$ is $!C$, and the roles of
-$!A$ and $!B$ are played by $!D$ and~$!C$, respectively. In much the
-same way, we also see that
+其中 $\Gamma$ 和 $\Pi$ 都为空，$\Delta$ 就是 $!C$，而 $!A$ 和 $!B$ 的角色分别由 $!D$ 和~$!C$ 扮演。以几乎同样的方式，我们也看到
 \begin{prooftree}
 \Axiom$ !D \fCenter !D $
 \RightLabel{\LeftR{\Weakening}}
 \UnaryInf$ !C, !D \fCenter !D$
 \end{prooftree}
-is !!a{derivation}. Now we can take these two !!{derivation}s, and combine
-them using $\RightR{\land}$. That rule was
+是一个推导。现在我们可以取这两个推导，使用 $\RightR{\land}$ 规则将它们组合起来。该规则是
 \begin{prooftree}
 \Axiom$\Gamma \fCenter \Delta, !A$
 \Axiom$ \Gamma \fCenter \Delta, !B$
 \RightLabel{\RightR{\land}}
 \BinaryInf$ \Gamma \fCenter \Delta, !A \land !B $
 \end{prooftree}
-In our case, the premises must match the last sequents of the
-!!{derivation}s ending in the premises. That means that $\Gamma$ is
-$!C, !D$, $\Delta$ is empty, $!A$ is $!C$ and $!B$ is $!D$. So the
-conclusion, if the inference should be correct, is $!C, !D \Sequent !C
-\land !D$.
+在我们的例子中，前提必须与那两个推导各自的末位相继式相匹配。这意味着 $\Gamma$ 是 $!C, !D$，$\Delta$ 是空集，$!A$ 是 $!C$ 而 $!B$ 是 $!D$。因此，要使该推理正确，结论就应该是 $!C, !D \Sequent !C
+\land !D$。
 \begin{prooftree}
 \Axiom$ !C \fCenter !C $
 \RightLabel{\LeftR{\Weakening}}
@@ -102,8 +80,7 @@ conclusion, if the inference should be correct, is $!C, !D \Sequent !C
 \RightLabel{\RightR{\land}}
 \BinaryInf$ !C, !D \fCenter !C \land !D $
 \end{prooftree}
-Of course, we can also reverse the premises, then $!A$
-would be $!D$ and $!B$ would be~$!C$. 
+当然，我们也可以调换两个前提的顺序，那样的话 $!A$ 就是 $!D$ 而 $!B$ 就是~$!C$。
 \begin{prooftree}
 \Axiom$ !D \fCenter !D $
 \RightLabel{\LeftR{\Weakening}}

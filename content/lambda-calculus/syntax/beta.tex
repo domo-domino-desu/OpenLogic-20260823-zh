@@ -7,122 +7,90 @@
 \begin{document}
 
 \olfileid{lam}{int}{bet}
-\olsection{$\beta$-reduction}
+\olsection{$\beta$-归约}
 
-When we see $(\lambd[m][(\lambd[y][y]) m])$, it is natural to
-conjecture that it has some connection with $\lambd[m][m]$, namely the
-second term should be the result of ``simplifying'' the first.  The
-notion of \emph{$\beta$-reduction} captures this intuition formally.
+当我们看到 $(\lambd[m][(\lambd[y][y]) m])$ 时，自然会猜想它与 $\lambd[m][m]$ 有某种联系，即第二个项应为第一个项“简化”的结果。\emph{$\beta$-归约}的概念形式化了这一直觉。
 
-\begin{defn}[$\beta$-contraction, $\bredone$] \ollabel{defn:betacontr}
-  \emph{The $\beta$-contraction} ($\bredone$) is the smallest compatible
-  relation on terms satisfying the following condition:
+\begin{defn}[$\beta$-收缩, $\bredone$] \ollabel{defn:betacontr}
+  \emph{$\beta$-收缩}（$\bredone$）是项上满足以下条件的最小相容关系：
   \[
     (\lambd[x][N])Q \bredone \Subst{N}{Q}{x} 
   \]
-  We say $P$ is \emph{$\beta$-contracted} to $Q$ if $P \bredone Q$.  A
-  term of the form $(\lambd[x][N])Q$ is called a \emph{redex}.
+  若 $P \bredone Q$，则称 $P$ \emph{$\beta$-收缩}到 $Q$。
+  形如 $(\lambd[x][N])Q$ 的项称为\emph{可约式}。
 \end{defn}
 
 \begin{prob} \ollabel{prob:def}
-  Spell out the equivalent inductive definitions of $\beta$-contraction as we
-  did for change of bound variable in \olref[lam][syn][alp]{defn:aconvone}.
+  如同我们在 \olref[lam][syn][alp]{defn:aconvone} 中对约束变元更改所做的那样，写出 $\beta$-收缩的等价归纳定义。
 \end{prob}
   
-\begin{defn}[$\beta$-reduction, $\bred$] \ollabel{defn:betared}
-  \emph{$\beta$-reduction} ($\bred$) is the smallest reflexive,
-  transitive relation on terms containing $\bredone$.  We say $P$ is
-  $\beta$-reduced to $Q$ if $P \bred Q$.
+\begin{defn}[$\beta$-归约, $\bred$] \ollabel{defn:betared}
+  \emph{$\beta$-归约}（$\bred$）是包含 $\bredone$ 的最小自反、传递关系。
+  若 $P \bred Q$，则称 $P$ $\beta$-归约到 $Q$。
 \end{defn}
 
-We will write $\redone$ instead of $\bredone$, and $\red$ instead of
-$\bred$ when context is clear.
+在上下文明确时，我们将用 $\redone$ 代替 $\bredone$，用 $\red$ 代替 $\bred$。
 
-Informally speaking, $M \bred N$  if and only if $M$ can be changed to
-$N$ by zero or several steps of $\beta$-contraction.
+非形式地说，$M \bred N$ 当且仅当 $M$ 可以通过零步或多步 $\beta$-收缩变为 $N$。
 
-\begin{defn}[$\beta$-normal]
-A term that cannot be $\beta$-contracted any further is said to be
-\emph{$\beta$-normal}. 
+\begin{defn}[$\beta$-范式]
+一个不能再进行 $\beta$-收缩的项称为\emph{$\beta$-范式}。
 \end{defn}
 
-If $M \bred N$ and $N$ is $\beta$-normal, then we say $N$ is a
-\emph{normal form} of~$M$. One may ask if the normal form of a term is
-unique, and the answer is yes, as we will see later.
+如果 $M \bred N$ 且 $N$ 是 $\beta$-范式，则称 $N$ 是~$M$ 的一个\emph{范式}。人们可能会问一个项的范式是否唯一，答案是肯定的，后文将看到这一点。
 
-Let us consider some examples.
+我们来看几个例子。
 \begin{enumerate}
-\item We have
+\item 我们有
 \begin{align*}
 (\lambd[x][xxy]) \lambd[z][z] & \redone (\lambd[z][z])(\lambd[z][z]) y \\
 & \redone (\lambd[z][z]) y \\
 & \redone y
 \end{align*}
-\item ``Simplifying'' a term can actually make it more complex:
+\item “简化”一个项实际上可能使其更复杂：
 \begin{align*}
 (\lambd[x][xxy])(\lambd[x][xxy]) & \redone (\lambd[x][xxy])(\lambd[x][xxy])y \\
 & \redone (\lambd[x][xxy])(\lambd[x][xxy])yy \\
 & \redone \dots
 \end{align*}
-\item It can also leave a term unchanged:
+\item 它也可能使项保持不变：
 \[
 (\lambd[x][xx])(\lambd[x][xx]) \redone (\lambd[x][xx])(\lambd[x][xx])
 \]
-\item Also, some terms can be reduced in more than one way; for
-  example,
+\item 此外，有些项可以以不止一种方式归约；例如，
 \[
 (\lambd[x][(\lambd[y][yx]) z]) v \redone (\lambd[y][yv]) z
 \]
-by contracting the outermost application; and
+通过收缩最外层的应用；以及
 \[
 (\lambd[x][(\lambd[y][yx]) z]) v \redone (\lambd[x][zx]) v
 \]
-by contracting the innermost one. Note, in this case, however, that
-both terms further reduce to the same term, $zv$.
+通过收缩最内层的应用。不过注意，在这种情况下，两个项都进一步归约到了同一个项 $zv$。
 \end{enumerate}
 
-The final outcome in the last example is not a coincidence, but rather
-illustrates a deep and important property of the lambda calculus, known as the
-Church--Rosser property.
+最后一个例子中的最终结果并非巧合，而是展示了λ演算的一个深刻而重要的性质，即 Church--Rosser 性质（丘奇-罗瑟性质）。
 
 \begin{digress}
-  In general, there is more than one way to $\beta$-reduce a term,
-  thus many reduction strategies have been invented, among which the
-  most common is the \emph{natural strategy}.  The natural strategy
-  always contracts the \emph{left-most} redex, where the position of a
-  redex is defined as its starting point in the term.  The natural
-  strategy has the useful property that a term can be reduced to a
-  normal form by some strategy iff it can be reduced to normal form
-  using the natural strategy. In what follows we will use the natural
-  stratuegy unless otherwise specified.
+  一般来说，$\beta$-归约一个项的方式不止一种，因此人们发明了许多归约策略，其中最常见的是\emph{自然策略}。自然策略总是收缩\emph{最左}可约式，其中可约式的位置定义为它在项中的起始点。自然策略有一个有用的性质：一个项能通过某种策略归约为范式，当且仅当它能使用自然策略归约为范式。在下文中，除非另有说明，我们将使用自然策略。
 \end{digress}
 
-\begin{defn}[$\beta$-equivalence, $\equal$]
-  \emph{$\beta$-Equivalence} ($\equal$) is the relation inductively
-  defined as follows:
+\begin{defn}[$\beta$-等价, $\equal$]
+  \emph{$\beta$-等价}（$\equal$）是通过以下规则归纳定义的关系：
   \begin{enumerate}
-  \item $M \equal M$.
-  \item If $M \equal N$, then $N \equal M$.
-  \item If $M \equal N$, $N \equal O$, then $M \equal O$.
-  \item If $M \equal N$, then $PM \equal PN$.
-  \item If $M \equal N$, then $MQ \equal NQ$.
-  \item If $M \equal N$, then $\lambd[x][M] \equal \lambd[x][N]$.
-  \item $(\lambd[x][N])Q \equal \Subst{N}{Q}{x}$.
+  \item $M \equal M$。
+  \item 如果 $M \equal N$，则 $N \equal M$。
+  \item 如果 $M \equal N$，$N \equal O$，则 $M \equal O$。
+  \item 如果 $M \equal N$，则 $PM \equal PN$。
+  \item 如果 $M \equal N$，则 $MQ \equal NQ$。
+  \item 如果 $M \equal N$，则 $\lambd[x][M] \equal \lambd[x][N]$。
+  \item $(\lambd[x][N])Q \equal \Subst{N}{Q}{x}$。
   \end{enumerate}
 \end{defn}
 
-The first three rules make the relation an equivalence relation; the
-next three make it compatible; the last ensures that it contains
-$\beta$-contraction.
+前三条规则使该关系成为等价关系；接下来的三条使其兼容；最后一条确保它包含 $\beta$-收缩。
 
-Informally speaking, two terms are $\beta$-equivalent if and only if
-one of them can be changed to the other in zero or more steps of
-$\beta$-contraction, or ``inverse'' of $\beta$-contraction. The inverse of
-$\beta$-contraction is defined so that $M$ inverse-$\beta$-contracts to $N$
-iff $N$ $\beta$-contracts to $M$.
+非形式地说，两个项是 $\beta$-等价的，当且仅当其中一个可以通过零次或多次 $\beta$-收缩或 $\beta$-收缩的逆变为另一个。$\beta$-收缩的逆定义如下：$M$ 逆$\beta$-收缩到 $N$ 当且仅当 $N$ $\beta$-收缩到 $M$。
 
-Besides the above rules, we will extend the relation with more
-rules, and denote the extended equivalence relation as $\equal[X]$,
-where $X$ is the extending rule.
+除了上述规则，我们还将用更多规则扩展这一关系，并用 $\equal[X]$ 表示扩展后的等价关系，其中 $X$ 是扩展规则。
 
 \end{document}

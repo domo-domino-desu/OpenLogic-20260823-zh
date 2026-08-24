@@ -8,57 +8,39 @@
 
 \olfileid{mod}{bas}{thm}
 
-\section{The Theory of a \printtoken{S}{structure}}
+\section{结构的理论}
 
-Every !!{structure}~$\Struct{M}$ makes some !!{sentence}s true, and
-some false. The set of all the !!{sentence}s it makes true is called
-its \emph{theory}. That set is in fact a theory, since anything it
-entails must be true in all its models, including~$\Struct{M}$.
+每个结构~$\Struct{M}$ 都使一些语句为真，另一些语句为假。所有在其中为真的语句组成的集合，称为它的\emph{理论}。这个集合确实是一个（演绎封闭的）理论，因为由它所语义后承的任何语句，必然在它的所有模型（包括~$\Struct{M}$）中为真。
 
 \begin{defn}
-  Given !!a{structure}~$\Struct M$, the \emph{theory} of
-  $\Struct{M}$ is the set $\Theory{M}$ of !!{sentence}s
-  that are true in $\Struct{M}$, i.e., $\Theory{M} =
-  \Setabs{!A}{\Sat{M}{!A}}$.
+  给定结构~$\Struct M$，$\Struct{M}$ 的\emph{理论}是指在 $\Struct{M}$ 中为真的所有语句构成的集合 $\Theory{M}$，即 $\Theory{M} =
+  \Setabs{!A}{\Sat{M}{!A}}$。
 \end{defn}
 
-We also use the term ``theory'' informally to refer to sets
-of !!{sentence}s having an intended interpretation, whether deductively
-closed or not.
+我们也非正式地使用“理论”一词，来指代那些具有预期解释的语句集合，无论其是否演绎封闭。
 
 \begin{prop}
-For any $\Struct{M}$, $\Theory{M}$ is complete.
+对任意 $\Struct{M}$，$\Theory{M}$ 都是完备的。
 \end{prop}
 
 \begin{proof}
-For any !!{sentence}~$!A$ either $\Sat{M}{!A}$ or $\Sat{M}{\lnot !A}$,
-so either $!A \in \Theory{M}$ or $\lnot !A \in \Theory{M}$.
+对任意语句~$!A$，要么 $\Sat{M}{!A}$，要么 $\Sat{M}{\lnot !A}$，因此要么 $!A \in \Theory{M}$，要么 $\lnot !A \in \Theory{M}$。
 \end{proof}
 
 \begin{prop}\ollabel{prop:equiv}
-  If $\Struct{N} \models !A$ for every $!A \in \Theory{M}$, then
-  $\Struct{M} \elemequiv \Struct{N}$.
+  如果对每个 $!A \in \Theory{M}$，都有 $\Struct{N} \models !A$，那么 $\Struct{M} \elemequiv \Struct{N}$。
 \end{prop}
 
 \begin{proof}
-Since $\Sat{N}{!A}$ for all $!A \in \Theory{M}$, $\Theory{M} \subseteq
-\Theory{N}$. If $\Sat{N}{!A}$, then $\Sat/{N}{\lnot !A}$, so $\lnot !A
-\notin \Theory{M}$. Since $\Theory{M}$ is complete, $!A \in
-\Theory{M}$. So, $\Theory{N} \subseteq \Theory{M}$, and we have
-$\Struct{M} \elemequiv \Struct{N}$.
+由于对所有 $!A \in \Theory{M}$，都有 $\Sat{N}{!A}$，故 $\Theory{M} \subseteq
+\Theory{N}$。对任意语句 $!A$，若 $\Sat{N}{!A}$，则 $\Sat/{N}{\lnot !A}$，于是 $\lnot !A
+\notin \Theory{M}$。由于 $\Theory{M}$ 是完备的，故 $!A \in
+\Theory{M}$。因而 $\Theory{N} \subseteq \Theory{M}$，由此可得 $\Struct{M} \elemequiv \Struct{N}$。
 \end{proof}
 
 \begin{rem}\ollabel{remark:R}
-  Consider $\Struct{R} = \langle\Real, <\rangle$, the !!{structure}
-  whose domain is the set $\Real$ of the real numbers, in the !!{language}
-  comprising only a 2-place !!{predicate} interpreted as the $<$
-  relation over the reals. Clearly $\Struct{R}$ is !!{nonenumerable};
-  however, since $\Theory{R}$ is obviously consistent, by the
-  L\"owenheim--Skolem theorem it has !!a{enumerable} model, say
-  $\Struct{S}$, and by \olref{prop:equiv}, $\Struct{R}
-  \equiv \Struct{S}$. Moreover, since $\Struct{R}$ and $\Struct{S}$
-  are not isomorphic, this shows that the converse of
-  \olref[iso]{thm:isom} fails in general.
+  考虑结构 $\Struct{R} = \langle\Real, <\rangle$，其论域为实数集 $\Real$，其语言仅包含一个被解释为实数上 $<$ 关系的二元谓词符号。显然，$\Struct{R}$ 是不可数的；然而，由于 $\Theory{R}$ 显然是一致的，根据 Löwenheim--Skolem 定理，它有一个可数模型，记作 $\Struct{S}$；并且根据 \olref{prop:equiv}，有 $\Struct{R}
+  \equiv \Struct{S}$。此外，由于 $\Struct{R}$ 和 $\Struct{S}$ 并不同构，这表明 \olref[iso]{thm:isom} 的逆命题在一般情况下不成立。
 \end{rem}
 
 \end{document}

@@ -8,38 +8,21 @@
 
 \olfileid{inc}{tcp}{inc}
 
-\olsection{$\Th{Q}$ has no Complete, Consistent, !!^{axiomatizable}
-  Extensions}
+\olsection{$\Th{Q}$ 没有完备、一致、可公理化的扩张}
 
 \begin{thm}
 \ollabel{thm:first-incompleteness}
-There is no complete, consistent, !!{axiomatizable} extension of
-$\Th{Q}$.
+不存在 $\Th{Q}$ 的完备、一致且可公理化的扩张。
 \end{thm}
 
 \begin{proof}
-We already know that there is no consistent, decidable extension of
-$\Th{Q}$. But if $\Th{T}$ is complete and !!{axiomatized}, then
-it is decidable. 
+我们已经知道，不存在 $\Th{Q}$ 的一致且可判定的扩张。但如果 $\Th{T}$ 是完备且已公理化的，那么它是可判定的。 
 \end{proof}
 
 \begin{explain}
-This theorems is not that far from G\"odel's original 1931 formulation
-of the First Incompleteness Theorem. Aside from the more modern
-terminology, the key differences are this: G\"odel has
-``$\omega$-consistent'' instead of ``consistent''; and he could not
-say ``!!{axiomatizable}'' in full generality, since the formal
-notion of computability was not in place yet. (The formal models of
-computability were developed over the following decade, including by
-G\"odel, and in large part to be able to characterize the kinds of
-theories that are susceptible to the G\"odel phenomenon.)
+这个定理与 G\"odel 在 1931 年对第一不完全性定理的原始表述相去不远。除了更现代的术语，关键区别在于：G\"odel 使用的是“$\omega$-一致的”而非“一致的”；并且他无法完全一般性地谈论“可公理化”，因为当时可计算性的形式概念尚未建立。（可计算性的形式模型是在接下来的十年中发展起来的，其中包括 G\"odel 的工作，很大程度上正是为了刻画易受 G\"odel 现象影响的理论。）
 
-The theorem says you can't have it all, namely, completeness,
-consistency, and !!{axiomatizability}. If you give up any one of
-these, though, you can have the other two: $\Th{Q}$ is consistent and
-computably axiomatized, but not complete; the inconsistent theory is
-complete, and computably axiomatized (say, by $\{ \eq/[0][0] \}$), but
-not consistent; and the set of true sentence of arithmetic is complete
-and consistent, but it is not computably axiomatized.
+这个定理说的是你无法三者兼得，即完备性、一致性和可公理性。不过，如果你放弃其中任何一个，就可以得到另外两个：$\Th{Q}$ 是一致的且可计算公理化，但不完备；不一致的理论是完备的且可计算公理化（例如，以 $\{ \eq/[0][0] \}$ 为公理），但不一致；而算术真语句的集合是完备且一致的，但不可计算公理化。
 \end{explain}
+
 \end{document}

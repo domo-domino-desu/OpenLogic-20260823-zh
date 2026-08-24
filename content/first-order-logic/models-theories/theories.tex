@@ -8,11 +8,10 @@
 
 \olfileid{fol}{mat}{the}
 
-\olsection{Examples of First-Order Theories}
+\olsection{一阶理论的例子}
 
 \begin{ex}
-The theory of strict linear orders in the language~$\Lang L_<$ is
-axiomatized by the set
+语言~$\Lang L_<$ 中的严格线性序理论由以下集合公理化：
 \begin{align*}
 \{\quad & \lforall[x][\lnot x < x], \\
 & \lforall[x][\lforall[y][((x < y \lor y <
@@ -20,15 +19,11 @@ axiomatized by the set
 & \lforall[x][\lforall[y][\lforall[z][((x < y
       \land y < z) \lif x < z)]]] \quad \}
 \end{align*}
-It completely captures the intended !!{structure}s: every strict
-linear order is a model of this axiom system, and vice versa, if $R$
-is a linear order on a set $X$, then the structure $\Struct M$ with
-$\Domain M = X$ and $\Assign{<}{M} = R$ is a model of this theory.
+它完全刻画了预期的结构：每个严格线性序都是该公理系统的模型，反之，若 $R$ 是集合 $X$ 上的线性序，则满足 $\Domain M = X$ 且 $\Assign{<}{M} = R$ 的结构 $\Struct M$ 就是该理论的模型。
 \end{ex}
 
 \begin{ex}
-The theory of groups in the language $\Obj 1$ (!!{constant}), $\cdot$
-(two-place !!{function}) is axiomatized by
+在包含常项符号 $\Obj 1$ 与二元函数符号 $\cdot$ 的语言中，群论由以下公理公理化：
 \begin{align*}
 & \lforall[x][\eq[(x \cdot \Obj 1)][x]]\\
 & \lforall[x][\lforall[y][\lforall[z][\eq[(x \cdot (y \cdot z))][((x
@@ -38,8 +33,7 @@ The theory of groups in the language $\Obj 1$ (!!{constant}), $\cdot$
 \end{ex}
 
 \begin{ex}
-The theory of Peano arithmetic is axiomatized by the following
-sentences in the language of arithmetic~$\Lang L_A$.
+皮亚诺算术理论由算术语言~$\Lang L_A$ 中的以下语句公理化：
 \begin{align*}
 & \lforall[x][\lforall[y][(\eq[x'][y'] \lif \eq[x][y])]]\\
 & \lforall[x][\eq/[\Obj 0][x']]\\
@@ -48,28 +42,22 @@ sentences in the language of arithmetic~$\Lang L_A$.
 & \lforall[x][\eq[(x \times \Obj 0)][\Obj 0]]\\
 & \lforall[x][\lforall[y][\eq[(x \times y')][((x \times y) + x)]]]\\
 & \lforall[x][\lforall[y][(x < y \liff \lexists[z][\eq[(z' + x)][y])]]]\\
-\intertext{plus all sentences of the form}
+\intertext{再加上所有形如}
 & (!A(\Obj 0) \land \lforall[x][(!A(x) \lif !A(x'))]) \lif \lforall[x][!A(x)]
 \end{align*}
-Since there are infinitely many sentences of the latter form, this
-axiom system is infinite.  The latter form is called the
-\emph{induction schema}. (Actually, the induction schema is a bit more
-complicated than we let on here.)
+由于后一种形式的语句有无穷多条，该公理系统是无穷的。
+后一种形式被称为\emph{归纳模式}。（实际上，归纳模式比我们这里呈现的要稍微复杂一些。）
 
-The last axiom is an \emph{explicit definition} of~$<$.
+最后一个公理是~$<$ 的\emph{显式定义}。
 \end{ex}
 
 \begin{ex}
-The theory of pure sets plays an important role in the foundations
-(and in the philosophy) of mathematics.  A set is pure if all its
-!!{element}s are also pure sets.  The empty set counts therefore as
-pure, but a set that has something as !!a{element} that is not a set
-would not be pure.  So the pure sets are those that are formed just
-from the empty set and no ``urelements,'' i.e., objects that are not
-themselves sets.
+纯集合理论在数学基础（以及数学哲学）中扮演着重要角色。
+如果一个集合的所有元素也是纯集合，则该集合是\emph{纯的}。
+因此空集算作纯集合，但如果一个集合包含不是集合的元素，它就不是纯的。
+所以，纯集合就是仅由空集生成、不含任何“本元”（即本身不是集合的对象）的集合。
 
-The following might be considered as an axiom system for a theory of
-pure sets:
+以下可以被视为纯集合理论的一个公理系统：
 \begin{align*}
 & \lexists[x][\lnot \lexists[y][y \in x]]\\
 & \lforall[x][\lforall[y][(\lforall[z](z \in x \liff z \in y) \lif 
@@ -78,66 +66,42 @@ pure sets:
 (\eq[u][x] \lor \eq[u][y]))]]]]\\
 & \lforall[x][\lexists[y][\lforall[z][(z \in y \liff \lexists[u][(z \in
         u \land u \in x)])]]]\\
-\intertext{plus all sentences of the form} &
+\intertext{再加上所有形如} &
 \lexists[x][\lforall[y][(y \in x \liff !A(y))]]
 \end{align*}
-The first axiom says that there is a set with no !!{element}s (i.e.,
-$\emptyset$ exists); the second says that sets are extensional; the
-third that for any sets $X$ and $Y$, the set $\{X, Y\}$ exists; the
-fourth that for any set $X$, the set $\cup X$ exists, where $\cup X$ is the 
-union of all the elements of $X$.
+第一条公理说存在一个没有元素的集合（即 $\emptyset$ 存在）；第二条说集合具有外延性；第三条说对任意集合 $X$ 和 $Y$，集合 $\{X, Y\}$ 存在；第四条说对任意集合 $X$，集合 $\cup X$ 存在，其中 $\cup X$ 是 $X$ 的所有元素的并集。
 
-The !!{sentence}s mentioned last are collectively called the
-\emph{naive comprehension scheme}.  It essentially says that for every
-$!A(x)$, the set $\Setabs{x}{!A(x)}$ exists---so at first glance a
-true, useful, and perhaps even necessary axiom.  It is called ``naive''
-because, as it turns out, it makes this theory unsatisfiable: if you
-take $!A(y)$ to be $\lnot y \in y$, you get the !!{sentence}
+最后提到的那些语句统称为\emph{朴素概括模式}。
+它本质上断言，对每个 $!A(x)$，集合 $\Setabs{x}{!A(x)}$ 都存在——所以乍一看，这是一个为真的、有用的、甚至可能是必要的公理。
+之所以被称为“朴素”，是因为事实证明它使得该理论不可满足：若取 $!A(y)$ 为 $\lnot y \in y$，则会得到语句
 \[
 \lexists[x][\lforall[y][(y \in x \liff \lnot y \in y)]]
 \]
-and this !!{sentence} is not satisfied in any !!{structure}.
+而该语句在任何结构中都不被满足。
 \end{ex}
 
 \begin{ex}
-In the area of \emph{mereology}, the relation of \emph{parthood} is a
-fundamental relation.  Just like theories of sets, there are theories
-of parthood that axiomatize various conceptions (sometimes
-conflicting) of this relation.
+在\emph{部分学}领域，\emph{部分关系}是一种基本关系。就像集合论一样，也存在对部分关系的各种（有时是相互冲突的）概念进行公理化的理论。
 
-The language of mereology contains a single two-place predicate
-symbol~$\Obj P$, and $\Atom{\Obj P}{x, y}$ ``means'' that $x$ is a
-part of~$y$.  When we have this interpretation in mind, !!a{structure}
-for this language is called a \emph{parthood structure}.  Of course,
-not every structure for a single two-place predicate will really
-deserve this name.  To have a chance of capturing ``parthood,''
-$\Assign{\Obj P}{M}$ must satisfy some conditions, which we can lay
-down as axioms for a theory of parthood.  For instance, parthood is a
-partial order on objects: every object is a part (albeit an
-\emph{improper} part) of itself; no two different objects can be parts
-of each other; a part of a part of an object is itself part of that
-object.  Note that in this sense ``is a part of'' resembles ``is a
-subset of,'' but does not resemble ``is an element of'' which is
-neither reflexive nor transitive.
+部分学的语言包含一个单一的二元谓词符号~$\Obj P$，而 $\Atom{\Obj P}{x, y}$ “意指” $x$ 是 $y$ 的一部分。
+在此解释下，这种语言的一个结构被称为\emph{部分关系结构}。
+当然，并非每个具有单一二元谓词的结构都真正适用这一名称。
+为了有可能刻画“部分关系”，$\Assign{\Obj P}{M}$ 必须满足某些条件，我们可以把这些条件作为部分学理论的公理给出。
+例如，部分关系是对象上的一个偏序：每个对象都是其自身的一部分（尽管是一个\emph{非真}部分）；没有两个不同的对象可以互为部分；一个对象的部分的部分本身也是该对象的部分。
+注意，在这种意义上，“是……的一部分”类似于“是……的子集”，而不类似于“是……的元素”，因为后者既非自反又非传递。
 \begin{align*}
 & \lforall[x][\Atom{\Obj P}{x,x}] \\
 & \lforall[x][\lforall[y][((\Part{x}{y} \land \Part{y}{x})
       \lif \eq[x][y])]] \\
 & \lforall[x][\lforall[y][\lforall[z][((\Part{x}{y} \land
         \Part{y}{z}) \lif \Part{x}{z})]]]\\
-\intertext{Moreover, any two objects have a mereological sum (an object that has
-  these two objects as parts, and is minimal in this respect).}  &
+\intertext{而且，任意两个对象都有一个部分学和（即一个以这两个对象为部分，且在此意义上极小的对象）。}  &
 \lforall[x][\lforall[y][\lexists[z][\lforall[u][(\Part{z}{u} \liff
         (\Part{x}{u} \land \Part{y}{u}))]]]]
 \end{align*}
-These are only some of the basic principles of parthood considered by
-metaphysicians.  Further principles, however, quickly become hard to
-formulate or write down without first introducing some defined
-relations.  For instance, most metaphysicians interested in mereology
-also view the following as a valid principle: whenever an
-object~$x$ has a proper part~$y$, it also has a part~$z$ that has no
-parts in common with~$y$, and so that the fusion of $y$ and $z$ is
-$x$.
+这些只是形而上学家所考虑的部分关系的基本原理中的一部分。
+然而，若不先引入一些定义的关系，进一步的原理很快就会变得难以表述或书写。
+例如，大多数对部分学感兴趣的形而上学家也认为以下是一个有效的原理：每当对象~$x$ 有一个真部分~$y$ 时，它也有一个部分~$z$，该部分与~$y$ 无共同部分，且 $y$ 与 $z$ 的融合即为 $x$。
 \end{ex}
 
 \end{document}

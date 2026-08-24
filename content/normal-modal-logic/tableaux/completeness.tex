@@ -1,230 +1,157 @@
-% Part: normal-modal-logic
-% Chapter: tableaux
-% Section: completeness
-
 \documentclass[../../../include/open-logic-section]{subfiles}
 
 \begin{document}
 
 \olfileid{nml}{tab}{cpl}
 
-\olsection{Completeness for \Log{K}}
+\olsection{\Log{K} 的完备性}
 
 \begin{explain}
-  To show that the method of !!{tableau}s is complete, we have to show
-  that whenever there is no closed !!{tableau} to show $\Gamma \Proves
-  !A$, then $\Gamma \Entails/ !A$, i.e., there is a countermodel. But
-  ``there is no closed !!{tableau}'' means that every way we could try
-  to construct one has to fail to close. The trick is to see that if
-  every such way fails to close, then a specific, \emph{systematic and
-    exhaustive} way also fails to close. And this systematic and
-  exhaustive way would close if a closed !!{tableau} exists. The
-  single tableau will contain, among its open branches, all the
-  information required to define a countermodel. The countermodel
-  given by an open branch in this tableau will contain the all the
-  prefixes used on that branch as the worlds, and !!a{propositional
-    variable}~$p$ is true at $\sigma$ iff $\sFmla{\True}{p}[\sigma]$
-  occurs on the branch.
+  要证明分析表方法是完备的，我们必须证明：只要不存在证明 $\Gamma \Proves
+  !A$ 的闭分析表，就有 $\Gamma \Entails/ !A$，即存在反模型。但是，“不存在闭分析表”意味着我们尝试构造它的每一种方式都必然无法闭合。诀窍在于认识到，如果每一种这样的方式都无法闭合，那么一种特定的、\emph{系统且穷举的}方式也无法闭合。而且，如果存在闭分析表，这种系统且穷举的方式就一定会闭合。这个单一的分析表将在其开分支中包含定义反模型所需的全部信息。该分析表中某个开分支给出的反模型，将以该分支上使用的所有前缀作为可能世界，并且命题变元~$p$ 在 $\sigma$ 上为真，当且仅当 $\sFmla{\True}{p}[\sigma]$ 出现在该分支上。
 \end{explain}
+% Part: normal-modal-logic
+% Chapter: tableaux
+% Section: completeness
 
 \begin{defn}
-  A branch in !!a{tableau} is called complete if, whenever it contains
-  a prefixed !!{formula} $\sFmla{S}{!A}[\sigma]$ to which a rule can
-  be applied, it also contains
+  分析表中的一个分支称为\emph{完全的}，如果满足：只要它包含一个可应用某条规则的带前缀公式~$\sFmla{S}{!A}[\sigma]$，它就也包含
   \begin{enumerate}
-    \item the prefixed !!{formula}s that are the corresponding
-      conclusions of the rule, in the case of propositional stacking
-      rules;
-    \item one of the corresponding conclusion !!{formula}s in the case
-      of propositional branching rules;
-    \item at least one possible conclusion in the case of modal rules
-      that require a new prefix;
-    \item the corresponding conclusion for every prefix occurring on
-      the branch in the case of modal rules that require a used
-      prefix.
+    \item 该规则对应的所有结论公式（对于命题堆叠规则）；
+    \item 至少一个对应的结论公式（对于命题分支规则）；
+    \item 至少一个可能的结论（对于需要新前缀的模态规则）；
+    \item 对于需要已使用前缀的模态规则，对分支上出现的每个前缀，都包含对应的结论。
   \end{enumerate}
 \end{defn}
 
 \begin{explain}
-For instance, a complete branch contains $\sFmla{\True}{!B}[\sigma]$
-and $\sFmla{\True}{!C}[\sigma]$ whenever it contains $\sFmla{\True}{!B
-  \land !C}$. If it contains $\sFmla{\True}{!B \lor !C}[\sigma]$ it
-contains at least one of $\sFmla{\False}{!B}[\sigma]$ and
-$\sFmla{\True}{!C}[\sigma]$. If it contains \iftag{prvBox}
-{$\sFmla{\False}{\Box}[\sigma]$} {$\sFmla{\True}{\Diamond}[\sigma]$}
-it also contains \iftag{prvBox} {$\sFmla{\False}{\Box}[\sigma.n]$}
-{$\sFmla{\True}{\Diamond}[\sigma.n]$} for at least one~$n$.  And
-whenever it contains \iftag{prvBox} {$\sFmla{\True}{\Box}[\sigma]$}
-{$\sFmla{\False}{\Diamond}[\sigma]$} it also contains \iftag{prvBox}
-{$\sFmla{\True}{\Box}[\sigma.n]$}
-{$\sFmla{\False}{\Diamond}[\sigma.n]$} for every~$n$ such that
-$\sigma.n$ is used on the branch.
+例如，一个完全分支只要包含~$\sFmla{\True}{!B
+  \land !C}$，就一定包含~$\sFmla{\True}{!B}[\sigma]$ 和~$\sFmla{\True}{!C}[\sigma]$。
+如果它包含~$\sFmla{\True}{!B \lor !C}[\sigma]$，则它至少包含~$\sFmla{\False}{!B}[\sigma]$ 和~$\sFmla{\True}{!C}[\sigma]$ 中的一个。
+如果它包含 \iftag{prvBox}{$\sFmla{\False}{\Box}[\sigma]$}{$\sFmla{\True}{\Diamond}[\sigma]$}，
+那么对至少一个~$n$，它也包含 \iftag{prvBox}{$\sFmla{\False}{\Box}[\sigma.n]$}{$\sFmla{\True}{\Diamond}[\sigma.n]$}。
+而只要它包含 \iftag{prvBox}{$\sFmla{\True}{\Box}[\sigma]$}{$\sFmla{\False}{\Diamond}[\sigma]$}，
+那么对每个在分支上已使用的~$\sigma.n$，它也都包含 \iftag{prvBox}{$\sFmla{\True}{\Box}[\sigma.n]$}{$\sFmla{\False}{\Diamond}[\sigma.n]$}。
 \end{explain}
 
 \begin{prop}\ollabel{prop:complete-tableau}
-  Every finite $\Gamma$ has !!a{tableau} in which every branch is complete.
+  每个有限的公式集~$\Gamma$ 都有一个所有分支都完全的分析表。
 \end{prop}
 
 \begin{proof}
-  Consider an open branch in !!a{tableau} for~$\Gamma$. There are
-  finitely many prefixed !!{formula}s in the branch to which a rule
-  could be applied. In some fixed order (say, top to bottom), for each
-  of these prefixed !!{formula}s for which the conditions (1)--(4) do
-  not already hold, apply the rules that can be applied to it to
-  extend the branch. In some cases this will result in branching;
-  apply the rule at the tip of each resulting branch for all remaining
-  prefixed !!{formula}s. Since the number of prefixed !!{formula}s is
-  finite, and the number of used prefixes on the branch is finite,
-  this procedure eventually results in (possibly many) branches
-  extending the original branch. Apply the procedure to each, and
-  repeat. But by construction, every branch is closed.
+  考虑~$\Gamma$ 的某个分析表中的一个开分支。
+  该分支中可应用规则的带前缀公式只有有限多个。
+  按某种固定的顺序（比如从上到下），对每个尚未满足条件~(1)--(4) 的带前缀公式，
+  应用可对其应用的规则来扩展该分支。
+  在某些情况下这会产生分支；在每条生成分支的末端，对所有剩余的带前缀公式继续应用规则。
+  由于带前缀公式的数量有限，并且分支上已使用前缀的数量也有限，
+  这一过程最终会得到（可能多个）原分支的扩展分支。
+  对每个分支重复这一过程，并不断迭代。
+  但根据构造，每个分支都是完全的。
 \end{proof}
 
-\begin{thm}[Completeness]
+\begin{thm}[完备性]
   \ollabel{thm:tableau-completeness}
-  If $\Gamma$ has no closed !!{tableau}, $\Gamma$ is satisfiable.
+  如果~$\Gamma$ 没有闭分析表，那么~$\Gamma$ 是可满足的。
 \end{thm}
 
 \begin{proof}
-By the proposition, $\Gamma$ has !!a{tableau} in which every branch is
-complete. Since it has no closed !!{tableau}, it thas has !!a{tableau} in
-which at least one branch is open and complete. Let $\Delta$ be the
-set of prefixed !!{formula}s on the branch, and $P(\Delta)$ the set of
-prefixes occurring in it.
+根据该命题，$\Gamma$ 有一个所有分支都完全的分析表。既然它没有闭分析表，那么它就有一个至少包含一个开且完全的分支的分析表。令 $\Delta$ 为该分支上所有带前缀公式的集合，$P(\Delta)$ 为其中出现的所有前缀的集合。
 
-We define a model~$\mModel{M(\Delta)} = \tuple{P(\Delta), R, V}$ where
-the worlds are the prefixes occurring in~$\Delta$, the accessibility
-relation is given by:
+我们如下定义一个模型~$\mModel{M(\Delta)} = \tuple{P(\Delta), R, V}$：其中的世界就是出现在~$\Delta$ 中的前缀，可及关系由下式给出：
 \[
-R\sigma\sigma' \quad \text{iff} \quad
-\sigma'=\sigma.n \quad \text{for some~$n$}
-\]
-and
+R\sigma\sigma' \quad \text{当且仅当} \quad
+\sigma'=\sigma.n \quad \text{对某个~$n$}
+\]，
+并且
 \[
 V(p) = \Setabs{\sigma}{\sFmla{\True}{p}[\sigma] \in \Delta}.
-\]
-We show by induction on~$!A$ that if $\sFmla{\True}{!A}[\sigma] \in
-\Delta$ then $\mSat{M(\Delta)}{!A}[\sigma]$, and if
-$\sFmla{\False}{!A}[\sigma] \in \Delta$ then
-$\mSat/{M(\Delta)}{!A}[\sigma]$.
+\]。
+我们通过对~$!A$ 的结构归纳来证明：若 $\sFmla{\True}{!A}[\sigma] \in
+\Delta$ 则 $\mSat{M(\Delta)}{!A}[\sigma]$，并且若 $\sFmla{\False}{!A}[\sigma] \in \Delta$ 则 $\mSat/{M(\Delta)}{!A}[\sigma]$。
 
 \begin{enumerate}
-  \item \indcase{!A}{p}{If $\sFmla{\True}{\indfrm}[\sigma] \in \Delta$
-    then $\sigma \in V(p)$ (by definition of~$V$) and so
-    $\mSat{M(\Delta)}{\indfrm}[\sigma]$.
+  \item \indcase{!A}{p}{若 $\sFmla{\True}{\indfrm}[\sigma] \in \Delta$，
+    则 $\sigma \in V(p)$（根据 $V$ 的定义），因此 $\mSat{M(\Delta)}{\indfrm}[\sigma]$。
 
-    If $\sFmla{\False}{\indfrm}[\sigma] \in \Delta$ then
-    $\sFmla{\True}{\indfrm}[\sigma] \notin \Delta$, since the branch
-    would otherwise be closed. So $\sigma \notin V(p)$ and thus
-    $\mSat/{M(\Delta)}{\indfrm}[\sigma]$.}
-  \item \indcase{!A}{\lnot !B}{\iftag{probNot}{Exercise.}{If
-      $\sFmla{\True}{\indfrm}[\sigma] \in \Delta$, then
-      $\sFmla{\False}{!B}[\sigma] \in \Delta$ since the branch is
-      complete. By induction hypothesis,
-      $\mSat/{M(\Delta)}{!B}[\sigma]$ and thus
-      $\mSat{M(\Delta)}{\indfrm}[\sigma]$.
+    若 $\sFmla{\False}{\indfrm}[\sigma] \in \Delta$，则
+    $\sFmla{\True}{\indfrm}[\sigma] \notin \Delta$，否则该分支将是闭的。所以 $\sigma \notin V(p)$，从而 $\mSat/{M(\Delta)}{\indfrm}[\sigma]$。}
+  \item \indcase{!A}{\lnot !B}{\iftag{probNot}{练习。}{若
+      $\sFmla{\True}{\indfrm}[\sigma] \in \Delta$，则由于该分支是完全的，
+      $\sFmla{\False}{!B}[\sigma] \in \Delta$。根据归纳假设，
+      $\mSat/{M(\Delta)}{!B}[\sigma]$，因此
+      $\mSat{M(\Delta)}{\indfrm}[\sigma]$。
 
-      If $\sFmla{\False}{\indfrm}[\sigma] \in \Delta$, then
-      $\sFmla{\True}{!B}[\sigma] \in \Delta$ since the branch is
-      complete. By induction hypothesis,
-      $\mSat{M(\Delta)}{!B}[\sigma]$ and thus
-      $\mSat/{M(\Delta)}{\indfrm}[\sigma]$.}}
-  \item \indcase{!A}{!B \land !C}{\iftag{probAnd}{Exercise.}{If
-      $\sFmla{\True}{\indfrm}[\sigma] \in \Delta$, then both
-      $\sFmla{\True}{!B}[\sigma] \in \Delta$ and
-      $\sFmla{\True}{!C}[\sigma] \in \Delta$ since the branch is
-      complete. By induction hypothesis,
-      $\mSat{M(\Delta)}{!B}[\sigma]$ and
-      $\mSat{M(\Delta)}{!C}[\sigma]$. Thus
-      $\mSat{M(\Delta)}{\indfrm}[\sigma]$.
+      若 $\sFmla{\False}{\indfrm}[\sigma] \in \Delta$，则由于该分支是完全的，
+      $\sFmla{\True}{!B}[\sigma] \in \Delta$。根据归纳假设，
+      $\mSat{M(\Delta)}{!B}[\sigma]$，因此
+      $\mSat/{M(\Delta)}{\indfrm}[\sigma]$。}}
+  \item \indcase{!A}{!B \land !C}{\iftag{probAnd}{练习。}{若
+      $\sFmla{\True}{\indfrm}[\sigma] \in \Delta$，则由于该分支是完全的，既有
+      $\sFmla{\True}{!B}[\sigma] \in \Delta$ 也有
+      $\sFmla{\True}{!C}[\sigma] \in \Delta$。根据归纳假设，
+      $\mSat{M(\Delta)}{!B}[\sigma]$ 且
+      $\mSat{M(\Delta)}{!C}[\sigma]$。因此
+      $\mSat{M(\Delta)}{\indfrm}[\sigma]$。
 
-      If $\sFmla{\False}{\indfrm}[\sigma] \in \Delta$, then either
-      $\sFmla{\False}{!B}[\sigma] \in \Delta$ or
-      $\sFmla{\False}{!C}[\sigma] \in \Delta$ since the branch is
-      complete. By induction hypothesis, either
-      $\mSat/{M(\Delta)}{!B}[\sigma]$ or
-      $\mSat/{M(\Delta)}{!B}[\sigma]$. Thus
-      $\mSat/{M(\Delta)}{\indfrm}[\sigma]$.}}
-  \item \indcase{!A}{!B \lor !C}{\iftag{probOr}{Exercise.}{If
-      $\sFmla{\True}{\indfrm}[\sigma] \in \Delta$, then either
-      $\sFmla{\True}{!B}[\sigma] \in \Delta$ or
-      $\sFmla{\True}{!C}[\sigma] \in \Delta$ since the branch is
-      complete. By induction hypothesis, either
-      $\mSat{M(\Delta)}{!B}[\sigma]$ or
-      $\mSat{M(\Delta)}{!C}[\sigma]$. Thus
-      $\mSat{M(\Delta)}{\indfrm}[\sigma]$.
+      若 $\sFmla{\False}{\indfrm}[\sigma] \in \Delta$，则由于该分支是完全的，或者
+      $\sFmla{\False}{!B}[\sigma] \in \Delta$ 或者
+      $\sFmla{\False}{!C}[\sigma] \in \Delta$。根据归纳假设，或者
+      $\mSat/{M(\Delta)}{!B}[\sigma]$ 或者
+      $\mSat/{M(\Delta)}{!B}[\sigma]$。因此
+      $\mSat/{M(\Delta)}{\indfrm}[\sigma]$。}}
+  \item \indcase{!A}{!B \lor !C}{\iftag{probOr}{练习。}{若
+      $\sFmla{\True}{\indfrm}[\sigma] \in \Delta$，则由于该分支是完全的，或者
+      $\sFmla{\True}{!B}[\sigma] \in \Delta$ 或者
+      $\sFmla{\True}{!C}[\sigma] \in \Delta$。根据归纳假设，或者
+      $\mSat{M(\Delta)}{!B}[\sigma]$ 或者
+      $\mSat{M(\Delta)}{!C}[\sigma]$。因此
+      $\mSat{M(\Delta)}{\indfrm}[\sigma]$。
 
-      If $\sFmla{\False}{\indfrm}[\sigma] \in \Delta$, then both
-      $\sFmla{\False}{!B}[\sigma] \in \Delta$ and
-      $\sFmla{\False}{!C}[\sigma] \in \Delta$ since the branch is
-      complete. By induction hypothesis, both
-      $\mSat/{M(\Delta)}{!B}[\sigma]$ and
-      $\mSat/{M(\Delta)}{!B}[\sigma]$. Thus
-      $\mSat/{M(\Delta)}{\indfrm}[\sigma]$.}}
-  \item \indcase{!A}{!B \lif !C}{\iftag{probIf}{Exercise.}{If
-      $\sFmla{\True}{\indfrm}[\sigma] \in \Delta$, then either
-      $\sFmla{\False}{!B}[\sigma] \in \Delta$ or
-      $\sFmla{\True}{!C}[\sigma] \in \Delta$ since the branch is
-      complete. By induction hypothesis, either
-      $\mSat/{M(\Delta)}{!B}[\sigma]$ or
-      $\mSat{M(\Delta)}{!C}[\sigma]$. Thus
-      $\mSat{M(\Delta)}{\indfrm}[\sigma]$.
+      若 $\sFmla{\False}{\indfrm}[\sigma] \in \Delta$，则由于该分支是完全的，既有
+      $\sFmla{\False}{!B}[\sigma] \in \Delta$ 也有
+      $\sFmla{\False}{!C}[\sigma] \in \Delta$。根据归纳假设，既
+      $\mSat/{M(\Delta)}{!B}[\sigma]$ 也
+      $\mSat/{M(\Delta)}{!B}[\sigma]$。因此
+      $\mSat/{M(\Delta)}{\indfrm}[\sigma]$。}}
+  \item \indcase{!A}{!B \lif !C}{\iftag{probIf}{练习。}{若
+      $\sFmla{\True}{\indfrm}[\sigma] \in \Delta$，则由于该分支是完全的，或者
+      $\sFmla{\False}{!B}[\sigma] \in \Delta$ 或者
+      $\sFmla{\True}{!C}[\sigma] \in \Delta$。根据归纳假设，或者
+      $\mSat/{M(\Delta)}{!B}[\sigma]$ 或者
+      $\mSat{M(\Delta)}{!C}[\sigma]$。因此
+      $\mSat{M(\Delta)}{\indfrm}[\sigma]$。
 
-      If $\sFmla{\False}{\indfrm}[\sigma] \in \Delta$, then both
-      $\sFmla{\True}{!B}[\sigma] \in \Delta$ and
-      $\sFmla{\False}{!C}[\sigma] \in \Delta$ since the branch is
-      complete. By induction hypothesis, both
-      $\mSat{M(\Delta)}{!B}[\sigma]$ and
-      $\mSat/{M(\Delta)}{!B}[\sigma]$. Thus
-      $\mSat/{M(\Delta)}{\indfrm}[\sigma]$.}}
-  \item \indcase{!A}{\Box !B}{\iftag{probBox}{Exercise.}{If
-      $\sFmla{\True}{\indfrm}[\sigma] \in \Delta$, then, since the
-      branch is complete, $\sFmla{\True}{!B}[\sigma.n] \in \Delta$ for
-      every $\sigma.n$ used on the branch, i.e., for every $\sigma'
-      \in P(\Delta)$ such that $R\sigma\sigma'$.  By induction
-      hypothesis, $\mSat{M(\Delta)}{!B}[\sigma']$ for every $\sigma'$
-      such that $R\sigma\sigma'$. Therefore,
-      $\mSat{M(\Delta)}{\indfrm}[\sigma]$.
+      若 $\sFmla{\False}{\indfrm}[\sigma] \in \Delta$，则由于该分支是完全的，既有
+      $\sFmla{\True}{!B}[\sigma] \in \Delta$ 也有
+      $\sFmla{\False}{!C}[\sigma] \in \Delta$。根据归纳假设，既
+      $\mSat{M(\Delta)}{!B}[\sigma]$ 也
+      $\mSat/{M(\Delta)}{!B}[\sigma]$。因此
+      $\mSat/{M(\Delta)}{\indfrm}[\sigma]$。}}
+  \item \indcase{!A}{\Box !B}{\iftag{probBox}{练习。}{若
+      $\sFmla{\True}{\indfrm}[\sigma] \in \Delta$，则由于该分支是完全的，对分支上使用的每个 $\sigma.n$，即对每个满足 $R\sigma\sigma'$ 的 $\sigma' \in P(\Delta)$，都有 $\sFmla{\True}{!B}[\sigma.n] \in \Delta$。根据归纳假设，对每个满足 $R\sigma\sigma'$ 的 $\sigma'$，都有 $\mSat{M(\Delta)}{!B}[\sigma']$。因此，$\mSat{M(\Delta)}{\indfrm}[\sigma]$。
 
-      If $\sFmla{\False}{\indfrm}[\sigma] \in \Delta$, then for some
-      $\sigma.n$, $\sFmla{\False}{!B}[\sigma.n] \in \Delta$ since the
-      branch is complete.  By induction hypothesis,
-      $\mSat/{M(\Delta)}{!B}[\sigma.n]$.  Since $R\sigma(\sigma.n)$,
-      there is a~$\sigma'$ such that
-      $\mSat/{M(\Delta)}{!B}[\sigma']$. Thus
-      $\mSat/{M(\Delta)}{\indfrm}[\sigma]$.}}
-  \item \indcase{!A}{\Diamond !B}{\iftag{probDiamond}{Exercise.}{If
-      $\sFmla{\True}{\indfrm}[\sigma] \in \Delta$, then for some
-      $\sigma.n$, $\sFmla{\True}{!B}[\sigma.n] \in \Delta$ since the
-      branch is complete. By induction hypothesis,
-      $\mSat{M(\Delta)}{!B}[\sigma.n]$.  Since $R\sigma(\sigma.n)$,
-      there is a~$\sigma'$ such that
-      $\mSat{M(\Delta)}{!B}[\sigma']$. Thus
-      $\mSat{M(\Delta)}{\indfrm}[\sigma]$.
+      若 $\sFmla{\False}{\indfrm}[\sigma] \in \Delta$，则由于该分支是完全的，对某个 $\sigma.n$，有 $\sFmla{\False}{!B}[\sigma.n] \in \Delta$。根据归纳假设，$\mSat/{M(\Delta)}{!B}[\sigma.n]$。由于 $R\sigma(\sigma.n)$，存在一个~$\sigma'$ 使得 $\mSat/{M(\Delta)}{!B}[\sigma']$。因此 $\mSat/{M(\Delta)}{\indfrm}[\sigma]$。}}
+  \item \indcase{!A}{\Diamond !B}{\iftag{probDiamond}{练习。}{若
+      $\sFmla{\True}{\indfrm}[\sigma] \in \Delta$，则由于该分支是完全的，对某个 $\sigma.n$，有 $\sFmla{\True}{!B}[\sigma.n] \in \Delta$。根据归纳假设，$\mSat{M(\Delta)}{!B}[\sigma.n]$。由于 $R\sigma(\sigma.n)$，存在一个~$\sigma'$ 使得 $\mSat{M(\Delta)}{!B}[\sigma']$。因此 $\mSat{M(\Delta)}{\indfrm}[\sigma]$。
 
-      If $\sFmla{\False}{\indfrm}[\sigma] \in \Delta$, then, since the
-      branch is complete, $\sFmla{\False}{!B}[\sigma.n] \in \Delta$
-      for every $\sigma.n$ used on the branch, i.e., for every
-      $\sigma' \in P(\Delta)$ such that $R\sigma\sigma'$.  By
-      induction hypothesis, $\mSat/{M(\Delta)}{!B}[\sigma']$ for every
-      $\sigma'$ such that $R\sigma\sigma'$. Therefore,
-      $\mSat/{M(\Delta)}{\indfrm}[\sigma]$.}}
+      若 $\sFmla{\False}{\indfrm}[\sigma] \in \Delta$，则由于该分支是完全的，对分支上使用的每个 $\sigma.n$，即对每个满足 $R\sigma\sigma'$ 的 $\sigma' \in P(\Delta)$，都有 $\sFmla{\False}{!B}[\sigma.n] \in \Delta$。根据归纳假设，对每个满足 $R\sigma\sigma'$ 的 $\sigma'$，都有 $\mSat/{M(\Delta)}{!B}[\sigma']$。因此，$\mSat/{M(\Delta)}{\indfrm}[\sigma]$。}}
 \end{enumerate}
-Since $\Gamma \subseteq \Delta$, $\mSat{M(\Delta)}{\Gamma}$.
+由于 $\Gamma \subseteq \Delta$，故有 $\mSat{M(\Delta)}{\Gamma}$。
 \end{proof}
 
 \begin{prob}
-Complete the proof of \olref[nml][tab][cpl]{thm:tableau-completeness}.
+请完成 \olref[nml][tab][cpl]{thm:tableau-completeness} 的证明。
 \end{prob}
 
 \begin{cor}
 \ollabel{cor:entailment-completeness}
-If $\Gamma \Entails !A$ then $\Gamma \Proves !A$.
+若 $\Gamma \Entails !A$，则 $\Gamma \Proves !A$。
 \end{cor}
 
 \begin{cor}
 \ollabel{cor:weak-completeness}
-If $!A$ is true in all models, then $\Proves !A$.
+若 $!A$ 在所有模型中为真，则 $\Proves !A$。
 \end{cor}
 
 \end{document}

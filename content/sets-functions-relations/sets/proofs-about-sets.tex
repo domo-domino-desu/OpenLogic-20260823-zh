@@ -7,96 +7,46 @@
 \begin{document}
 
 \olfileid{sfr}{set}{prf}
-\olsection{Proofs about Sets}
+\olsection{关于集合的证明}
 
 \begin{editorial}
-This section is superseded by \verb|content/method/proofs| and has
-been removed from this chapter by default.
+本节已被 \verb|content/method/proofs| 替代，并已默认从本章移除。
 \end{editorial}
 
 \begin{explain}
-Sets and the notations we've introduced so far provide us with
-convenient shorthands for specifying sets and expressing relationships
-between them. Often it will also be necessary to prove claims about
-such relationships. If you're not familiar with mathematical proofs,
-this may be new to you. So we'll walk through a simple example. We'll
-prove that for any sets $X$ and $Y$, it's always the case that $X \cap
-(X \cup Y) = X$. How do you prove an identity between sets like this?
-Recall that sets are determined solely by their !!{element}s, i.e.,
-sets are identical iff they have the same !!{element}s. So in this
-case we have to prove that (a) every !!{element} of $X \cap (X \cup
-Y)$ is also an !!{element} of $X$ and, conversely, that (b) every
-!!{element} of $X$ is also an !!{element} of $X \cap (X \cup Y)$. In
-other words, we show that both (a) $X \cap (X \cup Y) \subseteq X$ and
-(b) $X \subseteq X \cap (X \cup Y)$.
+集合以及我们迄今引入的记号，为我们指定集合和表达集合之间的关系提供了简便的缩写。通常，我们还需要证明有关这些关系的断言。如果你不熟悉数学证明，这可能对你来说还很陌生。所以我们将通过一个简单的例子来逐步说明。我们将证明，对任意集合 $X$ 和 $Y$，总有 $X \cap (X \cup Y) = X$。如何证明像这样的集合恒等式呢？回想一下，集合完全由其元素决定，即，两个集合相等当且仅当它们具有相同的元素。所以在这种情况下，我们必须证明 $X \cap (X \cup Y)$ 的每个元素也是 $X$ 的元素，反之，$X$ 的每个元素也是 $X \cap (X \cup Y)$ 的元素。换句话说，我们要证明 $X \cap (X \cup Y) \subseteq X$ 且 $X \subseteq X \cap (X \cup Y)$。
 
-A proof of a general claim like ``every !!{element}~$z$ of $X \cap (X
-\cup Y)$ is also an !!{element} of $X$'' is proved by first assuming
-that an arbitrary $z \in X \cap (X \cup Y)$ is given, and proving from
-this assumption that $z \in X$. You may know this pattern as ``general
-conditional proof.''  In this proof we'll also have to make use of the
-definitions involved in the assumption and conclusion, e.g., in this
-case of ``$\cap$'' and ``$\cup$.''  So case (a) would be argued as
-follows:
+要证明“$X \cap (X \cup Y)$ 的每个元素~$z$ 也是 $X$ 的元素”这样的全称断言，方法是：先假设给定任意的 $z \in X \cap (X \cup Y)$，然后从该假设出发证明 $z \in X$。你可能知道这种模式被称为“一般条件句证明”。在这个证明中，我们还需要用到假设和结论中涉及的定义，例如本例中的“$\cap$”和“$\cup$”。因此，(a) 部分的论证如下：
 
 \begin{quote}
-(a) We first want to show that $X \cap (X \cup Y) \subseteq X$, i.e.,
-by definition of $\subseteq$, that if $z \in X \cap (X \cup Y)$ then
-$z \in X$, for any~$z$. So assume that $z \in X \cap (X \cup
-Y)$. Since $z$ is an !!{element} of the intersection of two sets iff
-it is an !!{element} of both sets, we can conclude that $z \in X$ and
-also $z \in X \cup Y$. In particular, $z \in X$, which is what
-we wanted to show.
+(a) 我们首先想证明 $X \cap (X \cup Y) \subseteq X$，即根据 $\subseteq$ 的定义，对任意~$z$，如果 $z \in X \cap (X \cup Y)$ 那么 $z \in X$。所以假设 $z \in X \cap (X \cup Y)$。因为一个元素属于两个集合的交集，当且仅当它同时属于这两个集合，所以我们可以得出结论：$z \in X$ 并且 $z \in X \cup Y$。特别地，$z \in X$，这正是我们要证明的。
 \end{quote}
 
-This completes the first half of the proof. Note that in the last
-step we used the fact that if a conjunction ($z \in X$ and $z \in X
-\cup Y$) follows from an assumption, each conjunct follows from that
-same assumption. You may know this rule as ``conjunction
-elimination,'' or $\land$Elim. Now let's prove (b):
+这就完成了证明的前一半。注意，在最后一步我们用到了这样一个事实：如果一个合取式（$z \in X$ 且 $z \in X \cup Y$）可以从一个假设推出，那么每个合取支也可以从同一个假设推出。你可能知道这条规则叫“合取消去”，或 $\land$Elim。现在我们来证明 (b)：
 
 \begin{quote}
-(b) We now prove that $X \subseteq X \cap (X \cup Y)$, i.e., by
-definition of $\subseteq$, that if $z \in X$ then also $z \in X \cap
-(X \cup Y)$, for any~$z$. Assume $z \in X$. To show that $z \in X
-\cap (X \cup Y)$, we have to show (by definition of ``$\cap$'') that
-(i) $z \in X$ and also (ii) $z \in X \cup Y$. Here (i) is just our
-assumption, so there is nothing further to prove. For (ii), recall that $z$
-is an !!{element} of a union of sets iff it is an !!{element} of at least
-one of those sets. Since $z \in X$, and $X \cup Y$ is the union of
-$X$ and $Y$, this is the case here. So $z \in X \cup Y$. We've shown
-both (i) $z \in X$ and (ii) $z \in X \cup Y$, hence, by definition of
-``$\cap$,'' $z \in X \cap (X \cup Y)$.
+(b) 我们现在证明 $X \subseteq X \cap (X \cup Y)$，即根据 $\subseteq$ 的定义，对任意~$z$，如果 $z \in X$ 那么也有 $z \in X \cap (X \cup Y)$。假设 $z \in X$。为了证明 $z \in X \cap (X \cup Y)$，我们需要证明（根据“$\cap$”的定义） (i) $z \in X$ 并且 (ii) $z \in X \cup Y$。这里的 (i) 正是我们的假设，所以无需再证。对于 (ii)，回想一下，一个元素属于若干集合的并集，当且仅当它至少属于这些集合中的一个。既然 $z \in X$，而 $X \cup Y$ 是 $X$ 和 $Y$ 的并集，因此这一条件成立。于是 $z \in X \cup Y$。我们已经证明了 (i) $z \in X$ 和 (ii) $z \in X \cup Y$，从而根据“$\cap$”的定义，$z \in X \cap (X \cup Y)$。
 \end{quote}
 
-This was somewhat long-winded, but it illustrates how we reason about
-sets and their relationships. We usually aren't this explicit; in
-particular, we might not repeat all the definitions. A proof of our
-result in a more advanced text would be much more compressed. It might
-look something like this.
+这有些冗长，但它展示了我们如何对集合及其关系进行推理。通常我们不会这么详细；特别是，我们可能不会重复所有的定义。在更高级的教材中，这个结果的证明会被压缩得多。它可能看起来像下面这样。
 \end{explain}
 
 
-\begin{prop}[Absorption]
-For all sets $X$, $Y$,
+\begin{prop}[吸收律]
+对所有集合 $X$, $Y$，
 \[
 X \cap (X \cup Y) = X
 \]
 \end{prop}
 
 \begin{proof}
-(a) Suppose $z \in X \cap (X \cup Y)$. Then $z \in X$, so $X \cap (X
-  \cup Y) \subseteq X$.
+(a) 假设 $z \in X \cap (X \cup Y)$。则 $z \in X$，故 $X \cap (X \cup Y) \subseteq X$。
 
-(b) Now suppose $z \in X$. Then also $z \in X \cup Y$, and therefore
-  also $z \in X \cap (X \cup Y)$. Thus, $X \subseteq X \cap (X \cup
-  Y)$.
+(b) 现设 $z \in X$。则 $z \in X \cup Y$，从而 $z \in X \cap (X \cup Y)$。于是，$X \subseteq X \cap (X \cup Y)$。
 \end{proof}
 
 \begin{prob}
-Prove in detail that $X \cup (X \cap Y) = X$. Then give a shortened,
-compressed proof. (Hint: for the $X \cup (X \cap Y) \subseteq X$
-direction you will need proof by cases, aka $\lor$Elim.)
+详细证明 $X \cup (X \cap Y) = X$。然后给出一个精简的证明。（提示：对于 $X \cup (X \cap Y) \subseteq X$ 的方向，需要用到分情况证明，即析取消去。）
 \end{prob}
 
 \end{document}

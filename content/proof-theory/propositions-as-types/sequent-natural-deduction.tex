@@ -1,28 +1,20 @@
-% part: intuitionistic-logic
-% chapter: propositions-as-types
-% section: sequent-natural-deduction
-
 \documentclass[../../../include/open-logic-section]{subfiles}
 
 \begin{document}
 
 \olfileid{int}{pty}{snd}
 
-\olsection{Sequent Natural Deduction}
+\olsection{相继式自然演绎}
 
-Let us write $\Gamma \Sequent !A$ if there is a natural deduction
-!!{derivation} with $\Gamma$ as !!{undischarged} assumptions and $!A$
-as conclusion; or $\Sequent !A$ if $\Gamma$ is empty.
+在见过% part: intuitionistic-logic之后，我们应当提一下另一种变体。Gentzen（根岑）将他的第一个证明系统称为``自然演绎''系统。但是他的`Hauptsatz'（主要定理）需要另一个系统，为此他发明了`相继式演算'这个名字。在该系统中，可推导的对象是相继式，即形如 % chapter: propositions-as-types 的表达式。Gentzen 用于经典逻辑的原始系统 LK 允许箭头两边都是有限集。对于直觉主义逻辑，他使用系统 LJ，其中右边被限制为至多一个公式。相继式 % chapter: propositions-as-types 与公式 % section: sequent-natural-deduction 具有相同的直观含义。这也意味着，单个公式 ↯ 等价于相继式 % chapter: propositions-as-types——因为按照这种解读，左边的空集意味着不允许任何假设，而右边的空集意味着必然的矛盾，也就是说，我们把它解读为是在断言一个矛盾。推导出这样的相继式，就构成了对矛盾的证明。对于经典逻辑，我们可以专注于那些右边恰好有一个公式的相继式。这是因为，如果 % chapter: propositions-as-types 是一个右边有 % section: sequent-natural-deduction 的相继式，那么它就等价于 % section: sequent-natural-deduction。这样的相继式被称为`单右式相继式'。
 
-We write $\Gamma, !A_1, \dots, !A_n$ for $\Gamma \cup \{!A_1, \dots,
-!A_n\}$, and $\Gamma, \Delta$ for $\Gamma \cup \Delta$.
+我们用 $\Gamma \Sequent !A$ 表示存在一个以 $\Gamma$ 为未解除假设、以 $!A$ 为结论的自然演绎推导；若 $\Gamma$ 为空，则写作 $\Sequent !A$。
 
-Observe that when we have $\Gamma \Sequent !A \land !A$, meaning we
-have !!a{derivation} with $\Gamma$ as !!{undischarged} assumptions and
-$!A \land !A$ as end-!!{formula}, then by applying $\Elim{\land}$ at
-the bottom, we can get !!a{derivation} with the same !!{undischarged}
-assumptions and $!A$ as conclusion. In other words, if $\Gamma
-\Sequent !A \land !B$, then $\Gamma \Sequent !A$.
+我们用 $\Gamma, !A_1, \dots, !A_n$ 表示 $\Gamma \cup \{!A_1, \dots,
+!A_n\}$，并用 $\Gamma, \Delta$ 表示 $\Gamma \cup \Delta$。
+
+注意，如果我们有 $\Gamma \Sequent !A \land !A$，即存在一个以 $\Gamma$ 为未解除假设、$!A \land !A$ 为终结公式的推导，那么在底部应用 $\Elim{\land}$，就能得到一个具有相同未解除假设且以 $!A$ 为结论的推导。换言之，如果 $\Gamma \Sequent !A \land !B$，那么 $\Gamma \Sequent !A$。
+
 \begin{prooftree}
   \Axiom$\Gamma \fCenter !A \land !B$
   \RightLabel{$\Elim{\land}$}
@@ -32,24 +24,18 @@ assumptions and $!A$ as conclusion. In other words, if $\Gamma
   \RightLabel{$\Elim{\land}$}
   \UnaryInf$\Gamma \fCenter !B$
 \end{prooftree}
-The label $\Elim{\land}$ hints at the relation with the rule of
-the same name in natural deduction.
 
-Likewise, suppose we have $\Gamma, !A \Sequent !B$, meaning we have
-!!a{derivation} with !!{undischarged} assumptions $\Gamma, !A$ and
-end-!!{formula}~$!B$. If we apply the $\Intro{\lif}$ rule, we have
-!!a{derivation} with $\Gamma$ as !!{undischarged} assumptions and $!A
-\lif !B$ as the end-!!{formula}, i.e., $\Gamma \Sequent !A \lif
-!B$. Note how this has made the !!{discharge} of assumptions more
-explicit.
+标签 $\Elim{\land}$ 提示了其与自然演绎中同名规则的关系。
+
+同样地，假设我们有 $\Gamma, !A \Sequent !B$，这意味着我们有一个以 $\Gamma, !A$ 为未解除假设、以~$!B$ 为终结公式的推导。如果我们应用 $\Intro{\lif}$ 规则，就能得到一个以 $\Gamma$ 为未解除假设、$!A \lif !B$ 为终结公式的推导，即 $\Gamma \Sequent !A \lif !B$。请注意，这使得假设的解除变得更为显式。
+
 \begin{prooftree}
   \Axiom $\Gamma, !A \fCenter !B$
   \RightLabel{$\Intro{\lif}$}
   \UnaryInf $\Gamma \fCenter !A \lif !B$
 \end{prooftree}
 
-We can draw conclusions from other rules in the same fashion, which is
-spelled out as follows:
+我们可以用同样的方式从其他规则得出推论，具体阐述如下：
 \begin{gather*}
   \Axiom $\Gamma \fCenter !A$
   \Axiom $\Delta \fCenter !B$
@@ -98,19 +84,14 @@ spelled out as follows:
   \DisplayProof
 \end{gather*}
 
-Any assumption by itself is !!a{derivation} of $!A$ from~$!A$, i.e.,
-we always have $!A \Sequent !A$.
+任何假设本身就是一个从~$!A$ 到~$!A$ 的推导，也就是说，我们总是有 $!A \Sequent !A$。
 
 \begin{prooftree}
   \AxiomC{$ $}
   \UnaryInfC{$!A \fCenter !A$}
 \end{prooftree}
 
-Together, these rules can be taken as a calculus about what natural
-deduction !!{derivation}s exist. They can also be taken as a
-notational variant of natural deduction, in which each step records
-not only the !!{formula} !!{derive}d but also the !!{undischarged}
-assumptions from which it was !!{derive}d.
+综合来看，这些规则可以被视为一个关于存在何种自然演绎推导的演算。它们也可以被视为自然演绎的一种记法变体，在这种变体中，每一步不仅记录了所推导出的公式，也记录了推导它所依赖的未解除的假设。
 
 \begin{prooftree}
   \Axiom$!A \fCenter !A$
@@ -123,6 +104,7 @@ assumptions from which it was !!{derive}d.
   \BinaryInf$(!B \fCenter \lfalse$
   \UnaryInf$\fCenter !B \lif \lfalse$
 \end{prooftree}
-where $!B$ is short for $(!A \lor (!A \lif \lfalse))\lif \lfalse$.
+
+其中 $!B$ 是 $(!A \lor (!A \lif \lfalse))\lif \lfalse$ 的简写。
 
 \end{document}

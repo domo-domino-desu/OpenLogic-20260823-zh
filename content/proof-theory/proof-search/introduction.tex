@@ -8,112 +8,24 @@
 
 \olfileid{pt}{ps}{int}
 
-\olsection{Introduction}
+\olsection{引言}
 
-The axioms and inference rules of !!{proof} systems like \Log{G3c} or
-\Log{N1i} define what trees of sequents or !!{formula}s count as
-correct !!{proof}s. Given such a tree of sequents or !!{formula}s
-(possibly with additional information such as which rules are applied
-at each step, or labels for assumptions and inference rules that
-discharge them) the definitions of axioms and rules allow us to check
-whether the given tree is a correct !!{proof}. It is a diferent, and
-typically more difficult, problem to \emph{find} !!a{proof} of a given
-sequent or of a given !!{formula} from given assumptions. That is the
-problem of \emph{proof search}.
+像 \Log{G3c} 或 \Log{N1i} 这样的推导系统，其公理和推理规则定义了哪些相继式树或公式树算作正确的推导。给定这样一棵相继式或公式树（可能还附带诸如每步应用了哪条规则、或为假设以及解除假设的推理规则所加的标记等额外信息），公理和规则的定义使我们能检查给定的树是否为正确的推导。而\emph{寻找}一个给定相继式的推导，或者从给定假设出发寻找给定公式的推导，则是一个不同的、通常也更困难的问题。这就是\emph{证明搜索}问题。
 
-There is a very simple-minded procedure for proof search. We can think
-of !!{formula}s as sequences of symbols from a finite alphabet.
-Sequents and trees of sequents or !!{formula}s can be thought of as
-sequences of !!{formula}s as well (perhaps using special brackets to
-indicate tree branching). The axioms and rules allow us to
-mechanically check if a sequence of symbols represents a correct
-!!{proof}. Consequently, we can mechanically generate \emph{all
-possible} correct !!{proof}s (by generating all sequences of symbols
-from the alphabet used to represent !!{proof}s and checking for each
-candidate sequence whether it represents a correct !!{proof}). The
-simple-minded proof search precedure is: generate all correct
-!!{proof}s until we find one that is a !!{proof} of the given sequent
-(or of the given !!{formula} with open assumptions among the given
-ones).
+有一个非常简单粗暴的证明搜索过程。我们可以将公式看作来自有限字母表的符号序列。相继式以及相继式或公式的树也可以视为公式的序列（或许要用特殊的括号来表示树的分支）。公理和规则使我们能够机械地检查一个符号序列是否表示一个正确的推导。因此，我们可以机械地生成\emph{所有可能的}正确推导（通过生成所有用该字母表表示推导的符号序列，并检查每个候选序列是否代表一个正确推导）。这种简单粗暴的证明搜索过程就是：生成所有正确的推导，直到我们找到一个推导，它是给定相继式（或者是其未解除假设包含在给定假设中的给定公式）的推导。
 
-A better method is to use the naive method you'd use to find
-!!a{proof} by hand: you start with the end-sequent, pick !!a{formula},
-and apply an inference rule ``backwards'' to generate a premise or
-premises which, if they had !!{proof}s, would combine with the last
-inference to !!a{proof} of the given sequent. A similar method
-(although more complicated) is what you'd use to find !!a{proof} in a
-natural deduction system.
+一个更好的方法是使用你手工寻找推导时会用到的朴素方法：你从目标相继式开始，选中一个公式，然后“逆向”应用一条推理规则，生成一个或多个前提；如果这些前提有推导，它们就能与最后这条推理步骤组合成给定相继式的一个推导。与你在自然演绎系统中寻找推导的方法类似（尽管更复杂）。
 
-But this method is not fool-proof: if you pick the wrong rule, or
-!!{formula}s in the wrong order, you may hit a dead end. It is also
-not completely specified: at each point, there may be more than one
-possible !!{formula} to chose, or more than one rule to apply
-backwards. A \emph{proof search algorithm} is a completely specified
-procedure that will find !!a{proof} if one exists (i.e., is
-fool-proof).
+但这个方法并非万无一失：如果你选错了规则，或者选错了公式的顺序，你可能会走进死胡同。它也不是完全确定的：在每一步，可能有不只一个公式可供选择，或者不只一条规则可以逆向应用。一个\emph{证明搜索算法}是一个完全确定的过程，它能在推导存在时（即万无一失地）找到一个推导。
 
-Some !!{proof} systems lend themselves to simpler proof search
-algorithms than others. In sequent systems, the !!{main operator} of
-!!a{formula}, and whether it occurs on the left or the right,
-determines which rule to apply backwards. E.g., if you want to find
-!!a{proof} of $\Gamma \Sequent \Delta, !A \land !B$ in which $!A \land
-!B$ occurs on the right, you should apply \RightR{\land} backwards and
-generate two corresponding premises $\Gamma \Sequent \Delta, !A$ and
-$\Gamma \Sequent \Delta, !B$. If your system is \Log{G1c}, however,
-the presence of contraction makes things more difficult because it
-gives you more options: You could also apply \RightR{\Contraction}
-backward and generate the premise $\Gamma \Sequent \Delta, !A \land
-!B, !A \land !B$ instead. And then the premise $\Gamma \Sequent
-\Delta, !A \land !B, !A \land !B, !A \land !B$, and so on. In
-\Log{G2c} it's even worse. Applying the rule \RightR{\land} backwards
-also means you have to guess $\Gamma_1$, $\Gamma_2$ such that $\Gamma
-= \Gamma_1 \cup \Gamma_2$ and $\Delta_1$, $\Delta_2$ such that $\Delta
-= \Delta_1 \cup \Delta_2$ and try your luck with the premises
-$\Gamma_1 \Sequent \Delta_1, !A$ and $\Gamma_2 \Sequent \Delta_2, !B$.
-A wrong guess might lead you into a dead end later on, and you'd have
-to backtrack to the beginning and pick different $\Gamma_1$,
-$\Gamma_2$, $\Delta_1$, $\Delta_2$. If the !!{formula} is $!A \lor !B$
-you have to chose one of the two possibilities for \RightR{\lor},
-producing one of the two possible premises $\Gamma \Sequent \Delta,
-!A$ or $\Gamma \Sequent \Delta, !B$. A wrong choice would again lead
-to having to backtrack.
+有些推导系统比其他系统更适合简单的证明搜索算法。在相继式系统中，一个公式的主联结词，以及它出现在左边还是右边，决定了应该逆向应用哪条规则。例如，如果你想寻找 $\Gamma \Sequent \Delta, !A \land !B$ 的一个推导，其中 $!A \land !B$ 出现在右边，你应该逆向应用 \RightR{\land}，并生成两个相应的前提 $\Gamma \Sequent \Delta, !A$ 和 $\Gamma \Sequent \Delta, !B$。然而，如果你的系统是 \Log{G1c}，收缩规则的存在会使事情变得更困难，因为它给了你更多选择：你也可以逆向应用 \RightR{\Contraction} 并生成前提 $\Gamma \Sequent \Delta, !A \land
+!B, !A \land !B$ 作为另一种选择。然后还可以生成前提 $\Gamma \Sequent
+\Delta, !A \land !B, !A \land !B, !A \land !B$，如此等等。在 \Log{G2c} 中情况甚至更糟。逆向应用规则 \RightR{\land} 还意味着你必须猜测 $\Gamma_1$, $\Gamma_2$ 使得 $\Gamma = \Gamma_1 \cup \Gamma_2$，以及 $\Delta_1$, $\Delta_2$ 使得 $\Delta = \Delta_1 \cup \Delta_2$，然后去尝试前提 $\Gamma_1 \Sequent \Delta_1, !A$ 和 $\Gamma_2 \Sequent \Delta_2, !B$。一个错误的猜测可能导致你后来走入死胡同，于是你必须回溯到起点，选择不同的 $\Gamma_1$, $\Gamma_2$, $\Delta_1$, $\Delta_2$。如果公式是 $!A \lor !B$，你必须为 \RightR{\lor} 从两种可能性中选择一种，产生两个可能前提中的一个：$\Gamma \Sequent \Delta, !A$ 或 $\Gamma \Sequent \Delta, !B$。错误的选择同样将导致必须回溯。
 
-The system \Log{G3c} does not have these problems. It has no
-structural rules, and the choice of inference rule is determined by
-the !!{main operator} and the side the !!{formula} occurs on. Hence,
-\Log{G3c} is better suited to proof search than \Log{G1c} or
-\Log{G2c}. A successful search will yield !!a{proof} in \Log{G3c}, and
-that !!{proof} can then be translated into \Log{G1c} or \Log{G2c} (or
-\Log{N1c} for that matter). So having a proof search algorithm for
-\Log{G3c} and translation algorithms for \Log{G3c} !!{proof}s to
-!!{proof}s in other systems also solves the proof search methods for
-those systems.
+系统 \Log{G3c} 没有这些问题。它没有结构规则，并且推理规则的选择完全由主联结词和公式出现的侧决定。因此，\Log{G3c} 比 \Log{G1c} 或 \Log{G2c} 更适合证明搜索。一次成功的搜索将产生一个 \Log{G3c} 推导，而这个推导随后可以被翻译成 \Log{G1c} 或 \Log{G2c}（就此而言，也可以是 \Log{N1c}）。所以，只要有了针对 \Log{G3c} 的证明搜索算法，以及将 \Log{G3c} 推导转换为其他系统推导的算法，也就解决了这些系统的证明搜索问题。
 
-How do we know that a proof search algorithm is fool-proof? This would
-involve showing that if the algorithm fails to find !!a{proof}, no
-!!{proof} can exist. After all, if we pick a bad algorithm, we might
-run into cases where it fails to find a proof even if one exists. This
-is not a problem the simple minded algorithm has, because it searches
-through all possible !!{proof}s. But a proof search algorithm is
-supposed to be efficient and expend the minimum amount of effort.
+我们怎么知道一个证明搜索算法是万无一失的呢？这需要证明：如果算法没能找到推导，那么根本就不存在推导。毕竟，如果我们选了一个糟糕的算法，就有可能遇到这种情况：即使证明存在，算法也找不到。这种简单粗暴的算法不会有这个问题，因为它会遍历所有可能的推导。但一个证明搜索算法应该是高效的，并且付出最少的努力。
 
-The key idea to showing that a proof search algorithm is fool-proof is
-to show that if the algorithm fails, we can show from the way it fails
-that the sequent can't possibly have !!a{proof}. And the way to show
-that is to show that it is not valid. In classical first-order logic,
-valid sequents $\Gamma \Sequent \Delta$ are those where every
-!!{structure} makes at least one !!{formula} in $\Gamma$ is false or
-at least one !!{formula} in~$\Delta$ is true. \Log{G3c} is
-\emph{sound}, i.e., it !!{prove}s only valid sequents. This is
-established by induction on !!{proof}s: Axioms are obvioulsy valid,
-and if the premises of a rule are valid, so is the conclusion. To show
-that a proof search algorithm is fool-proof we show that if the search
-for !!a{proof} of $\Gamma \Sequent \Delta$ fails, we can define
-!!a{structure} in which all !!{formula}s in $\Gamma$ are true and all
-!!{formula}s in~$\Delta$ are false. This also establishes that
-\Log{G3c} is \emph{complete}, i.e., that if $\Gamma \Sequent \Delta$
-is valid, there is a \Log{G3c}-!!{proof} of it. Since all failed
-proof searches show that $\Gamma \Sequent \Delta$ is invalid, every
-proof search for a valid sequent must succeed.
+证明一个证明搜索算法万无一失的关键思路在于表明：如果算法失败了，我们可以从其失败的方式中推断出该相继式不可能有推导。而证明这点的方法就是证明该相继式不是有效的。在经典一阶逻辑中，有效的相继式 $\Gamma \Sequent \Delta$ 是指对任何结构，$\Gamma$ 中至少有一个公式为假，或者 $\Delta$ 中至少有一个公式为真。\Log{G3c} 是\emph{可靠的}，也就是说，它只能推导出有效的相继式。这是通过对推导的结构作归纳来建立的：公理显然是有效的，并且如果一个规则的前提是有效的，那么其结论也是有效的。为了证明一个证明搜索算法是万无一失的，我们要证明：如果对 $\Gamma \Sequent \Delta$ 的推导搜索失败了，我们可以定义一个结构，使得 $\Gamma$ 中的所有公式都为真，而 $\Delta$ 中的所有公式都为假。这同样也确立了 \Log{G3c} 是\emph{完备的}，即如果 $\Gamma \Sequent \Delta$ 是有效的，那么就存在一个它的 \Log{G3c} 推导。由于所有失败的证明搜索都表明 $\Gamma \Sequent \Delta$ 是无效的，所以对任何有效相继式的证明搜索都必定成功。
 
 \end{document}

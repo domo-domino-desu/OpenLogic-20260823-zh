@@ -3,97 +3,81 @@
 \begin{document}
 
 \olfileid{sth}{ord-arithmetic}{add}
-\olsection{Ordinal Addition}
+\olsection{序数加法}
 
-Suppose we want to add $\alpha$ and $\beta$. We can simply put a
-{copy} of $\beta$ immediately after a copy of $\alpha$. (We need to
-take \emph{copies}, since we know from
-\olref[ordinals][basic]{ordinalsaresubsets} that either $\alpha
-\subseteq \beta$ or $\beta \subseteq \alpha$.) The intuitive effect of
-this is to run through an $\alpha$-sequence of steps, \emph{and then}
-to run through a $\beta$-sequence. The resulting sequence will be
-well-ordered; so by
-\olref[ordinals][ordtype]{thmOrdinalRepresentation} it is isomorphic
-to a (unique) ordinal. That ordinal can be regarded as the \emph{sum}
-of $\alpha$ and $\beta$. 
+假设我们要将 $\alpha$ 与 $\beta$ 相加。我们只需将 $\beta$ 的\emph{副本}直接置于 $\alpha$ 的副本之后。
+（我们需要取\emph{副本}，因为由
+\olref[ordinals][basic]{ordinalsaresubsets} 可知，要么 $\alpha
+\subseteq \beta$，要么 $\beta \subseteq \alpha$。）
+其直观效果是先遍历一个 $\alpha$-序列，\emph{然后再}遍历一个 $\beta$-序列。所得的序列将是良序的；
+因此根据
+\olref[ordinals][ordtype]{thmOrdinalRepresentation}，它同构于某个（唯一的）序数。该序数即可视为 $\alpha$ 与 $\beta$ 的\emph{和}。
 
-That is the intuitive idea behind ordinal addition. To define it
-rigorously, we start with the idea of taking \emph{copies} of sets.
-The idea here is to use arbitrary tags, $0$ and $1$, to keep track of
-which object came from where:
+这就是序数加法背后的直观想法。要严格地定义它，我们从取集合\emph{副本}的想法入手。这里的做法是使用任意的标签 $0$ 和 $1$，来标明对象的具体来源：
 
 \begin{defn}\ollabel{defdissum}
-The \emph{disjoint sum} of $A$ and $B$ is $A \disjointsum B = (A\times
-\{0\}) \cup (B \times \{1\})$.
+$A$ 与 $B$ 的\emph{不交并}是 $A \disjointsum B = (A\times
+\{0\}) \cup (B \times \{1\})$。
 \end{defn}
 
-We next define an ordering on pairs of ordinals:
+我们接下来在序数对上定义一个序：
 
 \begin{defn}
-For any ordinals $\alpha_1, \alpha_2, \beta_1, \beta_2$, say that:
+对任意序数 $\alpha_1, \alpha_2, \beta_1, \beta_2$，规定：
 \begin{align*}
-	\tuple{\alpha_1, \alpha_2} \rlexless \tuple{\beta_1, \beta_2}\text{ iff }& 
-	\text{either $\alpha_2 \in \beta_2$}\\
-	& \text{or both $\alpha_2 = \beta_2$ and $\alpha_1 \in \beta_1$}
+	\tuple{\alpha_1, \alpha_2} \rlexless \tuple{\beta_1, \beta_2}\text{ 当且仅当 }& 
+	\text{要么 $\alpha_2 \in \beta_2$}\\
+	& \text{要么两者 $\alpha_2 = \beta_2$ 且 $\alpha_1 \in \beta_1$}
 \end{align*} 
 \end{defn}
 
-This is a \emph{reverse lexicographic} ordering, since you order by
-the second element, then by the first. Now recall that we wanted to
-define $\alpha \ordplus \beta$ as the order type of a copy of $\alpha$
-followed by a copy of $\beta$. To achieve that, we say:
+这是一个\emph{逆字典序}，因为它是先按第二个元素排序，再按第一个元素排序。回想一下，我们希望将 $\alpha \ordplus \beta$ 定义为一个 $\alpha$ 的副本后跟一个 $\beta$ 的副本所构成的序型。为此，我们规定：
 
 \begin{defn}\ollabel{defordplus}
-For any ordinals $\alpha$, $\beta$, their sum is $\alpha \ordplus
-\beta = \ordtype{\alpha \disjointsum \beta, \rlexless}$.
+对任意序数 $\alpha$, $\beta$，它们的和是 $\alpha \ordplus
+\beta = \ordtype{\alpha \disjointsum \beta, \rlexless}$。
 \end{defn}
 \noindent
-Note that we slightly abused notation here; strictly we should write ``$\Setabs{\tuple{x,y}\in \alpha\disjointsum\beta}{x \rlexless y}$'' in place of ``$\rlexless$''. For brevity, though, we will continue to abuse notation in this way in what follows. 
+注意，此处我们略微滥用了记号；严格来讲，应当用“$\Setabs{\tuple{x,y}\in \alpha\disjointsum\beta}{x \rlexless y}$”代替“$\rlexless$”。但为简洁起见，下文我们将继续沿用此滥用记号的做法。
 
-The following result, together with
-\olref[ordinals][ordtype]{thmOrdinalRepresentation}, confirms that our
-definition is well-formed:
+以下结果与
+\olref[ordinals][ordtype]{thmOrdinalRepresentation} 一起，确认了我们的定义是良定的：
 
 \begin{lem}\ollabel{ordsumlessiswo} 
-$\tuple{\alpha \disjointsum \beta, \rlexless}$ is a well-order, for
-any ordinals $\alpha$ and $\beta$.
+对任意序数 $\alpha$ 和 $\beta$，$\tuple{\alpha \disjointsum \beta, \rlexless}$ 是一个良序。
 \end{lem}
 
 \begin{proof}
-Obviously $\rlexless$ is connected on $\alpha \disjointsum \beta$. To
-show it is well-founded, fix a non-empty $X \subseteq \alpha
-\disjointsum \beta$. Let $Y$ be the subset of $X$ whose second coordinate is as small as possible, i.e.\ $Y = \Setabs{\tuple{\gamma, i} \in X}{(\forall \tuple{\delta, j} \in X)i \leq j}$. Now choose the element of $Y$ with smallest first coordinate. 
+显然 $\rlexless$ 在 $\alpha \disjointsum \beta$ 上是连通的。为证明它是良基的，取定非空子集 $X \subseteq \alpha
+\disjointsum \beta$。令 $Y$ 为 $X$ 中第二坐标最小的那些元素组成的子集，即 $Y = \Setabs{\tuple{\gamma, i} \in X}{(\forall \tuple{\delta, j} \in X)i \leq j}$。然后选取 $Y$ 中第一坐标最小的元素。
 \end{proof}
 \noindent 
-So we have a nice, explicit definition of ordinal addition. Here is
-an unsurprising fact (recall that  $1 = \{0\}$, by
-\olref[z][infinity-again]{defnomega}):
+这样，我们便得到了一个优美且明确的序数加法定义。以下是一个并不令人意外的事实（回顾 \olref[z][infinity-again]{defnomega}，$1 = \{0\}$）：
 \begin{prop}
-$\alpha \ordplus  1 = \ordsucc{\alpha}$, for any ordinal $\alpha$.
+对任意序数 $\alpha$，有 $\alpha \ordplus  1 = \ordsucc{\alpha}$。
 \end{prop}
 
 \begin{proof}
-Consider the isomorphism $f$ from $\ordsucc{\alpha} = \alpha \cup
-\{\alpha\}$ to $\alpha\disjointsum1 = (\alpha \times \{0\})
-\disjointsum (\{0\} \times \{1\})$ given by $f(\gamma) =
-\tuple{\gamma, 0}$ for $\gamma \in \alpha$, and $f(\alpha) = \tuple{0,
-1}$.
+考虑从 $\ordsucc{\alpha} = \alpha \cup
+\{\alpha\}$ 到 $\alpha\disjointsum1 = (\alpha \times \{0\})
+\disjointsum (\{0\} \times \{1\})$ 的同构映射 $f$，其由 $f(\gamma) =
+\tuple{\gamma, 0}$（其中 $\gamma \in \alpha$）与 $f(\alpha) = \tuple{0,
+1}$ 给出。
 \end{proof}
 \noindent
-Moreover, it is easy to show that addition obeys certain recursive
-conditions:
+此外，不难证明加法满足以下递归条件：
 
 \begin{lem}\ollabel{ordadditionrecursion}
-For any ordinals $\alpha, \beta$, we have:
+对任意序数 $\alpha, \beta$，我们有：
 \begin{align*}
 	\alpha\ordplus 0 &= \alpha\\
 	\alpha \ordplus  (\beta\ordplus 1) &= (\alpha \ordplus  \beta) \ordplus  1\\
-	\alpha  \ordplus  \beta &= \supstrict_{\delta < \beta}(\alpha \ordplus  \delta) && \text{if $\beta $ is a limit ordinal}
+	\alpha  \ordplus  \beta &= \supstrict_{\delta < \beta}(\alpha \ordplus  \delta) && \text{若 $\beta $ 是极限序数}
 \end{align*}
 \end{lem}
 
 \begin{proof}
-We check case-by-case; first:
+我们逐项验证；首先：
 \begin{align*}
 	\alpha \ordplus  0 
 	& = \ordtype{(\alpha \times \{0\}) \cup (0 \times \{1\}), \rlexless} \\
@@ -105,67 +89,54 @@ We check case-by-case; first:
 	&= \ordtype{(\alpha\times \{0\}) \cup (\beta \times \{1\}), \rlexless} \ordplus 1\\
 	&= (\alpha \ordplus  \beta) \ordplus  1
 \end{align*}
-Now let $\beta \neq \emptyset$ be a limit. If $\delta < \beta$ then
-also $\delta\ordplus 1 < \beta$, so $\alpha \ordplus  \delta$ is a
-proper initial segment of $\alpha \ordplus  \beta$. So $\alpha
-\ordplus  \beta$ is a strict upper bound on $X = \Setabs{\alpha
-\ordplus  \delta}{\delta < \beta}$. Moreover, if $\alpha \leq \gamma <
-\alpha \ordplus  \beta$, then clearly $\gamma = \alpha \ordplus
-\delta$ for some $\delta < \beta$. So $\alpha \ordplus  \beta =
-\supstrict_{\delta< \beta}(\alpha\ordplus \delta)$.
+现设 $\beta \neq \emptyset$ 为极限序数。若 $\delta < \beta$，则亦有 $\delta\ordplus 1 < \beta$，从而 $\alpha \ordplus  \delta$ 是 $\alpha \ordplus  \beta$ 的真前段。因此 $\alpha
+\ordplus  \beta$ 是 $X = \Setabs{\alpha
+\ordplus  \delta}{\delta < \beta}$ 的严格上界。进一步，若 $\alpha \leq \gamma <
+\alpha \ordplus  \beta$，则显然存在某个 $\delta < \beta$ 使得 $\gamma = \alpha \ordplus
+\delta$。所以 $\alpha \ordplus  \beta =
+\supstrict_{\delta< \beta}(\alpha\ordplus \delta)$。
 \end{proof}
 
-But here is a striking fact. To define ordinal addition, we could
-\emph{instead} have simply used the Transfinite Recursion Theorem, and
-laid down the recursion equations, exactly as given in
-\olref{ordadditionrecursion} (though using ``$\ordsucc{\beta}$''
-rather than ``$\beta \ordplus 1$'').
+不过，这里有一个引人注目的事实。为了定义序数加法，我们\emph{也可以}简单地使用超限递归定理，直接列出递归方程，正如 \olref{ordadditionrecursion} 所给出的那样（只是用“$\ordsucc{\beta}$”而非“$\beta \ordplus 1$”）。
 
-There are, then, two different ways to define operations on the
-ordinals. We can define them \emph{synthetically}, by explicitly
-constructing a well-ordered set and considering its order type. Or we
-can define them \emph{recursively}, just by laying down the recursion
-equations. Done correctly, though, the outcome is identical. For
-\olref[ordinals][ordtype]{thmOrdinalRepresentation} guarantees
-that these recursion equations pin down \emph{unique} ordinals.
+因此，有两种不同的方式可以用来定义序数上的运算。我们可以\emph{综合地}定义它们，即显式地构造一个良序集并考察其序型；或者我们可以\emph{递归地}定义它们，只需列出递归方程即可。然而，只要处理得当，两者的结果完全相同。因为 \olref[ordinals][ordtype]{thmOrdinalRepresentation} 保证了这些递归方程确定的是\emph{唯一}的序数。
 
-In many ways, ordinal arithmetic behaves just like addition of the
-natural numbers. For example, we can prove the following:
+在许多方面，序数算术与自然数加法的表现相似。例如，我们可以证明以下结论：
 
 \begin{lem}\ollabel{ordinaladditionisnice}
-If $\alpha, \beta, \gamma$ are ordinals, then:
+若 $\alpha, \beta, \gamma$ 是序数，则：
 \begin{enumerate}
-	\item\ollabel{ordaddition1} if $\beta < \gamma$, then $\alpha
+	\item\ollabel{ordaddition1} 若 $\beta < \gamma$，则 $\alpha
 	\ordplus  \beta < \alpha \ordplus  \gamma$
-	\item\ollabel{ordaddition2} if $\alpha \ordplus  \beta =
-	\alpha\ordplus \gamma$, then $\beta = \gamma$
+	\item\ollabel{ordaddition2} 若 $\alpha \ordplus  \beta =
+	\alpha\ordplus \gamma$，则 $\beta = \gamma$
 	\item\ollabel{ordaddition3}  $\alpha \ordplus  (\beta \ordplus
-	\gamma) = (\alpha \ordplus  \beta) \ordplus  \gamma$, i.e.,
-	addition is associative
-	\item\ollabel{ordaddition4}  If $\alpha \leq \beta$, then $\alpha
+	\gamma) = (\alpha \ordplus  \beta) \ordplus  \gamma$，即加法满足结合律
+	\item\ollabel{ordaddition4}  若 $\alpha \leq \beta$，则 $\alpha
 	\ordplus  \gamma \leq \beta \ordplus \gamma$
 \end{enumerate}
 \end{lem}
 
 \begin{proof}
-We prove \olref{ordaddition3}, leaving the rest as an exercise. The
-proof is by Simple Transfinite Induction on $\gamma$, using
-\olref{ordadditionrecursion}. When $\gamma = 0$:
+我们证明 \olref{ordaddition3}，其余部分留作练习。
+证明对 $\gamma$ 进行简单超限归纳，并使用
+\olref{ordadditionrecursion}。
+当 $\gamma = 0$ 时：
 \[
 (\alpha \ordplus  \beta) \ordplus  0 = \alpha \ordplus  \beta  = \alpha \ordplus  (\beta \ordplus  0)
 \]
-When $\gamma = \delta\ordplus 1$, suppose for induction that $(\alpha
+当 $\gamma = \delta\ordplus 1$ 时，归纳假设 $(\alpha
 \ordplus  \beta) \ordplus  \delta = \alpha \ordplus  (\beta \ordplus
-\delta)$; now using \olref{ordadditionrecursion} three times:
+\delta)$；现三次应用 \olref{ordadditionrecursion}：
 \begin{align*}
 	(\alpha \ordplus  \beta) \ordplus  (\delta \ordplus  1) & = ((\alpha \ordplus  \beta) \ordplus  \delta)\ordplus 1\\
 	& = (\alpha \ordplus  (\beta \ordplus  \delta)) \ordplus  1\\
 	& = \alpha \ordplus  ((\beta \ordplus  \delta)\ordplus 1)\\
 	& = \alpha \ordplus  (\beta \ordplus  (\delta\ordplus 1))
 \end{align*}	
-When $\gamma$ is a limit ordinal, suppose for induction that if
-$\delta \in \gamma$ then $(\alpha \ordplus  \beta) \ordplus  \delta =
-\alpha \ordplus  (\beta \ordplus  \delta)$; now:
+当 $\gamma$ 是极限序数时，归纳假设若
+$\delta \in \gamma$ 则 $(\alpha \ordplus  \beta) \ordplus  \delta =
+\alpha \ordplus  (\beta \ordplus  \delta)$；现：
 \begin{align*}
 	(\alpha \ordplus  \beta) \ordplus  \gamma & = \supstrict_{\delta < \gamma}((\alpha \ordplus  \beta) \ordplus  \delta) \\
 	&= \supstrict_{\delta < \gamma}(\alpha \ordplus  (\beta \ordplus  \delta))\\
@@ -175,32 +146,24 @@ $\delta \in \gamma$ then $(\alpha \ordplus  \beta) \ordplus  \delta =
 \end{proof}
 
 \begin{prob}
-Prove the remainder of
-\olref[sth][ord-arithmetic][add]{ordinaladditionisnice}.
+证明
+\olref[sth][ord-arithmetic][add]{ordinaladditionisnice} 的其余部分。
 \end{prob}
 
-In these ways, ordinal addition should be very familiar. But, there is a crucial way in which ordinal addition is \emph{not} like addition on the natural numbers.
+就这些方面而言，序数加法应当让人感到十分熟悉。但在一个关键方面，序数加法\emph{并不}类似于自然数上的加法。
 
 \begin{prop}\ollabel{ordsumnotcommute}
-Ordinal addition is {not} commutative; $1 \ordplus  \omega = \omega <
-\omega \ordplus  1$.
+序数加法\emph{不}满足交换律；$1 \ordplus  \omega = \omega <
+\omega \ordplus  1$。
 \end{prop}
 
 \begin{proof}
-Note that $1 \ordplus  \omega = \supstrict_{n < \omega} (1 \ordplus n)
+注意到 $1 \ordplus  \omega = \supstrict_{n < \omega} (1 \ordplus n)
 = \omega \in \omega \cup \{\omega\} = \ordsucc{\omega} = \omega
-\ordplus  1$.
+\ordplus  1$。
 \end{proof}
 \noindent 
-Whilst this may initially come as a surprise, \emph{it shouldn't}. On
-the one hand, when you consider $1 \ordplus  \omega$, you are thinking
-about the order type you get by putting an extra element \emph{before}
-all the natural numbers. Reasoning as we did with Hilbert's Hotel in
-\olref[sfr][infinite][hilbert]{sec}, intuitively, this extra first
-element shouldn't make any difference to the overall order type. On
-the other hand, when you consider $\omega \ordplus  1$, you are
-thinking about the order type you get by putting an extra element
-\emph{after} all the natural numbers. And that's a radically different
-beast!
+虽然这起初可能令人惊讶，但其实\emph{不然}。一方面，当你考虑 $1 \ordplus  \omega$ 时，你思考的是在所有自然数\emph{之前}放置一个额外元素所得到的序型。正如我们在
+\olref[sfr][infinite][hilbert]{sec} 中对希尔伯特旅馆所作的推理那样，直观上看，这个额外的首元素不应改变整体的序型。另一方面，当你考虑 $\omega \ordplus  1$ 时，你思考的是在所有自然数\emph{之后}放置一个额外元素所得到的序型。那就截然不同了！
 
 \end{document}

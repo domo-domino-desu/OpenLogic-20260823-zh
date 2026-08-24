@@ -3,93 +3,75 @@
 \begin{document}
 
 \olfileid{sth}{spine}{Valphabasic}
-\olsection{Basic Properties of Stages}
+\olsection{层级的基本性质}
 
-To bring out the foundational importance of the definition of the
-$V_\alpha$s, we will present a few basic results about them. We start with a definition:\footnote{There's no standard terminology for ``potent''; this is the name used by \citet{ButtonLT1}.}
+为了揭示 $V_\alpha$ 定义的奠基性意义，我们将介绍关于它们的一些基本结果。首先给出一个定义：\footnote{“有能的”并非标准术语；这是 \citet{ButtonLT1} 使用的名称。}
+
 \begin{defn}
-	The set $A$ is \emph{potent} iff $\forall x((\exists y \in A)x \subseteq y \lif x \in A)$. 
+	集合 $A$ 是\emph{有能的}，当且仅当 $\forall x((\exists y \in A)x \subseteq y \lif x \in A)$。 
 \end{defn}
 \begin{lem}\ollabel{Valphabasicprops}
-For each ordinal $\alpha$:
+对每个序数 $\alpha$：
 \begin{enumerate}
-	\item\ollabel{Valphatrans} Each $V_\alpha$ is transitive.
-	\item\ollabel{Valphapotent} Each $V_\alpha$ is potent.
-	\item\ollabel{Valphacum} If $\gamma \in \alpha$, then $V_\gamma
-	\in V_\alpha$ (and hence also $V_\gamma \subseteq V_\alpha$ by
-	\olref{Valphatrans})
+	\item\ollabel{Valphatrans} 每个 $V_\alpha$ 都是传递的。
+	\item\ollabel{Valphapotent} 每个 $V_\alpha$ 都是有能的。
+	\item\ollabel{Valphacum} 若 $\gamma \in \alpha$，则 $V_\gamma
+	\in V_\alpha$（从而由 \olref{Valphatrans} 亦有 $V_\gamma \subseteq V_\alpha$）。
 \end{enumerate}
 \end{lem}
 
 \begin{proof}
-We prove this by a (simultaneous) transfinite induction.  For
-induction, suppose that \olref{Valphatrans}--\olref{Valphacum} holds
-for each ordinal $\beta < \alpha$. 
+我们通过（同时）超限归纳法来证明。归纳假设：对每个序数 $\beta < \alpha$，\olref{Valphatrans}--\olref{Valphacum} 成立。 
 
-The case of $\alpha = \emptyset$ is trivial. 
+当 $\alpha = \emptyset$ 时是平凡的。 
 
-Suppose $\alpha = \ordsucc{\beta}$. To show \olref{Valphacum}, if
-$\gamma \in \alpha$ then $V_\gamma \subseteq V_\beta$ by hypothesis,
-so $V_\gamma \in \Pow{V_\beta} = V_\alpha$. To show
-\olref{Valphapotent}, suppose $A \subseteq B \in V_\alpha$ i.e., $A
-\subseteq B \subseteq V_\beta$; then $A \subseteq V_\beta$ so $A \in
-V_\alpha$. To show \olref{Valphatrans}, note that if $x \in A \in
-V_\alpha$ we have $A \subseteq V_\beta$, so $x \in V_\beta$, so $x
-\subseteq V_\beta$ as $V_\beta$ is transitive by hypothesis, and so $x
-\in V_\alpha$. 
+设 $\alpha = \ordsucc{\beta}$。要证 \olref{Valphacum}：若
+$\gamma \in \alpha$，则由归纳假设有 $V_\gamma \subseteq V_\beta$，
+故 $V_\gamma \in \Pow{V_\beta} = V_\alpha$。要证
+\olref{Valphapotent}：设 $A \subseteq B \in V_\alpha$，即 $A
+\subseteq B \subseteq V_\beta$，则 $A \subseteq V_\beta$，于是 $A \in
+V_\alpha$。要证 \olref{Valphatrans}：若 $x \in A \in
+V_\alpha$，我们有 $A \subseteq V_\beta$，故 $x \in V_\beta$；而由归纳假设 $V_\beta$ 是传递的，所以 $x
+\subseteq V_\beta$，从而 $x \in V_\alpha$。 
 
-Suppose $\alpha$ is  a limit ordinal. To show \olref{Valphacum}, if
-$\gamma \in \alpha$ then $\gamma \in \ordsucc{\gamma} \in \alpha$, so
-that $V_\gamma \in V_{\ordsucc{\gamma}}$ by assumption, hence
-$V_\gamma \in \bigcup_{\beta \in \alpha} V_\beta = V_\alpha$. To show
-\olref{Valphatrans} and \olref{Valphapotent}, just observe that a
-union of transitive (respectively, potent) sets is transitive
-(respectively, potent). 
+设 $\alpha$ 是极限序数。要证 \olref{Valphacum}：若
+$\gamma \in \alpha$，则 $\gamma \in \ordsucc{\gamma} \in \alpha$，于是由归纳假设 $V_\gamma \in V_{\ordsucc{\gamma}}$，从而
+$V_\gamma \in \bigcup_{\beta \in \alpha} V_\beta = V_\alpha$。要证
+\olref{Valphatrans} 和 \olref{Valphapotent}：只需注意到传递集合的并集仍是传递的，有能集合的并集仍是有能的。 
 \end{proof}
 
 \begin{lem}\ollabel{Valphanotref}
-For each ordinal $\alpha$, $V_\alpha \notin V_\alpha$.
+对每个序数 $\alpha$，$V_\alpha \notin V_\alpha$。
 \end{lem}
 
 \begin{proof}
-By transfinite induction. Evidently $V_\emptyset \notin V_\emptyset$. 
+由超限归纳法。显然 $V_\emptyset \notin V_\emptyset$。 
 
-If $V_{\ordsucc{\alpha}} \in V_{\ordsucc{\alpha}} = \Pow{V_\alpha}$,
-then $V_{\ordsucc{\alpha}} \subseteq V_\alpha$; and since $V_\alpha
-\in V_{\ordsucc{\alpha}}$ by \olref{Valphabasicprops}, we have
-$V_\alpha \in V_\alpha$. Conversely: if $V_\alpha \notin V_\alpha$
-then $V_{\ordsucc{\alpha}} \notin V_{\ordsucc{\alpha}}$
+若 $V_{\ordsucc{\alpha}} \in V_{\ordsucc{\alpha}} = \Pow{V_\alpha}$，
+则 $V_{\ordsucc{\alpha}} \subseteq V_\alpha$；而由 \olref{Valphabasicprops} 知 $V_\alpha
+\in V_{\ordsucc{\alpha}}$，即得 $V_\alpha \in V_\alpha$。反之，若 $V_\alpha \notin V_\alpha$
+则 $V_{\ordsucc{\alpha}} \notin V_{\ordsucc{\alpha}}$。
 
-If $\alpha$ is a limit and $V_\alpha \in V_\alpha = \bigcup_{\beta \in
-\alpha}V_\beta$, then $V_\alpha \in V_\beta$ for some $\beta \in
-\alpha$; but then also $V_\beta \in V_\alpha$ so that $V_\beta \in
-V_\beta$ by \olref{Valphabasicprops} (twice). Conversely, if $V_\beta
-\notin V_\beta$ for all $\beta \in \alpha$, then $V_\alpha \notin
-V_\alpha$.
+若 $\alpha$ 是极限序数且 $V_\alpha \in V_\alpha = \bigcup_{\beta \in
+\alpha}V_\beta$，则存在 $\beta \in \alpha$ 使得 $V_\alpha \in V_\beta$；但此时亦有 $V_\beta \in V_\alpha$，故由 \olref{Valphabasicprops}（两次）得 $V_\beta \in
+V_\beta$。反之，若对所有 $\beta \in \alpha$ 均有 $V_\beta \notin
+V_\beta$，则 $V_\alpha \notin V_\alpha$。
 \end{proof}
 
 \begin{cor}
-For any ordinals $\alpha, \beta$: $\alpha \in \beta$ iff $V_\alpha \in V_\beta$
+对任意序数 $\alpha, \beta$：$\alpha \in \beta$ 当且仅当 $V_\alpha \in V_\beta$。
 \end{cor}
 
 \begin{proof}
-\Olref{Valphabasicprops} gives one direction. Conversely, suppose $V_\alpha \in V_\beta$. Then $\alpha \neq \beta$ by \olref{Valphanotref}; and $\beta \notin \alpha$, for otherwise we would have $V_\beta \in V_\alpha$ and hence $V_\beta \in V_\beta$ by \olref{Valphabasicprops} (twice), contradicting \olref{Valphanotref}. So $\alpha \in \beta$ by Trichotomy.
+\Olref{Valphabasicprops} 给出了其中一个方向。反之，假设 $V_\alpha \in V_\beta$。则由 \olref{Valphanotref} 知 $\alpha \neq \beta$；且 $\beta \notin \alpha$，否则将有 $V_\beta \in V_\alpha$，从而由 \olref{Valphabasicprops}（两次）得 $V_\beta \in V_\beta$，与 \olref{Valphanotref} 矛盾。故由三分律得 $\alpha \in \beta$。
 \end{proof}
 \noindent
-All of this allows us to think of each $V_\alpha$ as the $\alpha$th
-stage of the hierarchy. Here is why.
+以上结果使我们得以将每个 $V_\alpha$ 视为该层级的第 $\alpha$th
+阶段。原因如下。
 
-Certainly our $V_\alpha$s can be thought of as being formed in an
-\emph{iterative} process, for our use of ordinals tracks the notion of
-iteration. Moreover, if one stage is formed before the other, i.e.,
-$V_\beta \in V_\alpha$, i.e., $\beta \in \alpha$, then our process of
-formation is \emph{cumulative}, since $V_\beta \subseteq V_\alpha$.
-Finally, we are indeed forming \emph{all} possible collections of sets
-that were available at any earlier stage, since any successor stage
-$V_{\ordsucc{\alpha}}$ is the power-set of its predecessor $V_\alpha$.
+显然，我们的 $V_\alpha$ 可以看作是在一个\emph{迭代}过程中形成的，因为我们对序数的使用恰好反映了迭代的概念。此外，若一个阶段在另一个阶段之前形成，即 $V_\beta \in V_\alpha$，亦即 $\beta \in \alpha$，则我们的形成过程是\emph{累积的}，因为 $V_\beta \subseteq V_\alpha$。最后，我们确实构成了在先前任何阶段中可用的\emph{所有}集合的汇集，因为任何后继阶段
+$V_{\ordsucc{\alpha}}$ 都是其前驱 $V_\alpha$ 的幂集。
 
-In short: with $\ZFminus$, we are \emph{almost} done, in articulating
-our vision of the cumulative-iterative hierarchy of sets. (Though, of
-course, we still need to justify Replacement.)
+简而言之：借助 $\ZFminus$，我们\emph{几乎}已经阐明了集合的累积迭代层级这一图景。（当然，我们仍需证成替换公理模式。）
 
 \end{document}

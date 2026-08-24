@@ -7,53 +7,46 @@
 \begin{document}
 
 \olfileid{inc}{req}{pri}
-\olsection{Simulating Primitive Recursion}
+\olsection{模拟原始递归}
 
-Now we can show that definition by primitive recursion can be
-``simulated'' by regular minimization using the beta function. Suppose
-we have $f(\vec x)$ and $g(\vec x, y, z)$. Then the function~$h(x,\vec
-z)$ defined from $f$ and~$g$ by primitive recursion is
+现在我们可以证明，利用 beta 函数，原始递归定义可以被正则极小化“模拟”。
+假设我们有 $f(\vec x)$ 和 $g(\vec x, y, z)$。
+那么由 $f$ 和~$g$ 通过原始递归定义的函数~$h(x,\vec z)$ 为
 \begin{align*}
 h(\vec x, 0) & =  f(\vec x) \\
 h(\vec x, y+1) & =  g(\vec x, y, h(\vec x, y)).
 \end{align*}
-We need to show that $h$ can be defined from $f$ and~$g$ using just
-composition and regular minimization, using the basic functions and
-functions defined from them using composition and regular minimization
-(such as~$\beta$).
+我们需要证明，$h$ 可以仅用复合和正则极小化从 $f$ 和~$g$ 定义出来，
+所用的函数包括基本函数以及从它们出发通过复合和正则极小化定义的函数（例如~$\beta$）。
 
 \begin{lem}
 \ollabel{lem:prim-rec}
-If $h$ can be defined from $f$ and $g$ using primitive recursion, it
-can be defined from $f$, $g$, the functions $\Zero$, $\Succ$,
-$\Proj{n}{i}$, $\Add$, $\Mult$, $\Char{=}$, using composition and
-regular minimization.
+如果 $h$ 可以由 $f$ 和 $g$ 利用原始递归定义，
+那么它也可以从 $f$、$g$ 以及函数 $\Zero$、$\Succ$、$\Proj{n}{i}$、$\Add$、$\Mult$、$\Char{=}$ 出发，
+利用复合和正则极小化定义出来。
 \end{lem}
 
 \begin{proof}
-First, define an auxiliary function $\hat h(\vec x, y)$ which returns
-the least number~$d$ such that $d$ codes a sequence which satisfies
+首先，定义一个辅助函数 $\hat h(\vec x, y)$，它返回最小的数~$d$，使得 $d$ 编码一个满足下列条件的序列：
 \begin{enumerate}
-\item $(d)_0 = f(\vec x)$, and
-\item for each $i < y$, $(d)_{i+1} = g(\vec x, i, (d)_i)$,
+\item $(d)_0 = f(\vec x)$，并且
+\item 对每个 $i < y$，$(d)_{i+1} = g(\vec x, i, (d)_i)$，
 \end{enumerate}
-where now $(d)_i$ is short for $\beta(d,i)$. In other words, $\hat h$
-returns the sequence $\tuple{h(\vec x, 0), h(\vec x, 1), \dots, h(\vec
-x, y)}$. We can write $\hat h$ as
+其中 $(d)_i$ 是 $\beta(d,i)$ 的简写。换言之，$\hat h$ 返回序列 $\tuple{h(\vec x, 0), h(\vec x, 1), \dots, h(\vec
+x, y)}$。
+我们可以将 $\hat h$ 写成
 \[
 \hat h(\vec x, y) = \umin{d}{(\beta(d,0) = f(\vec x) \land \bforall{i <
   y}{\beta(d,i+1) = g(\vec x, i,\beta(d,i)})}.
 \]
-Note: no primitive recursion is needed here, just minimization. The
-function we minimize is regular because of the beta function lemma
-\olref[bet]{lem:beta}.
+注意：这里不需要原始递归，只需要极小化。
+根据 beta 函数引理 \olref[bet]{lem:beta}，被极小化的函数是正则的。
 
-But now we have
+但现在我们有
 \[
 h(\vec x, y) = \beta(\hat h(\vec x, y), y),
 \]
-so $h$ can be defined from the basic functions using just composition
-and regular minimization.
+因此，$h$ 可以仅用复合和正则极小化从基本函数定义出来。
 \end{proof}
 
 \end{document}

@@ -7,27 +7,19 @@
 \begin{document}
 
 \olfileid{inc}{art}{trm}
-\olsection{Coding Terms}
+\olsection{项的编码}
 
 \begin{explain}
-A term is simply a certain kind of sequence of symbols: it is built up
-inductively from constants and variables according to the formation
-rules for terms.  Since sequences of symbols can be coded as
-numbers---using a coding scheme for the symbols plus a way to code
-sequences of numbers---assigning G\"odel numbers to terms is not
-difficult.  The challenge is rather to show that the property a number
-has if it is the G\"odel number of a correctly formed term is
-computable, or in fact primitive recursive.
+项本质上是一种特定的符号序列：它是根据项的形成规则，从常项和变元归纳生成的。
+既然符号序列可以编码为数字——使用符号的编码方案以及数字序列的编码方法——为项指派哥德尔数并不困难。
+真正的挑战在于证明一个数是某个合法项的哥德尔数这一性质是可计算的（事实上是原始递归的）。
 \end{explain}
 
-!!^{variable}s and !!{constant}s are the simplest terms, and testing
-whether $x$ is the G\"odel number of such a term is easy:
-$\fn{Var}(x)$ holds if $x$ is $\Gn{\Obj v_i}$ for some~$i$. In other words,
-$x$~is a sequence of length~$1$ and its single element $(x)_0$ is the
-code of some !!{variable}~$\Obj v_i$, i.e., $x$ is $\tuple{\tuple{1, i}}$ for
-some~$i$. Similarly, $\fn{Const}(x)$ holds if $x$ is $\Gn{\Obj c_i}$ for
-some~$i$. Both of these relations are primitive recursive, since if
-such an $i$ exists, it must be $< x$:
+变元和常项符号是最简单的项，检验 $x$ 是否是这类项的哥德尔数很容易：
+$\fn{Var}(x)$ 成立当且仅当 $x$ 是某个 $\Gn{\Obj v_i}$。换言之，
+$x$ 是长度为 $1$ 的序列，且其唯一元素 $(x)_0$ 是某个变元 $\Obj v_i$ 的编码，即存在 $i$ 使得 $x$ 是 $\tuple{\tuple{1, i}}$。
+类似地，$\fn{Const}(x)$ 成立当且仅当 $x$ 是某个 $\Gn{\Obj c_i}$。
+这两个关系都是原始递归的，因为如果这样的 $i$ 存在，它必定满足 $i < x$：
 \begin{align*}
   \fn{Var}(x) & \defiff \bexists{i<x}{x = \tuple{\tuple{1, i}}}\\
   \fn{Const}(x) & \defiff \bexists{i<x}{x = \tuple{\tuple{2, i}}}
@@ -35,75 +27,53 @@ such an $i$ exists, it must be $< x$:
 
 \begin{prop}
 \ollabel{prop:term-primrec}
-The relations $\fn{Term}(x)$ and $\fn{ClTerm}(x)$ which hold iff $x$
-is the G\"odel number of a term or a closed term, respectively, are
-primitive recursive.
+关系 $\fn{Term}(x)$ 和 $\fn{ClTerm}(x)$ 是原始递归的，它们分别当且仅当 $x$
+是一个项或一个闭项的哥德尔数时成立。
 \end{prop}
 
 \begin{proof}
-A sequence of symbols~$s$ is a term iff there is a sequence~$s_0$,
-\dots, $s_{k-1} = s$ of terms which records how the term~$s$ was formed
-from !!{constant}s and !!{variable}s according to the formation rules
-for terms. To express that such a putative formation sequence follows
-the formation rules it has to be the case that, for each $i < k$, either
+一个符号序列 $s$ 是项，当且仅当存在一个项的序列 $s_0$, \dots,
+$s_{k-1} = s$，记录了项 $s$ 是如何根据项的形成规则从常项符号和变元生成的。
+要表达这样一个假定的构造序列遵循形成规则，就必须有：对每个 $i < k$，下列情况之一成立：
 \begin{enumerate}
-\item $s_i$ is !!a{variable}~$\Obj v_j$, or
-\item $s_i$ is !!a{constant}~$\Obj c_j$, or
-\item $s_i$ is built from $n$ terms $t_1$, \dots, $t_n$ occurring
-  prior to place~$i$ using an $n$-place !!{function}~$\Obj f^n_j$.
+\item $s_i$ 是一个变元 $\Obj v_j$，或者
+\item $s_i$ 是一个常项符号 $\Obj c_j$，或者
+\item $s_i$ 由 $n$ 个出现在位置 $i$ 之前的项 $t_1$, \dots, $t_n$ 通过一个 $n$ 元函数符号 $\Obj f^n_j$ 构建而成。
 \end{enumerate}
-To show that the corresponding relation on G\"odel numbers is
-primitive recursive, we have to express this condition primitive
-recursively, i.e., using primitive recursive functions, relations, and
-bounded quantification.
+为了证明相应的哥德尔数上的关系是原始递归的，我们必须用原始递归的方式表达这个条件，即使用原始递归函数、关系和有界量词。
 
-Suppose $y$ is the number that codes the sequence $s_0$, \dots, $s_{k-1}$,
-i.e., $y = \tuple{\Gn{s_0}, \dots, \Gn{s_{k-1}}}$.  It codes a formation
-sequence for the term with G\"odel number~$x$ iff for all $i < k$:
+假设 $y$ 是编码序列 $s_0$, \dots, $s_{k-1}$ 的数，即 $y = \tuple{\Gn{s_0}, \dots, \Gn{s_{k-1}}}$。它编码了哥德尔数为 $x$ 的项的一个构造序列，当且仅当对所有 $i < k$：
 \begin{enumerate}
-\item $\fn{Var}((y)_i)$, or
-\item $\fn{Const}((y)_i)$, or
-\item there is an $n$ and a number~$z = \tuple{z_1, \dots, z_n}$ such
-  that each $z_l$ is equal to some $(y)_{i'}$ for $i' < i$ and
+\item $\fn{Var}((y)_i)$，或者
+\item $\fn{Const}((y)_i)$，或者
+\item 存在 $n$ 和一个数 $z = \tuple{z_1, \dots, z_n}$，使得
+  每个 $z_l$ 等于某个 $(y)_{i'}$（其中 $i' < i$）并且
 \[
 (y)_i = \Gn{\Obj f^n_j(} \concat \fn{flatten}(z) \concat \Gn{)},
 \]
 \end{enumerate}
-and moreover $(y)_{k-1} = x$.  (The function $\fn{flatten}(z)$ turns
-the sequence $\tuple{\Gn{t_1}, \dots, \Gn{t_n}}$ into $\Gn{t_1, \dots,
-  t_n}$ and is primitive recursive.)
+此外 $(y)_{k-1} = x$。（函数 $\fn{flatten}(z)$ 将序列 $\tuple{\Gn{t_1}, \dots, \Gn{t_n}}$ 转换为 $\Gn{t_1, \dots,
+  t_n}$，并且是原始递归的。）
 
-The indices $j$, $n$, the G\"odel numbers $z_l$ of the terms $t_l$,
-and the code~$z$ of the sequence~$\tuple{z_1, \dots, z_n}$, in (3) are
-all less than~$y$.  We can replace $k$ above with $\len{y}$.  Hence we
-can express ``$y$ is the code of a formation sequence of the term with
-G\"odel number~$x$'' in a way that shows that this relation is
-primitive recursive.
+在条件 (3) 中，下标 $j$, $n$，项 $t_l$ 的哥德尔数 $z_l$，以及序列 $\tuple{z_1, \dots, z_n}$ 的编码 $z$，都小于 $y$。
+我们可以用 $\len{y}$ 替换上面的 $k$。因此，我们可以用一种表明该关系是原始递归的方式来表达“$y$ 是哥德尔数为 $x$ 的项的构造序列的编码”。
 
-We now just have to convince ourselves that there is a primitive
-recursive bound on~$y$.  But if $x$ is the G\"odel number of a term,
-it must have a formation sequence with at most $\len{x}$ terms (since
-every term in the formation sequence of~$s$ must start at some place
-in~$s$, and no two subterms can start at the same place).  The G\"odel
-number of each subterm of~$s$ is of course $\le x$.  Hence, there
-always is a formation sequence with code $\le p_{k-1}^{k(x+1)}$, where
-$k=\len{x}$.
+现在我们只需确认存在关于 $y$ 的原始递归上界。但如果 $x$ 是某个项的哥德尔数，它必然有一个最多包含 $\len{x}$ 个项的构造序列（因为 $s$ 的构造序列中的每个项都必须在 $s$ 中的某个位置起始，且任意两个子项的起始位置不能相同）。
+当然，$s$ 的每个子项的哥德尔数都 $\le x$。因此，总存在一个编码为 $\le p_{k-1}^{k(x+1)}$ 的构造序列，其中 $k=\len{x}$。
 
-For $\fn{ClTerm}$, simply leave out the clause for !!{variable}s.
+对于 $\fn{ClTerm}$，只需去掉关于变元的条款。
 \end{proof}
 
 \begin{prob}
-Show that the function $\fn{flatten}(z)$, which turns the sequence
-$\tuple{\Gn{t_1}, \dots, \Gn{t_n}}$ into $\Gn{t_1, \dots, t_n}$, is
-primitive recursive.
+证明函数 $\fn{flatten}(z)$ 是原始递归的，该函数将序列 $\tuple{\Gn{t_1}, \dots, \Gn{t_n}}$ 转换为 $\Gn{t_1, \dots, t_n}$。
 \end{prob}
 
 \begin{prop}\ollabel{prop:num-primrec}
-  The function $\fn{num}(n) = \Gn{\num{n}}$ is primitive recursive.
+  函数 $\fn{num}(n) = \Gn{\num{n}}$ 是原始递归的。
 \end{prop}
 
 \begin{proof}
-  We define $\fn{num}(n)$ by primitive recursion:
+  我们通过原始递归定义 $\fn{num}(n)$：
   \begin{align*}
     \fn{num}(0) & = \Gn{\Obj 0}\\
     \fn{num}(n+1) & = \Gn{\prime(} \concat \fn{num}(n) \concat \Gn{)}.
