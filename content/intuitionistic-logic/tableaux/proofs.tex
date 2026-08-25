@@ -5,7 +5,7 @@
 \olfileid{int}{tab}{prf}
 
 % Part: intuitionistic-logic
-如 \olref{int}{tab}{mon} 中所述，直觉主义 克里普克 模型中的满足关系是单调的：如果 $\mathfrak{M}, \Gamma \models !A$ 且 $\Gamma R \Delta$，则 $\mathfrak{M}, \Delta \models !A$。我们现在通过对~$!A$ 的结构归纳来证明这一点。
+如 \olref{int}{tab}{mon} 中所述，直觉主义 Kripke 模型中的满足关系是单调的：如果 $\mathfrak{M}, \Gamma \models !A$ 且 $\Gamma R \Delta$，则 $\mathfrak{M}, \Delta \models !A$。我们现在通过对~$!A$ 的结构归纳来证明这一点。
 
 \paragraph{归纳基始：}如果 $!A$ 是原子公式，则由赋值的单调性条件可知结论立即成立。如果 $!A \ident \lfalse$，则 $\mathfrak{M},\Gamma \not\models \lfalse$（根据定义），因此“如果 $\mathfrak{M}, \Gamma \models \lfalse$ 且 $\Gamma R \Delta$，则 $\mathfrak{M}, \Delta \models \lfalse$”的前件为假，从而该条件句平凡地为真。
 
@@ -26,10 +26,10 @@
 % Chapter: tableaux
 % Section: proofs
 
-\olsection{直觉主义逻辑的\usetoken{P}{tableau}}
+\olsection{直觉主义逻辑的真值树}
 
 \begin{ex}
-  我们给出一个封闭的分析表来证明 $(!A \land !B) \lif !C \Proves 
+  我们给出一个封闭的分析表来证明 $(!A \land !B) \lif !C \Proves
   !A \lif (!B \lif !C)$。
   \begin{oltableau}
     [\pFmla{\True}{(\formula{A} \land \formula{B}) \lif \formula{C}}{1},

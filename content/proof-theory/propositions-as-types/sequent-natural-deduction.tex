@@ -6,7 +6,7 @@
 
 \olsection{相继式自然演绎}
 
-在见过% part: intuitionistic-logic之后，我们应当提一下另一种变体。Gentzen（根岑）将他的第一个证明系统称为``自然演绎''系统。但是他的`Hauptsatz'（主要定理）需要另一个系统，为此他发明了`相继式演算'这个名字。在该系统中，可推导的对象是相继式，即形如 % chapter: propositions-as-types 的表达式。Gentzen 用于经典逻辑的原始系统 LK 允许箭头两边都是有限集。对于直觉主义逻辑，他使用系统 LJ，其中右边被限制为至多一个公式。相继式 % chapter: propositions-as-types 与公式 % section: sequent-natural-deduction 具有相同的直观含义。这也意味着，单个公式 ↯ 等价于相继式 % chapter: propositions-as-types——因为按照这种解读，左边的空集意味着不允许任何假设，而右边的空集意味着必然的矛盾，也就是说，我们把它解读为是在断言一个矛盾。推导出这样的相继式，就构成了对矛盾的证明。对于经典逻辑，我们可以专注于那些右边恰好有一个公式的相继式。这是因为，如果 % chapter: propositions-as-types 是一个右边有 % section: sequent-natural-deduction 的相继式，那么它就等价于 % section: sequent-natural-deduction。这样的相继式被称为`单右式相继式'。
+在见过% part: intuitionistic-logic之后，我们应当提一下另一种变体。Gentzen（根岑）将他的第一个证明系统称为“自然演绎”系统。但是他的“Hauptsatz”（主要定理）需要另一个系统，为此他发明了“相继式演算”这个名字。在该系统中，可推导的对象是相继式，即形如 % chapter: propositions-as-types 的表达式。Gentzen 用于经典逻辑的原始系统 LK 允许箭头两边都是有限集。对于直觉主义逻辑，他使用系统 LJ，其中右边被限制为至多一个公式。相继式 % chapter: propositions-as-types 与公式 % section: sequent-natural-deduction 具有相同的直观含义。这也意味着，单个公式 ↯ 等价于相继式 % chapter: propositions-as-types——因为按照这种解读，左边的空集意味着不允许任何假设，而右边的空集意味着必然的矛盾，也就是说，我们把它解读为是在断言一个矛盾。推导出这样的相继式，就构成了对矛盾的证明。对于经典逻辑，我们可以专注于那些右边恰好有一个公式的相继式。这是因为，如果 % chapter: propositions-as-types 是一个右边有 % section: sequent-natural-deduction 的相继式，那么它就等价于 % section: sequent-natural-deduction。这样的相继式被称为“单右式相继式”。
 
 我们用 $\Gamma \Sequent !A$ 表示存在一个以 $\Gamma$ 为未解除假设、以 $!A$ 为结论的自然演绎推导；若 $\Gamma$ 为空，则写作 $\Sequent !A$。
 

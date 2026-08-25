@@ -10,7 +10,7 @@
 \olsection{表示Turing机}
 
 \begin{explain}
-为了用一阶逻辑的语句来表示图灵机及其行为，我们必须定义一个合适的语言。
+为了用一阶逻辑的语句来表示Turing机及其行为，我们必须定义一个合适的语言。
 该语言由两部分组成：用于描述机器配置的谓词符号，以及用于对执行步骤（“时刻”）和纸带位置进行编号的表达式。
 
 我们引入两类谓词符号，它们都是二元的：对于每个状态~\(q\)，引入一个谓词符号~\(\Obj Q_q\)；对于每个纸带符号~\(\sigma\)，引入一个谓词符号~\(\Obj S_\sigma\)。前者用于描述~\(M\) 的状态及其读写头的位置，后者用于描述纸带的内容。
@@ -37,7 +37,7 @@
 
 \begin{defn}
   \ollabel{defn:tm-descr}
-给定一台图灵机 $M = \tuple{Q, \Sigma, q_0, \delta}$，其语言~\(\Lang L_M\) 由以下符号组成：
+给定一台Turing机 $M = \tuple{Q, \Sigma, q_0, \delta}$，其语言~\(\Lang L_M\) 由以下符号组成：
 \begin{enumerate}
 \item 对于每个状态~\(q \in Q\)，一个二元谓词符号 \(\Obj Q_q(x, y)\)。
   直观上，$\Obj Q_q(\num{m}, \num{n})$ 表示“在第 \(n\) 步之后，\(M\) 处于状态~\(q\) 并正在扫描第 \(m\) 个方格”；
@@ -50,7 +50,7 @@
 \end{enumerate}
 \end{defn}
 
-描述图灵机~\(M\) 在输入 $w = \sigma_{i_1}\dots\sigma_{i_k}$ 上运行的语句如下：
+描述Turing机~\(M\) 在输入 $w = \sigma_{i_1}\dots\sigma_{i_k}$ 上运行的语句如下：
 \begin{enumerate}
 \item 描述数和~$<$ 的公理：
 \begin{enumerate}
@@ -128,7 +128,7 @@
 \end{enumerate}
 \end{enumerate}
 
-令 $!T(M, w)$ 为上述所有关于图灵机~$M$ 和输入~$w$ 的语句的合取。
+令 $!T(M, w)$ 为上述所有关于Turing机~$M$ 和输入~$w$ 的语句的合取。
 
 为了表达~$M$ 最终会停机，我们必须找到一个表示“在某个步数之后，转移函数将无定义”的语句。令 $X$ 为所有使得~$\delta(q, \sigma)$ 无定义的序偶 $\tuple{q, \sigma}$ 的集合。令 $!E(M, w)$ 为如下语句：
 \[
@@ -136,7 +136,7 @@
       X}(\Obj Q_q(x, y) \land \Obj S_\sigma(x, y)))]]
 \]
 
-如果我们使用带有指定停机状态~$h$ 的图灵机，事情就更简单了：此时语句~$!E(M, w)$
+如果我们使用带有指定停机状态~$h$ 的Turing机，事情就更简单了：此时语句~$!E(M, w)$
 \[
 \lexists[x][\lexists[y][\Obj Q_h(x, y)]]
 \]

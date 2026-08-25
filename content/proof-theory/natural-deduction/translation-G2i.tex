@@ -21,7 +21,7 @@
   我们要证明：如果 $\pi$ 是 \Log{G2ci} 中 $\Gamma \Sequent \Delta$ 的推导，则存在对应于~$\Gamma$ 的~$\Gamma'$，以及 \Log{N2i} 中~$\Gamma' \Sequent !C$ 的推导~$\delta$。为此，我们对 $n = \pheight{\pi}$ 进行归纳。
 
   若 $n = 0$，则 $\pi$ 是一条公理。若为公理 $\lfalse \Sequent \quad$，则 $\delta$ 为公理 $x:\lfalse \Sequent \lfalse$，即 $\Gamma' = \{x:\lfalse\}$ 且 $!C \ident \lfalse$。若 $\pi$ 是形如 $!A \Sequent !A$ 的公理，则 $\delta$ 为 $x: !A \Sequent !A$。
-  
+
   若 $n>0$，则 $\pi$ 的最后一步应用了某条规则~$R$。归纳假设保证了在~\Log{N2c} 中存在对应于该规则前提的相继式的推导。我们可以假设这些推导中的所有解除标签互不相同，并且若标签 $x$ 被解除，则它只出现在解除它的推理上方（必要时可进行重标记）。接下来我们展示如何组合这些推导，以得到合适的 $\Gamma' \Sequent !C$ 的推导。我们根据~$R$ 分情况讨论。
 
   \begin{enumerate}

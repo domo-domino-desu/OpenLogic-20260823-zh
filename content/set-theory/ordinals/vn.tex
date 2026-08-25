@@ -2,14 +2,14 @@
 
 \begin{document}
 
-\olfileid{sth}{ordinals}{vn}	
+\olfileid{sth}{ordinals}{vn}
 \olsection[Von Neumann's Construction]{von Neumann的序数构造}
 
 \olref[sth][ordinals][iso]{thm:woalwayscomparable} 引发了一个想法。
 我们可以引入一些称为\emph{序型}的对象，来充当良序的代表。
 用 $\ordtype{A, <}$ 表示良序 $\tuple{A, <}$ 的序型，我们希望确立以下两条原则：
 \begin{align*}
-	\ordtype{A, <} = \ordtype{B, \lessdot} & 
+	\ordtype{A, <} = \ordtype{B, \lessdot} &
 	\text{ 当且仅当 } \ordeq{\tuple{A, <}}{\tuple{B, \lessdot}}\\
 	\ordtype{A, <} < \ordtype{B, \lessdot}&
 	\text{ 当且仅当 }\ordeq{\tuple{A, <}}{\tuple{B_b, \lessdot_b}}\text{ 对于某个 }b \in B
@@ -17,7 +17,7 @@
 此外，我们可能还希望将序型\emph{作为某类集合}引入，就像我们可以将自然数作为某类集合引入一样。
 
 实现这一目标最常用的方法——也是我们将遵循的路径——是通过某些\emph{典范的}良序集来定义这些序型。
-这些典范集合最早由 冯·诺伊曼 引入：
+这些典范集合最早由 von Neumann 引入：
 
 \begin{defn}
 集合 $A$ 是\emph{传递的}，当且仅当 $(\forall x \in A)x \subseteq A$。
@@ -32,18 +32,18 @@ $A$ 是\emph{序数}，当且仅当 $A$ 是传递的且被 $\in$ 良序化。
 
 以下是我们的前几个序数：
 \[
-	\emptyset, \{\emptyset\}, 
-	\{\emptyset, \{\emptyset\}\}, 
+	\emptyset, \{\emptyset\},
+	\{\emptyset, \{\emptyset\}\},
 	\{\emptyset, \{\emptyset\}, \{\emptyset, \{\emptyset\}\}\}, \ldots
 \]
-你会注意到，这些正是我们在无穷公理中，即在 冯·诺伊曼 对 $\omega$ 的定义中（参见 \olref[sth][z][infinity-again]{sec}）最初遇到的那几个序数。
-这并非巧合。冯·诺伊曼 的序数定义将自然数视为序数，但也允许存在超限序数。
+你会注意到，这些正是我们在无穷公理中，即在 von Neumann 对 $\omega$ 的定义中（参见 \olref[sth][z][infinity-again]{sec}）最初遇到的那几个序数。
+这并非巧合。von Neumann 的序数定义将自然数视为序数，但也允许存在超限序数。
 
-和往常一样，我们现在可以问：这些\emph{就是}序数吗？还是说 冯·诺伊曼 仅仅给了我们一些可以\emph{当作}序数来处理的集合？
+和往常一样，我们现在可以问：这些\emph{就是}序数吗？还是说 von Neumann 仅仅给了我们一些可以\emph{当作}序数来处理的集合？
 关于这个问题的讨论，与我们之前在 \olref[sfr][rel][ref]{sec}、
 \olref[sfr][arith][ref]{sec}、
 \olref[sfr][infinite][dedekindsproof]{sec} 以及
 \olref[sth][z][nat]{sec} 中进行的讨论类似，因此我们就不在此赘述了。
-在后续行文中，我们将简单地用“序数”来指代“冯·诺伊曼序数”。
+在后续行文中，我们将简单地用“序数”来指代“von Neumann序数”。
 
 \end{document}

@@ -84,7 +84,7 @@ h(\Assign{\Obj{0}}{N}) =\Assign{\Obj{0}}{M}$，故而 $g(0) = h(0)$。
 \begin{align*}
   g(n+1) & = \Value{\num{n+1}}{M} \text{ 根据~$g$ 的定义}\\
   & = \Value{\num{n}'}{M} \text{ 因为 $\num{n+1}\ident \num{n}'$}\\
-  & = \Assign{\prime}{M}(\Value{\num{n}}{M}) 
+  & = \Assign{\prime}{M}(\Value{\num{n}}{M})
     \text{ 根据 $\Value{t'}{M}$ 的定义}\\
   & = \Assign{\prime}{M}(g(n))  \text{ 根据~$g$ 的定义}\\
   & = \Assign{\prime}{M}(h(n)) \text{ 由归纳假设}\\

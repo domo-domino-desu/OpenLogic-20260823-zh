@@ -8,7 +8,7 @@
 
 \olfileid{pt}{nat}{rp}
 
-\olsection{规则与\usetoken{P}{proof}}
+\olsection{规则与证明}
 
 我们首先给出一些定义并约定一些术语。
 
@@ -90,12 +90,12 @@
 \DisplayProof
 \qquad
 \bottomAlignProof
-\AxiomC{$\lexists[x][!A(x)]$} 
+\AxiomC{$\lexists[x][!A(x)]$}
 \AxiomC{$\Discharge{!A(c)}{x}$}
 \shortDeduce
 \DeduceC{$!B$}
 \DischargeRule{\Elim{\lexists}}{x}
-\BinaryInfC{$!B$} \DisplayProof 
+\BinaryInfC{$!B$} \DisplayProof
 \bottomAlignProof
 \] 在
 \Intro{\lexists} 规则中，前提是~$!A(t)$，其中 $t$~是一个闭项，

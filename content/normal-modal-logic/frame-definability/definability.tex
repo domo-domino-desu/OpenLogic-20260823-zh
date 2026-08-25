@@ -55,7 +55,7 @@
       \Box\Diamond p}[u]$，因此 $\Ax{B}$ 在~$\mModel{F}$ 中不有效。
   \item 假设 \Ax{4} 在 $\mModel{F} = \tuple{W,R}$ 中有效，即 $\mModel{F} \Entails \Box p \lif \Box\Box p$，并设 $u, v, w \in W$ 为满足 $Ruv$ 和 $Rvw$ 的任意世界；需证明 $Ruw$。定义 $V$ 使得 $z \in V(p)$ 当且仅当 $Ruz$（其余情况 $V$ 任意）。设 $\mModel{M} =\tuple{W, R, V}$。根据 $V$ 的定义，对所有满足 $Ruz$ 的 $z$，有 $\mSat{M}{p}[z]$，因此 $\mSat{M}{\Box p}[u]$。但根据假设 \Ax{4}（即 $\Box p \lif \Box \Box p$）在 $u$ 为真，故 $\mSat{M}{\Box \Box
       p}[u]$。由于 $Ruv$ 和 $Rvw$，我们有 $\mSat{M}{p}[w]$，而根据~$V$ 的定义，这只有当 $Ruw$ 时才可能，这正是所要证明的。
-  \item 我们采用逆否证法，假设框架 $\mModel{F} = \tuple{W, R}$ 不是欧几里得的，并证明它不满足~\Ax{5}（即 $\mModel{F} \Entails/ \Diamond p \lif
+  \item 我们采用逆否证法，假设框架 $\mModel{F} = \tuple{W, R}$ 不是Euclid的，并证明它不满足~\Ax{5}（即 $\mModel{F} \Entails/ \Diamond p \lif
       \Box\Diamond p$）。假设存在世界 $u, v, w \in W$ 使得 $Rwu$ 和 $Rwv$ 但非~$Ruv$。定义 $V$ 使得对所有世界 $z$，$z \in V(p)$ 当且仅当 $Ruz$ \emph{不}成立。设 $\mModel{M} =\tuple{W, R, V}$。那么根据假设 $\mSat{M}{p}[v]$，且由于 $Rwv$，也有 $\mSat{M}{\Diamond p}[w]$。然而，不存在世界 $y$ 使得 $Ruy$ 且 $\mSat{M}{p}[y]$，所以 $\mSat/{M}{\Diamond
       p}[u]$。由于 $Rwu$，可得 $\mSat/{M}{\Box\Diamond
       p}[w]$，因此 \Ax{5}（即 $\Diamond p \lif \Box\Diamond p$）在~$w$ 处不成立。
@@ -90,7 +90,7 @@
 许多重要的模态逻辑都可以被刻画为在某些框架性质组合下的所有框架中有效的公式集合，
 因此我们也可以将它们刻画为在所有使得对应定义公式有效的框架中有效的公式集合。
 例如，经典系统 \Log{S4} 就是在所有自反且传递的框架中有效的公式集合，也就是在所有 \Ax{T} 和~\Ax{4} 都有效的框架中有效的公式集合。
-\Log{S5} 则是在所有自反、对称且欧几里得的框架中有效的公式集合，也就是在所有 \Ax{T}、\Ax{B} 和 \Ax{5} 都有效的框架中有效的公式集合。
+\Log{S5} 则是在所有自反、对称且Euclid的框架中有效的公式集合，也就是在所有 \Ax{T}、\Ax{B} 和 \Ax{5} 都有效的框架中有效的公式集合。
 
 一般而言，$R$ 的性质之间的逻辑关系对应于其定义公式之间的关系。
 例如，每个自反关系都是持续的；因此，只要 \Ax{T} 在一个框架中有效，那么~\Ax{D} 也有效。
@@ -101,9 +101,9 @@
   设 $R$ 是集合 $W$ 上的一个二元关系；那么：
   \begin{enumerate}
   \item 如果 $R$ 是自反的，那么它是持续的。
-  \item 如果 $R$ 是对称的，那么它是传递的当且仅当它是欧几里得的。
-  \item 如果 $R$ 是对称的或欧几里得的，那么它是弱定向的（具有“菱形性质”）。
-  \item 如果 $R$ 是欧几里得的，那么它是弱连通的。
+  \item 如果 $R$ 是对称的，那么它是传递的当且仅当它是Euclid的。
+  \item 如果 $R$ 是对称的或Euclid的，那么它是弱定向的（具有“菱形性质”）。
+  \item 如果 $R$ 是Euclid的，那么它是弱连通的。
   \item 如果 $R$ 是函数的，那么它是持续的。
   \end{enumerate}
 \end{prop}

@@ -43,7 +43,7 @@
 \begin{proof}[证明]
 取定 $\alpha$。不失一般性，我们可假设 $\phi$ 的联结词仅为 $\exists$、$\lnot$ 和 $\land$（因为它们具有足够的表达力）。将 $\phi$ 的每个子公式按复杂度排列为 $\psi_1, \ldots, \psi_k$，使得 $\psi_k = \phi$。根据 \olref{lemreflection}，存在 $\beta > \alpha$，使得对任意 $\overline{a}_i \in V_\beta$ 和每个 $1 \leq i \leq k$：
 \begin{align}\label{reflectionnicelybehaved}
-	\exists x\psi_i(\overline{a}_i, x) \rightarrow 
+	\exists x\psi_i(\overline{a}_i, x) \rightarrow
 	(\exists x \in V_\beta) \psi_i(\overline{a}_i, x)\tag{*}
 \end{align}
 通过对 $\psi_i$ 的复杂度归纳，我们将证明对任意 $\overline{a}_i \in V_\beta$，有 $\psi_i(\overline{a}_i) \leftrightarrow
@@ -119,7 +119,7 @@ $\Setabs{y}{(\exists x \in A)\phi(x,y}$ 存在。
 因此特别地：
 \begin{align*}
 	(\forall  x, z \in S)(&\phi(x, z) \liff \phi^S(x, z))\\
-	(\forall x \in S)(&\exists y\phi(x, y) \liff (\exists y \in S)\phi^S(x, y)) 
+	(\forall x \in S)(&\exists y\phi(x, y) \liff (\exists y \in S)\phi^S(x, y))
 \end{align*}
 结合这两点，并注意到由于 $A \in S$ 且 $S$ 是传递的，有 $A \subseteq S$：
 \begin{align*}

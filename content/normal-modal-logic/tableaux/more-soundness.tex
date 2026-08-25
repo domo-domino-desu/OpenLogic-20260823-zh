@@ -7,7 +7,7 @@
 \begin{document}
 
 \olfileid{nml}{tab}{msn}
-      
+
 \olsection{附加规则的可靠性}
 
 我们称一个规则对一类模型是\emph{可靠的}，如果每当分析表中的一个分支在该类的某个模型中可满足，应用该规则后得到的分支在该类的某个模型中也可满足。
@@ -119,17 +119,17 @@
   \iftag{prvBox}{\Ax{4r}$\Box$}{}%
   \iftag{notprvBox,notprvDiamond}{}{ 和 }%
   \iftag{prvDiamond}{\Ax{4r}$\Diamond$}{}
-  对欧几里得模型\iftag{notprvBox,notprvDiamond}{是}{都是}可靠的。
+  对Euclid模型\iftag{notprvBox,notprvDiamond}{是}{都是}可靠的。
 \end{prop}
 
 \begin{proof}
 \begin{tagenumerate}{prvBox,prvDiamond}
 \tagitem{prvBox}{通过对 $\sFmla{\True}{\Box !B}[\sigma.n] \in \Gamma$ 应用 4r$\Box$ 来扩展该分支：
   \iftag{probBox}{练习。}{这会在分支上产生一个新的带号公式~$\sFmla{\True}{\Box!B}[\sigma]$。假设 $\mSat{M}{\Gamma}[f]$，特别地，有 $\mSat{M}{\Box
-      !B}[f(\sigma.n)]$。由于 $f$ 是分支上前缀在~$\mModel{M}$ 中的解释，故 $Rf(\sigma)f(\sigma.n)$。现任取世界 $w$ 使得 $Rf(\sigma)w$。由于 $R$ 是欧几里得的，有 $Rf(\sigma.n)w$。由 $\mSat{M}{\Box !B}[f(\sigma).n]$ 可得 $\mSat{M}{!B}[w]$。因此，$\mSat{M}{\Box !B}[f(\sigma)]$，且 $\mModel{M}, f$ 满足 $\sFmla{\True}{\Box !B}[\sigma]$。}}{}
+      !B}[f(\sigma.n)]$。由于 $f$ 是分支上前缀在~$\mModel{M}$ 中的解释，故 $Rf(\sigma)f(\sigma.n)$。现任取世界 $w$ 使得 $Rf(\sigma)w$。由于 $R$ 是Euclid的，有 $Rf(\sigma.n)w$。由 $\mSat{M}{\Box !B}[f(\sigma).n]$ 可得 $\mSat{M}{!B}[w]$。因此，$\mSat{M}{\Box !B}[f(\sigma)]$，且 $\mModel{M}, f$ 满足 $\sFmla{\True}{\Box !B}[\sigma]$。}}{}
 \tagitem{prvDiamond}{通过对 $\sFmla{\False}{\Diamond !B}[\sigma.n] \in \Gamma$ 应用 4r$\Diamond$ 来扩展该分支：
   \iftag{probDiamond}{练习。}{这会在分支上产生一个新的带号公式~$\sFmla{\True}{\Box!B}[\sigma]$。假设 $\mSat{M}{\Gamma}[f]$，特别地，有 $\mSat/{M}{\Diamond
-      !B}[f(\sigma.n)]$。由于 $f$ 是分支上前缀在~$\mModel{M}$ 中的解释，故 $Rf(\sigma)f(\sigma.n)$。现任取世界 $w$ 使得 $Rf(\sigma)w$。由于 $R$ 是欧几里得的，有 $Rf(\sigma.n)w$。由 $\mSat/{M}{\Diamond !B}[f(\sigma).n]$ 可得 $\mSat/{M}{!B}[w]$。因此，$\mSat/{M}{\Diamond !B}[f(\sigma)]$，且 $\mModel{M}, f$ 满足 $\sFmla{\False}{\Diamond !B}[\sigma]$。}}{}
+      !B}[f(\sigma.n)]$。由于 $f$ 是分支上前缀在~$\mModel{M}$ 中的解释，故 $Rf(\sigma)f(\sigma.n)$。现任取世界 $w$ 使得 $Rf(\sigma)w$。由于 $R$ 是Euclid的，有 $Rf(\sigma.n)w$。由 $\mSat/{M}{\Diamond !B}[f(\sigma).n]$ 可得 $\mSat/{M}{!B}[w]$。因此，$\mSat/{M}{\Diamond !B}[f(\sigma)]$，且 $\mModel{M}, f$ 满足 $\sFmla{\False}{\Diamond !B}[\sigma]$。}}{}
 \end{tagenumerate}
 \end{proof}
 

@@ -9,7 +9,7 @@
 \iftag{FOL}
       {\olfileid{fol}{ntd}{sou}}
       {\olfileid{pl}{ntd}{sou}}
-      
+
 \olsection{可靠性}
 
 \begin{explain}
@@ -56,7 +56,7 @@
     \UnaryInfC{$!A$}
   \end{prooftree}
   根据归纳假设，$!A \land !B$ 是~$\delta_1$ 的未解除假设~$\Gamma$ 的后承。考虑\iftag{FOL}{结构~$\Struct{M}$}{赋值~$\pAssign{v}$}。我们需要证明，如果 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$，则 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$。假设 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$。根据归纳假设（$\Gamma \Entails !A \land !B$），我们知道 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A \land !B}$。根据定义，$\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A \land !B}$ 当且仅当 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$ 且 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$。（从 $!A \land !B$ 推出 $!B$ 的情况类似处理。）
-  
+
 \item 最后一个推理是 \Intro{\lor}：有两种变体：$!A \lor !B$ 可以从前提~$!A$ 或前提~$!B$ 推出。考虑第一种情况。推导形如：
   \begin{prooftree}
     \AxiomC{$\Gamma$}
@@ -66,7 +66,7 @@
     \UnaryInfC{$!A \lor !B$}
   \end{prooftree}
   根据归纳假设，$!A$ 是~$\delta_1$ 的未解除假设~$\Gamma$ 的后承。考虑\iftag{FOL}{结构~$\Struct{M}$}{赋值~$\pAssign{v}$}。我们需要证明，如果 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$，则 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A \lor !B}$。假设 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$；由于 $\Gamma \Entails !A$（归纳假设），则 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$。因此也必有 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A \lor !B}$。（从~$!B$ 推出 $!A \lor !B$ 的情况类似处理。）
-  
+
 \item 最后一个推理是 \Intro{\lif}：$!A \lif !B$ 是从一个以~$!A$ 为假设、以~$!B$ 为结论的子推导推出的，即：
   \begin{prooftree}
     \AxiomC{$\Gamma, \Discharge{!A}{n}$}
@@ -100,7 +100,7 @@
     \UnaryInfC{$\lforall[x][!A(x)]$}
   \end{prooftree}
   根据归纳假设，前提 $!A(a)$ 是未解除假设 $\Gamma$ 的后承。考虑某个满足 $\Sat{M}{\Gamma}$ 的结构 $\Struct{M}$。我们需要证明 $\Sat{M}{\lforall[x][!A(x)]}$。由于 $\lforall[x][!A(x)]$ 是语句，这意味着我们必须证明对每个变元指派~$s$，$\Sat{M}{!A(x)}[s]$ (\olref[syn][ass]{prop:sat-quant})。因为 $\Gamma$ 完全由语句组成，根据 \olref[syn][sat]{defn:satisfaction}，对任意 $!B \in \Gamma$，$\Sat{M}{!B}[s]$。令 $\Struct{M'}$ 除了 $\Assign{a}{M'} = s(x)$ 外与 $\Struct{M}$ 相同。由于 $a$ 不在~$\Gamma$ 中出现，根据 \olref[syn][ext]{cor:extensionality-sent}，有 $\Sat{M'}{\Gamma}$。因为 $\Gamma \Entails !A(a)$，所以 $\Sat{M'}{!A(a)}$。由于 $!A(a)$ 是语句，根据 \olref[syn][ass]{prop:sentence-sat-true}，$\Sat{M'}{!A(a)}[s]$。根据 \olref[syn][ext]{prop:ext-formulas}，$\Sat{M'}{!A(x)}[s]$ 当且仅当 $\Sat{M'}{!A(a)}$（回想 $!A(a)$ 就是 $\Subst{!A(x)}{a}{x}$）。所以，$\Sat{M'}{!A(x)}[s]$。由于 $a$ 不在 $!A(x)$ 中出现，根据 \olref[syn][ext]{prop:extensionality}，$\Sat{M}{!A(x)}[s]$。但 $s$ 是任意变元指派，所以 $\Sat{M}{\lforall[x][!A(x)]}$。
-  
+
 \item 最后一个推理是 \Intro{\lexists}：练习。
 
 \item 最后一个推理是 \Elim{\forall}：练习。
@@ -123,7 +123,7 @@
   \end{prooftree}
   根据归纳假设，$!A$ 是~$\delta_1$ 的未解除假设~$\Gamma_1$ 的后承，且 $!B$ 是~$\delta_2$ 的未解除假设~$\Gamma_2$ 的后承。$\delta$ 的未解除假设是 $\Gamma_1 \cup \Gamma_2$，所以我们需要证明 $\Gamma_1 \cup \Gamma_2 \Entails
   !A \land !B$。考虑满足 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma_1 \cup \Gamma_2}$ 的\iftag{FOL}{结构~$\Struct{M}$}{赋值~$\pAssign{v}$}。由于 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma_1}$，且 $\Gamma_1 \Entails !A$，所以必有 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$；同时由于 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma_2}$，且 $\Gamma_2 \Entails !B$，所以有 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$。合起来，$\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A \land !B}$。
-  
+
 \item 最后一个推理是 \Elim{\lor}：练习。
 
 \item 最后一个推理是 \Elim{\lif}。$!B$ 是从前提 $!A \lif !B$ 和~$!A$ 推出的。推导~$\delta$ 形如：
@@ -142,7 +142,7 @@
     \lif !B}$。由于 $\Gamma_2 \Entails !A$，我们有 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$。这意味着 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$（因为如果 $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!B}$，由于 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$，我们将有 $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A \lif !B}$，这与~$\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A \lif !B}$矛盾）。
 
 \item 最后一个推理是 \Elim{\lnot}：练习。
-  
+
 \tagitem{FOL}{最后一个推理是 \Elim{\lexists}：练习。}{}
 \end{enumerate}
 \end{proof}

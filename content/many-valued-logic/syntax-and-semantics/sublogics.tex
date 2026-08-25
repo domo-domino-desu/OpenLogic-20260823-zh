@@ -41,7 +41,7 @@
   \begin{align*}
     \pValue v[\Log L](!A) & = \tf{\lnot}[\Log L](\pValue v[\Log L](!B)) & &\text{根据 \olref[val]{defn:pValue}}\\
     & = \tf{\lnot}[\Log L](\pValue v[\LogCL](!B)) && \text{由归纳假设}\\
-    & = \tf{\lnot}[\LogCL](\pValue v[\LogCL](!B)) 
+    & = \tf{\lnot}[\LogCL](\pValue v[\LogCL](!B))
 &&\text{由假设 \olref{prop:not}，}\\
 &&&\text{因为 $\pValue v[\LogCL](!B) \in \{\True, \False\}$，}\\
 & = \pValue v[\LogCL](!A) &&\text{根据 \olref[val]{defn:pValue}}.
@@ -50,7 +50,7 @@
 \begin{align*}
   \pValue v[\Log L](!A) & = \tf{\land}[\Log L](\pValue v[\Log L](!B), \pValue v[\Log L](!C)) & &\text{根据 \olref[val]{defn:pValue}}\\
   & = \tf{\land}[\Log L](\pValue v[\LogCL](!B),\pValue v[\LogCL](!C)) && \text{由归纳假设}\\
-  & = \tf{\land}[\LogCL](\pValue v[\LogCL](!B),\pValue v[\LogCL](!C)) 
+  & = \tf{\land}[\LogCL](\pValue v[\LogCL](!B),\pValue v[\LogCL](!C))
 &&\text{由假设 \olref{prop:land}，}\\
 &&&\text{因为 $\pValue v[\LogCL](!B),\pValue v[\LogCL](!C) \in \{\True, \False\}$，}\\
 & = \pValue v[\LogCL](!A) &&\text{根据 \olref[val]{defn:pValue}}.

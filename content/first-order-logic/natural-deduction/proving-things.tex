@@ -25,7 +25,7 @@
 \begin{prooftree}
 \AxiomC{$\Discharge{!A \land !B}{1}$}
 \DeduceC{$!A$}
-\DischargeRule{\Intro{\lif}}{1} 
+\DischargeRule{\Intro{\lif}}{1}
 \UnaryInfC{$(!A\land !B) \lif !A$}
 \end{prooftree}
 
@@ -34,7 +34,7 @@
 \AxiomC{$\Discharge{!A \land !B}{1}$}
 \RightLabel{\Elim{\land}}
 \UnaryInfC{$!A$}
-\DischargeRule{\Intro{\lif}}{1} 
+\DischargeRule{\Intro{\lif}}{1}
 \UnaryInfC{$(!A\land !B) \lif !A$}
 \end{prooftree}
 这样，我们就得到了 $(!A \land !B) \lif !A$ 的一个正确推导。
@@ -65,7 +65,7 @@
 \DeduceC{$!A \lif !B$}
 \DischargeRule{\Elim{\lor}}{2}
 \TrinaryInfC{$!A \lif !B$}
-\DischargeRule{\Intro{\lif}}{1} 
+\DischargeRule{\Intro{\lif}}{1}
 \UnaryInfC{$(\lnot !A \lor !B) \lif (!A \lif !B)$}
 \end{prooftree}
 
@@ -82,7 +82,7 @@
 \UnaryInfC{$!A \lif !B$}
 \DischargeRule{\Elim{\lor}}{2}
 \TrinaryInfC{$!A \lif !B$}
-\DischargeRule{\Intro{\lif}}{1} 
+\DischargeRule{\Intro{\lif}}{1}
 \UnaryInfC{$(\lnot !A \lor !B) \lif (!A \lif !B)$}
 \end{prooftree}
 
@@ -111,7 +111,7 @@
 \UnaryInfC{$!A \lif !B$}
 \DischargeRule{\Elim{\lor}}{2}
 \TrinaryInfC{$!A \lif !B$}
-\DischargeRule{\Intro{\lif}}{1} 
+\DischargeRule{\Intro{\lif}}{1}
 \UnaryInfC{$(\lnot !A \lor !B) \lif (!A \lif !B)$}
 \end{prooftree}
 
@@ -131,7 +131,7 @@
 \UnaryInfC{$!A \lif !B$}
 \DischargeRule{\Elim{\lor}}{2}
 \TrinaryInfC{$!A \lif !B$}
-\DischargeRule{\Intro{\lif}}{1} 
+\DischargeRule{\Intro{\lif}}{1}
 \UnaryInfC{$(\lnot !A \lor !B) \lif (!A \lif !B)$}
 \end{prooftree}
 注意，在最终的推导中，最右边的 \Intro{\lif} 推理实际上并没有解除任何假设。

@@ -79,17 +79,17 @@
 
 例如
 \begin{align*}
-  f([\mathrm{a} \circ \mathrm{b}]) & = 
-    \max(f(\mathrm{a}),f(\mathrm{b})) + 1 = \\ 
+  f([\mathrm{a} \circ \mathrm{b}]) & =
+    \max(f(\mathrm{a}),f(\mathrm{b})) + 1 = \\
   &= \max(0, 0) + 1 = 1, \text{ 及}\\
-  f([[\mathrm{a} \circ \mathrm{b}] \circ \mathrm{c}]) & = 
-    \max(f([\mathrm{a} \circ \mathrm{b}]), f(\mathrm{c})) + 1 = \\ 
+  f([[\mathrm{a} \circ \mathrm{b}] \circ \mathrm{c}]) & =
+    \max(f([\mathrm{a} \circ \mathrm{b}]), f(\mathrm{c})) + 1 = \\
   & = \max(1,0) + 1 = 2.
 \end{align*}
 
 这里，我们当然假设 $s_1$ 和 $s_2$ 是良构项，并且利用了以下事实：每个良构项要么是一个字母，要么具有 $[s_1 \circ s_2]$ 的形式。同样重要的是，它只能以一种方式具有这种形式。为了明白为什么，再次考虑我们之前定义的无括号项。对应的“定义”会是：
 \[
-  g(t) = 
+  g(t) =
   \begin{cases}
     0 & \text{ 若 $t$ 是字母}\\
    \max(g(s_1), g(s_2)) + 1 & \text{ 若 $t = s_1 \circ s_2$。}
@@ -98,10 +98,10 @@
 现在考虑无括号项 $\mathrm{a} \circ \mathrm{b} \circ
 \mathrm{c} \circ \mathrm{d}$。它可以以不止一种方式解读，例如，解读为 $s_1 \circ s_2$，其中
 \begin{align*}
-  s_1 & = \mathrm{a} \text{ 与} & 
+  s_1 & = \mathrm{a} \text{ 与} &
   s_2 & = \mathrm{b} \circ \mathrm{c} \circ \mathrm{d},
 \intertext{或解读为 $r_1 \circ r_2$，其中}
-  r_1 & = \mathrm{a} \circ b \text{ 与} & 
+  r_1 & = \mathrm{a} \circ b \text{ 与} &
   r_2 &= \mathrm{c} \circ \mathrm{d}.
 \end{align*}
 按第一种解读计算 $g$ 会得到

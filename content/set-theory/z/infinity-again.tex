@@ -2,7 +2,7 @@
 
 \begin{document}
 
-\olfileid{sth}{z}{infinity-again}	
+\olfileid{sth}{z}{infinity-again}
 \olsection{无穷}
 
 我们已有的公理足以保证有无穷多个集合存在（前提是至少存在一个集合）。假设存在某个集合，那么根据\olref[sth][z][sep]{prop:emptyexists}，$\emptyset$ 存在。现在，对任意集合~$x$，由\olref[sth][z][pairs]{prop:pairsconsequences}可知集合 $x \cup \{x\}$ 存在。因此，将此操作进行若干次后，我们会得到如下集合：
@@ -12,14 +12,14 @@
 	\item[1.] $ \{\emptyset\}$ %& $1$ & stage $1$\\
 	\item[2.] $\{\emptyset, \{\emptyset\}\}$ %& $2$ & stage $2$\\
 	\item[3.] $\{\emptyset, \{\emptyset\}, \{\emptyset, \{\emptyset\}\}\}$ %&$3$ & stage $3$\\
-	\item[4.] $\{\emptyset, \{\emptyset\}, \{\emptyset, \{\emptyset\}\}, \{\emptyset, \{\emptyset\}, \{\emptyset, \{\emptyset\}\}\}\}$% & $4$ & stage $4$ 
+	\item[4.] $\{\emptyset, \{\emptyset\}, \{\emptyset, \{\emptyset\}\}, \{\emptyset, \{\emptyset\}, \{\emptyset, \{\emptyset\}\}\}\}$% & $4$ & stage $4$
 \end{enumerate}
 
 并且我们可以验证这些集合两两不同。
 
 我们之所以从 $0$ 开始编号，有几个原因。其中之一是：不难验证我们标记为“$n$”的集合恰好有 $n$ 个成员，并且（直观上）是在第 $n$ 个阶段形成的。
 
-然而，这使得我们拥有\emph{无穷多个}集合，但并不能保证存在一个\emph{无穷集合}，即一个拥有无穷多成员的集合。而这确实很重要：除非我们能找到一个（戴德金）无穷集合，否则我们就无法构造一个戴德金代数。但我们需要一个戴德金代数，以便将其视为自然数集。（比较\olref[sfr][infinite][dedekindsproof]{sec}。）
+然而，这使得我们拥有\emph{无穷多个}集合，但并不能保证存在一个\emph{无穷集合}，即一个拥有无穷多成员的集合。而这确实很重要：除非我们能找到一个无穷集合，否则我们就无法构造一个Dedekind代数。但我们需要一个Dedekind代数，以便将其视为自然数集。（比较\olref[sfr][infinite][dedekindsproof]{sec}。）
 
 重要的是，我们迄今提出的公理\emph{并不}保证存在任何无穷集合。因此，我们必须提出一条新公理：
 
@@ -31,8 +31,8 @@
 \end{align*}
 \end{axiom}
 
-容易看出，无穷公理提供的集合 $I$ 是戴德金无穷的。它的特异元素是 $\emptyset$，其上的单射由 $s(x) = x\cup
-\{x\}$ 给出。现在，\olref[sfr][infinite][dedekind]{thm:DedekindInfiniteAlgebra} 展示了如何从一个戴德金无穷集合中提取出一个戴德金代数；我们将把它视为我们的自然数集。更精确地说：
+容易看出，无穷公理提供的集合 $I$ 是Dedekind无穷的。它的特异元素是 $\emptyset$，其上的单射由 $s(x) = x\cup
+\{x\}$ 给出。现在，\olref[sfr][infinite][dedekind]{thm:DedekindInfiniteAlgebra} 展示了如何从一个Dedekind无穷集合中提取出一个Dedekind代数；我们将把它视为我们的自然数集。更精确地说：
 
 \begin{defn}\ollabel{defnomega}
 设 $I$ 为无穷公理提供的任意集合。令 $s$ 为函数 $s(x) = x \cup \{x\}$。令 $\omega = \closureofunder{s}{\emptyset}$。我们称 $\omega$ 的成员为\emph{自然数}，并称 $n$ 是将 $s$ 作用于 $\emptyset$ $n$ 次的结果。
@@ -43,28 +43,28 @@
 我们将在\olref[sth][z][nat]{sec}讨论这一规定的意义。现在，它使我们能够证明一个直观的结果：
 
 \begin{prop}\ollabel{naturalnumbersarentinfinite}
-任何自然数都不是戴德金无穷的。
+任何自然数都不是Dedekind无穷的。
 \end{prop}
 
 \begin{proof}
-证明采用归纳法，即\olref[sfr][infinite][induction]{thm:dedinfiniteinduction}。显然 $0=\emptyset$ 不是戴德金无穷的。对于归纳步骤，我们将证明其逆否命题：如果（荒谬地）$s(n)$ 是戴德金无穷的，那么 $n$ 也是戴德金无穷的。
+证明采用归纳法，即\olref[sfr][infinite][induction]{thm:dedinfiniteinduction}。显然 $0=\emptyset$ 不是Dedekind无穷的。对于归纳步骤，我们将证明其逆否命题：如果（荒谬地）$s(n)$ 是Dedekind无穷的，那么 $n$ 也是Dedekind无穷的。
 
-因此，假设 $s(n)$ 是戴德金无穷的，即存在某个单射 $f$ 满足 $\ran{f}\subsetneq \dom{f} = s(n) = n \cup
+因此，假设 $s(n)$ 是Dedekind无穷的，即存在某个单射 $f$ 满足 $\ran{f}\subsetneq \dom{f} = s(n) = n \cup
 \{n\}$。需要考虑两种情况。
 
 \emph{情况 1：$n \notin \ran{f}$。} 所以 $\ran{f} \subseteq n$，且 $f(n) \in n$。令 $g = \funrestrictionto{f}{n}$；则 $\ran{g} =
-\ran{f} \setminus \{f(n)\} \subsetneq n = \dom{g}$。因此 $n$ 是戴德金无穷的。
+\ran{f} \setminus \{f(n)\} \subsetneq n = \dom{g}$。因此 $n$ 是Dedekind无穷的。
 
 \emph{情况 2：$n \in \ran{f}$。} 取定 $m \in \dom{f} \setminus \ran{f}$，并定义一个定义域为 $s(n) = n \cup \{n\}$ 的函数 $h$：
 \[
-h(x) = 
+h(x) =
 	\begin{cases}
 		f(x) & \text{若 }f(x) \neq n\\
 		m & \text{若 }f(x)=n
 	\end{cases}
 \]
 所以，除了 $h(f^{-1}(n)) = m
-\neq n = f(f^{-1}(n))$ 之外，$h$ 和 $f$ 处处一致。由于 $f$ 是单射，$n \notin \ran{h}$；并且 $\ran{h} \subsetneq \dom{h} = s(n)$。现在利用情况 1 的论证，可知 $n$ 是戴德金无穷的。
+\neq n = f(f^{-1}(n))$ 之外，$h$ 和 $f$ 处处一致。由于 $f$ 是单射，$n \notin \ran{h}$；并且 $\ran{h} \subsetneq \dom{h} = s(n)$。现在利用情况 1 的论证，可知 $n$ 是Dedekind无穷的。
 \end{proof}
 
 然而，问题依然存在：我们该如何\emph{辩护}无穷公理？简短的回答是，我们需要向我们一直讲述的故事中引入另一条原则。该原则如下：
@@ -84,9 +84,9 @@ h(x) =
 认为这些阶段的排序如同自然数一样，似乎是完全自洽的。
 
 然而，这引出了一个明显的问题。
-在 \olref[sfr][infinite][dedekindsproof]{sec} 中，我们考察了戴德金关于存在一个（由思想构成的）戴德金无穷集合的“证明”。
+在 \olref[sfr][infinite][dedekindsproof]{sec} 中，我们考察了Dedekind关于存在一个（由思想构成的）Dedekind无穷集合的“证明”。
 这可能并未让你觉得十分令人满意。
-但如果 \stagesinf 并非由集合的迭代观念（或“思维法则”）“强加给我们的”，那么对于存在戴德金无穷集合的主张，我们仍然缺乏内在的辩护。
+但如果 \stagesinf 并非由集合的迭代观念（或“思维法则”）“强加给我们的”，那么对于存在Dedekind无穷集合的主张，我们仍然缺乏内在的辩护。
 
 当然，关于这点还有更多可说的。
 但希望你现已能够开始思考，辩护一条公理（或原则）究竟需要\emph{什么}。

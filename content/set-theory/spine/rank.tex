@@ -17,9 +17,9 @@
 	留作练习。
 \end{proof}
 \begin{prob}
-	证明 \olref[sth][spine][rank]{ranksexist}。	
+	证明 \olref[sth][spine][rank]{ranksexist}。
 \end{prob}
-\noindent 
+\noindent
 秩的良序性使我们能够证明一些重要的结果：
 \begin{prop}\ollabel{valphalowerrank}
 对任意序数 $\alpha$，$V_\alpha = \Setabs{x}{\setrank{x} \in \alpha}$。
@@ -27,7 +27,7 @@
 
 \begin{proof}
 如果 $\setrank{x} \in \alpha$，那么 $x \subseteq V_{\setrank{x}} \in
-V_\alpha$，所以 $x \in V_\alpha$，因为 $V_\alpha$ 是 potent 的（对子集封闭，这里多次用到了 \olref[Valphabasic]{Valphabasicprops}）。反之，如果 $x \in V_\alpha$，那么 $x \subseteq V_\alpha$，所以 $\setrank{x} \leq \alpha$；而通过简单的超限归纳可知 $x \notin V_\alpha$。 
+V_\alpha$，所以 $x \in V_\alpha$，因为 $V_\alpha$ 是 potent 的（对子集封闭，这里多次用到了 \olref[Valphabasic]{Valphabasicprops}）。反之，如果 $x \in V_\alpha$，那么 $x \subseteq V_\alpha$，所以 $\setrank{x} \leq \alpha$；而通过简单的超限归纳可知 $x \notin V_\alpha$。
 \end{proof}
 \begin{prob}
 	完成 \olref[sth][spine][rank]{valphalowerrank} 中提到的简单超限归纳。
@@ -44,7 +44,7 @@ V_\alpha$，所以 $x \in V_\alpha$，因为 $V_\alpha$ 是 potent 的（对子�
 \noindent
 利用这一事实，我们可以建立如下结果，从而通过某种归纳形式来证明关于\emph{所有集合}的命题：
 
-\begin{thm}[$\in$-归纳原理] 
+\begin{thm}[$\in$-归纳原理]
 对于任意公式 $\phi$：
 \[
 	\forall A((\forall x \in A)\phi(x) \lif \phi(A)) \lif \forall A \phi(A).
@@ -57,7 +57,7 @@ V_\alpha$，所以 $x \in V_\alpha$，因为 $V_\alpha$ 是 potent 的（对子�
 A)\phi(x) \land \lnot \phi(A)$。
 \end{proof}\noindent 对这个强有力的结果，有一种非形式的直观解释。称 $\phi$ 是\emph{遗传的}，如果当一个集合的所有元素都是 $\phi$ 时，该集合本身也是 $\phi$。那么 $\in$-归纳表明：如果 $\phi$ 是遗传的，那么每个集合都是 $\phi$。
 
-为了（暂时）收尾关于秩的讨论，我们将证明几个前文已多次预告的命题。 
+为了（暂时）收尾关于秩的讨论，我们将证明几个前文已多次预告的命题。
 
 \begin{prop}\ollabel{ranksupstrict}
 $\setrank{A} = \supstrict_{x \in A}\setrank{x}$。
@@ -77,14 +77,14 @@ $\setrank{A} = \supstrict_{x \in A}\setrank{x}$。
 %	First note that $\setrank{\alpha} \neq \beta$ for any $\beta \in
 %	\alpha$. For otherwise we would have $\beta = \setrank{\beta} \in
 %	\setrank{\alpha} = \beta$ by \olref{rankmemberslower}, i.e.,
-%	$\beta \in \beta$, a contradiction. 
+%	$\beta \in \beta$, a contradiction.
 %
 %	Now note that $\alpha \subseteq V_\alpha$. For $\alpha =
 %	\Setabs{\beta}{\beta \in \alpha}$ by
 %	\olref[sfr][ordinals][basic]{ordissetofsmallerord}. And if
 %	$\beta \in \alpha$ then $\beta \subseteq V_{\setrank{\beta}} =
 %	V_\beta \in V_\alpha$, hence $\beta \in V_\alpha$, by
-%	\olref[sfr][spine][Valphabasic]{Valphabasicprops} twice. 
+%	\olref[sfr][spine][Valphabasic]{Valphabasicprops} twice.
 \end{proof}
 
 最后，这里给出 \olref[foundation]{sec} 末尾所承诺结果的一个简短证明，即 $\ZFminus$ 能证明条件句 $\emph{正则性} \Rightarrow \emph{基础公理}$。（注意，由于“秩”的概念和 \olref{rankmemberslower} 可以在 $\ZFminus + \text{正则性}$ 中给出——正如本节开头所提——因此在本证明中可以使用它们。）

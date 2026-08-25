@@ -9,9 +9,9 @@
 但关于这一原则的讨论，往往聚焦于一个等价的原则，即选择公理。
 因此，我们现在将把注意力转向后者（并证明其等价性）。
 
-在 \citeyear{Cantor1883}，康托尔表达了他对良序公理的支持，称其为“一个在我看来是基本的、蕴含丰富的、且因其普遍有效性而尤为引人注目的思维法则”（转引自 \citeauthor{Potter2004} \citeyear[p.~243]{Potter2004}）。但 康托尔 最终确信，这个“公理”需要证明。数学界也是如此。
+在 \citeyear{Cantor1883}，Cantor 表达了他对良序公理的支持，称其为“一个在我看来是基本的、蕴含丰富的、且因其普遍有效性而尤为引人注目的思维法则”（转引自 \citeauthor{Potter2004} \citeyear[p.~243]{Potter2004}）。但 Cantor 最终确信，这个“公理”需要证明。数学界也是如此。
 
-策梅洛在 \citeyear{Zermelo1904} “解决”了这个问题。
+Zermelo在 \citeyear{Zermelo1904} “解决”了这个问题。
 为了解释他的解决方案，我们需要一些定义。
 
 \begin{defn}
@@ -25,7 +25,7 @@
 	每个集合都有一个选择函数。
 \end{axiom}
 
-策梅洛 证明了选择公理能推出良序公理，反之亦然：
+Zermelo 证明了选择公理能推出良序公理，反之亦然：
 
 \begin{thm}[在 $\ZF$ 中]\ollabel{thmwochoice}
 良序公理与选择公理等价。
@@ -38,10 +38,10 @@ member of }x$。这就是 $A$ 的一个选择函数。
 \emph{从右到左。}固定 $A$。由选择公理，存在 $\Pow{A} \setminus \{\emptyset\}$ 的一个选择函数 $f$。利用超限递归，定义一个函数：
 \begin{align*}
 	g(0) &= f(A)\\
-	g(\alpha) &= 
+	g(\alpha) &=
 		\begin{cases}
 			\text{停止！} &\text{若}A = \funimage{g}{\alpha}\\
-			f(A \setminus \funimage{g}{\alpha}) & \text{否则}\\	
+			f(A \setminus \funimage{g}{\alpha}) & \text{否则}\\
 		\end{cases}
 \end{align*}
 “停止！”的指示只是对原本可能更冗长的定义的一种简写。也就是说，当 $A = \funimage{g}{\alpha}$ 首次成立时，令对所有 $\delta \leq \alpha$ 有 $g(\delta) = A$。起初，我们只能确定这定义了一个\emph{项}（参见 \olref[sth][spine][recursion]{transrecursionschema} 后的说明）；但我们将证明这确实定义了一个函数。

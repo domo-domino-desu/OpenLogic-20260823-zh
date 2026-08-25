@@ -10,11 +10,11 @@
 
 \olsection{二阶算术}
 
-回想一下，皮亚诺算术理论 $\Th{PA}$ 包含 $\Th{Q}$ 的八条公理，
+回想一下，Peano算术理论 $\Th{PA}$ 包含 $\Th{Q}$ 的八条公理，
 \begin{align*}
 & \lforall[x][\eq/[x'][\Obj 0]]\\
 & \lforall[x][\lforall[y][(\eq[x'][y'] \lif \eq[x][y])]]\\
-& \lforall[x][(\eq[x][\Obj 0] \lor \lexists[y][\eq[x][y']])]\\ 
+& \lforall[x][(\eq[x][\Obj 0] \lor \lexists[y][\eq[x][y']])]\\
 & \lforall[x][\eq[(x + \Obj 0)][x]]\\
 & \lforall[x][\lforall[y][\eq[(x + y')][(x + y)']]]\\
 & \lforall[x][\eq[(x \times \Obj 0)][\Obj 0]]\\
@@ -24,8 +24,8 @@
 & (!A(\Obj 0) \land \lforall[x][(!A(x) \lif !A(x'))]) \lif \lforall[x][!A(x)].
 \end{align*}
 后者是一个“模式”，即一种能生成算术语言中无穷多语句的模板，每个公式~$!A(x)$ 对应其中一句。
-我们称这个模式为（一阶的）\emph{归纳公理模式}。 
-在\emph{二阶} 皮亚诺 算术~$\Th{PA^2}$ 中，归纳可以表述为单个语句。$\Th{PA^2}$
+我们称这个模式为（一阶的）\emph{归纳公理模式}。
+在\emph{二阶} Peano 算术~$\Th{PA^2}$ 中，归纳可以表述为单个语句。$\Th{PA^2}$
 由上述前八条公理加上（二阶的）\emph{归纳公理}组成：
 \[
 \lforall[X][((X(\Obj 0) \land \lforall[x][(X(x) \lif X(x'))]) \lif \lforall[x][X(x)])].
@@ -53,7 +53,7 @@ $\Value{\num{n}}{M} \in \Domain{M}$，因此 $N \subseteq \Domain{M}$。
 \Sat{M}{\lforall[X][((X(\Obj 0) \land \lforall[x][(X(x)
       \lif X(x'))]) \lif \lforall[x][X(x)])]}, & ，\text{从而} \\
 \Sat{M}{(X(\Obj 0) \land \lforall[x][(X(x) \lif X(x'))]) \lif
-  \lforall[x][X(x)]}[s]. & 
+  \lforall[x][X(x)]}[s]. &
 \end{align*}。
 考虑这个条件句的前件。首先，$\Value{\Obj{0}}{M} \in
 N$，因此 $\Sat{M}{X(\Obj{0})}[s]$。
@@ -80,7 +80,7 @@ $\Th{PA^2}$ 的任意两个模型都是同构的。
 \end{proof}
 
 前面我们将 $\Th{PA^2}$ 定义为包含前八条算术公理加上二阶归纳公理的理论。事实上，借助
-二阶逻辑的表达力，二阶 皮亚诺 算术只需要前两条算术公理加上归纳公理。
+二阶逻辑的表达力，二阶 Peano 算术只需要前两条算术公理加上归纳公理。
 
 \begin{prop}\ollabel{prop:sol-pa-definable}
 令 $\Th{PA^{2\dagger}}$ 为包含前两条算术公理（后继公理）和二阶归纳公理的二阶理论。
@@ -97,13 +97,13 @@ $\Th{PA^2}$ 的任意两个模型都是同构的。
 $\Setabs{m}{n \le m} \subseteq Y$，因此我们可以取 $!A_\le(x, y) \ident
 \lforall[Y][(!B(x, Y) \lif Y(y))]$。
 
-要说明加法可定义，注意到 $k+l=m$ 当且仅当存在一个函数 $u$，使得 $u(0)=k$，$u(n')=u(n)'$ 对所有 $n$ 成立，并且 $m = u(l)$。 
+要说明加法可定义，注意到 $k+l=m$ 当且仅当存在一个函数 $u$，使得 $u(0)=k$，$u(n')=u(n)'$ 对所有 $n$ 成立，并且 $m = u(l)$。
 我们可以利用这个等价性，用以下公式在 $\Th{PA^{2\dagger}}$ 中定义加法：
 \[
 !A_+(x,y,z) \ident \lexists[u][(u(\Obj 0)=x \land \lforall[w][u(x')=u
  (x)'] \land u(y)=z)]
-\] 
-不难看出，$\Sat{N}{!A_+(\num k, \num l, \num m)}$ 
+\]
+不难看出，$\Sat{N}{!A_+(\num k, \num l, \num m)}$
 当且仅当 $k+l=m$。
 \end{proof}
 

@@ -30,7 +30,7 @@
   其中 $Y$ 是任意一个不动点组合子。非形式地说，$\fn{Search}$ 是一个自引用函数：从~$y$ 开始，测试 $f\, \vec x\, y$ 是否为零：若是，则返回~$y$；否则，以 $\fn{Succ}\, y$ 为参数调用自身。因此，$(Y \, \fn{Search}) F
   \num{n_1}\dots\num{n_k}\,\num{0}$ 返回的是使 $f(n_1,
   \dots, n_k, m) = 0$ 成立的最小~$m$。
-  
+
   具体来说，观察到
   \begin{align*}
     (Y \, \fn{Search}) F \num{n_1}

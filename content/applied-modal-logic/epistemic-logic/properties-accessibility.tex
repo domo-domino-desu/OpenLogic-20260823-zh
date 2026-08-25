@@ -23,21 +23,21 @@
       \hline
       {\emph{若 $R$ 是……}} & {\emph{则……在~$\mModel{M}$ 中为真：}} \\
       \hline \hline
-        
+
       & \hspace{2em} $\Knows (p \lif q) \lif (\Knows p \lif \Knows q)$
       \hfill \newline{(封闭性)} \\
       \hline
-      \emph{自反的}：$\forall w Rww$  
+      \emph{自反的}：$\forall w Rww$
       & $\Knows p \lif p$ \hfill \newline{(真实性)} \\
       \hline
       \emph{传递的}：\newline
-      $\forall u \forall v \forall w ((Ruv \land Rvw) \lif Ruw)$ & 
-      $\Knows p \lif \Knows \Knows p$ \hfill 
+      $\forall u \forall v \forall w ((Ruv \land Rvw) \lif Ruw)$ &
+      $\Knows p \lif \Knows \Knows p$ \hfill
            \newline{(正内省)} \\
-      \hline 
-      \emph{欧几里得的}：\newline
-      $\forall w \forall u \forall v ((Rwu \land Rwv) \lif Ruv)$ &  
-      $\lnot \Knows p \lif \Knows \neg \Knows p$ \hfill 
+      \hline
+      \emph{Euclid的}：\newline
+      $\forall w \forall u \forall v ((Rwu \land Rwv) \lif Ruv)$ &
+      $\lnot \Knows p \lif \Knows \neg \Knows p$ \hfill
         \newline{(负内省)} \\
       \hline
     \end{tabular}

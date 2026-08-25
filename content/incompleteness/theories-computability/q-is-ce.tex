@@ -8,7 +8,7 @@
 
 \olfileid{inc}{tcp}{qce}
 
-\olsection{$\Th{Q}$ 是 \printtoken{S}{c.e.}-完全的}
+\olsection{$\Th{Q}$ 是可计算枚举完备的}
 
 
 \begin{thm}
@@ -22,7 +22,7 @@ Q = \Setabs{y}{\lexists[x][\Prf[\Th{Q}](x,y)]}.
 \]
 但我们知道 $\Prf[\Th{Q}](x,y)$ 是可计算的（事实上是原始递归的），而任何能写成上述形式的集合都是 c.e.。
 
-它是一个完全的 c.e. 集，等价于 $K \leq_m Q$，其中 $K = \Setabs{x}{!A_x(x) \downarrow}$。下面证明 $K$ 可归约到 $\Th{Q}$。由于 克林 谓词 $T(e,x,s)$ 是原始递归的，它在 $\Th{Q}$ 中是可表示的，设由 $!A_T$ 表示。那么对任意 $x$，我们有
+它是一个完全的 c.e. 集，等价于 $K \leq_m Q$，其中 $K = \Setabs{x}{!A_x(x) \downarrow}$。下面证明 $K$ 可归约到 $\Th{Q}$。由于 Kleene 谓词 $T(e,x,s)$ 是原始递归的，它在 $\Th{Q}$ 中是可表示的，设由 $!A_T$ 表示。那么对任意 $x$，我们有
 \begin{align*}
 x \in K & \lif \lexists[s][T(x,x,s)] \\
 & \lif \lexists[s][(\Th{Q} \Proves !A_T(\num x,\num x, \num s))]

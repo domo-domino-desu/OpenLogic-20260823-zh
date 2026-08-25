@@ -18,7 +18,8 @@
 \iftag{prvBox}{%
   \Box!A \in \Delta \text{ 当且仅当 } !A \in \Delta' \text{ 对所有满足 } R^\Sigma\Delta\Delta'}{%
   \Diamond!A \in \Delta \text{ 的 $\Delta'$ 成立 } !A \in \Delta' \text{ 当且仅当对至少一个满足 } R^\Sigma\Delta\Delta'}
-\]\text{ 的  \Delta'  成立}
+\]
+的 $\Delta'$ 成立
 \iftag{prvBox}{考虑从左到右的方向：它说的是，若 $\Box !A \in \Delta$，则对任意 $!A$ 及任意满足 $R^\Sigma\Delta\Delta'$ 的 $\Delta'$，都有 $!A \in \Delta'$。如果我们规定 $R^\Sigma\Delta\Delta'$ 当且仅当：对所有的 $\Box!A \in \Delta$，都有 $!A \in \Delta'$，那么这就成立了。我们可以将“当且仅当”右边的条件更简洁地写为：$\Setabs{!A}{\Box!A \in \Delta}
   \subseteq \Delta'$。}{考虑从右到左的方向：它说的是，对任意 $!A$ 及满足 $R^\Sigma\Delta\Delta'$ 的 $\Delta'$，若 $!A \in \Delta'$ 则 $\Diamond!A \in \Delta$。如果我们规定，只要对所有的 $!A \in \Delta'$ 都有 $\Diamond!A \in \Delta$，就成立 $R^\Sigma\Delta\Delta'$，那么这就成立了。我们可以将“当且仅当”右边的条件更简洁地写为：$\Setabs{\Diamond!A}{!A \in \Delta'} \subseteq \Delta$。}
 
@@ -73,7 +74,7 @@
 
 \iftag{prvBox}{%
 % Box is primitive
-  
+
 
 \begin{prop}\ollabel{prop:box}
   若 $\Gamma$ 是完全 $\Sigma$ 一致的，则 $\Box !A \in
@@ -163,7 +164,7 @@
   \iftag{prvDiamond}{%
 % Box and Diamond are both primitive; prove
 % prop:diamond using lem:box-iff-diamond
-  
+
 
 \begin{prop}\ollabel{prop:diamond}
   若 $\Gamma$ 是完全 $\Sigma$ 一致的，则 $\Diamond !A \in
@@ -191,7 +192,7 @@ $\Delta$ 使得 $\Diamond\Delta \subseteq \Gamma$ 且 $!A \in \Delta$。
 \end{proof}
 
 }{}}{}
-  
+
 
 \begin{prob}
   证明：若 $\Gamma$ 是完全 $\Sigma$ 一致的，则

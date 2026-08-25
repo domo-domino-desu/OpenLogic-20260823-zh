@@ -2,8 +2,8 @@
 
 \begin{document}
 
-% Part: turing-machines 
-% Chapter: undecidability 
+% Part: turing-machines
+% Chapter: undecidability
 % Section: verification
 
 \olfileid{tur}{und}{ver}
@@ -51,7 +51,7 @@ $\Sat{M}{!E(M, w)}$
 
 \begin{defn}
 令 $!C(M, w, n)$ 为如下语句：
-\[ 
+\[
 \Obj Q_q(\num{m}, \num{n}) \land \Obj S_{\sigma_0}(\num{0}, \num{n})
 \land \dots \land \Obj S_{\sigma_k}(\num{k}, \num{n}) \land
 \lforall[x][(\num{k} < x \lif \Obj S_\TMblank(x, \num{n}))]
@@ -111,11 +111,11 @@ w, n) \Entails !E(M,w)$。我们现在来证明，对于任意时刻~$n$，都�
 \begin{enumerate}
 \item 假设有一条形如~\olref{right} 的指令。
   根据 \olref[rep]{defn:tm-descr}\olref[rep]{rep-right}，这意味着
-\begin{align*} 
+\begin{align*}
 & \lforall[x][\lforall[y][((\Obj Q_{q}(x,
   y) \land \Obj S_\sigma(x, y)) \lif {}]]\\
 & \qquad (\Obj Q_{q'}(x',
-  y') \land \Obj S_{\sigma'}(x, y') \land !A(x, y)))  
+  y') \land \Obj S_{\sigma'}(x, y') \land !A(x, y)))
  \intertext{是 $!T(M,w)$ 的一个合取项。这蕴涵了以下语句（全称实例化，以 $\num{m}$ 代~$x$，以 $\num{n}$ 代~$y$）：}
 & (\Obj Q_{q}(\num{m}, \num{n}) \land \Obj S_{\sigma}(\num{m},
 \num{n})) \lif {}\\
@@ -161,7 +161,7 @@ S_\TMblank(\num{k}',\num{n}')$。
 
 \item 假设有一条形如~\olref{left} 的指令。
   那么，由 \olref[rep]{defn:tm-descr}\olref[rep]{rep-left}，
-\begin{align*} 
+\begin{align*}
 & \lforall[x][\lforall[y][((\Obj Q_{q}(x', y) \land \Obj
     S_{\sigma}(x', y)) \lif {}]]\\
 & \qquad (\Obj Q_{q'}(x, y') \land \Obj
@@ -178,7 +178,7 @@ S_\TMblank(\num{k}',\num{n}')$。
  \intertext{否则，令 $l = m = 0$，并考虑第二个合取项所蕴涵的以下语句：}
 & ((\Obj Q_{q_i}(\num{0}, \num{n}) \land \Obj S_{\sigma}(\num{0}, \num{n})) \lif {}\\
 & \qquad   (\Obj Q_{q_j}(\num{0}, \num{n}') \land \Obj S_{\sigma'}(\num{0}, \num{n}') \land
-!A(\num{0}, \num{n}))) 
+!A(\num{0}, \num{n})))
  \intertext{任一语句均可如前推出}
 &  \Obj Q_{q'}(\num{l}, \num{n}') \land \Obj S_{\sigma'}(\num{m},
   \num{n}') \land {}\\

@@ -49,20 +49,20 @@
     \Gamma$。那么由于 $\Gamma$ 是完全 $\Sigma$ 一致的，
     $\lnot!A \in \Gamma$。这将导致 $\Gamma$ 不一致，因为
     $!A, \lnot !A \Proves[\Sigma] \lfalse$。
-    
+
   \item 如果 $!A \in \Sigma$ 那么 $\Gamma \Proves[\Sigma] !A$，并且由演绎封闭性可知 $!A
     \in \Gamma$，即由第~\olref{prop:ccs-closed}~项。
-    
+
   \tagitem{prvFalse}{若 $\lfalse \in \Gamma$，则 $\Gamma
     \Proves[\Sigma] \lfalse$，因此 $\Gamma$ 将是
     $\Sigma$-不一致的。}{}
-  
+
   \tagitem{prvTrue}{$\Gamma \Proves[\Sigma] \ltrue$，故由演绎封闭性得 $\ltrue \in
     \Gamma$，即由第~\olref{prop:ccs-closed}~项。}{}
 
 \item 若 $\lnot!A \in \Gamma$，则由一致性可知 $!A \notin
     \Gamma$；且若 $!A \notin \Gamma$，则由于 $\Gamma$ 是完全 $\Sigma$ 一致的，有 $\lnot!A \in \Gamma$。
-    
+
   \tagitem{prvAnd}{\iftag{probAnd}{练习。}{假设 $!A \land !B \in
       \Gamma$。由于 $(!A \land !B) \lif !A$ 是一个重言式实例，故由演绎封闭性（即
       第~\olref{prop:ccs-closed}~项）得 $!A \in \Gamma$。类似可得 $!B \in \Gamma$。
@@ -78,7 +78,7 @@
       因为 $\lnot !A \lif (\lnot !B \lif \lnot (!A \lor !B))$ 是一个
       重言式实例。这将意味着 $\Gamma$ 是
       $\Sigma$-不一致的，矛盾。}}{}
-  
+
   \tagitem{prvIf}{\iftag{probIf}{练习。}{假设 $!A \lif !B \in
       \Gamma$ 且 $!A \in \Gamma$；则 $\Gamma \Proves[\Sigma] !B$，
       从而由演绎封闭性得 $!B \in \Gamma$。反之，若 $!A
@@ -89,13 +89,13 @@
       \lnot !B$ 是重言式实例，故得 $\lnot !B \in
       \Gamma$。那么由于 $\Gamma$ 是
       $\Sigma$-一致的，有 $!B \notin \Gamma$。}}{}
-  
+
   \tagitem{prvIff}{\iftag{probIff}{练习。}{假设 $!A \liff !B \in
       \Gamma$。若 $!A \in \Gamma$，则 $!B \in \Gamma$，因为 $(!A
       \liff !B) \lif (!A \lif !B)$ 是重言式
       实例。类似地，若 $!B \in \Gamma$，则 $!A \in \Gamma$。
       因此，要么 $!A \in \Gamma$ 且 $!B \in \Gamma$，要么 $!A \notin \Gamma$ 且 $!B \notin \Gamma$。
-      
+
       反之，假设 $!A \liff !B \notin \Gamma$。由于 $\Gamma$
       是完全 $\Sigma$ 一致的，故 $\lnot (!A \liff !B) \in
       \Gamma$。由于 $\lnot(!A \liff !B) \lif (!A \lif \lnot !B)$ 是一个

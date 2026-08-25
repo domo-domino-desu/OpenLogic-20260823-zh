@@ -54,15 +54,15 @@
 \end{prop}
 
 \begin{defn}
-如果 $s_0, \dots, s_{n-1}$ 是一个符号序列，则其 \emph{哥德尔数} 为 $\tuple{\scode{s_0}, \dots, \scode{s_{n-1}}}$。
+如果 $s_0, \dots, s_{n-1}$ 是一个符号序列，则其 \emph{Gödel数} 为 $\tuple{\scode{s_0}, \dots, \scode{s_{n-1}}}$。
 \end{defn}
 
 \begin{explain}
-注意，\emph{代码}和\emph{哥德尔数}是不同的。
+注意，\emph{代码}和\emph{Gödel数}是不同的。
 例如，变元~$\Obj v_5$ 有一个代码~$\scode{\Obj
   v_5} = \tuple{1, 5} = 2^2\cdot 3^6$。
 但是，变元~$\Obj v_5$ 作为一项，也是一个（长度为~$1$ 的）符号序列。
-\emph{项}~$\Obj v_5$ 的\emph{哥德尔数}~$\Gn{\Obj v_5}$ 是 $\tuple{\scode{\Obj v_5}} = 2^{\scode{\Obj
+\emph{项}~$\Obj v_5$ 的\emph{Gödel数}~$\Gn{\Obj v_5}$ 是 $\tuple{\scode{\Obj v_5}} = 2^{\scode{\Obj
     v_5} + 1} = 2^{2^2\cdot 3^6 + 1}$。
 \end{explain}
 
@@ -72,7 +72,7 @@
 2^{k_0+1}\cdot3^{k_1+1}\cdot \dots \cdot p_{n-1}^{k_{n-1}+1},
 \]
 其中 $p_i$ 是第 $i$ 个素数（从 $p_0 = 2$ 开始）。
-因此，举例来说，公式 $\eq[\Obj v_0][\Obj 0]$，或者更明确地写为 ${\eq}(\Obj v_0,\Obj c_0)$，其哥德尔数是
+因此，举例来说，公式 $\eq[\Obj v_0][\Obj 0]$，或者更明确地写为 ${\eq}(\Obj v_0,\Obj c_0)$，其Gödel数是
 \[
 \tuple{\scode{\eq},\scode{(},\scode{\Obj v_0},\scode{,}, \scode{\Obj
     c_0},\scode{)}}.

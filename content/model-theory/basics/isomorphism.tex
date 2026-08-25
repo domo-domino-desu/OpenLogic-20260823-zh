@@ -9,7 +9,7 @@
 \olfileid{mod}{bas}{iso}
 \olsection{同构结构}
 
-一阶结构有两种彼此相似的方式。一种相似性在于它们满足相同的语句。我们称这样的结构是\emph{初等等价的}。但结构可以差异巨大，却仍然满足相同的语句——例如，一个结构可数而另一个不可数。这是因为结构的许多特征无法在一阶语言中表达，原因要么在于语言不够丰富，要么在于一阶逻辑的根本局限性（如 勒文海姆--斯科伦 定理）。因此，结构之间另一种更严格的相似性在于它们本质上是相同的，即它们仅在构成元素上不同，而在结构特征上完全一致。将其精确化的方法是借助\emph{同构}的概念。
+一阶结构有两种彼此相似的方式。一种相似性在于它们满足相同的语句。我们称这样的结构是\emph{初等等价的}。但结构可以差异巨大，却仍然满足相同的语句——例如，一个结构可数而另一个不可数。这是因为结构的许多特征无法在一阶语言中表达，原因要么在于语言不够丰富，要么在于一阶逻辑的根本局限性（如 Löwenheim--Skolem 定理）。因此，结构之间另一种更严格的相似性在于它们本质上是相同的，即它们仅在构成元素上不同，而在结构特征上完全一致。将其精确化的方法是借助\emph{同构}的概念。
 
 \begin{defn}
 \ollabel{defn:elem-equiv}
@@ -21,7 +21,7 @@
 给定同一语言~$\Lang L$ 的两个结构 $\Struct{M}$ 和 $\Struct M'$，我们称 $\Struct{M}$ \emph{同构于} $\Struct M'$，记作 $\Struct{M} \simeq \Struct M'$，当且仅当存在一个函数 $h \colon
 \Domain{M} \to \Domain{M'}$ 满足：
 \begin{enumerate}
-\item $h$ 是单射的：如果 $h(x) = h(y)$，那么 $x = y$； 
+\item $h$ 是单射的：如果 $h(x) = h(y)$，那么 $x = y$；
 \item $h$ 是满射的：对于每个 $y \in \Domain{M'}$，都存在 $x \in \Domain{M}$ 使得 $h(x) = y$；
 \item \ollabel{defn:iso-const}对于每个常项符号 $c$：$h(\Assign{c}{M}) = \Assign{c}{M'}$；
 \item \ollabel{defn:iso-pred}对于每个 $n$ 元谓词符号~$P$：\[
@@ -59,7 +59,7 @@
   \end{align*}
   归纳假设是对于每个 $i$，$h(\Value{t_i}{M}[s])
   = \Value{t_i}{M'}[h\circ s]$。所以，\begin{align}
-    h(\Value{t}{M}[s]) 
+    h(\Value{t}{M}[s])
     & = h(\Assign{f}{M}(\Value{t_1}{M}[s], \dots, \Value{t_n}{M}[s]))\notag\\
     & = \Assign{f}{M'}(h(\Value{t_1}{M}[s]), \dots,
     h(\Value{t_n}{M}[s])) \ollabel{iso-1}\\

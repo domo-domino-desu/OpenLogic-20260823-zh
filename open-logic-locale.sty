@@ -1,4 +1,4 @@
-% Localization file for English
+% Chinese localization (the document keeps babel's English language machinery).
 
 % If you're preparing a translation you should have a copy of this
 % file (with the same name) in `locale/<langid>/`. Any file you use to
@@ -13,34 +13,34 @@
 % LaTeX references the same, however. So, e.g.,
 % \setlocalecaption{german}{theorem}{Satz}
 
-\setlocalecaption{english}{photocredits}{Photo Credits}
-\setlocalecaption{english}{history}{Historical Remarks}
-\setlocalecaption{english}{reading}{Further Reading}
-\setlocalecaption{english}{appendix}{Appendix}
-\setlocalecaption{english}{appendices}{Appendices}
+\setlocalecaption{english}{photocredits}{图片来源}
+\setlocalecaption{english}{history}{历史注记}
+\setlocalecaption{english}{reading}{延伸阅读}
+\setlocalecaption{english}{appendix}{附录}
+\setlocalecaption{english}{appendices}{附录}
 
-\setlocalecaption{english}{theorem}{Theorem}
-\setlocalecaption{english}{example}{Example}
-\setlocalecaption{english}{definition}{Definition}
-\setlocalecaption{english}{lemma}{Lemma}
-\setlocalecaption{english}{proposition}{Proposition}
-\setlocalecaption{english}{corollary}{Corollary}
-\setlocalecaption{english}{problem}{Problem}
-\setlocalecaption{english}{problems}{Problems}
-\setlocalecaption{english}{remark}{Remark}
-\setlocalecaption{english}{axiom}{Axiom}
-\setlocalecaption{english}{note}{Note}
-\setlocalecaption{english}{case}{Case}
-\setlocalecaption{english}{convention}{Convention}
+\setlocalecaption{english}{theorem}{定理}
+\setlocalecaption{english}{example}{例}
+\setlocalecaption{english}{definition}{定义}
+\setlocalecaption{english}{lemma}{引理}
+\setlocalecaption{english}{proposition}{命题}
+\setlocalecaption{english}{corollary}{推论}
+\setlocalecaption{english}{problem}{习题}
+\setlocalecaption{english}{problems}{习题}
+\setlocalecaption{english}{remark}{评注}
+\setlocalecaption{english}{axiom}{公理}
+\setlocalecaption{english}{note}{注}
+\setlocalecaption{english}{case}{情形}
+\setlocalecaption{english}{convention}{约定}
 
 \setlocalecaption{english}{OLP}{Open Logic Project}
 \setlocalecaption{english}{OLT}{The Open Logic Text}
 \setlocalecaption{english}{OLTlink}{https://github.com/OpenLogicProject/OpenLogic}
 \setlocalecaption{english}{license}{Creative Commons
-  Attribution 4.0 International License}
-\setlocalecaption{english}{instigator}{Instigator}
-\setlocalecaption{english}{editorialboard}{Editorial Board}
-\setlocalecaption{english}{contributors}{Contributors}
+  署名 4.0 国际许可协议}
+\setlocalecaption{english}{instigator}{发起人}
+\setlocalecaption{english}{editorialboard}{编辑委员会}
+\setlocalecaption{english}{contributors}{贡献者}
 
 % These are the names of the environments that `\cref` adds
 % automatically. `thmtools` should do that as well, but sometimes it
@@ -56,21 +56,30 @@
 
 \addto\extrasenglish{%
 % execute whenever the language switches to English
-\Crefname{page}{p.}{pp.}%
-\Crefname{thm}{Theorem}{Theorems}%
-\Crefname{ex}{Example}{Examples}%
-\Crefname{defn}{Definition}{Definitions}%
-\Crefname{lem}{Lemma}{Lemmata}%
-\Crefname{prop}{Proposition}{Propositions}%
-\Crefname{prob}{Problem}{Problems}%
-\Crefname{rem}{Remark}{Remarks}%
-\Crefname{cor}{Corollary}{Corollaries}%
-\Crefname{axiom}{Axiom}{Axioms}%
-\Crefname{note}{Note}{Notes}%
-\Crefname{case}{Case}{Cases}%
-\Crefname{conv}{Convention}{Conventions}%
-\Crefname{figure}{Figure}{Figures}%
-\Crefname{table}{Table}{Tables}%
+\renewcommand{\proofname}{证明}%
+\renewcommand{\contentsname}{目录}%
+\renewcommand{\partname}{部分}%
+\renewcommand{\chaptername}{章}%
+\renewcommand{\figurename}{图}%
+\renewcommand{\tablename}{表}%
+\renewcommand{\appendixname}{附录}%
+\renewcommand{\bibname}{参考文献}%
+\renewcommand{\indexname}{索引}%
+\Crefname{page}{页}{页}%
+\Crefname{thm}{定理}{定理}%
+\Crefname{ex}{例}{例}%
+\Crefname{defn}{定义}{定义}%
+\Crefname{lem}{引理}{引理}%
+\Crefname{prop}{命题}{命题}%
+\Crefname{prob}{习题}{习题}%
+\Crefname{rem}{评注}{评注}%
+\Crefname{cor}{推论}{推论}%
+\Crefname{axiom}{公理}{公理}%
+\Crefname{note}{注}{注}%
+\Crefname{case}{情形}{情形}%
+\Crefname{conv}{约定}{约定}%
+\Crefname{figure}{图}{图}%
+\Crefname{table}{表}{表}%
 }
 
 % Boilerplate texts for licenses, etc. You can customize these for
@@ -81,45 +90,43 @@
 
 \newcommand*{\ollicensetext}[3]
   {\textit{#1}
-  by
+  由
   #2
-  is licensed under a 
+  采用
   #3.}
 \newcommand*{\olshortlicensetext}[1]
   {\textit{\href{\OLTlinkname}{\jobname}}
   \ifgitinfo\ 
-  by #1 /
+  作者：#1 /
   \href{http://creativecommons.org/licenses/by/4.0/}{CC--BY}.}
 \newcommand*{\oluselicensetext}
-  {It is based on
+  {本书基于
   \textit{\href{\OLTlinkname}{\OLTname}}
-  by the
+  （由
   \href{http://openlogicproject.org/}{\OLPname},
-  used under a
-  \href{http://creativecommons.org/licenses/by/4.0/}{\licensename}.}
+  编写），并依照
+  \href{http://creativecommons.org/licenses/by/4.0/}{\licensename}使用。}
 \newcommand*{\olshortuselicensetext}[2]
   {\textit{#1}
-  by #2 based on
+  作者：#2；基于
   \href{http://openlogicproject.org/}{OLP} /
   \href{http://creativecommons.org/licenses/by/4.0/}{CC--BY}.}
 
 % Text and boilerplates for the open-logic-book cover and front matter
 
 \newcommand*{\olremixedby}
-  {Remixed by \OLPauthor}
+  {改编者：\OLPauthor}
 \newcommand*{\olacknowledgements}
-  {The Open Logic Project would like to acknowledge the generous support
-  of the \href{https://taylorinstitute.ucalgary.ca/}{Taylor Institute
-  of Teaching and Learning} of the University of Calgary, and the
-  Alberta Open Educational Resources (ABOER) Initiative, which is made
-  possible through an investment from the Alberta government.}
+  {Open Logic Project 谨此感谢卡尔加里大学
+  \href{https://taylorinstitute.ucalgary.ca/}{Taylor 教学研究所}及
+  Alberta Open Educational Resources（ABOER）计划的慷慨支持；后者由
+  Alberta 省政府出资设立。}
 \newcommand*{\olillustrations}
-  {Cover illustrations by \href{http://mattleadbeater.com}{Matthew
-  Leadbeater}, used under a
-  \href{https://creativecommons.org/licenses/by-nc/4.0/}{Creative Commons
-  Attribution-NonCommercial 4.0 International License}.}
+  {封面插图由 \href{http://mattleadbeater.com}{Matthew Leadbeater} 创作，
+  依照\href{https://creativecommons.org/licenses/by-nc/4.0/}{知识共享
+  署名—非商业性使用 4.0 国际许可协议}使用。}
 \newcommand*{\olcolophon}
-  {Typeset in Baskervald X and Nimbus Sans by \LaTeX.}
+  {使用 \LaTeX{} 排版。}
 \newcommand*{\olbookrevision}
-  {This version of \emph{\OLPbooktitle} is revision \gitAbbrevHash{} (\gitAuthorDate), with content generated from \emph{Open Logic Text} revision \OLPrevision. Free download at:\\[.5ex]
+  {此版\emph{\OLPbooktitle}的修订号为 \gitAbbrevHash{}（\gitAuthorDate），内容生成自\emph{Open Logic Text}修订版 \OLPrevision。免费下载地址：\\[.5ex]
   \url{\OLPsourcelink}}

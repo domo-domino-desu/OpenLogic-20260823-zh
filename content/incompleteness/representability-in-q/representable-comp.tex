@@ -49,7 +49,7 @@ prfTab/{fol:tab:sou:cor:consistency-soundness}}）。
 \num{n_k}, \num{m})$（即根据 \olref{lem:rep-q} 在~$\Th{Q}$ 中表示 $f$ 的公式）的公式的一个推导。如果是，则由 \olref{lem:rep-q}，$m = f(n_0, \dots, n_k)$，于是我们找到了~$f$ 的值。由于 $\Th{Q} \Proves !A_f(\num{n_0}, \dots, \num{n_k},
 \num{f(n_0, \dots, n_k)})$，搜索必定终止，即我们最终会找到一个符合要求的 $\delta$。
 
-这并不完全精确，因为我们的过程处理的对象是推导和公式，而不仅仅是数字，并且我们还没有确切解释为什么“枚举所有可能的推导”是机械可行的。但正如我们所见，可以用哥德尔数来编码项、公式和推导。我们也引入了一个精确的计算模型，即一般递归函数。而且我们已经看到，关系 $\Prf[\Th{Q}](d,y)$ 是（原始）递归的，该关系成立当且仅当 $d$ 是这样一个推导的哥德尔数：该推导是从~$\Th{Q}$ 的公理出发对哥德尔数为~$y$ 的公式所作的推导。我们需要的其他原始递归函数还有 $\fn{num}$（\olref[art][trm]{prop:num-primrec}）和 $\fn{Subst}$（\olref[art][sub]{prop:subst-primrec}）。利用这些函数，可以通过极小化来定义~$f$；因此 $f$ 是递归的。
+这并不完全精确，因为我们的过程处理的对象是推导和公式，而不仅仅是数字，并且我们还没有确切解释为什么“枚举所有可能的推导”是机械可行的。但正如我们所见，可以用Gödel数来编码项、公式和推导。我们也引入了一个精确的计算模型，即一般递归函数。而且我们已经看到，关系 $\Prf[\Th{Q}](d,y)$ 是（原始）递归的，该关系成立当且仅当 $d$ 是这样一个推导的Gödel数：该推导是从~$\Th{Q}$ 的公理出发对Gödel数为~$y$ 的公式所作的推导。我们需要的其他原始递归函数还有 $\fn{num}$（\olref[art][trm]{prop:num-primrec}）和 $\fn{Subst}$（\olref[art][sub]{prop:subst-primrec}）。利用这些函数，可以通过极小化来定义~$f$；因此 $f$ 是递归的。
 
 首先，定义
 \begin{multline*}
@@ -60,13 +60,13 @@ prfTab/{fol:tab:sou:cor:consistency-soundness}}）。
 这看起来有些复杂，但它其实就是函数 $A(n_0, \dots, n_k,
 m) = \Gn{!A_f(\num{n_0}, \dots, \num{n_k}, \num{m})}$。
 
-现在，考虑关系~$R(n_0, \dots, n_k, s)$，它成立当且仅当 $(s)_0$ 是从~$\Th{Q}$ 出发对 $!A_f(\num{n_0}, \dots, \num{n_k}, \num{(s)_1})$ 的一个推导的哥德尔数：
+现在，考虑关系~$R(n_0, \dots, n_k, s)$，它成立当且仅当 $(s)_0$ 是从~$\Th{Q}$ 出发对 $!A_f(\num{n_0}, \dots, \num{n_k}, \num{(s)_1})$ 的一个推导的Gödel数：
 \[
 R(n_0, \dots, n_k, s) \quad \text{当且仅当} \quad \Prf[\Th{Q}]((s)_0, A(n_0,
 \dots, n_k, (s)_1))
 \]
 如果我们能找到一个使 $R(n_0, \dots, n_k, s)$ 成立的~$s$，我们就找到了一对数——$(s)_0$ 和~$(s)_1$——使得 $(s)_0$ 是 $A_f(\num{n_0}, \dots,
-\num{n_k}, (s)_1)$ 的一个推导的哥德尔数。因此，寻找这样的~$s$ 就好比在非形式化证明中寻找数对 $d$ 和 $m$。而一个“寻找”这样的 $s$ 的可计算函数可以通过正则极小化来定义。注意 $R$ 是正则的：对每个 $n_0$, \dots, $n_k$，都存在 $\Th{Q} \Proves !A_f(\num{n_0}, \dots,
+\num{n_k}, (s)_1)$ 的一个推导的Gödel数。因此，寻找这样的~$s$ 就好比在非形式化证明中寻找数对 $d$ 和 $m$。而一个“寻找”这样的 $s$ 的可计算函数可以通过正则极小化来定义。注意 $R$ 是正则的：对每个 $n_0$, \dots, $n_k$，都存在 $\Th{Q} \Proves !A_f(\num{n_0}, \dots,
 \num{n_k}, \num{f(n_0, \dots, n_k)})$ 的一个推导~$\delta$，因此对于 $s = \tuple{\Gn{\delta}, f(n_0, \dots, n_k)}$，$R(n_0, \dots, n_k, s)$ 成立。所以，我们可以将 $f$ 写作
 \[
 f(n_0,\dots,n_{k}) = (\umin{s}{R(n_0, \dots, n_k, s)})_1.

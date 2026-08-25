@@ -22,10 +22,10 @@
 \begin{defn}
   若 $\delta$ 是自然演绎中的一个推导，则 $\Gn{\delta}$ 归纳定义如下：
   \begin{enumerate}
-  \item 
+  \item
     若 $\delta$ 仅由假设~$!A$ 组成，则 $\Gn{\delta}$
     是 $\tuple{0, \Gn{!A}, n}$。其中数~$n$：若该假设未被解除，则取~$0$；否则取其数值标签。
-  \item 
+  \item
     若 $\delta$ 以一个有零个、一个、两个或三个前提的推理结束，
     则 $\Gn{\delta}$ 分别为
     \begin{align*}
@@ -40,7 +40,7 @@
     $!A$ 是 $\delta$ 中最后一个推理的结论，
     $n$ 是最后一个推理的解除标签（若该推理不解除任何假设，则 $n=0$），
     而 $k$ 则根据最后一个推理所用的规则，由下表给出：
-  
+
     \begin{tabular}{lccccccc}
       \text{规则：} & \Intro{\land} & \Elim{\land} & \Intro{\lor} & \Elim{\lor} \\
       $k$： & 1 & 2 & 3 & 4  \\[1.5ex]
@@ -49,7 +49,7 @@
       \text{规则：}  &  \FalseInt & \FalseCl & \Intro{\lforall} & \Elim{\lforall} \\
       $k$： & 9 & 10 & 11 & 12 \\[1.5ex]
       \text{规则：} & \Intro{\lexists} & \Elim{\lexists} & \Intro{\eq} & \Elim{\eq} \\
-      $k$： & 13 & 14 & 15 & 16 
+      $k$： & 13 & 14 & 15 & 16
     \end{tabular}
   \end{enumerate}
 \end{defn}
@@ -63,12 +63,12 @@
     \DischargeRule{\Intro{\lif}}{1}
     \UnaryInfC{$(!A \land !B) \lif !A$}
   \end{prooftree}
-  该假设的哥德尔数将是 $d_0 = \tuple{0,
+  该假设的Gödel数将是 $d_0 = \tuple{0,
     \Gn{!A \land !B}, 1}$。
-  以~$\Elim{\land}$ 的结论为末端的子推导的哥德尔数将是 $d_1 = \tuple{1,
+  以~$\Elim{\land}$ 的结论为末端的子推导的Gödel数将是 $d_1 = \tuple{1,
      d_0, \Gn{!A}, 0, 2}$（其中 $1$ 是因为 $\Elim{\land}$ 有一个前提，
-  接着是结论 $!A$ 的哥德尔数，$0$ 表示没有解除任何假设，而 $2$ 是编码 $\Elim{\land}$ 的数字）。
-  于是整个推导的哥德尔数是
+  接着是结论 $!A$ 的Gödel数，$0$ 表示没有解除任何假设，而 $2$ 是编码 $\Elim{\land}$ 的数字）。
+  于是整个推导的Gödel数是
   $\tuple{1, d_1, \Gn{((!A \land !B) \lif
       !A)}, 1, 5}$，即
   \[
@@ -78,12 +78,12 @@
 \end{ex}
 
 \begin{explain}
-在确定了推导的一种表示方法之后，我们还必须证明可以原始递归地操作此类推导的哥德尔数，并表达其本质属性与关系。
-有些运算很简单：例如，给定一个推导的哥德尔数~$d$，$\fn{EndFmla}(d) = (d)_{(d)_0+1}$
-给出其末端公式的哥德尔数，
+在确定了推导的一种表示方法之后，我们还必须证明可以原始递归地操作此类推导的Gödel数，并表达其本质属性与关系。
+有些运算很简单：例如，给定一个推导的Gödel数~$d$，$\fn{EndFmla}(d) = (d)_{(d)_0+1}$
+给出其末端公式的Gödel数，
 $\fn{DischargeLabel}(d) = (d)_{(d)_0 + 2}$ 给出其解除标签，
 而 $\fn{LastRule}(d) = (d)_{(d)_0 + 3}$ 给出指示最后一个推理类型的数字。
-有些运算则要困难得多。我们至少会概述如何做到这一点。目标是证明“$\delta$ 是从 $\Gamma$ 到~$!A$ 的推导”这一关系（关于 $\delta$ 和~$!A$ 的哥德尔数）是原始递归的。
+有些运算则要困难得多。我们至少会概述如何做到这一点。目标是证明“$\delta$ 是从 $\Gamma$ 到~$!A$ 的推导”这一关系（关于 $\delta$ 和~$!A$ 的Gödel数）是原始递归的。
 \end{explain}
 
 \begin{prop}
@@ -95,37 +95,37 @@ $\fn{DischargeLabel}(d) = (d)_{(d)_0 + 2}$ 给出其解除标签，
 \end{prop}
 
 \begin{proof}
-  我们必须证明，公式的哥德尔数与推导的哥德尔数之间的相应关系是原始递归的。
+  我们必须证明，公式的Gödel数与推导的Gödel数之间的相应关系是原始递归的。
   \begin{enumerate}
   \item 我们想证明 $\fn{Assum}(x, d, n)$ 是原始递归的，该关系成立当且仅当 $x$
-    是哥德尔数为~$d$ 的推导中标签为~$n$ 的某个假设的哥德尔数。当哥德尔数为 $\tuple{0, x,
+    是Gödel数为~$d$ 的推导中标签为~$n$ 的某个假设的Gödel数。当Gödel数为 $\tuple{0, x,
       n}$ 的推导是 $d$ 的一个子推导时，便是这种情况。注意，我们对推导的编码方式是
     \olref[cmp][rec][tre]{sec} 中引入的树的编码的一个特例，因此原始递归函数
-    $\fn{SubtreeSeq}(d)$ 给出了 $d$ 的所有子推导的哥德尔数序列（长度至多为 $d$）。所以我们可以定义
+    $\fn{SubtreeSeq}(d)$ 给出了 $d$ 的所有子推导的Gödel数序列（长度至多为 $d$）。所以我们可以定义
     \[
     \fn{Assum}(x, d, n) \defiff \bexists{i<d}{(\fn{SubtreeSeq}(d))_i =
       \tuple{0, x, n}}.
     \]
   \item 我们想证明 $\fn{Discharge}(x, d, n)$ 是原始递归的，该关系成立当且仅当
-    哥德尔数为~$d$ 的推导中所有标签为~$n$ 的假设都是哥德尔数为~$x$ 的公式。但这个关系成立当且仅当 $\bforall{y<d}{(\fn{Assum}(y, d, n) \lif y
+    Gödel数为~$d$ 的推导中所有标签为~$n$ 的假设都是Gödel数为~$x$ 的公式。但这个关系成立当且仅当 $\bforall{y<d}{(\fn{Assum}(y, d, n) \lif y
       = x)}$。
   \end{enumerate}
 \end{proof}
 
 \begin{prop}
   \ollabel{prop:followsby}
-  性质 $\fn{Correct}(d)$ 是原始递归的，它成立当且仅当哥德尔数为 $d$ 的推导 $\delta$ 的最后一个推理是正确的。
+  性质 $\fn{Correct}(d)$ 是原始递归的，它成立当且仅当Gödel数为 $d$ 的推导 $\delta$ 的最后一个推理是正确的。
 \end{prop}
 
 \begin{proof}
-  此处我们需要证明，对每条推理规则 $R$，关系 $\fn{FollowsBy}_R(d)$ 都是原始递归的，其中 $\fn{FollowsBy}_R(d)$ 成立当且仅当 $d$ 是某个推导 $\delta$ 的哥德尔数，且 $\delta$ 的末端公式是由 $\delta$ 的各直接子推导通过对规则 $R$ 的正确应用得出的。
+  此处我们需要证明，对每条推理规则 $R$，关系 $\fn{FollowsBy}_R(d)$ 都是原始递归的，其中 $\fn{FollowsBy}_R(d)$ 成立当且仅当 $d$ 是某个推导 $\delta$ 的Gödel数，且 $\delta$ 的末端公式是由 $\delta$ 的各直接子推导通过对规则 $R$ 的正确应用得出的。
 
   一个简单的例子是 $\Intro{\land}$ 规则。如果 $\delta$ 以一个正确的 $\Intro{\land}$ 推理结束，它看起来是这样的：
   \begin{prooftree}
     \AxiomC{}
     \RightLabel{$\delta_1$}
     \DeduceC{$!A$}
-    
+
     \AxiomC{}
     \RightLabel{$\delta_2$}
     \DeduceC{$!B$}
@@ -133,7 +133,7 @@ $\fn{DischargeLabel}(d) = (d)_{(d)_0 + 2}$ 给出其解除标签，
     \RightLabel{\Intro\land}
     \BinaryInfC{$!A \land !B$}
   \end{prooftree}
-  那么 $\delta$ 的哥德尔数 $d$ 是 $\tuple{2, d_1, d_2,
+  那么 $\delta$ 的Gödel数 $d$ 是 $\tuple{2, d_1, d_2,
     \Gn{(!A \land !B)}, 0, k}$，其中 $\fn{EndFmla}(d_1) = \Gn{!A}$，$\fn{EndFmla}(d_2) = \Gn{!B}$，$n=0$，且 $k=1$。因此我们可以将 $\fn{FollowsBy}_{\Intro\land}(d)$ 定义为
   \begin{multline*}
     (d)_0 = 2 \land \fn{DischargeLabel}(d) = 0 \land \fn{LastRule}(d) = 1 \land {}\\
@@ -145,7 +145,7 @@ $\fn{DischargeLabel}(d) = (d)_{(d)_0 + 2}$ 给出其解除标签，
   另一个简单的例子是 $\Intro\eq$ 规则。该规则没有前提，所以 $(d)_0 = 0$，与假设的情况类似。它也没有解除标签，即 $n=0$。然而，$!A$ 必须具有 $\eq[t][t]$ 的形式，其中 $t$ 是闭项。这里，一个原始递归的定义是
   \begin{multline*}
     (d)_0 = 0 \land \fn{DischargeLabel}(d) = 0 \land {}\\
-    \bexists{t<d}{(\fn{ClTerm}(t) \land 
+    \bexists{t<d}{(\fn{ClTerm}(t) \land
       \fn{EndFmla}(d) = {}\\
       \Gn{{\eq}(} \concat t \concat \Gn{,} \concat t \concat \Gn{)})}.
   \end{multline*}
@@ -158,7 +158,7 @@ $\fn{DischargeLabel}(d) = (d)_{(d)_0 + 2}$ 给出其解除标签，
       \fn{EndFmla}(d) = (\Gn{(} \concat a \concat \Gn{\lif}
       \concat \fn{EndFmla}((d)_1) \concat \Gn{)}))
   \end{multline*}
-  （可将 $a$ 视为 $!A$ 的哥德尔数）。
+  （可将 $a$ 视为 $!A$ 的Gödel数）。
 
   再考虑另一个例子，$\Intro{\lexists}$ 规则。这里，$\delta$ 的最后一个推理是正确的，当且仅当存在公式 $!A$、闭项 $t$ 和变元 $x$，使得 $\Subst{!A}{t}{x}$ 是推导 $\delta_1$ 的末端公式，并且 $\lexists[x][!A]$ 是最后一个推理的结论。所以，$\fn{FollowsBy}_{\Intro{\lexists}}(d)$ 成立当且仅当
   \begin{multline*}
@@ -188,13 +188,13 @@ $\fn{DischargeLabel}(d) = (d)_{(d)_0 + 2}$ 给出其解除标签，
   \item $\fn{FollowsBy}_{\Elim{\lor}}(d)$，
   \item $\fn{FollowsBy}_{\Intro{\lforall}}(d)$。
   \end{enumerate}
-  对于最后一个，你还需要证明可以原始递归地测试哥德尔数为 $d$ 的推导的最后一个推理是否满足本征变元条件，即 $\Intro{\lforall}$ 推理的本征变元 $a$ 既不出现在 $d$ 的末端公式中，也不出现在 $d$ 的任何未解除假设中。为此，你可以使用来自
+  对于最后一个，你还需要证明可以原始递归地测试Gödel数为 $d$ 的推导的最后一个推理是否满足本征变元条件，即 $\Intro{\lforall}$ 推理的本征变元 $a$ 既不出现在 $d$ 的末端公式中，也不出现在 $d$ 的任何未解除假设中。为此，你可以使用来自
   \olref[inc][art][pnd]{prop:openassum} 的原始递归谓词 $\fn{OpenAssum}$。
 \end{prob}
 
 \begin{prop}
   \ollabel{prop:deriv}
-  关系 $\fn{Deriv}(d)$ 是原始递归的，它成立当且仅当 $d$ 是某个正确推导 $\delta$ 的哥德尔数。
+  关系 $\fn{Deriv}(d)$ 是原始递归的，它成立当且仅当 $d$ 是某个正确推导 $\delta$ 的Gödel数。
 \end{prop}
 
 \begin{proof}
@@ -205,7 +205,7 @@ $\fn{DischargeLabel}(d) = (d)_{(d)_0 + 2}$ 给出其解除标签，
 \end{proof}
 
 \begin{prop}
-  \ollabel{prop:openassum} 关系 $\fn{OpenAssum}(z, d)$ 是原始递归的，它成立当且仅当 $z$ 是哥德尔数为 $d$ 的推导 $\delta$ 中某个未解除的假设 $!A$ 的哥德尔数。
+  \ollabel{prop:openassum} 关系 $\fn{OpenAssum}(z, d)$ 是原始递归的，它成立当且仅当 $z$ 是Gödel数为 $d$ 的推导 $\delta$ 中某个未解除的假设 $!A$ 的Gödel数。
 \end{prop}
 
 \begin{proof}
@@ -216,8 +216,8 @@ $\fn{DischargeLabel}(d) = (d)_{(d)_0 + 2}$ 给出其解除标签，
   考虑序列 $\delta_0$, \dots, $\delta_k$，其中 $\delta_0 = \delta$，$\delta_k$ 是假设 $\Discharge{!A}{n}$（对某个~$n$），且 $\delta_{i+1}$ 是 $\delta_i$ 的一个直接子推导。
   如果存在这样一个序列，其中没有任何 $\delta_i$ 结束于带有解除标号~$n$ 的推理，那么 $!A$ 就是 $\delta$ 的一个未解除假设。
 
-  原始递归函数 $\fn{SubtreeSeq}(d)$ 给出了~$\delta$ 的所有子推导的哥德尔编码序列。
-  $\delta$ 的任何子推导的哥德尔编码序列都是该序列的子序列。
+  原始递归函数 $\fn{SubtreeSeq}(d)$ 给出了~$\delta$ 的所有子推导的Gödel编码序列。
+  $\delta$ 的任何子推导的Gödel编码序列都是该序列的子序列。
   “作为……的子序列”是一个原始递归关系：$\fn{Subseq}(s, s')$ 成立当且仅当
   $\bforall{i<\len{s}}{\lexists[j<\len{s'}][(s)_i = (s')_j]}$。
   “作为直接子推导”也是原始递归的：$\fn{Subderiv}(d, d')$ 成立当且仅当
@@ -235,15 +235,15 @@ $\fn{DischargeLabel}(d) = (d)_{(d)_0 + 2}$ 给出其解除标签，
 \begin{prop}
   \ollabel{prop:prf-prim-rec}
   设 $\Gamma$ 是一个原始递归的语句集。
-  那么，表达“$x$ 是从 $\Gamma$ 中的未解除假设推出 $!A$ 的推导~$\delta$ 的编码，且 $y$ 是 $!A$ 的哥德尔编码”的关系 $\Prf[\Gamma](x, y)$ 是原始递归的。
+  那么，表达“$x$ 是从 $\Gamma$ 中的未解除假设推出 $!A$ 的推导~$\delta$ 的编码，且 $y$ 是 $!A$ 的Gödel编码”的关系 $\Prf[\Gamma](x, y)$ 是原始递归的。
 \end{prop}
 
 \begin{proof}
   设“$y \in \Gamma$”由原始递归谓词~$R_\Gamma(y)$ 给出。
   我们需要证明 $\Prf[\Gamma](x, y)$ 是原始递归的。
-  该关系成立当且仅当 $y$ 是某个语句~$!A$ 的哥德尔编码，且 $x$ 是以 $!A$ 为结束公式、所有未解除假设都在 $\Gamma$ 中的自然演绎推导的编码。
+  该关系成立当且仅当 $y$ 是某个语句~$!A$ 的Gödel编码，且 $x$ 是以 $!A$ 为结束公式、所有未解除假设都在 $\Gamma$ 中的自然演绎推导的编码。
 
-  根据 \olref{prop:deriv}，性质 $\fn{Deriv}(x)$（当且仅当 $x$ 是一个正确的自然演绎推导~$\delta$ 的哥德尔编码时成立）是原始递归的。
+  根据 \olref{prop:deriv}，性质 $\fn{Deriv}(x)$（当且仅当 $x$ 是一个正确的自然演绎推导~$\delta$ 的Gödel编码时成立）是原始递归的。
   因此，我们可以如下定义 $\Prf[\Gamma](x, y)$：
   \begin{align*}
     \Prf[\Gamma](x, y) \defiff {}

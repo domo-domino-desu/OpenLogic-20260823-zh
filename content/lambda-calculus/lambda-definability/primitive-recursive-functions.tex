@@ -7,7 +7,7 @@
 \begin{document}
 
 \olfileid{lam}{ldf}{prf}
-\olsection{原始递归函数是 \usetoken{S}{lambda definable}}
+\olsection{原始递归函数是$\lambda$-可定义}
 
 回顾一下，原始递归函数是指那些可以从基本函数 $\Zero$、$\Succ$ 和 $\Proj{n}{i}$
 出发，通过复合与原始递归定义出来的函数。
@@ -61,7 +61,7 @@
     h(x_1, \dots, x_n, y+1) & = h(x_1, \dots, x_n, y, h(x_1, \dots, x_n, y)).
   \end{align*}
   直观上讲，原始递归定义将函数 $h$ 的作用迭代 $y$ 次，并将其应用于 $f(x_1,
-  \dots, x_n)$。这让人联想到 邱奇 数码的定义，它们也是作为迭代器定义的。
+  \dots, x_n)$。这让人联想到 Church 数码的定义，它们也是作为迭代器定义的。
 
   为简单起见，我们仅针对单一额外参数~$x$ 给出定义与证明。
   函数 $h$ 由以下项给出 $\lambd$-定义：
@@ -106,7 +106,7 @@
     & \redone
     \tuple{\fn{Succ} (\fn{Fst}\, \tuple{\num{m}, \num{h(n,m)}}),\\
       & \qquad (G \, \num{n} (\fn{Fst}\, \tuple{\num{m}, \num{h(n,m)}}) (\fn{Snd}\, \tuple{\num{m}, \num{h(n,m)}}))}\\
-    & \red 
+    & \red
     \tuple{\fn{Succ}\, \num{m}, (G \, \num{n} \,\num{m} \, \num{h(n,m)})}\\
     & \red \tuple{\num{m+1}, \num{g(n, m, h(n, m))}}
   \end{align*}
@@ -124,8 +124,8 @@
     & \ident \fn{Snd} (\num m \, D_n\, \tuple{\num{0}, F \num n})\\
     & \red \fn{Snd} \,(D_n^m  \tuple{\num{0}, F \num n})\\
     & \red \fn{Snd} \,\tuple{\num{m}, \num{h(n, m)}} \\
-    & \red \num{h(n,m)}. 
-  \end{align*}  
+    & \red \num{h(n,m)}.
+  \end{align*}
 \end{proof}
 
 \begin{prop}

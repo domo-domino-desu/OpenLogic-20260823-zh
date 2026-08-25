@@ -10,7 +10,7 @@
 
 \olsection{\texorpdfstring{并行 $\beta\eta$-归约}{并行 beta-eta-归约}}
 
-本节证明并行 $\beta\eta$-归约的 邱奇-罗瑟 性质，这是与 $\beta\eta$-归约相对应的并行归约概念。
+本节证明并行 $\beta\eta$-归约的 Church-Rosser 性质，这是与 $\beta\eta$-归约相对应的并行归约概念。
 
 \begin{defn}[并行 $\beta\eta$-归约，$\beredpar$] \ollabel{defn:beredpar}
   \emph{并行 $\beta\eta$-归约}（$\beredpar$）在项上归纳定义如下：
@@ -44,7 +44,7 @@
   \begin{align}
     \becd{x} &= x \ollabel{defn:becd1} \\
     \becd{(\lambd[x][N])} &= \lambd[x][\becd{N}] \ollabel{defn:becd2}\\
-    \becd{(PQ)} &= \becd{P}\becd{Q} && \text{若 $P$ 不是 $\lambd$-抽象} 
+    \becd{(PQ)} &= \becd{P}\becd{Q} && \text{若 $P$ 不是 $\lambd$-抽象}
     \ollabel{defn:becd3} \\
     \becd{((\lambd[x][N])Q)} &= \Subst{\becd{N}}{\becd{Q}}{x}
                              \ollabel{defn:becd4} \\
@@ -85,7 +85,7 @@
 \end{proof}
 
 \begin{thm}\ollabel{thm:cr}
-  $\beredpar$ 具有 邱奇-罗瑟 性质。
+  $\beredpar$ 具有 Church-Rosser 性质。
 \end{thm}
 
 \begin{proof}

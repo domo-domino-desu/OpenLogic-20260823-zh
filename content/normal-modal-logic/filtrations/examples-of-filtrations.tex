@@ -29,7 +29,7 @@
 
   如果 $Ruv$，那么由于 $u \in [u]$ 且 $v \in [v]$，也有 $R^*[u][v]$，
   因此满足 \olref[fil]{defn:filtration-R1}。
-  
+
   \iftag{prvBox}{\iftag{probBox}{我们将
       \olref[fil]{defn:filtration-R2} 的验证留作练习。}{对于
         \olref[fil]{defn:filtration-R2}，假设 $\Box!A \in \Gamma$，
@@ -39,7 +39,7 @@
         $\mSat{M}{\Box!A}[u']$，从而 $\mSat{M}{!A}[v']$。
         由于 $\Gamma$ 对子公式封闭，$v$ 和 $v'$ 在 $!A$ 上一致，
         所以 $\mSat{M}{!A}[v]$，如所欲证。}}{}
-  
+
   \iftag{prvDiamond}{\iftag{probDiamond}{我们将
       \olref[fil]{defn:filtration-R3} 的验证留作练习。}{为验证
         \olref[fil]{defn:filtration-R3}，假设 $\Diamond!A \in
@@ -109,7 +109,7 @@
       \node[world] (2) [label=below:\mTrue{p}, right=of 1] {$[2]$};
       \draw[->,bend left] (1) to (2);
       \draw[->,bend left] (2) to (1);
-      
+
       \node[world] (3) [label=below:\mFalse{p},right=of 2] {$[1]$};
       \node[world] (4) [label=below:\mTrue{p}, right=of 3] {$[2]$};
       \draw[->,bend left] (3) to (4);
@@ -119,7 +119,7 @@
     \caption{一个无限模型及其过滤。}
     \ollabel{fig:ex-filtration}
   \end{figure}
-  
+
   现在令 $\Gamma$ 为~$\Box p \lif p$ 的子公式集合，
   即 $\{p, \Box p, \Box p \lif p\}$。$p$ 在且仅在偶数处为真，
   $\Box p$ 在且仅在奇数处为真，

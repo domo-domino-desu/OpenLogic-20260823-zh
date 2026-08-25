@@ -26,8 +26,8 @@
 我们要证明，对任意集合 $A$、$B$ 和 $C$，$A \cup (B \cap
 C) = (A \cup B) \cap (A \cup C)$
 \begin{quote}
-首先，我们来拆解命题陈述中``$=$''的定义。回想一下，证明集合相等意味着证明这两个集合具有相同的元素。也就是说，$A \cup
-(B \cap C)$ 的所有元素也都是 $(A \cup B) \cap (A \cup C)$ 的元素，反之亦然。``反之亦然''的意思是，$(A
+首先，我们来拆解命题陈述中“$=$”的定义。回想一下，证明集合相等意味着证明这两个集合具有相同的元素。也就是说，$A \cup
+(B \cap C)$ 的所有元素也都是 $(A \cup B) \cap (A \cup C)$ 的元素，反之亦然。“反之亦然”的意思是，$(A
 \cup B) \cap (A \cup C)$ 的每个元素也必须是 $A \cup (B \cap
 C)$ 的元素。因此，在拆解定义之后，我们发现需要证明一个合取式。让我们把这一点记录下来：
 \end{quote}
@@ -46,18 +46,18 @@ $(A \cup B) \cap (A \cup C)$ 的元素。我们选择一个变元来称呼这个
 首先，我们证明 $A \cup (B \cap C)$ 的每个元素也都是
 $(A \cup B) \cap (A \cup C)$ 的元素。令 $z \in A \cup (B
 \cap C)$。我们必须证明 $z \in (A \cup B) \cap (A \cup C)$。
-\begin{quote}  
+\begin{quote}
 现在该拆解 $\cup$ 和~$\cap$ 的定义了。例如，$\cup$ 的定义是：$A \cup B = \Setabs{z}{z \in A
-  \text{ or } z \in B}$。当我们把这个定义应用到``$A \cup (B
-\cap C)$''时，定义中的``$B$''此时就被替换为``$B \cap C$''，所以 $A \cup (B \cap C) = \Setabs{z}{z \in A \text{ or }
+  \text{ or } z \in B}$。当我们把这个定义应用到“$A \cup (B
+\cap C)$”时，定义中的“$B$”此时就被替换为“$B \cap C$”，所以 $A \cup (B \cap C) = \Setabs{z}{z \in A \text{ or }
   z \in B \cap C}$。因此，我们关于 $z \in A \cup (B \cap C)$
 的假设等价于：$z \in \Setabs{z}{z \in A \text{ or } z \in B \cap
   C}$。而 $z \in \Setabs{z}{\dots z\dots}$ 当且仅当 \dots $z$ \dots，即，在此情况下，$z \in A$ 或 $z \in B \cap C$。
 \end{quote}
 根据 $\cup$ 的定义，要么 $z \in A$，要么 $z \in B \cap C$。
 \begin{quote}
-由于这是一个析取式，采用分情况讨论会很有用。我们分别处理这两种情况，并证明在每一种情况下，我们的目标结论（即``$z \in (A \cup B) \cap (A \cup
-C)$''）都成立。
+由于这是一个析取式，采用分情况讨论会很有用。我们分别处理这两种情况，并证明在每一种情况下，我们的目标结论（即“$z \in (A \cup B) \cap (A \cup
+C)$”）都成立。
 \end{quote}
 情况 1：假设 $z \in A$。
 \begin{quote}
@@ -97,7 +97,7 @@ $z \in A \cup (B \cap C)$。
 \cup C)$ 这个假设出发进行推理。在这里我们再次使用同一个~$z$，希望这不会太让人困惑。当我们完成第一部分证明时，前面所做的所有假设都已不再有效，所以现在我们可以对 $z$ 做新的假设。如果这让你感到困惑，只需在接下来的内容中将 $z$ 替换为另一个变元即可。
 
 根据~$\cap$ 的定义，我们知道 $z$ 同时在 $A \cup B$ 和 $A \cup C$ 中。再根据 $\cup$ 的定义，我们可以进一步将其拆解为：要么 $z \in A$，要么 $z \in B$，并且同时要么 $z \in A$，要么 $z \in
-C$。这看起来又像一个分情况讨论——只不过这个``并且''让它变得有点乱。你可能会认为这相当于存在三种可能性：$z$ 要么在 $A$、$B$ 或 $C$ 中。但那是错误的。我们必须小心，所以让我们依次考虑每个析取式。
+C$。这看起来又像一个分情况讨论——只不过这个“并且”让它变得有点乱。你可能会认为这相当于存在三种可能性：$z$ 要么在 $A$、$B$ 或 $C$ 中。但那是错误的。我们必须小心，所以让我们依次考虑每个析取式。
 \end{quote}
 根据 $\cap$ 的定义，$z \in A \cup B$ 并且 $z \in A \cup C$。根据
 $\cup$ 的定义，$z \in A$ 或 $z \in B$。我们分情况讨论。

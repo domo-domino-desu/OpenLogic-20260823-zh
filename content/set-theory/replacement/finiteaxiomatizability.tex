@@ -1,18 +1,18 @@
 \documentclass[../../../include/open-logic-section]{subfiles}
 
 \begin{document}
-	
+
 \olfileid{sth}{replacement}{finiteaxiomatizability}
 \olsection{附录：有穷可公理化}
 作为本章的结尾，我们从替换公理中提取一些结论。第一个结果归功于 \citet{Montague1961}；请注意，这不是在 $\ZF$ \emph{内部}的证明，而是\emph{关于} $\ZF$ 的证明：
 \begin{thm}\ollabel{zfnotfinitely}
 	$\ZF$ 不是有穷可公理化的。更一般地说：如果 $\Th{T}$ 是有穷的且 $\Th{T} \Proves \ZF$，那么 $\Th{T}$ 是不一致的。
-	
+
 	（此处，我们默认仅考虑唯一的非逻辑原始符号为 $\in$ 的一阶语句，并且我们用 $\Th{T} \Proves \ZF$ 表示对所有 $\phi \in \ZF$ 都有 $\Th{T} \Proves \phi$。）
 \end{thm}
 \begin{proof}
-	取定有穷的 $\Th{T}$ 使得 $\Th{T} \Proves \ZF$。于是，$\Th{T}$ 能够证明反射模式，即 \olref[sth][replacement][ref]{reflectionschema}。由于 $\Th{T}$ 是有穷的，我们可以将其重写为单个合取式 $\theta$。利用此公式进行反射，得到 $\Th{T} \Proves \exists \beta(\theta \liff \theta^{V_\beta})$。显然 $\Th{T} \Proves \theta$，由此可得 $\Th{T} \Proves \exists \beta\ \theta^{V_\beta}$。 
-	
+	取定有穷的 $\Th{T}$ 使得 $\Th{T} \Proves \ZF$。于是，$\Th{T}$ 能够证明反射模式，即 \olref[sth][replacement][ref]{reflectionschema}。由于 $\Th{T}$ 是有穷的，我们可以将其重写为单个合取式 $\theta$。利用此公式进行反射，得到 $\Th{T} \Proves \exists \beta(\theta \liff \theta^{V_\beta})$。显然 $\Th{T} \Proves \theta$，由此可得 $\Th{T} \Proves \exists \beta\ \theta^{V_\beta}$。
+
 	现在，令 $\psi(X)$ 为以下公式的缩写：
 	\[
 		\theta^X \land X是传递的 \land (\forall Y \in X)(Y是传递的\lif \lnot \theta^{Y})
@@ -30,7 +30,7 @@
 		\Th{T} &\Proves \exists M(\psi(M) \land (\exists N \in M)((N是传递的)^N \land (\theta^N)^M))
 	\intertext{因此，根据关于传递性的基本推理：}
 		\Th{T} &\Proves \exists M(\psi(M) \land (\exists N \in M)(N是传递的 \land \theta^N))
-	\end{align*} 
+	\end{align*}
 	因此 $\Th{T}$ 是不一致的。\footnote{这个“基本推理”涉及证明传递集的某些“绝对性事实”。}
 \end{proof}
 
@@ -40,11 +40,11 @@
 	设 $\Th{T}$ 是由 $\Z$ 添加有穷多条新公理扩张所得的理论。如果 $\Th{T} \Proves \ZF$，那么 $\Th{T}$ 不一致。（此处我们使用与 \olref{zfnotfinitely} 相同的隐含限制。）
 \end{prop}
 \begin{proof}
-	用 $\theta$ 表示 $\Th{T}$ 中除（无穷多个）分离公理实例之外的所有公理的合取。如同 \olref{zfnotfinitely} 中那样由 $\theta$ 定义 $\psi$，我们可以证明 $\Th{T} \Proves \exists M \psi(M)$。 
-	
+	用 $\theta$ 表示 $\Th{T}$ 中除（无穷多个）分离公理实例之外的所有公理的合取。如同 \olref{zfnotfinitely} 中那样由 $\theta$ 定义 $\psi$，我们可以证明 $\Th{T} \Proves \exists M \psi(M)$。
+
 	与 \olref{zfnotfinitely} 中类似，我们可以确立如下模式：每当 $\Th{T} \Proves \sigma$，就有 $\Th{T} \Proves \forall X(\psi(X) \lif \sigma^X)$。然后我们完全按照 \olref{zfnotfinitely} 的方式完成证明。
-	
-	然而，确立这一模式比在 \olref{zfnotfinitely} 中需要多费些功夫。毕竟，分离公理实例在 $\Th{T}$ 中，但它们并非 $\theta$ 的合取支。不过，我们可以证明，对每个分离公理实例 $\sigma$ 都有 $\Th{T} \Proves \forall X(X\text{ is transitive} \lif \sigma^X)$，从而克服这一障碍。我们将此留给读者。 
+
+	然而，确立这一模式比在 \olref{zfnotfinitely} 中需要多费些功夫。毕竟，分离公理实例在 $\Th{T}$ 中，但它们并非 $\theta$ 的合取支。不过，我们可以证明，对每个分离公理实例 $\sigma$ 都有 $\Th{T} \Proves \forall X(X\text{ is transitive} \lif \sigma^X)$，从而克服这一障碍。我们将此留给读者。
 \end{proof}
 \begin{prob}
 	证明：对每个分离公理实例 $\sigma$，我们有：$\Z \Proves \forall X(X\text{ is transitive} \lif \sigma^X)$。（我们在 \olref[sth][replacement][finiteaxiomatizability]{finiteextensionofZ} 中使用了这个模式。）
@@ -60,11 +60,11 @@
 \olref[ordinals][ordtype]{thmOrdinalRepresentation}。或者，稍加严格地说：如果 $\Z$ + “每个良序都同构于唯一的序数”是一致的，那么它无法证明某些替换公理实例。
 
 
-	%	By assumption, $\psi^{V_\alpha}$ has the form: 
+	%	By assumption, $\psi^{V_\alpha}$ has the form:
 	%	\[
 	%		(\forall A \in V_\alpha)(\exists S \in V_\alpha)(\forall x \in V_\alpha)(x \in S \liff (\phi^{V_\alpha}(x) \land x \in A))
 	%	\]
-	%	To establish this holds, fix $A \in V_\alpha$. Using Separation, obtain: 
+	%	To establish this holds, fix $A \in V_\alpha$. Using Separation, obtain:
 	%	\[
 	%		S = \Setabs{x \in A}{\phi^{V_\alpha}(x)}
 	%	\]

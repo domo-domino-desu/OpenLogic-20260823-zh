@@ -21,11 +21,11 @@
 
 在 \olref[ordinals][idea]{sec} 中，我们看到很容易构造一个（实质上）理应与 $\omega+\omega$ 同构的良序。换言之，我们很容易想象一个逐步迭代的进程，其序型（实质上）是 $\omega+\omega$。既然如此，如果我们已经接受了 \stagesinex，那么我们当然应该接受层级中至少存在第 $\omega+\omega$ 个阶段，即 $V_{\omega+\omega}$，因为层级显然\emph{可以}延伸得那么远。
 
-这一想法可以推广如下：对于任何良序，构建迭代层级的进程都应至少推进到与该良序同样远。而我们只需将 \olref[ordinals][ordtype]{thmOrdinalRepresentation} 视为一条\emph{公理}，就能保证这一点。它告诉我们，任何良序都同构于某个 冯·诺伊曼序数。由于每个 冯·诺伊曼 序数都等于它自身的秩，\olref[ordinals][ordtype]{thmOrdinalRepresentation} 便告诉我们：每当我们在集合论中能描述一个良序时，集合构建的迭代过程就必定超越该良序。
+这一想法可以推广如下：对于任何良序，构建迭代层级的进程都应至少推进到与该良序同样远。而我们只需将 \olref[ordinals][ordtype]{thmOrdinalRepresentation} 视为一条\emph{公理}，就能保证这一点。它告诉我们，任何良序都同构于某个 von Neumann序数。由于每个 von Neumann 序数都等于它自身的秩，\olref[ordinals][ordtype]{thmOrdinalRepresentation} 便告诉我们：每当我们在集合论中能描述一个良序时，集合构建的迭代过程就必定超越该良序。
 
 这显然像是 \stagesinex{} 的一个推论。不幸的是，如果我们的目标是从这个想法中导出替换公理，那么我们就会面临一个简单的技术障碍：替换公理严格强于 \olref[ordinals][ordtype]{thmOrdinalRepresentation}。（这一观察见于 \citet[\S13.2]{Potter2004}；我们将在 \olref[sth][replacement][finiteaxiomatizability]{sec} 中给出证明。）
 
-由此可见，如果我们打算以一种能得出替换公理的方式来理解 \stagesinex{}，那么它就不能\emph{仅仅}断言层级超越了任何良序，而必须做出更强的断言。为此，\cite{Shoenfield:AST} 对该想法提出了一个极其自然的强化，即：层级不与任何集合\emph{共尾}。\footnote{哥德尔 似乎提出过类似的想法；参见 \citet[p.~223]{Potter2004}。关于 哥德尔 和 \citeauthor{Shoenfield:AST} 的讨论，参见 \citet[90--5]{Incurvati2020}。} 更具体地说：如果 $\tau$ 是一个将集合映射到层级阶段的函数，那么任何集合 $A$ 在 $\tau$ 下的像都不能穷尽整个层级。换言之（以模式形式表述）：
+由此可见，如果我们打算以一种能得出替换公理的方式来理解 \stagesinex{}，那么它就不能\emph{仅仅}断言层级超越了任何良序，而必须做出更强的断言。为此，\cite{Shoenfield:AST} 对该想法提出了一个极其自然的强化，即：层级不与任何集合\emph{共尾}。\footnote{Gödel 似乎提出过类似的想法；参见 \citet[p.~223]{Potter2004}。关于 Gödel 和 \citeauthor{Shoenfield:AST} 的讨论，参见 \citet[90--5]{Incurvati2020}。} 更具体地说：如果 $\tau$ 是一个将集合映射到层级阶段的函数，那么任何集合 $A$ 在 $\tau$ 下的像都不能穷尽整个层级。换言之（以模式形式表述）：
 
 \begin{enumerate}
 	\item[] \stagescofin. 如果 $A$ 是一个集合，且对每个 $x \in A$，$\tau(x)$ 都是一个阶段，那么存在一个晚于所有 $x \in A$ 对应的 $\tau(x)$ 的阶段。

@@ -11,7 +11,7 @@
 
 我们不仅希望自然数是无限的；还希望它们具有特定的（代数）性质：它们需要在加法、乘法等运算下表现良好。
 
-戴德金 的想法是将\emph{后继函数}的概念视为基础，然后用以下性质来刻画这些数：
+Dedekind 的想法是将\emph{后继函数}的概念视为基础，然后用以下性质来刻画这些数：
 \begin{enumerate}
 	\item 存在一个数 $0$，它不是任何数的后继，
 	\\即 $0 \notin \ran{s}$
@@ -21,7 +21,7 @@
 	\\即 $\forall x \forall y (s(x) = s(y) \lif x = y)$
 	\item\ollabel{repeatedapplication} 每个数都是通过对 $0$ 反复应用后继函数得到的。
 \end{enumerate}
-前两个条件用一阶逻辑很容易处理（见上文）。但我们无法仅用一阶逻辑处理 \olref{repeatedapplication}。戴德金 的突破在于以集合论的方式将条件 \olref{repeatedapplication} 重新表述如下：
+前两个条件用一阶逻辑很容易处理（见上文）。但我们无法仅用一阶逻辑处理 \olref{repeatedapplication}。Dedekind 的突破在于以集合论的方式将条件 \olref{repeatedapplication} 重新表述如下：
 \begin{enumerate}
 	\item[3$'$.] 自然数是最小的\emph{对后继函数封闭的}集合：也就是说，如果我们对集合中的任何元素应用 $s$，就会得到该集合中的另一个元素，
 \end{enumerate}
@@ -66,7 +66,7 @@ $f$-封闭的，从而 $f(x) \in X$。所以 $f(x) \in \closureofunder{f}{o}$。
 利用上述结果，我们可以说：
 
 \begin{defn}
-一个 \emph{戴德金 代数} 是一个集合 $A$，连同一个函数 $f
+一个 \emph{Dedekind 代数} 是一个集合 $A$，连同一个函数 $f
 \colon A \to A$ 和某个 $o \in A$，满足：
 	\begin{enumerate}
 		\item \ollabel{ded:proper} $o \notin \ran{f}$
@@ -77,19 +77,19 @@ $f$-封闭的，从而 $f(x) \in X$。所以 $f(x) \in \closureofunder{f}{o}$。
 
 由于 $A = \closureofunder{f}{o}$，我们前面的结果告诉我们，
 $A$ 是包含 $o$ 的最小 $f$-封闭集合。显然，一个
-戴德金 代数是 戴德金 无限的；只需看定义中的条目
+Dedekind 代数是 Dedekind 无限的；只需看定义中的条目
 \olref{ded:proper} 和 \olref{ded:injection}。但
-更令人兴奋的事实是，任何 戴德金 无限集合都可以转化为一个 戴德金 代数。
+更令人兴奋的事实是，任何 Dedekind 无限集合都可以转化为一个 Dedekind 代数。
 
 \begin{thm}\ollabel{thm:DedekindInfiniteAlgebra}
-如果存在 戴德金 无限集合，那么就存在 戴德金 代数。
+如果存在 Dedekind 无限集合，那么就存在 Dedekind 代数。
 \end{thm}
 
 \begin{proof}
-设 $D$ 是 戴德金 无限的。于是存在一个单射 $g \colon D \to
+设 $D$ 是 Dedekind 无限的。于是存在一个单射 $g \colon D \to
 D$ 和一个元素 $o  \in D \setminus \ran{g}$。现在令 $A =
 \closureofunder{g}{o}$；由 \olref{closureproperties}，$A$ 存在且 $o \in A$。令 $f =
-\funrestrictionto{g}{A}$。我们将证明 $A$、$f$、$o$ 构成一个 戴德金
+\funrestrictionto{g}{A}$。我们将证明 $A$、$f$、$o$ 构成一个 Dedekind
 代数。
 
 关于 \olref{ded:proper}：$o \notin \ran{g}$ 且 $\ran{f}

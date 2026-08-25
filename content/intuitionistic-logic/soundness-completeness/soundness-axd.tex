@@ -8,7 +8,7 @@
 
 \olfileid{int}{sc}{sax}
 
-\olsection{公理系统 \usetoken{P}{derivation} 的可靠性}
+\olsection{公理系统推导的可靠性}
 
 \begin{editorial}
   可靠性证明依赖于所有公理均直觉主义有效这一事实；这一点仍有待证明，例如在语义学章节中。
@@ -26,7 +26,7 @@
   \Entails !A_n$。注意，如果 $!A_1$, \dots, $!A_n$ 是一个推导，那么对任意 $k<n$，$!A_1$, \dots, $!A_k$ 也是一个推导。
 
   不存在长度为~$0$ 的推导，所以当 $n=0$ 时，该论断空真成立。因此，该论断对所有长度~$<n$ 的推导都成立。我们根据~$!A_n$ 的得出依据来区分情况。
-  
+
   \begin{enumerate}
   \item $!A_n$ 是一条公理。所有公理都是有效的，所以对任意~$\Gamma$，$\Gamma \Entails
     !A_n$。
@@ -37,7 +37,7 @@
     !A_n$ 经 \MP{} 得出的。$!A_1$, \dots, $!A_i$ 和 $!A_1$, \dots, $!A_j$ 是
     从~$\Gamma$ 出发的推导，所以由归纳假设，$\Gamma
     \Entails !A_i$ 且 $\Gamma \Entails !A_i \lif !A_n$。
-    
+
     假设 $\mSat{M}{\Gamma}[w]$。由于 $\mSat{M}{\Gamma}[w]$ 且
     $\Gamma \Entails !A_i \lif !A_n$，$\mSat{M}{!A_i \lif
       !A_n}[w]$。根据定义，这意味着对所有满足

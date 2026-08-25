@@ -67,8 +67,8 @@
   通过对~$!C$ 的复杂度进行归纳来证明 \olref[nml][prf][der]{prop:rewriting}，即证明：如果 $\Log{K} \Proves !A \liff !B$ 那么 $\Log{K} \Proves \Subst{!C}{!A}{q} \liff \Subst{!C}{!B}{q}$。
 \end{prob}
 
-当我们想把 $\Diamond$ 转换为 $\Box$（或反之），或者消去公式内部的双重否定时，这个命题特别有用。接下来，每当我们把公式~$!C(!A)$ 替换为~$!C(!B)$ 时，将用``$!A$ for $!B$''标明此处使用了 \olref{prop:rewriting}。换言之，``$!A$ for $!B$'' 是以下推导的缩写：
-  
+当我们想把 $\Diamond$ 转换为 $\Box$（或反之），或者消去公式内部的双重否定时，这个命题特别有用。接下来，每当我们把公式~$!C(!A)$ 替换为~$!C(!B)$ 时，将用“$!A$ for $!B$”标明此处使用了 \olref{prop:rewriting}。换言之，“$!A$ for $!B$” 是以下推导的缩写：
+
 \begin{derivation}
     & $\Proves !C(!A)$ \\
     & $\Proves !A \liff !B$\\
@@ -97,8 +97,8 @@
   第~$1$ 行的公式是 $\lnot q \lif \lnot q$ 的一个实例，其中将 $q$ 代以 $\Box\lnot\lnot p$。$\Diamond\lnot p$ 与 $\lnot\Box\lnot\lnot p$ 是同一公式，因为 $\Diamond$ 定义为~$\lnot\Box\lnot$。}
 \end{proof}
 
-在上面的推导中，最后一步``$p$ for $\lnot\lnot p$'' 是以下推导的缩写：
-  
+在上面的推导中，最后一步“$p$ for $\lnot\lnot p$” 是以下推导的缩写：
+
 \begin{derivation}
     & $\Log{K} \Proves \lnot \Box \lnot\lnot p \lif \Diamond \lnot
     p$\\
@@ -108,7 +108,7 @@
 
 在这里，\olref{prop:rewriting} 中的 $!C(q)$、$!A$ 和 $!B$ 分别对应 $\lnot \Box q \lif \Diamond \lnot p$、$\lnot\lnot p$ 和~$p$。
 
-当一个公式包含子公式 $\lnot\Diamond !A$ 时，我们可以利用 \olref{prop:rewriting} 将其替换为 $\Box\lnot !A$，因为 $\Log{K} \Proves \lnot\Diamond !A \liff \Box\lnot !A$。我们将直接用``$\Box\lnot$ for $\lnot\Diamond$''标示这类及类似的替换。
+当一个公式包含子公式 $\lnot\Diamond !A$ 时，我们可以利用 \olref{prop:rewriting} 将其替换为 $\Box\lnot !A$，因为 $\Log{K} \Proves \lnot\Diamond !A \liff \Box\lnot !A$。我们将直接用“$\Box\lnot$ for $\lnot\Diamond$”标示这类及类似的替换。
 
 下述命题表明，我们可以以图式的方式建立可推导性结论。例如，前一个命题不仅确立了 $\Log{K} \Proves \lnot\Box p \lif
 \Diamond \lnot p$，而且对任意的~$!A$ 确立了 $\Log{K} \Proves \lnot\Box !A \lif \Diamond

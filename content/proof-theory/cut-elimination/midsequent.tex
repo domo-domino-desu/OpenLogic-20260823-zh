@@ -16,29 +16,29 @@
 使得在~$\pi'$ 中 $S$ 上方的所有推理都是命题推理，而 $S$ 下方的所有推理都是量词推理。
 （公式~$!A$ 是\emph{前束的}（或呈\emph{前束形}），如果它具有形式
 \[\mathsf{Q}_1x_1\dots\mathsf{Q}_nx_n\,!B(x_1,\dots,x_n)\]其中每个 $\mathsf{Q}_i$ 是 $\lforall$ 或~$\lexists$。）
-中继式定理的一个重要推论是 埃尔布朗定理。
+中继式定理的一个重要推论是 Herbrand定理。
 它的一般情形描述起来稍有困难，但大致可以表述为：对于一阶逻辑中每一个可推导的语句~$!A$，
 都存在一个命题重言式~$!A'$，使得 $!A$ 可以从 $!A'$ 推导出来。
 下面是对形如~$\lexists[x][!B(x)]$（其中 $!B$ 是无量词的）语句的版本：
 
 \begin{thm}[Herbrand 定理]
-假定 $!B(x)$ 是无量词的并且 $\Proves 
+假定 $!B(x)$ 是无量词的并且 $\Proves
 \lexists[x][!B(x)]$。那么存在项~$t_1$, \dots, $t_n$，
 使得 $\Proves !B(t_1) \lor \dots \lor !B(t_n)$。
 \end{thm}
 
 公式~$!B(t_1) \lor \dots \lor !B(t_n)$ 称为 $\lexists[x][!B(x)]$ 的一个
-\emph{埃尔布朗 析取式}。由于 $!B$ 是
+\emph{Herbrand 析取式}。由于 $!B$ 是
 无量词的，这个析取式也是无量词的。因此，如果它是
 可推导的，就可以通过无切割证明来推导，进而
 通过一个只使用命题推理的推导来获得。故而，它
 是一个重言式。
 
-埃尔布朗 定理的困难部分在于证明：对每个可推导的
-公式~$\lexists[x][!B(x)]$，都存在一个 埃尔布朗
+Herbrand 定理的困难部分在于证明：对每个可推导的
+公式~$\lexists[x][!B(x)]$，都存在一个 Herbrand
 析取式。其逆命题，即如果
-$\lexists[x][!B(x)]$ 有一个 埃尔布朗 析取式，那么它就是可证的，
-则很简单。事实上，埃尔布朗 析取式语义地后承 $\lexists[x][!B(x)]$。
+$\lexists[x][!B(x)]$ 有一个 Herbrand 析取式，那么它就是可证的，
+则很简单。事实上，Herbrand 析取式语义地后承 $\lexists[x][!B(x)]$。
 例如，下面是在~$\Log{G3c}$ 中对 $n=2$ 情形的一个推导：
 \[
 \Axiom$!B(t_1) \fCenter \lexists[x][!B(x)], !B(t_1), !B(t_2)$
@@ -53,7 +53,7 @@ $\lexists[x][!B(x)]$ 有一个 埃尔布朗 析取式，那么它就是可证的
 \]
 
 为了从~$\Sequent
-\lexists[x][!B(x)]$ 的一个推导~$\pi$ 中提取 埃尔布朗 析取式，考虑无切割推导~$\pi$ 中所有 $\RightR{\lexists}$
+\lexists[x][!B(x)]$ 的一个推导~$\pi$ 中提取 Herbrand 析取式，考虑无切割推导~$\pi$ 中所有 $\RightR{\lexists}$
 推理都在末尾的情况：
 \[
 \AxiomC{}
@@ -75,7 +75,7 @@ $\lexists[x][!B(x)]$ 为活动公式的 $\RightR{\lexists}$ 推理，那么在~$
 $\lexists[x][!B(x)]$，并且这些公式既不是活动公式也不是
 主公式。所以它们可以从推导~$\pi_1$ 中删除，于是我们
 得到~$\fCenter !B(t_1), \dots, !B(t_n)$ 的一个推导，再运用 $n-1$
-次 $\RightR{\lor}$ 规则，就得到了 埃尔布朗
+次 $\RightR{\lor}$ 规则，就得到了 Herbrand
 析取式~$\Sequent !B(t_1) \lor \dots \lor !B(t_n)$ 的一个推导。
 
 问题在于，即便是 $\Sequent \lexists[x][!B(x)]$ 的一个无切割推导，我们也不能假定其所有的 \RightR{\lexists} 推理都成块地集中在末尾。
@@ -180,7 +180,7 @@ $\RightR{\lforall}$ 的特征变元条件仍然满足，因为 $c$ 不在~$!B \l
 描述 \olref{thm:midsequent} 证明中的以下情况：$\LeftR{\lexists}$ 结束于 $\RightR{\lif}$ 的前提，以及 $\LeftR{\lforall}$ 结束于 $\LeftR{\lor}$ 的左前提。
 \end{prob}
 
-\begin{proof}[埃尔布朗 定理的证明]
+\begin{proof}[Herbrand 定理的证明]
 设 $\pi$ 结束于 $\Sequent \lexists[x][!A(x)]$。根据
 \olref{thm:midsequent}，我们可以将 $\pi$ 变换为一个具有中继式~$S$ 的推导~$\pi'$，
 其中 $S$ 必具形式 \[\Sequent

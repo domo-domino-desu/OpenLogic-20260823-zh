@@ -6,7 +6,7 @@
 
 \olsection{附录：Hilbert 的空间填充曲线}
 
-在 \olref[pathology]{sec} 节中，我们提到 康托尔关于一条直线和一个正方形具有完全相同数量的点的证明（\olref[his][set][cantorplane]{thm:cantorplane}），促使 皮亚诺思考是否可能存在一种空间填充\emph{曲线}。他在 1890 年得到了肯定的答案。在本节中，我们将以略带示意性的方式解释如何构造 希尔伯特的空间填充曲线（并做一点微小的调整）。\footnote{更严格的解释，参见 \cite{Rose2010}。这一调整相当于在下文曲线中加入了红色部分。这使得验证该曲线的连续性稍容易一些。}
+在 \olref[pathology]{sec} 节中，我们提到 Cantor 关于一条直线和一个正方形具有完全相同数量的点的证明（\olref[his][set][cantorplane]{thm:cantorplane}），促使 Peano思考是否可能存在一种空间填充\emph{曲线}。他在 1890 年得到了肯定的答案。在本节中，我们将以略带示意性的方式解释如何构造 Hilbert的空间填充曲线（并做一点微小的调整）。\footnote{更严格的解释，参见 \cite{Rose2010}。这一调整相当于在下文曲线中加入了红色部分。这使得验证该曲线的连续性稍容易一些。}
 
 我们必须定义函数 $h$ 为函数序列 $h_1$, $h_2$, $h_3$, \dots 的极限。我们首先描述构造过程，然后证明它是空间填充的，最后证明它是一条曲线。
 
@@ -16,7 +16,7 @@
 	\draw[gray] (0pt, 0pt) rectangle (80pt, 80pt);
 	\draw[step = 40pt, gray, very thin] (0pt, 0pt) grid (80pt, 80pt);
 	\draw[oldiagcolorC, thick] (20pt, 0)--(20pt, 20pt);
-	\draw[oldiagcolorC, thick] (60pt, 0)--(60pt, 20pt);		
+	\draw[oldiagcolorC, thick] (60pt, 0)--(60pt, 20pt);
 	\begin{scope}[xshift=20pt, yshift=20pt]
 	\draw [black, thick, l-system={Hilbert curve, step=40pt, angle=90, axiom=L, order=1}]  lindenmayer system;
 	\end{scope}
@@ -29,8 +29,8 @@
 	\draw[step = 20pt, gray, very thin] (0pt, 0pt) grid (80pt, 80pt);
 	\draw[oldiagcolorC, thick] (0pt, 10pt)--(10pt, 10pt);
 	\draw[oldiagcolorC, thick] (70pt, 10pt)--(80pt, 10pt);
-	\draw[thick, oldiagcolorE] (10pt, 30pt)--(10pt, 50pt); 
-	\draw[thick, oldiagcolorE] (30pt, 50pt)--(50pt, 50pt); 
+	\draw[thick, oldiagcolorE] (10pt, 30pt)--(10pt, 50pt);
+	\draw[thick, oldiagcolorE] (30pt, 50pt)--(50pt, 50pt);
 	\draw[thick, oldiagcolorE] (70pt, 50pt)--(70pt, 30pt); \begin{scope}[xshift=10pt, yshift=30pt]
 	\draw [thick, rotate=270,black, l-system={Hilbert curve, step=20pt, angle=90, axiom=L, order=1}]  lindenmayer system;
 	\end{scope}
@@ -52,11 +52,11 @@
 	\begin{tikzpicture}
 	\draw[gray] (0pt, 0pt) rectangle (80pt, 80pt);
 	\draw[step = 10pt, gray, very thin] (0pt, 0pt) grid (80pt, 80pt);
-	\draw[thick, oldiagcolorC](5pt, 0pt)--(5pt, 5pt); 
-	\draw[thick, oldiagcolorC] (75pt, 0pt)--(75pt, 5pt); 
+	\draw[thick, oldiagcolorC](5pt, 0pt)--(5pt, 5pt);
+	\draw[thick, oldiagcolorC] (75pt, 0pt)--(75pt, 5pt);
 	\draw[thick, oldiagcolorE] (75pt, 45pt)--(75pt, 35pt);
-	\draw[thick, oldiagcolorE] (5pt, 35pt)--(5pt, 45pt); 
-	\draw[thick, oldiagcolorE] (35pt, 45pt)--(45pt, 45pt); 
+	\draw[thick, oldiagcolorE] (5pt, 35pt)--(5pt, 45pt);
+	\draw[thick, oldiagcolorE] (35pt, 45pt)--(45pt, 45pt);
 	\draw[thick, oldiagcolorE] (75pt, 45pt)--(75pt, 35pt); \begin{scope}[xshift=5pt, yshift=35pt]
 	\draw [rotate=270, thick, black, l-system={Hilbert curve, step=10pt, angle=90, axiom=L, order=2}]  lindenmayer system;
 	\end{scope}
@@ -77,7 +77,7 @@
 也就是说，对每个 $x \in \unitsquare$：
 \begin{align*}
 	h(x) &= \lim_{n \rightarrow \infty} h_n(x)
-\end{align*} 
+\end{align*}
 现在我们证明这条曲线可以填满空间。当我们画曲线 $h_n$ 时，
 我们在 $\unitsquare$ 上叠加了一个 $2^n \times 2^n$ 的网格。
 根据勾股定理，每个网格位置的对角线长度为：

@@ -36,15 +36,15 @@
     \indcase{!A}{[!B] !C}{$\mSat{M}{\indfrm}[w]$ 当且仅当
     如果$\mSat{M}{!B}[w]$那么$\mSat{M \mid !B}{!C}[w]$}
 
-  
+
   其中 $\mModel M \mid !B = \tuple{W', R', V'}$ 定义如下：
   \begin{enumerate}
     \item $W' = \Setabs{ u \in W}{\mSat{M}{!B}[u]}$。因此，$\mModel M \mid !B$ 的世界就是 $\mModel M$ 中 $!B$ 成立的那些世界。
     \item $R'_a = R_a \cap (W' \times W')$。每个主体的可及关系被简单地限制在 $W'$ 中剩余的世界上。
     \item $V'(p) = \Setabs{ u \in W'}{u \in V(p) }$。类似地，世界上的命题赋值保持不变，这体现了信息事件不会改变命题变元真值的思想。
   \end{enumerate}
-  
-  \end{enumerate} 
+
+  \end{enumerate}
 \end{defn}
 
 那么，公共宣告逻辑的独特之处在于，一个公式在~$\mModel M$ 中是否为真，有时只能通过参考 $\mModel M$ 自身之外的另一个模型来决定。
@@ -54,26 +54,26 @@
 \begin{figure}
   \begin{center}
     \begin{tikzpicture}[modal]
-      \node[world] (w1) [label={below left:$p, \lnot q$}]{$w_1$}; 
-      \node[world] (w2) [left=of w1, label={left:$\lnot p, \lnot q$}]{$w_2$}; 
+      \node[world] (w1) [label={below left:$p, \lnot q$}]{$w_1$};
+      \node[world] (w2) [left=of w1, label={left:$\lnot p, \lnot q$}]{$w_2$};
       \node[world] (w3) [above=of w1, label={right:$p, q$}] {$w_3$};
       \draw[<->] (w1) to [swap] node {$b$} (w2);
       \draw[->,loop below] (w1) to node {$a, b$} (w1);
       \draw[<->] (w1) to [swap] node {$a$} (w3);
       \draw[->,loop above] (w2) to node {$a, b$} (w2) ;
       \draw[->,loop above] (w3) to node {$a, b$} (w3) ;
-      
+
       \node[world](v1)[right of=w1, xshift=1.25in, label={right:$p, \lnot q$}]{$w'_1$};
       \node[world](v3)[above of=v1,label={right:$p,q$}]{$w'_3$};
       \draw[<->] (v1) to node {$a$} (v3);
       \draw[->,loop below] (v1) to node {$a,b$} (v1);
       \draw[->,loop above] (v3) to node {$a,b$} (v3) ;
-      
+
       \node(m)[below=of w1]{$\mModel M$};
-      \node(m')[below=of v1]{$\mModel M \mid p$}; 
+      \node(m')[below=of v1]{$\mModel M \mid p$};
 
       \draw[-,dotted] (w1) to node {\footnotesize 宣告 $p$}(v1) ;
-     
+
     \end{tikzpicture}
   \end{center}
   \caption{宣告 $p$ 之前与之后。}

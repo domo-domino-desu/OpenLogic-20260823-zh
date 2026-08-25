@@ -8,11 +8,11 @@
 
 在我们告别朴素集合论之前，还要考虑一个朴素（却精巧的！）证明。这就是 Schr\"oder-Bernstein 定理（\olref[sfr][siz][sb]{thm:schroder-bernstein}）的证明：若 $\cardle{A}{B}$ 且 $\cardle{B}{A}$，则 $\cardeq{A}{B}$；换言之，给定单射 $f \colon A \to B$ 和 $g \colon B \to A$，存在一个双射 $h \colon A \to B$。
 
-在本章中，我们遵循了 戴德金的\emph{闭包}概念。事实上，戴德金 利用这个概念给出了 Schr\"oder-Bernstein 定理的一个优美证明，我们将在此介绍。该证明紧随 \citet[pp.~157--8]{Potter2004} 的论述；若你想要略有不同但本质相似的处理，可以参考该书。稍作搜索你也会发现，这个定理——很像 $\sqrt{2}$ 的无理性——有许多有趣且不同的证明。
+在本章中，我们遵循了 Dedekind的\emph{闭包}概念。事实上，Dedekind 利用这个概念给出了 Schr\"oder-Bernstein 定理的一个优美证明，我们将在此介绍。该证明紧随 \citet[pp.~157--8]{Potter2004} 的论述；若你想要略有不同但本质相似的处理，可以参考该书。稍作搜索你也会发现，这个定理——很像 $\sqrt{2}$ 的无理性——有许多有趣且不同的证明。
 
 使用与 \olref[sfr][infinite][dedekind]{Closure} 类似的记号，对每个集合 $B$ 和函数~$f$，令
 \[
-\Closureofunder{f}{B} = \bigcap \Setabs{X}{B \subseteq X 
+\Closureofunder{f}{B} = \bigcap \Setabs{X}{B \subseteq X
 \text{ 且 $X$ 是 $f$-闭的}}
 \]
 这样定义的 $\Closureofunder{f}{B}$ 是包含~$B$ 的最小 $f$-闭集，即：
@@ -41,7 +41,7 @@
 	给定一个双射 $f \colon C \to A$，令 $F =
 \Closureofunder{f}{C \setminus B}$ 并按如下方式定义函数 $g$，其定义域为 $C$：
 	\[
-	g(x) = 
+	g(x) =
 	\begin{cases}
 			f(x) &\text{若 $x \in F$}\\
 			x & \text{否则}

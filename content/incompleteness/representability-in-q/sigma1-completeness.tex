@@ -109,15 +109,15 @@
     类似地，我们可以将空析取简单地视为 $\ltrue$，这在~$\Th{Q}$ 中也是可证的。
     %
     因此假设存在某个自然数 $k$ 使得 $\Value{t}{N} = k+1$。根据 \olref{lem:q-proves-clterm-id}，我们可以假定讨论的是形如 $\bforall{x<\num{k+1}}{!A(x)}$ 的公式。
-    
+
     假设 $\Th{Q} \Proves \bforall{x<\num{k+1}}{!A(x)}$，
     并令 $n \leq k$。由于根据 \olref{lem:atomic-completeness} 有 $\Th{Q} \Proves \num n < \num{k+1}$，根据逻辑可知 $\Th{Q} \Proves !A(\num n)$。对每个 $n \leq k$ 应用这一事实 $k+1$ 次，我们便得到 $\Th{Q} \Proves !A(\num 0)
     \land \dots \land !A(\num k)$，此即所求。
-    
+
     对于另一个方向，假设 $\Th{Q} \Proves
     !A(\num 0) \land \dots \land !A(\num k)$。在 $\Th{Q}$ 中工作，假设 $x < \num{k+1}$。
     根据 \olref[inc][req][min]{lem:less-nsucc}，我们有 $x = \num 0 \lor \dots \lor x = \num k$，因此根据逻辑可知~$!A(x)$，从而可得全称命题 $\bforall{x<\num{k+1}}{!A(x)}$。
-    
+
     有界存在量词公式的等价性证明是类似的。
 \end{proof}
 

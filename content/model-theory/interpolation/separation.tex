@@ -8,7 +8,7 @@
 
 \olfileid{mod}{int}{sep}
 
-\olsection{\printtoken{P}{sentence}的分离}
+\olsection{语句的分离}
 
 在证明插值定理之前，我们需要做一点准备工作。$!A$ 和 $!B$ 的一个插值是满足 $!A \Entails !C$ 且 $!C \Entails !B$ 的语句~$!C$。根据换质位法，后者成立当且仅当 $\lnot !B \Entails \lnot !C$。具有这一性质的语句~$!C$ 称为\emph{分离} $!A$ 和 $\lnot !B$。因此，寻找 $!A$ 和 $!B$ 的插值，就等价于寻找一个分离 $!A$ 和 $\lnot !B$ 的语句。与通常一样，考虑一种推广是有益的：用一条语句分离两个语句\emph{集合}。
 
@@ -23,8 +23,8 @@ $\Gamma$、$\Delta$ 与 $!C$ 的模型类之间的包含关系如下图所示：
     \draw [rounded corners] (0,0) -- (6,0) -- (6,3) -- (0,3) --  cycle;
     \draw (1.5,1.5) circle (0.9cm);
     \draw (4.5,1.5) circle (0.9cm);
-    \path node at (1.5,1.5) {\Large $\Gamma$}; 
-    \path node at (4.5,1.5) {\Large $\Delta$}; 
+    \path node at (1.5,1.5) {\Large $\Gamma$};
+    \path node at (4.5,1.5) {\Large $\Delta$};
     \path node at (0.4,2.6) {\Large $\formula{C}$};
     \path node at (3.4,0.4) {\Large $\lnot \formula{C}$};
     \draw (2.5,0) .. controls (2.5,1.5) and (3.5,1.5) .. (3.5,3);
@@ -49,10 +49,10 @@ $\Gamma$、$\Delta$ 与 $!C$ 的模型类之间的包含关系如下图所示：
 \Entails \lnot \delta$。再次使用换质位法，得 $!H \Entails
 \lnot \lforall[x][!C]$。根据单调性，
 \begin{align*}
-  \Gamma &\Entails \lforall[x][!C], & 
+  \Gamma &\Entails \lforall[x][!C], &
   \Delta & \Entails \lnot \lforall[x][!C],
 \end{align*}
-因此 $\lforall[x][!C]$ 在 $\Lang{L}_0$ 中分离了 $\Gamma$ 与 $\Delta$。 
+因此 $\lforall[x][!C]$ 在 $\Lang{L}_0$ 中分离了 $\Gamma$ 与 $\Delta$。
 \end{proof}
 
 \begin{lem}\ollabel{lem:sep2}

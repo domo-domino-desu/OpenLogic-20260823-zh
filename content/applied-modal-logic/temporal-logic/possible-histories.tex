@@ -22,7 +22,7 @@
   为简化讨论，我们一般还假设，当一个历史在~$C$ 中时，它的所有后缀也在~$C$ 中。例如，如果 $s_1$, $s_2$,~$s_3$ 是~$C$ 中的一个序列，那么 $s_2$, $s_3$ 和~$s_3$ 也在~$C$ 中。此外，当两个状态 $s_i$ 和~$s_j$ 出现在序列~$\sigma$ 中时，若 $i < j$，则称 $s_i \prec_\sigma s_j$。当 $t \in V(p)$ 时，我们说 $p$~\emph{在~$t$ 处为真}。
 \end{defn}
 
-这里涉及的一个变化是，当我们在模型~$\mModel M$ 中评估公式在时间点~$t$ 的真值时，我们要相对于 $t$ 作为状态出现的某个历史~$\sigma$ 来进行。不过，我们无需改变命题变元或真值函数性联结词的语义。这些都与 \olref[sem]{defn:tmodels} 中的完全一样，因为它们都不会涉及~$\sigma$。然而，我们现在要相对于这些历史重新定义未来算子~$\Ftemp$，并引入~$\Diamond$ 算子。 
+这里涉及的一个变化是，当我们在模型~$\mModel M$ 中评估公式在时间点~$t$ 的真值时，我们要相对于 $t$ 作为状态出现的某个历史~$\sigma$ 来进行。不过，我们无需改变命题变元或真值函数性联结词的语义。这些都与 \olref[sem]{defn:tmodels} 中的完全一样，因为它们都不会涉及~$\sigma$。然而，我们现在要相对于这些历史重新定义未来算子~$\Ftemp$，并引入~$\Diamond$ 算子。
 
 \begin{defn}\ollabel{defn:phmodels}
   \emph{公式~$!A$ 在~$\mModel M$ 中的 $t, \sigma$ 处为真}，记作 $\mSat{M}{!A}[t, \sigma]$，定义如下：
@@ -31,9 +31,9 @@
     !B}{$\mSat{M}{\indfrm}[t, \sigma]$ 当且仅当 $\mSat{M}{!B}[t', \sigma]$，存在某个 $t' \in T$ 满足 $t \prec_\sigma t'$。}
   \item\ollabel{defn:sub:phmodels-diamond} \indcase{!A}{\Diamond
     !B}{$\mSat{M}{\indfrm}[t, \sigma]$ 当且仅当 $\mSat{M}{!B}[t, \sigma']$，存在某个 $\sigma' \in C$ 使得 $t$ 出现在 $\sigma'$ 中。}
-  \end{enumerate} 
+  \end{enumerate}
 \end{defn}
 
-其他时态和模态算子可类似定义。不过，我们现在能够表示结合了时态与模态的断言。例如，我们可以用公式 $\lnot \Ftemp p \land \Diamond \Ftemp p$ 来符号化“$p$~将不发生，但它本可能发生”。这将在满足如下条件的点和历史中成立：在该点和该历史中，$p$ 不会在后继状态中成真，但存在另一条历史，在其中 $p$ 将会成真。 
+其他时态和模态算子可类似定义。不过，我们现在能够表示结合了时态与模态的断言。例如，我们可以用公式 $\lnot \Ftemp p \land \Diamond \Ftemp p$ 来符号化“$p$~将不发生，但它本可能发生”。这将在满足如下条件的点和历史中成立：在该点和该历史中，$p$ 不会在后继状态中成真，但存在另一条历史，在其中 $p$ 将会成真。
 
 \end{document}

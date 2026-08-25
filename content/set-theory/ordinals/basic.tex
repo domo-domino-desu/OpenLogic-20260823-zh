@@ -40,7 +40,7 @@
 
 
 \begin{thm}[超限归纳]\ollabel{ordinductionschema}
-对于任意公式 $\phi(x)$： 	
+对于任意公式 $\phi(x)$：
 \[
 	\text{若 }\exists \alpha \phi(\alpha)\text{，则 }\exists \alpha(\phi(\alpha)
 	\land  (\forall \beta \in \alpha) \lnot \phi(\beta))
@@ -49,7 +49,7 @@
 \end{thm}
 
 \begin{proof}
-%\olref{ordinductionschema1}. 
+%\olref{ordinductionschema1}.
 假设对某个序数 $\alpha$ 有 $\phi(\alpha)$。如果 $ (\forall \beta
 \in \alpha) \lnot \phi(\beta)$，则证毕。否则，由于
 $\alpha$ 是序数，它有一个满足 $\phi$ 的 $\in$-最小元素，而根据 \olref{ordmemberord}，这个元素是一个序数。
@@ -63,27 +63,27 @@ $\alpha$ 是序数，它有一个满足 $\phi$ 的 $\in$-最小元素，而根�
 \noindent
 注意，我们可以将 \olref{ordinductionschema} 等价地表达为如下模式：
 \[
-\text{若 }\forall \alpha((\forall \beta \in \alpha)\phi(\beta) \lif 
+\text{若 }\forall \alpha((\forall \beta \in \alpha)\phi(\beta) \lif
 \phi(\alpha))\text{，则 }\forall \alpha\phi(\alpha)
 \]
 只需在 \olref{ordinductionschema} 中取 $\lnot\phi(\alpha)$，然后进行初等逻辑变形即可。
 
 
-\begin{thm}[三分法]\ollabel{ordtrichotomy} 
+\begin{thm}[三分法]\ollabel{ordtrichotomy}
 对任意序数 $\alpha$ 和 $\beta$，$\alpha \in \beta \lor \alpha = \beta \lor \beta \in \alpha$。
 \end{thm}
 
 \begin{proof}
 证明采用双重归纳，即两次使用
 \olref{ordinductionschema}。
-称 $x$ 与 $y$ \emph{可比较}，当且仅当 $x \in y \lor x = y \lor y \in x$。 
+称 $x$ 与 $y$ \emph{可比较}，当且仅当 $x \in y \lor x = y \lor y \in x$。
 
 作归纳假设：$\alpha$ 中的每个序数都与\emph{所有}序数可比较。
 进一步假设：$\alpha$ 与 $\beta$ 中的每个序数可比较。
 我们将证明 $\alpha$ 与 $\beta$ 可比较。
 通过对 $\beta$ 归纳，将推出 $\alpha$ 与所有序数可比较；
 从而再通过对 $\alpha$ 归纳，\emph{每个}序数都与\emph{所有}序数可比较，得证。
-我们只需假设 $\alpha \notin \beta$ 且 $\beta \notin \alpha$，然后证明 $\alpha = \beta$。 
+我们只需假设 $\alpha \notin \beta$ 且 $\beta \notin \alpha$，然后证明 $\alpha = \beta$。
 
 为证 $\alpha \subseteq \beta$，取定 $\gamma \in \alpha$；
 根据 \olref{ordmemberord}，这是一个序数。
@@ -110,7 +110,7 @@ $\alpha$ 是序数，它有一个满足 $\phi$ 的 $\in$-最小元素，而根�
 \land \forall \beta(\phi(\beta) \lif \alpha \leq \beta))$。
 此外，对任意序数 $\alpha, \beta, \gamma$，既有 $\alpha
 \notin \alpha$，又有 $\alpha \in \beta \in \gamma \lif \alpha \in
-\gamma$。 
+\gamma$。
 \end{cor}
 
 \begin{proof}
@@ -137,17 +137,17 @@ $A$ 是序数当且仅当 $A$ 是一个由序数组成的传递集。
 \end{thm}
 
 \begin{proof}
-为归谬起见，假设 $O$ 是所有序数的集合。如果 $\alpha \in \beta \in O$，那么根据 \olref{ordmemberord}，$\alpha$ 是一个序数，所以 $\alpha \in O$。因此 $O$ 是传递的，从而由 \olref{corordtransitiveord} 知 $O$ 是一个序数。于是 $O \in O$，这与 \olref{ordordered} 矛盾。 
+为归谬起见，假设 $O$ 是所有序数的集合。如果 $\alpha \in \beta \in O$，那么根据 \olref{ordmemberord}，$\alpha$ 是一个序数，所以 $\alpha \in O$。因此 $O$ 是传递的，从而由 \olref{corordtransitiveord} 知 $O$ 是一个序数。于是 $O \in O$，这与 \olref{ordordered} 矛盾。
 \end{proof}
 \noindent
-这个结果以 \citeauthor{Burali-Forti1897} 命名。但是，康托尔在 1899 年——在致 戴德金的一封信中——首先清楚地看到了假设存在一个由所有序数组成的集合所蕴含的\emph{矛盾}。正如 van Heijenoort 所解释的：
+这个结果以 \citeauthor{Burali-Forti1897} 命名。但是，Cantor 在 1899 年——在致 Dedekind的一封信中——首先清楚地看到了假设存在一个由所有序数组成的集合所蕴含的\emph{矛盾}。正如 van Heijenoort 所解释的：
 \begin{quote}
   布拉利-福尔蒂本人认为这个矛盾通过\emph{归谬法}确立了以下结果：序数的自然序只是一个偏序。
   \citep[p.~105]{Heijenoort1967}
 \end{quote}
-撇开布拉利-福尔蒂的错误不谈，我们可以将上述内容总结如下。序数是这样的集合：它们各自被属于关系良序，并且所有序数整体上也被属于关系良序（尽管它们整体并不构成一个集合）。 
+撇开布拉利-福尔蒂的错误不谈，我们可以将上述内容总结如下。序数是这样的集合：它们各自被属于关系良序，并且所有序数整体上也被属于关系良序（尽管它们整体并不构成一个集合）。
 
-最后，这里还有一些从 \olref{ordinductionschema} 和 \olref{ordtrichotomy} 推导出的关于序数的基本性质。 
+最后，这里还有一些从 \olref{ordinductionschema} 和 \olref{ordtrichotomy} 推导出的关于序数的基本性质。
 
 \begin{prop}
 任何严格递减的序数序列都是有限的。

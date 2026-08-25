@@ -44,21 +44,21 @@
 \begin{proof}
 对每个 $\alpha$，根据 \olref{transrecursionfun}，存在唯一的 $\tau$ 的 $\alpha$-近似 $f_\alpha$。定义 $\sigma(\alpha)$ 为 $f_{\ordsucc{\alpha}}(\alpha)$。于是：
 	\begin{align*}
-		\sigma(\alpha) &= 
-		f_{\ordsucc{\alpha}}(\alpha) \\&= 
-		\tau(\funrestrictionto{f_{\ordsucc{\alpha}}}{\alpha}) \\&= 
-		\tau(\Setabs{\tuple{\beta, f_{\ordsucc{\alpha}}(\beta)}}{\beta \in \alpha}) \\&= 
+		\sigma(\alpha) &=
+		f_{\ordsucc{\alpha}}(\alpha) \\&=
+		\tau(\funrestrictionto{f_{\ordsucc{\alpha}}}{\alpha}) \\&=
+		\tau(\Setabs{\tuple{\beta, f_{\ordsucc{\alpha}}(\beta)}}{\beta \in \alpha}) \\&=
 		\tau(\Setabs{\tuple{\beta, f_{\ordsucc{\beta}}(\beta)}}{\beta \in \alpha})\\&=
 		\tau(\funrestrictionto{\sigma}{\alpha})
 	\end{align*}
 注意到对所有的 $\beta < \alpha$，$f_{\ordsucc{\beta}}(\beta) = f_{\ordsucc{\alpha}}(\beta)$，如 \olref{transrecursionfun} 中所述。
 \end{proof}
-\noindent 
+\noindent
 注意，\olref{transrecursionschema} 是一个\emph{模式}。关键是，我们不能期望 $\sigma$ 定义一个函数，即某种\emph{集合}，因为那样的话 $\dom{\sigma}$ 就会是所有序数的集合，这与 Burali-Forti 悖论（\olref[ordinals][basic]{buraliforti}）矛盾。
 
 不过，我们仍然需要证明，\olref{transrecursionschema} 能够证实我们对 $V_\alpha$ 的定义。这可能并非显而易见；但通过超限递归的最后一种简单版本，这一点将变得显然。
 
-\begin{thm}[简单递归]\ollabel{simplerecursionschema} 
+\begin{thm}[简单递归]\ollabel{simplerecursionschema}
 对任意项 $\tau(x)$ 和 $\theta(x)$ 以及任意集合 $A$，我们可以显式地定义一个项 $\sigma(x)$，使得：
 \begin{align*}
 	\sigma(\emptyset) &= A\\
@@ -70,11 +70,11 @@
 \end{thm}
 
 \begin{proof}
-我们首先定义一个项 $\xi(x)$ 如下： 
+我们首先定义一个项 $\xi(x)$ 如下：
 %t $\xi(x) = A$ if $x$ is not a function whose domain is an ordinal;
 %otherwise let:
 \[
-	\xi(x) = 
+	\xi(x) =
 	\begin{cases}
 			A &\text{若 $x$ 不是}\\
 			&\hspace{1em}\text{定义域为某个序数的函数；否则：}\\
@@ -82,9 +82,9 @@
 			\theta(\ran{x}) & \text{若 $\dom{x}$ 是极限序数}
 	\end{cases}
 \]
-根据 \olref{transrecursionschema}，存在一个项 $\sigma(x)$，使得对每个序数 $\alpha$，$\sigma(\alpha) = \xi(\funrestrictionto{\sigma}{\alpha})$；并且，$\funrestrictionto{\sigma}{\alpha}$ 是一个定义域为 $\alpha$ 的函数。我们通过简单的超限归纳（\olref[ordinals][opps]{simpletransrecursion}）证明 $\sigma$ 具有所需的性质。 
+根据 \olref{transrecursionschema}，存在一个项 $\sigma(x)$，使得对每个序数 $\alpha$，$\sigma(\alpha) = \xi(\funrestrictionto{\sigma}{\alpha})$；并且，$\funrestrictionto{\sigma}{\alpha}$ 是一个定义域为 $\alpha$ 的函数。我们通过简单的超限归纳（\olref[ordinals][opps]{simpletransrecursion}）证明 $\sigma$ 具有所需的性质。
 
-首先，$\sigma(\emptyset) = \xi(\emptyset) = A$。 
+首先，$\sigma(\emptyset) = \xi(\emptyset) = A$。
 
 其次，$\sigma(\ordsucc{\alpha}) = \xi(\funrestrictionto{\sigma}{\ordsucc{\alpha}}) = \tau(\funrestrictionto{\sigma}{\ordsucc{\alpha}}(\alpha)) = \tau(\sigma(\alpha))$。
 

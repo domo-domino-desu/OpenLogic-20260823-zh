@@ -7,7 +7,7 @@
 \begin{document}
 
 \olfileid{lam}{int}{cmp}
-\olsection{\usetoken{S}{lambda definable} Functions are Computable}
+\olsection{$\lambda$-可定义函数是可计算的}
 
 \begin{thm}
 \ollabel{thm:lambda-computable}
@@ -18,7 +18,7 @@
 设函数~$f$ 由一个λ-项~$X$ λ-定义。我们来描述一个计算~$f$ 的非形式化过程。对于输入 $m_0$，……，$m_{n-1}$，写出项 $X \num m_0 \ldots \num
 m_{n-1}$。构造一棵树：先写下原项的所有一步归约式；在其下方，写下这些项的所有一步归约式（即原项的两步归约式）；如此继续。如果在某一步得到了一个丘奇数，就将其作为答案返回；否则，该函数无定义。
 
-诉诸 邱奇 论题即可知，这个函数是可计算的。证明该定理的一个更好方法是给出这个搜索过程的递归描述。例如，可以定义一系列原始递归函数和关系：“$\fn{IsASubterm}$（是否为子项）”、“$\fn{Substitute}$（代入）”、“$\fn{ReducesToInOneStep}$（一步归约）”、“$\fn{ReductionSequence}$（归约序列）”、“$\fn{Numeral}$（丘奇数）”等等。那么，计算 $f(m_0, \dots, m_{n-1})$ 的部分递归过程便是：搜索一个一步归约的序列，该序列从 $X \num{m_0} \dots \num{m_{n-1}}$ 开始并以一个丘奇数结束，然后返回与该丘奇数对应的自然数。其细节冗长繁琐，但除此之外只是按部就班的常规工作。
+诉诸 Church 论题即可知，这个函数是可计算的。证明该定理的一个更好方法是给出这个搜索过程的递归描述。例如，可以定义一系列原始递归函数和关系：“$\fn{IsASubterm}$（是否为子项）”、“$\fn{Substitute}$（代入）”、“$\fn{ReducesToInOneStep}$（一步归约）”、“$\fn{ReductionSequence}$（归约序列）”、“$\fn{Numeral}$（丘奇数）”等等。那么，计算 $f(m_0, \dots, m_{n-1})$ 的部分递归过程便是：搜索一个一步归约的序列，该序列从 $X \num{m_0} \dots \num{m_{n-1}}$ 开始并以一个丘奇数结束，然后返回与该丘奇数对应的自然数。其细节冗长繁琐，但除此之外只是按部就班的常规工作。
 \end{proof}
 
 \end{document}

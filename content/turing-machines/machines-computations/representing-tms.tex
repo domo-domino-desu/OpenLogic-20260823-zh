@@ -10,7 +10,7 @@
 \olsection{表示Turing机}
 
 \begin{explain}
-图灵机可以用\emph{状态图}来直观地表示。
+Turing机可以用\emph{状态图}来直观地表示。
 状态图由状态节点和连接它们的箭头构成。自然地，每个状态节点代表机器的一个状态。
 每个箭头代表从该状态可以执行的一条指令，指令的具体内容写在该箭头的上方或下方。
 考虑下面这台机器，它只有两个内部状态 $q_0$ 和 $q_1$，以及一条指令：
@@ -25,13 +25,13 @@
   \path (A) edge  node {\TMtrans{\TMblank}{\TMstroke}{\TMright}} (B);
 \end{tikzpicture}
 \]
-回想一下，图灵机有一个读写头和一个写有输入的纸带。
+回想一下，Turing机有一个读写头和一个写有输入的纸带。
 这条指令可以读作：\emph{如果在状态 $q_0$ 下扫描到~$\TMblank$，则写下一个~$\TMstroke$，向右移动，并转移到状态 $q_1$}。
 这等价于将 $\tuple{q_0, \TMblank}$ 映射到 $\tuple{q_1, \TMstroke, \TMright}$ 的转移函数。
 \end{explain}
 
 \begin{ex}
-\emph{偶数机}：下述图灵机停机，当且仅当纸带上有偶数个 $\TMstroke$（假设所有 $\TMstroke$ 都位于纸带上第一个 $\TMblank$ 之前）。
+\emph{偶数机}：下述Turing机停机，当且仅当纸带上有偶数个 $\TMstroke$（假设所有 $\TMstroke$ 都位于纸带上第一个 $\TMblank$ 之前）。
 \[
 \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
                     semithick]
@@ -143,7 +143,7 @@ $\delta(q_1, \TMblank) =\tuple{q_1,
 \end{ex}
 
 \begin{explain}
-机器表是表示图灵机的另一种方法。机器表将纸带字母表展示在 $x$ 轴上，而将机器状态的集合展示在 $y$ 轴上。在表格内，每个状态与符号交叉处的单元格内，写的是该指令的其余部分——新的状态、新的符号以及移动方向。机器表让人容易确定机器在何种状态下、扫描到何种符号时会停机。凡在表格中出现空缺的地方，就是机器可能的一个停机点。与状态图和指令集不同（在那里停机点并非总是一目了然），任何停机点都可以通过寻找机器表中的空缺位置而快速识别出来。
+机器表是表示Turing机的另一种方法。机器表将纸带字母表展示在 $x$ 轴上，而将机器状态的集合展示在 $y$ 轴上。在表格内，每个状态与符号交叉处的单元格内，写的是该指令的其余部分——新的状态、新的符号以及移动方向。机器表让人容易确定机器在何种状态下、扫描到何种符号时会停机。凡在表格中出现空缺的地方，就是机器可能的一个停机点。与状态图和指令集不同（在那里停机点并非总是一目了然），任何停机点都可以通过寻找机器表中的空缺位置而快速识别出来。
 \end{explain}
 
 \begin{ex}
@@ -152,13 +152,13 @@ $\delta(q_1, \TMblank) =\tuple{q_1,
 \centering
 \begin{tabular}{lllll}
 \cline{2-4}
-\multicolumn{1}{l|}{}      & \multicolumn{1}{c|}{$\TMblank$}                
+\multicolumn{1}{l|}{}      & \multicolumn{1}{c|}{$\TMblank$}
 & \multicolumn{1}{c|}{$\TMstroke$}     & \multicolumn{1}{c|}{$\TMendtape$}   &  \\ \cline{1-4}
-\multicolumn{1}{|l|}{$q_0$} & \multicolumn{1}{l|}{}                          
-& \multicolumn{1}{l|}{\TMtrans{\TMstroke}{q_1}{\TMright}} & 
+\multicolumn{1}{|l|}{$q_0$} & \multicolumn{1}{l|}{}
+& \multicolumn{1}{l|}{\TMtrans{\TMstroke}{q_1}{\TMright}} &
 \multicolumn{1}{l|}{\phantom{\TMtrans{\TMstroke}{q_1}{\TMright}}} &  \\ \cline{1-4}
-\multicolumn{1}{|l|}{$q_1$} & \multicolumn{1}{l|}{\TMtrans{\TMblank}{q_1}{\TMright}} 
-& \multicolumn{1}{l|}{\TMtrans{\TMstroke}{q_0}{\TMright}} & 
+\multicolumn{1}{|l|}{$q_1$} & \multicolumn{1}{l|}{\TMtrans{\TMblank}{q_1}{\TMright}}
+& \multicolumn{1}{l|}{\TMtrans{\TMstroke}{q_0}{\TMright}} &
 \multicolumn{1}{l|}{\phantom{\TMtrans{\TMstroke}{q_1}{\TMright}}} &  \\ \cline{1-4}
 \end{tabular}
 \]
@@ -166,11 +166,11 @@ $\delta(q_1, \TMblank) =\tuple{q_1,
 \end{ex}
 
 \begin{explain}
-到目前为止，我们只考虑了能读取并接受输入的机器。然而，图灵机同时具备读取和写入的能力。这类机器的一个例子（尽管这样的例子非常多）是\emph{倍乘器}。一个倍乘器，当以纸带上一块包含~$n$ 个 $\TMstroke$ 的输入启动时，会输出一块包含~$2n$ 个 $\TMstroke$ 的符号。
+到目前为止，我们只考虑了能读取并接受输入的机器。然而，Turing机同时具备读取和写入的能力。这类机器的一个例子（尽管这样的例子非常多）是\emph{倍乘器}。一个倍乘器，当以纸带上一块包含~$n$ 个 $\TMstroke$ 的输入启动时，会输出一块包含~$2n$ 个 $\TMstroke$ 的符号。
 \end{explain}
 
 \begin{ex}
-  \ollabel{ex:doubler} 在构建倍乘器之前，想出一个解决问题的\emph{策略}是很重要的。由于机器（按我们的形式化设定）无法记住它已读了多少个 $\TMstroke$，我们需要想出一种方法来跟踪纸带上所有的 $\TMstroke$。一种方法是用一个~$\TMblank$ 将输出区与输入区分隔开。然后，机器可以擦除输入中的第一个 $\TMstroke$，越过输入的其余部分，留下一个 $\TMblank$，并写下两个新的 $\TMstroke$。接着，机器将返回并找到输入中的第二个 $\TMstroke$，并同样将其加倍。对于输入中的每一个 $\TMstroke$，它将写出两个 $\TMstroke$ 作为输出。通过在机器运行时擦除输入，我们可以保证没有 $\TMstroke$ 被遗漏或重复加倍。当整个输入被擦除后，纸带上将剩下 $2n$ 个 $\TMstroke$。最终得到的图灵机的状态图如 \olref{fig:doubler} 所示。
+  \ollabel{ex:doubler} 在构建倍乘器之前，想出一个解决问题的\emph{策略}是很重要的。由于机器（按我们的形式化设定）无法记住它已读了多少个 $\TMstroke$，我们需要想出一种方法来跟踪纸带上所有的 $\TMstroke$。一种方法是用一个~$\TMblank$ 将输出区与输入区分隔开。然后，机器可以擦除输入中的第一个 $\TMstroke$，越过输入的其余部分，留下一个 $\TMblank$，并写下两个新的 $\TMstroke$。接着，机器将返回并找到输入中的第二个 $\TMstroke$，并同样将其加倍。对于输入中的每一个 $\TMstroke$，它将写出两个 $\TMstroke$ 作为输出。通过在机器运行时擦除输入，我们可以保证没有 $\TMstroke$ 被遗漏或重复加倍。当整个输入被擦除后，纸带上将剩下 $2n$ 个 $\TMstroke$。最终得到的Turing机的状态图如 \olref{fig:doubler} 所示。
   \begin{figure}
 \[
 \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
@@ -207,19 +207,19 @@ $\delta(q_1, \TMblank) =\tuple{q_1,
 \end{prob}
 
 \begin{prob}
-设计一个字母表为 $\{\TMendtape,\TMblank, A, B\}$ 的图灵机，使其接受（即在该输入上停机）任何由 $A$ 和 $B$ 组成的字符串，其中 $A$ 的数量等于 $B$ 的数量\emph{且}所有的 $A$ 都位于所有的 $B$ 之前；并且拒绝（即在该输入上不停机）任何 $A$ 的数量不等于 $B$ 的数量或者 $A$ 不全部位于 $B$ 之前的字符串。（例如，该机应接受 $AABB$ 和 $AAABBB$，但拒绝 $AAB$ 和 $AABBAABB$。）
+设计一个字母表为 $\{\TMendtape,\TMblank, A, B\}$ 的Turing机，使其接受（即在该输入上停机）任何由 $A$ 和 $B$ 组成的字符串，其中 $A$ 的数量等于 $B$ 的数量\emph{且}所有的 $A$ 都位于所有的 $B$ 之前；并且拒绝（即在该输入上不停机）任何 $A$ 的数量不等于 $B$ 的数量或者 $A$ 不全部位于 $B$ 之前的字符串。（例如，该机应接受 $AABB$ 和 $AAABBB$，但拒绝 $AAB$ 和 $AABBAABB$。）
 \end{prob}
 
 \begin{prob}
-设计一个字母表为 $\{\TMendtape,\TMblank, A, B\}$ 的图灵机，它以由 $A$ 和 $B$ 组成的任意字符串 $\alpha$ 作为输入，并将其复制，从而产生一个形如 $\alpha\alpha$ 的输出。（例如，输入 $ABBA$ 应产生输出 $ABBAABBA$。）
+设计一个字母表为 $\{\TMendtape,\TMblank, A, B\}$ 的Turing机，它以由 $A$ 和 $B$ 组成的任意字符串 $\alpha$ 作为输入，并将其复制，从而产生一个形如 $\alpha\alpha$ 的输出。（例如，输入 $ABBA$ 应产生输出 $ABBAABBA$。）
 \end{prob}
 
 \begin{prob}
-\emph{按字母顺序？：}设计一个字母表为 $\{\TMendtape,\TMblank, A, B\}$ 的图灵机，当给定一个由有限个 $A$ 和 $B$ 组成的序列作为输入时，它检查是否所有的 $A$ 都出现在所有的 $B$ 的左侧。该机器应将输入字符串保留在纸带上，并且当字符串是“按字母顺序”时停机，否则永远循环。
+\emph{按字母顺序？：}设计一个字母表为 $\{\TMendtape,\TMblank, A, B\}$ 的Turing机，当给定一个由有限个 $A$ 和 $B$ 组成的序列作为输入时，它检查是否所有的 $A$ 都出现在所有的 $B$ 的左侧。该机器应将输入字符串保留在纸带上，并且当字符串是“按字母顺序”时停机，否则永远循环。
 \end{prob}
 
 \begin{prob}
-\emph{字母顺序重排器：}设计一个字母表为 $\{\TMendtape,\TMblank, A, B\}$ 的图灵机，它以由有限个 $A$ 和 $B$ 组成的序列作为输入，并将它们重新排列，使得所有的 $A$ 都在所有的 $B$ 的左侧。（例如，序列 $BABAA$ 应变为 $AAABB$，序列 $ABBABB$ 应变为 $AABBBB$。）
+\emph{字母顺序重排器：}设计一个字母表为 $\{\TMendtape,\TMblank, A, B\}$ 的Turing机，它以由有限个 $A$ 和 $B$ 组成的序列作为输入，并将它们重新排列，使得所有的 $A$ 都在所有的 $B$ 的左侧。（例如，序列 $BABAA$ 应变为 $AAABB$，序列 $ABBABB$ 应变为 $AABBBB$。）
 \end{prob}
 
 \end{document}

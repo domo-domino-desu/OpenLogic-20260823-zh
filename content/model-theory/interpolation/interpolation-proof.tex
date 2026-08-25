@@ -19,16 +19,16 @@ $!C$ 中出现的每个常项符号、函数符号和谓词符号（$\eq$ 除外
 \emph{内插项}。
 \end{thm}
 
-证明思路使用了``模型交错''技巧：给定 $\Entails !A \lif !B$
+证明思路使用了“模型交错”技巧：给定 $\Entails !A \lif !B$
 的一个反例模型，我们可以将其拆解并重新组合，以分别构造出
 $\Entails !A \lif !C$ 和 $\Entails !C \lif !B$ 的反例，除非满足特定条件，
 而该条件正好能给出所求的内插项 $!C$。
 
-Craig 内插定理之所以有趣，部分原因在于它允许我们在理论之间进行``转译''。
+Craig 内插定理之所以有趣，部分原因在于它允许我们在理论之间进行“转译”。
 例如，若语言 $L_1$ 中的 $!A$ 语义地后承语言 $L_2$ 中的 $!B$，
-那么我们可以找到一个作为``桥梁''的 $!C$，它仅使用 $L_1$ 和 $L_2$ 共有的符号，
+那么我们可以找到一个作为“桥梁”的 $!C$，它仅使用 $L_1$ 和 $L_2$ 共有的符号，
 并且 $!A$ 语义地后承 $!C$，$!C$ 又语义地后承 $!B$。这样，
-关于 $!A$ 和 $!B$ 的后承关系，就可以通过这个共同语言中的 $!C$ 来``解释''。
+关于 $!A$ 和 $!B$ 的后承关系，就可以通过这个共同语言中的 $!C$ 来“解释”。
 
 \begin{defn}[内插项]
 \ollabel{defn:interpolant}
@@ -53,7 +53,7 @@ $!A$ 与 $!B$ 的一个\emph{内插项}。
 \end{enumerate}
 最后，定义：
 \begin{align*}
-  \Gamma^* & = \bigcup_{n\ge 0} \Gamma_n, & 
+  \Gamma^* & = \bigcup_{n\ge 0} \Gamma_n, &
   \Delta^* & = \bigcup_{n\ge 0} \Delta_n.
 \end{align*}
 现在我们可以通过对 $n$ 进行同时归纳来证明：
@@ -75,13 +75,13 @@ $!A$ 与 $!B$ 的一个\emph{内插项}。
 
 我们现在证明 $\Gamma^*$ 在 $\Lang{L}'_1$ 中是极大一致的，且类似地 $\Delta^*$ 在 $\Lang{L}'_2$ 中是极大一致的。对前者，假设对某个 $n \ge 0$，$!A_n \notin \Gamma^*$ 且 $\lnot !A_n \notin \Gamma^*$。若 $!A_n \notin \Gamma^*$，则 $\Gamma_n \cup \{!A_n \}$ 与 $\Delta_n$ 可分，于是存在 $!C \in \Lang{L}'_0$ 使得：
 \begin{align*}
-  \Gamma^* & \Entails !A_n \lif !C, & 
+  \Gamma^* & \Entails !A_n \lif !C, &
   \Delta^* & \Entails \lnot !C.
 \end{align*}
 类似地，若 $\lnot !A_n \notin \Gamma^*$，则存在 $!C' \in
 \Lang{L}'_0$ 使得：
 \begin{align*}
-  \Gamma^* & \Entails \lnot !A_n \lif !C', & 
+  \Gamma^* & \Entails \lnot !A_n \lif !C', &
   \Delta^* & \Entails \lnot !C'.
 \end{align*}
 根据命题逻辑，$\Gamma^* \Entails !C \lor !C'$ 且 $\Delta^* \Entails \lnot (!C \lor !C')$，因此 $!C \lor !C'$ 分离了 $\Gamma^*$ 与 $\Delta^*$。类似的论证可确立 $\Delta^*$ 的极大性。

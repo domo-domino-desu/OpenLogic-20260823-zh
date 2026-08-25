@@ -27,12 +27,6 @@
 \uppercase{\gdef\firstcharuc{#3}}
 \definetoken{#1}{#2}{\firstcharuc #4}}
 
-% `\usetoken{switch}{token}` - produces the replacement text for
-% switch/token, i.e., whatever the macro `\TOK@switch@token` was
-% defined as
-
-\newcommand*{\usetoken}[2]{\csname TOK@#1@#2\endcsname}
-
 \DeclareDocumentCommand \settexttoken { m s m m o o } {%
     \PackageInfo{open-logic-tokenize}{Setting token #1 to #3 / #4}
     \definetoken{s}{#1}{#3}
@@ -90,7 +84,7 @@
 
 \def\printtoken#1#2{%
   \ifcsname TOK@#1@#2\endcsname
-    \tokenformat{\usetoken{#1}{#2}}\else
+    \tokenformat{\csname TOK@#1@#2\endcsname}\else
     \PackageWarning{open-logic-tokenize}{Token #2 undefined}{\color{red}#2}\fi}
 
 % `\tokenformat` - wrapper to format token text; command can be
@@ -103,10 +97,10 @@
 % token
 
 \def\article#1{\ifcsname TOK@a@#1\endcsname
-    \tokenformat{\usetoken{a}{#1}}\else
+    \tokenformat{\csname TOK@a@#1\endcsname}\else
     \PackageWarning{open-logic-tokenize}{Token #1 undefined}{\color{red}a}\fi}
 \def\Article#1{\ifcsname TOK@a@#1\endcsname
-    \tokenformat{\usetoken{A}{#1}}\else
+    \tokenformat{\csname TOK@A@#1\endcsname}\else
     \PackageWarning{open-logic-tokenize}{Token #1 undefined}{\color{red}A}\fi}
 %\def\Article#1{\printtoken{A}{#1}}
 

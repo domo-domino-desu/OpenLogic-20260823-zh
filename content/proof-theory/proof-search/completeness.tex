@@ -65,7 +65,7 @@ $\Struct{M}$ 是一个\emph{项模型}，因为它的论域是一个项的集合
   \item $!A \in \Xi$ 且 $!A \ident !B \land !C$。则对某个 $n$，有 $\Lambda_n = \Lambda_n', !B \land !C$。$\Pi_{n+1} \Sequent
   \Lambda_{n+1}$ 是以 $\Pi_n \Sequent \Lambda'_n, !B \land !C$ 为结论的~\RightR{\land} 的两个前提之一，即 $\Lambda_{n+1} = \Lambda_n', !B^k$ 或 $\Lambda_{n+1} = \Lambda_n',
   !C^k$。因此，要么 $!B \in \Xi$，要么 $!C \in \Xi$。由归纳假设，要么 $\Sat/{M}{!B}$，要么 $\Sat/{M}{!C}$。根据 $\Sat{M}{}$ 的定义，有 $\Sat/{M}{!B \land !C}$。
-  
+
   \item $!A \ident \lnot !B$、$!A \ident !B \lor !C$ 和 $!A \ident !B \lif !C$ 的情况类似，留作练习。
 
   \item $!A \in \Theta$ 且 $!A \ident \lexists[x][!B(x)]$。则对某个 $n$，有 $\Pi_n = \Pi_n', \lexists[x][!B(x)]^i$。$\Pi_{n+1}

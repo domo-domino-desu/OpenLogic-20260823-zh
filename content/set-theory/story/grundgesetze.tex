@@ -6,12 +6,12 @@
 
 \olsection{附录：Frege的基本定律 V}
 
-在 \olref[rus]{sec} 中，我们解释了 罗素如何将其悖论表述为 弗雷格在其 \emph{Grundgesetze} 中所概述的系统的问题。弗雷格的系统并未直接包含素朴概括原理的表述。因此，在本附录中，我们将非常简要地解释弗雷格的系统究竟\emph{包含}了什么，以及它与素朴概括原理和罗素悖论分别有何关系。
+在 \olref[rus]{sec} 中，我们解释了 Russell如何将其悖论表述为 Frege在其 \emph{Grundgesetze} 中所概述的系统的问题。Frege的系统并未直接包含素朴概括原理的表述。因此，在本附录中，我们将非常简要地解释Frege的系统究竟\emph{包含}了什么，以及它与素朴概括原理和Russell悖论分别有何关系。
 
-弗雷格的系统是\emph{二阶的}，旨在形式化\emph{概念的外延}这一观念。\footnote{严格来说，弗雷格试图形式化的是一个更一般的观念：函数的``值域''。概念的外延是这个更一般观念的一个特例。详情参见 \citet[pp.\ 8--9]{Heck2012}。}采用受弗雷格启发的记法，我们将\emph{概念~$F$ 的外延}记作 $\fregeext{x}{F(x)}$。这是一种将\emph{谓词}“$F$”转换为（一阶）\emph{项}“$\fregeext{x}{F(x)}$”的机制。利用这一机制，弗雷格给出了如下的属于关系\emph{定义}：\[
+Frege的系统是\emph{二阶的}，旨在形式化\emph{概念的外延}这一观念。\footnote{严格来说，Frege试图形式化的是一个更一般的观念：函数的“值域”。概念的外延是这个更一般观念的一个特例。详情参见 \citet[pp.\ 8--9]{Heck2012}。}采用受Frege启发的记法，我们将\emph{概念~$F$ 的外延}记作 $\fregeext{x}{F(x)}$。这是一种将\emph{谓词}“$F$”转换为（一阶）\emph{项}“$\fregeext{x}{F(x)}$”的机制。利用这一机制，Frege给出了如下的属于关系\emph{定义}：\[
 	a \in b =_{\text{df}} \exists G(b = \fregeext{x}{G(x)} \land Ga)
 \]
-粗略地说：$a \in b$ 当且仅当 $a$ 落入某个外延为 $b$ 的概念之下。（注意量词“$\exists G$”是二阶的。）弗雷格还坚持以下原则，即所谓的\emph{基本定律 V}：$$\fregeext{x}{F(x)} = \fregeext{x}{G(x)} \liff \forall x (Fx \liff Gx)$$
+粗略地说：$a \in b$ 当且仅当 $a$ 落入某个外延为 $b$ 的概念之下。（注意量词“$\exists G$”是二阶的。）Frege还坚持以下原则，即所谓的\emph{基本定律 V}：$$\fregeext{x}{F(x)} = \fregeext{x}{G(x)} \liff \forall x (Fx \liff Gx)$$
 粗略地说：概念具有相同的外延当且仅当它们是共外延的。（同样，“$F$”和“$G$”都在谓词位置。）现在，一个简单的原理将属于关系与属性满足联系起来：
 
 \begin{lem}[见于 \emph{Grundgesetze}]\ollabel{lem:Fregeextensions}
@@ -37,6 +37,6 @@ $\forall F \exists s \forall a (a \in s \liff Fa)$
 存在概括可得 $\exists s\forall a(a \in s \liff Fa)$。由于 $F$ 是任意的，结果得证。
 \end{proof}
 
-取 $F$ 为 $\forall x(Fx \liff x \notin x)$ 即得罗素悖论。
+取 $F$ 为 $\forall x(Fx \liff x \notin x)$ 即得Russell悖论。
 
 \end{document}

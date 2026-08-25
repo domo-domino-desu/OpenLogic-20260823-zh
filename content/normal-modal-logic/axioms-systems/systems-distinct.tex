@@ -32,16 +32,16 @@
   \centering
   \begin{tikzpicture}[modal]
     \node[world] (w1) [label=above:\mFalse{p},
-    label={below:$\mSat{{}}{\Box p}$\\ $\mSat/{{}}{\Box\Box p}$}] {$w_1$}; 
+    label={below:$\mSat{{}}{\Box p}$\\ $\mSat/{{}}{\Box\Box p}$}] {$w_1$};
     \node[world] (w2) [label=above:\mTrue{p},
-      label=below:$\mSat/{{}}{\Box p}$, right=of w1]{$w_2$}; 
-    \draw[->, bend left] (w1) to (w2); 
-    \draw[->, bend left] (w2) to (w1); 
+      label=below:$\mSat/{{}}{\Box p}$, right=of w1]{$w_2$};
+    \draw[->, bend left] (w1) to (w2);
+    \draw[->, bend left] (w2) to (w1);
   \end{tikzpicture}
   \caption{一个使 \Ax{4} 的某实例为假的对称模型。}
   \ollabel{fig:Bnot4}
 \end{figure}
- 
+
 \begin{thm}\ollabel{thm:KTBnot45}
   $\Log{KTB} \Proves/ \Log{4}$ 且 $\Log{KTB} \Proves/ \Log{5}$。
 \end{thm}
@@ -66,10 +66,10 @@
     \draw[reflexive above] (w2) to (w2);
     \node[world] (w3) [label={right:\mFalse{p}},right=of w2] {$w_3$};
     \draw[reflexive above] (w3) to (w3);
-    \draw[->, bend left] (w1) to (w2);  
-    \draw[->, bend left] (w2) to (w3);  
-    \draw[->, bend left] (w3) to (w2);  
-    \draw[->, bend left] (w2) to (w1);  
+    \draw[->, bend left] (w1) to (w2);
+    \draw[->, bend left] (w2) to (w3);
+    \draw[->, bend left] (w3) to (w2);
+    \draw[->, bend left] (w2) to (w1);
   \end{tikzpicture}
   \caption{\olref{thm:KTBnot45} 所用模型。}
   \ollabel{fig:KTBnot45}
@@ -80,9 +80,9 @@
 \end{thm}
 
 \begin{proof}
-  根据 \olref[frd][acc]{thm:soundschemas}，我们知道所有 \Ax{D} 和~\Ax{5} 的实例在所有持续的欧几里得模型中为真。
-  因此，只需找到一个持续的欧几里得模型，其中存在某个世界使得~\Ax{4} 的某个实例不成立。考虑 \olref{fig:KD5not4} 中的模型，并注意 $\mSat/{M}{\Box p
-  \lif \Box\Box p}[w_1]$。 
+  根据 \olref[frd][acc]{thm:soundschemas}，我们知道所有 \Ax{D} 和~\Ax{5} 的实例在所有持续的Euclid模型中为真。
+  因此，只需找到一个持续的Euclid模型，其中存在某个世界使得~\Ax{4} 的某个实例不成立。考虑 \olref{fig:KD5not4} 中的模型，并注意 $\mSat/{M}{\Box p
+  \lif \Box\Box p}[w_1]$。
 \end{proof}
 
 \begin{figure}[t]
@@ -97,14 +97,14 @@
     \draw[reflexive right] (w3) to (w3);
     \node[world] (w4) [label=right:\mFalse{p},above right=of w2]{$w_4$};
     \draw[reflexive above] (w4) to (w4);
-    \draw[->] (w1) to (w2);  
-    \draw[->] (w1) to (w3);  
+    \draw[->] (w1) to (w2);
+    \draw[->] (w1) to (w3);
     \draw[->, bend left=15] (w2) to (w3);
-    \draw[->, bend left=15] (w3) to (w2);  
+    \draw[->, bend left=15] (w3) to (w2);
     \draw[->, bend left=15] (w2) to (w4);
-    \draw[->, bend left=15] (w4) to (w2);  
+    \draw[->, bend left=15] (w4) to (w2);
     \draw[->, bend left=15] (w3) to (w4);
-    \draw[->, bend left=15] (w4) to (w3);  
+    \draw[->, bend left=15] (w4) to (w3);
   \end{tikzpicture}
   \caption{\olref{thm:KD5not4} 所用模型。}
   \ollabel{fig:KD5not4}

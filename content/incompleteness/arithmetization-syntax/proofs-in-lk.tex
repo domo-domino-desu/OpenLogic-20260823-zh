@@ -7,7 +7,7 @@
 \begin{document}
 
 \olfileid{inc}{art}{plk}
-\olsection{$\Log{LK}$ 中的\usetoken{P}{derivation}}
+\olsection{$\Log{LK}$ 中的推导}
 
 \begin{explain}
 为了对推导进行算术化处理，我们必须把推导表示为数字。
@@ -22,7 +22,7 @@
 \tuple{!A_1, \dots, !A_n}$，则 $\Gn{\Gamma} = \tuple{\Gn{!A_1},
   \dots, \Gn{!A_n}}$。
 
-若 $\Gamma \Sequent \Delta$ 是一个矢列，则 $\Gamma \Sequent \Delta$ 的一个哥德尔数是
+若 $\Gamma \Sequent \Delta$ 是一个矢列，则 $\Gamma \Sequent \Delta$ 的一个Gödel数是
 \[
 \Gn{\Gamma \Sequent \Delta} = \tuple{\Gn{\Gamma}, \Gn{\Delta}}
 \]
@@ -35,8 +35,8 @@
   \]
 \item 若 $\pi$ 以带有一个或两个前提的推理结束，以 $\Gamma \Sequent \Delta$ 为其结论，并且 $\pi_1$ 和 $\pi_2$ 是结束于最后一个推理前提的直接子推导，则 $\Gn{\pi}$ 分别是
   \begin{align*}
-    & \tuple{1, \Gn{\pi_1}, \Gn{\Gamma \Sequent \Delta}, k} \text{ 或}\\ 
-    & \tuple{2, \Gn{\pi_1}, \Gn{\pi_2}, \Gn{\Gamma \Sequent \Delta}, k}, 
+    & \tuple{1, \Gn{\pi_1}, \Gn{\Gamma \Sequent \Delta}, k} \text{ 或}\\
+    & \tuple{2, \Gn{\pi_1}, \Gn{\pi_2}, \Gn{\Gamma \Sequent \Delta}, k},
   \end{align*}
   其中 $k$ 按下表根据最后一个推理所使用的规则给出：
 
@@ -68,9 +68,9 @@
     \RightLabel{\RightR{\lif}}
     \UnaryInf$\fCenter (!A \land !B) \lif !A$
   \end{prooftree}
-  初始矢列的哥德尔数为 $p_0 = \tuple{0,
-    \Gn{!A \Sequent !A}}$。结束于 $\LeftR{\land}$ 结论的推导的哥德尔数为 $p_1 =
-    \tuple{1, p_0, \Gn{!A \land !B \Sequent !A}, 9}$（$1$ 是因为 $\LeftR{\land}$ 有一个前提，加上结论 $!A \land !B \Sequent !A$ 的哥德尔数，而 $9$ 是 $\LeftR{\land}$ 的编码数字）。整个推导的哥德尔数则是 $\tuple{1, p_1, \Gn{\Sequent (!A \land !B) \lif !A)}, 14}$，即：
+  初始矢列的Gödel数为 $p_0 = \tuple{0,
+    \Gn{!A \Sequent !A}}$。结束于 $\LeftR{\land}$ 结论的推导的Gödel数为 $p_1 =
+    \tuple{1, p_0, \Gn{!A \land !B \Sequent !A}, 9}$（$1$ 是因为 $\LeftR{\land}$ 有一个前提，加上结论 $!A \land !B \Sequent !A$ 的Gödel数，而 $9$ 是 $\LeftR{\land}$ 的编码数字）。整个推导的Gödel数则是 $\tuple{1, p_1, \Gn{\Sequent (!A \land !B) \lif !A)}, 14}$，即：
   \[
   \tuple{1, \tuple{1, \tuple{0, \Gn{!A \Sequent !A)}}, \Gn{!A \land !B \Sequent !A}, 9},
     \Gn{\Sequent (!A \land !B) \lif !A}, 14}.
@@ -79,19 +79,19 @@
 
 \begin{explain}
 确定了推导的表示方法后，我们还必须证明可以原始递归地操作这些推导，并原始递归地表达它们的基本性质和关系。
-有些操作是简单的：例如，给定一个推导的哥德尔数 $p$，$\fn{EndSeq}(p) = (p)_{(p)_0+1}$ 给出其末矢列的哥德尔数，$\fn{LastRule}(p) = (p)_{(p)_0+2}$ 给出其最后规则的代码。
+有些操作是简单的：例如，给定一个推导的Gödel数 $p$，$\fn{EndSeq}(p) = (p)_{(p)_0+1}$ 给出其末矢列的Gödel数，$\fn{LastRule}(p) = (p)_{(p)_0+2}$ 给出其最后规则的代码。
 由 \[
   \len{s} = 2 \land \bforall{i<\len{(s)_0} + \len{(s)_1}}{\fn{Sent}(((s)_0 \concat (s)_1)_i)}
-\] 定义的性质 $\fn{Sequent}(s)$ 对 $s$ 成立当且仅当 $s$ 是一个由语句组成的矢列的哥德尔数。
-有些操作则要困难得多。我们至少会概述如何做到这一点。目标是证明关系“$\pi$ 是从 $\Gamma$ 到 $!A$ 的推导”是关于 $\pi$ 和 $!A$ 的哥德尔数的原始递归关系。
+\] 定义的性质 $\fn{Sequent}(s)$ 对 $s$ 成立当且仅当 $s$ 是一个由语句组成的矢列的Gödel数。
+有些操作则要困难得多。我们至少会概述如何做到这一点。目标是证明关系“$\pi$ 是从 $\Gamma$ 到 $!A$ 的推导”是关于 $\pi$ 和 $!A$ 的Gödel数的原始递归关系。
 \end{explain}
 
 \begin{prop}\ollabel{prop:followsby}
-  性质 $\fn{Correct}(p)$（成立当且仅当哥德尔数为 $p$ 的推导 $\pi$ 中最后一个推理是正确的）是原始递归的。
+  性质 $\fn{Correct}(p)$（成立当且仅当Gödel数为 $p$ 的推导 $\pi$ 中最后一个推理是正确的）是原始递归的。
 \end{prop}
 
 \begin{proof}
-  $\Gamma \Sequent \Delta$ 是初始矢列，当且仅当要么存在语句~$!A$ 使得 $\Gamma \Sequent \Delta$ 是 $!A \Sequent !A$，要么存在项~$t$ 使得 $\Gamma \Sequent \Delta$ 是 $\emptyset \Sequent \eq[t][t]$。用哥德尔数表示，$\fn{InitSeq}(s)$ 成立当且仅当
+  $\Gamma \Sequent \Delta$ 是初始矢列，当且仅当要么存在语句~$!A$ 使得 $\Gamma \Sequent \Delta$ 是 $!A \Sequent !A$，要么存在项~$t$ 使得 $\Gamma \Sequent \Delta$ 是 $\emptyset \Sequent \eq[t][t]$。用Gödel数表示，$\fn{InitSeq}(s)$ 成立当且仅当
   \begin{align*}
   \bexists{x < s}{} (\fn{Sent}(x) & \land
   s = \tuple{\tuple{x},\tuple{x}})
@@ -100,14 +100,14 @@
   s = \tuple{0, \tuple{\Gn{{\eq}(} \concat t \concat \Gn{,} \concat t \concat \Gn{)}}}).
   \end{align*}
 
-  我们还要证明，对于每个推理规则~$R$，关系 $\fn{FollowsBy}_R(p)$ 是原始递归的，其中 $\fn{FollowsBy}_R(p)$ 成立当且仅当 $p$ 是推导~$\pi$ 的哥德尔数，且 $\pi$ 的末矢列是通过对~$R$ 的正确运用从 $\pi$ 的直接子推导得到的。
+  我们还要证明，对于每个推理规则~$R$，关系 $\fn{FollowsBy}_R(p)$ 是原始递归的，其中 $\fn{FollowsBy}_R(p)$ 成立当且仅当 $p$ 是推导~$\pi$ 的Gödel数，且 $\pi$ 的末矢列是通过对~$R$ 的正确运用从 $\pi$ 的直接子推导得到的。
 
   一个简单的例子是 \RightR{\land} 规则。如果 $\pi$ 以一个正确的 $\RightR{\land}$ 推理结束，那么它看起来是这样的：
   \begin{prooftree}
     \AxiomC{}
     \RightLabel{$\pi_1$}
     \Deduce$\Gamma \fCenter \Delta, !A$
-    
+
     \AxiomC{}
     \RightLabel{$\pi_2$}
     \Deduce$\Gamma \fCenter \Delta, !B$
@@ -116,32 +116,32 @@
     \BinaryInf$\Gamma \fCenter \Delta, !A \land !B$
   \end{prooftree}
   因此，推导 $\pi$ 中的最后一个推理是 $\RightR{\land}$ 的一个正确运用，当且仅当存在语句序列 $\Gamma$ 和 $\Delta$ 以及两个语句 $!A$ 和~$!B$，使得 $\pi_1$ 的末矢列是 $\Gamma \Sequent \Delta, !A$，$\pi_2$ 的末矢列是 $\Gamma \Sequent \Delta, !B$，且 $\pi$ 的末矢列是 $\Gamma \Sequent \Delta, !A \land !B$。
-  我们只需将这一点翻译成哥德尔数。如果 $s = \Gn{\Gamma \Sequent \Delta}$，那么 $(s)_0 = \Gn{\Gamma}$ 且 $(s)_1 = \Gn{\Delta}$。于是，
+  我们只需将这一点翻译成Gödel数。如果 $s = \Gn{\Gamma \Sequent \Delta}$，那么 $(s)_0 = \Gn{\Gamma}$ 且 $(s)_1 = \Gn{\Delta}$。于是，
   $\fn{FollowsBy}_{\RightR{\land}}(p)$ 成立当且仅当
 \begin{align*}
 & \bexists{g < p}{\bexists{d < p}{\bexists{a < p}{\bexists{b < p}{\quad}}}} \\
-& \qquad \fn{EndSequent}(p) = 
-  \tuple{g, d \concat 
+& \qquad \fn{EndSequent}(p) =
+  \tuple{g, d \concat
     \tuple{\Gn{(} \concat a \concat \Gn{\land} \concat b \concat \Gn{)}}} \land {} \\
 & \qquad \fn{EndSequent}((p)_1) = \tuple{g, d \concat \tuple{a}} \land {}\\
 & \qquad \fn{EndSequent}((p)_2) = \tuple{g, d \concat \tuple{b}} \land {}\\
 & \qquad (p)_0 = 2 \land \fn{LastRule}(p) = 10.
 \end{align*}
-这几行分别表达的是：“存在哥德尔数为 $g$ 的序列 ($\Gamma$)，哥德尔数为 $d$ 的序列 ($\Delta$)，哥德尔数为 $a$ 的公式 ($!A$)，以及哥德尔数为 $b$ 的公式 ($!B$)”，使得“$\pi$ 的末矢列是 $\Gamma \Sequent \Delta, !A \land !B$”“$\pi_1$ 的末矢列是 $\Gamma \Sequent \Delta, !A$”“$\pi_2$ 的末矢列是 $\Gamma \Sequent \Delta, !B$”，以及“$\pi$ 有两个直接子推导且最后的推理规则是 $\RightR\land$（编号为 $10$）”。
+这几行分别表达的是：“存在Gödel数为 $g$ 的序列 ($\Gamma$)，Gödel数为 $d$ 的序列 ($\Delta$)，Gödel数为 $a$ 的公式 ($!A$)，以及Gödel数为 $b$ 的公式 ($!B$)”，使得“$\pi$ 的末矢列是 $\Gamma \Sequent \Delta, !A \land !B$”“$\pi_1$ 的末矢列是 $\Gamma \Sequent \Delta, !A$”“$\pi_2$ 的末矢列是 $\Gamma \Sequent \Delta, !B$”，以及“$\pi$ 有两个直接子推导且最后的推理规则是 $\RightR\land$（编号为 $10$）”。
 
 $\pi$ 中的最后一个推理是 $\RightR\lexists$ 的一个正确运用，当且仅当存在序列 $\Gamma$ 和 $\Delta$、一个公式 $!A$、一个变元 $x$ 以及一个项 $t$，使得 $\pi$ 的末矢列是 $\Gamma \Sequent \Delta, \lexists[x][!A]$
 而 $\pi_1$ 的末矢列是 $\Gamma \Sequent \Delta,
-\Subst{!A}{t}{x}$。因此，用哥德尔数表示，我们有
+\Subst{!A}{t}{x}$。因此，用Gödel数表示，我们有
 $\fn{FollowsBy}_{\RightR\lexists}(p)$
 当且仅当
 \begin{align*}
   & \bexists{g<p}{\bexists{d<p}{\bexists{a<p}{\bexists{x<p}{\bexists{t<p}{\quad}}}}}\\
-  & \qquad \fn{EndSequent}(p) = 
+  & \qquad \fn{EndSequent}(p) =
   \tuple{
     g,
     d \concat \tuple{\Gn{\lexists} \concat x \concat a}
   } \land {}\\
-  & \qquad \fn{EndSequent}((p)_1) = 
+  & \qquad \fn{EndSequent}((p)_1) =
   \tuple{
     g,
     d \concat \tuple{\fn{Subst}(a, t, x)}
@@ -150,8 +150,8 @@ $\fn{FollowsBy}_{\RightR\lexists}(p)$
 \end{align*}
 接着，我们将 $\fn{Correct}(p)$ 定义为
 \begin{multline*}
-  \fn{Sequent}(\fn{EndSequent}(p)) \land {}\\ 
-  [(\fn{LastRule}(p) = 1 \land 
+  \fn{Sequent}(\fn{EndSequent}(p)) \land {}\\
+  [(\fn{LastRule}(p) = 1 \land
   \fn{FollowsBy}_{\LeftR\Weakening}(p)) \lor \dots \lor {}\\
   (\fn{LastRule}(p) = 20 \land \fn{FollowsBy}_{\eq}(p)) \lor {}\\
   (p)_0 = 0 \land \fn{InitialSeq}(\fn{EndSequent}(p))]
@@ -168,13 +168,13 @@ $\fn{FollowsBy}_{\RightR\lexists}(p)$
   \item $\fn{FollowsBy}_{\eq}(p)$,
   \item $\fn{FollowsBy}_{\RightR{\lforall}}(p)$。
   \end{enumerate}
-  对于最后一个，你还必须证明：可以原始递归地判定哥德尔数为 $p$ 的推导其最后一个推理是否满足本元变元条件，即 $\RightR{\lforall}$ 中的本元变元 $a$ 不在末矢列中出现。
+  对于最后一个，你还必须证明：可以原始递归地判定Gödel数为 $p$ 的推导其最后一个推理是否满足本元变元条件，即 $\RightR{\lforall}$ 中的本元变元 $a$ 不在末矢列中出现。
   \end{prob}
-  
+
 
 \begin{prop}
   \ollabel{prop:deriv}
-  关系 $\fn{Deriv}(p)$（当 $p$ 是正确推导 $\pi$ 的哥德尔数时成立）是原始递归的。
+  关系 $\fn{Deriv}(p)$（当 $p$ 是正确推导 $\pi$ 的Gödel数时成立）是原始递归的。
 \end{prop}
 
 \begin{proof}
@@ -186,13 +186,13 @@ $\fn{FollowsBy}_{\RightR\lexists}(p)$
 
 
 \begin{prop}
-假设 $\Gamma$ 是一个原始递归的语句集。那么表达“$x$ 是某个有限集 $\Gamma_0 \subseteq \Gamma$ 的推导 $\pi$ 的编码，该推导的末矢列为 $\Gamma_0 \Sequent !A$，且 $y$ 是 $!A$ 的哥德尔数”的关系 $\Prf[\Gamma](x, y)$ 是原始递归的。
+假设 $\Gamma$ 是一个原始递归的语句集。那么表达“$x$ 是某个有限集 $\Gamma_0 \subseteq \Gamma$ 的推导 $\pi$ 的编码，该推导的末矢列为 $\Gamma_0 \Sequent !A$，且 $y$ 是 $!A$ 的Gödel数”的关系 $\Prf[\Gamma](x, y)$ 是原始递归的。
 \end{prop}
 
 \begin{proof}
 设“$y \in \Gamma$”由原始递归谓词~$R_\Gamma(y)$ 给出。
 我们需要证明 $\Prf[\Gamma](x, y)$ 是原始递归的，其中该谓词成立当且仅当
-$y$ 是语句~$!A$ 的哥德尔数，并且 $x$ 是一个 $\Log{LK}$-推导的编码，
+$y$ 是语句~$!A$ 的Gödel数，并且 $x$ 是一个 $\Log{LK}$-推导的编码，
 该推导的末矢列为 $\Gamma_0 \Sequent !A$。
 
 根据前一个命题，性质 $\fn{Deriv}(x)$ 是原始递归的，它成立当且仅当

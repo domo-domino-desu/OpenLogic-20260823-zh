@@ -53,18 +53,18 @@
 \iftag{FOL}{%
 我们现在来验证我们确实有 $\Value{t}{M(\Gamma^*)} = t$。
 
-\begin{lem} 
+\begin{lem}
 \ollabel{lem:val-in-termmodel} 令 $\Struct M(\Gamma^*)$ 为 \olref{defn:termmodel} 的项模型，则 $\Value{t}{M(\Gamma^*)} = t$。
 \end{lem}
-\begin{proof} 
+\begin{proof}
  对 $t$ 施归纳来证明。基始步（$t$ 是常项符号的情形）直接由项模型的定义得出。对于归纳步，假设 $t_1, \ldots, t_n$ 是闭项，使得 $\Value{t_i}{M(\Gamma^*)} = t_i$，并且 $f$ 是一个 $n$ 元函数符号。那么
 \begin{align*}
 \Value{f(t_1,\ldots,t_n)}{M(\Gamma^*)} &= \Assign{f}{M(\Gamma^*)}(\Value{t_1}
- {M(\Gamma^*)}, 
+ {M(\Gamma^*)},
 \ldots, \Value{t_n}{M(\Gamma^*)}) \\
 &= \Assign{f}{M(\Gamma^*)}(t_1, \dots, t_n) \\
 &= f(t_1,\dots, t_n),
-\end{align*} 
+\end{align*}
 从而由归纳可知，这对每个闭项~$t$ 都成立。
 \end{proof}
 }{}
@@ -169,7 +169,7 @@ $\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{!A}$ 当且仅当 $!A \in \G
     \Gamma^*$（由归纳假设）。根据
     \olref[ccs]{prop:ccs}\olref[ccs]{prop:ccs-or}，这当且仅当 $(!B
     \lor !C) \in \Gamma^*$。}}}{}
-  
+
 \tagitem{prvIf}{%
 \iftag{probIf}{%
   \indcase!{!A}{!B \lif !C}{}}{%

@@ -237,7 +237,7 @@ x) \lor R(x, b))$ 的主联结词是~$\lif$，并且
 \lforall[x][(R(a,x) \lif \lexists[y][R(x,y)])].
 \]
 由于 $\Sat/{M}{R(a,x)}[\Subst{s}{3}{x}]$ 且 $\Sat/{M}{R(a,x)}[\Subst{s}{4}{x}]$，需要考虑条件句后件是否成立的有趣情形仅有 $m = 1$ 和 $m = 2$。$\Sat{M}{\lexists[y][R(x,y)]}[\Subst{s}{1}{x}]$ 是否成立？如果存在至少一个 $n \in \Domain M$ 使得 $\Sat{M}{R(x,y)}[\Subst{\Subst{s}{1}{x}}{n}{y}]$，则其成立。事实上，如果我们取 $n = 1$，则有 $\Subst{\Subst{s}{1}{x}}{n}{y} = \Subst{s}{1}{y} =
-s$。由于 $s(x) = 1$，$s(y) = 1$，且 $\tuple{1,1} \in \Assign{R}{M}$，答案是肯定的。 
+s$。由于 $s(x) = 1$，$s(y) = 1$，且 $\tuple{1,1} \in \Assign{R}{M}$，答案是肯定的。
 
 要判断 $\Sat{M}{\lexists[y][R(x,y)]}[\Subst{s}{2}{x}]$ 是否成立，我们必须考察变元指派 $\Subst{\Subst{s}{2}{x}}{n}{y}$。这里，对于 $n = 1$，该指派为~$s_2 = \Subst{s}{2}{x}$，它不满足 $R(x,y)$（$s_2(x) = 2$，$s_2(y) = 1$，且 $\tuple{2,1}\notin \Assign{R}{M}$）。然而，考虑 $\Subst{\Subst{s}{2}{x}}{3}{y} = \Subst{s_2}{3}{y}$。
 $\Sat{M}{R(x,y)}[\Subst{s_2}{3}{y}]$，因为 $\tuple{2,3} \in

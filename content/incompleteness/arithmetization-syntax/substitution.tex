@@ -9,7 +9,7 @@
 \olfileid{inc}{art}{sub}
 \olsection{代入}
 
-回顾一下，代入是指将公式~$!A$ 中变元~$u$ 的所有自由出现替换为项~$t$ 的操作，记作 $\Subst{!A}{t}{u}$。当对变元、公式和项的哥德尔数进行该运算时，该运算是原始递归的。
+回顾一下，代入是指将公式~$!A$ 中变元~$u$ 的所有自由出现替换为项~$t$ 的操作，记作 $\Subst{!A}{t}{u}$。当对变元、公式和项的Gödel数进行该运算时，该运算是原始递归的。
 
 \begin{prop}\ollabel{prop:subst-primrec}
 存在一个原始递归函数 $\fn{Subst}(x, y, z)$ 满足
@@ -35,7 +35,7 @@
 
 \begin{prop}
 \ollabel{prop:free-for}
-关系 $\fn{FreeFor}(x, y, z)$ 是原始递归的，其中该关系成立当且仅当哥德尔数为~$y$ 的项对哥德尔数为~$x$ 的公式中哥德尔数为~$z$ 的变元是自由的。
+关系 $\fn{FreeFor}(x, y, z)$ 是原始递归的，其中该关系成立当且仅当Gödel数为~$y$ 的项对Gödel数为~$x$ 的公式中Gödel数为~$z$ 的变元是自由的。
 \end{prop}
 
 \begin{proof} 练习。 \end{proof}

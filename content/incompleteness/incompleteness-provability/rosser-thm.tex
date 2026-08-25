@@ -10,7 +10,7 @@
 
 \olsection{Rosser 定理}
 
-我们能否修改 哥德尔 的证明，得到一个更强的结果，仅仅用“一致的”代替“$\omega$-一致的”？答案是“可以”，这要用到 罗瑟 发现的一个技巧。罗瑟 的技巧是使用一个“修改过的”可证性谓词 $\ORProv_T(y)$ 来代替 $\OProv[\Th{T}](y)$。
+我们能否修改 Gödel 的证明，得到一个更强的结果，仅仅用“一致的”代替“$\omega$-一致的”？答案是“可以”，这要用到 Rosser 发现的一个技巧。Rosser 的技巧是使用一个“修改过的”可证性谓词 $\ORProv_T(y)$ 来代替 $\OProv[\Th{T}](y)$。
 
 \begin{thm}
 \ollabel{thm:rosser}
@@ -19,13 +19,13 @@
 
 \begin{proof}
 回顾一下，$\OProv[\Th{T}](y)$ 被定义为 $\lexists[x][\OPrf[\Th{T}](x,
-  y)]$，其中 $\OPrf[\Th{T}](x, y)$ 表示一个可判定关系，该关系成立当且仅当 $x$ 是某个推导的哥德尔数，且该推导的结论是哥德尔数为 $y$ 的语句。当 $x$ 是哥德尔数为 $y$ 的语句之\emph{否证}的哥德尔数时，$x$ 和 $y$ 之间所成立的关系也是可判定的。令 $\fn{not}(x)$ 为如下的原始递归函数：如果 $x$ 是公式 $!A$ 的编码，则 $\fn{not}(x)$ 是 $\lnot !A$ 的编码。那么 $\Refut[\Th{T}](x, y)$ 成立当且仅当 $\Prf[\Th{T}](x, \fn{not}(y))$。令 $\ORefut[\Th{T}](x, y)$ 表示该关系。于是，如果 $\Th{T} \Proves \lnot !A$ 且 $\delta$ 是一个相应的推导，则 $\Th{Q} \Proves
+  y)]$，其中 $\OPrf[\Th{T}](x, y)$ 表示一个可判定关系，该关系成立当且仅当 $x$ 是某个推导的Gödel数，且该推导的结论是Gödel数为 $y$ 的语句。当 $x$ 是Gödel数为 $y$ 的语句之\emph{否证}的Gödel数时，$x$ 和 $y$ 之间所成立的关系也是可判定的。令 $\fn{not}(x)$ 为如下的原始递归函数：如果 $x$ 是公式 $!A$ 的编码，则 $\fn{not}(x)$ 是 $\lnot !A$ 的编码。那么 $\Refut[\Th{T}](x, y)$ 成立当且仅当 $\Prf[\Th{T}](x, \fn{not}(y))$。令 $\ORefut[\Th{T}](x, y)$ 表示该关系。于是，如果 $\Th{T} \Proves \lnot !A$ 且 $\delta$ 是一个相应的推导，则 $\Th{Q} \Proves
 \ORefut[\Th{T}](\gn{\delta}, \gn{!A})$。我们如下定义 $\ORProv[\Th{T}](y)$：
 \[
 \lexists[x][(\OPrf[\Th{T}](x,y) \land \lforall[z][(z < x \lif \lnot
   \ORefut[\Th{T}](z,y))])].
 \]
-粗略地说，$\ORProv[\Th{T}](y)$ 意为“在 $\Th{T}$ 中存在 $y$ 的一个证明，并且不存在比该证明更短的 $y$ 的否证”。假设 $\Th{T}$ 是一致的，则使得 $\ORProv[\Th{T}](y)$ 成立的数与使得 $\OProv[\Th{T}](y)$ 成立的数相同；但从 $\Th{T}$ 中\emph{可证性}的角度看（而我们现在已经知道真与可证性是有区别的！），二者具有不同的性质。如果 $\Th{T}$ 是\emph{不}一致的，那么两者就\emph{不}对相同的数成立！{}（$\ORProv[\Th{T}](y)$ 通常被读作“$y$ 是 罗瑟 可证的”。正如刚才所讨论的，罗瑟 可证性并不是某种特殊的可证性——在不一致的理论中，存在一些可证但非 罗瑟 可证的语句——这可能会造成混淆。为了避免混淆，你也可以把它读作“$y$ 是 shmovable”。）
+粗略地说，$\ORProv[\Th{T}](y)$ 意为“在 $\Th{T}$ 中存在 $y$ 的一个证明，并且不存在比该证明更短的 $y$ 的否证”。假设 $\Th{T}$ 是一致的，则使得 $\ORProv[\Th{T}](y)$ 成立的数与使得 $\OProv[\Th{T}](y)$ 成立的数相同；但从 $\Th{T}$ 中\emph{可证性}的角度看（而我们现在已经知道真与可证性是有区别的！），二者具有不同的性质。如果 $\Th{T}$ 是\emph{不}一致的，那么两者就\emph{不}对相同的数成立！{}（$\ORProv[\Th{T}](y)$ 通常被读作“$y$ 是 Rosser 可证的”。正如刚才所讨论的，Rosser 可证性并不是某种特殊的可证性——在不一致的理论中，存在一些可证但非 Rosser 可证的语句——这可能会造成混淆。为了避免混淆，你也可以把它读作“$y$ 是 shmovable”。）
 
 由不动点引理，存在一个公式 $!R_{\Th{T}}$，使得
 \begin{equation}
@@ -34,7 +34,7 @@
 \end{equation}
 与 \olref[1in]{thm:first-incompleteness} 的证明不同，这里我们断言，如果 $\Th{T}$ 是一致的，那么 $\Th{T}$ 无法推出 $!R_{\Th{T}}$，并且 $\Th{T}$ 也无法推出 $\lnot !R_{\Th{T}}$。（换句话说，我们不需要 $\omega$-一致性的假设。）
 
-首先，我们证明 $\Th{T} \Proves/ !R_{\Th{T}}$。假设 $\Th{T}$ 能推出它，即存在一个从 $T$ 到 $!R_{\Th{T}}$ 的推导；令 $n$ 为其哥德尔数。那么 $\Th{Q} \Proves \OPrf[\Th{T}](\num{n}, \gn{!R_{\Th{T}}})$，因为 $\OPrf[\Th{T}]$ 在 $\Th{Q}$ 中表示 $\Prf[\Th{T}]$。此外，对于每个 $k < n$，$k$ 都不是 $\lnot !R_{\Th{T}}$ 的推导的哥德尔数，因为 $\Th{T}$ 是一致的。所以对于每个 $k < n$，$\Th{Q} \Proves \lnot
+首先，我们证明 $\Th{T} \Proves/ !R_{\Th{T}}$。假设 $\Th{T}$ 能推出它，即存在一个从 $T$ 到 $!R_{\Th{T}}$ 的推导；令 $n$ 为其Gödel数。那么 $\Th{Q} \Proves \OPrf[\Th{T}](\num{n}, \gn{!R_{\Th{T}}})$，因为 $\OPrf[\Th{T}]$ 在 $\Th{Q}$ 中表示 $\Prf[\Th{T}]$。此外，对于每个 $k < n$，$k$ 都不是 $\lnot !R_{\Th{T}}$ 的推导的Gödel数，因为 $\Th{T}$ 是一致的。所以对于每个 $k < n$，$\Th{Q} \Proves \lnot
 \ORefut[\Th{T}](\num{k}, \gn{!R_{\Th{T}}})$。根据 \olref[req][min]{lem:less-nsucc}，$\Th{Q} \Proves \lforall[z][(z < \num{n} \lif \lnot \ORefut[\Th{T}](z,
   \gn{!R_{\Th{T}}}))]$。因此，
 \[
@@ -45,10 +45,10 @@
 \Proves \lnot !R_{\Th{T}}$。由于 $\Th{T}$ 扩张 $\Th{Q}$，所以也有 $\Th{T}
 \Proves \lnot !R_{\Th{T}}$。我们假设了 $\Th{T} \Proves !R_{\Th{T}}$，所以 $\Th{T}$ 将是不一致的，与定理的假设矛盾。
 
-现在，我们证明 $\Th{T} \Proves/ \lnot !R_{\Th{T}}$。同样，假设 $\Th{T}$ 能推出它，并设 $n$ 是 $\lnot !R_{\Th{T}}$ 的推导的哥德尔数。那么 $\Refut[\Th{T}](n, \Gn{!R_{\Th{T}}})$ 成立，并且由于 $\ORefut[\Th{T}]$ 在 $\Th{Q}$ 中表示 $\Refut[\Th{T}]$，我们有 $\Th{Q} \Proves
+现在，我们证明 $\Th{T} \Proves/ \lnot !R_{\Th{T}}$。同样，假设 $\Th{T}$ 能推出它，并设 $n$ 是 $\lnot !R_{\Th{T}}$ 的推导的Gödel数。那么 $\Refut[\Th{T}](n, \Gn{!R_{\Th{T}}})$ 成立，并且由于 $\ORefut[\Th{T}]$ 在 $\Th{Q}$ 中表示 $\Refut[\Th{T}]$，我们有 $\Th{Q} \Proves
 \ORefut[\Th{T}](\num{n}, \gn{!R_{\Th{T}}})$。我们将再次证明，$\Th{T}$ 也将是不一致的，因为它也能推出 $!R_{\Th{T}}$。由于
 \begin{align*}
-\Th{Q} & \Proves !R_{\Th{T}} \liff \lnot \ORProv[\Th{T}](\gn{!R_{\Th{T}}}), 
+\Th{Q} & \Proves !R_{\Th{T}} \liff \lnot \ORProv[\Th{T}](\gn{!R_{\Th{T}}}),
 \intertext{且因为 $\Th{T}$ 扩张 $\Th{Q}$，只需证明}
 \Th{Q} & \Proves \lnot \ORProv[\Th{T}](\gn{!R_{\Th{T}}}).
 \end{align*}
@@ -74,7 +74,7 @@
 \end{proof}
 
 \begin{prob}
-如果不存在可判定集合~$X$，使得 $A \subseteq X$ 且 $B \subseteq \Complement{X}$（$\Complement{X}$ 是~$X$ 的补集，即 $\Nat \setminus X$），则称两个自然数集合 $A$ 和 $B$ 是\emph{可计算不可分离的}。令 $\Th{T}$ 为 $\Th{Q}$ 的一个一致的可公理化扩张。假设 $A$ 是在~$\Th{T}$ 中可证的语句的哥德尔数集合，而 $B$ 是在~$\Th{T}$ 中可驳的语句的哥德尔数集合。证明 $A$ 和~$B$ 是可计算不可分离的。
+如果不存在可判定集合~$X$，使得 $A \subseteq X$ 且 $B \subseteq \Complement{X}$（$\Complement{X}$ 是~$X$ 的补集，即 $\Nat \setminus X$），则称两个自然数集合 $A$ 和 $B$ 是\emph{可计算不可分离的}。令 $\Th{T}$ 为 $\Th{Q}$ 的一个一致的可公理化扩张。假设 $A$ 是在~$\Th{T}$ 中可证的语句的Gödel数集合，而 $B$ 是在~$\Th{T}$ 中可驳的语句的Gödel数集合。证明 $A$ 和~$B$ 是可计算不可分离的。
 \end{prob}
 
 \end{document}

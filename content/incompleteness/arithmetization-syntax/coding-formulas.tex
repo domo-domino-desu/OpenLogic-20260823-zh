@@ -7,16 +7,16 @@
 \begin{document}
 
 \olfileid{inc}{art}{frm}
-\olsection{编码 \printtoken{P}{formula}}
+\olsection{编码公式}
 
 一旦原始递归地定义了关系 $\fn{Term}(x)$，我们便可用它来原始递归地定义公式对应的关系 $\fn{Frm}(x)$。
 
 \begin{prop}
-关系 $\fn{Atom}(x)$（当且仅当 $x$ 是原子公式的哥德尔数时成立）是原始递归的。
+关系 $\fn{Atom}(x)$（当且仅当 $x$ 是原子公式的Gödel数时成立）是原始递归的。
 \end{prop}
 
 \begin{proof}
-$x$ 是原子公式的哥德尔数，当且仅当以下条件之一成立：
+$x$ 是原子公式的Gödel数，当且仅当以下条件之一成立：
 \begin{enumerate}
 \item 存在 $n$、$j < x$ 和 $z < x$，使得对每个 $i < n$，
   $\fn{Term}((z)_i)$ 且 $x = $
@@ -35,7 +35,7 @@ $x$ 是原子公式的哥德尔数，当且仅当以下条件之一成立：
 
 \begin{prop}
 \ollabel{prop:frm-primrec}
-关系 $\fn{Frm}(x)$（当且仅当 $x$ 是公式的哥德尔数时成立）是原始递归的。
+关系 $\fn{Frm}(x)$（当且仅当 $x$ 是公式的Gödel数时成立）是原始递归的。
 \end{prop}
 
 \begin{proof}
@@ -48,7 +48,7 @@ $x$ 是原子公式的哥德尔数，当且仅当以下条件之一成立：
 
 \begin{prop}
 \ollabel{prop:freeocc-primrec}
-关系 $\fn{FreeOcc}(x, z, i)$（当且仅当哥德尔数为~$x$ 的公式的第~$i$ 个符号是哥德尔数为~$z$ 的变元的自由出现时成立）是原始递归的。
+关系 $\fn{FreeOcc}(x, z, i)$（当且仅当Gödel数为~$x$ 的公式的第~$i$ 个符号是Gödel数为~$z$ 的变元的自由出现时成立）是原始递归的。
 \end{prop}
 
 \begin{proof}
@@ -60,7 +60,7 @@ $x$ 是原子公式的哥德尔数，当且仅当以下条件之一成立：
 \end{prob}
 
 \begin{prop}
-性质 $\fn{Sent}(x)$（当且仅当~$x$ 是语句的哥德尔数时成立）是原始递归的。
+性质 $\fn{Sent}(x)$（当且仅当~$x$ 是语句的Gödel数时成立）是原始递归的。
 \end{prop}
 
 \begin{proof}

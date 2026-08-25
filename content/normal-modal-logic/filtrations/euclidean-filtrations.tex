@@ -10,39 +10,39 @@
 
 \olsection{Euclid模型的过滤}
 
-\olref[acc]{sec} 中的方法对于欧几里得模型，或既持续又欧几里得的模型并不适用。考虑 \olref{fig:ser-eucl} 顶端的模型，它既是欧几里得的又是持续的。令 $\Gamma = \{p, \Box p \}$。当取通过 $\Gamma$ 的过滤时，会得到 $[w_1] = [w_3]$，因为 $w_1$ 和 $w_3$ 是仅有的在~$\Gamma$ 上赋值相同的世界。任何过滤也都会继承 $\mModel{M}$ 中的箭头，如 \olref{fig:ser-eucl2} 所描绘。那个模型不是欧几里得的。而且，我们无法往那个模型中添加箭头来使其成为欧几里得的。那样我们就必须在 $[w_2]$ 和 $[w_4]$ 之间添加双向箭头，接着还得在 $w_2$ 和~$w_5$ 之间也添加双向箭头。但 $\Box p$ 在~$w_2$ 处为真，而 $p$ 在~$w_5$ 处为假。
+\olref[acc]{sec} 中的方法对于Euclid模型，或既持续又Euclid的模型并不适用。考虑 \olref{fig:ser-eucl} 顶端的模型，它既是Euclid的又是持续的。令 $\Gamma = \{p, \Box p \}$。当取通过 $\Gamma$ 的过滤时，会得到 $[w_1] = [w_3]$，因为 $w_1$ 和 $w_3$ 是仅有的在~$\Gamma$ 上赋值相同的世界。任何过滤也都会继承 $\mModel{M}$ 中的箭头，如 \olref{fig:ser-eucl2} 所描绘。那个模型不是Euclid的。而且，我们无法往那个模型中添加箭头来使其成为Euclid的。那样我们就必须在 $[w_2]$ 和 $[w_4]$ 之间添加双向箭头，接着还得在 $w_2$ 和~$w_5$ 之间也添加双向箭头。但 $\Box p$ 在~$w_2$ 处为真，而 $p$ 在~$w_5$ 处为假。
 
 \begin{figure}[htpb]
   \centering
   \begin{tikzpicture}[modal]
     \node[world] (w1)
           [label={left: \mFalse{p}},
-            label={below: $\mSat{{}}{\Box p}$}] {$w_1$}; 
+            label={below: $\mSat{{}}{\Box p}$}] {$w_1$};
     \node[world] (w2)
           [label={right: \mTrue{p}},
             label = {below: $\mSat{{}}{\Box p}$},
-            right=of w1] {$w_2$}; 
+            right=of w1] {$w_2$};
     \draw[->] (w1) to (w2);
-    \draw[reflexive above] (w2) to (w2);  
+    \draw[reflexive above] (w2) to (w2);
     \node[world] (w3)
           [label={left: \mFalse{p}},
             label={below: $\mSat{{}}{\Box p}$},
-            below=of w1] {$w_3$}; 
+            below=of w1] {$w_3$};
     \node[world] (w4)
           [label={right:\mTrue{p}},
             label={below: $\mSat/{{}}{\Box p}$},
             right=of w3] {$w_4$};
     \draw[->] (w3) to (w4);
-    \draw[reflexive above] (w4) to (w4);     
+    \draw[reflexive above] (w4) to (w4);
     \node[world] (w5)
           [label={right: \mFalse{p}},
             label=below:$\mSat/{{}}{\Box p}$,
-            right=of w4] {$w_5$}; 
+            right=of w4] {$w_5$};
     \draw[->, bend left] (w4) to (w5);
     \draw[->, bend left] (w5) to (w4);
-    \draw[reflexive above] (w5) to (w5);     
+    \draw[reflexive above] (w5) to (w5);
   \end{tikzpicture}
-  \caption{一个持续且欧几里得的模型。}
+  \caption{一个持续且Euclid的模型。}
   \ollabel{fig:ser-eucl}
 \end{figure}
 
@@ -52,38 +52,38 @@
     \node[world] (w1)
           [label={left: \mFalse{p}},
             label={right:$[w_1]=[w_3]$},
-            label={below: $\mSat{{}}{\Box p}$}] {$[w_1]$}; 
+            label={below: $\mSat{{}}{\Box p}$}] {$[w_1]$};
     \node[world] (w2)
          [label={right: \mTrue{p}},
            label = {below: $\mSat{{}}{\Box p}$},
-           right=of w1, yshift=1.5cm] {$[w_2]$}; 
+           right=of w1, yshift=1.5cm] {$[w_2]$};
     \draw[->] (w1) to (w2);
     \node[world] (w4)
          [label={right:\mTrue{p}},
            label={below: $\mSat/{{}}{\Box p}$},
            right=of w1,yshift=-1.5cm] {$[w_4]$};
     \draw[->] (w1) to (w4);
-    \draw[reflexive above] (w4) to (w4);     
+    \draw[reflexive above] (w4) to (w4);
     \node[world] (w5)
          [label={right: \mFalse{p}},
              label=below:$\mSat/{{}}{\Box p}$,
-             right=of w4] {$[w_5]$}; 
+             right=of w4] {$[w_5]$};
     \draw[->, bend left] (w4) to (w5);
     \draw[->, bend left] (w5) to (w4);
-    \draw[reflexive above] (w5) to (w5);     
+    \draw[reflexive above] (w5) to (w5);
   \end{tikzpicture}
   \caption{\olref{fig:ser-eucl}中模型的过滤。}
   \ollabel{fig:ser-eucl2}
 \end{figure}
 
-具体而言，要得到欧几里得的过滤，仅考虑通过任意对子公式封闭的 $\Gamma$ 进行的过滤是不够的。相反，我们需要考虑那些\emph{模态封闭}的集合 $\Gamma$（参见 \olref[pre]{defn:modallyclosed}）。这样的语句集合是无限的，因此不能直接得出相应系统的有穷模型性质或可判定性。
+具体而言，要得到Euclid的过滤，仅考虑通过任意对子公式封闭的 $\Gamma$ 进行的过滤是不够的。相反，我们需要考虑那些\emph{模态封闭}的集合 $\Gamma$（参见 \olref[pre]{defn:modallyclosed}）。这样的语句集合是无限的，因此不能直接得出相应系统的有穷模型性质或可判定性。
 
 \begin{thm}\ollabel{thm:modal-closed-filt}
   设 $\Gamma$ 是模态封闭的，$\mModel{M}=\tuple{W,R,V}$，且 $\mModel{M^*} = \tuple{W^*,R^*,V^*}$ 是 $\mModel{M}$ 的一个最粗过滤。
   \begin{enumerate}
   \item 若 $\mModel{M}$ 是对称的，则 $\mModel{M^*}$ 也是。
   \item 若 $\mModel{M}$ 是传递的，则 $\mModel{M^*}$ 也是。
-  \item 若 $\mModel{M}$ 是欧几里得的，则 $\mModel{M^*}$ 也是。
+  \item 若 $\mModel{M}$ 是Euclid的，则 $\mModel{M^*}$ 也是。
   \end{enumerate}
 \end{thm}
 
@@ -91,7 +91,7 @@
 \begin{enumerate}
   \item 练习。利用以下事实：公理 \Ax{B} 和 $\Ax{B_\Diamond}$ 在所有对称模型中都是有效的。
   \item 如果 $\mModel{M^*}$ 是一个最粗过滤，那么根据定义，$R^*[u][v]$ 成立当且仅当 $C_1(u,v)$ 成立。对于传递性，假设 $C_1(u,v)$ 和 $C_1(v,w)$；需要证明 $C_1(u,w)$。 \iftag{prvBox}{假设 $\mSat{M}{\Box !A}[u]$；那么由于公理 \Ax{4} 在所有传递模型中有效，可得 $\mSat{M}{\Box\Box!A}[u]$；由于根据封闭性有 $\Box\Box!A \in \Gamma$，由 $C_1(u,v)$ 也可得 $\mSat{M}{\Box!A}[v]$，且由 $C_1(v,w)$ 可得 $\mSat{M}{!A}[w]$。}{}\iftag{prvDiamond}{假设 $\mSat{M}{!A}[w]$；那么由 $C_1(v,w)$ 可得 $\mSat{M}{\Diamond !A}[v]$，因为根据模态封闭性有 $\Diamond !A \in \Gamma$。由 $C_1(u,v)$ 可得 $\mSat{M}{\Diamond\Diamond !A}[u]$，因为根据模态封闭性有 $\Diamond\Diamond!A \in \Gamma$。由于公理 $\Ax{4}_\Diamond$ 在所有传递模型中有效，可得 $\mSat{M}{\Diamond!A}[u]$。}{}
-  \item 练习。利用以下事实：公理 \Ax{5} 和 $\Ax{5_\Diamond}$ 在所有欧几里得模型中都是有效的。
+  \item 练习。利用以下事实：公理 \Ax{5} 和 $\Ax{5_\Diamond}$ 在所有Euclid模型中都是有效的。
 \end{enumerate}
 \end{proof}
 

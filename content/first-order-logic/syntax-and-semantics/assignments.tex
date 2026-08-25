@@ -89,7 +89,7 @@ $\Atom{R}{t_1, \dots, t_k}$（其中 $R$ 是一个 $k$ 元谓词符号，$t_1$, 
     \begin{align*}
       \Value{t_1}{M}[s_2] & = \Value{t_1}{M}[s_1]
       & \text{（由 \olref{prop:valindep}）} \\
-      & = \Value{t_2}{M}[s_1] 
+      & = \Value{t_2}{M}[s_1]
       & \text{（因为 $\Sat{M}{\eq[t_1][t_2]}[s_1]$）}\\
       &= \Value{t_2}{M}[s_2]
       & \text{（由 \olref{prop:valindep}），}
@@ -237,7 +237,7 @@ $\Atom{R}{t_1, \dots, t_k}$（其中 $R$ 是一个 $k$ 元谓词符号，$t_1$, 
 \end{prob}
 
 \begin{prob}
-\DeclareRobustCommand{\VDash}{\mathrel{||}\joinrel\Relbar}  
+\DeclareRobustCommand{\VDash}{\mathrel{||}\joinrel\Relbar}
 假设 $\Lang L$ 是没有函数符号的语言。给定结构~$\Struct M$、常项符号 $c$ 以及 $a \in \Domain M$，定义 $\Struct M[a/c]$ 为这样一个结构：除 $\Assign{c}{M[a/c]} = a$ 外，其他与~$\Struct M$ 完全相同。对语句~$!A$，递归定义 $\Struct M \VDash !A$ 如下：
 \begin{enumerate}
 \tagitem{prvFalse}{%
@@ -296,7 +296,7 @@ $a_1$, \dots, $a_n \in \Domain M$，且 $s(x_i) = a_i$。
 \begin{prob}
 假设 $f$ 是不在~$!A(x,y)$ 中出现的函数符号。证明：存在结构~$\Struct{M}$ 使得 $\Sat{M}{\lforall[x][\lexists[y][!A(x,y)]]}$ 当且仅当存在结构~$\Struct M'$ 使得 $\Sat{M'}{\lforall[x][!A(x,f(x))]}$。
 
-（本题是 斯科伦定理的一个特例；$\lforall[x][!A(x,f(x))]$ 称为 $\lforall[x][\lexists[y][!A(x,y)]]$ 的\emph{斯科伦 范式}。）
+（本题是 Skolem定理的一个特例；$\lforall[x][!A(x,f(x))]$ 称为 $\lforall[x][\lexists[y][!A(x,y)]]$ 的\emph{Skolem 范式}。）
 \end{prob}
 
 \end{document}

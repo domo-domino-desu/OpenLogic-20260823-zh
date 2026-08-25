@@ -7,14 +7,14 @@
 
 Schr\"oder-Bernstein（施罗德--伯恩斯坦）定理证明的一些背景，与我们在
 \olref[his][set][pathology]{sec} 节中讨论过的历史有关联。
-回想一下，1877年，康托尔证明了正方形上的点与其一条边上的点恰好一样多。
+回想一下，1877年，Cantor 证明了正方形上的点与其一条边上的点恰好一样多。
 在此，我们将给出他第一次尝试的证明。
 
 令 $\unitline$ 为单位线段，即点集 $[0,1]$。
 令 $\unitsquare$ 为单位正方形，即点集 $\unitline
 \times \unitline$。
-用这些记号来说，康托尔 证明了 $\cardeq{\unitline}{\unitsquare}$。
-他给 戴德金写了一张便条，实质上包含了如下论证。
+用这些记号来说，Cantor 证明了 $\cardeq{\unitline}{\unitsquare}$。
+他给 Dedekind写了一张便条，实质上包含了如下论证。
 
 \begin{thm}\ollabel{thm:cantorplane}
 $\cardeq{\unitline}{\unitsquare}$
@@ -32,7 +32,7 @@ f(a, b) & = 0.a_1b_1a_2b_2a_3b_3a_4b_4\dots
 c_n$ 且 $b_n = d_n$，因此 $a = c$ 且 $b = d$。
 \end{proof}
 
-遗憾的是，正如 戴德金 向 康托尔 所指出的，这并未解决最初的问题。
+遗憾的是，正如 Dedekind 向 Cantor 所指出的，这并未解决最初的问题。
 考虑 $0.\dot{1}\dot{0} =
 0.1010101010\ldots$。我们需要 $f(a,b) = 0.\dot{1}\dot{0}$，其中：
 \begin{align*}
@@ -42,9 +42,9 @@ b&= 0
 但是 $a = 0.\dot{1}\dot{1} = 1$。所以，当我们说“将 $a$ 和 $b$ 写成二进制表示”时，我们必须选择使用\emph{哪种}表示法；并且，既然 $f$ 应当是一个\emph{函数}，我们只能使用两种可能表示法中的\emph{一种}。
 但是，比如，如果我们使用简单表示法，并将 $a$ 写成“$1.000\ldots$”，那么就不存在任何有序对 $\tuple{a, b}$ 使得 $f(a, b) = 0.\dot{1}\dot{0}$。
 
-总而言之：戴德金 指出，由于存在某些循环小数展开的可能，康托尔 的函数 $f$ 是一个单射但\emph{不是}满射。所以 康托尔 只证明了 $\cardle{\unitsquare}{\unitline}$，而\emph{没有}证明 $\cardeq{\unitsquare}{\unitline}$。
+总而言之：Dedekind 指出，由于存在某些循环小数展开的可能，Cantor 的函数 $f$ 是一个单射但\emph{不是}满射。所以 Cantor 只证明了 $\cardle{\unitsquare}{\unitline}$，而\emph{没有}证明 $\cardeq{\unitsquare}{\unitline}$。
 
-康托尔 几乎立刻回信给 戴德金，实质上建议可以按如下方式完成证明：
+Cantor 几乎立刻回信给 Dedekind，实质上建议可以按如下方式完成证明：
 
 \begin{proof}[证明：补全]
 这样，我们已经证明了 $\cardle{\unitsquare}{\unitline}$。
@@ -53,7 +53,7 @@ b&= 0
 根据 Schr\"{o}der--Bernstein 定理（\olref[sfr][siz][sb]{thm:schroder-bernstein}），有 $\cardeq{\unitline}{\unitsquare}$。
 \end{proof}
 
-然而，康托尔 当时无法用这些术语写下最后一行，因为 Schr\"{o}der--Bernstein 定理尚未得到证明。
-事实上，尽管 康托尔 后来将此表述为一个一般性猜想，但直到1897年它才得到令人满意的证明。（因此，在1877年晚些时候，康托尔 给出了 \olref{thm:cantorplane} 的另一个证明，该证明并未借助 Schr\"{o}der--Bernstein 定理。）
+然而，Cantor 当时无法用这些术语写下最后一行，因为 Schr\"{o}der--Bernstein 定理尚未得到证明。
+事实上，尽管 Cantor 后来将此表述为一个一般性猜想，但直到1897年它才得到令人满意的证明。（因此，在1877年晚些时候，Cantor 给出了 \olref{thm:cantorplane} 的另一个证明，该证明并未借助 Schr\"{o}der--Bernstein 定理。）
 
 \end{document}

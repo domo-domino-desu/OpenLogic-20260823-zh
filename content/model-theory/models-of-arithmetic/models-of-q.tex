@@ -46,9 +46,9 @@ $\Th{Q}$ 的模型也相对简单：我们可以显式地指定它们。
   \Setabs{\tuple{x,a}}{x \in \Domain{K}}
 \end{align*}
 要证明 $\Sat{K}{\Th{Q}}$，我们必须验证~$\Th{Q}$ 的所有公理在~$\Struct{K}$ 中为真。
-为方便起见，我们用 $x^\nssucc$ 表示 $\Assign{\prime}{K}(x)$（$x$ 在~$\Struct{K}$ 中的``后继''），
-$x \nsplus y$ 表示 $\Assign{+}{K}(x, y)$（$x$ 与 $y$ 在~$\Struct{K}$ 中的``和''），
-$x \nstimes y$ 表示 $\Assign{\times}{K}(x, y)$（$x$ 与~$y$ 在~$\Struct{K}$ 中的``积''），
+为方便起见，我们用 $x^\nssucc$ 表示 $\Assign{\prime}{K}(x)$（$x$ 在~$\Struct{K}$ 中的“后继”），
+$x \nsplus y$ 表示 $\Assign{+}{K}(x, y)$（$x$ 与 $y$ 在~$\Struct{K}$ 中的“和”），
+$x \nstimes y$ 表示 $\Assign{\times}{K}(x, y)$（$x$ 与~$y$ 在~$\Struct{K}$ 中的“积”），
 以及 $x \nsless y$ 表示 $\tuple{x,y} \in
 \Assign{<}{K}$。利用这些缩写，我们可以将~$\Struct{K}$ 中的运算更清晰地表示为
 \[
@@ -87,7 +87,7 @@ $\Sat{K}{\lforall[x][\eq[(x + \Obj 0)][x]]}$，因为 $n \nsplus 0 = n+0 = n$，
 $\Sat{K}{\lforall[x][\lforall[y][\eq[(x + y')][(x + y)']]]}$ 稍微复杂一些。
 如果 $n$, $m$ 都是标准数，我们有：
 \begin{align*}
-(n \nsplus m^\nssucc) & = (n+(m+1)) = (n+m)+1 = (n \nsplus m)^\nssucc  
+(n \nsplus m^\nssucc) & = (n+(m+1)) = (n+m)+1 = (n \nsplus m)^\nssucc
 \intertext{因为 $\nsplus$ 和 $^\nssucc$ 在标准数上与 $+$ 和 $\prime$ 一致。
 现在假设 $x \in \Domain{K}$。则}
 (x \nsplus a^\nssucc) & = (x \nsplus a) = a = a^\nssucc = (x \nsplus a)^\nssucc
@@ -98,7 +98,7 @@ $\Sat{K}{\lforall[x][\lforall[y][\eq[(x + y')][(x + y)']]]}$ 稍微复杂一些�
 \end{align*}
 这当然比必要的更为详细。例如，由于无论 $z$ 为何值都有 $a \nsplus z = a$，我们可以直接得出 $a \nsplus a^\nssucc = a$。其余公理可以按同样方式验证。
 
-因此，$\Struct{K}$ 是~$\Th{Q}$ 的模型。它的``加法''~$\nsplus$ 也是可交换的。
+因此，$\Struct{K}$ 是~$\Th{Q}$ 的模型。它的“加法”~$\nsplus$ 也是可交换的。
 但也存在在~$\Struct{N}$ 中为真而在~$\Struct{K}$ 中为假的语句，反之亦然。
 例如，$a \nsless a$，所以 $\Sat{K}{\lexists[x][x < x]}$ 且 $\Sat/{K}{\lforall[x][\lnot x<x]}$。
 这表明 $\Th{Q} \Proves/
@@ -169,7 +169,7 @@ x^\nssucc = (x \nsplus y)^\nssucc$。
 \end{prob}
 
 \begin{explain}
-我们已经显式构造了~$\Th{Q}$ 的一些模型，其中非标准元素``位于''标准元素之``外''。
+我们已经显式构造了~$\Th{Q}$ 的一些模型，其中非标准元素“位于”标准元素之“外”。
 事实上，这一点正是公理所要求的。
 一个非标准元素~$x$ 不可能 ${} \nsless 0$，因为 $\Th{Q} \Proves
 \lforall[x][\lnot x<0]$ （参见 \olref[inc][req][min]{lem:less-zero}）。

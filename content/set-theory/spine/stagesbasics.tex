@@ -8,7 +8,7 @@
 为了揭示 $V_\alpha$ 定义的奠基性意义，我们将介绍关于它们的一些基本结果。首先给出一个定义：\footnote{“有能的”并非标准术语；这是 \citet{ButtonLT1} 使用的名称。}
 
 \begin{defn}
-	集合 $A$ 是\emph{有能的}，当且仅当 $\forall x((\exists y \in A)x \subseteq y \lif x \in A)$。 
+	集合 $A$ 是\emph{有能的}，当且仅当 $\forall x((\exists y \in A)x \subseteq y \lif x \in A)$。
 \end{defn}
 \begin{lem}\ollabel{Valphabasicprops}
 对每个序数 $\alpha$：
@@ -21,9 +21,9 @@
 \end{lem}
 
 \begin{proof}
-我们通过（同时）超限归纳法来证明。归纳假设：对每个序数 $\beta < \alpha$，\olref{Valphatrans}--\olref{Valphacum} 成立。 
+我们通过（同时）超限归纳法来证明。归纳假设：对每个序数 $\beta < \alpha$，\olref{Valphatrans}--\olref{Valphacum} 成立。
 
-当 $\alpha = \emptyset$ 时是平凡的。 
+当 $\alpha = \emptyset$ 时是平凡的。
 
 设 $\alpha = \ordsucc{\beta}$。要证 \olref{Valphacum}：若
 $\gamma \in \alpha$，则由归纳假设有 $V_\gamma \subseteq V_\beta$，
@@ -32,12 +32,12 @@ $\gamma \in \alpha$，则由归纳假设有 $V_\gamma \subseteq V_\beta$，
 \subseteq B \subseteq V_\beta$，则 $A \subseteq V_\beta$，于是 $A \in
 V_\alpha$。要证 \olref{Valphatrans}：若 $x \in A \in
 V_\alpha$，我们有 $A \subseteq V_\beta$，故 $x \in V_\beta$；而由归纳假设 $V_\beta$ 是传递的，所以 $x
-\subseteq V_\beta$，从而 $x \in V_\alpha$。 
+\subseteq V_\beta$，从而 $x \in V_\alpha$。
 
 设 $\alpha$ 是极限序数。要证 \olref{Valphacum}：若
 $\gamma \in \alpha$，则 $\gamma \in \ordsucc{\gamma} \in \alpha$，于是由归纳假设 $V_\gamma \in V_{\ordsucc{\gamma}}$，从而
 $V_\gamma \in \bigcup_{\beta \in \alpha} V_\beta = V_\alpha$。要证
-\olref{Valphatrans} 和 \olref{Valphapotent}：只需注意到传递集合的并集仍是传递的，有能集合的并集仍是有能的。 
+\olref{Valphatrans} 和 \olref{Valphapotent}：只需注意到传递集合的并集仍是传递的，有能集合的并集仍是有能的。
 \end{proof}
 
 \begin{lem}\ollabel{Valphanotref}
@@ -45,7 +45,7 @@ $V_\gamma \in \bigcup_{\beta \in \alpha} V_\beta = V_\alpha$。要证
 \end{lem}
 
 \begin{proof}
-由超限归纳法。显然 $V_\emptyset \notin V_\emptyset$。 
+由超限归纳法。显然 $V_\emptyset \notin V_\emptyset$。
 
 若 $V_{\ordsucc{\alpha}} \in V_{\ordsucc{\alpha}} = \Pow{V_\alpha}$，
 则 $V_{\ordsucc{\alpha}} \subseteq V_\alpha$；而由 \olref{Valphabasicprops} 知 $V_\alpha

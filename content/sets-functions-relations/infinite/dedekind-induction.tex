@@ -9,26 +9,26 @@
 \olfileid{sfr}{infinite}{induction}
 \olsection[算术归纳法]{Dedekind 代数与算术归纳法}
 
-现在关键的一点是，一个 戴德金 代数——事实上，\emph{任意} 戴德金 代数——都将充当自然数的替代品。这得益于以下平凡推论：
+现在关键的一点是，一个 Dedekind 代数——事实上，\emph{任意} Dedekind 代数——都将充当自然数的替代品。这得益于以下平凡推论：
 
 \begin{thm}[算术归纳法]\ollabel{thm:dedinfiniteinduction}
-设 $N, s, o$ 构成一个 戴德金 代数。则对任意集合 $X$：
+设 $N, s, o$ 构成一个 Dedekind 代数。则对任意集合 $X$：
 	\begin{center}
 		若 $o \in X$ 且 $(\forall {n} \in N \cap X){s}({n}) \in X$，{则} $N \subseteq X$。
 	\end{center}
 \end{thm}
 
 \begin{proof}
-由 戴德金 代数的定义，$N = \closureofunder{s}{o}$。现在若 ${o} \in X$ 且 $(\forall {n} \in N)(n \in X \lif
+由 Dedekind 代数的定义，$N = \closureofunder{s}{o}$。现在若 ${o} \in X$ 且 $(\forall {n} \in N)(n \in X \lif
 {s}({n}) \in X)$，则 $N = \closureofunder{s}{o} \subseteq X$。
 \end{proof}
 
-既然归纳法是自然数的特征，要点便在于：给定任意 戴德金 无穷集，我们都可以构造一个 戴德金 代数，并将该代数用作自然数的替代品。
+既然归纳法是自然数的特征，要点便在于：给定任意 Dedekind 无穷集，我们都可以构造一个 Dedekind 代数，并将该代数用作自然数的替代品。
 
 诚然，\olref{thm:dedinfiniteinduction} 是以\emph{集合论}术语表述归纳法的。但我们很容易将这一原理用更熟悉的方式陈述出来：
 
 \begin{cor}\ollabel{natinductionschema}
-设 $N, s, o$ 构成一个 戴德金 代数。则对任一可带参数的公式 $\phi(x)$，有：
+设 $N, s, o$ 构成一个 Dedekind 代数。则对任一可带参数的公式 $\phi(x)$，有：
 \begin{center}
 	若 $\phi(o)$ 且 $(\forall {n} \in N)(\phi(n)\lif
 	\phi({s}({n})))$，{则} $(\forall n \in N)\phi(n)$
@@ -47,7 +47,7 @@
 	\end{align*}
 显然，使用“带有参数”的说法可以使陈述更易读。（在 \olref[sth][][]{part} 中，我们将相当频繁地使用这一方法。）
 
-回到 戴德金 代数：给定任意一个 戴德金 代数，我们也可以定义通常的算术函数，如加法、乘法和乘方。然而这并非显然，它涉及\emph{递归定义}的技术。我们将在更靠后且更一般的语境中引入该技术并论证其合理性。（有兴趣的读者不妨在读完 \olref[sth][ord-arithmetic][]{chap} 后回顾此处，或者阅读另一种处理方式，例如 \citealt[pp.~95--8]{Potter2004}。）但是，当 $N, s, o$ 构成一个 戴德金 代数时，我们最终将能作出如下规定：
+回到 Dedekind 代数：给定任意一个 Dedekind 代数，我们也可以定义通常的算术函数，如加法、乘法和乘方。然而这并非显然，它涉及\emph{递归定义}的技术。我们将在更靠后且更一般的语境中引入该技术并论证其合理性。（有兴趣的读者不妨在读完 \olref[sth][ord-arithmetic][]{chap} 后回顾此处，或者阅读另一种处理方式，例如 \citealt[pp.~95--8]{Potter2004}。）但是，当 $N, s, o$ 构成一个 Dedekind 代数时，我们最终将能作出如下规定：
 \begin{align*}
 	{a} + {o} &= {a} & & & {a} \times {o} &= {o} & & & {a}^{o} &= s(o)\\
 {a} + {s}({b}) &= {s}({a}+{b}) &&& {a} \times {s}({b}) &= ({a}\times {b}) + {a}  & & & {a}^{{s}({b})} &= {a}^{b} \times {a}

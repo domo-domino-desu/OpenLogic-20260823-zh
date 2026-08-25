@@ -33,8 +33,8 @@
   \begin{figure}
   \begin{center}
     \begin{tikzpicture}[modal]
-      \node[world] (w1) [label=right:\mFalse{p}]{$w_1$}; 
-      \node[world] (w2) [label=right:\mTrue{p}, above left=of w1]{$w_2$}; 
+      \node[world] (w1) [label=right:\mFalse{p}]{$w_1$};
+      \node[world] (w2) [label=right:\mTrue{p}, above left=of w1]{$w_2$};
       \node[world] (w3) [label=right:\mTrue{p}, above right=of w1] {$w_3$};
       \draw[->] (w1) to (w2);
       \draw[->] (w1) to (w3);
@@ -43,7 +43,7 @@
   \caption{$p \lif \Diamond p \Entails \Box p \lif p$ 的反例。}
   \ollabel{fig:counterex}
   \end{figure}
-  
+
   通常非常简单的反例就足够了。满足 $W' = \{w\}$、$R' = \emptyset$ 且 $V'(p) = \emptyset$ 的模型 $\mModel{M'} =
   \{W', R', V'\}$ 也是一个反例：因为 $\mSat/{M'}{p}[w]$，所以 $\mSat{M'}{p \lif \Diamond p}[w]$。由于从~$w$ 出发没有可达世界，我们有 $\mSat{M'}{\Box p}[w]$，因此 $\mSat/{M'}{\Box p
     \lif p}[w]$。

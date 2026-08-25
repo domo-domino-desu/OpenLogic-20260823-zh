@@ -22,8 +22,8 @@
   下列条件等价：
   \begin{enumerate}
   \item $R$ 是等价关系；
-  \item $R$ 是自反且欧几里得的；
-  \item $R$ 是持续的、对称的且欧几里得的；
+  \item $R$ 是自反且Euclid的；
+  \item $R$ 是持续的、对称的且Euclid的；
   \item $R$ 是持续的、对称的且传递的。
   \end{enumerate}
 \end{prop}
@@ -35,10 +35,10 @@
 \begin{prob}
   通过证明以下各条来证明 \olref[nml][frd][es5]{prop:equivalences}：
   \begin{enumerate}
-  \item 若 $R$ 对称且传递，则它是欧几里得的。
+  \item 若 $R$ 对称且传递，则它是Euclid的。
   \item 若 $R$ 自反，则它是持续的。
-  \item 若 $R$ 自反且欧几里得，则它是对称的。
-  \item 若 $R$ 对称且欧几里得，则它是传递的。
+  \item 若 $R$ 自反且Euclid，则它是对称的。
+  \item 若 $R$ 对称且Euclid，则它是传递的。
   \item 若 $R$ 持续、对称且传递，则它是自反的。
   \end{enumerate}
   解释为什么这足以证明这些条件是等价的。
@@ -88,7 +88,7 @@
     \draw [name path=line2] (0,2)  .. controls (1.5,1.5) and (4.5,1.5) .. (4.5,0);
     \path [name intersections={of=line1 and line2}];
     \draw [rounded corners, use as bounding box, very thick] (0,0)
-    -- (6,0) -- (6,4) -- (0,4) --  cycle; 
+    -- (6,0) -- (6,4) -- (0,4) --  cycle;
     \node at (2,3) {$[w]$} ;
     \node at (1,1) {$[u]$} ;
     \node at (3,0.75) {$[v]$} ;

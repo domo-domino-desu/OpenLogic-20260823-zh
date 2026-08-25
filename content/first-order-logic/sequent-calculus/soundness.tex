@@ -63,7 +63,7 @@
     \UnaryInf$\Gamma \fCenter \Delta, !A$
   \end{prooftree}
   根据归纳假设，$\Gamma \Sequent \Delta$ 是有效的，即对每个 \iftag{FOL}{结构~$\Struct{M}$}{赋值~$\pAssign{v}$}，要么存在某个 $!C \in \Gamma$ 使得 $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$，要么存在某个 $!C \in \Delta$ 使得 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$。
-  
+
   若对某个 $!C \in \Gamma$ 有 $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$，则由于 $\Theta = !A, \Gamma$，也有 $!C \in \Theta$，从而对某个 $!C \in \Theta$ 有 $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$。类似地，若对某个 $!C \in \Delta$ 有 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$，则由于 $!C \in \Xi$，也有对某个 $!C \in \Xi$ 的 $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$。因此，$\Theta \Sequent \Xi$ 是有效的。
 \item 最后一步推理是 \LeftR{\lnot}：那么最后一步推理的前提是 $\Gamma \Sequent \Delta, !A$，结论是 $\lnot !A, \Gamma \Sequent \Delta$，即推导结束于：
   \begin{prooftree}

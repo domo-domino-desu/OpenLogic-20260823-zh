@@ -82,10 +82,10 @@ $\Gamma \Proves !A$ 当且仅当 $\Gamma \cup \{\lnot !A\}$ 不一致。
   \end{align*}
   都有封闭分析表，我们就可以构造一个合并的分析表来证明 $\Gamma$ 不一致：以 $\sFmla{\True}{!B_1}$, \dots, $\sFmla{\True}{!B_n}$
   连同 $\sFmla{\True}{!C_1}$, \dots, $\sFmla{\True}{!C_m}$ 作为假设，
-  然后运用 \Cut{} 规则。这会产生两个分支，一个以 $\sFmla{\True}{!A}$ 起始，另一个以 $\sFmla{\False}{!A}$ 起始。  
-  
-  在左侧，添加第一个分析表在其假设以下的部分。此时，每一个规则运用仍然正确，因为第一个分析表的每个假设（包括 $\sFmla{\True}{!A}$）都是可用的。因此，$\sFmla{\True}{!A}$ 以下的每个分支都会封闭。 
-  
+  然后运用 \Cut{} 规则。这会产生两个分支，一个以 $\sFmla{\True}{!A}$ 起始，另一个以 $\sFmla{\False}{!A}$ 起始。
+
+  在左侧，添加第一个分析表在其假设以下的部分。此时，每一个规则运用仍然正确，因为第一个分析表的每个假设（包括 $\sFmla{\True}{!A}$）都是可用的。因此，$\sFmla{\True}{!A}$ 以下的每个分支都会封闭。
+
   在右侧，添加第二个分析表在其假设以下的部分，但要移除对 $\sFmla{\True}{\lnot !A}$ 运用~$\TRule{\True}{\lnot}$ 所得的任何结果。对 $\sFmla{\True}{\lnot !A}$ 运用 $\TRule{\True}{\lnot}$ 的结论是 $\sFmla{\False}{!A}$，而该结论在合并表中仍然可用，因为它正是 \Cut{} 规则在右侧的结论。
 
   若第二个分析表中的某分支因包含假设 $\sFmla{\True}{\lnot !A}$（该假设在合并表中已不再是假设）与 $\sFmla{\False}{\lnot !A}$ 而封闭，我们可对 $\sFmla{\False}{\lnot !A}$ 运用 $\TRule{\False}{\lnot}$ 以得出 $\sFmla{\True}{!A}$。此时合并表中对应的分支也会封闭，因为它包含了 \Cut{} 规则右侧的结论 $\sFmla{\False}{!A}$。若第二个分析表中的分支因任何其他原因而封闭，合并表中的对应分支同样封闭，因为旧分支上除 $\sFmla{\True}{\lnot !A}$ 之外的任何带号公式，也出现在合并表的对应分支上。

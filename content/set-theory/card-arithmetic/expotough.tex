@@ -20,13 +20,13 @@ $\cardexpo{(\cardexpo{\cardfont{a}}{\cardfont{b}})}{\cardfont{c}} =
 (\cardfont{b}\disjointsum\cardfont{c}) \to \cardfont{a}$。现在将其“拆分”：对每个 $\beta \in \cardfont{b}$ 定义 $f_{\cardfont{b}}(\beta) = f(\beta, 0)$，对每个 $\gamma \in \cardfont{c}$ 定义 $f_{\cardfont{c}}(\gamma) = f(\gamma, 1)$。映射 $f \mapsto
 (f_{\cardfont{b}} \times f_{\cardfont{c}})$ 是一个双射 $\funfromto{\cardfont{b} \disjointsum \cardfont{c}}{\cardfont{a}} \to
 (\funfromto{\cardfont{b}}{\cardfont{a}} \times
-\funfromto{\cardfont{c}}{\cardfont{a}})$。 
+\funfromto{\cardfont{c}}{\cardfont{a}})$。
 
 对于第二个论断，考虑一个函数 $f \colon \cardfont{c} \to
 (\funfromto{\cardfont{b}}{\cardfont{a}})$；因此对每个 $\gamma \in \cardfont{c}$，便得到某个函数 $f(\gamma) \colon \cardfont{b} \to
 \cardfont{a}$。现在对每个 $\tuple{\beta, \gamma} \in \cardfont{b} \times \cardfont{c}$ 定义 $f^*(\beta, \gamma) = (f(\gamma))(\beta)$。
 映射 $f \mapsto f^*$ 是一个双射 $\funfromto{\cardfont{c}}{(\funfromto{\cardfont{b}}{\cardfont{a}})}
-\to \funfromto{\cardfont{b} \cardtimes \cardfont{c}}{\cardfont{a}}$。 
+\to \funfromto{\cardfont{b} \cardtimes \cardfont{c}}{\cardfont{a}}$。
 \end{proof}
 
 现在，我们\emph{希望}的是，在处理无穷基数时，能有一种简便的方法来计算 $\cardexpo{\cardfont{a}}{\cardfont{b}}$。这是朝此方向迈出的很好的一步：
@@ -59,7 +59,7 @@ $\cardexpo{(\cardexpo{\cardfont{a}}{\cardfont{b}})}{\cardfont{c}} =
 $\cardexpo{\cardfont{a}}{n} = \cardfont{a} \cardtimes \cardfont{a}
 \cardtimes \ldots \cardtimes \cardfont{a} = \cardfont{a}$，由 \olref[simp]{cardplustimesmax}。
 \end{proof}
-\noindent 
+\noindent
 此外，在其他一些情形下，我们可以控制 $\cardexpo{\cardfont{a}}{\cardfont{b}}$ 的大小：
 
 \begin{prop}
@@ -70,7 +70,7 @@ $\cardexpo{\cardfont{a}}{n} = \cardfont{a} \cardtimes \cardfont{a}
 \begin{proof}
 $\cardexpo{2}{\cardfont{b}}\leq \cardexpo{\cardfont{a}}{\cardfont{b}} \leq \cardexpo{(\cardexpo{2}{\cardfont{b}})}{\cardfont{b}} = \cardexpo{2}{\cardfont{b}\cardtimes\cardfont{b}} = \cardexpo{2}{\cardfont{b}}$，推理过程同 \olref{cardexpo2reduct}。
 \end{proof}
-\noindent 
+\noindent
 但是，超过这一点，情况就变得颇为微妙了。
 
 \end{document}

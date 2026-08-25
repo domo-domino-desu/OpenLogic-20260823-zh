@@ -52,7 +52,7 @@ $\cardless{\Nat}{\Pow{\Nat}}$}{%
 如果存在 \olref[nen]{sec}，我们给出慢速证明；否则给出与 \olref[nen-alt]{sec} 匹配的快速证明。
 \end{editorial}
 
-\oliflabeldef{sfr:siz:nen:sec}{% 
+\oliflabeldef{sfr:siz:nen:sec}{%
   现在我们证明不可能存在满射函数~$g\colon A \to \Pow{A}$，更不用说双射了，从而 $\cardneq{A}{\Pow{A}}$。
   假设 $g\colon A \to \Pow{A}$。
   由于 $g$ 是全函数，每个 $x \in A$ 都映射到某个子集 $g(x) \subseteq A$。
@@ -85,7 +85,7 @@ $\cardless{\Nat}{\Pow{\Nat}}$}{%
   \olref[nen-alt]{thm:nonenum-pownat} 的证明加以比较颇具启发意义。在那里我们证明了，对于 $\Nat$ 的任何子集列表 $N_0$, $N_1$, $N_2$, \dots，都能构造出一个集合~$D$，保证它不在该列表中。之所以能保证这一点，是因为对于每个 $n \in \Nat$，$n \in N_n$ 当且仅当 $n \notin
   D$。我们在这里遵循同样的思想，只不过现在的索引~$n$ 是~$A$ 的元素而非~$\Nat$ 的元素。集合 $D$ 的定义保证了对每个 $x \in A$，它都不同于~$g(x)$，因为 $x \in g(x)$ 当且仅当 $x \notin D$。}{}
 
-这个证明也值得与 罗素悖论（\olref[sfr][set][rus]{thm:russells-paradox}）的证明相比较。事实上，康托尔 定理正是 罗素 本人悖论的灵感来源。
+这个证明也值得与 Russell悖论（\olref[sfr][set][rus]{thm:russells-paradox}）的证明相比较。事实上，Cantor 定理正是 Russell 本人悖论的灵感来源。
 \end{explain}
 
 \begin{prob}

@@ -28,12 +28,12 @@
   \begin{enumerate}
   \item 最后一条规则是 \olref[pb]{defn:bredpar1}：则 $M$ 和 $M'$
     即为 $x$，且 $x \bred x$。
-  \item 最后一条规则是 \olref[pb]{defn:bredpar2}：存在 $x$, $N$, $N'$ 使得 $M$ 为 
+  \item 最后一条规则是 \olref[pb]{defn:bredpar2}：存在 $x$, $N$, $N'$ 使得 $M$ 为
     $\lambd[x][N]$ 且 $M'$ 为 $\lambd[x][N']$，其中
     $N \bredpar N'$。由归纳假设得 $N \bred N'$。则
     $\lambd[x][N] \bred \lambd[x][N']$（经由与 $N \bred N'$ 相同的一系列
     $\bredone$ 收缩）。
-  \item 最后一条规则是 \olref[pb]{defn:bredpar3}：存在 $P$, $Q$, $P'$, $Q'$ 使得 $M$ 为 
+  \item 最后一条规则是 \olref[pb]{defn:bredpar3}：存在 $P$, $Q$, $P'$, $Q'$ 使得 $M$ 为
     $PQ$ 且 $M'$ 为 $P'Q'$，其中 $P \bredpar P'$
     且 $Q \bredpar Q'$。由归纳假设得 $P \bred P'$ 且 $Q \bred
     Q'$。于是，经由归约序列 $P \bred P'$ 并继之以归约 $Q \bred Q'$，可得 $PQ \bred P'Q'$。
@@ -65,7 +65,7 @@
 \end{proof}
 
 \begin{thm}\ollabel{thm:cr}
-  $\bred$ 满足 邱奇--罗瑟 性质。
+  $\bred$ 满足 Church--Rosser 性质。
 \end{thm}
 
 \begin{proof}

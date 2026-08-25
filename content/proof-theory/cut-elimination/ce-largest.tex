@@ -136,7 +136,7 @@ $\pheight{\pi''}\le\pheight{\pi}$），且 (b)~$\pi'$（以及 $\pi''$）中 \Cu
   现在考虑推导~$\pi_2$。它结束于 $\lforall[x][!B(x)],
   \Gamma \Sequent \Delta$。从~$\pi_2$ 的末相继式向上追溯，标记相继式左侧每一个“导向”~$\pi_2$ 末相继式中 $\lforall[x][!B(x)]$ 之出现的 $\lforall[x][!B(x)]$ 的出现，即：
   (a)~在~$\pi_2$ 的末相继式中标记 $\lforall[x][!B(x)]$。(b)~如果 $\lforall[x][!B(x)]$ 出现在某条规则结论的上下文中且已被标记，则在该规则的前提中标记对应的出现。(c)~如果 $\lforall[x][!B(x)]$ 是 \LeftR{\lforall} 规则结论中的主公式且已被标记，则在该规则的前提中标记对应的 $\lforall[x][!B(x)]$ 及 $!B(t)$ 的活动出现。
-  
+
   现在考虑所有这些被标记的 $\lforall[x][!B(x)]$ 出现。
   它们均未在 \LeftR{\lforall} 以外的规则中作为活动公式出现（只有 \LeftR{\lforall} 的活动公式会被标记）。在 $\pi_2$ 中删除所有被标记的 $\lforall[x][!B(x)]$ 出现。
   若删除后仍为正确的推导，则说明被标记的 $\lforall[x][!B(x)]$ 从未作为活动公式出现；它们都直接源自公理。该推导结束于~$\Gamma \Sequent \Delta$，我们可以用它替换 $\pi$。由此我们便移除了一个最大秩的切割。

@@ -43,7 +43,7 @@
   \end{enumerate}
   我们将把 $!B_i$ 或 $!C_i$ 加到 $\Gamma_n$ 中：若 $\Gamma_n \cup \{!B_i\}
   \Proves/ !A$ 则加 $!B_i$，否则加 $!C_i$。我们需要证明这是可行的。目前，我们先定义 $i(n)$ 为满足条件 \olref{gamma-1} 和 \olref{gamma-2} 的最小 $i$。
-  
+
   定义 $\Gamma_0 = \Gamma$ 且
   \[
   \Gamma_{n+1} = \begin{cases}
@@ -60,7 +60,7 @@
   若 $n>0$，我们需要证明：如果 $\Gamma_n \Proves/ !A$，那么 $\Gamma_{n+1} \Proves/ !A$。
   如果 $i(n)$ 无定义，则 $\Gamma_{n+1} = \Gamma_n$，无需证明。
   所以假设 $i(n)$ 有定义。为简单起见，令 $i = i(n)$。
-  
+
   我们将证明该断言的逆否命题。假设 $\Gamma_{n+1} \Proves !A$。
   根据构造，$\Gamma_{n+1} = \Gamma_n \cup
   \{!B_i\}$ 若 $\Gamma_n \cup \{!B_i\} \Proves/ !A$，否则 $\Gamma_{n+1} = \Gamma_n \cup \{!C_i\}$。

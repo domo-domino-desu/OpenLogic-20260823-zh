@@ -8,15 +8,15 @@
 % Part: turing-machines% Chapter: machines-computations% Section: unary-numbers
 
 \begin{explain}
-图灵机处理写在其纸带上的符号序列。
-根据图灵机所使用的字母表不同，这些符号序列可以表示各种输入和输出。
-当然，我们特别关注的是那些计算\emph{算术}函数（即自然数上的函数）的图灵机。
+Turing机处理写在其纸带上的符号序列。
+根据Turing机所使用的字母表不同，这些符号序列可以表示各种输入和输出。
+当然，我们特别关注的是那些计算\emph{算术}函数（即自然数上的函数）的Turing机。
 表示正整数的一种简单方法，是将它们编码为由单个符号~$\TMstroke$ 组成的序列。
 若 $n \in \Nat$，当 $n = 0$ 时，令 $\TMstroke^n$ 为空序列；否则，令其为恰好由 $n$ 个 $\TMstroke$ 组成的序列。
 \end{explain}
 
 \begin{defn}[计算]
-图灵机~$M$ \emph{计算}函数 $f\colon \Nat^k \to \Nat$，当且仅当
+Turing机~$M$ \emph{计算}函数 $f\colon \Nat^k \to \Nat$，当且仅当
 $M$ 在输入
 \[
 \TMstroke^{n_1} \TMblank \TMstroke^{n_2} \TMblank \dots \TMblank \TMstroke^{n_k}
@@ -25,7 +25,7 @@ $M$ 在输入
 \end{defn}
 
 \begin{prob}
-  请给出图灵机~$M$ 计算函数 $f\colon \Nat^k \to \Nat^m$ 的定义。
+  请给出Turing机~$M$ 计算函数 $f\colon \Nat^k \to \Nat^m$ 的定义。
 \end{prob}
 
 \begin{ex}\ollabel{ex:adder}
@@ -61,7 +61,7 @@ $M$ 在输入
 \end{prob}
 
 \begin{explain}
-在 \olref[rep]{ex:doubler} 中，我们曾给出一个图灵机的例子，
+在 \olref[rep]{ex:doubler} 中，我们曾给出一个Turing机的例子，
 它以一串 $\TMstroke$ 作为输入，停机时纸带上留下数量为其两倍的 $\TMstroke$ 串——这就是加倍器机器。
 然而，由于输出在翻倍的 $\TMstroke$ 块左侧包含了 $\TMblank$，
 它实际上并没有计算函数 $f(x) = 2x$，尽管你可能曾以为它计算了。
@@ -175,13 +175,13 @@ $M$ 在输入
 \end{prob}
 
 \begin{prob}
-\emph{减法：} 设计一个图灵机，使得当输入为两个非空的 $\TMstroke$ 串，长度分别为 $n$ 和 $m$ 且 $n > m$ 时，它能计算函数 $f(n,m) = n - m$。
+\emph{减法：} 设计一个Turing机，使得当输入为两个非空的 $\TMstroke$ 串，长度分别为 $n$ 和 $m$ 且 $n > m$ 时，它能计算函数 $f(n,m) = n - m$。
 \end{prob}
 
 \begin{prob}
-\emph{相等：} 设计一个图灵机来计算以下函数：
+\emph{相等：} 设计一个Turing机来计算以下函数：
 \[
-\fn{equality}(n,m) = 
+\fn{equality}(n,m) =
 \begin{cases}
   \text{1} & \text{如果~$n = m$} \\
   \text{0} & \text{如果~$n \neq m$}
@@ -191,13 +191,13 @@ $M$ 在输入
 \end{prob}
 
 \begin{prob}
-设计一个图灵机来计算函数 $\min(x,y)$，其中 $x$ 和 $y$ 是正整数，在纸带上由两串被一个 $\TMblank$ 分隔的 $\TMstroke$ 表示。你可以在机器的字母表中使用额外的符号。
+设计一个Turing机来计算函数 $\min(x,y)$，其中 $x$ 和 $y$ 是正整数，在纸带上由两串被一个 $\TMblank$ 分隔的 $\TMstroke$ 表示。你可以在机器的字母表中使用额外的符号。
 
 函数 $\min$ 从其参数中选取最小的值，因此 $\min(3,5)=3$，$\min(20,16)=16$，$\min(4,4)=4$，依此类推。
 \end{prob}
 
 \begin{defn}
-  图灵机~$M$ 计算偏函数 $f\colon \Nat^k \pto \Nat$，当且仅当满足：
+  Turing机~$M$ 计算偏函数 $f\colon \Nat^k \pto \Nat$，当且仅当满足：
   \begin{enumerate}
     \item 如果 $f(n_1, \dots, n_k) = m$，则 $M$ 在输入 $\TMstroke^{n_1}\concat\TMblank\concat
     \dots \concat\TMblank\concat\TMstroke^{n_k}$ 上停机，且输出为 $\TMstroke^{m}$。

@@ -6,7 +6,7 @@
 
 
 \begin{document}
-	
+
 \olfileid{sfr}{arith}{check}
 \olsection{有序环与域}
 
@@ -21,7 +21,7 @@
 		\emph{Associativity}&&a + (b+ c) & = (a + b) + c \\
 		&& (a \times b) \times c & = a \times (b\times c)\\
 		\emph{Commutativity}&&a + b &= b+ a  \\
-		&&  a \times b&= b\times a\\ 
+		&&  a \times b&= b\times a\\
 		\emph{Identities}&&a + 0 &= a \\
 		&& a \times 1 &= a\\
 		\emph{Additive Inverse}&&(\exists b\in S)0&=a + b\\
@@ -65,12 +65,12 @@
 如上所述，取定 $i = \equivrep{a_1, b_1}{}$、$j =
 \equivrep{a_2,b_2}{}$ 和 $k = \equivrep{a_3, b_3}{}$。现在：
 \begin{align*}
-	i \times (j + k) 
+	i \times (j + k)
 	&= \equivrep{a_1, b_1}{} \times (\equivrep{a_2,b_2}{} + \equivrep{a_3, b_3}{})\\
 	&= \equivrep{a_1, b_1}{} \times \equivrep{a_2 + a_3,b_2+b_3}{}\\
 	&= \equivrep{a_1  (a_2 + a_3) + b_1  (b_2+b_3), a_1  (b_2 + b_3) + b_1 (a_2 + a_3)}{}\\
-	&= \equivrep{a_1 a_2 + a_1a_3 + b_1 b_2+b_1b_3, a_1 b_2 + a_1b_3 + a_2b_1 + a_3b_1}{}\\		
-%		&= \equivrep{a_1 a_2 + b_1b_2 + a_1a_3 + b_1 b_2+b_1b_3, a_1 b_2 + a_1b_3 + a_2b_1 + a_3b_1}{}\\		
+	&= \equivrep{a_1 a_2 + a_1a_3 + b_1 b_2+b_1b_3, a_1 b_2 + a_1b_3 + a_2b_1 + a_3b_1}{}\\
+%		&= \equivrep{a_1 a_2 + b_1b_2 + a_1a_3 + b_1 b_2+b_1b_3, a_1 b_2 + a_1b_3 + a_2b_1 + a_3b_1}{}\\
 	&= \equivrep{a_1a_2 + b_1b_2, a_1b_2 + a_2b_1}{} + \equivrep{a_1a_3 + b_1b_3, a_1b_3 + a_3b_1}{}\\
 	&= (\equivrep{a_1, b_1}{} \times \equivrep{a_2,b_2}{}) + (\equivrep{a_1, b_1}{} \times  \equivrep{a_3, b_3}{})\\
 	&= (i \times j) + (i \times k)

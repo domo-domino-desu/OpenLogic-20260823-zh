@@ -146,7 +146,7 @@ L(!A) \cap \Lang L(!B)$，使得 $\Log{G3c} \Proves !A \Sequent !C$ 且 $\Log{G3
     \Gamma_1 & \Sequent \Delta_1, !A \lif !B, !C_1 &&与 & !C_1, \Gamma_2 & \Sequent \Delta_2
     \end{align*}
     这意味着 $!C_1$ 也是~$\pi$ 的末尾相继式的一个插值，我们可以再次取 $!C \ident !C_1$。
-    
+
     另一种情形的处理方式相同。
     \item $\pi$ 以 $\LeftR{\lif}$ 结束，主公式为~$!A \lif !B$。如果 $!A \lif !B$ 属于第一部分，推导~$\pi$ 结束于
     \[
@@ -275,7 +275,7 @@ L(!A) \cap \Lang L(!B)$，使得 $\Log{G3c} \Proves !A \Sequent !C$ 且 $\Log{G3
     \Delta_1, !A(c)) \cap \Lang L(\Gamma_2, \Delta_2)$。所以我们需要担心~$c$——$c$ 可能出现在~$!C_1$ 中吗？不可能。如果 $c$ 出现在 $!C_1$ 中，我们将同时有 $c \in \Lang L(\Gamma_1, \Delta_1,
     !A(c))$（这是真的）以及 $c \in \Lang L(\Gamma_2,
     \Delta_2)$。但这样一来，$c$ 就会出现在~$\pi$ 中 $\RightR{\lforall}$ 推理的结论里，违反了特征变元条件。
-    
+
     另一种情形类似。
 
     \item $\pi$ 以 $\RightR{\lexists}$ 结束，主公式为~$\lexists[x][!A(x)]$。我们同样有两种情形。我们考虑 $\lexists[x][!A(x)]$ 属于第一部分的情形，另一种情形留作练习。
@@ -331,7 +331,7 @@ L(!A) \cap \Lang L(!B)$，使得 $\Log{G3c} \Proves !A \Sequent !C$ 且 $\Log{G3
     \]
     顶端相继式的推导来自归纳假设（在第二个推导中，我们在前件应用了对 $\lforall[y][!C_1'(y)]$ 的弱化可容许性）。第一个推导中 \RightR{\lforall} 规则的特征变元条件得到满足，因为 $b \notin \Lang L(\Gamma_1, \Delta_1,
     \lexists[x][!A(x)])$，且 $!C_1'$~的定义保证了它不包含~$b$。
-    
+
     在第二种情况下，我们有（基于归纳假设及对 $\lexists[y][!C_1'(y)]$ 的弱化可容许性）：
     \[
     \AxiomC{}
@@ -404,8 +404,8 @@ R'(x_1, \dots, x_n))]],
   假设 $\Gamma$ 隐式定义了~$R$。令 $R'$、$\Gamma'$ 如上所述，并令 $\Lang L' = \Lang L(\Gamma') = \Lang L \setminus \{R\}
   \cup \{R'\}$。由假设，我们有
   \begin{align*}
-    \Gamma, \Gamma' & 
-    \Sequent \lforall[x_1][\dots\lforall[x_n][(R(x_1,\dots,x_n) 
+    \Gamma, \Gamma' &
+    \Sequent \lforall[x_1][\dots\lforall[x_n][(R(x_1,\dots,x_n)
     \liff R'(x_1, \dots, x_n))]]
   \intertext{令 $c_1$, \dots,~$c_n$ 为不在 $\Gamma$ 中出现的常项符号。由可逆性引理，我们得到}
     \Gamma, \Gamma', R(c_1,\dots,c_n) & \Sequent  R'(c_1, \dots, c_n)

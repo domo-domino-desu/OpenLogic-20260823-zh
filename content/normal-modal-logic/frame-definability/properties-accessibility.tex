@@ -24,7 +24,7 @@
       \emph{持续的}: $\forall u \exists v Ruv$ & \hbox to.43\textwidth
            {$\Box p \lif \Diamond p$ \hfill (\Ax{D})} \\
       \hline
-      \emph{自反的}: $\forall w Rww$  
+      \emph{自反的}: $\forall w Rww$
       & \hbox to.43\textwidth
           {$\Box p \lif p$ \hfill (\Ax{T})} \\
       \hline
@@ -35,15 +35,15 @@
       \emph{传递的}: & \hbox to.43\textwidth
            {$\Box p \lif \Box \Box p$ \hfill (\Ax{4})} \\
       $\forall u \forall v \forall w ((Ruv \land Rvw) \lif Ruw)$ & \\
-      \hline 
-      \emph{欧几里得的}: & \hbox to .43\textwidth
+      \hline
+      \emph{Euclid的}: & \hbox to .43\textwidth
         {$\Diamond p \lif \Box\Diamond p$ \hfill (\Ax{5})} \\
       $\forall w \forall u \forall v ((Rwu \land Rwv) \lif Ruv)$ &\\
       \hline
     \end{tabular}
     \caption{五个对应事实。}
     \ollabel{tab:five}
-  \end{table} 
+  \end{table}
 
 
 \begin{proof}
@@ -62,11 +62,11 @@
   \begin{center}
     \begin{tikzpicture}[modal]
       \node[world] (w1) [label={below:$\mSat{{}}{\formula{A}}$\\
-          $\mSat{{}}{\Box\Diamond \formula{A}}$}] {$w$}; 
+          $\mSat{{}}{\Box\Diamond \formula{A}}$}] {$w$};
       \node[world] (w2) [label=below:{$\mSat{{}}{\Diamond \formula{A}}$},
-        right=of w1] {$w'$}; 
-      \draw[->, bend left] (w1) to (w2); 
-      \draw[->, bend left] (w2) to (w1); 
+        right=of w1] {$w'$};
+      \draw[->, bend left] (w1) to (w2);
+      \draw[->, bend left] (w2) to (w1);
     \end{tikzpicture}
   \end{center}
 \caption{对称性论证。}
@@ -112,11 +112,11 @@
       \hline
       {\emph{若 $R$ 是……}} & {\emph{则……在~$\mModel{M}$ 中为真：}} \\
       \hline \hline
-      \emph{部分函数的}： & 
+      \emph{部分函数的}： &
       \multirow{2}{*}{$\Diamond p \lif \Box p$} \\
       $ \forall w \forall u \forall v ((Rwu \land Rwv) \lif u =v )$ & \\
       \hline
-      \multirow{2}{*}{\emph{函数的}：$\forall w \exists v \forall u(Rwu \liff \eq[u][v]) $} 
+      \multirow{2}{*}{\emph{函数的}：$\forall w \exists v \forall u(Rwu \liff \eq[u][v]) $}
       & \multirow{2}{*}{$\Diamond p \liff \Box p$} \\
       & \\
       \hline
@@ -133,7 +133,7 @@
       } \\
       $\forall w \forall u \forall v ((Rwu \land Rwv) \lif {}$ &\\
       \qquad $(Ruv \lor u=v \lor Rvu))$ & \\
-      \hline 
+      \hline
       \emph{弱有向的}： & \multirow{3}{*}{\hbox to .43\textwidth
         {$\Diamond\Box p \lif \Box\Diamond p$\hfill (\Ax{G})}} \\
       $\forall w \forall u \forall v ((Rwu \land Rwv) \lif {}$ & \\
@@ -142,7 +142,7 @@
     \end{tabular}
     \caption{另外五个对应事实。}
     \ollabel{tab:anotherfive}
-  \end{table} 
+  \end{table}
 
 \begin{prob}
   设 $\mModel{M} = \tuple{W, R, V}$ 为一个模型。证明：若 $R$

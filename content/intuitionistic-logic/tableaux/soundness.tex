@@ -8,7 +8,7 @@
 
 \olfileid{int}{tab}{sou}
 
-\olsection{直觉主义 \usetoken{P}{tableau} 的可靠性}
+\olsection{直觉主义真值树的可靠性}
 
 \begin{explain}
   为了证明直觉主义分析表是可靠的，我们必须证明：如果
@@ -39,7 +39,7 @@
   \end{enumerate}
 \end{defn}
 
-注意，由于 $R$ 是自反且传递的，并且 $\sigma.{*}$ 表示 $\sigma$, $\sigma.n_1$, $\sigma.n_1.n_2$, \dots，我们也有 $Rf(\sigma)f(\sigma.{*})$。 
+注意，由于 $R$ 是自反且传递的，并且 $\sigma.{*}$ 表示 $\sigma$, $\sigma.n_1$, $\sigma.n_1.n_2$, \dots，我们也有 $Rf(\sigma)f(\sigma.{*})$。
 
 \begin{defn}
   设 $\Gamma$ 是一个带号公式集，并令 $P(\Gamma)$ 为其中出现的所有前缀构成的集合。
@@ -96,12 +96,12 @@
   这意味着 $\mModel{M}$ 相对于~$f$ 同时满足 $\sFmla{\True}{!B}[\sigma]$ 和 $\sFmla{\True}{!C}[\sigma]$。
 \item 该分支通过将 $\TRule{\False}{\lor}$ 应用于 $\sFmla{\False}{!B \lor !C} \in \Gamma$ 而扩展：练习。
 \item 该分支通过将 $\TRule{\False}{\lif}$ 应用于 $\sFmla{\False}{!B \lif !C}[\sigma] \in \Gamma$ 而扩展：这在该分支上产生两个新的带号公式：$\sFmla{\True}{!B}[\sigma.n]$ 和 $\sFmla{\False}{!C}[\sigma.n]$，其中 $\sigma.n$ 是该分支上的一个新前缀，即 $\sigma.n \notin P(\Gamma)$。
-  
+
   由于 $\Gamma$ 是可满足的，存在 $\mModel{M}$ 和 $P(\Gamma)$ 的解释~$f$，使得 $\mSat{M}{\Gamma}[f]$，特别地 $\mSat/{M}{!B \lif !C}[f(\sigma)]$。
   我们需要证明 $\Gamma \cup \{\sFmla{\False}{!B \lif !C}[\sigma.n]\}$ 是可满足的。
   为此，我们如下定义 $P(\Gamma)
   \cup \{\sigma.n\}$ 的一个解释：
-  
+
   由于 $\mSat/{M}{!B \lif !C}[f(\sigma)]$，存在 $w \in W$ 使得 $Rf(\sigma)w$、$\mSat{M}{!B}[w]$ 以及 $\mSat/{M}{!C}[w]$。
   令 $f'$ 除 $f'(\sigma.n) = w$ 外与 $f$ 相同。
   由于 $f'(\sigma) = f(\sigma)$ 且 $Rf(\sigma)w$，我们有 $Rf'(\sigma)f'(\sigma.n)$，所以 $f'$ 是 $P(\Gamma) \cup \{\sigma.n\}$ 的一个解释。

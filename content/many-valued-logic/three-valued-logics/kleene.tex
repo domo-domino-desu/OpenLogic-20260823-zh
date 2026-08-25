@@ -10,7 +10,7 @@
 
 \olsection{Kleene 逻辑}
 
-克林引入了两种三值逻辑，其动机源于这样一种逻辑：其中真值被视为计算过程的结果。一个过程可能输出 $\True$ 或 $\False$，但也可能无法终止。在后一种情况下，对应的真值是未定义的，用真值~$\Undef$ 表示。
+Kleene引入了两种三值逻辑，其动机源于这样一种逻辑：其中真值被视为计算过程的结果。一个过程可能输出 $\True$ 或 $\False$，但也可能无法终止。在后一种情况下，对应的真值是未定义的，用真值~$\Undef$ 表示。
 
 要计算命题~$!A$ 的否定，首先计算 $!A$ 的值，然后返回其相反的值。如果 $!A$ 的计算不终止，那么整个计算过程也不会终止：因此 $\Undef$ 的否定仍是 $\Undef$。
 
@@ -18,10 +18,10 @@
 
 然而，如果我们能并行地求值 $!A$ 和 $!B$，结果会更好。此时，如果两个过程中有一个停机并返回 $\False$，我们就可以停止计算，因为该合取式的值必定为假。所以在这种情况下，只要有一个合取支为假，即使另一个合取支未定义，合取式也为假。类似地，当并行计算一个析取式时，一旦两个析取支中有一个的计算返回真，我们就可以停止：此时析取式必定为真。因此在这种情况下，即使其中一个支命题未定义，我们也能够知道复合命题的结果。在这种解释下，我们可以把 $\Undef$ 理解为“未知”而非“未定义”。
 
-这两种解释分别导出了 克林 的强逻辑与弱逻辑。条件句被定义为与 $\lnot !A \lor !B$ 等价。
+这两种解释分别导出了 Kleene 的强逻辑与弱逻辑。条件句被定义为与 $\lnot !A \lor !B$ 等价。
 
 \begin{defn}
-\emph{强 克林 逻辑}~$\LogKs$ 由以下矩阵定义：
+\emph{强 Kleene 逻辑}~$\LogKs$ 由以下矩阵定义：
 \begin{enumerate}
   \item 标准的命题语言 $\Lang L_0$，包含
   $\lnot$、$\land$、$\lor$、$\lif$。
@@ -65,7 +65,7 @@
 \end{defn}
 
 \begin{defn}
-\emph{弱 克林 逻辑}~$\LogKw$ 由以下矩阵定义：
+\emph{弱 Kleene 逻辑}~$\LogKw$ 由以下矩阵定义：
 \begin{enumerate}
   \item 标准的命题语言 $\Lang L_0$，包含
   $\lnot$、$\land$、$\lor$、$\lif$。
@@ -123,10 +123,10 @@
   因此在该赋值下，$!A$ 的值不是指定值。
 \end{proof}
 
-虽然弱和强 克林 逻辑都没有重言式，但它们具有非平凡的后承关系。
+虽然弱和强 Kleene 逻辑都没有重言式，但它们具有非平凡的后承关系。
 
 \begin{prob}
-  下列后承关系在（a）强和（b）弱 克林 逻辑中哪些成立？对每个关系给出真值表。
+  下列后承关系在（a）强和（b）弱 Kleene 逻辑中哪些成立？对每个关系给出真值表。
   \begin{enumerate}
     \item $p, p \lif q \Entails q$
     \item $p \lor q, \lnot p \Entails q$
@@ -136,22 +136,22 @@
   \end{enumerate}
 \end{prob}
 
-Dmitry Bochvar（德米特里·博赫瓦尔）将 $\Undef$ 解释为“无意义”，并试图通过规定悖论性语句（如说谎者悖论）取真值~$\Undef$ 来解决此类悖论。他引入了一种逻辑，其本质上是弱 克林 逻辑增加了额外联结词的扩展，其中两个是“外部否定”和“是未定义的”算子：
+Dmitry Bochvar（德米特里·博赫瓦尔）将 $\Undef$ 解释为“无意义”，并试图通过规定悖论性语句（如说谎者悖论）取真值~$\Undef$ 来解决此类悖论。他引入了一种逻辑，其本质上是弱 Kleene 逻辑增加了额外联结词的扩展，其中两个是“外部否定”和“是未定义的”算子：
 \begin{center}
-  \begin{tabular}{c|c} 
-    $\tf{\sim}$ & \\ 
-    \hline  
-    $\True$ & $\False$ \\ 
+  \begin{tabular}{c|c}
+    $\tf{\sim}$ & \\
+    \hline
+    $\True$ & $\False$ \\
     $\Undef$ & $\True$ \\
-    $\False$ & $\True$ 
+    $\False$ & $\True$
   \end{tabular}
 \quad
-  \begin{tabular}{c|c} 
-    $\tf{+}$ & \\ 
-    \hline  
-    $\True$ & $\False$ \\ 
+  \begin{tabular}{c|c}
+    $\tf{+}$ & \\
+    \hline
+    $\True$ & $\False$ \\
     $\Undef$ & $\True$ \\
-    $\False$ & $\False$ 
+    $\False$ & $\False$
   \end{tabular}
 \end{center}
 

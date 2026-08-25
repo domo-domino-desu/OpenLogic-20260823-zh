@@ -10,7 +10,7 @@
 \olsection{Trakhtenbrot 定理}
 
 \begin{explain}
-  在 \olref[rep]{sec} 中，我们为图灵机~$M$ 和输入字符串~$w$ 定义了语句 $!T(M,w)$ 和~$!E(M,w)$。
+  在 \olref[rep]{sec} 中，我们为Turing机~$M$ 和输入字符串~$w$ 定义了语句 $!T(M,w)$ 和~$!E(M,w)$。
   随后我们在 \olref[ver]{lem:valid-if-halt} 和 \olref[ver]{lem:halt-if-valid} 中证明了，$!T(M,w) \lif !E(M,w)$ 有效当且仅当 $M$ 以输入~$w$ 启动后最终停机。
   由于停机问题是不可判定的，这意味着一阶逻辑语句的有效性与可满足性是不可判定的（\cref{tur:und:uns:thm:decision-prob,tur:und:uns:cor:undecidable-sat}）。
 
@@ -25,7 +25,7 @@
   假设 $M$ 以输入~$w$ 启动后在~$k$ 步停机。
   取论域~$\Domain{M'}$ 为集合 $\{0, \dots, n\}$，其中 $n$ 是~$k$ 和~$w$ 的长度中的较大者，并令
   \[
-    \Assign{\prime}{M'}(x) = 
+    \Assign{\prime}{M'}(x) =
     \begin{cases}
       x + 1 &\text{若 $x < n$}\\
       n &\text{否则，}
@@ -36,9 +36,9 @@
   根据~$\Struct{M'}$ 的定义，正如在 \olref[ver]{lem:halt-if-valid} 的证明中那样，$\Sat{M'}{!T(M,w)}$。
   并且由于我们假设 $M$ 以输入~$w$ 启动后停机，$\Sat{M'}{!E(M,w)}$。
   因此，$\Struct{M'}$ 是~$!T(M,w) \land !E(M,w)$ 的一个有限模型（注意我们用~$\land$ 替代了 $\lif$）。
-  
+
   我们的证明已经完成了一半：我们证明了如果 $M$ 以输入~$w$ 启动后停机，那么 $!T(M,w) \land !E(M,w)$ 有一个有限模型。
-  不幸的是，其逆命题并不成立，即存在某些图灵机 $M$ 和输入~$w$，使得 $M$ 在~$w$ 上不停机，但 $!T(M,w)
+  不幸的是，其逆命题并不成立，即存在某些Turing机 $M$ 和输入~$w$，使得 $M$ 在~$w$ 上不停机，但 $!T(M,w)
   \land !E(M,w)$ 仍然有有限模型。
   例如，考虑只有状态 $q_0$ 且指令为 $\delta(q_0,\TMblank) = \tuple{q_0,\TMblank,\TMstay}$ 的机器~$M$。
   在空输入~$w = \emptyseq$ 上启动时，这台机器永远不会停机：它陷入了无限循环，但既不改变纸带也不移动读写头。
@@ -47,7 +47,7 @@
   然而，我们可以通过适当地修改~$!T(M,w)$，以排除这样的结构。
 
   \begin{prob}
-    设 $M$ 是一台只有状态 $q_0$ 和单条指令 $\delta(q_0,\TMblank) = \tuple{q,\TMblank,\TMstay}$ 的图灵机。
+    设 $M$ 是一台只有状态 $q_0$ 和单条指令 $\delta(q_0,\TMblank) = \tuple{q,\TMblank,\TMstay}$ 的Turing机。
     令 $\Domain{M''} = \{0, 1, 2\}$、$\Assign{\prime}{M''}(0) =
     \Assign{\prime}{M'}(1) = 1$ 和 $\Assign{\prime}{M''}(2) = 2$，以及 $\Assign{<}{M''} = \{\tuple{0,1}, \tuple{1,1}, \tuple{2,2}\}$。
     定义 $\Assign{\Obj Q_{q_0}}{M''}$、$\Assign{\Obj
@@ -56,7 +56,7 @@
     确保
     \begin{align*}
     & \Obj Q_{q_0}(\num{1}, \num{n}) \land \Obj S_{\TMendtape}(\num{0}, \num{n})
-      \land 
+      \land
       \lforall[x][(\num{0} < x \lif \Obj S_\TMblank(x, \num{n}))] \text{\quad 对所有 $n \in \Nat$}\\
     & \lexists[y][(\Obj Q_{q_0}(\num{0}, y) \land \Obj S_{\TMendtape}(\num{0}, y))]
     \end{align*}
@@ -64,7 +64,7 @@
   \end{prob}
 \end{explain}
 
-考虑描述图灵机~$M$ 在输入 $w = \sigma_{i_1}\dots\sigma_{i_k}$ 上操作的语句：
+考虑描述Turing机~$M$ 在输入 $w = \sigma_{i_1}\dots\sigma_{i_k}$ 上操作的语句：
 \begin{enumerate}
 \item 描述数和~$<$ 的公理（与 \olref[rep]{sec} 中定义~$!T(M,w)$ 时相同）。
 \item 描述初始格局的公理：与定义~$!T(M,w)$ 时相同。
@@ -130,7 +130,7 @@ $!B(y')$~确保了“下一个”格局的编号 $y'$ 与之前的所有编号 $
 %   for every pair $q$, $q'$ of states of~$T$.
 % \end{enumerate}
 \end{enumerate}
-令 $!T'(M, w)$ 为上述所有关于图灵机~$M$ 和输入~$w$ 的语句的合取。
+令 $!T'(M, w)$ 为上述所有关于Turing机~$M$ 和输入~$w$ 的语句的合取。
 
 \begin{lem}\ollabel{lem:halts-sat}
   若 $M$ 以输入~$w$ 启动后停机，则 $!T'(M,w) \land !E(M,w)$ 有一个有限模型。
@@ -139,7 +139,7 @@ $!B(y')$~确保了“下一个”格局的编号 $y'$ 与之前的所有编号 $
 \begin{proof}
   令 $\Struct{M'}$ 如 \olref[ver]{lem:halt-if-valid} 的证明中所述，除以下不同外：\begin{align*}
     \Domain{M'} & = \{0, \dots, n\},\\
-    \Assign{\prime}{M'}(x) & = 
+    \Assign{\prime}{M'}(x) & =
     \begin{cases}
       x + 1 &\text{若 $x < n$}\\
       n &\text{否则，}
@@ -160,7 +160,7 @@ $!B(y')$~确保了“下一个”格局的编号 $y'$ 与之前的所有编号 $
 \begin{proof}
   我们证明其逆否命题。假设 $M$ 以输入~$w$ 启动后不停机。如果 $!T'(M,w) \land !E(M,w)$ 根本没有模型，则得证。
   所以假设 $\Struct{M}$ 是~$!T(M,w) \land !E(M, w)$ 的一个模型。我们需要证明它不可能是有限的。
-  
+
   正如在 \olref[ver]{lem:config} 中那样，我们可以证明：如果 $M$ 以输入~$w$ 启动后，在~$n$ 步之后仍未停机，那么 $!T'(M,w)
   \Entails !C(M, w, n) \land !B(\num{n})$。由于 $M$ 以输入~$w$ 启动后不停机，因此对所有 $n \in \Nat$，$!T'(M,w) \Entails !C(M, w, n) \land
   !B(\num{n})$。注意，根据 \olref[rep]{prop:mlessk}，对所有 $k < n$，$!T'(M,w) \Entails \num{k} < \num{n}$。另外 $!B(\num{n}) \Entails \num{k} < \num{n} \lif
@@ -177,7 +177,7 @@ $!B(y')$~确保了“下一个”格局的编号 $y'$ 与之前的所有编号 $
 \end{thm}
 
 \begin{proof}
-  假设存在一台图灵机~$F$ 可以判定有限可满足性问题。那么给定任意图灵机~$M$ 和输入~$w$，我们都可以计算出语句~$!T'(M,w) \land !E(M,w)$，并用~$F$ 来判定它是否有一个有限模型。根据 \cref{tur:und:tra:lem:halts-sat,tur:und:tra:lem:sat-halts}，它有有限模型当且仅当 $M$ 以输入~$w$ 启动后停机。这样我们就可以用 $F$ 来解决停机问题，但我们知道停机问题是不可解的。
+  假设存在一台Turing机~$F$ 可以判定有限可满足性问题。那么给定任意Turing机~$M$ 和输入~$w$，我们都可以计算出语句~$!T'(M,w) \land !E(M,w)$，并用~$F$ 来判定它是否有一个有限模型。根据 \cref{tur:und:tra:lem:halts-sat,tur:und:tra:lem:sat-halts}，它有有限模型当且仅当 $M$ 以输入~$w$ 启动后停机。这样我们就可以用 $F$ 来解决停机问题，但我们知道停机问题是不可解的。
 \end{proof}
 
 \begin{cor}\ollabel{cor:fproof-incomp}%

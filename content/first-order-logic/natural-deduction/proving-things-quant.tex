@@ -8,7 +8,7 @@
 
 \olfileid{fol}{ntd}{prq}
 
-\olsection{带量词的\usetoken{P}{derivation}}
+\olsection{带量词的推导}
 
 \begin{ex}
 处理量词时，我们必须确保不违反本征变元条件，而这有时需要我们调整某些推理的进行顺序。一般来说，先处理那些受本征变元条件约束的规则会很有帮助（它们会出现在完成后的证明中靠近底部的位置）。
@@ -72,7 +72,7 @@
 \begin{ex}
 有时我们需要从另一些公式推导出一个公式。在这些情况下，我们可能会有未解除的假设。记录好我们的假设以及最终目标是非常重要的。
 
-我们来看看如何从假设 $\lexists[x][(!A(x) 
+我们来看看如何从假设 $\lexists[x][(!A(x)
 \land !B(x))]$ 和 $\lforall[x][(!B(x) \lif !C(x,b))]$ 推导出公式 $\lexists[x][!C(x,b)]$。像往常一样，我们将结论写在底部。
 \begin{prooftree}
 \AxiomC{}
@@ -91,7 +91,7 @@
 我们正在使用的两个假设都包含~$!B$。此时应用 \Elim{\land} 规则来分离出~$!B(a)$ 可能会很有帮助。
 \begin{prooftree}
 \AxiomC{$\lexists[x][(!A(x) \land !B(x)])$}
-\AxiomC{$\Discharge{!A(a) 
+\AxiomC{$\Discharge{!A(a)
 \land !B(a)}{1}$}
 \RightLabel{\Elim{\land}}
 \UnaryInfC{$!B(a)$}
@@ -107,7 +107,7 @@
 \AxiomC{$\lforall[x][(!B(x) \lif !C(x,b))]$}
 \RightLabel{\Elim{\lforall}}
 \UnaryInfC{$!B(a) \lif !C(a,b)$}
-\AxiomC{$\Discharge{!A(a) 
+\AxiomC{$\Discharge{!A(a)
 \land !B(a)}{1}$}
 \RightLabel{\Elim{\land}}
 \UnaryInfC{$!B(a)$}
@@ -124,7 +124,7 @@
 \AxiomC{$\lforall[x][(!B(x) \lif !C(x,b))]$}
 \RightLabel{\Elim{\lforall}}
 \UnaryInfC{$!B(a) \lif !C(a,b)$}
-\AxiomC{$\Discharge{!A(a) 
+\AxiomC{$\Discharge{!A(a)
 \land !B(a)}{1}$}
 \RightLabel{\Elim{\land}}
 \UnaryInfC{$!B(a)$}
@@ -140,7 +140,7 @@
 \end{ex}
 
 \begin{ex}
-试给出从假设 $\lforall[x][!A(x)] 
+试给出从假设 $\lforall[x][!A(x)]
 \lif \lexists[y][!B(y)]$ 和 $\lnot\lexists[y][!B(y)]$ 推导公式 $\lnot\lforall[x][!A(x)]$ 的过程。像往常一样，我们将目标公式写在底部。
 \begin{prooftree}
 \AxiomC{}

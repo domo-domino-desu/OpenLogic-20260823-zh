@@ -25,10 +25,10 @@ $A$ 与 $B$ 的\emph{不交并}是 $A \disjointsum B = (A\times
 \begin{defn}
 对任意序数 $\alpha_1, \alpha_2, \beta_1, \beta_2$，规定：
 \begin{align*}
-	\tuple{\alpha_1, \alpha_2} \rlexless \tuple{\beta_1, \beta_2}\text{ 当且仅当 }& 
+	\tuple{\alpha_1, \alpha_2} \rlexless \tuple{\beta_1, \beta_2}\text{ 当且仅当 }&
 	\text{要么 $\alpha_2 \in \beta_2$}\\
 	& \text{要么两者 $\alpha_2 = \beta_2$ 且 $\alpha_1 \in \beta_1$}
-\end{align*} 
+\end{align*}
 \end{defn}
 
 这是一个\emph{逆字典序}，因为它是先按第二个元素排序，再按第一个元素排序。回想一下，我们希望将 $\alpha \ordplus \beta$ 定义为一个 $\alpha$ 的副本后跟一个 $\beta$ 的副本所构成的序型。为此，我们规定：
@@ -43,7 +43,7 @@ $A$ 与 $B$ 的\emph{不交并}是 $A \disjointsum B = (A\times
 以下结果与
 \olref[ordinals][ordtype]{thmOrdinalRepresentation} 一起，确认了我们的定义是良定的：
 
-\begin{lem}\ollabel{ordsumlessiswo} 
+\begin{lem}\ollabel{ordsumlessiswo}
 对任意序数 $\alpha$ 和 $\beta$，$\tuple{\alpha \disjointsum \beta, \rlexless}$ 是一个良序。
 \end{lem}
 
@@ -51,7 +51,7 @@ $A$ 与 $B$ 的\emph{不交并}是 $A \disjointsum B = (A\times
 显然 $\rlexless$ 在 $\alpha \disjointsum \beta$ 上是连通的。为证明它是良基的，取定非空子集 $X \subseteq \alpha
 \disjointsum \beta$。令 $Y$ 为 $X$ 中第二坐标最小的那些元素组成的子集，即 $Y = \Setabs{\tuple{\gamma, i} \in X}{(\forall \tuple{\delta, j} \in X)i \leq j}$。然后选取 $Y$ 中第一坐标最小的元素。
 \end{proof}
-\noindent 
+\noindent
 这样，我们便得到了一个优美且明确的序数加法定义。以下是一个并不令人意外的事实（回顾 \olref[z][infinity-again]{defnomega}，$1 = \{0\}$）：
 \begin{prop}
 对任意序数 $\alpha$，有 $\alpha \ordplus  1 = \ordsucc{\alpha}$。
@@ -79,11 +79,11 @@ $A$ 与 $B$ 的\emph{不交并}是 $A \disjointsum B = (A\times
 \begin{proof}
 我们逐项验证；首先：
 \begin{align*}
-	\alpha \ordplus  0 
+	\alpha \ordplus  0
 	& = \ordtype{(\alpha \times \{0\}) \cup (0 \times \{1\}), \rlexless} \\
 	&= \ordtype{(\alpha \times \{0\}) \cup \{0\}, \rlexless}\\
 	&= \alpha\\
-	\alpha \ordplus (\beta \ordplus  1) 
+	\alpha \ordplus (\beta \ordplus  1)
 	%&= \ordtype{(\alpha\times \{0\}) \cup (\ordtype{\beta \ordplus  1}\times \{1\}), \rlexless} \\
 	&= \ordtype{(\alpha\times \{0\}) \cup (\ordsucc{\beta}\times \{1\}), \rlexless} \\
 	&= \ordtype{(\alpha\times \{0\}) \cup (\beta \times \{1\}), \rlexless} \ordplus 1\\
@@ -133,7 +133,7 @@ $A$ 与 $B$ 的\emph{不交并}是 $A \disjointsum B = (A\times
 	& = (\alpha \ordplus  (\beta \ordplus  \delta)) \ordplus  1\\
 	& = \alpha \ordplus  ((\beta \ordplus  \delta)\ordplus 1)\\
 	& = \alpha \ordplus  (\beta \ordplus  (\delta\ordplus 1))
-\end{align*}	
+\end{align*}
 当 $\gamma$ 是极限序数时，归纳假设若
 $\delta \in \gamma$ 则 $(\alpha \ordplus  \beta) \ordplus  \delta =
 \alpha \ordplus  (\beta \ordplus  \delta)$；现：
@@ -162,8 +162,8 @@ $\delta \in \gamma$ 则 $(\alpha \ordplus  \beta) \ordplus  \delta =
 = \omega \in \omega \cup \{\omega\} = \ordsucc{\omega} = \omega
 \ordplus  1$。
 \end{proof}
-\noindent 
+\noindent
 虽然这起初可能令人惊讶，但其实\emph{不然}。一方面，当你考虑 $1 \ordplus  \omega$ 时，你思考的是在所有自然数\emph{之前}放置一个额外元素所得到的序型。正如我们在
-\olref[sfr][infinite][hilbert]{sec} 中对希尔伯特旅馆所作的推理那样，直观上看，这个额外的首元素不应改变整体的序型。另一方面，当你考虑 $\omega \ordplus  1$ 时，你思考的是在所有自然数\emph{之后}放置一个额外元素所得到的序型。那就截然不同了！
+\olref[sfr][infinite][hilbert]{sec} 中对Hilbert旅馆所作的推理那样，直观上看，这个额外的首元素不应改变整体的序型。另一方面，当你考虑 $\omega \ordplus  1$ 时，你思考的是在所有自然数\emph{之后}放置一个额外元素所得到的序型。那就截然不同了！
 
 \end{document}

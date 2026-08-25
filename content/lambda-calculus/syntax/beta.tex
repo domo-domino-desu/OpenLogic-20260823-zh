@@ -14,7 +14,7 @@
 \begin{defn}[$\beta$-收缩, $\bredone$] \ollabel{defn:betacontr}
   \emph{$\beta$-收缩}（$\bredone$）是项上满足以下条件的最小相容关系：
   \[
-    (\lambd[x][N])Q \bredone \Subst{N}{Q}{x} 
+    (\lambd[x][N])Q \bredone \Subst{N}{Q}{x}
   \]
   若 $P \bredone Q$，则称 $P$ \emph{$\beta$-收缩}到 $Q$。
   形如 $(\lambd[x][N])Q$ 的项称为\emph{可约式}。
@@ -23,7 +23,7 @@
 \begin{prob} \ollabel{prob:def}
   如同我们在 \olref[lam][syn][alp]{defn:aconvone} 中对约束变元更改所做的那样，写出 $\beta$-收缩的等价归纳定义。
 \end{prob}
-  
+
 \begin{defn}[$\beta$-归约, $\bred$] \ollabel{defn:betared}
   \emph{$\beta$-归约}（$\bred$）是包含 $\bredone$ 的最小自反、传递关系。
   若 $P \bred Q$，则称 $P$ $\beta$-归约到 $Q$。
@@ -68,7 +68,7 @@
 通过收缩最内层的应用。不过注意，在这种情况下，两个项都进一步归约到了同一个项 $zv$。
 \end{enumerate}
 
-最后一个例子中的最终结果并非巧合，而是展示了λ演算的一个深刻而重要的性质，即 邱奇--罗瑟 性质（丘奇-罗瑟性质）。
+最后一个例子中的最终结果并非巧合，而是展示了λ演算的一个深刻而重要的性质，即 Church--Rosser 性质（丘奇-Rosser性质）。
 
 \begin{digress}
   一般来说，$\beta$-归约一个项的方式不止一种，因此人们发明了许多归约策略，其中最常见的是\emph{自然策略}。自然策略总是收缩\emph{最左}可约式，其中可约式的位置定义为它在项中的起始点。自然策略有一个有用的性质：一个项能通过某种策略归约为范式，当且仅当它能使用自然策略归约为范式。在下文中，除非另有说明，我们将使用自然策略。

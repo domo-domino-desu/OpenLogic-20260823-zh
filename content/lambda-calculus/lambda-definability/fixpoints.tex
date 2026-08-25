@@ -48,7 +48,7 @@
 λ演算中存在一些项，它们能计算给定项的不动点，这些项可以用来由 $\fn{Fac}'$ 这样的项定义阶乘。
 
 \begin{defn}
-  \ollabel{defn:图灵-Y}
+  \ollabel{defn:Turing-Y}
   \emph{Y组合子}是如下项：
   \[
   Y \ident (\lambd[ux][x(uux)])(\lambd[ux][x(uux)]).
@@ -122,18 +122,18 @@ G\,x_1 \dots x_n & \equal[\beta] \Subst{N}{G}{g}.
 G \ident (Y \lambd[g][\lambd[x_1\dots x_n][N]]) & \red \lambd[g][\lambd[x_1\dots x_n][N]](Y \lambd[g][\lambd[x_1\dots x_n][N]])\\
 & \ident (\lambd[g][\lambd[x_1\dots x_n][N]])\,G
 \intertext{从而}
-G\,x_1 \dots x_n 
+G\,x_1 \dots x_n
 & \red (\lambd[g][\lambd[x_1\dots x_n][N]])\,G\,x_1\dots x_n\\
 & \red (\lambd[x_1\dots x_n][\Subst{N}{G}{g}])\,x_1\dots x_n\\
   & \red \Subst{N}{G}{g}.
 \end{align*}
 
-\olref{defn:图灵-Y} 中的 $Y$ 组合子归功于 Alan 图灵。
-Alonzo 邱奇 提出了一个不同的版本，我们称之为~$Y_C$：
+\olref{defn:Turing-Y} 中的 $Y$ 组合子归功于 Alan Turing。
+Alonzo Church 提出了一个不同的版本，我们称之为~$Y_C$：
 \[
 Y_C \ident \lambd[g][(\lambd[x][g(xx)])(\lambd[x][g(xx)])].
 \]
-邱奇 的组合子比 图灵 的稍弱一些，因为 $Yg \equal[\beta] g(Yg)$ 但并非 $Yg \bred g(Yg)$。
+Church 的组合子比 Turing 的稍弱一些，因为 $Yg \equal[\beta] g(Yg)$ 但并非 $Yg \bred g(Yg)$。
 令 $V$ 为项 $\lambd[x][g(xx)]$，使得 $Y_C \ident \lambd[g][VV]$。那么
 \begin{align*}
   VV & \ident (\lambd[x][g(xx)])V \red g(VV)

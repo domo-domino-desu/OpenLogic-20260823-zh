@@ -5,7 +5,7 @@
 \olfileid{sth}{choice}{vitali}
 \olsection{附录：Vitali 悖论}
 
-要真正评判 Banach-塔斯基 构造是否可接受，我们应当考察其\emph{证明}。遗憾的是，这所需的代数知识远超我们在此所能呈现的范围。不过，通过聚焦于以下结果，我们或许能提供一些简短的评论，从而为 Banach-塔斯基 的证明带来一些洞见\footnote{更完整的处理，参见 \cite{Weston2003} 或 \cite{Wagon2016}。}：
+要真正评判 Banach-Tarski 构造是否可接受，我们应当考察其\emph{证明}。遗憾的是，这所需的代数知识远超我们在此所能呈现的范围。不过，通过聚焦于以下结果，我们或许能提供一些简短的评论，从而为 Banach-Tarski 的证明带来一些洞见\footnote{更完整的处理，参见 \cite{Weston2003} 或 \cite{Wagon2016}。}：
 
 
 \begin{thm}[Vitali 悖论]\ollabel{vitaliparadox}
@@ -13,7 +13,7 @@
 \end{thm}
 
 
-Vitali 悖论比 Banach--塔斯基 悖论容易证明得多。我们将其称为“Vitali 悖论”，是因为它源于 Vitali \citeyear{Vitali1905} 对不可测集的构造。不过，Vitali 悖论与 Banach-塔斯基 悖论的证明在集合论层面非常相似。两者的核心区别仅仅在于：Banach-塔斯基 处理的是\emph{有限}分解，而 Vitali 悖论处理的是\emph{可数无穷}分解。正如 \citet{Weston2003} 所言，Vitali 悖论“当然远不如 Banach--塔斯基 悖论那样惊人，但它确实表明即使在‘简单’的情形下，几何悖论也可能发生。”
+Vitali 悖论比 Banach--Tarski 悖论容易证明得多。我们将其称为“Vitali 悖论”，是因为它源于 Vitali \citeyear{Vitali1905} 对不可测集的构造。不过，Vitali 悖论与 Banach-Tarski 悖论的证明在集合论层面非常相似。两者的核心区别仅仅在于：Banach-Tarski 处理的是\emph{有限}分解，而 Vitali 悖论处理的是\emph{可数无穷}分解。正如 \citet{Weston2003} 所言，Vitali 悖论“当然远不如 Banach--Tarski 悖论那样惊人，但它确实表明即使在‘简单’的情形下，几何悖论也可能发生。”
 
 Vitali 悖论涉及一个二维图形，即圆。因此我们将在平面 $\Real^2$ 上进行讨论。令 $\rotationsgroup$ 为绕原点（顺时针）旋转的集合，其旋转弧度值为 $[0,2\pi)$ 之间的\emph{有理}数。以下是关于 $\rotationsgroup$ 的一些代数事实（如果你不理解该结果的陈述，证明会使其含义变得清晰）：
 
@@ -40,7 +40,7 @@ $\rotationsgroup$ 在函数复合运算下构成一个阿贝尔群。
 
 
 \begin{lem}\ollabel{disjointgroup}
-存在 $\rotationsgroup$ 的一个划分，将其分成两个不相交的集合 $\rotationsgroup_{1}$ 和 $\rotationsgroup_{2}$，其中每一个都是 $\rotationsgroup$ 的一个基。 
+存在 $\rotationsgroup$ 的一个划分，将其分成两个不相交的集合 $\rotationsgroup_{1}$ 和 $\rotationsgroup_{2}$，其中每一个都是 $\rotationsgroup$ 的一个基。
 \end{lem}
 
 \begin{proof}
@@ -62,7 +62,7 @@ $\sim$ 是一个等价关系。
 \end{lem}
 
 \begin{proof}
-利用 \olref{rotationsgroupabelian}，这是平凡的。 
+利用 \olref{rotationsgroupabelian}，这是平凡的。
 \end{proof}
 
 
@@ -103,7 +103,7 @@ r_{2}$。由于 $C$ 从 $\sim$ 下的每个等价类中恰好选取一个成员�
 \begin{proof}
 利用 \olref{disjointgroup} 中的 $\rotationsgroup_{1}$ 和 $\rotationsgroup_{2}$，令：
 \begin{align*}
-	D_{1} &= \bigcup_{\rho \in \rotationsgroup_1} \funimage{\rho}{C} & 
+	D_{1} &= \bigcup_{\rho \in \rotationsgroup_1} \funimage{\rho}{C} &
 	D_{2} &= \bigcup_{\rho \in \rotationsgroup_2} \funimage{\rho}{C}
 \end{align*}
 根据 \olref{vitalicover}，这是 $\onesphere$ 的一个划分；根据 \olref{vitalinooverlap}，$D_1$ 与 $D_2$ 不相交。由构造，$D_1$ 可被划分为可数多个集合，即每个 $\rho \in \rotationsgroup_1$ 对应的 $\funimage{\rho}{C}$。而这些集合经旋转可以构成 $\onesphere$ 的一个拷贝，因为根据 \olref{disjointgroup} 和 \olref{vitalicover}，有 $\onesphere = \bigcup_{\rho \in
@@ -115,24 +115,24 @@ r_{2}$。由于 $C$ 从 $\sim$ 下的每个等价类中恰好选取一个成员�
 
 我们来回顾一下证明策略。我们从关于平面旋转群的一些代数事实出发。我们利用这个群将 $\onesphere$ 划分为等价类。随后，我们利用选择公理从每个等价类中选取元素，从而得出了一个“悖论”。
 
-我们使用完全相同的策略来证明 Banach--塔斯基 悖论。主要的区别在于，证明 Banach-塔斯基 所需的代数事实比证明 Vitali 悖论所用的要复杂得多。但这些代数事实与选择公理毫无关系。我们将对此作一简要概述。
+我们使用完全相同的策略来证明 Banach--Tarski 悖论。主要的区别在于，证明 Banach-Tarski 所需的代数事实比证明 Vitali 悖论所用的要复杂得多。但这些代数事实与选择公理毫无关系。我们将对此作一简要概述。
 
-为了证明 Banach--塔斯基，我们首先建立一个类似于 \olref{disjointgroup} 的结果：任何\emph{自由群}都可以分割成四块，直观上我们可以通过“移动”这些块来复原出整个群的两个拷贝。\footnote{我们可以使用\emph{四}块这一事实归功于 \cite{Robinson1947}。关于最近的证明，参见 \citet[Theorem 5.2]{Wagon2016}。我们遵循 \citet[p.~3]{Weston2003} 的做法，将此描述为“移动”群的碎片。} 然后我们证明，利用 $\Real^3$ 中绕原点的两个特定旋转，可以生成一个自由旋转群 $F$。\footnote{参见 \citet[Theorem 2.1]{Wagon2016}。}（此时尚未用到选择公理。）现在，我们将球面上的点视为“相似的”，当且仅当其中一个点可以通过 $F$ 中的某个旋转从另一个点得到。然后我们\emph{使用选择公理}，从每个“相似”点的等价类中恰好选取一个点。如 \olref{pseudobanachtarski} 中那样，将我们对 $F$ 的划分应用到球面上，我们将该球面分割成四块，通过“移动”这些块，可以得到球面的两个拷贝。这就确立了 \citep{Hausdorff1914}：
+为了证明 Banach--Tarski，我们首先建立一个类似于 \olref{disjointgroup} 的结果：任何\emph{自由群}都可以分割成四块，直观上我们可以通过“移动”这些块来复原出整个群的两个拷贝。\footnote{我们可以使用\emph{四}块这一事实归功于 \cite{Robinson1947}。关于最近的证明，参见 \citet[Theorem 5.2]{Wagon2016}。我们遵循 \citet[p.~3]{Weston2003} 的做法，将此描述为“移动”群的碎片。} 然后我们证明，利用 $\Real^3$ 中绕原点的两个特定旋转，可以生成一个自由旋转群 $F$。\footnote{参见 \citet[Theorem 2.1]{Wagon2016}。}（此时尚未用到选择公理。）现在，我们将球面上的点视为“相似的”，当且仅当其中一个点可以通过 $F$ 中的某个旋转从另一个点得到。然后我们\emph{使用选择公理}，从每个“相似”点的等价类中恰好选取一个点。如 \olref{pseudobanachtarski} 中那样，将我们对 $F$ 的划分应用到球面上，我们将该球面分割成四块，通过“移动”这些块，可以得到球面的两个拷贝。这就确立了 \citep{Hausdorff1914}：
 
 \begin{thm}[Hausdorff悖论]
 任何球面都可以分解为有限多块，这些块可以（通过旋转和平移）重新组装，形成该球面的两个不相交拷贝。
 \end{thm}
 
 
-要得到完整的 Banach-塔斯基 定理（不仅涉及球面，还涉及其内部），还需要一些进一步的代数技巧。不过坦率地说，这不过是代数蛋糕上的糖霜。因此 Weston 写道：
+要得到完整的 Banach-Tarski 定理（不仅涉及球面，还涉及其内部），还需要一些进一步的代数技巧。不过坦率地说，这不过是代数蛋糕上的糖霜。因此 Weston 写道：
 
-\begin{quote}	
-  [\ldots] 关于自由群的结果是证明 Banach-塔斯基 悖论的\emph{关键步骤}。从这个角度看，Banach-塔斯基 悖论与其说是关于 $\Real^3$ 的陈述，不如说是关于 [$\Real^3$ 中平移与旋转] 群复杂性的陈述。\cite[p.~16]{Weston2003}
+\begin{quote}
+  [\ldots] 关于自由群的结果是证明 Banach-Tarski 悖论的\emph{关键步骤}。从这个角度看，Banach-Tarski 悖论与其说是关于 $\Real^3$ 的陈述，不如说是关于 [$\Real^3$ 中平移与旋转] 群复杂性的陈述。\cite[p.~16]{Weston2003}
 \end{quote}
 
-也就是说：我们能够提供\emph{有限}分解（如 Banach--塔斯基）还是\emph{可数无穷}分解（如 Vitali 悖论），归结为关于在二维或三维空间中操作的某些群论事实。
+也就是说：我们能够提供\emph{有限}分解（如 Banach--Tarski）还是\emph{可数无穷}分解（如 Vitali 悖论），归结为关于在二维或三维空间中操作的某些群论事实。
 
-诚然，最后这一说明多少让 \olref[banach]{sec} 末尾的笑话打了点折扣。因为它是二维的，“Banach-塔斯基”必须被分成可数\emph{无穷}片，才能将这些碎片重新排列成“Banach-塔斯基 Banach-塔斯基”。要修复这个笑话，必须用三维来书写。我们把这留给读者作为练习。
+诚然，最后这一说明多少让 \olref[banach]{sec} 末尾的笑话打了点折扣。因为它是二维的，“Banach-Tarski”必须被分成可数\emph{无穷}片，才能将这些碎片重新排列成“Banach-Tarski Banach-Tarski”。要修复这个笑话，必须用三维来书写。我们把这留给读者作为练习。
 
 最后一点评论。在 \olref[banach]{sec} 中，我们提到得到的球面“碎片”不可能是\emph{可测的}，而必须是无法描绘的“无限散布的点集”。我们在利用选择公理得到 \olref{pseudobanachtarski} 时，情况也是如此。这一切都值得解释一下。
 

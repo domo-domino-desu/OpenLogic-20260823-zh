@@ -22,7 +22,7 @@
   $\lnot$、$\land$、$\lor$、$\lif$。
   \item 真值集合为 $V = \{\True, \Undef, \False\}$。
   \item $\True$ 与 $\Undef$ 是指定值，即 $V^+ = \{\True, \Undef\}$。
-  \item 真值函数与强 克林 逻辑相同。
+  \item 真值函数与强 Kleene 逻辑相同。
 \end{enumerate}
 \end{defn}
 
@@ -33,7 +33,7 @@ Halldén 的\emph{无意义逻辑}~$\LogHal$ 通过如下矩阵定义：
   $\lnot$、$\land$、$\lor$、$\lif$ 以及一个一元联结词~$+$。
   \item 真值集合为 $V = \{\True, \Undef, \False\}$。
   \item $\True$ 与 $\Undef$ 是指定值，即 $V^+ = \{\True, \Undef\}$。
-  \item 真值函数与弱 克林 逻辑相同，但额外增加一个“无意义”算子：
+  \item 真值函数与弱 Kleene 逻辑相同，但额外增加一个“无意义”算子：
   \begin{center}
     \begin{tabular}{c|c}
     $\tf{+}$ & \\
@@ -46,7 +46,7 @@ Halldén 的\emph{无意义逻辑}~$\LogHal$ 通过如下矩阵定义：
 \end{enumerate}
 \end{defn}
 
-与它们共用相同真值表的 克林 逻辑不同，这些逻辑\emph{确实}有重言式。
+与它们共用相同真值表的 Kleene 逻辑不同，这些逻辑\emph{确实}有重言式。
 
 \begin{prop}\ollabel{prop:LP-taut-CL}
  $\LogLP$ 的重言式与经典命题逻辑的重言式相同。
@@ -61,7 +61,7 @@ Halldén 的\emph{无意义逻辑}~$\LogHal$ 通过如下矩阵定义：
 
   为证明此断言，我们首先如下定义 $\pAssign {v'}$：
   \[
-    \pAssign {v'}(p) = 
+    \pAssign {v'}(p) =
     \begin{cases}
     \True & \text{若 } \pAssign {v}(p) \in \{\True, \Undef\}\\
     \False & \text{否则}
@@ -153,12 +153,12 @@ Halldén 的\emph{无意义逻辑}~$\LogHal$ 通过如下矩阵定义：
 \end{prob}
 
 有时，仅仅通过改变指定值，不同的真值表就能生成相同的逻辑（语义后承关系）。
-例如，如果在 哥德尔 逻辑中取 $V^+ = \{\True,
+例如，如果在 Gödel 逻辑中取 $V^+ = \{\True,
 \Undef\}$ 而不是~$\{\True\}$ 作为指定值集合，就会出现这种情况。
 
 \begin{prop}\ollabel{prop:gl-udes}
   由 $V = \{\False, \Undef,\True\}$、$V^+=\{\True,
-  \Undef\}$ 及三值 哥德尔 逻辑的真值函数构成的矩阵，定义的是经典逻辑。
+  \Undef\}$ 及三值 Gödel 逻辑的真值函数构成的矩阵，定义的是经典逻辑。
 \end{prop}
 
 \begin{proof}
@@ -166,7 +166,7 @@ Halldén 的\emph{无意义逻辑}~$\LogHal$ 通过如下矩阵定义：
 \end{proof}
 
 \begin{prob}
-  通过证明以下结论来证明 \olref[mvl][thr][mul]{prop:gl-udes}：对于按 哥德尔 逻辑方式定义但指定值为 $V^+=\{\True,\Undef\}$ 的逻辑~$\Log L$，若 $\Gamma \Entails/[\Log L] !B$ 则 $\Gamma \Entails/[\LogCL] !B$。
+  通过证明以下结论来证明 \olref[mvl][thr][mul]{prop:gl-udes}：对于按 Gödel 逻辑方式定义但指定值为 $V^+=\{\True,\Undef\}$ 的逻辑~$\Log L$，若 $\Gamma \Entails/[\Log L] !B$ 则 $\Gamma \Entails/[\LogCL] !B$。
   请运用 \olref[mvl][thr][mul]{prop:LP-taut-CL} 中的思路，但无需证明性质 和~(b)，而是证明 $\pValue v(!A)[\LogGod] = \False$ 当且仅当 $\pValue {v'}(!A)[\LogCL] = \False$（从而 $\pValue
   v(!A)[\LogGod] \in \{\True,\Undef\}$ 当且仅当 $\pValue {v'}(!A)[\LogCL] =
   \True$），并解释为何这能确立该命题。

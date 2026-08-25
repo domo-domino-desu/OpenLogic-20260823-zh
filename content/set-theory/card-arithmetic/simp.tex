@@ -35,7 +35,7 @@
 
 \begin{prop}\ollabel{simplecardproduct}
 如果 $\cardeq{\alpha}{\beta}$，那么 $\cardeq{\alpha \times \alpha}{\beta
-\times \beta}$。 
+\times \beta}$。
 \end{prop}
 
 \begin{proof}
@@ -49,7 +49,7 @@
 \end{lem}
 
 \begin{proof}
-为归谬，令 $\alpha$ 是使该结论不成立的最小无限序数。\olref[sfr][siz][zigzag]{natsquaredenumerable} 表明 $\cardeq{\omega}{\omega\times\omega}$，所以 $\omega \in \alpha$。此外，$\alpha$ 是一个基数：为归谬，假设并非如此；那么 $\card{\alpha} \in \alpha$，于是由假设，有 $\cardeq{\card{\alpha}}{\card{\alpha} \times \card{\alpha}}$；而根据定义有 $\cardeq{\card{\alpha}}{\alpha}$；因此由 \olref{simplecardproduct} 可得 $\cardeq{\alpha}{\alpha\times\alpha}$。 
+为归谬，令 $\alpha$ 是使该结论不成立的最小无限序数。\olref[sfr][siz][zigzag]{natsquaredenumerable} 表明 $\cardeq{\omega}{\omega\times\omega}$，所以 $\omega \in \alpha$。此外，$\alpha$ 是一个基数：为归谬，假设并非如此；那么 $\card{\alpha} \in \alpha$，于是由假设，有 $\cardeq{\card{\alpha}}{\card{\alpha} \times \card{\alpha}}$；而根据定义有 $\cardeq{\card{\alpha}}{\alpha}$；因此由 \olref{simplecardproduct} 可得 $\cardeq{\alpha}{\alpha\times\alpha}$。
 
 现在，对每个 $\tuple{\gamma_1, \gamma_2} \in \alpha \times \alpha$，考虑其前段：
 \begin{align*}
@@ -57,15 +57,15 @@
 \end{align*}
 令 $\gamma = \max(\gamma_1, \gamma_2)$，注意 $\tuple{\gamma_1, \gamma_2} \canonord \tuple{\gamma+1, \gamma + 1}$。那么，当 $\gamma$ 无限时，观察：
 \begin{align*}
-	\text{Seg}(\gamma_1, \gamma_2) & 
+	\text{Seg}(\gamma_1, \gamma_2) &
 	\precsim ((\gamma \ordplus 1)\ordtimes (\gamma \ordplus 1))\\
 	&\approx (\gamma \ordtimes \gamma)
-	\text{，根据 \olref[ord-arithmetic][using-addition]{ordinfinitycharacter} 和 
+	\text{，根据 \olref[ord-arithmetic][using-addition]{ordinfinitycharacter} 和
 	\olref{simplecardproduct}}\\
 	&\approx \gamma \text{，由归纳假设}\\
 	& \prec \alpha\text{，因为 $\alpha$ 是一个基数}
 \end{align*}
-所以 $\ordtype{\alpha\times \alpha, \canonord} \leq \alpha$，从而 $\cardle{\alpha \times \alpha}{\alpha}$。既然显然有 $\cardle{\alpha}{\alpha \times \alpha}$，那么根据 Schr\"oder-Bernstein 定理即得结论。 
+所以 $\ordtype{\alpha\times \alpha, \canonord} \leq \alpha$，从而 $\cardle{\alpha \times \alpha}{\alpha}$。既然显然有 $\cardle{\alpha}{\alpha \times \alpha}$，那么根据 Schr\"oder-Bernstein 定理即得结论。
 \end{proof}
 
 最后，我们得出简化结果：

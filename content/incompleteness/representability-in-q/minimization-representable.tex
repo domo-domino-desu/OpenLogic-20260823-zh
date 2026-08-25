@@ -62,7 +62,7 @@ $\Th{Q} \Proves \lforall[x][\lnot x < \Obj 0]$。
 我们非形式化地给出证明（即，仅给出如何构造形式推导的提示）。
 
 我们要对任意的~$a$ 证明 $\lnot a < \Obj 0$。根据 $<$ 的定义，我们需要在 $\Th{Q}$ 中证明 $\lnot
-\lexists[y][\eq[(y'+a)][\Obj 0]]$。我们将假设 $\lexists[y][\eq[(y'+a)][\Obj 0]]$ 并导出一个矛盾。假设 $\eq[(b'+a)][\Obj 0]$。利用 $!Q_3$，我们可知 $\eq[a][\Obj 0] \lor \lexists[y][\eq[a][y']]$。我们区分情况。 
+\lexists[y][\eq[(y'+a)][\Obj 0]]$。我们将假设 $\lexists[y][\eq[(y'+a)][\Obj 0]]$ 并导出一个矛盾。假设 $\eq[(b'+a)][\Obj 0]$。利用 $!Q_3$，我们可知 $\eq[a][\Obj 0] \lor \lexists[y][\eq[a][y']]$。我们区分情况。
 
 情况 1： $\eq[a][\Obj 0]$。由 $\eq[(b'+a)][\Obj 0]$，我们有 $\eq[(b' + \Obj 0)][\Obj 0]$。根据 $\Th{Q}$ 的公理~$!Q_4$，我们有 $\eq[(b' + \Obj 0)][b']$，因此 $\eq[b'][\Obj 0]$。但根据公理~$!Q_2$，我们也有 $\eq/[b'][\Obj 0]$，矛盾。
 
@@ -105,7 +105,7 @@ c')][\Obj 0]$。由公理~$!Q_5$，我们有 $\eq[(b' + c)'][\Obj 0]$，这再�
 0 < a) \lor \eq[a][\Obj 0]$。但若 $\eq[a][b']$，则由等词的逻辑可得 $\eq[(b' +
 \Obj 0)][(a + \Obj 0)]$。由 $!Q_4$，$\eq[(a +
 \Obj 0)][a]$，所以我们有 $\eq[(b' + \Obj 0)][a]$，从而得到 $\lexists[z][\eq[(z' + \Obj 0)][a]]$。根据 $!Q_8$ 中对 $<$ 的定义，有 $\Obj 0 < a$。如果 $\Obj 0 < a$，那么也有 $(\Obj 0 < a \lor a
-< \Obj 0) \lor \eq[a][\Obj 0]$。 
+< \Obj 0) \lor \eq[a][\Obj 0]$。
 
 现在假设我们有
 \begin{align*}
@@ -135,7 +135,7 @@ b')][\num{m}']$。对~$c'$ 进行存在概括，并注意到 $\num{m}'
 
 因此，从 $m$ 和 $b$ 的情形的每个析取支，我们都能得到 $m+1$ 和 $a$ 的对应析取支。
 \end{proof}
-  
+
 \begin{prop}
 \ollabel{prop:rep-minimization}
 如果 $!A_g(x, z, y)$ 在~$\Th{Q}$ 中表示 $g(x, z)$，那么
@@ -147,7 +147,7 @@ b')][\num{m}']$。对~$c'$ 进行存在概括，并注意到 $\num{m}'
 \end{prop}
 
 \begin{proof}
-首先证明，如果 $f(n) = m$，那么 $\Th{Q} \Proves !A_f(\num n, \num m)$，即  
+首先证明，如果 $f(n) = m$，那么 $\Th{Q} \Proves !A_f(\num n, \num m)$，即
 \begin{align}
   \Th{Q} & \Proves !A_g(\num{m}, \num{n}, \Obj 0) \land \lforall[w][(w <
     \num{m} \lif \lnot !A_g(w, \num{n}, \Obj 0))]. \notag

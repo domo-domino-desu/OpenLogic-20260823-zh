@@ -20,7 +20,7 @@
 \begin{proof}
   我们证明，若 $\Gamma \Proves !A$，则 $\Gamma \Entails !A$。
   证明对 $!A$ 从 $\Gamma$ 的推导施归纳。
-  
+
   \begin{enumerate}
   \item 若推导仅由假设 $!A$ 构成，则有 $!A \Proves !A$，需要证明 $!A \Entails !A$。
     设 $\mSat{M}{!A}[w]$。则显然有 $\mSat{M}{!A}[w]$。
@@ -35,7 +35,7 @@
   \item 推导以 $\Intro{\lor}$ 结束：
     \iftag{probOr}{练习。}{设前提为 $!B$，且该推导的未解除假设为 $\Gamma$。则 $\Gamma \Proves !B$，根据归纳假设，$\Gamma \Entails !B$。我们需要证明 $\Gamma \Entails !B \lor !C$。设 $\mSat{M}{\Gamma}[w]$。由于 $\Gamma \Entails !B$，有 $\mSat{M}{!B}[w]$。从而也有 $\mSat{M}{!B
         \lor !C}[w]$。类似地，若前提是 $!C$，则 $\Gamma \Entails !C$。}
-    
+
   \item 推导以 $\Elim{\lor}$ 结束：
     \iftag{probOr}{练习。}{以各前提为结论的推导分别为：$!B \lor !C$ 来自未解除假设 $\Gamma$，$!D$ 来自未解除假设 $\Delta_1 \cup \{!B\}$，以及 $!D$ 来自未解除假设 $\Delta_2 \cup \{!C\}$。因此我们有 $\Gamma \Proves !B \lor !C$，$\Delta_1 \cup \{!B\} \Proves !D$，以及 $\Delta_2
       \cup \{!C\} \Proves !D$。根据归纳假设，$\Gamma \Entails !B \lor !C$，$\Delta_1 \cup \{!B\} \Entails !D$，以及 $\Delta_2 \cup \{!C\} \Entails !D$。我们需要证明 $\Gamma \cup \Delta_1 \cup \Delta_2 \Entails !D$。
@@ -48,7 +48,7 @@
 
   \item 推导以 $\Intro{\lif}$ 结束，结论为 $!B \lif !C$。则前提为 $!C$，且该推导的未解除假设为 $\Gamma \cup \{!B\}$。于是我们有 $\Gamma \cup \{!B\} \Proves !C$，且根据归纳假设有 $\Gamma \cup \{!B\} \Entails !C$。我们需要证明 $\Gamma \Entails !B \lif !C$。
 
-    设 $\mSat{M}{\Gamma}[w]$。需要证明，对所有满足 $Rww'$ 的 $w'$，若 $\mSat{M}{!B}[w']$，则 $\mSat{M}{!C}[w']$。因此设 $Rww'$ 且 $\mSat{M}{!B}[w']$。根据 \olref[sem][rel]{prop:true-monotonic}，有 $\mSat{M}{\Gamma}[w']$。由于 $\Gamma \cup \{!B\} \Entails !C$，就有 $\mSat{M}{!C}[w']$，这正是我们要证明的。 
+    设 $\mSat{M}{\Gamma}[w]$。需要证明，对所有满足 $Rww'$ 的 $w'$，若 $\mSat{M}{!B}[w']$，则 $\mSat{M}{!C}[w']$。因此设 $Rww'$ 且 $\mSat{M}{!B}[w']$。根据 \olref[sem][rel]{prop:true-monotonic}，有 $\mSat{M}{\Gamma}[w']$。由于 $\Gamma \cup \{!B\} \Entails !C$，就有 $\mSat{M}{!C}[w']$，这正是我们要证明的。
 
   \item 推导以 $\Elim{\lif}$ 结束，结论为 $!C$。前提为 $!B \lif !C$ 和 $!B$，其推导分别从未解除假设 $\Gamma$ 和 $\Delta$ 出发。因此我们有 $\Gamma \Proves !B \lif !C$ 和 $\Delta \Proves !B$。根据归纳假设，$\Gamma \Entails !B \lif !C$ 且 $\Delta \Entails !B$。我们需要证明 $\Gamma \cup \Delta \Entails !C$。
 

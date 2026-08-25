@@ -7,7 +7,7 @@
 \begin{document}
 
 \olfileid{lam}{dfl}{ldr}
-\olsection{\usetoken{S}{lambda definable} 函数是递归的}
+\olsection{$\lambda$-可定义函数是递归的}
 
 不仅所有部分递归函数都是 $\lambd$-可定义的，其逆亦真。即，所有 $\lambd$-可定义的函数都是部分递归的。
 
@@ -16,9 +16,9 @@
 \end{thm}
 
 \begin{proof}
-我们仅概述证明。首先，对 $\lambd$-项进行算术化，即系统地为其赋予哥德尔数，采用通常的素数幂序列编码。然后，定义一个部分递归函数 $\fn{normalize}(t)$，它以某个 $\lambd$-项的哥德尔数~$t$ 为自变元，若该 $\lambd$-项有范式，则返回该范式的哥德尔数，否则无定义。接着，定义两个部分递归函数 $\fn{toChurch}$ 和 $\fn{fromChurch}$，分别将自然数映射为对应丘奇数的哥德尔数，以及将对应丘奇数的哥德尔数映射回自然数。
+我们仅概述证明。首先，对 $\lambd$-项进行算术化，即系统地为其赋予Gödel数，采用通常的素数幂序列编码。然后，定义一个部分递归函数 $\fn{normalize}(t)$，它以某个 $\lambd$-项的Gödel数~$t$ 为自变元，若该 $\lambd$-项有范式，则返回该范式的Gödel数，否则无定义。接着，定义两个部分递归函数 $\fn{toChurch}$ 和 $\fn{fromChurch}$，分别将自然数映射为对应丘奇数的Gödel数，以及将对应丘奇数的Gödel数映射回自然数。
 
-利用这些递归函数，我们可以将函数~$f$ 定义为一个部分递归函数。存在一个 $\lambd$-项~$F$ $\lambd$-定义了~$f$。为计算 $f(n_1, \dots, n_k)$，首先使用 $\fn{toChurch}(n_i)$ 得到对应丘奇数的哥德尔数，将它们追加到 $\Gn{F}$ 上，得到项 $F \num{n_1}\dots\num{n_k}$ 的哥德尔数。然后，对该哥德尔数应用 $\fn{normalize}$。若 $f(n_1, \dots, n_k)$ 有定义，则 $F \num{n_1}\dots\num{n_k}$ 有范式（该范式必为一个丘奇数），否则它没有范式（因而 \[\fn{normalize}(\Gn{F\num{n_1}\dots\num{n_k}})\] 无定义）。最后，对已化为范式的项的哥德尔数使用 $\fn{fromChurch}$。
+利用这些递归函数，我们可以将函数~$f$ 定义为一个部分递归函数。存在一个 $\lambd$-项~$F$ $\lambd$-定义了~$f$。为计算 $f(n_1, \dots, n_k)$，首先使用 $\fn{toChurch}(n_i)$ 得到对应丘奇数的Gödel数，将它们追加到 $\Gn{F}$ 上，得到项 $F \num{n_1}\dots\num{n_k}$ 的Gödel数。然后，对该Gödel数应用 $\fn{normalize}$。若 $f(n_1, \dots, n_k)$ 有定义，则 $F \num{n_1}\dots\num{n_k}$ 有范式（该范式必为一个丘奇数），否则它没有范式（因而 \[\fn{normalize}(\Gn{F\num{n_1}\dots\num{n_k}})\] 无定义）。最后，对已化为范式的项的Gödel数使用 $\fn{fromChurch}$。
 \end{proof}
 
 \end{document}

@@ -18,12 +18,12 @@
   \begin{prooftree}
     \Axiom$!A \fCenter !A$
     \doubleLine
-    \UnaryInf$!B, !A \fCenter !A$   
+    \UnaryInf$!B, !A \fCenter !A$
     \Axiom$!B \fCenter !B$
     \doubleLine
-    \UnaryInf$!B, !A \fCenter !B$   
+    \UnaryInf$!B, !A \fCenter !B$
     \RightLabel{\RightR{\land}}
-    \BinaryInf$!B, !A \fCenter !A \land !B$    
+    \BinaryInf$!B, !A \fCenter !A \land !B$
     \RightLabel{$\Box$}
     \UnaryInf$\Box!B, \Box!A \fCenter \Box
     (!A \land !B)$
@@ -51,22 +51,22 @@
     \begin{prooftree}
       \Axiom$!A \fCenter !A$
       \doubleLine
-      \UnaryInf$!A \fCenter !A, !B$   
+      \UnaryInf$!A \fCenter !A, !B$
       \Axiom$!B \fCenter !B$
       \doubleLine
-      \UnaryInf$!B \fCenter !A, !B$   
+      \UnaryInf$!B \fCenter !A, !B$
       \RightLabel{\LeftR{\lor}}
-      \BinaryInf$!A \lor !B \fCenter !A, !B$    
+      \BinaryInf$!A \lor !B \fCenter !A, !B$
       \RightLabel{$\Diamond$}
-      \UnaryInf$\Diamond(!A \lor !B) \fCenter 
+      \UnaryInf$\Diamond(!A \lor !B) \fCenter
       \Diamond !A, \Diamond!B$
       \RightLabel{\RightR{\lor}}
-      \UnaryInf$\Diamond(!A \lor !B) \fCenter 
+      \UnaryInf$\Diamond(!A \lor !B) \fCenter
       \Diamond !A, \Diamond !A \lor \Diamond!B$
       \RightLabel{\RightR{\Exchange}}
       \UnaryInf$\Diamond(!A \lor !B) \fCenter \Diamond !A \lor \Diamond!B, \Diamond !A$
       \RightLabel{\RightR{\lor}}
-      \UnaryInf$\Diamond(!A \lor !B) \fCenter 
+      \UnaryInf$\Diamond(!A \lor !B) \fCenter
       \Diamond !A \lor \Diamond!B, \Diamond !A \lor \Diamond!B$
       \RightLabel{\RightR{\Contraction}}
       \UnaryInf$\Diamond(!A
@@ -104,8 +104,8 @@
     \RightLabel{\RightR{\lif}}
     \UnaryInf$\fCenter \lnot \Diamond \lnot !A \lif \Box !A$
     \RightLabel{\RightR{\land}}
-    \BinaryInf$\fCenter \Box !A \liff \lnot\Diamond\lnot !A$ 
-  \end{prooftree} 
+    \BinaryInf$\fCenter \Box !A \liff \lnot\Diamond\lnot !A$
+  \end{prooftree}
 
 % this does not work if problems are deferred
 % \begin{prob}

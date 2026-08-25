@@ -18,7 +18,7 @@
 它的形式为 $\lambd[\typeof{x}{!A \land !B}][N_1]$。由于
 \Log{tN2i} 中唯一能生成此种形式项的规则是~\Intro{\lif}，可知由~$N$ 编码的推导必定以~\Intro{\lif} 结尾，即：
   \[
-  \Axiom$x : !A\land !B \fCenter \pair{\proj{2}{x}}{\proj{1}{x}} : 
+  \Axiom$x : !A\land !B \fCenter \pair{\proj{2}{x}}{\proj{1}{x}} :
     !C$
   \RightLabel{\Intro\lif}
   \UnaryInf$\fCenter \lambd[\typeof{x}{!A \land
@@ -37,7 +37,7 @@ $\pair{\proj{2}{x}}{\proj{1}{x}}$。该证明项编码的推导
   \Axiom$x : !A\land !B \fCenter \proj{2}{x} : !C_1$
   \Axiom$x : !A\land !B \fCenter \proj{1}{x} : !C_2$
   \RightLabel{\Intro\land}
-  \BinaryInf$x : !A\land !B \fCenter \pair{\proj{2}{x}}{\proj{1}{x}} : 
+  \BinaryInf$x : !A\land !B \fCenter \pair{\proj{2}{x}}{\proj{1}{x}} :
     !C_1 \land !C_2$
   \RightLabel{\Intro\lif}
   \UnaryInf$\fCenter \lambd[\typeof{x}{!A \land
@@ -57,7 +57,7 @@ $!C_2 \land !E$ 的形式。
   \RightLabel{\Elim\land[1]}
   \UnaryInf$x : !A\land !B \fCenter \proj{1}{x} : !C_2$
   \RightLabel{\Intro\land}
-  \BinaryInf$x : !A\land !B \fCenter \pair{\proj{2}{x}}{\proj{1}{x}} : 
+  \BinaryInf$x : !A\land !B \fCenter \pair{\proj{2}{x}}{\proj{1}{x}} :
     !C_1 \land !C_2$
   \RightLabel{\Intro\lif}
   \UnaryInf$\fCenter \lambd[\typeof{x}{!A \land
@@ -77,7 +77,7 @@ $!E$：必须有 $!D \ident !A$ 且 $!C_1 \ident !B$，否则左边相继式
   \RightLabel{\Elim\land[1]}
   \UnaryInf$x : !A\land !B \fCenter \proj{1}{x} : !A$
   \RightLabel{\Intro\land}
-  \BinaryInf$x : !A\land !B \fCenter \pair{\proj{2}{x}}{\proj{1}{x}} : 
+  \BinaryInf$x : !A\land !B \fCenter \pair{\proj{2}{x}}{\proj{1}{x}} :
     !B \land !A$
   \RightLabel{\Intro\lif}
   \UnaryInf$\fCenter \lambd[\typeof{x}{!A \land

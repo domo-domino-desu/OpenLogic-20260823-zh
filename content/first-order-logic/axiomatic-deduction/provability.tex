@@ -1,8 +1,8 @@
-% Part: first-order-logic 
-% Chapter: axiomatic-deduction 
+% Part: first-order-logic
+% Chapter: axiomatic-deduction
 % Section: provability
 
-% verification of properties of provability needed for maximally 
+% verification of properties of provability needed for maximally
 % consistent sets in the completeness chapter.
 
 \documentclass[../../../include/open-logic-section]{subfiles}
@@ -13,7 +13,7 @@
       {\olfileid{fol}{axd}{prv}}
       {\olfileid{pl}{axd}{prv}}
 
-\olsection{\usetoken{S}{derivability}的性质}
+\olsection{可推导性的性质}
 
 \begin{prop}[单调性] 若 $\Gamma \subseteq \Delta$ 且 $\Gamma \Proves !A$，
 则亦有 $\Delta \Proves !A$。\end{prop}
@@ -95,11 +95,11 @@ $\Gamma_0 \cup \Gamma_1 \subseteq \Gamma$，因此 $\Gamma \Proves \lfalse$。
 由于 $\Gamma_0 \subseteq \Gamma$ 且 $\Gamma_1 \subseteq \Gamma$，
 $\Gamma_0 \cup \Gamma_1 \subseteq \Gamma$。因此 $\Gamma \Proves \lfalse$。
 
-% prop:provability-lor-left 
+% prop:provability-lor-left
 \tagitem{defOr}{}{
 \iftag{probOr}{练习。}{练习。}}
 
-% prop:provability-lor-right 
+% prop:provability-lor-right
 \tagitem{defOr}{}{ \iftag{probOr}{练习。}{
 假设 $\Gamma_0 \Proves !A$。
 
@@ -112,7 +112,7 @@ $\Gamma_0 \cup \Gamma_1 \subseteq \Gamma$。因此 $\Gamma \Proves \lfalse$。
 因此 $\Gamma \Proves !A \lor !B$。当 $\Gamma \Proves
 !B$ 时的证明类似。}}
 
-% prop:provability-land-left 
+% prop:provability-land-left
 \tagitem{defAnd}{}{ \iftag{probAnd}{练习}{
 假设 $\Gamma_0 \Proves !A \land !B$
 
@@ -128,7 +128,7 @@ $\Gamma \Proves !B$。}}
 % prop:provability-land-right
 \tagitem{defAnd}{}{\iftag{probAnd}{练习。}{练习。}}
 
-% prop:provability-mp 
+% prop:provability-mp
 \tagitem{defIf}{}{ \iftag{probIf}{练习。}{ 假设
 $\Gamma_0 \Proves !A$ 且 $\Gamma_0 \Proves !A \lif !B $。
 
@@ -141,7 +141,7 @@ $\Gamma_0 \Proves !A$ 且 $\Gamma_0 \Proves !A \lif !B $。
 由于 $\Gamma_0 \cup \Gamma_1 \subseteq \Gamma$，这意味着 $\Gamma
 \Proves !B$。}}
 
-% prop:provability-lif 
+% prop:provability-lif
 \tagitem{defIf}{}{\iftag{probIf}{练习。}{首先
 假设 $\Gamma \Proves \lnot !A$。
 
@@ -236,7 +236,7 @@ $\lforall[x][\Subst{!A}{x}{c} \lif \Subst{!A}{x}{c} \Subst{}{y}{x}]$
 是一条公理（\textbf{Ax1}）。由于 $x$ 在 $!A$ 中不自由，我们有
 $\Subst{!A}{x}{c} \Subst{}{y}{x} = \Subst{!A}{y}{c}$，所以
 \[
-\Proves \lforall[x][\Subst{!A}{x}{c}] \lif \Subst{!A}{y}{c}, 
+\Proves \lforall[x][\Subst{!A}{x}{c}] \lif \Subst{!A}{y}{c},
 \]
 并且由演绎定理得 $\lforall[x][\Subst{!A}{x}{c}] \Proves
 \Subst{!A}{y}{c}$。由于 $y$ 在 $!A$ 中不自由，它在

@@ -10,7 +10,7 @@
       {\olfileid{fol}{prf}{tab}}
       {\olfileid{pl}{prf}{tab}}
 
-\olsection{\usetoken{P}{tableau}}
+\olsection{真值树}
 
 许多推导系统操作的是语句的排列，而分析表操作的是带号公式。
 带号公式是由一个真值符号（$\True$ 或 $\False$）和一个语句
@@ -32,7 +32,7 @@ $\sFmla{\False}{!A}$，则称该分析表是\emph{封闭的}。
 $\Gamma \Proves !A$ 当且仅当存在某个有限子集~$\Gamma_0 = \{!B_1,
 \dots, !B_n\} \subseteq \Gamma$，使得对假设
 \[
-\{\sFmla{\False}{!A}, \sFmla{\True}{!B_1}, \dots, \sFmla{\True}{!B_n}\} 
+\{\sFmla{\False}{!A}, \sFmla{\True}{!B_1}, \dots, \sFmla{\True}{!B_n}\}
 \]
 存在一个封闭的分析表。
 例如，下面的封闭分析表证明了 $\Proves
@@ -51,7 +51,7 @@ $\Gamma \Proves !A$ 当且仅当存在某个有限子集~$\Gamma_0 = \{!B_1,
 
 在分析表演算中，如果存在 $!B_i \in \Gamma$，使得对假设
 \[
-\{\sFmla{\True}{!B_1}, \dots, \sFmla{\True}{!B_n}\} 
+\{\sFmla{\True}{!B_1}, \dots, \sFmla{\True}{!B_n}\}
 \]
 存在一个封闭的分析表，则集合 $\Gamma$ 是\emph{不一致的}。
 

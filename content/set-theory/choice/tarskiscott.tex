@@ -12,9 +12,9 @@
 一种朴素的想法是试图这样定义 $A$ 的基数：\[
 	\Setabs{x}{\cardeq{A}{x}}.
 \]
-你也许想把它与 弗雷格对 $\# x Fx$ 的定义作个比较，这在\olref[cardinals][hp]{sec}末尾曾有概述。而且，由于我们在那里提到的原因，这个定义行不通。任何单元素集都与 $\{\emptyset\}$ 等势。但新的单元素集在层级的每个后继阶段都会产生（只需考虑前一阶段的单元素集即可）。因此，$\Setabs{x}{\cardeq{A}{x}}$不存在，因为它不可能具有秩。
+你也许想把它与 Frege对 $\# x Fx$ 的定义作个比较，这在\olref[cardinals][hp]{sec}末尾曾有概述。而且，由于我们在那里提到的原因，这个定义行不通。任何单元素集都与 $\{\emptyset\}$ 等势。但新的单元素集在层级的每个后继阶段都会产生（只需考虑前一阶段的单元素集即可）。因此，$\Setabs{x}{\cardeq{A}{x}}$不存在，因为它不可能具有秩。
 
-为了解决这个问题，我们使用一个由 塔斯基和 Scott（斯科特）提出的技巧：\footnote{提醒：所有公式都可能含有参数（除非另有明确说明）。}
+为了解决这个问题，我们使用一个由 Tarski和 Scott（斯科特）提出的技巧：\footnote{提醒：所有公式都可能含有参数（除非另有明确说明）。}
 
 \begin{defn}[Tarski--Scott]
 对于任意公式 $\phi(x)$，令
@@ -25,7 +25,7 @@ $[ x : \phi(x)] $ 为所有满足 $\phi(x)$ 且具有最小可能秩的 $x$ 的�
 \in \alpha)(\forall x \subseteq V_\beta)\lnot \phi(x)$。然后我们可以通过分离公理将 $[x : \phi(x)]$ 定义为 $\Setabs{x \in
 V_{\alpha+1}}{\phi(x)}$。
 
-在论证了 塔斯基--Scott 技巧的合理性之后，我们现在可以用它来定义基数概念：
+在论证了 Tarski--Scott 技巧的合理性之后，我们现在可以用它来定义基数概念：
 
 \begin{defn}
 $A$ 的 \textsc{ts}-基数是 $\text{tsc}(A) = [x :
@@ -34,7 +34,7 @@ $A$ 的 \textsc{ts}-基数是 $\text{tsc}(A) = [x :
 
 \textsc{ts}-基数的定义没有使用良序公理。但是，即使没有该公理，我们也能证明\emph{\textsc{ts}-基数}的表现与\olref[cardinals][cardsasords]{defcardinalasordinal}中定义的\emph{基数}非常相似。例如，如果我们用 \textsc{ts}-基数来重述 \olref[cardinals][cardsasords]{lem:CardinalsBehaveRight} 和 \olref[card-arithmetic][opps]{lem:SizePowerset2Exp}，那么证明在 $\ZF$ 中完全行得通，无需假定良序公理。
 
-顺便一提，我们也可以使用 塔斯基--Scott 技巧来发展序数理论。对于良序 $\tuple{A, <}$，令 $\text{tso}(A, <) = [\tuple{X,
+顺便一提，我们也可以使用 Tarski--Scott 技巧来发展序数理论。对于良序 $\tuple{A, <}$，令 $\text{tso}(A, <) = [\tuple{X,
 R} : \ordeq{\tuple{A, <}}{\tuple{X, R}}]$。有关基数和序数这种处理方式的更多内容，请参见 \citet[chs.~9--12]{Potter2004}。
 
 \end{document}

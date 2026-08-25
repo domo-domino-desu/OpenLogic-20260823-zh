@@ -22,3 +22,21 @@
 % then let unicode-math replace their glyph definitions with New CM Math.
 \RequirePackage{amssymb}
 \RequirePackage[default]{fontsetup}
+
+% 与 HoTT Book 中译本一致：正文的 \textbf 使用黑体强调，而不是给宋体
+% 机械加粗。这里只重定义 \textbf；标题样式直接使用 \bfseries，因此仍由
+% 原来的 CJK main family 和各标题样式控制。
+\setCJKfamilyfont{zhemph}{FandolSong-Regular}[
+  Extension = .otf,
+  BoldFont = FandolHei-Regular,
+  ItalicFont = FandolKai-Regular,
+  BoldItalicFont = FandolKai-Regular,
+  BoldItalicFeatures = {FakeBold=2.5},
+]
+\let\olporiginaltextbf\textbf
+\renewcommand{\textbf}[1]{%
+  \ifmmode
+    \olporiginaltextbf{#1}%
+  \else
+    {\CJKfamily{zhemph}\bfseries #1}%
+  \fi}

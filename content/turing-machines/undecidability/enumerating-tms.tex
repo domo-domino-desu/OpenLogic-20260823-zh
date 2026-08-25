@@ -10,17 +10,17 @@
 \olsection{枚举Turing机}
 
 \begin{explain}
-我们可以证明所有图灵机的集合是可数的。
-这是因为每台图灵机都可以有穷地描述。
+我们可以证明所有Turing机的集合是可数的。
+这是因为每台Turing机都可以有穷地描述。
 状态集和带字母表是有穷集。
 转移函数是从 $Q \times \Sigma$ 到 $Q \times \Sigma \times \{\TMleft, \TMright, \TMstay\}$ 的偏函数，
 因此同样可以通过列出其在有定义的那些有穷多组自变元上的值来确定。
 
 这样说固然没错，但存在一个微妙的区别。
-图灵机的定义并没有限制状态集和带字母表由哪些元素组成。
-因此，严格来说，对于每一个实数，都存在一台以该数为状态的图灵机。
-然而，图灵机的\emph{行为}与用哪些对象作为状态和带字母表符号无关。
-考虑\olref{fig:variants}中的两台图灵机。
+Turing机的定义并没有限制状态集和带字母表由哪些元素组成。
+因此，严格来说，对于每一个实数，都存在一台以该数为状态的Turing机。
+然而，Turing机的\emph{行为}与用哪些对象作为状态和带字母表符号无关。
+考虑\olref{fig:variants}中的两台Turing机。
 \begin{figure}
 \begin{center}
 \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
@@ -53,8 +53,8 @@ edge [bend left] node {\TMtrans{A}{A}{\TMright}} (A);
 \{\TMendtape,\TMblank,A\}$，状态集为 $\{s,h\}$。
 但除此之外，它们的指令是一样的：$M$ 在 $n$ 个 $\TMstroke$ 的序列上停机当且仅当 $n$ 是偶数，$M'$ 在 $n$ 个 $A$ 的序列上停机当且仅当 $n$ 是偶数。
 我们所做的只是将 $\TMstroke$ 重命名为~$A$，$q_0$ 重命名为~$s$，$q_1$ 重命名为~$h$。
-这个例子可以推广：只要一台图灵机是通过对符号和状态进行这样的重命名从另一台得到的，我们就可以将它们视为同一台图灵机。
-事实上，我们可以直接把图灵机的符号和状态看作正整数：用~$1$ 代替 $\sigma_0$，用~$2$ 代替 $\sigma_1$，依此类推；$\TMendtape$ 是~$1$，$\TMblank$ 是~$2$，等等。
+这个例子可以推广：只要一台Turing机是通过对符号和状态进行这样的重命名从另一台得到的，我们就可以将它们视为同一台Turing机。
+事实上，我们可以直接把Turing机的符号和状态看作正整数：用~$1$ 代替 $\sigma_0$，用~$2$ 代替 $\sigma_1$，依此类推；$\TMendtape$ 是~$1$，$\TMblank$ 是~$2$，等等。
 这样一来，\emph{偶数}机器就变成了\olref{fig:standard-even}中描绘的机器。
 \begin{figure}
 \[\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
@@ -72,10 +72,10 @@ edge [bend left] node {\TMtrans{3}{3}{\TMright}} (A);
 \caption{一台标准的\emph{偶数}机器}
 \ollabel{fig:standard-even}
 \end{figure}
-我们可以把状态和符号都是正整数的图灵机称为\emph{标准的}机器，并且从现在起只考虑标准机器。\footnote{“标准机器”这一术语本身并不标准。}
+我们可以把状态和符号都是正整数的Turing机称为\emph{标准的}机器，并且从现在起只考虑标准机器。\footnote{“标准机器”这一术语本身并不标准。}
 
-我们要证明图灵机的集合是可数的，考虑到以上讨论，只需证明标准图灵机的集合是可数的即可。
-假设给定了标准图灵机 $M = \tuple{Q, \Sigma, q_0, \delta}$。
+我们要证明Turing机的集合是可数的，考虑到以上讨论，只需证明标准Turing机的集合是可数的即可。
+假设给定了标准Turing机 $M = \tuple{Q, \Sigma, q_0, \delta}$。
 我们如何用一个正整数的有限序列来描述它呢？
 我们先列出状态的数量、状态本身、符号的数量、符号本身以及起始状态。
 （记住，由于 $M$ 是标准机器，所有这些都是正整数。）
@@ -83,11 +83,11 @@ edge [bend left] node {\TMtrans{3}{3}{\TMright}} (A);
 可能的自变元集合，即有序对 $\tuple{q,\sigma}$，是有穷的，因为 $Q$ 和~$\Sigma$ 是有穷的。
 所以~$\delta$ 中的信息就是所有 $5$ 元组 $\tuple{q, \sigma, q', \sigma', d}$ 的有穷列表，其中 $\delta(q,\sigma) = \tuple{q', \sigma', D}$，并且 $d$ 是对方向~$D$ 编码的数（比方说，$1$ 表示~$\TMleft$，$2$ 表示~$\TMright$，$3$ 表示~$\TMstay$）。
 
-这样，每台标准图灵机都可以用一个正整数的有限列表来描述，即作为一个序列 $s_M \in
+这样，每台标准Turing机都可以用一个正整数的有限列表来描述，即作为一个序列 $s_M \in
 (\PosInt)^*$。
 例如，标准\emph{偶数}机器由序列
 \[
-2, \underbrace{1, 2}_Q, 3, \overbrace{1, 2, 3}^\Sigma, 1, \underbrace{1, 3, 2, 3, 2}_{\delta(1,3) = \tuple{2,3,R}}, 
+2, \underbrace{1, 2}_Q, 3, \overbrace{1, 2, 3}^\Sigma, 1, \underbrace{1, 3, 2, 3, 2}_{\delta(1,3) = \tuple{2,3,R}},
 \overbrace{2, 2, 2, 2, 2}^{\delta(2,2) = \tuple{2,2,R}},
 \underbrace{2, 3, 1, 3, 2}_{\delta(2,3) = \tuple{1,3,R}}.
 \]
@@ -95,24 +95,24 @@ edge [bend left] node {\TMtrans{3}{3}{\TMright}} (A);
 \end{explain}
 
 \begin{thm}
-存在从 $\Nat$ 到~$\Nat$ 的不可图灵计算的函数。
+存在从 $\Nat$ 到~$\Nat$ 的不可Turing计算的函数。
 \end{thm}
 
 \begin{proof}
 我们知道正整数的有限序列集合~$(\PosInt)^*$ 是可数的（\cref{sfr:siz:zigzag:prob:posint-star}）。
-由此可得，作为~$(\PosInt)^*$ 子集的标准图灵机的描述集合本身也是可数的。
-每一个从 $\Nat$ 到~$\Nat$ 的图灵可计算函数都由某台（实际上有很多台）图灵机计算。
-通过将其状态和符号重命名为正整数（特别是将 $\TMendtape$ 重命名为~$1$，$\TMblank$ 重命名为~$2$，$\TMstroke$ 重命名为~$3$），我们可以看出，每个图灵可计算函数都由一台标准图灵机计算。
-这意味着所有从 $\Nat$ 到~$\Nat$ 的图灵可计算函数组成的集合也是可数的。
+由此可得，作为~$(\PosInt)^*$ 子集的标准Turing机的描述集合本身也是可数的。
+每一个从 $\Nat$ 到~$\Nat$ 的Turing可计算函数都由某台（实际上有很多台）Turing机计算。
+通过将其状态和符号重命名为正整数（特别是将 $\TMendtape$ 重命名为~$1$，$\TMblank$ 重命名为~$2$，$\TMstroke$ 重命名为~$3$），我们可以看出，每个Turing可计算函数都由一台标准Turing机计算。
+这意味着所有从 $\Nat$ 到~$\Nat$ 的Turing可计算函数组成的集合也是可数的。
 
 另一方面，所有从 $\Nat$ 到~$\Nat$ 的函数组成的集合是不可数的（\cref{sfr:siz:red:prob:nat-nat}）。
-如果所有函数都能被某台图灵机计算，那么我们就能通过列出计算这些函数的图灵机的描述来枚举所有函数。
-因此，存在一些不是图灵可计算的函数。
+如果所有函数都能被某台Turing机计算，那么我们就能通过列出计算这些函数的Turing机的描述来枚举所有函数。
+因此，存在一些不是Turing可计算的函数。
 \end{proof}
 
 \begin{prob}
-  你能想出一种描述图灵机的方法，而不需要显式列出其状态和字母表符号吗？
-  你可以定义你自己的“标准”机的概念，但要说明为什么在你新的意义下，每一台图灵机都能被一台“标准”机计算。
+  你能想出一种描述Turing机的方法，而不需要显式列出其状态和字母表符号吗？
+  你可以定义你自己的“标准”机的概念，但要说明为什么在你新的意义下，每一台Turing机都能被一台“标准”机计算。
 \end{prob}
 
 \end{document}

@@ -7,14 +7,14 @@
 \begin{document}
 
 \olfileid{tur}{mac}{tur}
-\olsection{Turing Machines}
+\olsection{Turing 机}
 
 \begin{explain}
-关于什么算作图灵机，其形式定义看起来有些抽象，但实际上很简单：它只不过是把说明图灵机运作方式所需的所有信息打包进了一个数学结构。这包括：(1) 机器可能处于哪些状态，(2) 纸带上允许出现哪些符号，(3) 机器应从哪个状态开始，以及 (4) 机器的指令集是什么。
+关于什么算作Turing机，其形式定义看起来有些抽象，但实际上很简单：它只不过是把说明Turing机运作方式所需的所有信息打包进了一个数学结构。这包括：(1) 机器可能处于哪些状态，(2) 纸带上允许出现哪些符号，(3) 机器应从哪个状态开始，以及 (4) 机器的指令集是什么。
 \end{explain}
 
 \begin{defn}[Turing机]
-一个\emph{图灵机} $M$ 是一个元组 $\langle Q, \Sigma, q_0,
+一个\emph{Turing机} $M$ 是一个元组 $\langle Q, \Sigma, q_0,
 \delta\rangle$，它由以下部分组成：
 \begin{enumerate}
 \item 一个有限的\emph{状态}集合~$Q$，
@@ -27,7 +27,7 @@
 \end{defn}
 
 \begin{explain}
-我们假设纸带仅在一个方向上是无限的。为此，指定一个特殊符号~$\TMendtape$ 作为纸带左端的标记会很有用。这使得图灵机程序更容易判断何时有“跑出”纸带的“危险”。我们可以假设这个符号永远不会被覆盖，即如果 $\delta(q,\TMendtape)$ 有定义，则 $\delta(q,\TMendtape) = \tuple{q', \TMendtape, x}$。有些教科书这样做，但我们不加此限制。你只需在构造图灵机时确保它从不覆盖~$\TMendtape$ 即可。此外，在某些情况下允许这种覆盖还能提供一定的灵活性。
+我们假设纸带仅在一个方向上是无限的。为此，指定一个特殊符号~$\TMendtape$ 作为纸带左端的标记会很有用。这使得Turing机程序更容易判断何时有“跑出”纸带的“危险”。我们可以假设这个符号永远不会被覆盖，即如果 $\delta(q,\TMendtape)$ 有定义，则 $\delta(q,\TMendtape) = \tuple{q', \TMendtape, x}$。有些教科书这样做，但我们不加此限制。你只需在构造Turing机时确保它从不覆盖~$\TMendtape$ 即可。此外，在某些情况下允许这种覆盖还能提供一定的灵活性。
 \end{explain}
 
 \begin{ex}

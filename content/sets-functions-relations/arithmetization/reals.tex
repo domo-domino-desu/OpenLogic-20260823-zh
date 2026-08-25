@@ -11,8 +11,8 @@
 
 下一步是展示如何从有理数构造实数。在此之前，我们需要理解实数究竟有什么\emph{独特性}。
 
-实数的表现与有理数非常相似。（从技术上讲，两者都是\emph{有序域}的例子；关于其定义，参见\olref[check]{orderedfield}。）如果完成了\olref[sfr][siz][]{chap}的练习，就会知道实数严格多于有理数，即$\cardless{\Rat}{\Real}$。这是Cantor首先证明的。但人们知道存在无理数（即非有理数的实数）已有两千五百多年了。事实上：
-%\footnote{Now: ``$\sqrt{2}$'' equally refers to both the positive and the negative roots; but in the next few pages, I'll forget about this, and consider only the positive root.}
+实数的表现与有理数非常相似。（从技术上讲，两者都是\emph{有序域}的例子；关于其定义，参见\olref[check]{orderedfield}。）如果完成了\olref[sfr][siz][]{chap}的练习，就会知道实数严格多于有理数，即$\cardless{\Rat}{\Real}$。这是Cantor 首先证明的。但人们知道存在无理数（即非有理数的实数）已有两千五百多年了。事实上：
+%\footnote{Now: “$\sqrt{2}$” equally refers to both the positive and the negative roots; but in the next few pages, I'll forget about this, and consider only the positive root.}
 
 \begin{thm}\ollabel{root2irrational}
 $\sqrt{2}$ 不是有理数，即 $\sqrt{2} \notin \Rat$。
@@ -23,7 +23,7 @@ $\sqrt{2}$ 不是有理数，即 $\sqrt{2} \notin \Rat$。
 \nicefrac{m}{n}$。事实上，我们可以选择$m$和$n$使得该分数不可再约分。整理得，$m^{2} = 2n^{2}$。由此，我们可以用两种方式完成证明：
 
 \emph{其一，几何地}（遵循Tennenbaum）。\footnote{此证明由\cite{Conway2006}记载。}考虑以下正方形：
-\begin{center}	
+\begin{center}
 	\begin{tikzpicture}
 		\draw[thick] (0,0) rectangle (3,3);
 		\draw[thick, fill=red!50] (0,0) rectangle (2.3,2.3);
@@ -36,8 +36,8 @@ $\sqrt{2}$ 不是有理数，即 $\sqrt{2} \notin \Rat$。
 	\end{tikzpicture}
 \end{center}
 由于$m^2 = 2n^2$，两个边长为$n$的正方形重叠部分的面积，等于这两个正方形都未覆盖部分的面积；即橙色正方形的面积等于两个未着色正方形的面积之和。设橙色正方形边长为$p$，每个未着色正方形边长为$q$，则有$p^2 = 2q^2$。但现在$\sqrt{2} = \nicefrac{p}{q}$，其中$p < m$且$q < n$且$p, q \in \Nat$。这与$m$和$n$已被选为尽可能小相矛盾。
-		
-\emph{其二，形式地。}既然$m^{2} = 2n^{2}$，那么$m$是偶数。（容易证明，若$x$是奇数，则$x^2$是奇数。）所以存在某个$r \in \Nat$使得$m = 2r$。重新整理得$2r^2 = n^2$， 
+
+\emph{其二，形式地。}既然$m^{2} = 2n^{2}$，那么$m$是偶数。（容易证明，若$x$是奇数，则$x^2$是奇数。）所以存在某个$r \in \Nat$使得$m = 2r$。重新整理得$2r^2 = n^2$，
 		%				\begin{align*}
 		%					(2q)^{2} &= 2n^{2}\\
 		%					4q^{2} &= 2n^{2}\\
@@ -48,7 +48,7 @@ $\sqrt{2}$ 不是有理数，即 $\sqrt{2} \notin \Rat$。
 
 顺带一提，借由这一图示证明，我们可以重温\olref[his][set][mythology]{sec}中的内容。Tennenbaum（1927--2006）是一位地道的现代数学家；但这个证明无疑十分优美，完全严谨，并且诉诸几何直觉！
 
-不管怎样：实数比有理数“更广阔”。在某种意义上，有理数中存在“间隙”，而这些间隙被实数填补了。Weierstrass意识到，这刻画了实数的一个单一性质，正是该性质将实数与有理数区分开来，即完备性质：\emph{每个有上界的非空实数集都有一个最小上界。} 
+不管怎样：实数比有理数“更广阔”。在某种意义上，有理数中存在“间隙”，而这些间隙被实数填补了。Weierstrass意识到，这刻画了实数的一个单一性质，正是该性质将实数与有理数区分开来，即完备性质：\emph{每个有上界的非空实数集都有一个最小上界。}
 
 容易看出有理数不具备完备性质。例如，考虑所有小于$\sqrt{2}$的有理数组成的集合，即：
 \[
