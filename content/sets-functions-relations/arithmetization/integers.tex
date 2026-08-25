@@ -58,26 +58,26 @@ $\Intequiv$ 是一个等价关系。
 	\end{align*}
 （按照惯例，我用 `$ab$' 表示 `$(a \times b)$'，仅是为了让这些定义式更易读。）现在，我们需要确保这些定义具有它们\emph{应有}的性质。详细阐明这意味着什么并进行验证相当繁琐；我们把细节放到 \olref[check]{sec}。但简而言之就是：一切正常！
 
-还有最后一件事。我们用自然数构造了整数。但这意味着自然数\emph{本身并不是整数}。我们将在 \olref[ref]{sec} 回到这一点的哲学意义。不过，纯粹从技术角度看，我们需要某种方式能够将自然数\emph{当作}整数来处理。想法非常简单：对于每个 $n \in \Nat$，我们直接规定 $n_\Int = \equivrep{n, 0}{\Intequiv}$。我们需要确认这个定义是表现良好的；也就是说，对于任意 $m, n \in \Nat$，
+还有最后一件事。我们用自然数构造了整数。但这意味着自然数\emph{本身并不是整数}。我们将在 \olref[ref]{sec} 回到这一点的哲学意义。不过，纯粹从技术角度看，我们需要某种方式能够将自然数\emph{当作}整数来处理。想法非常简单：对于每个 $n \in \Nat$，我们直接规定 $n_{\Int} = \equivrep{n, 0}{\Intequiv}$。我们需要确认这个定义是表现良好的；也就是说，对于任意 $m, n \in \Nat$，
 \begin{align*}
-	(m + n)_\Int &= m_\Int + n_\Int\\
-	(m \times n)_\Int &= m_\Int \times n_\Int\\
-	m \leq n &\liff m_\Int \leq n_\Int
+	(m + n)_{\Int} &= m_{\Int} + n_{\Int}\\
+	(m \times n)_{\Int} &= m_{\Int} \times n_{\Int}\\
+	m \leq n &\liff m_{\Int} \leq n_{\Int}
 \end{align*}
 但这都相当简单。例如，为了证明其中第二个条件成立，我们可以直接利用自然数的性质进行如下推理：
 %\begin{proof}
 %	Helping myself to the behaviour of the natural numbers, evidently:
 	\begin{align*}
-%		(m + n)_\Int  = \equivrep{m + n, 0}{\Intequiv} = \equivrep{m + n, 0 + 0}{\Intequiv} = \equivrep{m, 0}{\Intequiv} + \equivrep{n, 0}{\Intequiv} = m_\Int + n_\Int\\
-		(m \times n)_\Int  &= \equivrep{m \times n, 0}{\Intequiv} \\
+%		(m + n)_{\Int}  = \equivrep{m + n, 0}{\Intequiv} = \equivrep{m + n, 0 + 0}{\Intequiv} = \equivrep{m, 0}{\Intequiv} + \equivrep{n, 0}{\Intequiv} = m_{\Int} + n_{\Int}\\
+		(m \times n)_{\Int}  &= \equivrep{m \times n, 0}{\Intequiv} \\
 		&= \equivrep{m \times n + 0 \times 0, m \times 0 + 0 \times n}{\Intequiv} \\
 		&= \equivrep{m, 0}{\Intequiv} \times \equivrep{n, 0}{\Intequiv} \\
-		&= m_\Int \times n_\Int
+		&= m_{\Int} \times n_{\Int}
 	\end{align*}
 %\end{proof}
 我们将其余两个条件成立的验证留作练习。
 
 \begin{prob}
-	证明对任意 $m, n \in \Nat$，有 $(m + n)_\Int = m_\Int + n_\Int$ 和 $m \leq n \liff m_\Int \leq n_\Int$。
+	证明对任意 $m, n \in \Nat$，有 $(m + n)_{\Int} = m_{\Int} + n_{\Int}$ 和 $m \leq n \liff m_{\Int} \leq n_{\Int}$。
 \end{prob}
 \end{document}

@@ -20,7 +20,7 @@
 假设 $\cardeq{n}{m}$ 但 $n \neq m$。
 由三歧律，要么 $n \in m$，要么 $m \in n$；不失一般性，设 $n \in m$。
 那么 $n \subsetneq m$，并且存在一个双射 $f \colon m \to n$，
-因此 $m$ 是 Dedekind（戴德金）无限的，
+因此 $m$ 是 戴德金无限的，
 这与 \olref[z][infinity-again]{naturalnumbersarentinfinite} 矛盾。
 \end{proof}
 
@@ -38,7 +38,7 @@
 	\item\ollabel{card:notinomega} $\card{A} \notin \omega$，即
 	$A$ 不是一个自然数；
 	\item\ollabel{card:omegaplus} $\omega \leq \card{A}$；
-	\item\ollabel{card:infinite} $A$ 是 Dedekind 无限的。
+	\item\ollabel{card:infinite} $A$ 是 戴德金 无限的。
 \end{enumerate}
 \end{thm}
 
@@ -56,7 +56,7 @@
 \end{defn}
 \noindent 
 但需注意，此定义是在 $\ZFC$ 的背景下给出的。毕竟，我们需要良序定理来保证每个集合都有基数。
-事实上，没有良序定理，就可能存在既非有限亦非 Dedekind 无限的集合。
+事实上，没有良序定理，就可能存在既非有限亦非 戴德金 无限的集合。
 我们将在 \olref[choice][]{chap} 中回到这类问题。目前，我们继续依赖良序定理。
 
 现在，让我们从有限基数转向无限基数。
@@ -67,8 +67,8 @@ $\omega$ 是最小的无限基数。
 \end{cor}
 
 \begin{proof}
-$\omega$ 是基数，因为 $\omega$ 是 Dedekind 无限的，且若对任意 $n \in \omega$ 有 $\cardeq{\omega}{n}$，
-则 $n$ 将是 Dedekind 无限的，
+$\omega$ 是基数，因为 $\omega$ 是 戴德金 无限的，且若对任意 $n \in \omega$ 有 $\cardeq{\omega}{n}$，
+则 $n$ 将是 戴德金 无限的，
 与 \olref[z][infinity-again]{naturalnumbersarentinfinite} 矛盾。
 由定义，$\omega$ 就是最小的无限基数。
 \end{proof}
@@ -133,7 +133,7 @@ $\omega$ 是唯一的可数无限基数。
 \end{thm}
 
 \begin{proof}
-对任意基数 $\cardfont{a}$，Cantor（康托尔）定理 (\olref[sfr][siz][car]{thm:cantor}) 与 \olref[cardinals][cardsasords]{lem:CardinalsExist} 蕴涵了 $\cardfont{a} < \card{\Pow{\cardfont{a}}}$。
+对任意基数 $\cardfont{a}$，康托尔定理 (\olref[sfr][siz][car]{thm:cantor}) 与 \olref[cardinals][cardsasords]{lem:CardinalsExist} 蕴涵了 $\cardfont{a} < \card{\Pow{\cardfont{a}}}$。
 \end{proof}
 
 \begin{thm}
@@ -145,6 +145,6 @@ $\omega$ 是唯一的可数无限基数。
 is a cardinal}}$。根据 \olref{unioncardinalscardinal}，$\bigcup C$ 是一个基数，因此由 \olref{lem:NoLargestCardinal} 可知，存在一个基数 $\cardfont{b} > \bigcup C$。根据定义，$\cardfont{b} \in C$，所以 $\cardfont{b} \subseteq \bigcup{C}$，从而 $\cardfont{b} \leq \bigcup C$，得出矛盾。
 \end{proof}
 
-应将此结论与 Russell（罗素）悖论及 Burali-Forti（布拉利-福尔蒂）悖论进行比较。
+应将此结论与 罗素悖论及 Burali-Forti（布拉利-福尔蒂）悖论进行比较。
 
 \end{document}

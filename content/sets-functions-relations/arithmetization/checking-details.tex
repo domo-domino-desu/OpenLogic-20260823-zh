@@ -55,9 +55,9 @@
 同样地，以下是\emph{加法逆元}的证明：
 
 \begin{proof}
-取定 $i \in \Int$，即存在 $a,b \in \Nat$ 使得 $i = \equivrep{a,b}{}$。令 $j = \equivrep{b,a}{} \in \Int$。利用自然数的已知性质，$(a+b) + 0 = 0 + (a+b)$，于是根据定义有 $\tuple{a+b, b+a} \sim_\Int \tuple{0,0}$，因此 $\equivrep{a+b, b+a}{} = \equivrep{0, 0}{} = 0_\Int$。这样我们就得到 $i + j =
+取定 $i \in \Int$，即存在 $a,b \in \Nat$ 使得 $i = \equivrep{a,b}{}$。令 $j = \equivrep{b,a}{} \in \Int$。利用自然数的已知性质，$(a+b) + 0 = 0 + (a+b)$，于是根据定义有 $\tuple{a+b, b+a} \sim_{\Int} \tuple{0,0}$，因此 $\equivrep{a+b, b+a}{} = \equivrep{0, 0}{} = 0_{\Int}$。这样我们就得到 $i + j =
 \equivrep{a,b}{}+\equivrep{b,a}{}=\equivrep{a+b, b+a}{}= \equivrep{0,
-0}{} = 0_\Int$。
+0}{} = 0_{\Int}$。
 \end{proof}
 
 以下是\emph{分配律}的一个证明：

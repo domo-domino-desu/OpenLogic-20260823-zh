@@ -8,9 +8,9 @@
 
 \olfileid{mvl}{thr}{god}
 
-\olsection{哥德尔逻辑}
+\olsection{Gödel逻辑}
 
-Kurt Gödel 引入了一系列 $n$ 值逻辑，其中每一种都包含直觉主义逻辑中的所有有效公式，并且包含于经典逻辑之中。第一个有趣的逻辑如下：
+Kurt 哥德尔 引入了一系列 $n$ 值逻辑，其中每一种都包含直觉主义逻辑中的所有有效公式，并且包含于经典逻辑之中。第一个有趣的逻辑如下：
 
 \begin{defn}\ollabel{defn:goedel}
 \emph{三值哥德尔逻辑}~$\LogGod$ 由如下矩阵定义：
@@ -56,7 +56,7 @@ Kurt Gödel 引入了一系列 $n$ 值逻辑，其中每一种都包含直觉主
 \end{enumerate}
 \end{defn}
 
-你会注意到，$\land$ 和~$\lor$ 的真值表与 \L ukasiewicz 逻辑和强 Kleene 逻辑中的相同，但 $\lnot$ 和~$\lif$ 的真值表在每种逻辑中各不相同。在哥德尔逻辑中，$\tf{\lnot}(\Undef) = \False$。与 \L ukasiewicz 逻辑和 Kleene 逻辑不同，$\tf{\lif}(\Undef, \False) = \False$；与 Kleene 逻辑不同（但与 \L ukasiewicz 逻辑相同），$\tf{\lif}(\Undef,
+你会注意到，$\land$ 和~$\lor$ 的真值表与 \L ukasiewicz 逻辑和强 克林 逻辑中的相同，但 $\lnot$ 和~$\lif$ 的真值表在每种逻辑中各不相同。在哥德尔逻辑中，$\tf{\lnot}(\Undef) = \False$。与 \L ukasiewicz 逻辑和 克林 逻辑不同，$\tf{\lif}(\Undef, \False) = \False$；与 克林 逻辑不同（但与 \L ukasiewicz 逻辑相同），$\tf{\lif}(\Undef,
 \Undef) = \True$。
 
 如前文所述其与直觉主义逻辑的联系所暗示的，$\LogGod[3]$ 接近直觉主义逻辑。所有直觉主义有效式都是~$\LogGod[3]$ 中的重言式，并且许多在直觉主义中无效的经典重言式在~$\LogGod[3]$ 中也不是重言式。例如，以下公式不是重言式：

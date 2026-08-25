@@ -13,3 +13,12 @@
 \let\printglossary\undefined
 \RequirePackage[fontset=fandol]{ctex}
 \let\printglossary\olpmemoirprintglossary
+
+% 正文译文会直接输入 Unicode 希腊字母（如 λ-演算、β-归约）。Latin
+% Modern 的文本字体不含这些字形，LuaLaTeX 因而只报告 Missing character
+% 而不会回退到数学字体。New Computer Modern 同时覆盖正文中的希腊字母和
+% 本书所需的 Unicode 数学字形；fontsetup 也会让正文与数学字体保持配套。
+% Load the legacy AMS command aliases first (the sources use e.g. \restriction),
+% then let unicode-math replace their glyph definitions with New CM Math.
+\RequirePackage{amssymb}
+\RequirePackage[default]{fontsetup}

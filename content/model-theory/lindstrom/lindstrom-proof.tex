@@ -31,13 +31,13 @@
 结论 $\Mod(L){!E} = \Mod(L){!D}$ 成立。事实上，如果 $\Struct{N} \models_L !D$，
 则存在某个 $\Struct{M} \models_L !E$ 使得 $\Struct{N} \models !D_{\Struct{M}}$，
 因此也有 $\Struct{N} \models_L !E$（根据引理假设）。
-反之，若 $\Struct{N} \models_L !E$，则 $!D_\Struct{N}$ 是 $!D$ 的一个析取支，
+反之，若 $\Struct{N} \models_L !E$，则 $!D_{\Struct{N}}$ 是 $!D$ 的一个析取支，
 又因为 $\Struct{N}
-\models !D_\Struct{N}$，故也有 $\Struct{N} \models_L !D$。
+\models !D_{\Struct{N}}$，故也有 $\Struct{N} \models_L !D$。
 \end{proof}
 
 \begin{thm}[Lindstr\"om 定理]
-  \ollabel{thm:lindstrom} 设 $\tuple{L, \models_L}$ 具有紧致性和 L\"owenheim--Skolem 性质。
+  \ollabel{thm:lindstrom} 设 $\tuple{L, \models_L}$ 具有紧致性和 勒文海姆--斯科伦 性质。
   则 $\tuple{L, \models_L} \le \tuple{F, \models}$（因此 $\tuple{L, \models_L}$ 等价于一阶逻辑）。
 \end{thm}
 

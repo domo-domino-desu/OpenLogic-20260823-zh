@@ -13,14 +13,23 @@
 # xelatex；这里统一固定为 lualatex（-pdflatex=lualatex），不要求每次手动
 # 传参数。
 
-.PHONY : FORCE_MAKE
+.PHONY : all everything courses branches clean clean-all FORCE_MAKE
+
+TIKZ_CACHE := tikz-cache
+# Four LuaLaTeX workers fit comfortably on the common 8-core/8-GiB setup;
+# callers with more memory can override this (for example TIKZ_JOBS=8).
+TIKZ_JOBS ?= 4
+TIKZ_SOURCES := $(shell find assets/diagrams -name '*.tikz' -type f)
+TIKZ_PDFS := $(patsubst assets/diagrams/%.tikz,$(TIKZ_CACHE)/%.pdf,$(TIKZ_SOURCES))
+TIKZ_STAMP := $(TIKZ_CACHE)/.stamp
 
 ALLTEXFILES = open-logic-debug.tex open-logic-complete.tex \
 	$(shell grep 'INPUT content/.*/.*\.tex' open-logic-debug.fls | uniq | sed 's/INPUT //g' )
 
 ALLPDFFILES = $(ALLTEXFILES:.tex=.pdf)
 
-all: open-logic-debug.pdf open-logic-complete.pdf
+# 默认只构建发布版；需要调试版及其余产物时显式使用 `make everything`。
+all: open-logic-complete.pdf
 
 content/open-logic.pdf:
 
@@ -47,14 +56,30 @@ branches: FORCE_MAKE
 open-logic-config.pdf: open-logic-config.sty
 	grep -e "^%" -e "^$$" open-logic-config.sty | cut --bytes=3-|pandoc -f markdown -M date="`git log --format=format:"%ad %h" --date=short -1 open-logic-config.sty`" -o open-logic-config.pdf
 
-%.pdf : %.tex FORCE_MAKE
+open-logic-complete.pdf: $(TIKZ_STAMP)
+
+%.pdf : %.tex FORCE_MAKE | $(TIKZ_CACHE)
 	latexmk -pdf -pdflatex=lualatex -dvi- -ps- -cd $<
+
+$(TIKZ_CACHE):
+	mkdir -p $@
+
+# These illustrations are self-contained TikZ paths.  Building them directly
+# avoids having every external worker scan the full 1,000+ page master file.
+$(TIKZ_CACHE)/%.pdf: assets/diagrams/%.tikz assets/diagrams/cache-wrapper.tex | $(TIKZ_CACHE)
+	lualatex -interaction=batchmode -halt-on-error -jobname "$(@:.pdf=)" \
+		'\def\olassetfile{$<}\input{assets/diagrams/cache-wrapper.tex}'
+
+$(TIKZ_STAMP): $(TIKZ_SOURCES) assets/diagrams/cache-wrapper.tex | $(TIKZ_CACHE)
+	$(MAKE) $(TIKZ_PDFS) -j$(TIKZ_JOBS)
+	touch $@
 
 clean:	
 	latexmk -c $(ALLTEXFILES)
 
 clean-all:
 	latexmk -C $(ALLTEXFILES)
+	$(RM) $(TIKZ_CACHE)/* $(TIKZ_STAMP)
 
 index.html: FORCE_MAKE
 	git checkout master

@@ -17,8 +17,8 @@ $\cardexpo{(\cardexpo{\cardfont{a}}{\cardfont{b}})}{\cardfont{c}} =
 
 \begin{proof}
 对于第一个论断，考虑一个函数 $f \colon
-(\cardfont{b}\disjointsum\cardfont{c}) \to \cardfont{a}$。现在将其“拆分”：对每个 $\beta \in \cardfont{b}$ 定义 $f_\cardfont{b}(\beta) = f(\beta, 0)$，对每个 $\gamma \in \cardfont{c}$ 定义 $f_\cardfont{c}(\gamma) = f(\gamma, 1)$。映射 $f \mapsto
-(f_{\cardfont{b}} \times f_\cardfont{c})$ 是一个双射 $\funfromto{\cardfont{b} \disjointsum \cardfont{c}}{\cardfont{a}} \to
+(\cardfont{b}\disjointsum\cardfont{c}) \to \cardfont{a}$。现在将其“拆分”：对每个 $\beta \in \cardfont{b}$ 定义 $f_{\cardfont{b}}(\beta) = f(\beta, 0)$，对每个 $\gamma \in \cardfont{c}$ 定义 $f_{\cardfont{c}}(\gamma) = f(\gamma, 1)$。映射 $f \mapsto
+(f_{\cardfont{b}} \times f_{\cardfont{c}})$ 是一个双射 $\funfromto{\cardfont{b} \disjointsum \cardfont{c}}{\cardfont{a}} \to
 (\funfromto{\cardfont{b}}{\cardfont{a}} \times
 \funfromto{\cardfont{c}}{\cardfont{a}})$。 
 
@@ -40,7 +40,7 @@ $\cardexpo{(\cardexpo{\cardfont{a}}{\cardfont{b}})}{\cardfont{c}} =
 \begin{align*}
 	\cardexpo{2}{\cardfont{b}} &\leq
 	\cardexpo{\cardfont{a}}{\cardfont{b}}\text{，因为 $2 \leq \cardfont{a}$}\\
-	&\leq \cardexpo{(2^\cardfont{a})}{\cardfont{b}}
+	&\leq \cardexpo{(2^{\cardfont{a}})}{\cardfont{b}}
 	\text{，由 \olref[opps]{lem:SizePowerset2Exp}}\\
 	&= \cardexpo{2}{\cardfont{a} \cardtimes \cardfont{b}}
 	\text{，由 \olref{simplecardexpo}} \\

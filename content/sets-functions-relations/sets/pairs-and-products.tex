@@ -15,7 +15,7 @@
 我们该怎样在集合论中理解序对呢？关键在于，我们要保持以下性质：两个序对相同，当且仅当它们具有相同的第一分量和相同的第二分量，即：
 \[
   \tuple{a, b}= \tuple{c, d}\text{ 当且仅当 }a = c \text{ 且 }b=d.
-\]。
+\]
 我们可以利用 Wiener--Kuratowski 定义在集合论中定义序对。
 \end{explain}
 
@@ -38,7 +38,7 @@
 给定集合 $A$ 和 $B$，它们的\emph{笛卡尔积} $A \times B$ 定义为
 \[
   A \times B = \Setabs{\tuple{x, y}}{x \in A \text{ 且 } y \in B}.
-\]。
+\]
 \end{defn}
 
 \begin{ex}
@@ -46,7 +46,7 @@
 \[
 A \times B = \{ \tuple{0, 1}, \tuple{0, a}, \tuple{0, b},
     \tuple{1, 1}, \tuple{1, a}, \tuple{1, b} \}.
-\]。
+\]
 \end{ex}
 
 \begin{ex}
@@ -79,7 +79,7 @@ A \times B = \{ \tuple{0, 1}, \tuple{0, a}, \tuple{0, b},
   \vdots & & \vdots\\
   B_{x_n} = & \{\tuple{x_n, y_1} & \tuple{x_n, y_2} & \dots & \tuple{x_n, y_m}\}
 \end{array}
-\]。
+\]
 由于 $x_i$ 各不相同，$y_j$ 也各不相同，网格中的序对互不相同，并且总共有 $n\cdot m$ 个。
 \end{proof}
 
@@ -91,7 +91,7 @@ A \times B = \{ \tuple{0, 1}, \tuple{0, a}, \tuple{0, b},
 如果 $A$ 是一个集合，那么 $A$ 上的一个\emph{单词}是指 $A$ 中元素的任意序列。一个序列可以看作 $A$ 中元素的一个 $n$ 元组。例如，如果 $A = \{a, b, c\}$，那么序列 ``$bac$'' 可以看作是三元组~$\tuple{b, a, c}$。单词，即符号序列，在计算机科学中至关重要。按照惯例，我们将 $A$ 的元素视为长度为~$1$ 的序列，将 $\emptyset$ 视为长度为~$0$ 的序列。那么，$A$ 上\emph{所有}单词构成的集合就是
 \[
 A^* = \{\emptyset\} \cup A \cup A^2 \cup A^3 \cup \dots
-\]。
+\]
 \end{ex}
 
 \end{document}

@@ -21,10 +21,13 @@
 \input{\olpath/sty/open-logic-cjk.sty}
 
 \RequirePackage{amsmath}
-\RequirePackage{amssymb}
+% fontsetup loads unicode-math, which already provides the AMS symbol commands.
+% Loading the legacy amssymb definitions afterwards would redefine symbols such
+% as \eth under LuaLaTeX.
 \RequirePackage{extarrows}
 \RequirePackage{mathdots}
-\RequirePackage[OMLmathsfit]{isomath}
+% unicode-math supplies \mathsfit and the other ISO math alphabets used here;
+% the legacy isomath package defines the same commands incompatibly.
 \RequirePackage{xparse}
 \RequirePackage{mfirstuc}
 \RequirePackage{subfiles}[2019/09/28]
@@ -82,6 +85,24 @@
   colorlinks,
   urlcolor=dark-gray}
   %linkcolor=reflex-blue}
+
+% unicode-math implements Greek commands through internal math alphabets (for
+% example \eta expands through \miteta).  Hyperref cannot expand those while
+% making bookmarks and aborts with "Improper alphabetic constant".  Bookmarks
+% need plain text anyway, so transliterate the commands there.
+\pdfstringdefDisableCommands{%
+  \def\alpha{alpha}\def\beta{beta}\def\gamma{gamma}\def\delta{delta}%
+  \def\epsilon{epsilon}\def\varepsilon{epsilon}\def\zeta{zeta}\def\eta{eta}%
+  \def\theta{theta}\def\vartheta{theta}\def\iota{iota}\def\kappa{kappa}%
+  \def\lambda{lambda}\def\mu{mu}\def\nu{nu}\def\xi{xi}\def\pi{pi}%
+  \def\varpi{pi}\def\rho{rho}\def\varrho{rho}\def\sigma{sigma}%
+  \def\varsigma{sigma}\def\tau{tau}\def\upsilon{upsilon}\def\phi{phi}%
+  \def\varphi{phi}\def\chi{chi}\def\psi{psi}\def\omega{omega}%
+  \def\Gamma{Gamma}\def\Delta{Delta}\def\Theta{Theta}\def\Lambda{Lambda}%
+  \def\Xi{Xi}\def\Pi{Pi}\def\Sigma{Sigma}\def\Upsilon{Upsilon}%
+  \def\Phi{Phi}\def\Psi{Psi}\def\Omega{Omega}%
+  \def\aleph{aleph}%
+}
 
 % ctex（见 open-logic-cjk.sty）会预先定义 \proofname 这个中文本地化的
 % caption，跟下面 ntheorem 自己在 \ProcessOptions 里定义 \proofname 撞车，
@@ -358,3 +379,10 @@
   \centerline{%
     \IfFileExists{#2}{\includegraphics[width=#1]{#2}}
     {\includegraphics[width=#1]{\olpath/#2}}}}
+
+% Prefer the independently compiled PDF cache, while retaining a source-TikZ
+% fallback for direct LaTeX invocations which have not run Make yet.
+\newcommand*{\olcachedasset}[2][\olphotowidth]{%
+  \IfFileExists{\olpath/tikz-cache/#2.pdf}%
+    {\olasset[#1]{\olpath/tikz-cache/#2.pdf}}%
+    {\olasset[#1]{\olpath/assets/diagrams/#2.tikz}}}

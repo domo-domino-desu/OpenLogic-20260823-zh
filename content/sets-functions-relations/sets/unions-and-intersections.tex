@@ -13,7 +13,7 @@
 在 \olref[sfr][set][bas]{sec} 中，我们引入了通过抽象给出的集合定义，即形如 $\Setabs{x}{\phi(x)}$ 的定义。这里，我们使用了某个性质~$\phi$，而这个性质可以提及我们已经定义过的集合。举例来说，如果 $A$ 和~$B$ 是集合，那么集合 $\Setabs{x}{x \in A \lor x \in B}$ 由所有属于 $A$ 或~$B$ 的对象组成，也就是说，它是合并了 $A$ 和~$B$ 的元素的集合。我们可以如 \olref{fig:union} 那样将其可视化，其中高亮区域表示两个集合 $A$ 和~$B$ 合在一起的元素。
 
 \begin{figure}
-  \olasset{assets/diagrams/union.tikz}
+  \olcachedasset{union}
   \caption{两个集合的并集 $A \cup B$ 是 $A$ 的元素与~$B$ 的元素共同组成的集合。}
   \ollabel{fig:union}
 \end{figure}
@@ -45,7 +45,7 @@ b, c \} \cup \emptyset = \{a, b, c \}$。
 \begin{explain}
 我们也可以考虑一种与并集“对偶”的操作。这种操作生成由所有既属于~$A$ 又属于~$B$ 的元素构成的集合。这个操作称为\emph{交集}，可以像 \olref{fig:intersection} 中那样描绘。
 \begin{figure}
-  \olasset{assets/diagrams/intersection.tikz}
+  \olcachedasset{intersection}
   \caption{两个集合的交集 $A \cap B$ 是它们共同拥有的元素组成的集合。}
   \ollabel{fig:intersection}
 \end{figure}
@@ -120,7 +120,7 @@ A \cap B = \Setabs{x}{x \in A \land x \in B}
 最后，我们可能要考虑 $A$ 中那些不在 $B$ 里的所有元素组成的集合。我们可以如 \olref{difference} 那样描绘它。
 
 \begin{figure}
-  \olasset{assets/diagrams/difference.tikz}
+  \olcachedasset{difference}
   \caption{两个集合的差 $A \setminus B$ 是 $A$ 中那些不属于 $B$ 的元素组成的集合。}
   \ollabel{difference}
 \end{figure}

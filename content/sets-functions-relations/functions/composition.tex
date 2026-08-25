@@ -14,7 +14,7 @@
 
 图示可能有助于解释复合的概念。在\olref{fig:composition}中，我们描绘了两个函数~$f \colon A \to B$ 和~$g \colon B \to C$ 以及它们的复合~$(\comp{f}{g})$。函数$(\comp{f}{g}) \colon A \to C$将~$A$ 中的每个元素与~$C$ 中的一个元素配对。我们如下规定~$A$ 中的元素与~$C$ 中的哪个元素配对：给定输入~$x \in A$，首先对~$x$ 应用函数~$f$，它将输出某个~$y \in B$（记作~$f(x) = y$）；然后对~$y$ 应用函数~$g$，它将输出某个$g(f(x)) = g(y) = z \in C$。
 \begin{figure}
-  \olasset[2\olphotowidth]{assets/diagrams/composition.tikz}
+  \olcachedasset[2\olphotowidth]{composition}
   \caption{函数~$f$ 与~$g$ 的复合~$g \circ f$。}
   \ollabel{fig:composition}
 \end{figure}

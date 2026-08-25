@@ -8,13 +8,13 @@
 
 \olfileid{inc}{tcp}{oqn}
 
-\olsection{$\Th{Q}$ 的 $\omega$-一致扩张是不可判定的}
+\olsection{\texorpdfstring{$\Th{Q}$ 的 $\omega$-一致扩张是不可判定的}{Q 的 omega-一致扩张是不可判定的}}
 
 \begin{explain}
 证明 $\Th{Q}$ 是 c.e.-完备的，依赖于这样一个事实：任何在 $\Th{Q}$ 中可证的语句，对自然数而言都是“真”的。
 接下来的定义和定理强化了这一结果，精确指出了上述证明所需的那些关于“真”的方面。
 不过，不必在这个定理上停留太久，因为我们很快就会得到更强的结果。
-我们将它收录于此，主要是出于历史原因：G\"odel（哥德尔）最初的论文使用了 $\omega$-一致性的概念，但很快他的结果就被加强，用普通的一致性替代了 $\omega$-一致性。
+我们将它收录于此，主要是出于历史原因：哥德尔最初的论文使用了 $\omega$-一致性的概念，但很快他的结果就被加强，用普通的一致性替代了 $\omega$-一致性。
 \end{explain}
 
 \begin{defn}
@@ -28,7 +28,7 @@
 
 \begin{proof}
 如果 $\Th{T}$ 包含 $\Th{Q}$，那么 $\Th{T}$ 能表示可计算函数和关系。我们只需修改之前的证明。与之前一样，如果 $x \in K$，那么 $\Th{T}$ 能证明 $\lexists[s][!A_T(\num
-  x,\num x, s)]$。反之，假设 $\Th{T}$ 证明了 $\lexists[s][!A_T(\num x, \num x, s)]$。那么 $x$ 一定在 $K$ 中：否则，机器 $x$ 在输入 $x$ 上不存在停机计算；由于 $!A_T$ 表示 Kleene（克林）的 $T$ 关系，$\Th{T}$ 就能证明 $\lnot !A_T(\num x, \num x, \num 0)$, $\lnot !A_T(\num x, \num
+  x,\num x, s)]$。反之，假设 $\Th{T}$ 证明了 $\lexists[s][!A_T(\num x, \num x, s)]$。那么 $x$ 一定在 $K$ 中：否则，机器 $x$ 在输入 $x$ 上不存在停机计算；由于 $!A_T$ 表示 克林的 $T$ 关系，$\Th{T}$ 就能证明 $\lnot !A_T(\num x, \num x, \num 0)$, $\lnot !A_T(\num x, \num
 x, \num 1)$, \dots，这将导致 $\Th{T}$ $\omega$-不一致。
 \end{proof}
 

@@ -16,13 +16,13 @@
 	\item 表达式 $\nicefrac{i}{j}$ 所包含的信息，同样可以用有序对 $\tuple{ i, j}$ 来表示。
 \end{enumerate}
 
-最直观的做法是把有理数直接\emph{看作}取自 $\Int \times (\Int \setminus \{0_\Int\})$ 的有序对。然而，和之前一样，这样做过于简单，因为我们想要 $\nicefrac{3}{2} = \nicefrac{6}{4}$，却得到 $\tuple{ 3, 2}\neq \tuple{ 6,
+最直观的做法是把有理数直接\emph{看作}取自 $\Int \times (\Int \setminus \{0_{\Int}\})$ 的有序对。然而，和之前一样，这样做过于简单，因为我们想要 $\nicefrac{3}{2} = \nicefrac{6}{4}$，却得到 $\tuple{ 3, 2}\neq \tuple{ 6,
 4}$。更一般地，我们需要满足以下条件：
 \[
 	\nicefrac{a}{b} = \nicefrac{c}{d} \text{ 当且仅当 } a \times d = b \times c
 \]
 为此，我们在 $\Int \times
-(\Int \setminus \{0_\Int\})$ 上定义一个等价关系如下：
+(\Int \setminus \{0_{\Int}\})$ 上定义一个等价关系如下：
 \[
 	\tuple{ a, b }\Ratequiv \tuple{ c, d} \text{ 当且仅当 }a \times d = b \times c
 \]
@@ -36,7 +36,7 @@
 
 \begin{defn}
 有理数是（第二个元素非零的）整数对在 $\Ratequiv$ 下的等价类。即，$\Rat =
-\equivclass{(\Int \times (\Int\setminus \{0_\Int\}))}{\Ratequiv}$。
+\equivclass{(\Int \times (\Int\setminus \{0_{\Int}\}))}{\Ratequiv}$。
 \end{defn}
 
 与整数的情形类似，我们还需要定义一些基本运算。令 $\equivrep{i,j}{\Ratequiv}$ 表示包含 $\tuple{i, j}$ 作为元素的 $\Ratequiv$ 等价类，我们规定：
@@ -45,17 +45,17 @@
 	\equivrep{a, b}{\Ratequiv} \times \equivrep{c, d}{\Ratequiv} &= \equivrep{a  c, b d}{\Ratequiv}.
 \intertext{为了在这些有理数上定义 $r \leq s$，我们利用 $r \le s$ 当且仅当 $s - r$ 非负这一事实，即 $s - r$ 可以写成 $\nicefrac{i}{j}$ 的形式，其中 $i$ 非负且 $j$ 为正：}
 	\equivrep{a, b}{\Ratequiv} \leq \equivrep{c, d}{\Ratequiv} &\text{ 当且仅当 }
-	\equivrep{c, d}{\Ratequiv} - \equivrep{a, b}{\Ratequiv} = 
-	\equivrep{i_\Int, j_\Int}{\Ratequiv}
+	\equivrep{c, d}{\Ratequiv} - \equivrep{a, b}{\Ratequiv} =
+	\equivrep{i_{\Int}, j_{\Int}}{\Ratequiv}
 \end{align*}
 其中 $i \in \Nat$ 且 $0 \neq j \in \Nat$。
 
-接着需要检查这些定义是否如它们所\emph{应当}的那样运作；我们将其留待 \olref[check]{sec}。而它们确实如此！最后，我们需要一种方法将整数\emph{视为}有理数；因此，对于每个 $i \in \Int$，我们规定 $i_\Rat =
-\equivrep{i, 1_\Int}{\Ratequiv}$。我们同样在 \olref[check]{sec} 中验证所有这些是否运作正确。
+接着需要检查这些定义是否如它们所\emph{应当}的那样运作；我们将其留待 \olref[check]{sec}。而它们确实如此！最后，我们需要一种方法将整数\emph{视为}有理数；因此，对于每个 $i \in \Int$，我们规定 $i_{\Rat} =
+\equivrep{i, 1_{\Int}}{\Ratequiv}$。我们同样在 \olref[check]{sec} 中验证所有这些是否运作正确。
 
 \begin{prob}
-证明对于任意 $i, j \in \Int$，有 $(i + j)_\Rat = i_\Rat+ j_\Rat$ 且 $(i \times j)_\Rat =
-i_\Rat \times j_\Rat$ 且 $i \leq j \liff i_\Rat \leq j_\Rat$。
+证明对于任意 $i, j \in \Int$，有 $(i + j)_{\Rat} = i_{\Rat}+ j_{\Rat}$ 且 $(i \times j)_{\Rat} =
+i_{\Rat} \times j_{\Rat}$ 且 $i \leq j \liff i_{\Rat} \leq j_{\Rat}$。
 \end{prob}
 
 \end{document}

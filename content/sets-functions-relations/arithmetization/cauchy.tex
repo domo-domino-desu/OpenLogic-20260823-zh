@@ -8,11 +8,11 @@
 
 \olfileid{sfr}{arith}{cauchy}
 
-\olsection{附录：实数作为柯西序列}
+\olsection{附录：实数作为Cauchy序列}
 
 在\olref[cuts]{sec}中，我们用戴德金分割构造了实数。
-本节将解释另一种构造方法。它基于 Cauchy（柯西）对（即我们现在所称的）柯西序列的定义；
-但用这一定义来\emph{构造}实数则要归功于其他十九世纪的学者，特别是 Weierstrass、Heine（海涅）、M\'{e}ray（梅雷）和 Cantor。（一段精彩的历史介绍，可参阅 \citeauthor{OConnorRobertson:RN} \citeyear{OConnorRobertson:RN}。）
+本节将解释另一种构造方法。它基于 柯西对（即我们现在所称的）柯西序列的定义；
+但用这一定义来\emph{构造}实数则要归功于其他十九世纪的学者，特别是 Weierstrass（魏尔斯特拉斯）、Heine（海涅）、M\'{e}ray（梅雷）和 康托尔。（一段精彩的历史介绍，可参阅 \citeauthor{OConnorRobertson:RN} \citeyear{OConnorRobertson:RN}。）
 
 在进入十九世纪之前，值得先提一下 Simon Stevin (1548--1620)。简而言之，Stevin 认识到我们可以用十进制展开来理解每个实数。因此，即使是像 $\sqrt{2}$ 这样的无理数，也有一个从如下开始的十进制展开：
 \[
@@ -64,7 +64,7 @@ $\Rat$ 的柯西序列在 $\Realequiv$ 下的等价类。
 
 \begin{prob}
 设对于每个 $n$，$f(n) = 0$。令 $g(n) = \frac{1}{(n+1)^2}$。证明
-两者都是柯西序列，并且实际上两个函数的极限都是 $0$，从而也有 $f \sim_\Real g$。
+两者都是柯西序列，并且实际上两个函数的极限都是 $0$，从而也有 $f \sim_{\Real} g$。
 \end{prob}
 
 如同通常做法，我们将包含 $f$ 的等价类记作 $\equivrep{f}{\Realequiv}$。然而，为了保持可读性，在下文中我们将省略下标而只写作 $\equivrep{f}{}$。我们还约定，对于每个 $q \in \Rat$，$q_{\Real} = \equivrep{c_{q}}{}$，其中 $c_{q}$ 是对所有 $n \in \Nat$ 满足 $c_q(n) = q$ 的常值函数。然后我们定义实数上的基本关系和运算，例如：
@@ -76,7 +76,7 @@ $\Rat$ 的柯西序列在 $\Realequiv$ 下的等价类。
 g(n)$。当然，我们还需要检查当 $f$ 和 $g$ 是柯西序列时， $(f + g)$、
 $(f-g)$ 和 $(f\times g)$ 中的每一个也都是柯西序列；确实如此，我们将这留给你来完成。
 
-最后，我们定义序的概念。称 $\equivrep{f}{}$ 是\emph{正的}，如果 $\equivrep{f}{}\neq 0_\Rat$ 且 $(\exists
+最后，我们定义序的概念。称 $\equivrep{f}{}$ 是\emph{正的}，如果 $\equivrep{f}{}\neq 0_{\Rat}$ 且 $(\exists
 \ell \in \Nat)(\forall n > \ell)0 < f(n)$。然后称 $\equivrep{f}{} <
 \equivrep{g}{}$ 当且仅当 $\equivrep{(g - f)}{}$ 是正的。我们必须检查这是良定义的（即，它不依赖于等价类中“代表元”的选择）。
 %\begin{align*}
@@ -103,7 +103,7 @@ $(f-g)$ 和 $(f\times g)$ 中的每一个也都是柯西序列；确实如此，
 \end{thm}
 
 \begin{proof}[证明思路]
-设 $S$ 为任意有上界的非空柯西序列集。那么存在某个 $p \in \Rat$，使得 $p_{\Real}$ 是 $S$ 的一个上界。令 $r \in S$；则存在某个 $q \in \Rat$ 使得 $q_{\Real} < r$。因此，如果 $S$ 存在最小上界，那么它介于 $q_\Real$ 和 $p_\Real$ 之间（含端点）。
+设 $S$ 为任意有上界的非空柯西序列集。那么存在某个 $p \in \Rat$，使得 $p_{\Real}$ 是 $S$ 的一个上界。令 $r \in S$；则存在某个 $q \in \Rat$ 使得 $q_{\Real} < r$。因此，如果 $S$ 存在最小上界，那么它介于 $q_{\Real}$ 和 $p_{\Real}$ 之间（含端点）。
 
 我们将通过从下方和上方同时逼近来锁定这个最小上界。具体来说，我们定义两个函数 $f, g \colon
 \Nat \to \Rat$，目标是让 $f$ 从上方逼近最小上界，而 $g$ 从下方逼近它。我们首先定义：
@@ -115,24 +115,24 @@ $(f-g)$ 和 $(f\times g)$ 中的每一个也都是柯西序列；确实如此，
 \begin{align*}
 	f(n+1) &=
 	\begin{cases}
-		a_n &\text{若 }(\forall h \in S)\equivrep{h}{} \leq (a_n)_\Real\\
+		a_n &\text{若 }(\forall h \in S)\equivrep{h}{} \leq (a_n)_{\Real}\\
 		f(n)&\text{否则}
 	\end{cases}\\
 	g(n+1) &=
 	\begin{cases}
-		a_n &\text{若 }(\exists h \in S)\equivrep{h}{} \geq (a_n)_\Real\\
+		a_n &\text{若 }(\exists h \in S)\equivrep{h}{} \geq (a_n)_{\Real}\\
 	 	g(n) &\text{否则}
 	\end{cases}
 \end{align*}
 $f$ 和 $g$ 都是柯西序列。（这可以很容易地验证，但我们留作练习。）注意函数 $(f-g)$ 趋于 $0$，因为 $f$ 和 $g$ 之间的差值每一步都减半。因此 $\equivrep{f}{} = \equivrep{g}{}$。
 
-我们首先证明 $\equivrep{f}{}$ 是 $S$ 的一个上界，即 $(\forall h \in S)\equivrep{h}{} \leq \equivrep{f}{}$。（我们将在过程中引用 \olref{thm:cauchyorderedfield}。）令 $h \in S$ 并假设（为归谬）$\equivrep{f}{} < \equivrep{h}{}$，从而 $0_\Real < \equivrep{(h-f)}{}$。由于 $f$ 是一个单调递减的柯西序列，存在某个 $n \in \Nat$ 使得 $\equivrep{(c_{f(n)} - f)}{} < \equivrep{(h-f)}{}$。所以：
+我们首先证明 $\equivrep{f}{}$ 是 $S$ 的一个上界，即 $(\forall h \in S)\equivrep{h}{} \leq \equivrep{f}{}$。（我们将在过程中引用 \olref{thm:cauchyorderedfield}。）令 $h \in S$ 并假设（为归谬）$\equivrep{f}{} < \equivrep{h}{}$，从而 $0_{\Real} < \equivrep{(h-f)}{}$。由于 $f$ 是一个单调递减的柯西序列，存在某个 $n \in \Nat$ 使得 $\equivrep{(c_{f(n)} - f)}{} < \equivrep{(h-f)}{}$。所以：
 \[
-	(f(n))_\Real = \equivrep{c_{f(n)}}{} < \equivrep{f}{} + \equivrep{(h-f)}{} = \equivrep{h}{},
+	(f(n))_{\Real} = \equivrep{c_{f(n)}}{} < \equivrep{f}{} + \equivrep{(h-f)}{} = \equivrep{h}{},
 \]
-这与以下事实矛盾：根据构造，$\equivrep{h}{} \leq (f(n))_\Real$。
+这与以下事实矛盾：根据构造，$\equivrep{h}{} \leq (f(n))_{\Real}$。
 
-接下来我们证明 $\equivrep{f}{} = \equivrep{g}{}$ 是 $S$ 的\emph{最小}上界。令 $j$ 为任意柯西序列并假设 $\equivrep{j}{} < \equivrep{g}{}$。与上面的推理类似（利用 $g$ 是\emph{递增}的事实），存在 $n \in \Nat$ 使得 $\equivrep{j}{} < (g(n))_\Real$。但由构造，存在 $h \in S$ 使得 $(g(n))_\Real \leq \equivrep{h}{}$，所以 $\equivrep{j}{} < \equivrep{h}{}$，因此 $\equivrep{j}{}$ 不是 $S$ 的上界。
+接下来我们证明 $\equivrep{f}{} = \equivrep{g}{}$ 是 $S$ 的\emph{最小}上界。令 $j$ 为任意柯西序列并假设 $\equivrep{j}{} < \equivrep{g}{}$。与上面的推理类似（利用 $g$ 是\emph{递增}的事实），存在 $n \in \Nat$ 使得 $\equivrep{j}{} < (g(n))_{\Real}$。但由构造，存在 $h \in S$ 使得 $(g(n))_{\Real} \leq \equivrep{h}{}$，所以 $\equivrep{j}{} < \equivrep{h}{}$，因此 $\equivrep{j}{}$ 不是 $S$ 的上界。
 \end{proof}
 
 \end{document}

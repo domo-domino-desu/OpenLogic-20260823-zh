@@ -10,7 +10,7 @@
 
 \olsection{二阶算术}
 
-回想一下，Peano（皮亚诺）算术理论 $\Th{PA}$ 包含 $\Th{Q}$ 的八条公理，
+回想一下，皮亚诺算术理论 $\Th{PA}$ 包含 $\Th{Q}$ 的八条公理，
 \begin{align*}
 & \lforall[x][\eq/[x'][\Obj 0]]\\
 & \lforall[x][\lforall[y][(\eq[x'][y'] \lif \eq[x][y])]]\\
@@ -25,7 +25,7 @@
 \end{align*}
 后者是一个“模式”，即一种能生成算术语言中无穷多语句的模板，每个公式~$!A(x)$ 对应其中一句。
 我们称这个模式为（一阶的）\emph{归纳公理模式}。 
-在\emph{二阶} Peano 算术~$\Th{PA^2}$ 中，归纳可以表述为单个语句。$\Th{PA^2}$
+在\emph{二阶} 皮亚诺 算术~$\Th{PA^2}$ 中，归纳可以表述为单个语句。$\Th{PA^2}$
 由上述前八条公理加上（二阶的）\emph{归纳公理}组成：
 \[
 \lforall[X][((X(\Obj 0) \land \lforall[x][(X(x) \lif X(x'))]) \lif \lforall[x][X(x)])].
@@ -80,7 +80,7 @@ $\Th{PA^2}$ 的任意两个模型都是同构的。
 \end{proof}
 
 前面我们将 $\Th{PA^2}$ 定义为包含前八条算术公理加上二阶归纳公理的理论。事实上，借助
-二阶逻辑的表达力，二阶 Peano 算术只需要前两条算术公理加上归纳公理。
+二阶逻辑的表达力，二阶 皮亚诺 算术只需要前两条算术公理加上归纳公理。
 
 \begin{prop}\ollabel{prop:sol-pa-definable}
 令 $\Th{PA^{2\dagger}}$ 为包含前两条算术公理（后继公理）和二阶归纳公理的二阶理论。
@@ -92,7 +92,7 @@ $\Th{PA^2}$ 的任意两个模型都是同构的。
 使得 $\Sat{N}{!A_\le(\num n, \num m)}$ 当且仅当 $n \le m$。考虑公式
 \[
 !B(x, Y) \ident Y(x) \land \lforall[y][(Y(y) \lif Y(y'))]
-\]。
+\]
 显然，一个集合 $Y \subseteq \Nat$ 满足 $!B(\num n, Y)$，当且仅当
 $\Setabs{m}{n \le m} \subseteq Y$，因此我们可以取 $!A_\le(x, y) \ident
 \lforall[Y][(!B(x, Y) \lif Y(y))]$。

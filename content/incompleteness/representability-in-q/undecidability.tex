@@ -24,7 +24,7 @@ $\Th{Q}$ 是不可判定的，即关系
 
 \begin{proof}
 假设它是递归的。那么我们可以如下解决停机问题：
-给定 $e$ 和 $n$，我们知道 $\cfind{e}(n) \fdefined$ 当且仅当存在一个~$s$ 使得 $T(e, n, s)$ 成立，其中 $T$ 是来自 \olref[cmp][rec][nft]{thm:kleene-nf} 的 Kleene 谓词。
+给定 $e$ 和 $n$，我们知道 $\cfind{e}(n) \fdefined$ 当且仅当存在一个~$s$ 使得 $T(e, n, s)$ 成立，其中 $T$ 是来自 \olref[cmp][rec][nft]{thm:kleene-nf} 的 克林 谓词。
 由于 $T$ 是原始递归的，它在~$\Th{Q}$ 中可由公式 $!B_T$ 表示，也就是说，$\Th{Q}
 \Proves !B_T(\num{e}, \num{n}, \num{s})$ 当且仅当 $T(e, n, s)$。如果 $\Th{Q}
 \Proves !B_T(\num{e}, \num{n}, \num{s})$，那么也有 $ \Th{Q} \Proves

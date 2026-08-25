@@ -35,7 +35,7 @@ S = \Setabs{x}{\cfind{e}(x) \fdefined}.
 \begin{proof}
 由于每个原始递归函数都是可计算的，且每个可计算函数都是部分可计算的，因此 \olref{case:ran-prim} 蕴含 \olref{case:ce}，并且 \olref{case:ce} 蕴含~\olref{case:ran-pc}。（注意，如果 $S$ 是空集，那么 $S$~是那个处处无定义的部分可计算函数的值域。）如果我们能证明 \olref{case:ran-pc} 蕴含 \olref{case:ran-prim}，那么我们就证明了前三个条款彼此等价。
 
-那么，假设 $S$ 是部分可计算函数 $\cfind{e}$ 的值域。如果 $S$ 是空集，证明已完成。否则，令 $a$ 为~$S$ 中的任意元素。根据 Kleene 范式定理，我们可以写出
+那么，假设 $S$ 是部分可计算函数 $\cfind{e}$ 的值域。如果 $S$ 是空集，证明已完成。否则，令 $a$ 为~$S$ 中的任意元素。根据 克林 范式定理，我们可以写出
 \[
 \cfind{e}(x) = U(\umin{s}{T(e, x, s)}).
 \]

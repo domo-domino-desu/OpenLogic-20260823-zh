@@ -8,23 +8,23 @@
 
 \olfileid{mod}{lin}{lsp}
 
-\olsection{Compactness and L\"owenheim--Skolem Properties}
+\olsection{Compactness and Löwenheim--Skolem Properties}
 
-我们现在将紧致性与 L\"owenheim--Skolem 性质自然地推广到抽象逻辑的情形。
+我们现在将紧致性与 勒文海姆--斯科伦 性质自然地推广到抽象逻辑的情形。
 
 \begin{defn}
 若对于抽象逻辑 $\tuple{L, \models_L}$，只要 $L(\Lang{L})$-语句集合 $\Gamma$ 的每个有限子集 $\Gamma_0 \subseteq \Gamma$ 可满足，$\Gamma$ 即可满足，则称其具有\emph{紧致性}。
 \end{defn}
 
 \begin{defn}
-若 $\tuple{L, \models_L}$ 的任意可满足的 $\Gamma$ 都有一个可数模型，则称其具有\emph{向下 L\"owenheim--Skolem 性质}。
+若 $\tuple{L, \models_L}$ 的任意可满足的 $\Gamma$ 都有一个可数模型，则称其具有\emph{向下 勒文海姆--斯科伦 性质}。
 \end{defn}
 
-定义于 \olref[bas][pis]{defn:partialisom} 的“部分同构”概念是纯“代数”的（即，其定义不依赖于语言的语句，而只依赖于结构所属语言~$\Lang{L}$ 提供的常项），因此它适用于抽象逻辑的情形。对于一阶逻辑，由 \olref[bas][pis]{thm:p-isom2} 可知，若两个结构是部分同构的，则它们初等等价。这一证明不能直接推广到抽象逻辑，因为对任意 $!E \in L(\Lang{L})$，公式归纳法未必可用；然而，只要 L\"owenheim--Skolem 性质成立，该定理依然成立。
+定义于 \olref[bas][pis]{defn:partialisom} 的“部分同构”概念是纯“代数”的（即，其定义不依赖于语言的语句，而只依赖于结构所属语言~$\Lang{L}$ 提供的常项），因此它适用于抽象逻辑的情形。对于一阶逻辑，由 \olref[bas][pis]{thm:p-isom2} 可知，若两个结构是部分同构的，则它们初等等价。这一证明不能直接推广到抽象逻辑，因为对任意 $!E \in L(\Lang{L})$，公式归纳法未必可用；然而，只要 勒文海姆--斯科伦 性质成立，该定理依然成立。
 
 \begin{thm}
 \ollabel{thm:abstract-p-isom}
-设 $\tuple{L, \models_L}$ 是一个具有 L\"owenheim--Skolem 性质的正规逻辑。则任何两个部分同构的结构在 $\tuple{L, \models_L}$ 意义下都是初等等价的。
+设 $\tuple{L, \models_L}$ 是一个具有 勒文海姆--斯科伦 性质的正规逻辑。则任何两个部分同构的结构在 $\tuple{L, \models_L}$ 意义下都是初等等价的。
 \end{thm}
 
 \begin{proof}
@@ -58,7 +58,7 @@ a_1, \dots a_n$ 且 $\mathbf{c} = a_1, \dots a_n, b$。取新的三元谓词符�
   \caption{结构 $\Struct{M}$ 及其内部的部分同构。}
 \end{figure}
 
-关键的观察是：在结构 $\Struct{M}$ 的语言中，存在一个在 $\Struct{M}$ 中为真的\emph{一阶}语句 $!D_1$，断言 $\Struct{M} \models_L !E$ 且 $\Struct{N} \not\models_L !E$（这需要相对化性质）；也存在一个在 $\Struct{M}$ 中为真的\emph{一阶}语句 $!D_2$，断言 $\Struct{M} \simeq_p \Struct{N}$ 经由部分同构 $I$ 成立。根据 Löwenheim--Skolem 性质，$!D_1$ 与 $!D_2$ 在一个可数模型 $\Struct{M}_0$ 中同时为真，该模型包含部分同构的子结构 $\Struct{M}_0$ 与 $\Struct{N}_0$，使得 $\Struct{M}_0 \models_L !E$ 与 $\Struct{N}_0
+关键的观察是：在结构 $\Struct{M}$ 的语言中，存在一个在 $\Struct{M}$ 中为真的\emph{一阶}语句 $!D_1$，断言 $\Struct{M} \models_L !E$ 且 $\Struct{N} \not\models_L !E$（这需要相对化性质）；也存在一个在 $\Struct{M}$ 中为真的\emph{一阶}语句 $!D_2$，断言 $\Struct{M} \simeq_p \Struct{N}$ 经由部分同构 $I$ 成立。根据 勒文海姆--斯科伦 性质，$!D_1$ 与 $!D_2$ 在一个可数模型 $\Struct{M}_0$ 中同时为真，该模型包含部分同构的子结构 $\Struct{M}_0$ 与 $\Struct{N}_0$，使得 $\Struct{M}_0 \models_L !E$ 与 $\Struct{N}_0
 \not\models_L !E$。但是，根据 \olref[bas][pis]{thm:p-isom1}，可数的部分同构结构实际上是同构的，这与正规抽象逻辑的同构性质相矛盾。
 \end{proof}
 

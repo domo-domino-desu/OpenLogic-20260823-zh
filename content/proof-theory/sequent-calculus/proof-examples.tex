@@ -117,7 +117,7 @@
 $!D$ 和 $!E$ 都是原子公式时，才是 \Log{G3c} 中的一个完整证明。
 
 虽然严格来说，我们还没有证明 \[\Log{G1c} \Proves (!C \land !D) \lif !E \fCenter !C \lif (!D \lif
-!E),\]，但实际上这就是我们需要（并且能够）做的全部工作。这是因为，每一个形如 $!A, \Gamma \Sequent \Delta, !A$ 的相继式在 \Log{G3c} 中都是可证的，即使 $!A$ 本身不是原子公式。我们可以通过对~$!A$ 的深度~$\depth{!A}$ 进行归纳来证明这一点。
+!E),\]但实际上这就是我们需要（并且能够）做的全部工作。这是因为，每一个形如 $!A, \Gamma \Sequent \Delta, !A$ 的相继式在 \Log{G3c} 中都是可证的，即使 $!A$ 本身不是原子公式。我们可以通过对~$!A$ 的深度~$\depth{!A}$ 进行归纳来证明这一点。
 
 \begin{defn}\ollabel{defn:depth}
 公式的\emph{深度}~$\depth{!A}$ 定义如下：
@@ -231,7 +231,7 @@ $!D$ 和 $!E$ 都是原子公式时，才是 \Log{G3c} 中的一个完整证明�
 \RightLabel{\LeftR{\lnot}}
 \UnaryInf$\lnot !B \fCenter \lnot !B$
 \DisplayProof
-\]。
+\]
 然而，在某些相继式系统中，这样做是行不通的。
 直觉主义相继式演算 \Log{G1i} 类似于 \Log{G1c}，只是它限制所有相继式的右边至多有一个公式。
 若 $\Delta = \emptyset$，则第一种推导也可以是~\Log{G1i} 中的推导，

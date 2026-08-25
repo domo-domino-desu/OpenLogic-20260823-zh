@@ -68,7 +68,7 @@ F(\num{n+1}) & \equiv H(\num{n}, F(\num{n}))
 大致思路是，以数字作为迭代器来计算\emph{有序对}的序列
 \[
 \tuple{\num 0, F(\num 0)}, \tuple{\num 1, F(\num 1)}, \dots,
-\]。
+\]
 注意，第一个有序对就是 $\tuple{\num 0, G}$。给定一个有序对 $\tuple{\num{n}, F(\num{n})}$，下一个有序对 $\tuple{\num{n+1}, F(\num{n+1})}$ 应当与 $\tuple{\num{n+1}, H(\num{n}, F(\num{n}))}$ 等价。我们将设计一个实现这一单步转移的λ-项~$T$。
 
 细节如下。定义 $T(u)$ 为：
