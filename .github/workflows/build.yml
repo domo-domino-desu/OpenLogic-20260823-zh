@@ -8,26 +8,40 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set up Git repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v6
+      - name: Pull TeX Live image
+        run: docker pull texlive/texlive:latest
       - name: Compile debug LaTeX document
-        uses: xu-cheng/latex-action@v2
-        with:
-          root_file: open-logic-debug.tex
-          latexmk_use_lualatex: true
-          extra_system_packages: fonts-noto-cjk
+        run: >-
+          docker run --rm
+          --volume "$GITHUB_WORKSPACE:/work"
+          --workdir /work
+          texlive/texlive:latest
+          latexmk -lualatex -file-line-error -halt-on-error
+          -interaction=nonstopmode open-logic-debug.tex
+      - name: Report debug build failure
+        if: failure()
+        run: |
+          {
+            echo '```text'
+            tail -n 120 open-logic-debug.log 2>/dev/null || true
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
       - name: Upload open-logic-debug.pdf
-        uses: actions/upload-artifact@master
+        uses: actions/upload-artifact@v6
         with:
           name: open-logic-debug.pdf
           path: open-logic-debug.pdf
       - name: Compile release LaTeX document
-        uses: xu-cheng/latex-action@v2
-        with:
-          root_file: open-logic-complete.tex
-          latexmk_use_lualatex: true
-          extra_system_packages: fonts-noto-cjk
+        run: >-
+          docker run --rm
+          --volume "$GITHUB_WORKSPACE:/work"
+          --workdir /work
+          texlive/texlive:latest
+          latexmk -lualatex -file-line-error -halt-on-error
+          -interaction=nonstopmode open-logic-complete.tex
       - name: Upload open-logic-complete.pdf
-        uses: actions/upload-artifact@master
+        uses: actions/upload-artifact@v6
         with:
           name: open-logic-complete.pdf
           path: open-logic-complete.pdf

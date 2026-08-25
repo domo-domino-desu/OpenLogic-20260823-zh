@@ -83,9 +83,17 @@
   urlcolor=dark-gray}
   %linkcolor=reflex-blue}
 
+% ctex（见 open-logic-cjk.sty）会预先定义 \proofname 这个中文本地化的
+% caption，跟下面 ntheorem 自己在 \ProcessOptions 里定义 \proofname 撞车，
+% 报 "Command \proofname already defined"。本书的 proof/thm 环境标题从来
+% 不经由这个 caption 机制生成（是 open-logic-locale.sty 的
+% \setlocalecaption 单独定义的），所以直接清掉 ctex 留下的定义，把
+% \proofname 让给 ntheorem 用。
+\let\proofname\undefined
+
 % Load ntheorem as theorem backend thmmarks, amsmath options necessary
 % for proper placement of proof end markers. amsthm option provides
-% standard theorem styles. 
+% standard theorem styles.
 \RequirePackage[thmmarks,amsmath,amsthm,hyperref]{ntheorem}
 
 % Load thmtools for nice formatting of theorem environments
