@@ -1,22 +1,12 @@
+% Part: first-order-logic
+% Chapter: axiomatic-proofs
+% Section: identity
+
 \documentclass[../../../include/open-logic-section]{subfiles}
 
 \begin{document}
 
 \olfileid{fol}{axd}{ide}
-
-若要将其扩展以包含 % Part: first-order-logic，则必须添加关于 % Chapter: axiomatic-proofs 的公理。
-这些公理是自返性公理以及 % Chapter: axiomatic-proofs 的可替换性公理模式。
-
-自返性公理模式对每个项~$t$ 给出语句 $t = t$。
-可替换性公理模式则对每个公式~$!A$、变元~$x$ 和变元~$y$ 给出如下公理：
-\[
-\lforall[x][\lforall[y][((x = y \land !A) \lif \Subst{!A}{y}{x})]]。
-\]
-例如，
-\[
-\lforall[x][\lforall[y][((x = y \land P(x)) \lif P(y))]]
-\]
-就是一条这样的公理。% Section: identity
 
 \olsection{带等词的推导}
 

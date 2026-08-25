@@ -1,3 +1,9 @@
+% Part: first-order-logic
+% Chapter: axiomatic-deduction
+% Section: provability-quantifiers
+% Verification of properties of provability needed for maximally
+% consistent sets in the completeness chapter.
+
 \documentclass[../../../include/open-logic-section]{subfiles}
 
 \begin{document}
@@ -5,14 +11,6 @@
 \olfileid{fol}{axd}{qpr}
 
 \olsection{可推导性与量词}
-
-你可能觉得奇怪，从前提“所有马都是哺乳动物”我们竟然可以推出“波塞冬是一匹马蕴涵波塞冬是哺乳动物”。但推理确实是有效的。
-
-类似地，如果我们知道“所有马都是哺乳动物”，那么我们就可以推出“若波塞冬是一匹马，则波塞冬是哺乳动物”。毕竟，“所有”一词本身就保证了这一点。
-
-注意，这不像通常那样是从若干前提公式推导出一个结论公式，而是从公式% Part: first-order-logic（其中% Chapter: axiomatic-deduction是自由的）“推出”公式% Section: provability-quantifiers。从% verification of properties of provability needed for maximally得到% consistent sets in the completeness chapter.的规则更像是合取引入规则，后者允许我们从公式% verification of properties of provability needed for maximally和% consistent sets in the completeness chapter.推出% Part: first-order-logic：在这两种情况下，规则都允许我们根据已有的公式构造出一个新公式。
-
-因此，我们如下制定全称量词规则：
 
 \begin{explain}
   完备性定理还要求，公理演绎能够得出本节所建立的关于可证关系~$\Proves$ 的事实。
