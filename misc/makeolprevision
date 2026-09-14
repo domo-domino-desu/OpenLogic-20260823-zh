@@ -1,7 +1,4 @@
 #!/bin/bash
 
-git_dir=$(git -C "$1" rev-parse --absolute-git-dir)
-git_head_info="$git_dir/gitHeadInfo.gin"
-
-grep shash "$git_head_info" | sed 's/[^{]*{\([^}]*\)},/\\setOLPrevision\{\1/' > olprevision.tex
-grep authsdate "$git_head_info" | sed 's/[^{]*{\([^}]*\)},/(\1)\}/' >> olprevision.tex
+revision=$(git -C "$1" log -1 --format='%h (%ad)' --date=short)
+printf '\\setOLPrevision{%s}\n' "$revision" > olprevision.tex
