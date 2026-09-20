@@ -97,8 +97,6 @@
     \usepackage[scaled=.92]{helvet}
     % Baskervald X for roman, with oldstyle figure
     \usepackage[osf]{Baskervaldx}
-    % load amssymb before newtxmath to avoid problem with \Bbbk
-    \usepackage{amssymb}
     % Nice math calligraphic font 
     \usepackage[cal=boondoxo]{mathalpha}
     % Math font to match
