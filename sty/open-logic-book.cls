@@ -97,10 +97,6 @@
     \usepackage[scaled=.92]{helvet}
     % Baskervald X for roman, with oldstyle figure
     \usepackage[osf]{Baskervaldx}
-    % Nice math calligraphic font 
-    \usepackage[cal=boondoxo]{mathalpha}
-    % Math font to match
-    \usepackage[bigdelims,baskervaldx]{newtxmath}
     % use Bodono greek for math
     \usepackage{textgreek}
   }
