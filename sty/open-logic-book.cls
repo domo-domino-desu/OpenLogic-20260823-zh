@@ -174,8 +174,8 @@
     \newcommand*{\OLPsubtitlecoverfont}{\fontsize{25pt}{28pt}\sffamily\bfseries}
   }
   \AtBeginDocument{
-    % make sure PDF conforms to PDF/A standard
-    \RequirePackage[a-1b]{pdfx}
+    % pdfx's PDF/A-1b preset attempts to downgrade LuaTeX's PDF 1.7 output
+    % and is rejected by current LuaHBTeX.  Screen PDFs do not require it.
     % no bars next to chapter headings
     \setlength{\barwidth}{0pt}
     \RequirePackage[numbered]{bookmark}
