@@ -19,6 +19,9 @@
 % 而不会回退到数学字体。New Computer Modern 同时覆盖正文中的希腊字母和
 % 本书所需的 Unicode 数学字形；fontsetup 也会让正文与数学字体保持配套。
 \RequirePackage[default]{fontsetup}
+% OpenLogic uses the amssymb alias \restriction.  unicode-math provides the
+% same glyph under its Unicode name without loading the incompatible package.
+\let\restriction\upharpoonright
 
 % 与 HoTT Book 中译本一致：正文的 \textbf 使用黑体强调，而不是给宋体
 % 机械加粗。这里只重定义 \textbf；标题样式直接使用 \bfseries，因此仍由
