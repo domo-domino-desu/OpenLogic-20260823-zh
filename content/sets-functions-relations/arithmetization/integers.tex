@@ -21,9 +21,9 @@
 事实上，这个建议过于朴素。显然，我们希望 $0 - 2 = 4 - 6$ 成立，但显然 $\tuple{0, 2 }\neq \tuple{4, 6}$。因此我们不能简单地说 $\Nat^2$ 就是整数的集合。
 
 将前述问题加以推广，我们需要的是以下性质：
-	$$a - b = c - d \text{ iff }a + d = c + b$$
+	$$a - b = c - d \text{ 当且仅当 }a + d = c + b$$
 （显然，这就是整数所\emph{应有}的性质：只需将 $b$ 和 $d$ 同时加到等式两边即可。）而要保证这种性质，一个简单的方法就是在有序对之间定义一个等价关系 $\Intequiv$，如下：
-$$\tuple{ a, b } \Intequiv \tuple{c, d}\text{ iff }a + d = c + b$$
+$$\tuple{ a, b } \Intequiv \tuple{c, d}\text{ 当且仅当 }a + d = c + b$$
 现在我们必须证明这是一个等价关系。
 
 \begin{prop}

@@ -117,7 +117,7 @@ L(!A) \cap \Lang L(!B)$，使得 $\Log{G3c} \Proves !A \Sequent !C$ 且 $\Log{G3
     这些正是在 $!C_1$ 是插值时我们希望可推导的相继式；我们再次令 $!C \ident !C_1$。和前面一样，有 $\Lang
     L(!C_1) \subseteq \Lang L(\Gamma_1, \Delta_1) \cap \Lang L(\Gamma_2,
     \Delta_2, \lnot !A)$。
-    \item $\pi$ 以 $\RightR{\lif}$ 结束，主公式为~$!A \lif !B$。我们同样有两种情况，取决于 $!A \lif !B$ belongs to the first or second part. The !!{proof}~$$，$\pi$ 要么结束于
+    \item $\pi$ 以 $\RightR{\lif}$ 结束，主公式为~$!A \lif !B$。我们同样有两种情况，取决于 $!A \lif !B$ 属于第一部分还是第二部分。推导~$\pi$ 要么结束于
     \[
     \AxiomC{}
     \RightLabel{$\pi_1$}
@@ -297,14 +297,13 @@ L(!A) \cap \Lang L(!B)$，使得 $\Log{G3c} \Proves !A \Sequent !C$ 且 $\Log{G3
     因此，如果条件 $\Lang L(!C_1) \subseteq \Lang L(\Gamma_1, \Delta_1,
     \lexists[x][!A(x)]) \cap \Lang L(\Gamma_2, \Delta_2)$ 满足，$!C_1$ 将再次是一个插值。这里归纳假设告诉我们 $\Lang L(!C_1)
     \subseteq \Lang L(\Gamma_1, \Delta_1, \lexists[x][!A(x)], !A(t))
-    \cap \Lang L(\Gamma_2, \Delta_2)$. Now remember that we assumed
-    that there are no !!{function}s. That means the term~$t$ can only
-    be !!a{constant}, i.e., $t \ident b$。如果 $b \notin \Lang L(!C_1)$
+    \cap \Lang L(\Gamma_2, \Delta_2)$。现在回想一下，我们假定了不存在!!{function}。
+    这意味着项~$t$ 只能是!!a{constant}，即 $t \ident b$。如果 $b \notin \Lang L(!C_1)$
     或者 $b \in \Lang L(\Gamma_1, \Delta_1, \lexists[x][!A(x)]) \cap
     \Lang L(\Gamma_2, \Delta_2)$，那么没什么可担心的：我们可以取 $!C_1$ 作为插值。但如果 $b \in \Lang
     L(!C_1)$ 且 $b \notin \Lang L(\Gamma_1, \Delta_1,
-    \lexists[x][!A(x)]) \cap \Lang L(\Gamma_2, \Delta_2)$? First of
-    all, by replacing all occurrences of~$$，将~$!C_1$ 中的 $b$ 替换为变元~$y$，我们可以写成 $!C_1 \ident \Subst{!C_1'}{b}{y}$
+    \lexists[x][!A(x)]) \cap \Lang L(\Gamma_2, \Delta_2)$ 呢？首先，把~$!C_1$
+    中 $b$ 的所有出现都替换为!!a{variable}~$y$，我们就可以写成 $!C_1 \ident \Subst{!C_1'}{b}{y}$，
     其中 $!C_1'$~不含~$b$。此外，要么 $b \notin
     \Lang L(\Gamma_1, \Delta_1, \lexists[x][!A(x)])$，要么 $b \notin
     \Lang L(\Gamma_2, \Delta_2)$。我们可以分别取 $!C \ident

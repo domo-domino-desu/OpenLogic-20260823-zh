@@ -1,21 +1,17 @@
+% Part: first-order-logic
+% Chapter: completeness
+% Section: maximally-consistent-sets
+
+% Definition of maximally consistent sets. Properties of mcs required
+% for completeness proved are in maximally-consistent-sets.tex in the
+% chapter on the proof system used.
+
 \documentclass[../../../include/open-logic-section]{subfiles}
 
 \begin{document}
 
 \olfileid{fol}{com}{mcs}
 \olsection{语句的极大一致集}
-
-% Part: first-order-logic
-对每个一致的理论 $G$，
-都存在一个极大一致的理论 $G^* \supseteq G$。% Chapter: completeness
-如果 $G$ 还是完备的，那么它本身就已经是极大一致的了。% Section: maximally-consistent-sets
-
-假设 $G$ 是完备的。% Definition of maximally consistent sets. Properties of mcs required
-若 $G$ 不是极大一致的，则存在某个语句 $A$ 使得 $A \notin G$ 且 $\lnot A \notin G$。% for completeness proved are in maximally-consistent-sets.tex in the
-但根据完备性定义，$A \in G$ 或 $\lnot A \in G$，矛盾。% chapter on the proof system used.
-反之，假设 $G$ 是极大一致的。我们要证 $G$ 是完备的。设 $A$ 是任意语句。若 $A \notin G$，则根据极大一致性，$G \cup \{A\}$ 不一致。由于 $G$ 对可推导性封闭，可得 $G \Proves \lnot A$，因此 $\lnot A \in G$。所以，对任意语句 $A$，有 $A \in G$ 或 $\lnot A \in G$，即 $G$ 是完备的。
-
-因此，极大一致集恰好就是那些一致且完备的集合。
 
 \begin{defn}[极大一致集]
 \ollabel{mcs}

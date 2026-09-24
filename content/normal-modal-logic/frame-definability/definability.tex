@@ -3,26 +3,10 @@
 \begin{document}
 
 \olfileid{nml}{frd}{def}
+
 % Part: normal-modal-logic
-所谓\textit{正规系统}，是由一个公理化系统和一个关系语义共同组成的，二者通过可靠性和完备性定理联系起来——在这个意义上，一个公式在公理系统中可证，当且仅当它在关系语义的所有模型中有效。
-
 % Chapter: frame-definability
-一个正规系统的公理部分是经典逻辑的保守扩张，而其关系模型是经典一阶结构的保守扩张（增加了一个可达关系）。这意味着，如果我们只考虑不涉及模态算子和可达关系的公式，那么可证关系就与经典一阶逻辑中的相同；如果我们从模型中去掉可达关系，那么剩下的就是一个经典的一阶结构。
-
 % Section: definability
-\begin{defn}[正规系统]
-称一个模态证明系统~$\Sigma$ 与一个关系框架类~$\mClass C$ 一起构成了一个\textit{正规模态逻辑}，如果下列条件成立：
-\begin{enumerate}
-\item $\Sigma$ 相对于 $\mClass C$ 是可靠且完备的，即 $\Sigma \Proves !A$ 当且仅当 $\mClass C \Entails !A$。
-\item $\Sigma$ 包含必然化规则：由 $!A$ 可推出 $\Box !A$。
-\item $\Sigma$ 至少能证明以下公理模式（或其等价形式）之一：
-\begin{align*}
-& \Box !A \lif \Box \Box !A && \text{(4)}\\
-& \Box !A \lif !A && \text{(T)}\\
-& \Diamond !A \lif \Box \Diamond !A && \text{(5)}
-\end{align*}
-\end{enumerate}
-\end{defn}
 
 \olsection{框架可定义性}
 

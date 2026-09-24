@@ -71,18 +71,17 @@
   \begin{align*}
     \Diamond(p_2 \lif p_3) &
     \lif \Box(\Diamond(p_2 \lif p_3) \land \lnot\Box p_1)
-    \intertext{while $\SSubst{!A}{\subst{!D_2}{p_1}, \subst{!D_1}{p_2}}$ is}
+    \intertext{而 $\SSubst{!A}{\subst{!D_2}{p_1}, \subst{!D_1}{p_2}}$ 是}
     \lnot\Box p_1 &
     \lif \Box(\lnot\Box p_1 \land \Diamond(p_2 \lif p_3))
-    \intertext{Note that simultaneous substitution is in general not
-      the same as iterated substitution, e.g., compare
-      $\SSubst{!A}{\subst{!D_1}{p_1}, \subst{!D_2}{p_2}}$ above with
-      $\Subst{(\Subst{!A}{!D_1}{p_1})}{!D_2}{p_2}$, which is:}
+    \intertext{注意，同时代入一般不同于迭代代入。例如，把上面的
+      $\SSubst{!A}{\subst{!D_1}{p_1}, \subst{!D_2}{p_2}}$ 与
+      $\Subst{(\Subst{!A}{!D_1}{p_1})}{!D_2}{p_2}$ 比较，后者是：}
     \Diamond(p_2 \lif p_3) & \Subst{\lif \Box(\Diamond(p_2 \lif p_3) \land p_2)}{\lnot\Box p_1}{p_2}, \text{ 即，}\\
     \Diamond(\lnot\Box p_1 \lif p_3) &
     \lif \Box(\Diamond(\lnot\Box p_1
     \lif p_3) \land \lnot\Box p_1)\\
-    \intertext{and with $\Subst{(\Subst{!A}{!D_2}{p_2})}{!D_1}{p_1}$:}
+    \intertext{再与 $\Subst{(\Subst{!A}{!D_2}{p_2})}{!D_1}{p_1}$ 比较：}
     p_1 & \lif \Subst{\Box(p_1 \land \lnot\Box p_1)}{\Diamond(p_2 \lif p_3)}{p_1}, \text{ 即，}\\
     \Diamond(p_2 \lif p_3) &
     \lif \Box(\Diamond(p_2
